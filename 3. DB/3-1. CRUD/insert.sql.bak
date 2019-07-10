@@ -1,14 +1,14 @@
 -- 회원
-insert into MEMBER values('aaa@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), '최운학', 'pw01', '부천', 19890101, '남', 01011111111, '패널', '미혼', '무', '무', '유', SYSDATE);
-insert into MEMBER values('bbb@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw02', '서울', 19900202, '남', 01022222222, '패널', '기혼', '유', '유', '유', SYSDATE);
-insert into MEMBER values('ccc@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw03', '인천', 19890303, '남', 01033333333, '일반', '미혼', '무', '유', '유', SYSDATE);
-insert into MEMBER values('ddd@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw04', '성남', 19890404, '남', 01044444444, '일반', '미혼', '무', '무', '무', SYSDATE);
-insert into MEMBER values('eee@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw05', '대구', 19910505, '여', 01055555555, '패널', '기혼', '유', '유', '유', SYSDATE);
-insert into MEMBER values('fff@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw06', '부산', 19920606, '남', 01077777777, '일반', '기혼', '유', '유', '무', SYSDATE);
-insert into MEMBER values('ggg@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw07', '대전', 19910707, '남', 01088888888, '일반', '기혼', '유', '무', '유', SYSDATE);
-insert into MEMBER values('hhh@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw08', '전주', 19960808, '남', 01099999999, '패널', '미혼', '무', '무', '유', SYSDATE);
-insert into MEMBER values('iii@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw09', '제주', 19930909, '여', 01012345678, '패널', '미혼', '무', '유', '유', SYSDATE);
-insert into MEMBER values('jjj@google.com', 'A'||LPAD(ATT_CATEGORY_SEQ.nextval, 3, 0), 'pw10', '경주', 19901010, '남', 01098765432, '일반', '기혼', '유', '유', '유', SYSDATE);
+insert into MEMBER values('aaa@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '최운학', 'pw01', '부천', 19890101, '남', 01011111111, '패널', '미혼', '무', '무', '유', SYSDATE);
+insert into MEMBER values('bbb@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '곽지훈', 'pw02', '서울', 19900202, '남', 01022222222, '패널', '기혼', '유', '유', '유', SYSDATE);
+insert into MEMBER values('ccc@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '변정우', 'pw03', '인천', 19890303, '남', 01033333333, '일반', '미혼', '무', '유', '유', SYSDATE);
+insert into MEMBER values('ddd@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '이재하', 'pw04', '성남', 19890404, '남', 01044444444, '일반', '미혼', '무', '무', '무', SYSDATE);
+insert into MEMBER values('eee@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '조성식', 'pw05', '대구', 19910505, '여', 01055555555, '패널', '기혼', '유', '유', '유', SYSDATE);
+insert into MEMBER values('fff@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '박동진', 'pw06', '부산', 19920606, '남', 01077777777, '일반', '기혼', '유', '유', '무', SYSDATE);
+insert into MEMBER values('ggg@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '손현준', 'pw07', '대전', 19910707, '남', 01088888888, '일반', '기혼', '유', '무', '유', SYSDATE);
+insert into MEMBER values('hhh@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '박상우', 'pw08', '전주', 19960808, '남', 01099999999, '패널', '미혼', '무', '무', '유', SYSDATE);
+insert into MEMBER values('iii@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '최정인', 'pw09', '제주', 19930909, '여', 01012345678, '패널', '미혼', '무', '유', '유', SYSDATE);
+insert into MEMBER values('jjj@google.com', 'A'||ATT_CATEGORY_SEQ.nextval, '최영훈', 'pw10', '경주', 19901010, '남', 01098765432, '일반', '기혼', '유', '유', '유', SYSDATE);
 
 -- 카테고리
 insert into CATEGORY values('B001', '교육, 학문', SYSDATE);
