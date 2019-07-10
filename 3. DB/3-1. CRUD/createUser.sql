@@ -1,5 +1,5 @@
-drop user FRESEARCH CASCADE;
-create user FRESEARCH identified by JAVA;
-grant CONNECT, RESOURCE to FRESEARCH;
-conn FRESEARCH/JAVA;
+drop user fresearch CASCADE;
+create user fresearch identified by java;
+grant CONNECT, RESOURCE to fresearch;
+conn fresearch/java;
 show user;
