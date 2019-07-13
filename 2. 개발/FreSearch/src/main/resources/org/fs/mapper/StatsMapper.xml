@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.StatsMapper">
+
+<select id="getList" resultType="org.fs.domain.StatsVO">
+<![CDATA[
+select SUBJ_CODE as subjCode ,CTGR_CODE as ctgrCode, MB_EMAIL as mbEmail, MB_NICK as mbNick, SUBJ_NM as subjNm, SUBJ_REGDATE as subjRegdate, SUBJ_STARTDATE as subjStartDate, SUBJ_ENDDATE as subjEndDate from subject
+]]>
+</select>
+
+</mapper>
