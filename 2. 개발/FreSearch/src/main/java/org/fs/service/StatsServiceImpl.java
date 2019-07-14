@@ -22,10 +22,22 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getList..........");
 		
 		return mapper.getList();
-		
 	}
 	
+	@Override
+	public List<StatsVO> getMemberList(){
+		log.info("getMemberList...........");
+		return mapper.getMemberList();
+	}
 	
-	
-
+	@Override
+	public List<StatsVO> getAttCategory(){
+		log.info("getAttCategory...........");
+		return mapper.getAttCategory();
+	}
+	@Override
+	public List<StatsVO> getAge(){
+		log.info("getAge............");
+		return mapper.getAge();
+	}
 }

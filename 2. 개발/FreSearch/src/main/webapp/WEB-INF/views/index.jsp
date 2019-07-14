@@ -88,7 +88,7 @@
                <li>
                   <a href="">데이터베이스</a>
                   <ul class="sub">
-                     <li><a href="">리서치 통계</a></li>
+                     <li><a href="stats/stats_list">리서치 통계</a></li>
                      <li><a href="">결과 목록</a></li>
                   </ul>
                </li>

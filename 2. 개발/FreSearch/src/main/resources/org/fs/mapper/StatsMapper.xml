@@ -10,4 +10,20 @@ select SUBJ_CODE as subjCode ,CTGR_CODE as ctgrCode, MB_EMAIL as mbEmail, MB_NIC
 ]]>
 </select>
 
+<select id="getMemberList" resultType="org.fs.domain.StatsVO">
+select MB_ATT_CTGR_CODE as mbAttCtgrCode, MB_PWD as mbPwd, MB_ADDR as mbAddr, MB_BIRTHDATE as mbBirthDate, MB_SEX as mbSex, MB_PHONE as mbPhone, MB_REG_ATRT as mbRegAtrt, MB_JOINDATE as mbJoinDate from member
+</select>
+
+<select id="getAttCategory" resultType="org.fs.domain.StatsVO">
+select MB_ATT_CTGR_CODE as bmAttCtgrCode, MB_EMAIL as mbEmail, CTGR_CODE1 as ctgrCode1, CTGR_CODE2 as ctgrCode2, CTGR_CODE3 as ctgrCode3, CTGR_CODE5 as ctgrCode5, MB_MARRIAGE_YN as mbMarriageYn,MB_CHILD_YN as mbChildYn,MB_HOME_YN as mbHomeYn,MB_CAR_YN as mbCarYn from ATT_CATEGORY 
+</select>
+
+<select id="getAge" resultType="org.fs.domain.StatsVO">
+SELECT NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0) as age FROM member
+</select>
+
+<select id="getAddr" resultType="org.fs.domain.StatsVO">
+
+</select>
+
 </mapper>

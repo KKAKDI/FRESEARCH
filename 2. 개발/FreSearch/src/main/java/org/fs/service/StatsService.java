@@ -6,5 +6,7 @@ import org.fs.domain.StatsVO;
 
 public interface StatsService {
 	public List<StatsVO> getList();
-
+	public List<StatsVO> getMemberList();
+	public List<StatsVO> getAttCategory();
+	public List<StatsVO> getAge();
 }

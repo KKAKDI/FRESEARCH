@@ -185,12 +185,20 @@ a.no-uline {
 				      fill: false
 				    }]
 				  };
-				  var educationK = ${education};
+				  
+				  
+				  
+				  var ten = ${ten};
+					var twenty = ${twenty};
+					var thiry = ${thiry};
+					var forty =${forty};
+					var fifty = ${fifty};
+					var sixty = ${sixty};
 				  var dataAge = {
 						    labels: ["10", "20", "30", "40", "50", "60"],
 						    datasets: [{
 						      label: '# of Votes',
-						      data: [${education}, 19, 3, 5, 2, 3],
+						      data: [${ten}, ${twenty}, ${thiry}, ${forty},${fifty}, ${sixty}],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.2)',
 						        'rgba(54, 162, 235, 0.2)',
@@ -211,11 +219,16 @@ a.no-uline {
 						      fill: false
 						    }]
 						  };
+				  
+				  var gyeongGi = ${gyeongGi};
+				  var incheon = ${incheon};
+				  var busan = ${busan};
+				  var seoul = ${seoul};
 				  var dataArea = {
 						    labels: ["서울", "경기", "부산", "인천"],
 						    datasets: [{
 						      label: '# labels',
-						      data: [10, 19, 3, 5, 2, 3],
+						      data: [${seoul}, ${busan}, ${incheon}, ${gyeongGi}, 2, 3],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.2)',
 						        'rgba(54, 162, 235, 0.2)',
@@ -286,46 +299,87 @@ a.no-uline {
 				    
 
 				  };
+				  //변수들
+				  var education = ${education};
+				  var computer = ${computer};
+				  var game = ${game};
+				  var entertainment = ${entertainment};
+				  var life = ${life};
+				  var heath = ${heath};
+				  var society = ${society};
+				  var economy = ${economy};
+				  var travel = ${travel};
+				  var sports = ${sports};
+				  var shopping = ${shopping};
+				  var region = ${region};
+				  var marriage = ${marriage};
+				  //.변수들
 				  var doughnutPieData = {
 				    datasets: [{
-				      data: [30, 40, 30],
+				      data: [${education}, ${computer}, ${game},${entertainment},${life},${heath},${society},${economy},${travel},${sports},${shopping},${region},${marriage}],
 				      backgroundColor: [
 				        'rgba(255, 99, 132, 0.5)',
 				        'rgba(54, 162, 235, 0.5)',
 				        'rgba(255, 206, 86, 0.5)',
 				        'rgba(75, 192, 192, 0.5)',
 				        'rgba(153, 102, 255, 0.5)',
-				        'rgba(255, 159, 64, 0.5)'
+				        'rgba(051, 051, 051, 0.5)',
+				        'rgba(255, 159, 64, 0.5)',
+				        'rgba(255, 255, 102, 0.5)',
+				        'rgba(102, 102, 153, 0.5)',
+				        'rgba(255, 000, 255, 0.5)',
+				        'rgba(102, 204, 102, 0.5)',
+				        'rgba(051, 153, 051, 0.5)',
+				        'rgba(000, 051, 000, 0.5)'
 				      ],
 				      borderColor: [
-				        'rgba(255,99,132,1)',
-				        'rgba(54, 162, 235, 1)',
-				        'rgba(255, 206, 86, 1)',
-				        'rgba(75, 192, 192, 1)',
-				        'rgba(153, 102, 255, 1)',
-				        'rgba(255, 159, 64, 1)'
+				        'rgba(255,99,132,0)',
+				        'rgba(54, 162, 235, 0)',
+				        'rgba(255, 206, 86, 0)',
+				        'rgba(75, 192, 192, 0)',
+				        'rgba(153, 102, 255, 0)',
+				        'rgba(051, 051, 051, 0)',
+				        'rgba(255, 159, 64, 0)',
+				        'rgba(255, 255, 102, 0)',
+				        'rgba(102, 102, 153, 0)',
+				        'rgba(255, 000, 255, 0)',
+				        'rgba(102, 204, 102, 0)',
+				        'rgba(051, 153, 051, 0)',
+				        'rgba(000, 051, 000, 0)'
 				      ],
 				    }],
 
 				    // These labels appear in the legend and in the tooltips when hovering different arcs
 				    labels: [
-				      '교육',
+				      '교육, 학문',
+				      '컴퓨터 통신',
 				      '게임',
-				      '컴퓨터',
+				      '엔터테인먼트, 예술',
+				      '생활',
+				      '건강',
+				      '사회, 정치',
+				      '경제',
+				      '여행',
+				      '스포츠, 레저',
+				      '쇼핑',
+				      '지역',
+				      '결혼'
 				    ]
 				  };
+				  var boy = ${boy};
+				  var girl = ${girl};
 				  var doughnutPieDataSex = {
 						    datasets: [{
-						      data: [30, 40],
+						      data: [${boy}, ${girl}],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.5)',	//안쪽색
-						        'rgba(54, 162, 235, 0.5)',	//보더 색
+						        'rgba(54, 162, 235, 0.5)',
+						        'rgba(255, 99, 132, 0.5)',//보더 색
 						        'rgba(255, 206, 86, 0.5)',
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
 						      borderColor: [
-						        'rgba(255,99,132,1)',
 						        'rgba(54, 162, 235, 1)',
+						        'rgba(255,99,132,1)',
 						        'rgba(255, 206, 86, 1)',
 						        'rgba(75, 192, 192, 1)',
 
@@ -334,15 +388,17 @@ a.no-uline {
 
 						    // These labels appear in the legend and in the tooltips when hovering different arcs
 						    labels: [
-						      '여자',
 						      '남자',
+						      '여자',
 
 						    ]
 						  };
 				  
+				  var single = ${single};
+				  var unsingle = ${unsingle};
 				  var doughnutPieDataMarriage = {
 						    datasets: [{
-						      data: [55, 40],
+						      data: [${unsingle}, ${single}],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.5)',	//안쪽색
 						        'rgba(54, 162, 235, 0.5)',	//보더 색
