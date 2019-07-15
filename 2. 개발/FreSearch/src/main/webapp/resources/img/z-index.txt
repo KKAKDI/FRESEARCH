@@ -1,0 +1,4 @@
+fixed_box (.container .fixed_box)
+: 99999
+.emblembox (.container .fixed_box .header .upper .login .emblembox)
+: 9

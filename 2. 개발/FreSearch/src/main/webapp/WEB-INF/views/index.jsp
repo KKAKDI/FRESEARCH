@@ -1,239 +1,183 @@
-<%@ page contentType="text/html;charset=utf-8"%>
+﻿<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-   <title>TAKE A LOOK</title>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="initial-scale=1, width=device-width">
-   <!-- <link rel="shortcut icon" href="favicon.ico"> -->
-   <!-- <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" rel="stylesheet"> -->
-   <!-- <link rel="stylesheet" href="css/font.css"> -->
-   <link rel="stylesheet" href="/resources/css/reset.css">
-   <link rel="stylesheet" href="/resources/css/style.css">
-   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   <!--[if IE 9]>
-	<script src="js/main_ie9.js"></script>
-	<script src="js/gnb.js"></script>
-	<link rel="stylesheet" href="css/ie9.css">
-	<![endif]-->
+<title>navigation :: basic navigation</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+	$(function(){
+		$("#GNB > ul > li").hover(
+			function () {
+				$(this).children("a").addClass("active");
+				$(this).find("ul").addClass("active");
+				$(this).parent("ul").stop().animate({ height: 264 }, 300);
+				$(this).parents().find(".GNB_sub").stop().animate({ height: 185 }, 300);
+				/* 마우스가 들어온다면 이벤트가 발생된다
+				GNB ul li 자식 a에게 active 를 addClass - 관련 css-style-126
+				GNB ul li 자식 중 ul을 찾아 active 를 addClass - 관련 css-style-135
+				GNB ul li의 부모인 ul의 height를 animate 효과로 3초동안 변경
+				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 height를 animate 효과로 3초동안 변경
+				*/
+			},
+			// 마우스가 떠난다면
+			function () {
+				$(this).children("a").removeClass("active");
+				$(this).find("ul").removeClass("active");
+				$(this).parent("ul").stop().animate({ height: 80 }, 300);
+				$(this).parents().find(".GNB_sub").stop().animate({ height: 0 }, 300);
+				/* 마우스가 떠난다면 이벤트가 발생된다 
+				GNB ul li 자식 a에게 active를 removeClass css-style-126
+				GNB ul li 자식 중 ul을 찾아 active를 removeClass - 관련 css-style-135
+				GNB ul li의 부모인 ul의 변경했던 height를 3초간 animate를 주어 원래대로 변경
+				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 변경했던 height를 3초간 animate를 주어 원래대로 변경
+				*/
+			}
+		);
+		$("#GNB > ul > li").focusin(function () {
+			$(this).children("a").addClass("active");
+			$(this).find("ul").addClass("active");
+			$(this).parent("ul").stop().animate({ height: 264 }, 300);
+			$(this).parents().find(".GNB_sub").stop().animate({ height: 185 }, 300);
+		});
+		$("#GNB > ul > li").focusout(function () {
+			$(this).children("a").removeClass("active");
+			$(this).find("ul").removeClass("active");
+			$(this).parent("ul").stop().animate({ height: 80 }, 300);
+			$(this).parents().find(".GNB_sub").stop().animate({ height: 0 }, 300);
+		});
+		//접근성을 위하여 tab키로 접근시 마우스로 접근한 것처럼 똑같이 나타나도록 작성한 스크립트
 
-   <!--[if IE 8]>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
-	<script src="js/main_ie8.js"></script>
-	<script src="js/gnb.js"></script>
-	<link rel="stylesheet" href="css/ie8.css">
-	<![endif]-->
+		$('.bxslider').bxSlider({
+			auto: true,
+			autoControls: true,
+			stopAutoOnClick: true,
+			pager: true,
+			slideWidth: 1920
+		});
+	});
 
-   <!--[if gt IE 9]><!-->
-   <!-- <script src="js/main.js"></script>
-	<script src="js/gnb.js"></script> -->
-   <!--<![endif]-->
-   <script src="/resources/js/main.js"></script>
+</script>
 </head>
-
 <body>
-   <div class="wrap">
-      <div id="skip_navi" class="skip_navi">
-         <div class="skip_wrap">
-            <a href="#content">본문 내용 바로가기</a>
-            <a href="#GNB">주 메뉴 바로가기</a>
-         </div>
-      </div>
-      <header id="header" class="clearflx">
-         <div class="logo"><a href=""><img src="/resources/img/logo.png" alt="logo"></a></div>
-         
-         <div class="location">
-            <ul>
-               <li><a href="">Login</a></li>
-               <li><a href="">Join</a></li>
-               <li><form action="검색서블릿" method="POST">
-               <div class="search_bar">
-                  <input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
-               </div>
-               <div class="search_button">
-                  <input type="submit" value="검색">
-               </div>
-            </form></li>
-            </ul>
-         </div>
-      </header>
-      <div class="nav_wrap">
-         <nav id="GNB">
-            <ul>
-               <li>
-                  <a href="">새소식</a>
-                  <ul class="sub">
-                     <li><a href="">공지사항</a></li>
-                     <li><a href="">이벤트</a></li>
-                  </ul>
-               </li>
-               <li>
-                  <a href="">리서치</a>
-                  <ul class="sub">
-                     <li><a href="">리서치 목록</a></li>
-                     <li><a href="">리서치 만들기</a></li>                    
-                  </ul>
-               </li>
-               <li>
-                  <a href="">자유게시판</a>
-                  <ul class="sub">
-                     <li><a href="">게시판 목록</a></li>
-                     <li><a href="">게시글 작성</a></li>                    
-                  </ul>
-               </li>
-               <li>
-                  <a href="">데이터베이스</a>
-                  <ul class="sub">
-                     <li><a href="stats/stats_list">리서치 통계</a></li>
-                     <li><a href="">결과 목록</a></li>
-                  </ul>
-               </li>
-               <li>
-                  <a href="">문의</a>
-                  <ul class="sub">
-                     <li><a href="">패널 신청</a></li>
-                  </ul>
-               </li>
-            </ul>
-         </nav>
-         <div class="sub_shadow"></div>
-      </div>
-      
-      <div class="keyvisual">
-         <ul class="gallery">
-            <li><img src="/resources/img/key1.png" alt=""></li>
-            <li><img src="/resources/img/key2.png" alt=""></li>
-            <li><img src="/resources/img/key3.png" alt=""></li>
-            <li><img src="/resources/img/key4.png" alt=""></li>
-         </ul>
-         <ul class="direction_nav">
-            <li class="left"><a href="" title="left"><img src="/resources/img/btn_left.png"></a></li>
-            <li class="right"><a href="" title="right"><img src="/resources/img/btn_right.png"></a></li>
-         </ul>
-      </div>
-   </div>
-   <section id="content" class="clearflx">
-      <div class="product_area">
-         <div class="pro_buy">
-            <ul>
-               <li>
-                  
-               </li>
-               <li>
-                  <a href="">
-                     
-                     <dl>
-                        <dt>공지사항</dt>
-                        <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               <li>
-                  <a href="">                     
-                     <dl>
-                        <dt>이벤트</dt>
-                         <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               <li>
-                  <a href="">                  
-                     <dl>
-                        <dt>리서치 참여 및 내역</dt>
-                         <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               
-               <li>               
-               </li>
-            </ul>
-         </div>
-         <div class="pro_sell">
-            <ul>
-               <li>
-                 
-               </li>
-               <li>
-                  <a href="">                   
-                     <dl>
-                        <dt>자유게시판</dt>
-                         <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               <li>
-                  <a href="">
-                     <dl>
-                        <dt>데이터베이스</dt>
-                         <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               <li>
-                  <a href="">
-                     <dl>
-                        <dt>패널 신청</dt>
-                         <dd><img src="/resources/img/demo_img.png" alt="demo"></dd>
-                        <dd class="comment">댓글</dd>
-                        <dd class="comment_int">00</dd>
-                        <dd class="contant">연락</dd>
-                        <dd class="contant_int">00</dd>
-                     </dl>
-                  </a>
-               </li>
-               <li>
-                  
-               </li>
-            </ul>
-         </div>         
-      </div>
-      
-   </section>
-   <!--  
-   <div class="ad_zone">
-      <div class="ad_promo">
-         <a href="">프로모션 보러가기</a>
-      </div>
-   </div>   
-	-->
-   <footer id="footer">
-      <div class="footer_inner">
-         <div class="footer_list">
-            <ul>
-               <li><a href="">이용약관</a></li>
-               <li><a href="">개인정보 취급방침</a></li>           
-            </ul>
-         </div>
-         <small class="txt_copyright">
-            Copyright © <a href="https://github.com/KKAKDI/5GONG.git">Team.5GONG</a> All rights reserved.
-         </small>
-      </div>
-   </footer>
+<div class="container">
+	<div class="fixed_box">
+		<!-- 상단 고정 박스 시작 -->
+		<div class="header clearfix">
+			<!-- header 시작 -->
+			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
+				<!-- 상단 로그인 -->
+				<div class="login">
+					<ul>
+						<li><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
+					</ul>
+					<div class="emblembox">
+						<img src="/resources/img/image_1.png" alt="emblem">
+					</div>
+				</div>
+			
+			</div>
+			<div class="header_inner">
+				<div class="logo"><h1 id="logo"><a href=""><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<!-- logo -->
+				<nav id="GNB">
+					<!-- GNB 시작 -->
+					<ul>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+					<!-- GNB 끝 -->
+			</div>
+			<!-- header_inner 끝 -->
+			<div class="GNB_sub"></div>
+		</div>
+		<!-- header 끝 -->
+	</div>
+	<!-- 상단 고정 박스 끝 -->
+	<div class="bxslider">
+	<!-- keyvisual 시작 -->
+		<div><img src="/resources/img/visual1.png" alt="visual1"></div>
+		<div><img src="/resources/img/visual2.png" alt="visual2"></div>
+		<div><img src="/resources/img/visual3.png" alt="visual3"></div>
+	</div>
+	<!-- keyvisual 끝 -->
+	<section id="content" class="clearfix">
+	<!-- 내용 시작 -->
+		<div class="research_area">
+			<div class="box">박스 박스</div>
+			<div class="box">박스 박스</div>
+			<div class="box">박스 박스</div>
+		</div>
+		<div class="notice_area">
+			<div class="box">박스 박스</div>
+			<div class="box">박스 박스</div>
+			<div class="box">박스 박스</div>
+		</div>
+	</section>
+	<!-- 내용 시작 끝 -->
+</div>
 </body>
-
 </html>
