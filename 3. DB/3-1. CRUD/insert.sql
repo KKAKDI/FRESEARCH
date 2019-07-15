@@ -1,14 +1,14 @@
 -- 회원
-insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '10001', '서울특별시 양천구 곰달래로11길 43-2', '신성주택 302호', 19890101, '남', 01011111111, '패널', 'Y', SYSDATE);
-insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '10002', '서울특별시 양천구 월정로29길 22', '태산주택 502호', 19900202, '남', 01022222222, '패널', 'Y', SYSDATE);
-insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '10003', '서울특별시 양천구 곰달래로13길 71', '우진아파트 303호', 19890303, '남', 01033333333, '일반', 'N', SYSDATE);
-insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '10004', '서울특별시 서대문구 성산로 335 강북성모병원', '303호', 19890404, '남', 01044444444, '일반', 'N', SYSDATE);
-insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '10005', '경기도 양평군 개군면 방죽길 31', '청기와아파트 101호', 19910505, '여', 01055555555, '패널', 'Y', SYSDATE);
-insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '10006', '경기도 양평군 개군면 방죽길 31', 19920606, '남', 01077777777, '일반', 'N', SYSDATE);
-insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '10007', '인천광역시 미추홀구 경원대로864번길 59 주안6동주민센터', '벨라스 아파트 1204호', 19910707, '남', 01088888888, '일반', 'N', SYSDATE);
-insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '10008', '인천광역시 남동구 구월동 1476', '보영빌딩 502호', 19960808, '남', 01099999999, '패널', 'Y', SYSDATE);
-insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '10009', '부산광역시 연제구 월드컵대로 344 부산아시아드주경기장', '303호', 19930909, '여', 01012345678, '패널', 'Y', SYSDATE);
-insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '10010', '부산광역시 금정구 부곡동 184-7', '엔젤아파트 303호', 19901010, '남', 01098765432, '일반', 'N', SYSDATE);
+insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '주소1', 19890101, '남', 01011111111, '패널', 'Y', SYSDATE);
+insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '주소2', 19900202, '남', 01022222222, '패널', 'Y', SYSDATE);
+insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '주소3', 19890303, '남', 01033333333, '일반', 'N', SYSDATE);
+insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '주소4', 19890404, '남', 01044444444, '일반', 'N', SYSDATE);
+insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '주소5', 19910505, '여', 01055555555, '패널', 'Y', SYSDATE);
+insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '주소6', 19920606, '남', 01077777777, '일반', 'N', SYSDATE);
+insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '주소7', 19910707, '남', 01088888888, '일반', 'N', SYSDATE);
+insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '주소8', 19960808, '남', 01099999999, '패널', 'Y', SYSDATE);
+insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '주소9', 19930909, '여', 01012345678, '패널', 'Y', SYSDATE);
+insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '주소10', 19901010, '남', 01098765432, '일반', 'N', SYSDATE);
 
 -- 카테고리
 insert into CATEGORY values('B0000001', '교육, 학문', SYSDATE);

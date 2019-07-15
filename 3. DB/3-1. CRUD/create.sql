@@ -4,11 +4,9 @@ CREATE TABLE MEMBER (
 	MB_ATT_CTGR_CODE    VARCHAR2(20)  NOT NULL,        -- 관심카테고리코드
 	MB_NICK		    VARCHAR2(24)  NOT NULL,	   -- 닉네임
 	MB_PWD		    VARCHAR2(30)  NOT NULL,        -- 비밀번호
-	MB_ZIPCODE	    VARCHAR2(50)  NULL,		   -- 우편번호
-	MB_ADDR		    VARCHAR2(150) NULL,            -- 주소
-	MB_ADDR_DETAIL	    VARCHAR2(150) NULL,		   -- 상세주소
+	MB_ADDR		    VARCHAR2(300) NULL,            -- 거주지
 	MB_BIRTHDATE        NUMBER        NULL,            -- 생년월일
-	MB_SEX              VARCHAR2(3)   NULL,            -- 성별
+	MB_SEX              VARCHAR2(10)  NULL,            -- 성별
         MB_PHONE            NUMBER        NULL,            -- 전화번호
 	MB_REG_ATRT	    VARCHAR2(10)  NULL,		   -- 등록권한
 	MB_EMAIL_CONFIRM    VARCHAR2(10)  NULL,		   -- 이메일인증
