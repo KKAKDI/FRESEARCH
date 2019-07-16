@@ -46,14 +46,14 @@ body {
 
 .container .fixed_box .header .upper .login ul {
     float: right;
-    width: 220px;
+    width: 200px;
     border: 1px solid #111;
     /* HTML login 1, 2, 3 항목에 맞게 변경 후 border:1px solid #111; 지우기  */
 }
 
 .container .fixed_box .header .upper .login li {
     display: inline-block;
-    width: 32%;
+    width: 30%;
     /* 항목 3개라서 가로크기 32퍼씩 임시설정 */
 }
 
