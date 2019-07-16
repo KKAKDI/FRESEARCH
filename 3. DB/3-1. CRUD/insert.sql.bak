@@ -1,53 +1,53 @@
 -- 회원
-insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '10001', '주소1', '상세주소1', 19890101, '남', 01011111111, '패널', 'Y', SYSDATE);
-insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '10002', '주소2', '상세주소2', 19900202, '남', 01022222222, '패널', 'Y', SYSDATE);
-insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '10003', '주소3', '상세주소3', 19890303, '남', 01033333333, '일반', 'N', SYSDATE);
-insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '10004', '주소4', '상세주소4', 19890404, '남', 01044444444, '일반', 'N', SYSDATE);
-insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '10005', '주소5', '상세주소5', 19910505, '여', 01055555555, '패널', 'Y', SYSDATE);
-insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '10006', '주소6', '상세주소6', 19920606, '남', 01077777777, '일반', 'N', SYSDATE);
-insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '10007', '주소7', '상세주소7', 19910707, '남', 01088888888, '일반', 'N', SYSDATE);
-insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '10008', '주소8', '상세주소8', 19960808, '남', 01099999999, '패널', 'Y', SYSDATE);
-insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '10009', '주소9', '상세주소9', 19930909, '여', 01012345678, '패널', 'Y', SYSDATE);
-insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '10010', '주소10', '상세주소10', 19901010, '남', 01098765432, '일반', 'N', SYSDATE);
+insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '주소1', 19890101, '남', 01011111111, '패널', 'Y', SYSDATE);
+insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '주소2', 19900202, '남', 01022222222, '패널', 'Y', SYSDATE);
+insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '주소3', 19890303, '남', 01033333333, '일반', 'N', SYSDATE);
+insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '주소4', 19890404, '남', 01044444444, '일반', 'N', SYSDATE);
+insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '주소5', 19910505, '여', 01055555555, '패널', 'Y', SYSDATE);
+insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '주소6', 19920606, '남', 01077777777, '일반', 'N', SYSDATE);
+insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '주소7', 19910707, '남', 01088888888, '일반', 'N', SYSDATE);
+insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '주소8', 19960808, '남', 01099999999, '패널', 'Y', SYSDATE);
+insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '주소9', 19930909, '여', 01012345678, '패널', 'Y', SYSDATE);
+insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '주소10', 19901010, '남', 01098765432, '일반', 'N', SYSDATE);
 
 -- 카테고리
-insert into CATEGORY values('B0000001', '교육, 학문', SYSDATE);
-insert into CATEGORY values('B0000002', '컴퓨터 통신', SYSDATE);
-insert into CATEGORY values('B0000003', '게임', SYSDATE);
-insert into CATEGORY values('B0000004', '엔터테인먼트, 예술', SYSDATE);
-insert into CATEGORY values('B0000005', '생활', SYSDATE);
-insert into CATEGORY values('B0000006', '건강', SYSDATE);
-insert into CATEGORY values('B0000007', '사회, 정치', SYSDATE);
-insert into CATEGORY values('B0000008', '경제', SYSDATE);
-insert into CATEGORY values('B0000009', '여행', SYSDATE);
-insert into CATEGORY values('B0000010', '스포츠, 레저', SYSDATE);
-insert into CATEGORY values('B0000011', '쇼핑', SYSDATE);
-insert into CATEGORY values('B0000012', '지역', SYSDATE);
-insert into CATEGORY values('B0000013', '결혼', SYSDATE);
+insert into CATEGORY values('A0000001', '교육, 학문', SYSDATE);
+insert into CATEGORY values('B0000001', '컴퓨터 통신', SYSDATE);
+insert into CATEGORY values('C0000001', '게임', SYSDATE);
+insert into CATEGORY values('D0000001', '엔터테인먼트, 예술', SYSDATE);
+insert into CATEGORY values('E0000001', '생활', SYSDATE);
+insert into CATEGORY values('F0000001', '건강', SYSDATE);
+insert into CATEGORY values('G0000001', '사회, 정치', SYSDATE);
+insert into CATEGORY values('H0000001', '경제', SYSDATE);
+insert into CATEGORY values('I0000001', '여행', SYSDATE);
+insert into CATEGORY values('J0000001', '스포츠, 레저', SYSDATE);
+insert into CATEGORY values('K0000001', '쇼핑', SYSDATE);
+insert into CATEGORY values('L0000001', '지역', SYSDATE);
+insert into CATEGORY values('M0000001', '결혼', SYSDATE);
 
 -- 관심카테고리
-insert into ATT_CATEGORY values('A0000001', 'aaa@google.com', 'B0000001', 'B0000002', 'B0000003', 'B0000004', 'B0000005', '미혼', '무', '무', '유');
-insert into ATT_CATEGORY values('A0000002', 'bbb@google.com', 'B0000006', 'B0000007', 'B0000008', 'B0000009', 'B0000010', '기혼', '유', '유', '유');
-insert into ATT_CATEGORY values('A0000003', 'ccc@google.com', 'B0000011', 'B0000012', 'B0000013', 'B0000001', 'B0000002', '미혼', '무', '유', '유');
-insert into ATT_CATEGORY values('A0000004', 'ddd@google.com', 'B0000003', 'B0000004', 'B0000005', 'B0000006', 'B0000007', '미혼', '무', '무', '무');
-insert into ATT_CATEGORY values('A0000005', 'eee@google.com', 'B0000008', 'B0000009', 'B0000010', 'B0000011', 'B0000012', '기혼', '유', '유', '유');
-insert into ATT_CATEGORY values('A0000006', 'fff@google.com', 'B0000013', 'B0000001', 'B0000002', 'B0000003', 'B0000004', '기혼', '유', '유', '무');
-insert into ATT_CATEGORY values('A0000007', 'ggg@google.com', 'B0000005', 'B0000006', 'B0000007', 'B0000008', 'B0000009', '기혼', '유', '무', '유');
-insert into ATT_CATEGORY values('A0000008', 'hhh@google.com', 'B0000010', 'B0000011', 'B0000012', 'B0000013', 'B0000001', '미혼', '무', '무', '유');
-insert into ATT_CATEGORY values('A0000009', 'iii@google.com', 'B0000002', 'B0000003', 'B0000004', 'B0000005', 'B0000006', '미혼', '무', '유', '유');
-insert into ATT_CATEGORY values('A0000010', 'jjj@google.com', 'B0000007', 'B0000008', 'B0000009', 'B0000010', 'B0000011', '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000001', 'aaa@google.com', 'A0000001', 'B0000001', 'C0000001', 'D0000001', 'E0000001', '미혼', '무', '무', '유');
+insert into ATT_CATEGORY values('A0000002', 'bbb@google.com', 'F0000001', 'G0000001', 'H0000001', 'I0000001', 'J0000001', '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000003', 'ccc@google.com', 'K0000001', 'L0000001', 'M0000001', 'A0000001', 'B0000001', '미혼', '무', '유', '유');
+insert into ATT_CATEGORY values('A0000004', 'ddd@google.com', 'C0000001', 'D0000001', 'E0000001', 'F0000001', 'G0000001', '미혼', '무', '무', '무');
+insert into ATT_CATEGORY values('A0000005', 'eee@google.com', 'H0000001', 'I0000001', 'J0000001', 'K0000001', 'L0000001', '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000006', 'fff@google.com', 'M0000001', 'A0000001', 'B0000001', 'C0000001', 'D0000001', '기혼', '유', '유', '무');
+insert into ATT_CATEGORY values('A0000007', 'ggg@google.com', 'E0000001', 'F0000001', 'G0000001', 'H0000001', 'I0000001', '기혼', '유', '무', '유');
+insert into ATT_CATEGORY values('A0000008', 'hhh@google.com', 'J0000001', 'K0000001', 'L0000001', 'M0000001', 'A0000001', '미혼', '무', '무', '유');
+insert into ATT_CATEGORY values('A0000009', 'iii@google.com', 'B0000001', 'C0000001', 'D0000001', 'E0000001', 'F0000001', '미혼', '무', '유', '유');
+insert into ATT_CATEGORY values('A0000010', 'jjj@google.com', 'G0000001', 'H0000001', 'I0000001', 'J0000001', 'K0000001', '기혼', '유', '유', '유');
 
 -- 주제
-insert into SUBJECT values('C0000001', 'B0000001', 'aaa@google.com', '최운학', '주제1', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000002', 'B0000002', 'bbb@google.com', '곽지훈', '주제2', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000003', 'B0000003', 'ccc@google.com', '변정우', '주제3', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000004', 'B0000004', 'ddd@google.com', '이재하', '주제4', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000005', 'B0000005', 'eee@google.com', '조성식', '주제5', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000006', 'B0000006', 'fff@google.com', '박동진', '주제6', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000007', 'B0000007', 'ggg@google.com', '손현준', '주제7', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000008', 'B0000008', 'hhh@google.com', '박상우', '주제8', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000009', 'B0000009', 'iii@google.com', '최정인', '주제9', SYSDATE, SYSDATE, SYSDATE);
-insert into SUBJECT values('C0000010', 'B0000010', 'jjj@google.com', '최영훈', '주제10', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000001', 'A0000001', 'aaa@google.com', '최운학', '주제1', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000002', 'B0000001', 'bbb@google.com', '곽지훈', '주제2', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000003', 'C0000001', 'ccc@google.com', '변정우', '주제3', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000004', 'D0000001', 'ddd@google.com', '이재하', '주제4', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000005', 'E0000001', 'eee@google.com', '조성식', '주제5', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000006', 'F0000001', 'fff@google.com', '박동진', '주제6', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000007', 'G0000001', 'ggg@google.com', '손현준', '주제7', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000008', 'H0000001', 'hhh@google.com', '박상우', '주제8', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000009', 'I0000001', 'iii@google.com', '최정인', '주제9', SYSDATE, SYSDATE, SYSDATE);
+insert into SUBJECT values('C0000010', 'J0000001', 'jjj@google.com', '최영훈', '주제10', SYSDATE, SYSDATE, SYSDATE);
 
 -- 질문
 insert into QUESTION values('D0000001', 'C0000001', '질문1', '객관식', null, null, SYSDATE);
