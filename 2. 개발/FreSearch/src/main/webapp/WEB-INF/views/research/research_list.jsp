@@ -46,6 +46,7 @@
 						<input type='text' name='ask' id='ask' placeholder='질문'
 							autocomplete='off'>
 					</div>
+					<!-- 여기 리모컨 -->
 				</form>
 			</div>
 			<div class='bottom'></div>
