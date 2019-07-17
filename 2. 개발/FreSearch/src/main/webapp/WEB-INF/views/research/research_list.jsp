@@ -20,10 +20,17 @@
 <body>
 	<div class='container'>
 		<div class='research_header'>
-			<div id='return_list'>
-				<a class='prev' href=''>목록으로 돌아가기</a>				
+		<div id='top_box'>
+			<div id='left_top_box'>
+				<a id='prev' href=''>목록으로 돌아가기</a>				
 					<input type='text' name='top_title' id='top_title' autocomplete='off'>				
+			</div>
+			<div id='right_top_box'>
+				<a href='palette'>팔렛</a>
+				<button id='send_form'>보내기</button>
+				<a href='delete_form'>삭제</a>
 			</div>					
+		</div>			
 			<div class='logo'>
 				<a href=""><img src="/resources/img/logo.png" alt="logo"></a>
 			</div>

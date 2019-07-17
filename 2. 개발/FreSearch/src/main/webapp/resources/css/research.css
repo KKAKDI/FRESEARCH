@@ -66,25 +66,39 @@ body {
 	outline: none;
 }
 
-#return_list{
-	display:inline-block;
-	padding:20px;
+#top_box{	
+	padding:20px 20px 0 20px;
+	width:100%;
 }
 
-#return_list .prev{
+#left_top_box{
+	display:inline-block;
+}
+
+#left_top_box #prev{
 	color:#fff;
 }
 
-#return_list input[type=text]{	
+#left_top_box input[type=text]{	
 	margin-left: 20px;
 	background: transparent;
+	border-bottom: 2px solid transparent;
 	width:200px;
 	border:none;
 	font-size:20px;
 	color:#fff;
 	transition: all 0.3s;
 }
-#return_list input[type=text]:focus{
+#left_top_box input[type=text]:focus{
 	outline:none;
 	border-bottom: 2px solid #fff;
 }
+#right_top_box{	
+	display:inline-block;
+	float:right;
+}
+
+#right_top_box a{
+	color:#fff;
+}
+
