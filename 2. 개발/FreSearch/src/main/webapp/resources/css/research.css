@@ -12,7 +12,7 @@ body {
 
 .research_header {
 	width: 100%;
-	background-color: #0C4DA2;
+	background-color: #6bceff;
 	height: 200px;	
 }
 .research_header .logo{
@@ -26,9 +26,37 @@ body {
 	background-color: #f4f4f4;
 }
 
-#content .form_area {
+#content #form_area {
 	width: 850px;
-	margin: 0 auto;	
+	margin: 0 auto;		
+	position: relative;
+}
+#content #form_area #remote{
+	background-color: #fff;
+	height: 200px;
+	width:50px;
+	display:inline-block;	
+	position:absolute;
+	top:0;
+	right:-60px;	
+	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.3); 
+    transition: all 1s;
+}
+#content #form_area #remote .remote_btn{
+	text-align:center;
+	padding:10px 0 10px 0;	
+}
+
+#content #form_area #remote .remote_btn button{
+	border-radius:100%;
+	padding:10px;
+	background-color: #cfcfcf;
+	border:none;
+	color:#fff;
+	width:33px;
+	height:33px;
 }
 
 #content .research_content {	
@@ -37,13 +65,13 @@ body {
 	height: 200px;
 	margin-top: 10px;
 	border-left:3px solid #fff;
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	   -moz-box-shadow: 0 10px 6px -6px #777;
-	        box-shadow: 0 10px 6px -6px #777;
+	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #content .research_content.active{
-	border-left:3px solid #0C4DA2;
+	border-left:3px solid #0C4DA2;		
 }
 
 #content .bottom {
