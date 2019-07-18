@@ -1,237 +1,149 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="/resources/chart/1/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="/resources/chart/1/vendors/base/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="/resources/chart/1/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="/resources/chart/1/images/favicon.png" />
-</head>
+<title>navigation :: basic navigation</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+	$(function(){
+		$("#GNB > ul > li").hover(
+			function () {
+				$(this).children("a").addClass("active");
+				$(this).find("ul").addClass("active");
+				$(this).parent("ul").stop().animate({ height: 264 }, 300);
+				$(this).parents().find(".GNB_sub").stop().animate({ height: 185 }, 300);
+				/* 마우스가 들어온다면 이벤트가 발생된다
+				GNB ul li 자식 a에게 active 를 addClass - 관련 css-style-126
+				GNB ul li 자식 중 ul을 찾아 active 를 addClass - 관련 css-style-135
+				GNB ul li의 부모인 ul의 height를 animate 효과로 3초동안 변경
+				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 height를 animate 효과로 3초동안 변경
+				*/
+			},
+			// 마우스가 떠난다면
+			function () {
+				$(this).children("a").removeClass("active");
+				$(this).find("ul").removeClass("active");
+				$(this).parent("ul").stop().animate({ height: 80 }, 300);
+				$(this).parents().find(".GNB_sub").stop().animate({ height: 0 }, 300);
+				/* 마우스가 떠난다면 이벤트가 발생된다 
+				GNB ul li 자식 a에게 active를 removeClass css-style-126
+				GNB ul li 자식 중 ul을 찾아 active를 removeClass - 관련 css-style-135
+				GNB ul li의 부모인 ul의 변경했던 height를 3초간 animate를 주어 원래대로 변경
+				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 변경했던 height를 3초간 animate를 주어 원래대로 변경
+				*/
+			}
+		);
+		$("#GNB > ul > li").focusin(function () {
+			$(this).children("a").addClass("active");
+			$(this).find("ul").addClass("active");
+			$(this).parent("ul").stop().animate({ height: 264 }, 300);
+			$(this).parents().find(".GNB_sub").stop().animate({ height: 185 }, 300);
+		});
+		$("#GNB > ul > li").focusout(function () {
+			$(this).children("a").removeClass("active");
+			$(this).find("ul").removeClass("active");
+			$(this).parent("ul").stop().animate({ height: 80 }, 300);
+			$(this).parents().find(".GNB_sub").stop().animate({ height: 0 }, 300);
+		});
+		//접근성을 위하여 tab키로 접근시 마우스로 접근한 것처럼 똑같이 나타나도록 작성한 스크립트
 
+</script>
+</head>
 <body>
-  <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="navbar-brand-wrapper d-flex justify-content-center">
-        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="/resources/chart/1/index.html"><img src="/resources/chart/1/images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="/resources/chart/1/index.html"><img src="/resources/chart/1/images/logo-mini.svg" alt="logo"/></a>
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-sort-variant"></span>
-          </button>
-        </div>  
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav mr-lg-4 w-100">
-          <li class="nav-item nav-search d-none d-lg-block w-100">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown mr-1">
-            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
-              <i class="mdi mdi-message-text mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="/resources/chart/1/images/faces/face4.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal">David Grey
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    The meeting is cancelled
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="/resources/chart/1/images/faces/face2.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal">Tim Cook
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    New product launch
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="/resources/chart/1/images/faces/face3.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal"> Johnson
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    Upcoming board meeting
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item dropdown mr-4">
-            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="mdi mdi-bell mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                  <div class="item-icon bg-success">
-                    <i class="mdi mdi-information mx-0"></i>
-                  </div>
-                </div>
-                <div class="item-content">
-                  <h6 class="font-weight-normal">Application Error</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                  <div class="item-icon bg-warning">
-                    <i class="mdi mdi-settings mx-0"></i>
-                  </div>
-                </div>
-                <div class="item-content">
-                  <h6 class="font-weight-normal">Settings</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                  <div class="item-icon bg-info">
-                    <i class="mdi mdi-account-box mx-0"></i>
-                  </div>
-                </div>
-                <div class="item-content">
-                  <h6 class="font-weight-normal">New user registration</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    2 days ago
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/resources/chart/1/images/faces/face5.jpg" alt="profile"/>
-              <span class="nav-profile-name">Louis Barnett</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item">
-                <i class="mdi mdi-logout text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="mdi mdi-menu"></span>
-        </button>
-      </div>
-    </nav>
-    
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/index.html">
-              <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-circle-outline menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/pages/forms/basic_elements.html">
-              <i class="mdi mdi-view-headline menu-icon"></i>
-              <span class="menu-title">Form elements</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/pages/charts/chartjs.html">
-              <i class="mdi mdi-chart-pie menu-icon"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/pages/tables/basic-table.html">
-              <i class="mdi mdi-grid-large menu-icon"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/pages/icons/mdi.html">
-              <i class="mdi mdi-emoticon menu-icon"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="mdi mdi-account menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/resources/chart/1/pages/samples/lock-screen.html"> Lockscreen </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/resources/chart/1/documentation/documentation.html">
-              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="container">
+	<div class="fixed_box">
+		<!-- 상단 고정 박스 시작 -->
+		<div class="header clearfix">
+			<!-- header 시작 -->
+			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
+				<!-- 상단 로그인 -->
+				<div class="login">
+					<ul>
+						<li><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
+					</ul>
+					<div class="emblembox">
+						<img src="/resources/img/image_1.png" alt="emblem">
+					</div>
+				</div>
+			
+			</div>
+			<div class="header_inner">
+				<div class="logo"><h1 id="logo"><a href=""><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<!-- logo -->
+				<nav id="GNB">
+					<!-- GNB 시작 -->
+					<ul>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">1DEPTH</a>
+							<ul>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+								<li><a href="">2depth</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+					<!-- GNB 끝 -->
+			</div>
+			<!-- header_inner 끝 -->
+			<div class="GNB_sub"></div>
+		</div>
+		<!-- header 끝 -->
+	</div>
