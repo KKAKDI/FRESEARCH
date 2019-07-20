@@ -1,5 +1,7 @@
 package org.fs.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -11,9 +13,9 @@ public class StatsVO {
 	private String mbEmail;
 	private String mbNick;
 	private String subjNm;
-	private String subjRegdate;
-	private String subjStartDate;
-	private String subjEndDate;
+	private Date subjRegdate;
+	private Date subjStartDate;
+	private Date subjEndDate;
 	
 	//member
 	private String mbAttCtgrCode;
@@ -23,7 +25,10 @@ public class StatsVO {
 	private String mbSex;
 	private String mbPhone;
 	private String mbRegAtrt;
-	private String mbJoinDate;
+	private int mbZipCode;
+	private String mbAddrDetail;
+	private String mbEmailConfirm;
+	private Date mbJoinDate;
 	
 	//attCategory
 	private String bmAttCtgrCode;

@@ -137,21 +137,19 @@ a.no-uline {
 		<!-- /.modal -->
 		
 
-
+<script src="/resources/stats/chart/Chart.bundle.js"></script>
+<script src="/resources/stats/chart/Chart.bundle.min.js"></script>
+<script src="/resources/stats/chart/Chart.js"></script>
+<script src="/resources/stats/chart/Chart.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-
-			$("#addReplyBtn").on("click", function(e){
+$("#addReplyBtn").on("click", function(e){
 			      $(".modal").modal("show");
 			 });
 			$("#area").on("click", function(e){
 			      location.href='/stats/stats_area';
 			 });
 			 //여기까지 모달이랑 클릭 이벤트 등등
-			 
-			 
-			 
-			 
+
 			 //차트 js 파일
 			$(function() {
 				  /* ChartJS
@@ -190,15 +188,15 @@ a.no-uline {
 				  
 				  var ten = ${ten};
 					var twenty = ${twenty};
-					var thiry = ${thiry};
-					var forty =${forty};
-					var fifty = ${fifty};
-					var sixty = ${sixty};
+					var thiry = ${thiry} ;
+					var forty =${forty} ;
+					var fifty = ${fifty} ;
+					var sixty = ${sixty} ;
 				  var dataAge = {
 						    labels: ["10", "20", "30", "40", "50", "60"],
 						    datasets: [{
 						      label: '# of Votes',
-						      data: [${ten}, ${twenty}, ${thiry}, ${forty},${fifty}, ${sixty}],
+						      data: [ten, twenty, thiry, forty, fifty, sixty],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.2)',
 						        'rgba(54, 162, 235, 0.2)',
@@ -228,7 +226,7 @@ a.no-uline {
 						    labels: ["서울", "경기", "부산", "인천"],
 						    datasets: [{
 						      label: '# labels',
-						      data: [${seoul}, ${busan}, ${incheon}, ${gyeongGi}, 2, 3],
+						      data: [seoul, gyeongGi, busan, incheon,  2, 3],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.2)',
 						        'rgba(54, 162, 235, 0.2)',
@@ -295,7 +293,7 @@ a.no-uline {
 				      point: {
 				        radius: 0
 				      }
-				    }
+				    },
 				    
 
 				  };
@@ -316,7 +314,7 @@ a.no-uline {
 				  //.변수들
 				  var doughnutPieData = {
 				    datasets: [{
-				      data: [${education}, ${computer}, ${game},${entertainment},${life},${heath},${society},${economy},${travel},${sports},${shopping},${region},${marriage}],
+				      data: [education, computer, game, entertainment, life, heath, society, economy, travel, sports, shopping,region,marriage],
 				      backgroundColor: [
 				        'rgba(255, 99, 132, 0.5)',
 				        'rgba(54, 162, 235, 0.5)',
@@ -333,8 +331,8 @@ a.no-uline {
 				        'rgba(000, 051, 000, 0.5)'
 				      ],
 				      borderColor: [
-				        'rgba(255,99,132,0)',
-				        'rgba(54, 162, 235, 0)',
+				        'rgba(0,0,0,0)',
+				        'rgba(0, 0, 0, 0)',
 				        'rgba(255, 206, 86, 0)',
 				        'rgba(75, 192, 192, 0)',
 				        'rgba(153, 102, 255, 0)',
@@ -370,7 +368,7 @@ a.no-uline {
 				  var girl = ${girl};
 				  var doughnutPieDataSex = {
 						    datasets: [{
-						      data: [${boy}, ${girl}],
+						      data: [boy, girl],
 						      backgroundColor: [
 						        'rgba(54, 162, 235, 0.5)',
 						        'rgba(255, 99, 132, 0.5)',//보더 색
@@ -378,10 +376,10 @@ a.no-uline {
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
 						      borderColor: [
-						        'rgba(54, 162, 235, 1)',
-						        'rgba(255,99,132,1)',
-						        'rgba(255, 206, 86, 1)',
-						        'rgba(75, 192, 192, 1)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
 
 						      ],
 						    }],
@@ -398,7 +396,7 @@ a.no-uline {
 				  var unsingle = ${unsingle};
 				  var doughnutPieDataMarriage = {
 						    datasets: [{
-						      data: [${unsingle}, ${single}],
+						      data: [unsingle, single],
 						      backgroundColor: [
 						        'rgba(255, 99, 132, 0.5)',	//안쪽색
 						        'rgba(54, 162, 235, 0.5)',	//보더 색
@@ -682,17 +680,11 @@ a.no-uline {
 				    });
 				  }
 				});
-			
-			
-			
-	});
-	
-</script>
 
 
 
 
-
+			</script>
 
 
 

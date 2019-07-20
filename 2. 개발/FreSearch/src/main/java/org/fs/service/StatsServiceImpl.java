@@ -2,6 +2,7 @@ package org.fs.service;
 
 import java.util.List;
 
+import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
 import org.fs.mapper.StatsMapper;
 import org.springframework.stereotype.Service;
@@ -16,28 +17,38 @@ public class StatsServiceImpl implements StatsService{
 	private StatsMapper mapper;
 	
 	
-	@Override
+	@Override	//통계 전체 리스트 구하는 메소드
 	public List<StatsVO> getList() {
 		
 		log.info("getList..........");
 		
 		return mapper.getList();
 	}
+	@Override	//카테고리별 중복 갯수 구하는 메소드
+	public List<StatsAreaVO> getCategory(String area){
+		log.info("getCategory()...............");
+		return mapper.getCategory(area);
+	}
 	
-	@Override
+	@Override	//멤버 리스트 구하는 메소드
 	public List<StatsVO> getMemberList(){
 		log.info("getMemberList...........");
 		return mapper.getMemberList();
 	}
 	
-	@Override
+	@Override		//선호 카테고리에서 전체 뽑지만 주로 기혼 미혼 구하는데 쓰임
 	public List<StatsVO> getAttCategory(){
 		log.info("getAttCategory...........");
 		return mapper.getAttCategory();
 	}
-	@Override
+	@Override	//나이 구하는 메소드
 	public List<StatsVO> getAge(){
 		log.info("getAge............");
 		return mapper.getAge();
+	}
+	@Override		//주소 구하는 메소드
+	public int getAddr(String addr) {
+		log.info("getAddr.............");
+		return mapper.getAddr(addr);
 	}
 }

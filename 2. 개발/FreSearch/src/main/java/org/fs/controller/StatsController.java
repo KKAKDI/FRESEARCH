@@ -1,10 +1,17 @@
 package org.fs.controller;
 
+import java.util.List;
+
+import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
@@ -41,11 +48,7 @@ public class StatsController {
 		int girl = 0;
 		int unsingle = 0;
 		int single =0 ;
-		int seoul =0;
-		int incheon =0;
-		int busan = 0;
-		int gyeongGi =0;
-		int sdfsdf =0;
+
 		
 		int ten = 0;
 		int twenty = 0;
@@ -55,38 +58,40 @@ public class StatsController {
 		int sixty = 0;
 		
 		
-		
+		//통계 ALL
 		for( StatsVO temp : service.getList()) {
-			if(temp.getCtgrCode().equals("B0000001")) {
+			if(temp.getCtgrCode().equals("A0000001")) {
 				education++;
 				
-			}else if(temp.getCtgrCode().equals("B0000002")){
+			}else if(temp.getCtgrCode().equals("B0000001")){
 				computer++;
 				
-			}else if(temp.getCtgrCode().equals("B0000003")) {
+			}else if(temp.getCtgrCode().equals("C0000001")) {
 				game ++;
-			}else if(temp.getCtgrCode().equals("B0000004")) {
+			}else if(temp.getCtgrCode().equals("D0000001")) {
 				entertainment++;
-			}else if(temp.getCtgrCode().equals("B0000005")) {
+			}else if(temp.getCtgrCode().equals("E0000001")) {
 				life++;
-			}else if(temp.getCtgrCode().equals("B0000006")) {
+			}else if(temp.getCtgrCode().equals("F0000001")) {
 				heath++;
-			}else if(temp.getCtgrCode().equals("B0000007")) {
+			}else if(temp.getCtgrCode().equals("G0000001")) {
 				society++;
-			}else if(temp.getCtgrCode().equals("B0000008")) {
+			}else if(temp.getCtgrCode().equals("H0000001")) {
 				economy++;
-			}else if(temp.getCtgrCode().equals("B0000009")) {
+			}else if(temp.getCtgrCode().equals("I0000001")) {
 				travel++;
-			}else if(temp.getCtgrCode().equals("B0000010")) {
+			}else if(temp.getCtgrCode().equals("J0000001")) {
 				sports++;
-			}else if(temp.getCtgrCode().equals("B0000011")) {
+			}else if(temp.getCtgrCode().equals("K0000001")) {
 				shopping++;
-			}else if(temp.getCtgrCode().equals("B0000012")) {
+			}else if(temp.getCtgrCode().equals("L0000001")) {
 				region++;
-			}else if(temp.getCtgrCode().equals("B0000013")) {
+			}else if(temp.getCtgrCode().equals("M0000001")) {
 				marriage++;
 			}
 		}
+		
+		//성별
 		for(StatsVO temp : service.getMemberList()) {
 			if(temp.getMbSex().equals("남")) {
 				boy ++;
@@ -94,18 +99,10 @@ public class StatsController {
 				girl++;
 			}
 		}
-		for(StatsVO temp : service.getMemberList()) {
-			if(temp.getMbAddr().equals("서울")) {
-				seoul++;
-			}else if(temp.getMbAddr().equals("부산")) {
-				busan++;
-			}else if(temp.getMbAddr().equals("인천")) {
-				incheon++;
-			}else if(temp.getMbAddr().equals("경기")) {
-				gyeongGi++;
-			}
-		}
+	
 		
+		
+		//결혼 여부
 		for(StatsVO temp : service.getAttCategory()) {
 			if(temp.getMbMarriageYn().equals("기혼")) {
 				unsingle ++;
@@ -114,6 +111,8 @@ public class StatsController {
 			}
 		}
 		
+		
+		//나이
 		for (int i=0; i<service.getAge().size(); i++) {
 			switch (service.getAge().get(i).getAge()/10) {
 			case 1:
@@ -139,6 +138,14 @@ public class StatsController {
 			}
 		}
 		
+		
+		//지역
+		model.addAttribute("seoul", service.getAddr("서울"));
+		model.addAttribute("gyeongGi", service.getAddr("경기"));
+		model.addAttribute("busan", service.getAddr("부산"));
+		model.addAttribute("incheon", service.getAddr("인천"));
+		
+		//나이
 		model.addAttribute("sixty", sixty);
 		model.addAttribute("fifty", fifty);
 		model.addAttribute("forty", forty);
@@ -147,14 +154,15 @@ public class StatsController {
 		model.addAttribute("ten", ten);
 		
 		
-		model.addAttribute("seoul", seoul);
-		model.addAttribute("busan", busan);
-		model.addAttribute("incheon", incheon);
-		model.addAttribute("gyeongGi", gyeongGi);
+		//결혼 여부
 		model.addAttribute("unsingle", unsingle);
 		model.addAttribute("single", single);
+		
+		//성별
 		model.addAttribute("girl", girl);
 		model.addAttribute("boy", boy);
+		
+		//통계 ALL
 		model.addAttribute("education", education);
 		model.addAttribute("computer", computer);
 		model.addAttribute("game", game);
@@ -175,10 +183,23 @@ public class StatsController {
 		log.info("All: ");
 		model.addAttribute("list", service.getList());
 	}
-	@GetMapping("/Test")
-	public void Area(Model model) {
-		
-		log.info("statsList");
+	@GetMapping("/stats_area1") 
+	public void Age1(Model model) {
+		log.info("All: ");
+		model.addAttribute("list", service.getList());
+	}
+
+	@GetMapping(value = "/get/{area}" ,
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<StatsAreaVO>> getCategory(@PathVariable("area") String area){
+		log.info("조성식 get : "+area);
+		if(area.contentEquals("전체")) {
+			area = "";
+		}
+
+		return new ResponseEntity<>(service.getCategory(area), HttpStatus.OK);
 	}
 	@GetMapping("../index")
 	public void Sex() {

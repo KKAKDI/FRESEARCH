@@ -3,6 +3,7 @@ package org.fs.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
 
 
@@ -14,5 +15,9 @@ public interface StatsMapper {
 	public List<StatsVO> getAttCategory();
 	
 	public List<StatsVO> getAge();
+	
+	public int getAddr(String addr);
+	
+	public List<StatsAreaVO> getCategory(String area);
 
 }
