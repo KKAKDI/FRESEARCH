@@ -51,9 +51,9 @@ $(document).ready(function () {
 
 				});
 				html += '<tr>';
-				html += "<td colspan='1' class='center'>총합</td>";
-				html += '<td id="fix">' + total + '명</td>';
-				html += '<td id="fix"> 100%</td>';
+				html += "<td id='fix1'>총합</td>";
+				html += '<td id="fix1">' + total + '명</td>';
+				html += '<td id="fix1"> 100%</td>';
 				html += '</tr>';
 				$('#test').html(html);
 			});

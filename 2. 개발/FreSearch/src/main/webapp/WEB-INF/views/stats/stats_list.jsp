@@ -27,6 +27,7 @@ a.no-uline {
 			<div class="grid-margin stretch-card">
 				<div class="card-mini">
 					<div class="card-body-mini">
+					<div class="btn-group-list">
 						<h4 class="card-title">
 						
 							<button type="button" id='addReplyBtn'
@@ -37,6 +38,7 @@ a.no-uline {
 								
 							</button>
 						</h4>
+						</div>
 						<canvas id="barChartAge"></canvas>
 					</div>
 				</div>
@@ -44,12 +46,14 @@ a.no-uline {
 			<div class="grid-margin stretch-card">
 				<div class="card-mini">
 					<div class="card-body-mini">
+					<div class="btn-group-list">
 
 						<h4 class="card-title">
 							<button type='button' id='area' class="btn btn-outline-secondary">
 								지역
 							</button>
 						</h4>
+						</div>
 						<canvas id="barChartArea"></canvas>
 					</div>
 				</div>
@@ -59,11 +63,13 @@ a.no-uline {
 			<div class="grid-margin-middle stretch-card">
 				<div class="card-big">
 					<div class="card-body">
+					<div class="btn-group-mini">
 						<h4 class="card-title">
 							<button type='button' class="btn btn-outline-secondary">
 								전체
 							</button>
 						</h4>
+						</div>
 						<canvas id="pieChart"></canvas>
 					</div>
 				</div>
@@ -74,12 +80,14 @@ a.no-uline {
 			<div class="grid-margin-middle stretch-card">
 				<div class="card-mini">
 					<div class="card-body-mini">
+					<div class="btn-group-mini">
 						<h4 class="card-title">
-						
+
 							<button type='button' class="btn btn-outline-secondary">
 								성별
 							</button>
 						</h4>
+						</div>
 						<canvas id="doughnutChartSex"></canvas>
 					</div>
 				</div>

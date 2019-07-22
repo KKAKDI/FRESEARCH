@@ -3,11 +3,18 @@
 	flex-wrap: warp;
 	margin-right: -10px;
 	margin-left: -10px;
-	margin-top: 10.0rem;
+	margin-top: 0rem;
 }
 
 .grid-margin {
-	margin-top: 10.0rem;
+	margin-top: 6rem;
+	margin-bottom: 1.875rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.grid-margin-middle {
+	margin-top: -1rem;
 	margin-bottom: 1.875rem;
 	margin-left: auto;
 	margin-right: auto;
@@ -18,6 +25,19 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	-ms-box-shadow: none;
+}
+.card-mini {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e7eaed;
+	border-radius: 0;
+	margin-left: 0rem;
+
 }
 
 .main-panel {
@@ -53,12 +73,34 @@
 	margin-left: 6rem;
 	margin-right: auto;
 }
+.card-big {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e7eaed;
+	border-radius: 0;
+	margin-left: 0rem;
+	margin-right: auto;
+	width: 737px;
+}
 
 .card .card-body {
 	padding: 1.5rem 1.875rem;
 	margin-left: 0rem;
 	margin-right: auto;
 	width: 502px;
+}
+
+.card-body-mini{
+		padding: 1.5rem 1.875rem;
+	margin-left: 0rem;
+	margin-right: auto;
+	width: 364px;
+	
 }
 
 .card-body {
@@ -131,7 +173,6 @@ body {
 }
 
 .table-hover tbody tr:hover {
-	background-color: rgba(0, 0, 0, 0.075);
 	text-align: center;
 }
 
@@ -154,6 +195,19 @@ body {
 	text-align: right;
 	width: 69px;
 }
+#fix1 {
+	
+	position: relative;
+	margin-left: 0;
+	margin-right: 15px;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	text-align: right;
+	width: 69px;
+	border-top: 1px solid #000000;
+	background-color: #f5f5f5;
+}
+
 
 .table.table-hover tbody tr:hover {
 	background-color: #f5f5f5;
@@ -181,6 +235,12 @@ body {
 	color: #686868;
 	border-color: #686868;
 }
+.btn-outline-secondary-all {
+	color: #fff;
+	background-color: #686868;
+	border-color: #686868;
+}
+
 
 .btn-outline-secondary:hover {
 	color: #fff;
@@ -211,6 +271,13 @@ body {
 	vertical-align: middle;
 	margin-left: 24px;
 }
+.btn-group-list, .btn-group-vertical {
+	position: relative;
+	display: inline-flex;
+	vertical-align: middle;
+	margin-left: 5px;
+    margin-bottom: 19px;
+}
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-group:not(:last-child) > .btn {
   border-top-right-radius: 0;
@@ -237,7 +304,7 @@ body {
 
 .stretch-card {
 	display: -webkit-flex;
-	display: flex;
+	display: -webkit-inline-box;
 	-webkit-align-items: stretch;
 	align-items: stretch;
 	-webkit-justify-content: stretch;
