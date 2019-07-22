@@ -52,8 +52,7 @@ body {
 }
 
 .container .fixed_box .header .upper .login li {
-    display: inline-block;
-    width: 30%;
+    display: inline-block;  
     /* 항목 3개라서 가로크기 32퍼씩 임시설정 */
 }
 

@@ -77,9 +77,9 @@
 				<!-- 상단 로그인 -->
 				<div class="login">
 					<ul>
-						<li><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
+						<li><a href="">로그인</a></li>
+						<li><a href="">회원가입</a></li>
+						<li><a href="">검색</a></li>
 					</ul>
 					<div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
@@ -94,59 +94,51 @@
 					<!-- GNB 시작 -->
 					<ul>
 						<li>
-							<a href="">1DEPTH</a>
+							<a href="">새소식</a>
 							<ul>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
+								<li><a href="/news/news_list">공지사항</a></li>
+								<li><a href="">이벤트</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">1DEPTH</a>
+							<a href="">리서치</a>
 							<ul>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
+								<li><a href="/research/research_list">리서치 목록</a></li>
+								<li><a href="/research/research_reg">리서치 만들기</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">1DEPTH</a>
+							<a href="">게시판</a>
 							<ul>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
+								<li><a href="/board/board_list">게시판 목록</a></li>
+								<li><a href="">글쓰기</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">1DEPTH</a>
+							<a href="">데이터베이스</a>
 							<ul>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
+								<li><a href="">통계 목록</a></li>
+								<li><a href="/stats/stats_list">차트</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">1DEPTH</a>
+							<a href="">문의</a>
 							<ul>
-								<li><a href="">2depth</a></li>
+								<li><a href="">패널신청</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 								<li><a href="">2depth</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="">1DEPTH</a>
-							<ul>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
-								<li><a href="">2depth</a></li>
-							</ul>
-						</li>
+						
 					</ul>
 				</nav>
 					<!-- GNB 끝 -->
