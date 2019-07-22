@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.NewsMapper">
+
+<select id="getList" resultType="org.fs.domain.NewsVO">
+<![CDATA[
+select * from NEWS order by NEWS_CODE desc
+]]>
+</select>
+
+<insert id="insert">
+insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REGDATE)
+ values (NEWS_SEQ.nextval, #{news_subject}, #{news_content}, #{news_division}, SYSDATE)
+</insert>
+
+<insert id="insertSelectKey">
+
+<selectKey keyProperty="news_code" order="BEFORE"
+	resultType="int">
+	select NEWS_SEQ.nextval from dual
+	</selectKey>
+
+	insert into NEWS (NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE)
+	values (#{news_code}, #{news_division}, #{news_subject}, #{news_content}, SYSDATE)
+</insert>
+
+<select id="read" resultType="org.fs.domain.NewsVO">
+	select * from NEWS where NEWS_CODE = #{news_code}
+</select>
+
+<delete id="delete">
+	delete NEWS where NEWS_CODE = #{news_code}
+</delete>
+
+<update id="update">
+	update NEWS
+	set NEWS_SUBJECT = #{news_subject},
+	NEWS_CONTENT = #{news_content},
+	where NEWS_CODE = #{news_code}
+</update>
+
+
+</mapper>

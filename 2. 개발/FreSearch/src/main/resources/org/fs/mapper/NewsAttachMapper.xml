@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.NewsAttachMapper">
+	<insert id="insert">
+	insert into NEWS_ATTACH (NEWS_ATTACH_NAME, NEWS_ATTACH_UUID, NEWS_ATTACH_PATH, NEWS_ATTACH_TYPE, NEWS_CODE)
+	values (#{news_attach_name}, #{news_attach_uuid}, #{news_attach_path}, #{news_attach_type}, #{news_code})
+	</insert>
+	
+	<delete id="delete">
+	delete from NEWS_ATTACH where NEWS_ATTACH_UUID = #{news_attach_uuid}
+	</delete>
+	
+	<select id="findByNews_code" resultType="org.fs.domain.NewsAttachVO">
+	select * from NEWS_ATTACH where NEWS_CODE = #{news_code}
+	</select>
+</mapper>
