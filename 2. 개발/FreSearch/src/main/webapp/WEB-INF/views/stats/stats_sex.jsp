@@ -20,7 +20,7 @@
 								<code>.All</code>
 							</p>
 							<div class="btn-group" role="group" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary-all" name="1" value="전체">
+							<input type='button' class="btn btn-outline-secondary" name="1" value="전체">
 							<input type='button' class="btn btn-outline-secondary" name="1" value="서울">
 							<input type='button' class="btn btn-outline-secondary" name="1" value="인천">
 							<input type='button' class="btn btn-outline-secondary" name="1" value="부산">

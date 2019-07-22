@@ -24,12 +24,13 @@ a.no-uline {
 <div class="main-panel">
 	<div class="content-wrapper">
 		<div class="row">
-			<div class="col-lg-6 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
+			<div class="grid-margin stretch-card">
+				<div class="card-mini">
+					<div class="card-body-mini">
 						<h4 class="card-title">
+						
 							<button type="button" id='addReplyBtn'
-								class="btn btn-inverse-primary btn-fw">
+								class="btn btn-outline-secondary">
 								<!--  <a href='/charts/pages/charts/Area'>나이</a>-->
 								나이
 								
@@ -40,12 +41,12 @@ a.no-uline {
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
+			<div class="grid-margin stretch-card">
+				<div class="card-mini">
+					<div class="card-body-mini">
 
 						<h4 class="card-title">
-							<button type='button' id='area' class="btn btn-inverse-primary btn-fw">
+							<button type='button' id='area' class="btn btn-outline-secondary">
 								지역
 							</button>
 						</h4>
@@ -55,11 +56,11 @@ a.no-uline {
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12 grid-margin stretch-card">
-				<div class="card">
+			<div class="grid-margin-middle stretch-card">
+				<div class="card-big">
 					<div class="card-body">
 						<h4 class="card-title">
-							<button type='button' class="btn btn-inverse-primary btn-fw">
+							<button type='button' class="btn btn-outline-secondary">
 								전체
 							</button>
 						</h4>
@@ -68,12 +69,14 @@ a.no-uline {
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-6 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
+			
+			<div class="row">
+			<div class="grid-margin-middle stretch-card">
+				<div class="card-mini">
+					<div class="card-body-mini">
 						<h4 class="card-title">
-							<button type='button' class="btn btn-inverse-primary btn-fw">
+						
+							<button type='button' class="btn btn-outline-secondary">
 								성별
 							</button>
 						</h4>
@@ -81,13 +84,12 @@ a.no-uline {
 					</div>
 				</div>
 			</div>
+			<div class="grid-margin-middle stretch-card">
+				<div class="card-mini">
+					<div class="card-body-mini">
 
-
-			<div class="col-lg-6 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
 						<h4 class="card-title">
-							<button type='button' class="btn btn-inverse-primary btn-fw">
+							<button type='button' class="btn btn-outline-secondary">
 								결혼유무
 							</button>
 						</h4>
@@ -96,46 +98,11 @@ a.no-uline {
 				</div>
 			</div>
 		</div>
+ 
 
 
-		<!-- Modal  추가 -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-					</div>
-					<div class="modal-body">
-						<div class="col-lg-6 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">
-										<button type="button" id='addReplyBtn'
-											class="btn btn-inverse-primary btn-fw">
-											<!--  <a href='/charts/pages/charts/Area'>나이</a>-->
-											나이
-										</button>
-									</h4>
-									<canvas id="barChartAge"></canvas>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-		
+<%@include file="../includes/header.jsp"%>
+
 
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
 <script src="/resources/stats/chart/Chart.bundle.min.js"></script>
@@ -331,19 +298,18 @@ $("#addReplyBtn").on("click", function(e){
 				        'rgba(000, 051, 000, 0.5)'
 				      ],
 				      borderColor: [
-				        'rgba(0,0,0,0)',
-				        'rgba(0, 0, 0, 0)',
-				        'rgba(255, 206, 86, 0)',
-				        'rgba(75, 192, 192, 0)',
-				        'rgba(153, 102, 255, 0)',
-				        'rgba(051, 051, 051, 0)',
-				        'rgba(255, 159, 64, 0)',
-				        'rgba(255, 255, 102, 0)',
-				        'rgba(102, 102, 153, 0)',
-				        'rgba(255, 000, 255, 0)',
-				        'rgba(102, 204, 102, 0)',
-				        'rgba(051, 153, 051, 0)',
-				        'rgba(000, 051, 000, 0)'
+				    	'rgba(255, 255, 255, 3)',
+					    'rgba(255, 255, 255, 3)',
+					    'rgba(255, 255, 255, 3)',
+					    'rgba(255, 255, 255, 3)',
+					    'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)',
+				        'rgba(255, 255, 255, 3)'
 				      ],
 				    }],
 
@@ -404,10 +370,10 @@ $("#addReplyBtn").on("click", function(e){
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
 						      borderColor: [
-						        'rgba(255,99,132,1)',
-						        'rgba(54, 162, 235, 1)',
-						        'rgba(255, 206, 86, 1)',
-						        'rgba(75, 192, 192, 1)',
+						    	 'rgba(255, 255, 255, 3)',
+							     'rgba(255, 255, 255, 3)',
+							     'rgba(255, 255, 255, 3)',
+							     'rgba(255, 255, 255, 3)',
 
 						      ],
 						    }],
