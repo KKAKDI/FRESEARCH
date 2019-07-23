@@ -1,13 +1,12 @@
 @charset "utf-8";
 
 body {
-	min-width: 850px;
-	font-family: 'Pragati Narrow', sans-serif;
-	font-family: 'AppleSDGothicNeo';
+	min-width: 850px;	
 	font-weight: 500;
 	font-size: 16px;
 	vertical-align: top;
 	background-color: #f4f4f4;
+	 font-family: "Open Sans", sans-serif;
 }
 
 .research_header {
@@ -33,7 +32,7 @@ body {
 }
 #content #form_area #remote{
 	background-color: #fff;
-	height: 200px;
+	height: 240px;
 	width:50px;
 	display:inline-block;	
 	position:absolute;
@@ -46,7 +45,7 @@ body {
 }
 #content #form_area #remote .remote_btn{
 	text-align:center;
-	padding:10px 0 10px 0;	
+	padding:10px 0 10px 0;
 }
 
 #content #form_area #remote .remote_btn button{
@@ -59,10 +58,10 @@ body {
 	height:33px;
 }
 
-#content .research_content {	
+#content .research_content {
 	margin: 0 auto;
 	background-color: #fff;
-	height: 200px;
+	height: 240px;
 	margin-top: 10px;
 	border-left:3px solid #fff;
 	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
@@ -73,25 +72,85 @@ body {
 #content .research_content.active{
 	border-left:3px solid #0C4DA2;		
 }
+#content .research_content #cate_title{
+	padding:20px 20px 0 20px;	
+}
+
+#content .research_content #category_box{
+	margin: 0 auto;
+	width:700px;
+	padding: 20px;
+}
+#content .research_content #category_box label{
+	display:inline-block;	
+	width:145px;
+}
 
 #content .bottom {
 	padding: 50px;
 }
 
-#content input[type=text] {
+#content .research_content > input[type=text] {
 	width: 800px;
 	box-sizing: border-box;
-	padding: 20px;
+	padding: 15px;
 	margin-left: 20px;
 	border: none;
 	border-bottom: 1px solid #000;
 	font-size: 25px;
 	transition: all 0.5s;
 }
-
 #content input[type=text]:focus {
 	border-bottom: 2px solid #0C4DA2;
 	outline: none;
+}
+
+
+#content .research_content .item_box{	
+	padding: 20px;
+}
+#content .research_content .item_box .item_individual{	
+	height:40px;
+}
+#content .research_content .item_box .item_individual > input[type=text] {
+	padding:5px;
+	box-sizing: border-box;	
+	width:85%;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	font-size: 15px;
+	transition: all 0.5s;
+}
+#content .research_content .item_box .item_individual > input[type=text]:focus {
+	border-bottom: 2px solid #0C4DA2;
+	outline: none;
+}
+
+#content .research_content .item_box .item_individual .button_box{
+	padding:5px;
+	display:inline-block;
+}
+
+#content .research_content .item_box button{
+	background-color: #cfcfcf;
+	border:none;
+	color:#fff;
+	width:33px;
+	height:33px;
+}
+
+#content .research_content .item_box .bottom_box{
+	display:inline-block;
+	position:absolute;
+	right:20px;
+	bottom:20px;
+}
+
+#content .research_content .item_box .bottom_box .bottom_button_box{
+	padding:5px;
+	display:inline-block;
 }
 
 #top_box{	
