@@ -12,4 +12,7 @@ public interface StatsService {
 	public List<StatsVO> getAge();
 	public int getAddr(String addr);
 	public List<StatsAreaVO> getCategory(String area);
+	public List<StatsAreaVO> getCategoryAge(int StartAge, int EndAge);
+	public List<StatsAreaVO> getCategorySex(String sex);
+	public List<StatsAreaVO> getCategoryMarriage(String marriage);
 }

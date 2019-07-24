@@ -179,17 +179,28 @@ public class StatsController {
 		log.info("statsList");
 	}
 	@GetMapping("/stats_area") 
-	public void Age(Model model) {
-		log.info("All: ");
-		model.addAttribute("list", service.getList());
+	public void area() {
+		log.info("stats_area");
+
 	}
-	@GetMapping("/stats_area1") 
-	public void Age1(Model model) {
-		log.info("All: ");
-		model.addAttribute("list", service.getList());
+	@GetMapping("/stats_age") 
+	public void age() {
+		log.info("stats_age");
+	}
+	@GetMapping("/stats_sex") 
+	public void sex() {
+		log.info("stats_sex");
+	}
+	@GetMapping("/stats_table") 
+	public void table() {
+		log.info("stats_table");
+	}
+	@GetMapping("/stats_marriage") 
+	public void marriage() {
+		log.info("stats_marriage");
 	}
 
-	@GetMapping(value = "/get/{area}" ,
+	@GetMapping(value = "/get/area/{area}" ,
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
@@ -200,6 +211,60 @@ public class StatsController {
 		}
 
 		return new ResponseEntity<>(service.getCategory(area), HttpStatus.OK);
+	}
+	@GetMapping(value = "/get/age/{age}" ,
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<StatsAreaVO>> getCategoryAge(@PathVariable("age") String age){
+		log.info("조성식 get : "+age);
+		int startAge = 0;
+		int endAge =0;
+		if (age.equals("10대")) {
+			startAge = 10;
+			endAge =19;
+			
+		}else if(age.equals("20대")) {
+			startAge = 20;
+			endAge =29;
+		}else if(age.equals("30대")) {
+			startAge = 30;
+			endAge =39;
+		}else if(age.equals("40대")) {
+			startAge = 40;
+			endAge =49;
+		}else if(age.equals("50대")) {
+			startAge = 50;
+			endAge =59;
+		}else if(age.equals("60대")) {
+			startAge = 60;
+			endAge =69;
+		}
+		return new ResponseEntity<>(service.getCategoryAge(startAge, endAge), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/get/sex/{sex}" ,
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<StatsAreaVO>> getCategorySex(@PathVariable("sex") String sex){
+		log.info("조성식 get : "+sex);
+		if(sex.equals("남자")) {
+			sex = "남";
+		}else if(sex.equals("여자")) {
+			sex = "여";
+		}
+				return new ResponseEntity<>(service.getCategorySex(sex), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/get/marriage/{marriage}" ,
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<StatsAreaVO>> getCategoryMarriage(@PathVariable("marriage") String marriage){
+		log.info("조성식 get : "+marriage);
+		
+				return new ResponseEntity<>(service.getCategoryMarriage(marriage), HttpStatus.OK);
 	}
 	@GetMapping("../index")
 	public void Sex() {

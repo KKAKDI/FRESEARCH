@@ -27,10 +27,40 @@ round((ratio_to_report((select count(*) as num from (select * from area where su
 <!--and substr(b.MB_ADDR, 1, 5) like '%'||#{area}||'%'--> group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
 </select>
 
+<select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsAreaVO">
+select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE
+from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
+where NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge})
+where CTGR_CODE = c.CTGR_CODE)as count,
+c.CTGR_CODE, c.CTGR_NM,
+round((ratio_to_report((select count(*) as num from (select * from area where NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}) where CTGR_CODE =
+(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
+from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
+group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE 
+</select>
 
- <!--  <select id="getAttCategory" resultType="int">
-select count(*) from (select CTGR_CODE from subject where  CTGR_CODE = #{category})
-</select>-->
+<select id="getCategorySex" resultType="org.fs.domain.StatsAreaVO">
+select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE, b.MB_Sex
+from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
+where MB_SEX = #{sex}) where CTGR_CODE = c.CTGR_CODE)as count,
+c.CTGR_CODE, c.CTGR_NM,
+round((ratio_to_report((select count(*) as num from 
+(select * from area where MB_SEX = #{sex}) where CTGR_CODE =
+(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
+from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
+group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+</select>
+
+<select id="getCategoryMarriage" resultType="org.fs.domain.StatsAreaVO">
+select (select count(*) from (select * from area
+where MB_MARRIAGE_YN = #{marriage}) where CTGR_CODE = c.CTGR_CODE)as count,
+c.CTGR_CODE, c.CTGR_NM,
+round((ratio_to_report((select count(*) as num from 
+(select * from area where MB_MARRIAGE_YN = #{marriage}) where CTGR_CODE =
+(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
+from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
+group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+</select>
 
 
 <select id="getAge" resultType="org.fs.domain.StatsVO">	<!-- 멤버 테이블에서 나이 구하는 SQL문 -->

@@ -14,17 +14,17 @@
 				<div class="stretch-card width">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Area</h4>
+							<h4 class="card-title">Age</h4>
 							<p class="card-description" id="area">
 								변해라
 								<code>.All</code>
 							</p>
 							<div class="btn-group" role="group" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary-all" name="1" value="전체">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="서울">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="인천">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="부산">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="경기">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="10대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="20대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="30대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="40대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="50대">
 							</div>
 							<div class="table-responsiv">
 								<table class="table table-hover" id="test">
@@ -55,9 +55,9 @@ var html = '';
 var area = '';
 
 $(document).ready(function() {
-	html ='전체<code>지역</code>'
+	html ='10대<code>나이</code>'
 		$("#area").html(html);
-	$.getJSON('/stats/get/area/전체' , function(data) {
+	$.getJSON('/stats/get/age/10대' , function(data) {
 		var html = '';
 		var total = 0;
 
@@ -90,6 +90,8 @@ $(document).ready(function() {
 	//timerID = setTimeout("updateDataArea()", 2000);
 });
 </script>
+
+
 </html>
 
 

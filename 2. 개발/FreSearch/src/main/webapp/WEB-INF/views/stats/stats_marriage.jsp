@@ -14,17 +14,14 @@
 				<div class="stretch-card width">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Area</h4>
+							<h4 class="card-title">Marriage</h4>
 							<p class="card-description" id="area">
 								변해라
 								<code>.All</code>
 							</p>
 							<div class="btn-group" role="group" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary-all" name="1" value="전체">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="서울">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="인천">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="부산">
-							<input type='button' class="btn btn-outline-secondary" name="1" value="경기">
+							<input type='button' class="btn btn-outline-secondary-all" name="4" value="기혼">
+							<input type='button' class="btn btn-outline-secondary" name="4" value="미혼">
 							</div>
 							<div class="table-responsiv">
 								<table class="table table-hover" id="test">
@@ -52,12 +49,11 @@
 <script type="text/javascript">
 var timerID;
 var html = '';
-var area = '';
-
+var marriage = '';
 $(document).ready(function() {
-	html ='전체<code>지역</code>'
+	html ='기혼<code>결혼 유무</code>'
 		$("#area").html(html);
-	$.getJSON('/stats/get/area/전체' , function(data) {
+	$.getJSON('/stats/get/marriage/기혼', function(data) {
 		var html = '';
 		var total = 0;
 
@@ -87,9 +83,10 @@ $(document).ready(function() {
 		html += '</tr>';
 		$('#test').html(html);
 	});
-	//timerID = setTimeout("updateDataArea()", 2000);
 });
+	
 </script>
+
 </html>
 
 

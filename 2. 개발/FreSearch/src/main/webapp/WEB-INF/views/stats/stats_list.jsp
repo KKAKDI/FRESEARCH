@@ -30,7 +30,7 @@ a.no-uline {
 					<div class="btn-group-list">
 						<h4 class="card-title">
 						
-							<button type="button" id='addReplyBtn'
+							<button type="button" id='age'
 								class="btn btn-outline-secondary">
 								<!--  <a href='/charts/pages/charts/Area'>나이</a>-->
 								나이
@@ -65,7 +65,7 @@ a.no-uline {
 					<div class="card-body">
 					<div class="btn-group-mini">
 						<h4 class="card-title">
-							<button type='button' class="btn btn-outline-secondary">
+							<button type='button' id='all' class="btn btn-outline-secondary">
 								전체
 							</button>
 						</h4>
@@ -83,7 +83,7 @@ a.no-uline {
 					<div class="btn-group-mini">
 						<h4 class="card-title">
 
-							<button type='button' class="btn btn-outline-secondary">
+							<button type='button' id="sex" class="btn btn-outline-secondary">
 								성별
 							</button>
 						</h4>
@@ -97,7 +97,7 @@ a.no-uline {
 					<div class="card-body-mini">
 
 						<h4 class="card-title">
-							<button type='button' class="btn btn-outline-secondary">
+							<button type='button' id="marriage" class="btn btn-outline-secondary">
 								결혼유무
 							</button>
 						</h4>
@@ -123,6 +123,18 @@ $("#addReplyBtn").on("click", function(e){
 			$("#area").on("click", function(e){
 			      location.href='/stats/stats_area';
 			 });
+			$("#age").on("click", function(e){
+				location.href='/stats/stats_age';
+			});
+			$("#sex").on("click", function(e){
+				location.href='/stats/stats_sex';
+			});
+			$("#marriage").on("click", function(e){
+				location.href='/stats/stats_marriage';
+			});
+			$("#all").on("click", function(e){
+				location.href='/stats/stats_table';
+			});
 			 //여기까지 모달이랑 클릭 이벤트 등등
 
 			 //차트 js 파일

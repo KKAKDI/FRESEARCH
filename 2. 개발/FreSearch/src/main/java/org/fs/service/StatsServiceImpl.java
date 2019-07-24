@@ -24,10 +24,25 @@ public class StatsServiceImpl implements StatsService{
 		
 		return mapper.getList();
 	}
-	@Override	//카테고리별 중복 갯수 구하는 메소드
+	@Override	//카테고리별  지역 기준 갯수 구하는 메소드
 	public List<StatsAreaVO> getCategory(String area){
 		log.info("getCategory()...............");
 		return mapper.getCategory(area);
+	}
+	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
+	public List<StatsAreaVO> getCategoryAge(int startAge, int endAge){
+		log.info("getCategory()...............");
+		return mapper.getCategoryAge(startAge, endAge);
+	}
+	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
+	public List<StatsAreaVO> getCategorySex(String sex){
+		log.info("getCategory()...............");
+		return mapper.getCategorySex(sex);
+	}
+	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
+	public List<StatsAreaVO> getCategoryMarriage(String marriage){
+		log.info("getCategory()...............");
+		return mapper.getCategoryMarriage(marriage);
 	}
 	
 	@Override	//멤버 리스트 구하는 메소드
