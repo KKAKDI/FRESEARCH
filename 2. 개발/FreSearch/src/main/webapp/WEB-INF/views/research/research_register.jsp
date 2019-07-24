@@ -14,39 +14,33 @@
 		
 		$(document).on("click","#qst_btn",
 						function() {
-							$(".bottom_box").css("display","none");
 							$("#content #form_area .research_content").removeClass("active");
-							$("#content #form_area .research_content .item_box").removeClass("active");
-							$("#form_area").append("<div class='research_content clearflx active'><input type='text'placeholder='질문'><div class='item_box clearflx active'><div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>	</div></div>");
-							$(".bottom_box").css("display","inline-block");
+							$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
+							$("#content #form_area .research_content .item_box").removeClass("active_item");
+							$("#content #form_area .research_content hr").removeClass("active_btn");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'placeholder='질문'><div class='item_box clearflx active_item'><div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>	</div></div>");
+							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div><div class='bottom_button_box'><button id=qst_necessary>V</button></div></div>");						
 							var offset = $(".active").offset().top;
-							$("#remote").css("top", offset - 210);
-							//생성될 때 위치 오류
-							$(".bottom_box").css("top",offset-70);
+							$("#remote").css("top", offset - 210);							
 							return false;
 		});
 		//추가된 태그 함수 실행
 		$(document).on("click", ".research_content", function() {
-			$(".bottom_box").css("display","none");
 			$("#content #form_area .research_content").removeClass("active");
-			$("#content #form_area .research_content .item_box").removeClass("active");
+			$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
+			$("#content #form_area .research_content .item_box").removeClass("active_item");
+			$("#content #form_area .research_content hr").removeClass("active_btn");
 			$(this).addClass("active");			
-			$(this).children(".item_box").addClass("active");
-			$(".bottom_box").css("display","inline-block");
+			$(this).children("hr").addClass("active_btn");
+			$(this).children(".bottom_box").addClass("active_btn");
+			$(this).children(".item_box").addClass("active_item");
 			var offset = $(".active").offset().top;
-			$("#remote").css("top", offset - 210);
-			//$(".bottom_box").css("top",offset-70);
+			$("#remote").css("top", offset - 210);			
 		});	
-		
-		$("#qst_add").click(
-			function(){
-				var i=2;
-				$("#content #form_area .research_content .active").append("<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 "+(i++)+"'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
-				var offset = $(".bottom_box").offset().top;
-				var bot_top = offset+40;
-				
-				console.log(offset+"/"+bot_top);
-				//$(".bottom_box").css("top",bot_top);
+		$(document).on("click","#qst_add",function(){
+				var index = $(this).index();
+				console.log($(this).index());
+				$("#content #form_area .active_item").append("<div class='item_individual'><input type='radio' class='item"+index+"' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
 				return false;
 			}	
 		);
@@ -79,7 +73,7 @@
 		</div>
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
-				<form name='research_form' action=''>
+				<form name='research_form' id='research_form' action=''>
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
 						<div class='remote_btn'>
@@ -116,11 +110,12 @@
 						<input type='text' name='qst_content' id='qst_content'
 							placeholder='내용없는 질문' autocomplete='off'>
 						<div class='item_box clearflx'>
-							<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>						
-							<div class='bottom_box'>								
-								<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div><div class='bottom_button_box'><button id=qst_necessary>V</button></div>	
-							</div>	
+							<div class='item_individual'><input type='radio' class='' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>						
 						</div>
+						<hr>
+						<div class='bottom_box'>														
+							<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div><div class='bottom_button_box'><button id=qst_necessary>V</button></div>	
+						</div>	
 					</div>
 				</form>
 			</div>
