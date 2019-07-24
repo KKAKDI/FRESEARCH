@@ -32,7 +32,7 @@ body {
 }
 #content #form_area #remote{
 	background-color: #fff;
-	height: 240px;
+	height: 200px;
 	width:50px;
 	display:inline-block;	
 	position:absolute;
@@ -61,16 +61,17 @@ body {
 #content .research_content {
 	margin: 0 auto;
 	background-color: #fff;
-	height: 240px;
 	margin-top: 10px;
 	border-left:3px solid #fff;
 	-webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
     -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.3);   
+    padding: 0 0 30px 0;
 }
 
 #content .research_content.active{
 	border-left:3px solid #0C4DA2;		
+	padding: 0 0 60px 0;
 }
 #content .research_content #cate_title{
 	padding:20px 20px 0 20px;	
@@ -79,7 +80,7 @@ body {
 #content .research_content #category_box{
 	margin: 0 auto;
 	width:700px;
-	padding: 20px;
+	padding: 20px 20px 0 20px;
 }
 #content .research_content #category_box label{
 	display:inline-block;	
@@ -99,6 +100,7 @@ body {
 	border-bottom: 1px solid #000;
 	font-size: 25px;
 	transition: all 0.5s;
+	autocomplete:off;
 }
 #content input[type=text]:focus {
 	border-bottom: 2px solid #0C4DA2;
@@ -122,6 +124,7 @@ body {
 	border-bottom: 1px solid #fff;
 	font-size: 15px;
 	transition: all 0.5s;
+	autocomplete:off;
 }
 #content .research_content .item_box .item_individual > input[type=text]:focus {
 	border-bottom: 2px solid #0C4DA2;
@@ -142,7 +145,7 @@ body {
 }
 
 #content .research_content .item_box .bottom_box{
-	display:inline-block;
+	display:none;
 	position:absolute;
 	right:20px;
 	bottom:20px;
@@ -175,6 +178,7 @@ body {
 	font-size:20px;
 	color:#fff;
 	transition: all 0.3s;
+	autocomplete:off;
 }
 #left_top_box input[type=text]:focus{
 	outline:none;

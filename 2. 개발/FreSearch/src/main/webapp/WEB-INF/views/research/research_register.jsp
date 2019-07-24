@@ -11,41 +11,52 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#qst_btn")
-				.click(
+		
+		$(document).on("click","#qst_btn",
 						function() {
+							$(".bottom_box").css("display","none");
 							$("#content #form_area .research_content").removeClass("active");
-							$("#form_area").append("<div class='research_content active'><input type='text'placeholder='질문'autocomplete='off'></div>");
+							$("#content #form_area .research_content .item_box").removeClass("active");
+							$("#form_area").append("<div class='research_content clearflx active'><input type='text'placeholder='질문'><div class='item_box clearflx active'><div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>	</div></div>");
+							$(".bottom_box").css("display","inline-block");
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 210);
+							//생성될 때 위치 오류
+							$(".bottom_box").css("top",offset-70);
 							return false;
-						});
+		});
 		//추가된 태그 함수 실행
 		$(document).on("click", ".research_content", function() {
+			$(".bottom_box").css("display","none");
 			$("#content #form_area .research_content").removeClass("active");
-			$(this).addClass("active");
+			$("#content #form_area .research_content .item_box").removeClass("active");
+			$(this).addClass("active");			
+			$(this).children(".item_box").addClass("active");
+			$(".bottom_box").css("display","inline-block");
 			var offset = $(".active").offset().top;
 			$("#remote").css("top", offset - 210);
-		});
-		$(".mb_att_category").click(
-			function(){				
-				var ct1,ct2,ct3;
-				var in1 = $(".mb_att_category").index(this);
-				var in2 = $(".mb_att_category").index(this);
-				var in3 = $(".mb_att_category").index(this);
-				ct1 = document.getElementsByClassName('mb_att_category')[in1].value;
-				ct2	= document.getElementsByClassName('mb_att_category')[in2].value;
-				ct3	= document.getElementsByClassName('mb_att_category')[in3].value;
-				console.log(in1+"/"+in2+"/"+in3);
-				console.log(ct1+"/"+ct2+"/"+ct3);
-			}	
-		);	
+			//$(".bottom_box").css("top",offset-70);
+		});	
+		
 		$("#qst_add").click(
 			function(){
-				$(".item_box").append("<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
+				var i=2;
+				$("#content #form_area .research_content .active").append("<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 "+(i++)+"'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
+				var offset = $(".bottom_box").offset().top;
+				var bot_top = offset+40;
+				
+				console.log(offset+"/"+bot_top);
+				//$(".bottom_box").css("top",bot_top);
 				return false;
 			}	
 		);
+		$("#qst_del").click(function(){
+			
+		});
+		$(document).on("click","#item_del",function(){
+			$(this).parent().parent(".item_individual").remove();
+			return false;
+		});
 	});
 </script>
 <body>
@@ -83,7 +94,7 @@
 						<div class='remote_btn'>by.jsh</div>
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' name='subj_nm' id='subj_nm' placeholder='제목없는 설문지' autocomplete='off'>
+						<input type='text' name='subj_nm' id='subj_nm' placeholder='제목없는 설문지'>
 						<div id='cate_title'>카테고리 선택(1개만 선택가능)</div>
 						<div id='category_box'>						
 							<input type='radio' class='mb_att_category' name='category' value='A0000001'><label>교육,학문</label>
@@ -105,10 +116,10 @@
 						<input type='text' name='qst_content' id='qst_content'
 							placeholder='내용없는 질문' autocomplete='off'>
 						<div class='item_box clearflx'>
-							<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>						
+							<div class='item_individual'><input type='radio' class='item' name='item' value=''><input type='text' name='item_txt' id='item_txt' placeholder='아이템 1'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>						
 							<div class='bottom_box'>								
 								<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div><div class='bottom_button_box'><button id=qst_necessary>V</button></div>	
-							</div>			
+							</div>	
 						</div>
 					</div>
 				</form>
