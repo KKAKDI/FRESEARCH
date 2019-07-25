@@ -98,16 +98,16 @@ insert into NOTICE values('G0000009', 'iii@google.com', 'A0000009', '알림메시지9
 insert into NOTICE values('G0000010', 'jjj@google.com', 'A0000010', '알림메시지10', SYSDATE, SYSDATE, SYSDATE);
 
 -- 새소식
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목1', '새소식내용1', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목2', '새소식내용2', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목3', '새소식내용3', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목4', '새소식내용4', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목5', '새소식내용5', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목6', '새소식내용6', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목7', '새소식내용7', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목8', '새소식내용8', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목9', '새소식내용9', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목10', '새소식내용10', null, 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목1', '새소식내용1', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목2', '새소식내용2', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목3', '새소식내용3', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목4', '새소식내용4', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목5', '새소식내용5', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목6', '새소식내용6', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목7', '새소식내용7', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목8', '새소식내용8', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목9', '새소식내용9', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목10', '새소식내용10', 0, SYSDATE);
 
 -- 자유게시판
 insert into BOARD values(BOARD_SEQ.NEXTVAL, 'aaa@google.com', '최운학', '자게제목1', '자게내용1', null, 0, 0, 0, 'A0BCDE', 0, SYSDATE);
