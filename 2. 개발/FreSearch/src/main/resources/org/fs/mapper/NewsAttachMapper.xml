@@ -15,4 +15,15 @@
 	<select id="findByNews_code" resultType="org.fs.domain.NewsAttachVO">
 	select * from NEWS_ATTACH where NEWS_CODE = #{news_code}
 	</select>
+	
+	<delete id="deleteAll">
+		delete NEWS_ATTACH where NEWS_CODE = #{news_code}
+	</delete>
+	
+	<select id="getOldFiles"
+		resultType="org.fs.domain.NewsAttachVO">
+
+		select * from NEWS_ATTACH where NEWS_ATTACH_PATH = to_char(sysdate -1 ,'yyyy\mm\dd')
+
+	</select>
 </mapper>
