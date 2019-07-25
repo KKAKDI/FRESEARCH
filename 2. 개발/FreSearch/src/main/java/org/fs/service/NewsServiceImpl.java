@@ -2,6 +2,7 @@ package org.fs.service;
 
 import java.util.List;
 
+import org.fs.domain.Criteria;
 import org.fs.domain.NewsAttachVO;
 import org.fs.domain.NewsVO;
 import org.fs.mapper.NewsAttachMapper;
@@ -21,10 +22,11 @@ public class NewsServiceImpl implements NewsService {
 	//@Setter(onMethod_ = @Autowired)
 	private NewsMapper mapper;
 	private NewsAttachMapper attachMapper;
+	
 
 	@Transactional
 	@Override
-	public void register(NewsVO news) {
+	public void register(NewsVO news) { // 새글 등록하기
 		
 		log.info("register......" + news);
 		
@@ -46,35 +48,68 @@ public class NewsServiceImpl implements NewsService {
 		
 		return mapper.read(news_code);
 	}
-
+	@Transactional
 	@Override
-	public int modify(NewsVO news) {
+	public boolean modify(NewsVO news) { 
 		log.info("modify......" + news);
-		
-		return mapper.update(news);
-	}
 
+		attachMapper.deleteAll(news.getNews_code());
+
+		boolean modifyResult = mapper.update(news) == 1;
+		
+		if (modifyResult && news.getAttachList().size() > 0) {
+
+			news.getAttachList().forEach(attach -> {
+
+				attach.setNews_code(news.getNews_code());
+				attachMapper.insert(attach);
+			});
+		}
+
+		return modifyResult;
+	}
+	@Transactional // 삭제 시 첨부파일 같이 삭제
 	@Override
 	public boolean remove(int news_code) {
 		log.info("remove...." + news_code);
+		
+		attachMapper.deleteAll(news_code);
 		
 		return mapper.delete(news_code) == 1;
 	}
 
 	@Override
-	public List<NewsVO> getList() {
+	public List<NewsVO> getList(Criteria cri) {	// Content
 		
 		log.info("getList......");
 		
-		return mapper.getList();
+		return mapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public int getTotal(Criteria cri) { // 페이징
+	
+		log.info("get totalCount");
+		
+		return mapper.getTotalCount(cri);
 	}
 
 	@Override
-	public List<NewsAttachVO> getAttachList(int news_code) {
+	public List<NewsAttachVO> getAttachList(int news_code) { // 첨부파일 리스트
 		log.info("get Attach list by news_code" + news_code);
 		
-		return attachMapper.findByNews_code(news_code);
-		
+		return attachMapper.findByNews_code(news_code);	
 	}
 	
+	
+	
+	@Override
+	public void removeAttach(int news_code) {
+
+		log.info("remove all attach files");
+
+		attachMapper.deleteAll(news_code);
+	}
+	
+
 }

@@ -11,4 +11,8 @@ public interface NewsAttachMapper {
 	public void delete(String news_attach_uuid);
 	
 	public List<NewsAttachVO> findByNews_code(int news_code);
+	
+	public void deleteAll(int news_code);
+	
+	public List<NewsAttachVO> getOldFiles();
 }
