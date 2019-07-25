@@ -23,6 +23,8 @@ public interface NewsService {
 	
 	public void removeAttach(int news_code);
 	
+	public NewsVO modifyGet(int news_code);
 	
+	// public void views(String param);
 
 }

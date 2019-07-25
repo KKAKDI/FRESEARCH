@@ -30,7 +30,7 @@ body {
 				<form role="form" action="/news/news_register" method="post">
 					<div class="form-group">
 						<label>구분</label><select name='news_division'>
-							<option value="공지사항">공지사항</option>
+							<option value="공지사항">공지</option>
 							<option value="이벤트">이벤트</option>
 						</select>
 					</div>

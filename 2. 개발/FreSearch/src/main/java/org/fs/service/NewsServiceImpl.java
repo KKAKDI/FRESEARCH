@@ -23,7 +23,6 @@ public class NewsServiceImpl implements NewsService {
 	private NewsMapper mapper;
 	private NewsAttachMapper attachMapper;
 	
-
 	@Transactional
 	@Override
 	public void register(NewsVO news) { // 새글 등록하기
@@ -45,9 +44,16 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public NewsVO get(int news_code) {
 		log.info("get......" + news_code);
-		
+		mapper.views(news_code);
 		return mapper.read(news_code);
 	}
+	
+	@Override
+	public NewsVO modifyGet(int news_code) {
+		log.info("get......" + news_code);
+		return mapper.read(news_code);
+	}
+	
 	@Transactional
 	@Override
 	public boolean modify(NewsVO news) { 

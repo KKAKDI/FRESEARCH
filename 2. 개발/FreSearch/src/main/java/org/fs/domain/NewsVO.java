@@ -13,6 +13,6 @@ public class NewsVO {
 	private String news_content;		// 내용
 	private int news_views;				// 조회수
 	private Date news_regdate;			// 등록일
-	
+	private String news_attach_uuid;
 	private List<NewsAttachVO> AttachList; // 첨부파일 
 }

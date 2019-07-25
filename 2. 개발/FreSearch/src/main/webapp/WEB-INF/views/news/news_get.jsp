@@ -88,6 +88,7 @@ body {
 		</div>
 	</div>
 </div>
+<!-- /.row -->
 
 
 <script type="text/javascript">

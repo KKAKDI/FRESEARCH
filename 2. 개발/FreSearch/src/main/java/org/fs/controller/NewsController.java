@@ -74,12 +74,20 @@ public class NewsController {
 		return "redirect:/news/news_list";
 	}
 	
-	@GetMapping({"/news_get", "/news_modify"}) // 특정 게시물 가져보기
+	@GetMapping({"/news_get"}) // 특정 게시물 가져보기
 	public void get(@RequestParam("news_code") int news_code, @ModelAttribute("cri") Criteria cri, Model model) {
 		
-		log.info("/news_get or modify");
+		log.info("/news_get");
 		
 		model.addAttribute("news", service.get(news_code));
+	}
+	
+	@GetMapping({"/news_modify"}) // 특정 게시물 가져보기
+	public void modifyGet(@RequestParam("news_code") int news_code, @ModelAttribute("cri") Criteria cri, Model model) {
+		
+		log.info("/news_modify");
+		
+		model.addAttribute("news", service.modifyGet(news_code));
 	}
 	
 	

@@ -66,20 +66,20 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 <select id="getListWithPaging" resultType="org.fs.domain.NewsVO">
   <![CDATA[
   select 
-    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE
+    news_code, news_division, news_subject, news_content, news_regdate, news_views , news_attach_uuid 
   from 
       (
       select /*+INDEX_DESC(news pk_news) */
-        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE
+        rownum rn, a.NEWS_CODE, a.NEWS_DIVISION, a.NEWS_SUBJECT, a.NEWS_CONTENT, a.NEWS_REGDATE, a.NEWS_VIEWS, b.news_attach_uuid
       from 
-        NEWS
-      where 
+        NEWS a LEFT JOIN news_attach b ON
+ 
   ]]>
 
   <include refid="criteria"></include> 
       
   <![CDATA[    
-      rownum <= #{pageNum} * #{amount}
+      rownum <= #{pageNum} * #{amount} and a.news_code = b.news_code
       )
   where rn > (#{pageNum} -1) * #{amount}   
   ]]>
@@ -94,6 +94,27 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 		news_code > 0
 	</select>
 
-
+<update id="views">
+        update NEWS
+              set NEWS_VIEWS = NEWS_VIEWS + 1 
+         where NEWS_CODE = #{NEWS_CODE}
+</update>
 
 </mapper>
+
+
+
+
+<!--
+<![CDATA[
+  select 
+    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
+  from 
+      (
+      select /*+INDEX_DESC(news pk_news) */
+        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
+      from 
+        NEWS
+      where 
+  ]]>
+-->

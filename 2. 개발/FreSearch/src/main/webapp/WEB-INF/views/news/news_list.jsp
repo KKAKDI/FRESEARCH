@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -27,7 +29,6 @@ th {
    text-align: center;
    background-color: #0c4da2;
    font-family: "Times New Roman", Times, serif;
-   font-style: oblique;
    font-size: 20px;
    color: white;
 }
@@ -43,6 +44,7 @@ button {
 ul, li{
 	display:inline;
 }
+
 </style>
 
 <div>
@@ -69,7 +71,7 @@ ul, li{
 						<th>첨부</th>
 					</tr>
 				</thead>
-
+						
 				<c:forEach items="${list}" var="news">
 					<tr>
 						<td>${news.news_code}</td>
@@ -79,10 +81,32 @@ ul, li{
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${news.news_regdate}" /></td>
 						<td>${news.news_views}</td>
-						<td></td>
+						<c:choose>
+						<c:when test="${fn:length(news.news_attach_uuid) > 1}">
+						<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+						</c:when>
+							<c:otherwise>
+         						<td></td>
+         					</c:otherwise> 
+						</c:choose>
 					</tr>
 				</c:forEach>
-
+				
+			<!--<c:forEach items="${List}" var="data" varStatus="status">
+          <c:choose>
+           <c:when test="${fn:length(data.nm) > 14}">
+            <c:out value="${fn:substring(data.nm,0,13)}"/>....
+           </c:when>
+           <c:otherwise>
+            <c:out value="${data.nm}"/>
+           </c:otherwise> 
+          </c:choose>
+</c:forEach>-->
+				
+				
+				
+				
+				
 			</table>
 		</div>
 	</div>
@@ -189,6 +213,23 @@ ul, li{
 				e.preventDefault();
 				searchForm.submit();
 			});
+		
+		
 	});
+	
+	/*$(window).on("load", function() {
+		//<img src='/resources/img/file.png'>
+		//setInterval(function() {console.log("실험11 : "+ $('#test').html())},2);
+		if($(".test") != ""){
+			var html = '<img src="/resources/img/attach.png">';
+			$(".test").html(html);
+			console.log("실험 : "+ $(".test").html());
+		}
+		
+	});*/
+
+
+
+	
 </script>
 
