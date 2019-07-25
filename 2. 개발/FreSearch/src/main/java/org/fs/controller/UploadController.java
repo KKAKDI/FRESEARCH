@@ -44,7 +44,7 @@ public class UploadController {
 	@PostMapping("/uploadFormAction")
 	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
 
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "C:/upload";
 
 		for (MultipartFile multipartFile : uploadFile) {
 
@@ -62,6 +62,12 @@ public class UploadController {
 		} // end for
 
 	}
+	
+	@GetMapping("uploadAjax")
+	public void uploadAjax() {
+		
+		log.info("upload ajax");
+	}
 
 	
 	private String getFolder() {
@@ -74,6 +80,17 @@ public class UploadController {
 		
 		return str.replace("-", File.separator);
 		
+	}
+	
+	private boolean checkImageType(File file) {
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			
+			return contentType.startsWith("image");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -142,22 +159,9 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("uploadAjax")
-	public void uploadAjax() {
-		
-		log.info("upload ajax");
-	}
 	
-	private boolean checkImageType(File file) {
-		try {
-			String contentType = Files.probeContentType(file.toPath());
-			
-			return contentType.startsWith("image");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+	
+	
 	
 	@GetMapping("/display") // 섬네일 이미지 보여주기
 	@ResponseBody
@@ -197,20 +201,13 @@ public class UploadController {
 		HttpHeaders headers = new HttpHeaders();
 		
 		try {
+			boolean checkIE = (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1);
+			
 			String downloadName = null;
 			
-			if(userAgent.contains("Trident")) {
-				log.info("IE browser");
-				
-				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
-				
-			}else if (userAgent.contains("Edge")) {
-				
-				log.info("Edge browser");
-				downloadName = URLEncoder.encode(resourceOriginalName,"UTF-8");
-				log.info("Edge name: " + downloadName);
-			}else {
-				log.info("Chrome browser");
+			if (checkIE) {
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF8").replaceAll("\\+", " ");
+			} else {
 				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
 			}
 			log.info("downloadName: " + downloadName);
