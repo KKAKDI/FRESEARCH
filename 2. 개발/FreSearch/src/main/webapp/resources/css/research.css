@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 body {
+	font-family: "Open Sans", sans-serif;
 	min-width: 850px;	
 	font-weight: 500;
 	font-size: 16px;
 	vertical-align: top;
 	background-color: #f4f4f4;
-	 font-family: "Open Sans", sans-serif;
 }
 
 hr{
@@ -80,22 +80,39 @@ hr{
 	border-left:3px solid #0C4DA2;		
 }
 
-#content .research_content #cate_title{
+#content .research_content #research_term{
 	padding:20px 20px 0 20px;	
+}
+#content .research_content #research_term #term_title{
+	display: inline-block;
+    width: 15%;
+}
+
+#content .research_content #cate_title, #content .research_content #research_term #term_title{
+	padding:0 0 20px 0;	
 }
 
 #content .research_content #category_box{
-	margin: 0 auto;
-	width:700px;
-	padding: 20px 20px 0 20px;
+	padding:20px 20px 0 20px;	
 }
+
 #content .research_content #category_box label{
 	display:inline-block;	
-	width:145px;
+	width: 185px;
+    height: 30px;
 }
 
 #content .bottom {
 	padding: 50px;
+}
+
+#content input[type=text] {
+	width: 25%;
+	padding: 10px;
+	border: none;
+	border-bottom: 1px solid #000;
+	font-size: 16px;
+	transition: all 0.5s;
 }
 
 #content .research_content > input[type=text] {
@@ -107,7 +124,6 @@ hr{
 	border-bottom: 1px solid #000;
 	font-size: 25px;
 	transition: all 0.5s;
-	autocomplete:off;
 }
 #content input[type=text]:focus {
 	border-bottom: 2px solid #0C4DA2;
@@ -131,11 +147,17 @@ hr{
 	border-bottom: 1px solid #fff;
 	font-size: 15px;
 	transition: all 0.5s;
-	autocomplete:off;
 }
 #content .research_content .item_box .item_individual > input[type=text]:focus {
 	border-bottom: 2px solid #0C4DA2;
 	outline: none;
+}
+
+#content .research_content .item_box .item_individual label{
+	display: inline-block;
+    margin: 0 10px;
+    padding: 5px;
+    width: 85%;
 }
 
 #content .research_content .item_box .item_individual .button_box{
@@ -160,7 +182,6 @@ hr{
 #content .research_content .active_btn{
 	display:inline-block;
 }
-
 
 #content .research_content .bottom_box .bottom_button_box{
 	padding:5px;
@@ -189,7 +210,6 @@ hr{
 	font-size:20px;
 	color:#fff;
 	transition: all 0.3s;
-	autocomplete:off;
 }
 #left_top_box input[type=text]:focus{
 	outline:none;
@@ -203,6 +223,12 @@ hr{
 #right_top_box a{
 	color:#fff;
 }
-
+#right_top_box button{
+	background-color: transparent;
+	border:none;
+	color:#fff;
+	width:50px;
+	height:33px;
+}
 	
 
