@@ -47,4 +47,25 @@ public class StatsVO {
 	
 	
 	
+	///////
+	private int ANSWER_NUMBER;
+	private Date SUBJ_REGDATE;
+	private String ctgr_nm;
+	private String MB_NICK;
+	private String QST_IMG;
+	private String SUBJ_NM;
+	private Date SUBJ_STARTDATE;
+	private Date SUBJ_ENDDATE;
+	
+	
+	
+	
+	private int count;
+	private String ctgr_code;
+	private String percent;
+	
+	
+	
+	
+	
 }

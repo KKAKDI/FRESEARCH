@@ -1,6 +1,8 @@
 package org.fs.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
@@ -204,7 +206,7 @@ public class StatsController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<List<StatsAreaVO>> getCategory(@PathVariable("area") String area){
+	public ResponseEntity<List<StatsVO>> getCategory(@PathVariable("area") String area){
 		log.info("조성식 get : "+area);
 		if(area.contentEquals("전체")) {
 			area = "";
@@ -216,7 +218,7 @@ public class StatsController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<List<StatsAreaVO>> getCategoryAge(@PathVariable("age") String age){
+	public ResponseEntity<List<StatsVO>> getCategoryAge(@PathVariable("age") String age){
 		log.info("조성식 get : "+age);
 		int startAge = 0;
 		int endAge =0;
@@ -247,7 +249,7 @@ public class StatsController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<List<StatsAreaVO>> getCategorySex(@PathVariable("sex") String sex){
+	public ResponseEntity<List<StatsVO>> getCategorySex(@PathVariable("sex") String sex){
 		log.info("조성식 get : "+sex);
 		if(sex.equals("남자")) {
 			sex = "남";
@@ -261,7 +263,7 @@ public class StatsController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<List<StatsAreaVO>> getCategoryMarriage(@PathVariable("marriage") String marriage){
+	public ResponseEntity<List<StatsVO>> getCategoryMarriage(@PathVariable("marriage") String marriage){
 		log.info("조성식 get : "+marriage);
 		
 				return new ResponseEntity<>(service.getCategoryMarriage(marriage), HttpStatus.OK);
@@ -273,5 +275,22 @@ public class StatsController {
 	@GetMapping("../index_boot")
 	public void Marriage() {
 		log.info("Marriage: ");
+	}
+	
+	@GetMapping(value = "/get/table/{table}" ,
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<StatsVO>> getTable(@PathVariable("table") Map<String, String> table){
+		
+
+		
+		/*Map<String, String> table = new HashMap<String, String>();
+			table.put("ctgrNm", "교육");
+			table.put("mbSex", "남");
+			table.put("mbAddr", "서울");
+			table.put("startAge", "30");
+			table.put("endAge", "39");*/
+				return new ResponseEntity<>(service.getTable(table), HttpStatus.OK);
 	}
 }

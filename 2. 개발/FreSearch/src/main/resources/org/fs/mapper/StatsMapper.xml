@@ -19,7 +19,7 @@ select MB_ATT_CTGR_CODE as mbAttCtgrCode, MB_PWD as mbPwd, MB_ADDR as mbAddr, MB
 select MB_ATT_CTGR_CODE as bmAttCtgrCode, MB_EMAIL as mbEmail, CTGR_CODE1 as ctgrCode1, CTGR_CODE2 as ctgrCode2, CTGR_CODE3 as ctgrCode3, CTGR_CODE5 as ctgrCode5, MB_MARRIAGE_YN as mbMarriageYn,MB_CHILD_YN as mbChildYn,MB_HOME_YN as mbHomeYn,MB_CAR_YN as mbCarYn from ATT_CATEGORY 
 </select>
 
-<select id="getCategory" resultType="org.fs.domain.StatsAreaVO">	<!-- 카테고리별 갯수,퍼센트 구하는 SQL문  -->
+<select id="getCategory" resultType="org.fs.domain.StatsVO">	<!-- 카테고리별 갯수,퍼센트 구하는 SQL문  -->
 select (select count(*) from (select * from area where substr(MB_ADDR,1 , 5) like '%'||#{area}||'%') where CTGR_CODE = c.CTGR_CODE)as count, c.CTGR_CODE,
 round((ratio_to_report((select count(*) as num from (select * from area where substr(MB_ADDR,1 , 5) like '%'||#{area}||'%') where CTGR_CODE =
 (select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
@@ -27,7 +27,7 @@ round((ratio_to_report((select count(*) as num from (select * from area where su
 <!--and substr(b.MB_ADDR, 1, 5) like '%'||#{area}||'%'--> group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
 </select>
 
-<select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsAreaVO">
+<select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsVO">
 select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE
 from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
 where NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge})
@@ -39,7 +39,7 @@ from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_COD
 group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE 
 </select>
 
-<select id="getCategorySex" resultType="org.fs.domain.StatsAreaVO">
+<select id="getCategorySex" resultType="org.fs.domain.StatsVO">
 select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE, b.MB_Sex
 from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
 where MB_SEX = #{sex}) where CTGR_CODE = c.CTGR_CODE)as count,
@@ -51,7 +51,7 @@ from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_COD
 group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
 </select>
 
-<select id="getCategoryMarriage" resultType="org.fs.domain.StatsAreaVO">
+<select id="getCategoryMarriage" resultType="org.fs.domain.StatsVO">
 select (select count(*) from (select * from area
 where MB_MARRIAGE_YN = #{marriage}) where CTGR_CODE = c.CTGR_CODE)as count,
 c.CTGR_CODE, c.CTGR_NM,
@@ -60,6 +60,39 @@ round((ratio_to_report((select count(*) as num from
 (select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
 from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
 group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+</select>
+
+<select id="getTable" resultType="org.fs.domain.StatsVO">
+<![CDATA[
+SELECT (SELECT Count(*)
+        FROM   (SELECT *
+                FROM   answer)
+        WHERE  item_code = e.item_code) AS answer_number,
+       b.subj_regdate,
+       f.ctgr_nm,
+       a.mb_nick,
+       c.qst_img,
+       b.subj_nm,
+       b.subj_startdate,
+       b.subj_enddate
+FROM   member a,
+       subject b,
+       question c,
+       item d,
+       answer e,
+       category f
+WHERE  b.mb_email = a.mb_email
+       AND b.subj_code = c.subj_code
+       AND c.qst_code = d.qst_code
+       AND d.item_code = e.item_code
+       AND f.ctgr_code = b.ctgr_code
+       AND CTGR_NM like '%'||#{ctgrNm}||'%'
+       AND a.MB_SEX like '%'|| #{mbSex}||'%'
+       AND substr(a.MB_ADDR,1 , 5) like '%'||#{mbAddr}||'%'
+       AND NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}
+	   AND subj_enddate < to_char(sysdate,'yy/mm/dd')
+group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code
+]]>
 </select>
 
 

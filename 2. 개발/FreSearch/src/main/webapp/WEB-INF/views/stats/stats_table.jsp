@@ -70,10 +70,10 @@
 							</colgroup>
 							<thead class="Header">
 								<tr class="Row">
+									<td class="HeaderCell">카테고리</td>
 									<td class="HeaderCell">지역</td>
 									<td class="HeaderCell">성별</td>
 									<td class="HeaderCell">나이</td>
-									<td class="HeaderCell">결혼</td>
 									<td class="HeaderCell">상태</td>
 								</tr>
 							</thead>
@@ -82,129 +82,225 @@
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-checked" name="1"> <input
+											<span class="jcf-radio jcf-checked" > <input
+												type="radio" name="type" id="seoul" value="전체" class="Radio"
+												style="position: absolute; opacity: 0;"> <span></span>
+											</span> <label class="Label jcf-label-active" id="leftleft">전체</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="교육, 학문" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">교육, 학문</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="컴퓨터 통신" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">컴퓨터 통신</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="게임" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">게임</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="엔터테인먼트, 예술" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">엔터테인먼트, 예술</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="생활" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">생활</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="건강" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">건강</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked"> <input
+												type="radio" name="league" id="all" value="사회, 정치" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">사회, 정치</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="경제" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">경제</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="여행" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">여행</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="스포츠, 레저" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">스포츠, 레저</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="쇼핑" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">쇼핑</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="지역" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">지역</label>
+										</div>
+										<div id="tier_all" class="RadioButton">
+											<span class="jcf-radio jcf-unchecked" > <input
+												type="radio" name="league" id="all" value="결혼" class="Radio"
+												style="position: absolute; opacity: 0;"><span></span>
+											</span><label class="Label">결혼</label>
+										</div>
+									</div>
+								</td>
+							
+							
+							
+							
+							
+							
+							
+							
+								<td class="Cell">
+									<div class="ButtonWrap">
+										<div id="rate_win" class="RadioButton">
+											<span class="jcf-radio jcf-checked" > <input
 												type="radio" name="type" id="seoul" value="전체" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label jcf-label-active">전체</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" id="seoul" value="서울" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">서울</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="부산" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">부산</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="대구" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">대구</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="인천" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">인천</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="광주" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">광주</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="대전" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">대전</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="울산" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">울산</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="세종" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">세종</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="경기" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">경기</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="강원" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">강원</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="충북" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">충북</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="충남" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">충남</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="전북" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">전북</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="전남" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label for="win" class="Label">전남</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="경북" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">경북</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="경남" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">경남</label>
 										</div>
 										<div id="rate_win" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" value="제주" class="Radio"
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">제주</label>
 										</div>
 										<!-- <div id="rate_win_asc" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" id="lose" value="lose"
 												class="Radio" style="position: absolute; opacity: 0;">
 												<span></span>
 											</span> <label for="lose" class="Label">낮은 승률</label>
 										</div>
 										<div id="rate_pick" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" id="picked" value="piced"
 												class="Radio" checked
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label for="picked" class="Label">게임당 픽률</label>
 										</div>
 										<div id="rate_ban" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" id="banned" value="banned"
 												class="Radio" style="position: absolute; opacity: 0;">
 												<span></span>
@@ -218,20 +314,20 @@
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-checked" name="1"> <input
+											<span class="jcf-radio jcf-checked" > <input
 												type="radio" name="league" id="all" value="전체" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label jcf-label-active">전체</label>
 										</div>
 
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="남자" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">남자</label>
 										</div>
 										<div id="tier_iron" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="iron" value="여자"
 												class="Radio" style="position: absolute; opacity: 0;">
 												<span></span>
@@ -245,43 +341,43 @@
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-checked" name="1"> <input
+											<span class="jcf-radio jcf-checked" > <input
 												type="radio" name="league" id="all" value="전체" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label jcf-label-active">전체</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="10" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">10대</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="20" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">20대</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="30" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">30대</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="40" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">40대</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="50" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">50대</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="60" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">60대</label>
@@ -291,52 +387,30 @@
 
 
 								<!-- 결혼 -->
+	
+
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-checked" name="1"> <input
+											<span class="jcf-radio jcf-checked" > <input
 												type="radio" name="league" id="all" value="전체" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label jcf-label-active">전체</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
-												type="radio" name="league" id="all" value="기혼" class="Radio"
-												style="position: absolute; opacity: 0;"><span></span>
-											</span><label class="Label">기혼</label>
-										</div>
-										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
-												type="radio" name="league" id="all" value="미혼" class="Radio"
-												style="position: absolute; opacity: 0;"><span></span>
-											</span><label class="Label">미혼</label>
-										</div>
-									</div>
-								</td>
-
-
-								<td class="Cell">
-									<div class="ButtonWrap">
-										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-checked" name="1"> <input
-												type="radio" name="league" id="all" value="전체" class="Radio"
-												style="position: absolute; opacity: 0;"><span></span>
-											</span><label class="Label jcf-label-active">전체</label>
-										</div>
-										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="대기" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">대기</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="진행중" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">진행중</label>
 										</div>
 										<div id="tier_all" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" name="1"> <input
+											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="league" id="all" value="완료" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">완료</label>
@@ -710,11 +784,10 @@
 					function() {
 						/*setInterval(function() {
 							console.log("현재 스크롤 위치는 : " + $(document).scrollTop());
-
+						
 						}, 1);*/
-
+							//console.log($('.sub-link').offset());
 						if ($(document).scrollTop() >= 69) {
-
 							$('.sub-link').attr('class',
 									'sub-link scroll-to-fixed-fixed');
 							$('.sub-link')
@@ -737,8 +810,9 @@
 									.attr('style',
 											'display: none; width: 728px; height: 48px; float: none;');
 						}
-
 					});
+	
+	
 	$( '.top' ).click( function() {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
@@ -753,8 +827,8 @@
 
 	$('.RadioButton').click(
 			function(e) {
-				var st = $(this).children().children('input').val();
-				console.log("이거 나와봐" + st);
+				/*var st = $(this).children().children('input').val();
+				console.log("이거 나와봐" + st);*/
 				var str = $(this).attr('class');
 				console.log("현재 누른 버튼" + str);
 
@@ -774,7 +848,34 @@
 						.attr('class', 'Label jcf-label-active');
 				$(this).children().first().attr('class',
 						'jcf-radio jcf-checked');
+				
+				
+				var checkLength = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').length;
+				console.log("랭쓰 : "+checkLength);
+			    var checkValues = new Array(checkLength);
+			    for(var i=0; i<checkLength; i++){                          
+			    	checkValues[i] = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input')[i].value;
+			    }
+			    
+
+				
+				
+				//var map1 = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').val();
+				//var map2 = $(this).children('span.jcft-radio,.jcf-checked').children('input').val();
+				//var map = $('.RadioButton').children('span.class').children('input').val();
+				
+				
+				console.log("1 :"+checkValues[0]);
+				console.log("2 :"+checkValues[1]);
+				console.log("3 :"+checkValues[2]);
+				console.log("4 :"+checkValues[3]);
+				console.log("5 :"+checkValues[4]);
+				
+				//console.log("지금 버튼의 벨류"+map2);
 			});
+	 
+	 
+
 	/*$(document).ready(function() {
 		$("input[name=type]").click(function(e) {
 			console.log("버튼 눌렸다.");

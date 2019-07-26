@@ -1,6 +1,7 @@
 package org.fs.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
@@ -25,22 +26,22 @@ public class StatsServiceImpl implements StatsService{
 		return mapper.getList();
 	}
 	@Override	//카테고리별  지역 기준 갯수 구하는 메소드
-	public List<StatsAreaVO> getCategory(String area){
+	public List<StatsVO> getCategory(String area){
 		log.info("getCategory()...............");
 		return mapper.getCategory(area);
 	}
 	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
-	public List<StatsAreaVO> getCategoryAge(int startAge, int endAge){
+	public List<StatsVO> getCategoryAge(int startAge, int endAge){
 		log.info("getCategory()...............");
 		return mapper.getCategoryAge(startAge, endAge);
 	}
 	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
-	public List<StatsAreaVO> getCategorySex(String sex){
+	public List<StatsVO> getCategorySex(String sex){
 		log.info("getCategory()...............");
 		return mapper.getCategorySex(sex);
 	}
 	@Override	//카테고리별 나이 기준 갯수 구하는 메소드
-	public List<StatsAreaVO> getCategoryMarriage(String marriage){
+	public List<StatsVO> getCategoryMarriage(String marriage){
 		log.info("getCategory()...............");
 		return mapper.getCategoryMarriage(marriage);
 	}
@@ -66,4 +67,9 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getAddr.............");
 		return mapper.getAddr(addr);
 	}
+	@Override
+	public List<StatsVO> getTable(Map<String, String> table){
+		log.info("getAddr.............");
+		return mapper.getTable(table);
+	};
 }
