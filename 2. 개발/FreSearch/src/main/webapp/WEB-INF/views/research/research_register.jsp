@@ -14,22 +14,33 @@
 </head>
 <script>
 	$(function() {
-		 $( "#testDatepicker1, #testDatepicker2" ).datepicker({
-			 changeMonth: true, 
-			 dateFormat:'yy-mm-dd',
-	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		 $( ".datepicker" ).datepicker({
+			 closeText: '닫기',
+			  prevText: '이전달',
+			  nextText: '다음달',
+			  currentText: '오늘',
+			  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			  dayNames: ['일','월','화','수','목','금','토'],
+			  dayNamesShort: ['일','월','화','수','목','금','토'],
+			  dayNamesMin: ['일','월','화','수','목','금','토'],
+			  weekHeader: 'Wk',
+			  dateFormat: 'yy-mm-dd',
+			  firstDay: 0,
+			  isRTL: false,
+			  duration:200,
+			  showAnim:'show',
+			  showMonthAfterYear: true,
+			  yearSuffix:'년'
 		    });
 		$(document).on("click","#qst_btn",
 						function() {
 							$("#content #form_area .research_content").removeClass("active");
 							$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-							$("#content #form_area .research_content .item_box").removeClass("active_item");
+							$("#content #form_area .research_content #item_box").removeClass("active_item");
 							$("#content #form_area .research_content hr").removeClass("active_btn");
-							$("#content #form_area .research_content .item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'placeholder='질문' autocomplete='off'><div class='item_box clearflx active_item'><div class='item_individual'><input type='radio' class='item' value=''><input type='text' id='item_txt' placeholder='보기' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>	</div></div>");
+							$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' placeholder='질문' autocomplete='off' value=''><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
 							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div></div>");						
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 210);							
@@ -39,60 +50,77 @@
 		$(document).on("click", ".research_content", function() {
 			$("#content #form_area .research_content").removeClass("active");
 			$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-			$("#content #form_area .research_content .item_box").removeClass("active_item");
+			$("#content #form_area .research_content #item_box").removeClass("active_item");
 			$("#content #form_area .research_content hr").removeClass("active_btn");
-			$("#content #form_area .research_content .item_box .item_individual").removeClass("active_individual");
+			$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
 			$(this).addClass("active");			
 			$(this).children("hr").addClass("active_btn");
 			$(this).children(".bottom_box").addClass("active_btn");
-			$(this).children(".item_box").addClass("active_item");
+			$(this).children("#item_box").addClass("active_item");
 			$(this).children().children(".item_individual").addClass("active_individual");
 			var offset = $(".active").offset().top;
 			$("#remote").css("top", offset - 210);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<div class='item_individual'><input type='radio' id='item' value=''><input type='text' id='item_txt' placeholder='보기' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
 				return false;
-			}	
+			}
 		);
 		$(document).on("click","#qst_etc",function(){
-			var flag = $(".active_individual").children("label").html();
-			console.log(flag);
+			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
-				$("#content #form_area .active_item").append("<div class='item_individual active_individual'><input type='radio' id='item' value=''><label>기타</label><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
 				return false;
 			}else{
-				$("#qst_etc").attr("disable");
+				$("#qst_etc").attr("disable");		
 				return false;
-			}			
+			}				
 		});
 		
 		$(document).on("click","#qst_del",function(){
-			$(this).parents().find(".active").remove();
-			return false;
+			var index = $(this).parents().find(".research_content").length;
+			if(index>2){
+				$(this).parents().find(".active").remove();
+				$("#remote").css("top", 0);
+				return false;
+			}else{
+				$("#qst_del").attr("disable");	
+				return false;
+			}
 		});
 		
 		$(document).on("click","#item_del",function(){
-			$(this).parent().parent(".item_individual").remove();
-			return false;
+			var index = $(this).parents().find(".active_item .item_individual").length;			
+			if(index>1){
+				$(this).parent().parent(".active_item .item_individual").remove();
+				return false;
+			}else{
+				$("#item_del").attr("disable");	
+				return false;
+			}				
 		});
 		
 		$(document).on("click","#send_form",function(){
-			// 구분자 (/ | ,)
+			// 구분자 (|, #h#, #s#, #i#)
 			var data = '';
-			data += $("#subj_nm").val()+"#header";
-			data += $("#category_box input[type=radio]:checked").val()+"#header";
-			data += $("#testDatepicker1").val()+"#header";
-			data += $("#testDatepicker2").val();
-			data += "/";
-			var index = $(".research_content").length;
-			var qst_data = '';
-			//for(var i =1;i<index;i++){
-				qst_data += $("#qst_content")[1].val()+"|";
-			//}
-			console.log(data);
-			console.log(qst_data);
-			console.log(index);
+			var item_index = 0;
+			var qst_index =  $(".research_content #qst_content").length;
+			
+			data += $("#subj_nm").val()+"#h#";
+			data += $("#category_box input[type=radio]:checked").val()+"#h#";
+			data += $("#testDatepicker1").val()+"#h#";
+			data += $("#testDatepicker2").val()+"#h#";
+			data += "|";
+			
+			for(var i = 0;i<qst_index;i++){				
+				data += $(".research_content #qst_content")[i].value+"#t#";
+				item_index = $(".research_content #item_box")[i].childElementCount;
+				for(var j=0;j<item_index;j++){					
+					data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
+				}
+				data+="/";
+			}
+			console.log("data: "+data);			
 		});
 	});
 </script>
@@ -131,6 +159,10 @@
 					</div>
 					<div class='research_content clearflx'>
 						<input type='text' id='subj_nm' placeholder='제목없는 설문지' autocomplete='off'>
+						<div id='research_term'>
+							<div id='term_title'>조사 기간</div>
+							<input type='text' class='datepicker' name='start' autocomplete='off'> ~ <input type='text' class='datepicker' name='end' autocomplete='off'>
+						</div>	
 						<div id='category_box'>		
 							<div id='cate_title'>카테고리 선택(1개만 선택가능)</div>				
 							<input type='radio' class='mb_att_category' name='category' value='A0000001'><label>교육,학문</label>
@@ -146,18 +178,13 @@
 							<input type='radio' class='mb_att_category' name='category' value='K0000001'><label>쇼핑</label>
 							<input type='radio' class='mb_att_category' name='category' value='L0000001'><label>지역</label>
 							<input type='radio' class='mb_att_category' name='category' value='M0000001'><label>결혼</label>
-						</div>	
-						<div id='research_term'>
-							<div id='term_title'>조사 기간</div>
-							<input type='text' id='testDatepicker1' name='start' autocomplete='off'>~<input type='text' id='testDatepicker2' name='end' autocomplete='off'>
-						</div>							
+						</div>													
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' name='qst_content' id='qst_content'
-							placeholder='내용없는 질문' autocomplete='off'>
-						<div class='item_box clearflx'>
-							<div class='item_individual'><input type='radio' class='item' value=''><input type='text' id='item_txt' placeholder='보기' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></div>						
-						</div>
+						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off' value=''>
+						<ul id='item_box' class='clearflx'>
+							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>						
+						</ul>
 						<div class='etc_box'>
 						</div>
 						<hr>
@@ -169,6 +196,6 @@
 			</div>
 			<div class='bottom'></div>
 		</section>
-	</div>
+	</div>	
 </body>
 </html>

@@ -4,11 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.fs.mapper.NewsMapper">
 
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'S'.toString()">
+							news_subject like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							news_content like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 <select id="getList" resultType="org.fs.domain.NewsVO">
 <![CDATA[
-select * from NEWS order by NEWS_CODE desc
+select * from NEWS where news_code > 0 rownum <= 100
 ]]>
 </select>
+
+
 
 <insert id="insert">
 insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REGDATE)
@@ -37,9 +56,65 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 <update id="update">
 	update NEWS
 	set NEWS_SUBJECT = #{news_subject},
+	NEWS_DIVISION = #{news_division},
 	NEWS_CONTENT = #{news_content},
+	NEWS_REGDATE = sysdate
 	where NEWS_CODE = #{news_code}
 </update>
 
 
+<select id="getListWithPaging" resultType="org.fs.domain.NewsVO">
+  <![CDATA[
+  select 
+    news_code, news_division, news_subject, news_content, news_regdate, news_views , news_attach_uuid 
+  from 
+      (
+      select /*+INDEX_DESC(news pk_news) */
+        rownum rn, a.NEWS_CODE, a.NEWS_DIVISION, a.NEWS_SUBJECT, a.NEWS_CONTENT, a.NEWS_REGDATE, a.NEWS_VIEWS, b.news_attach_uuid
+      from 
+        NEWS a LEFT JOIN news_attach b ON
+ 
+  ]]>
+
+  <include refid="criteria"></include> 
+      
+  <![CDATA[    
+      rownum <= #{pageNum} * #{amount} and a.news_code = b.news_code
+      )
+  where rn > (#{pageNum} -1) * #{amount}   
+  ]]>
+  </select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from NEWS 
+		where 
+		
+		<include refid="criteria"></include>
+		
+		news_code > 0
+	</select>
+
+<update id="views">
+        update NEWS
+              set NEWS_VIEWS = NEWS_VIEWS + 1 
+         where NEWS_CODE = #{NEWS_CODE}
+</update>
+
 </mapper>
+
+
+
+
+<!--
+<![CDATA[
+  select 
+    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
+  from 
+      (
+      select /*+INDEX_DESC(news pk_news) */
+        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
+      from 
+        NEWS
+      where 
+  ]]>
+-->

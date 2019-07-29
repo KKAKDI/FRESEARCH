@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/org/fs/controller/StatsController.java=UTF-8
+encoding//src/main/java/org/fs/service/StatsServiceImpl.java=UTF-8
+encoding//src/main/webapp/resources/css/jquery-ui.css=UTF-8
+encoding//src/main/webapp/resources/js/jquery-ui.min.js=UTF-8
