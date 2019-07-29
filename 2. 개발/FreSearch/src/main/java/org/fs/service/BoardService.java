@@ -1,6 +1,6 @@
 package org.fs.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.fs.domain.BoardVO;
 import org.fs.domain.Criteria;
@@ -19,7 +19,7 @@ public interface BoardService {
 	
 	public int getTotal(Criteria cri);								//페이징 전체 게시글 표시
 
-	
-	
+
+	//public void views(String param);
 
 }

@@ -1,6 +1,7 @@
 package org.fs.mapper;
 
-import java.util.List;
+import java.util.List; 
+
 
 import org.fs.domain.BoardVO;
 import org.fs.domain.Criteria;
@@ -23,5 +24,9 @@ public interface BoardMapper {
 	
 	public int update(BoardVO board);							//원하는 해당 게시글 업데이트
 	
-	BoardVO BoardViews(BoardVO vo);
+	public int view(int brd_code);								//게시판 조회수
+	
+	
+	
+	
 }

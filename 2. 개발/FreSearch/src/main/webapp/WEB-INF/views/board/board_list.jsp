@@ -81,7 +81,6 @@ ul, li {
 						<td>${board.brd_views}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${board.brd_regdate}" /></td>
-
 					</tr>
 				</c:forEach>
 

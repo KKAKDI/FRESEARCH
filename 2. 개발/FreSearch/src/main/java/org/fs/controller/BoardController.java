@@ -1,11 +1,9 @@
 package org.fs.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.fs.domain.BoardVO;
+import org.fs.domain.BoardVO; 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
+
 import org.fs.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -41,7 +39,7 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
-	@GetMapping("/board_register")
+	@GetMapping("board_register")
 	public void register() {
 		
 	}
@@ -59,7 +57,7 @@ public class BoardController {
 	@GetMapping({"/board_content", "/board_modify"}) //게시글 보기
 	public void content(@RequestParam("brd_code") int brd_code, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/board_content or board_modify");
-		model.addAttribute("board", service.content(brd_code));
+		model.addAttribute("board", service.content(brd_code));	
 	}
 	
 	@PostMapping("/board_modify")				//게시글 수정
@@ -82,4 +80,7 @@ public class BoardController {
 		return "redirect:/board/board_list" + cri.getListLink();
 	}
 	
+	
+	
+
 }

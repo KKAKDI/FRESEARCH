@@ -24,6 +24,10 @@ body {
 	padding-top: 70px;
 	padding-bottom: 30px;
 }
+
+#content{
+	height : auto;
+}
 </style>
 
 
@@ -50,8 +54,11 @@ body {
 
 				<div class="form-group">
 					<label>내용</label>
-					<textarea class="form-control" rows="3" name='brd_content'
-						readonly="readonly">  ${board.brd_content}</textarea>
+			
+					<div id= content class="form-control" readonly="readonly" >
+						${board.brd_content}
+					</div>
+						
 				</div>
 
 				<div class="form-group">
@@ -63,8 +70,6 @@ body {
 					<input type="hidden" class="form-control" name='mb_nick'
 						value=${board.mb_nick } readonly="readonly">
 				</div>
-
-
 
 				<button class="btn btn-sm btn-success" data-oper='modify'>수정</button>
 				<button class="btn btn-sm btn-primary" data-oper='list'>리스트</button>
@@ -85,9 +90,36 @@ body {
 
 <!-- Reply Form {s} -->
 
+			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
+				<form name="form" id="form" role="form" modelAttribute="ReplyVO" method="post">
 
-<!-- Reply Form {e} -->
+				<hidden path="brd_code" id="brd_code"/>
+
+				<div class="row">
+
+					<div class="col-sm-10">
+
+						<textarea path="rpl_content" id="rpl_content" class="form-control" rows="3" placeholder="댓글을 입력해 주세요"></textarea>
+
+					</div>
+
+					<div class="col-sm-2">
+
+						<input path="brd_nick" class="form-control" id="brd_nick" placeholder="댓글 작성자"></input>
+
+						<button type="button" class="btn btn-sm btn-primary" id="btnReplySave" style="width: 100%; margin-top: 10px"> 저 장 </button>
+
+					</div>
+
+				</div>
+
+				</form>
+
+			</div>
+
+			<!-- Reply Form {e} -->
+
 
 <!-- Reply List {s}-->
 

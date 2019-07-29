@@ -1,6 +1,7 @@
 package org.fs.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,4 +20,6 @@ public class BoardVO {
 	private String brd_regkey;			//등록키
 	private int brd_views;				//조회수
 	private Date brd_regdate;			//등록일
+	private String brd_attach_uuid;	//첨부파일 썸네일		
+
 }
