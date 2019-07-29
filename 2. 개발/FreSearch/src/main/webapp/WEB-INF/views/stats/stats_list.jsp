@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
 <%@include file="../includes/header.jsp"%>
 <style type='text/css'>
 a.no-uline {
@@ -106,10 +105,6 @@ a.no-uline {
 				</div>
 			</div>
 		</div>
- 
-
-
-<%@include file="../includes/header.jsp"%>
 
 
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
