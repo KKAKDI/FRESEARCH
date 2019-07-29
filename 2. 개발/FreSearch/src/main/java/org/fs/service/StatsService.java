@@ -3,8 +3,6 @@ package org.fs.service;
 import java.util.List;
 import java.util.Map;
 
-import org.fs.domain.StatsAreaVO;
-import org.fs.domain.StatsResultVO;
 import org.fs.domain.StatsVO;
 
 public interface StatsService {

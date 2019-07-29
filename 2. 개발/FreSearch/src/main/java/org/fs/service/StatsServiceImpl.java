@@ -3,7 +3,6 @@ package org.fs.service;
 import java.util.List;
 import java.util.Map;
 
-import org.fs.domain.StatsAreaVO;
 import org.fs.domain.StatsVO;
 import org.fs.mapper.StatsMapper;
 import org.springframework.stereotype.Service;

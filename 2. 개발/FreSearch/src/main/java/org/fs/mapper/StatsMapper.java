@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.fs.domain.StatsAreaVO;
-import org.fs.domain.StatsResultVO;
 import org.fs.domain.StatsVO;
 
 

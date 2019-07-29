@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.fs.domain.StatsAreaVO;
+
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
 import org.springframework.http.HttpStatus;
