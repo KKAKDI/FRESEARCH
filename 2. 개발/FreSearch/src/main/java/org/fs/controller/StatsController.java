@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -277,20 +279,34 @@ public class StatsController {
 		log.info("Marriage: ");
 	}
 	
-	@GetMapping(value = "/get/table/{table}" ,
-			produces = {
-					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-	public ResponseEntity<List<StatsVO>> getTable(@PathVariable("table") Map<String, String> table){
+//	@GetMapping(value = "/get/table/{table}" ,
+//			produces = {
+//					MediaType.APPLICATION_XML_VALUE,
+//					MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+//	public ResponseEntity<List<StatsVO>> getTable(@PathVariable("table") Map<String, String> table){
+//		
+//
+//		
+//		/*Map<String, String> table = new HashMap<String, String>();
+//			table.put("ctgrNm", "교육");
+//			table.put("mbSex", "남");
+//			table.put("mbAddr", "서울");
+//			table.put("startAge", "30");
+//			table.put("endAge", "39");*/
+//				return new ResponseEntity<>(service.getTable(table), HttpStatus.OK);
+//	}
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PATCH},
+			value = "/table",
+			consumes = "application/json",
+			produces = "application/json")
+	public ResponseEntity <List<StatsVO>> getTable(@RequestBody StatsVO vo){
+//		if(vo.getAge() == 30) {
+//			vo.setStartAge(30);
+//			vo.setEndAge(39);
+//			System.out.println("여기에 들어왔다!!");
+//		}
+		log.info("왜 안찍히냐고");
 		
-
-		
-		/*Map<String, String> table = new HashMap<String, String>();
-			table.put("ctgrNm", "교육");
-			table.put("mbSex", "남");
-			table.put("mbAddr", "서울");
-			table.put("startAge", "30");
-			table.put("endAge", "39");*/
-				return new ResponseEntity<>(service.getTable(table), HttpStatus.OK);
+		return new ResponseEntity<>(service.getTable(vo),HttpStatus.OK);
 	}
 }

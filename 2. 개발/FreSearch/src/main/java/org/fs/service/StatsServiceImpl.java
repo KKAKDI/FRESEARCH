@@ -68,8 +68,8 @@ public class StatsServiceImpl implements StatsService{
 		return mapper.getAddr(addr);
 	}
 	@Override
-	public List<StatsVO> getTable(Map<String, String> table){
+	public List<StatsVO> getTable(StatsVO vo){
 		log.info("getAddr.............");
-		return mapper.getTable(table);
+		return mapper.getTable(vo);
 	};
 }

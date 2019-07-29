@@ -61,9 +61,9 @@ round((ratio_to_report((select count(*) as num from
 from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
 group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
 </select>
-
+<!-- 
 <select id="getTable" resultType="org.fs.domain.StatsVO">
-<![CDATA[
+
 SELECT (SELECT Count(*)
         FROM   (SELECT *
                 FROM   answer)
@@ -86,13 +86,81 @@ WHERE  b.mb_email = a.mb_email
        AND c.qst_code = d.qst_code
        AND d.item_code = e.item_code
        AND f.ctgr_code = b.ctgr_code
-       AND CTGR_NM like '%'||#{ctgrNm}||'%'
+       AND CTGR_NM like '%'||#{ctgr_nm}||'%'
        AND a.MB_SEX like '%'|| #{mbSex}||'%'
        AND substr(a.MB_ADDR,1 , 5) like '%'||#{mbAddr}||'%'
        AND NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}
-	   AND subj_enddate < to_char(sysdate,'yy/mm/dd')
+      	 <choose>
+      		<when test="stats == '전체'">
+       		</when>
+       		
+       		<when test="stats == '대기'">
+      			<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
+      		</when>
+      		
+       		<when test="stats == '진행중'"> 
+	   			<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
+	   		</when>
+	   		
+	   		<when test="stats == '완료'">
+	   			<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
+	   		</when>
+	   		
+	   	</choose>
 group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code
-]]>
+ -->
+ 
+ 
+<select id="getTable" resultType="org.fs.domain.StatsVO">
+SELECT rownum, 
+       answer_number, 
+       subj_regdate, 
+       subj_code, 
+       ctgr_nm, 
+       mb_nick, 
+       mb_sex, 
+       mb_birthdate, 
+       mb_addr, 
+       qst_img, 
+       subj_nm, 
+       subj_startdate, 
+       subj_enddate 
+FROM   (SELECT answer_number, 
+               subj_regdate, 
+               subj_code, 
+               ctgr_nm, 
+               mb_nick, 
+               mb_sex, 
+               mb_birthdate, 
+               mb_addr, 
+               qst_img, 
+               subj_nm, 
+               subj_startdate, 
+               subj_enddate 
+        FROM   stats_table 
+        WHERE  ctgr_nm LIKE '%'||#{ctgr_nm}||'%'
+               AND mb_sex LIKE '%'|| #{mbSex}||'%' 
+               AND Substr(mb_addr, 1, 5) LIKE '%'||#{mbAddr}||'%' 
+               AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
+               <choose>
+      				<when test="stats == '전체'">
+       				</when>
+       		
+       				<when test="stats == '대기'">
+      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
+      				</when>
+      		
+       				<when test="stats == '진행중'"> 
+	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
+	   				</when>
+	   		
+	   				<when test="stats == '완료'">
+	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
+	   				</when>
+	   		 
+	   		
+			   	</choose>
+	   		ORDER  BY subj_code)
 </select>
 
 

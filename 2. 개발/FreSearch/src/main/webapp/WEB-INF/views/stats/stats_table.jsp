@@ -322,13 +322,13 @@
 
 										<div id="tier_all" class="RadioButton">
 											<span class="jcf-radio jcf-unchecked" > <input
-												type="radio" name="league" id="all" value="남자" class="Radio"
+												type="radio" name="league" id="all" value="남" class="Radio"
 												style="position: absolute; opacity: 0;"><span></span>
 											</span><label class="Label">남자</label>
 										</div>
 										<div id="tier_iron" class="RadioButton">
 											<span class="jcf-radio jcf-unchecked" > <input
-												type="radio" name="league" id="iron" value="여자"
+												type="radio" name="league" id="iron" value="여"
 												class="Radio" style="position: absolute; opacity: 0;">
 												<span></span>
 											</span><label class="Label">여자</label>
@@ -436,7 +436,7 @@
 				<div class="card-body-table">
 					<section class="article-list">
 
-						<!-- 여기서부터  -->
+						<!--
 						<div class="article-list-item">
 							<div class="article-list-item__vote">
 								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
@@ -467,274 +467,8 @@
 								</a>
 							</div>
 						</div>
-						<!-- 여기까지가 한 블럭  -->
-
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-
-
-
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
+						 -->
+						
 
 
 						<section class="article-list-paging">
@@ -777,11 +511,9 @@
 
 
 
-
+<script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
-	$(document)
-			.scroll(
-					function() {
+	$(document).scroll(function() {
 						/*setInterval(function() {
 							console.log("현재 스크롤 위치는 : " + $(document).scrollTop());
 						
@@ -813,6 +545,92 @@
 					});
 	
 	
+	$(document).ready(function(){
+		
+		
+		var data = {
+	    		ctgr_nm : "",
+	    		mbAddr : "",
+	    		mbSex : "",
+	    		startAge : 0,
+	    		endAge : 99,
+	    		stats : "전체"
+	    }
+		
+		
+		tableService.table(data,function(list){
+	    	var html = '';
+	    	if (list.length == 0){
+	    		html += '<div class="article-list-item-no-data">';
+				html += '<div class="article-list-item__content">';
+				html += '<div class="article-list-item__title">';
+				html +=	'<a href=""> <span> 데이터가 없습니다.';
+				html +=	'</span>';
+				html +=	'</div>';
+				html +=	'</a>';
+				html +=	'<div class="article-list-item-meta">';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html +=	'</div>';
+				html += '</div>';
+	    	}else{
+	    		for(var i =0, len = list.length||0; i < len; i++){
+	    		
+		    		html += '<div class="article-list-item">';
+					html += '<div class="article-list-item__vote">';
+					html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+					html +=	'<div>'+list[i].answer_NUMBER+'</div>';
+					html += '</div>';
+					html += '<div class="article-list-item__content">';
+					html += '<div class="article-list-item__title">';
+					html +=	'<a href=""> <span>'+list[i].subj_NM;
+					html +=	'</span> <em>[35]</em>';
+					html +=	'</div>';
+					html +=	'</a>';
+					html +=	'<div class="article-list-item-meta">';
+					html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+					html +=	'<div class="article--list-item-meta__item">';
+					html += '<span>'+list[i].subj_REGDATE+'</span>';
+					html +=	'<div class="article-list-item-meta__item">';
+					html +=	'<a href="">'+list[i].mb_NICK+'</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					html +=	'</div>';
+					html +=	'<div class="article-list-item__thumbnail">';
+					html +=	'<a href="">';
+					html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
+					html += '?image=w_200" class="article-list-item__thumbnail" alt>';
+					html +=	'</a>';
+					html +=	'</div>';
+					html += '</div>';
+	    		}
+	    	//console.log("html : "+html);
+	    	html+= '<section class="article-list-paging">';
+	    	html+= '<div class="article-list-paging-content">';
+	    	html+= '<ul class="article-list-paging-list">';
+	    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+	    	html+= '<a href="" class="article-list-paging__button button">';
+	    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+	    	html+= '<span>이전</span>';
+	    	html+= '</a>';
+	    	html+= '</li>';
+	    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+	    	html+= '<a href="" class="article-list-paging__button button"> <span>다음</span>';
+	    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+	    	html+= '</a>';
+	    	html+= '</li>';
+	    	html+= '</ul>';
+	    	html+= '</div>';
+	    	html+= '</section>';
+	    	}
+			$('section.article-list').html(html);
+	    });
+	});
+	
+	
+	
 	$( '.top' ).click( function() {
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
@@ -825,8 +643,8 @@
 	
 	 });*/
 
-	$('.RadioButton').click(
-			function(e) {
+	 
+	$('.RadioButton').click(function(e) {
 				/*var st = $(this).children().children('input').val();
 				console.log("이거 나와봐" + st);*/
 				var str = $(this).attr('class');
@@ -851,15 +669,10 @@
 				
 				
 				var checkLength = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').length;
-				console.log("랭쓰 : "+checkLength);
 			    var checkValues = new Array(checkLength);
 			    for(var i=0; i<checkLength; i++){                          
 			    	checkValues[i] = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input')[i].value;
 			    }
-			    
-
-				
-				
 				//var map1 = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').val();
 				//var map2 = $(this).children('span.jcft-radio,.jcf-checked').children('input').val();
 				//var map = $('.RadioButton').children('span.class').children('input').val();
@@ -871,32 +684,156 @@
 				console.log("4 :"+checkValues[3]);
 				console.log("5 :"+checkValues[4]);
 				
-				//console.log("지금 버튼의 벨류"+map2);
-			});
-	 
-	 
+				
+				    if(checkValues[0]=="전체"){
+				    	checkValues[0] = "";
+				    }
+				    
+				    if(checkValues[1]=="전체"){
+				    	checkValues[1] = "";
+				    }
+				    
+				    if(checkValues[2]=="전체"){
+				    	checkValues[2] = "";
+				    }
 
-	/*$(document).ready(function() {
-		$("input[name=type]").click(function(e) {
-			console.log("버튼 눌렸다.");
-			area = $(this).val();
-			console.log(area);
-		
-		});
-		$("#win.Radio").click(function(){
-			console.log("버튼 연습 ㅜㅜ");
-			var st = $(this).val();
-			console.log(st);
-		});
-		
-	});
-	 $(document).ready(function(){
-	 $("input[name=type]").click(function(){
-	 var st = $(this).val();
-	 console.log("벨류 값 나와라!! : "+st);
-	 });
-	 var st = $(":input:radio[name=type]:checked").val();
-	 console.log("벨류 값 나와라 : "+st);
-	 });
-	 */
+				    //////나이쪽
+				    if (checkValues[3]=="전체"){
+				    	var SA = 0;
+				    	var EA = 99;
+				    }else if (checkValues[3]=="10"){
+				    	var SA = 10;
+				    	var EA = 19;
+				    }else if (checkValues[3]=="20"){
+				    	var SA = 20;
+				    	var EA = 29;
+				    }else if (checkValues[3]=="30"){
+				    	var SA = 30;
+				    	var EA = 39;
+				    }else if (checkValues[3]=="40"){
+				    	var SA = 40;
+				    	var EA = 49;
+				    }else if (checkValues[3]=="50"){
+				    	var SA = 50;
+				    	var EA = 59;
+				    }else if (checkValues[3]=="60"){
+				    	var SA = 60;
+				    	var EA = 69;
+				    }
+				    
+				    
+				    
+				    var data = {
+				    		ctgr_nm : checkValues[0],
+				    		mbAddr : checkValues[1],
+				    		mbSex : checkValues[2],
+				    		startAge : SA,
+				    		endAge : EA,
+				    		stats : checkValues[4]		
+				    }
+				    
+				    
+				    console.log(data);
+				    
+				    
+				    console.log(tableService);
+				    
+				    
+				    tableService.table(data,function(list){
+				    	//<section class="article-list">
+
+				    	var html = '';
+				    	if (list.length == 0){
+				    		html += '<div class="article-list-item-no-data">';
+							html += '<div class="article-list-item__content">';
+							html += '<div class="article-list-item__title">';
+							html +=	'<a href=""> <span> 데이터가 없습니다.';
+							html +=	'</span>';
+							html +=	'</div>';
+							html +=	'</a>';
+							html +=	'<div class="article-list-item-meta">';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
+							html +=	'</div>';
+							html += '</div>';
+				    	}else{
+				    		for(var i =0, len = list.length||0; i < len; i++){
+				    		
+					    		html += '<div class="article-list-item">';
+								html += '<div class="article-list-item__vote">';
+								html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+								html +=	'<div>'+list[i].answer_NUMBER+'</div>';
+								html += '</div>';
+								html += '<div class="article-list-item__content">';
+								html += '<div class="article-list-item__title">';
+								html +=	'<a href=""> <span>'+list[i].subj_NM;
+								html +=	'</span> <em>[35]</em>';
+								html +=	'</div>';
+								html +=	'</a>';
+								html +=	'<div class="article-list-item-meta">';
+								html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+								html +=	'<div class="article--list-item-meta__item">';
+								html += '<span>'+list[i].subj_REGDATE+'</span>';
+								html +=	'<div class="article-list-item-meta__item">';
+								html +=	'<a href="">'+list[i].mb_NICK+'</a>';
+								html += '</div>';
+								html += '</div>';
+								html += '</div>';
+								html +=	'</div>';
+								html +=	'<div class="article-list-item__thumbnail">';
+								html +=	'<a href="">';
+								html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
+								html += '?image=w_200" class="article-list-item__thumbnail" alt>';
+								html +=	'</a>';
+								html +=	'</div>';
+								html += '</div>';
+				    		}
+				    		html+= '<section class="article-list-paging">';
+					    	html+= '<div class="article-list-paging-content">';
+					    	html+= '<ul class="article-list-paging-list">';
+					    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+					    	html+= '<a href="" class="article-list-paging__button button">';
+					    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+					    	html+= '<span>이전</span>';
+					    	html+= '</a>';
+					    	html+= '</li>';
+					    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+					    	html+= '<a href="" class="article-list-paging__button button"> <span>다음</span>';
+					    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+					    	html+= '</a>';
+					    	html+= '</li>';
+					    	html+= '</ul>';
+					    	html+= '</div>';
+					    	html+= '</section>';
+				    	}
+						$('section.article-list').html(html);
+				    });
+				
+				    
+				    
+				    /*두번째 ajax 방법
+				    $.ajax({
+				        type: "POST",
+				        url : '/stats/table',
+				        data: JSON.stringify(data),
+				        dataType : "json",
+				        //async: true,
+				        contentType : "application/json; charset=UTF-8",
+				        success : function(data, status, xhr) {
+				        
+					            for(var i =0, len = data.length||0; i < len; i++){
+						    		console.log(data[i]);
+						    	}
+					            console.log(data[0]);
+
+					     
+					 
+				        },
+				        error: function(xhr, status, er) {
+								console.log(er);
+				           
+				        }
+				    });*/
+			});
 </script>

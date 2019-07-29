@@ -3,6 +3,7 @@ package org.fs.mapper;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.fs.domain.StatsVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,14 +64,14 @@ public class testMapper {
 //	}
 	@Test
 	public void getTable() {
-		Map<String, String > table = new HashMap<String, String>();
-		table.put("ctgrNm", "교육");
-		table.put("mbSex", "남");
-		table.put("mbAddr", "서울");
-		table.put("startAge", "30");
-		table.put("endAge", "39");
+		StatsVO vo = new StatsVO();
+		vo.setCtgr_nm("교육");
+		vo.setMbSex("남");
+		vo.setMbAddr("서울");
+		vo.setStartAge(30);
+		vo.setEndAge(39);
 		//mapper.getTable(table).forEach(stats->log.info(stats));
-		log.info(mapper.getTable(table));
+		log.info(mapper.getTable(vo));
 	}
 	
 

@@ -61,13 +61,12 @@ function updateDataArea() {
 	//timerID = setTimeout("updateDataArea()", 2000);
 }
 
-
 //나이별 카테고리 갯수 구하는 리스트
 var timerID;
 var html = '';
 var age = '';
 $(document).ready(function() {
-	
+
 	$("input[name=2]").click(function(e) {
 		console.log("버튼 눌렸다.");
 
@@ -114,13 +113,12 @@ function updateDataAge() {
 	//timerID = setTimeout("updateDataAge()", 2000);
 }
 
-
 /////////////////성별  카테고리 갯수 구하는 리스트
 var timerID;
 var html = '';
 var age = '';
 $(document).ready(function() {
-	
+
 	$("input[name=3]").click(function(e) {
 		console.log("버튼 눌렸다.");
 
@@ -166,7 +164,6 @@ function updateDataSex() {
 	});
 	//timerID = setTimeout("updateDataAge()", 2000);
 }
-
 
 /////////////////결혼 유무 카테고리 갯수 구하는 리스트
 var timerID;
@@ -219,6 +216,33 @@ function updateDataMarriage() {
 	});
 	//timerID = setTimeout("updateDataAge()", 2000);
 }
+var tableService = (function() {
+	function table(data, callback, error) {
+		console.log("chartMy");
+		
+		
+		$.ajax({
+			type : "POST",
+			url : '/stats/table',
+			data : JSON.stringify(data),
+			dataType : "json",
+			//async: true,
+			contentType : "application/json; charset=UTF-8",
+			success : function(result, status, xhr) {
+				if (callback) {
+					//callback(data.ctgr_nm, data.mb_nick);
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er) {
+				if(error){
+					error(er);
+				}
 
-
-
+			}
+		});
+	}
+	return{
+		table : table
+	}
+})();

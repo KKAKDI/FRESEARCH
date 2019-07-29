@@ -111,4 +111,16 @@ public class TestServiceTests {
 //	public void getCategoryMarriage() {
 //		service.getCategoryMarriage("기혼").forEach(stats -> log.info(stats));
 //	}
+	
+	@Test
+	public void getTable() {
+		StatsVO vo = new StatsVO();
+		vo.setCtgr_nm("교육");
+		vo.setMbSex("남");
+		vo.setMbAddr("서울");
+		vo.setStartAge(30);
+		vo.setEndAge(39);
+		//mapper.getTable(table).forEach(stats->log.info(stats));
+		log.info(service.getTable(vo));
+	}
 }

@@ -17,6 +17,6 @@ public interface StatsService {
 	public List<StatsVO> getCategoryAge(int StartAge, int EndAge);
 	public List<StatsVO> getCategorySex(String sex);
 	public List<StatsVO> getCategoryMarriage(String marriage);
-	public List<StatsVO> getTable(Map<String, String> table);
+	public List<StatsVO> getTable(StatsVO vo);
 	
 }

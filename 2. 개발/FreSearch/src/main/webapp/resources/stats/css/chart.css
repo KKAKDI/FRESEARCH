@@ -402,6 +402,21 @@ body {
     padding: 8px 0;
     padding-right: 14px;
 }
+.article-list-item-no-data {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    min-height: 78px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: 1px solid #ebeef1;
+    background-color: #fff;
+    padding: 8px 0;
+    padding-right: 14px;
+    text-align: center;
+    line-height: 52px;
+}
 .article-list-item__vote {
     display: table-cell;
     text-align: center;
@@ -624,7 +639,7 @@ form {
     display: inline-block;
 }
 .article-list-paging__button:first-child {
-    margin-left: 0;
+        margin: 0px 10px;
 }
 .article-list-paging-list:after {
     content: "";

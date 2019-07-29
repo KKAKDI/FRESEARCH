@@ -64,6 +64,11 @@ public class StatsVO {
 	private String ctgr_code;
 	private String percent;
 	
+	private int startAge;
+	private int endAge;
+	
+	private String stats;
+	
 	
 	
 	

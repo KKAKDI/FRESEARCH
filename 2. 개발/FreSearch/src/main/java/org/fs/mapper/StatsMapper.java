@@ -29,6 +29,6 @@ public interface StatsMapper {
 	
 	public List<StatsVO> getCategoryMarriage(String marriage);
 	
-	public List<StatsVO> getTable(Map<String, String> table);
+	public List<StatsVO> getTable(StatsVO vo);
 
 }
