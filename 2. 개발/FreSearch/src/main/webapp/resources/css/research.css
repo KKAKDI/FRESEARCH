@@ -83,37 +83,45 @@ hr {
 }
 
 #research_term {
-	padding: 20px 20px 0 20px;
+	padding: 20px;
 }
 
 #research_term #term_title {
 	display: inline-block;
-	width: 15%;
+	width: 25%;
 	padding: 0 0 20px 0;
 }
 
-#research_term .datepicker {
-	width: 200px;
+#date_timepicker_start, #date_timepicker_end {
+	width: 15%;
 	box-sizing: border-box;
-	padding: 15px;
-	margin-left: 20px;
+	text-align:center;
+	padding:5px;
+	margin: 0 10px;
 	border: none;
-	border-bottom: 1px solid #000;
-	font-size: 25px;
+	border-bottom: 2px solid #000;
+	font-size: 17px;
 	transition: all 0.5s;
 }
 
-#content .research_content #category_box {
-	padding: 20px 20px 0 20px;
+#content .research_content #category{
+	display: inline-flex;
+    padding: 0 20px;
 }
 
-#content .research_content #category_box #cate_title{
-	padding: 0 0 20px 0;
+#content .research_content #category_box {
+	padding: 0 20px 0 20px;
+	width:75%;
+}
+
+#content .research_content #cate_title{
+	display: inline-block;
+	width:25%;
 }
 
 #content .research_content #category_box label {
 	display: inline-block;
-	width: 185px;
+	width: 30%;
 	height: 30px;
 }
 

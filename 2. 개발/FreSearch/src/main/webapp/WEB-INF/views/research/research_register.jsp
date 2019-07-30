@@ -1,38 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>research_form</title>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research.css">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="/resources/datepicker/jquery.datetimepicker.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>  
+
+<script src="/resources/datepicker/jquery.js"></script>
+<script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
 </head>
 <script>
 	$(function() {
-		 $( ".datepicker" ).datepicker({
-			 closeText: '´İ±â',
-			  prevText: 'ÀÌÀü´Ş',
-			  nextText: '´ÙÀ½´Ş',
-			  currentText: '¿À´Ã',
-			  monthNames: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
-			  monthNamesShort: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
-			  dayNames: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'],
-			  dayNamesShort: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'],
-			  dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'],
-			  weekHeader: 'Wk',
-			  dateFormat: 'yy-mm-dd',
-			  firstDay: 0,
-			  isRTL: false,
-			  duration:200,
-			  showAnim:'show',
-			  showMonthAfterYear: true,
-			  yearSuffix:'³â'
-		    });
+			$.datetimepicker.setLocale('ko');
+			$('#date_timepicker_start').datetimepicker({
+			  format:'Y/m/d',
+			  onShow:function( ct ){
+			   this.setOptions({
+				minDate:'',
+			    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+			   })
+			  },
+			  timepicker:false
+			 });
+			 $('#date_timepicker_end').datetimepicker({
+			  format:'Y/m/d',
+			  onShow:function( ct ){
+			   this.setOptions({
+			    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+			   })
+			  },
+			  timepicker:false
+			 });
+			 
 		$(document).on("click","#qst_btn",
 						function() {
 							$("#content #form_area .research_content").removeClass("active");
@@ -40,13 +44,13 @@
 							$("#content #form_area .research_content #item_box").removeClass("active_item");
 							$("#content #form_area .research_content hr").removeClass("active_btn");
 							$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' placeholder='Áú¹®' autocomplete='off' value=''><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='º¸±â' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' placeholder='ì§ˆë¬¸' autocomplete='off' value=''><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='ë³´ê¸°' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
 							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div></div>");						
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 210);							
 							return false;
 		});
-		//Ãß°¡µÈ ÅÂ±× ÇÔ¼ö ½ÇÇà
+		//ì¶”ê°€ëœ íƒœê·¸ í•¨ìˆ˜ ì‹¤í–‰
 		$(document).on("click", ".research_content", function() {
 			$("#content #form_area .research_content").removeClass("active");
 			$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
@@ -62,14 +66,14 @@
 			$("#remote").css("top", offset - 210);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' placeholder='º¸±â' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' placeholder='ë³´ê¸°' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
 				return false;
 			}
 		);
 		$(document).on("click","#qst_etc",function(){
 			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='±âÅ¸' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='ê¸°íƒ€' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
 				return false;
 			}else{
 				$("#qst_etc").attr("disable");		
@@ -101,16 +105,17 @@
 		});
 		
 		$(document).on("click","#send_form",function(){
-			// ±¸ºĞÀÚ (|, #h#, #s#, #i#)
+			// êµ¬ë¶„ì (|, #h#, #s#, #i#)
 			var data = '';
 			var item_index = 0;
 			var qst_index =  $(".research_content #qst_content").length;
+			var form = $("#research_form");
 			
 			data += $("#subj_nm").val()+"#h#";
 			data += $("#category_box input[type=radio]:checked").val()+"#h#";
-			data += $("#testDatepicker1").val()+"#h#";
-			data += $("#testDatepicker2").val()+"#h#";
-			data += "|";
+			data += $("#date_timepicker_start").val()+"#h#";
+			data += $("#date_timepicker_end").val()+"#h#";
+			data += "/block";
 			
 			for(var i = 0;i<qst_index;i++){				
 				data += $(".research_content #qst_content")[i].value+"#t#";
@@ -118,9 +123,12 @@
 				for(var j=0;j<item_index;j++){					
 					data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
 				}
-				data+="/";
-			}
-			console.log("data: "+data);			
+				data+="/block";
+			}			
+			console.log("data: "+data);		
+			$("#research_values").val(data);
+			form.attr("action","/research/research_reg");
+			form.submit();
 		});
 	});
 </script>
@@ -129,12 +137,12 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<a id='prev' href=''>¸ñ·ÏÀ¸·Î µ¹¾Æ°¡±â</a> <input type='text' id='top_title' autocomplete='off'>
+					<a id='prev' href=''>ëª©ë¡ìœ¼ë¡œ ëŒì•„ê°€ê¸°</a> <input type='text' id='top_title' autocomplete='off'>
 				</div>
 				<div id='right_top_box'>
-					<a href='palette'>ÆÈ·¿</a>
-					<button id='send_form'>º¸³»±â</button>
-					<a href='delete_form'>»èÁ¦</a>
+					<a href='palette'>íŒ”ë ›</a>
+					<button id='send_form'>ë³´ë‚´ê¸°</button>
+					<a href='delete_form'>ì‚­ì œ</a>
 				</div>
 			</div>
 			<div class='logo'>
@@ -144,7 +152,8 @@
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
 				<form name='research_form' id='research_form' action='' method='post'>
-					<!-- ¿©±â ¸®¸ğÄÁ -->
+				<input type='hidden' name='research_values' id='research_values' value=''>
+					<!-- ì—¬ê¸° ë¦¬ëª¨ì»¨ -->
 					<div id='remote'>
 						<div class='remote_btn'>
 							<button id='qst_btn'>+</button>
@@ -158,32 +167,34 @@
 						<div class='remote_btn'>by.jsh</div>
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' id='subj_nm' placeholder='Á¦¸ñ¾ø´Â ¼³¹®Áö' autocomplete='off'>
+						<input type='text' id='subj_nm' placeholder='ì œëª©ì—†ëŠ” ì„¤ë¬¸ì§€' autocomplete='off'>
 						<div id='research_term'>
-							<div id='term_title'>Á¶»ç ±â°£</div>
-							<input type='text' class='datepicker' name='start' autocomplete='off'> ~ <input type='text' class='datepicker' name='end' autocomplete='off'>
+							<div id='term_title'>ì¡°ì‚¬ ê¸°ê°„</div>
+							<input type='text' id='date_timepicker_start' name='start' autocomplete='off'> ~ <input type='text' id='date_timepicker_end' name='end' autocomplete='off'>
 						</div>	
-						<div id='category_box'>		
-							<div id='cate_title'>Ä«Å×°í¸® ¼±ÅÃ(1°³¸¸ ¼±ÅÃ°¡´É)</div>				
-							<input type='radio' class='mb_att_category' name='category' value='A0000001'><label>±³À°,ÇĞ¹®</label>
-							<input type='radio' class='mb_att_category' name='category' value='B0000001'><label>ÄÄÇ»ÅÍÅë½Å</label>
-							<input type='radio' class='mb_att_category' name='category' value='C0000001'><label>°ÔÀÓ</label>
-							<input type='radio' class='mb_att_category' name='category' value='D0000001'><label>¿£ÅÍÅ×ÀÌ¸ÕÆ®,¿¹¼ú</label>
-							<input type='radio' class='mb_att_category' name='category' value='E0000001'><label>»ıÈ°</label>
-							<input type='radio' class='mb_att_category' name='category' value='F0000001'><label>°Ç°­</label>
-							<input type='radio' class='mb_att_category' name='category' value='G0000001'><label>»çÈ¸,Á¤Ä¡</label>														
-							<input type='radio' class='mb_att_category' name='category' value='H0000001'><label>°æÁ¦</label>						
-							<input type='radio' class='mb_att_category' name='category' value='I0000001'><label>¿©Çà</label>
-							<input type='radio' class='mb_att_category' name='category' value='J0000001'><label>½ºÆ÷Ã÷,·¹Àú</label>
-							<input type='radio' class='mb_att_category' name='category' value='K0000001'><label>¼îÇÎ</label>
-							<input type='radio' class='mb_att_category' name='category' value='L0000001'><label>Áö¿ª</label>
-							<input type='radio' class='mb_att_category' name='category' value='M0000001'><label>°áÈ¥</label>
-						</div>													
+						<div id='category'>
+							<div id='cate_title'>ì¹´í…Œê³ ë¦¬ ì„ íƒ</div>	
+							<div id='category_box'>												
+								<input type='radio' class='mb_att_category' name='category' value='A0000001'><label>êµìœ¡,í•™ë¬¸</label>
+								<input type='radio' class='mb_att_category' name='category' value='B0000001'><label>ì»´í“¨í„°í†µì‹ </label>
+								<input type='radio' class='mb_att_category' name='category' value='C0000001'><label>ê²Œì„</label>
+								<input type='radio' class='mb_att_category' name='category' value='D0000001'><label>ì—”í„°í…Œì´ë¨¼íŠ¸,ì˜ˆìˆ </label>
+								<input type='radio' class='mb_att_category' name='category' value='E0000001'><label>ìƒí™œ</label>
+								<input type='radio' class='mb_att_category' name='category' value='F0000001'><label>ê±´ê°•</label>
+								<input type='radio' class='mb_att_category' name='category' value='G0000001'><label>ì‚¬íšŒ,ì •ì¹˜</label>														
+								<input type='radio' class='mb_att_category' name='category' value='H0000001'><label>ê²½ì œ</label>						
+								<input type='radio' class='mb_att_category' name='category' value='I0000001'><label>ì—¬í–‰</label>
+								<input type='radio' class='mb_att_category' name='category' value='J0000001'><label>ìŠ¤í¬ì¸ ,ë ˆì €</label>
+								<input type='radio' class='mb_att_category' name='category' value='K0000001'><label>ì‡¼í•‘</label>
+								<input type='radio' class='mb_att_category' name='category' value='L0000001'><label>ì§€ì—­</label>
+								<input type='radio' class='mb_att_category' name='category' value='M0000001'><label>ê²°í˜¼</label>
+							</div>	
+						</div>												
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' id='qst_content' placeholder='³»¿ë¾ø´Â Áú¹®' autocomplete='off' value=''>
+						<input type='text' id='qst_content' placeholder='ë‚´ìš©ì—†ëŠ” ì§ˆë¬¸' autocomplete='off' value=''>
 						<ul id='item_box' class='clearflx'>
-							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='º¸±â' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>						
+							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='ë³´ê¸°' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>						
 						</ul>
 						<div class='etc_box'>
 						</div>
