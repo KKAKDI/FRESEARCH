@@ -64,7 +64,7 @@
 	</select>
 	
 	<insert id="insert">	
-		insert into board (brd_code, mb_email, mb_nick, brd_subject, brd_content,brd_regdate)
+		insert into board (brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate)
 		values (board_seq.nextval, #{mb_email}, #{mb_nick}, #{brd_subject}, #{brd_content}, SYSDATE)
 	</insert>
 	
@@ -75,7 +75,7 @@
 	</selectKey>
 	
 		insert into board (brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate)
-		values (#{brd_code}, #{mb_email}, #{mb_nick}, #{brd_subject}, #{brd_content}, SYSDATE)
+		values (#{brd_code}, #{mb_email}, #{mb_nick}, #{brd_subject}, #{brd_content},SYSDATE)
 	</insert>
 	
 	<select id="read" resultType= "org.fs.domain.BoardVO">
@@ -87,6 +87,14 @@
 	<delete id="delete" >
 	delete board where brd_code = #{brd_code}
 	</delete>
+	
+	<update id="updateView">
+	
+	update board set brd_views = nvl(brd_views, 0) +1
+	where brd_code = #{brd_code} 
+	
+	
+	</update>
 	
 	<update id="update">
 	update board 
