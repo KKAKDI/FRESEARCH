@@ -1,0 +1,281 @@
+body {
+	margin : 0;
+}
+.page-content {
+	background: #f4f4f4;
+	display: flex;
+	justify-content: center;
+}
+.form-content {
+	background: #fff;
+	width: 670px;
+	border-radius: 8px;
+	margin: 175px 0;
+}
+.form-detail {
+	padding: 30px 45px 30px 45px;
+}
+.form-detail h2 {
+	position: relative;
+	font-size: 25px;
+	text-align: center;
+	padding: 3px 0 20px;
+	margin-bottom: 40px;
+}
+.form-detail h2::after {
+	background: #1428a0;
+	width: 90px;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+    transform: translateX(-50%);
+}
+.form-detail label {
+	display: block;
+	font-size: 18px;
+	padding-bottom: 10px;
+}
+.form-row input[type=text],
+.form-detail input[type=password] {
+	width: 100%;
+	padding : 10.5px 0px 10.5px 15px;
+    /*padding: 10.5px 15px;*/
+    border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+    position: absolute;
+}
+.form-row-addr2 input[type=text],
+.form-row-addr3 input[type=text] {
+	width: 100%;
+	padding : 10.5px 0px 10.5px 15px;
+	/*width: 94.5%;
+    padding: 10.5px 15px;*/
+    border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+    position: absolute;
+}
+.form-row input[type=text]:focus,
+.form-row-addr2 input[type=text]:focus,
+.form-row-addr3 input[type=text]:focus,
+.form-detail input[type=password]:focus,
+.mb_birth_yy input:focus,
+.mb_birth_mm select:focus,
+.mb_birth_dd input:focus,
+.form-row-addr1 input[type=text]:focus {
+	border-bottom: 2px solid #1428a0;
+	outline: none;
+}
+.form-detail input::placeholder {
+  color: #999;
+  font-size: 16px;
+}
+.form-detail .signup_fin {
+	font-size: 18px;
+	color: #fff;
+	background: #3450ED;
+	border-radius: 5px;
+	width: 100%;
+	height: 40px;
+	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	border: none;
+	margin: 19px 0 40px;
+	cursor: initial;
+	opacity: 0.5;
+}
+.form-row, 
+.form-row-birth {
+	position: relative;
+	margin-bottom: 80px;
+}
+
+.form-row-category {
+	position: relative;
+    margin-top: 160px;
+}
+.form-row-yn {
+	position: relative;
+	margin-bottom: 20px;
+	margin-top: 30px;
+}
+.form-row-agree {
+	position: relative;
+	margin-bottom: 20px;
+    margin-top: 30px;
+}
+.form-row-addr1,
+.form-row-addr2 {
+	position: relative;
+	margin-bottom: 20px;
+}
+.form-row-addr3 {
+	position: relative;
+	margin-bottom: 20px;
+	margin-top: 80px;
+}
+.form-row-sex {
+	margin-bottom: 30px;
+}
+.form-row-category input[type=checkbox], 
+.form-row-agree input[type=checkbox] {  
+    display: none;  
+}
+.form-row-category input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 30px;  
+    font-size: 14px;
+	width: 20%;
+}
+.form-row-agree input[type=checkbox] + label{
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 14px;
+}
+.form-row-category input[type=checkbox]+ label:before, 
+.form-row-agree input[type=checkbox]+ label:before {     
+    content: "";  
+    width: 20px;  
+    height: 20px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 9px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+.form-row-category input[type=checkbox]:checked + label:before, 
+.form-row-agree input[type=checkbox]:checked + label:before { 
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#1428a0;
+    text-align: center;  
+    line-height: 18px;  
+} 
+.form-row-addr1 input[type=text]{
+	width: 40%;
+	padding: 10.5px 15px;
+    font-size: 16px;
+    border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+}
+.check 
+{
+	position: absolute;
+    margin-top: 40px;
+}
+.cate_check,
+.agree_check
+{
+	position: absolute;
+}
+input[type="radio"] { 
+	display: none;  
+}
+input[type="radio"] + label { 
+	display: inline-block; 
+	position: relative; 
+	padding-left: 30px; 
+	cursor: pointer; 
+    margin-right: 15px;
+    font-size: 14px;
+} 
+input[type="radio"] + label:before { 
+	content: ''; 
+	position: absolute; 
+	left: 0; 
+	bottom: 8px; 
+	width: 20px; 
+	height: 20px; 
+	background: #ccc; 
+	border: 1px solid #cacece; 
+	border-radius: 100%; 
+	box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+} 
+input[type="radio"]:checked + label:before { 
+	background: #fafafa; 
+} 
+input[type="radio"]:checked + label:after { 
+	content: ''; 
+	position: absolute; 
+	top: 3px; 
+	left: 4.7px; 
+	width: 13px; 
+	height: 13px; 
+	background: #1428a0; 
+	border-radius: 100%; 
+}
+.mb_birth_yy input {
+	width: 32%;
+    padding: 8.8px 15px;
+    float: left;
+    font-size: 16px;
+    margin-right: 10px;
+    border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+}
+.mb_birth_mm { 
+	position: relative; 
+    float: left;
+    width: 32%;
+} 
+.mb_birth_mm:before { /* 화살표 대체 */ 
+	content: ""; 
+	position: absolute; 
+	top: 50%; 
+	right: 15px; 
+	margin-top: -1px; 
+	border-left: 5px solid transparent; 
+	border-right: 5px solid transparent; 
+	border-top: 5px solid #333; 
+} 
+.mb_birth_mm select { 
+	width: 100%; 
+	font-family: inherit; /* 폰트 상속 */ 
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+	padding: 7.4px 15px;
+	font-size: 16px;
+	border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+}
+.mb_birth_dd input {
+	width: 32%;
+    padding: 8.8px 15px;
+    font-size: 16px;
+    margin-left: 10px;
+    border: none;
+    border-bottom : 1px solid #000;
+    transition: all 0.1s;
+    position: absolute;
+}
+.form-row-addr1 button {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 7.2px 15px 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    outline-color: #1428a0;
+}
+@media screen and (max-width: 767px) {
+	.form-content {
+	    margin: 175px 20px;
+	}
+}

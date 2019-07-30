@@ -1,76 +1,191 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>research_form</title>
+<title>ì„¤ë¬¸ ëª©ë¡</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/research.css">
-</head>
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/research_list.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">	
-	$(function() {		
-		$("#qst_btn").click(
-			function(){
-				$("#content #form_area .research_content").removeClass("active");
-					$("#form_area").append("<div class='research_content active'>"
-							+"<input type='text'placeholder='Áú¹®'autocomplete='off'></div>");
-					var offset = $(".active").offset().top;
-					$("#remote").css("top",offset-210);
-			}
-		);
-		//Ãß°¡µÈ ÅÂ±× ÇÔ¼ö ½ÇÇà
-		$(document).on("click", ".research_content", function() {
-			$("#content #form_area .research_content").removeClass("active");
-			$(this).addClass("active");
-			var offset = $(".active").offset().top;
-			$("#remote").css("top",offset-210);
-		});
-		
-	});
-</script>
+<script src="/resources/js/research_list.js"></script>
+</head>
+
 <body>
-	<div class='container'>
-		<div class='research_header'>
-		<div id='top_box'>
-			<div id='left_top_box'>
-				<a id='prev' href=''>¸ñ·ÏÀ¸·Î µ¹¾Æ°¡±â</a>				
-					<input type='text' name='top_title' id='top_title' autocomplete='off'>				
-			</div>
-			<div id='right_top_box'>
-				<a href='palette'>ÆÈ·¿</a>
-				<button id='send_form'>º¸³»±â</button>
-				<a href='delete_form'>»èÁ¦</a>
-			</div>					
-		</div>			
-			<div class='logo'>
-				<a href=""><img src="/resources/img/logo.png" alt="logo"></a>
+<input type='hidden' id='pageNum' value='${pageMaker.cri.pageNum}'>
+<input type='hidden' id='amount' value='${pageMaker.cri.amount}'>
+	<div class="page-content">
+		<div class="list-content">
+			<div class="detail-list">
+			<h2>ì„¤ë¬¸ ëª©ë¡</h2>
+				<div class="tab-content">
+				   <!--  
+					<a href="javascript:void(0);" class="research">ì§„í–‰ì¤‘ì„¤ë¬¸</a>
+					<a href="javascript:void(0);" class="research">ì¢…ë£Œëœì„¤ë¬¸</a> -->
+					<input type='button' class="research" name="research" id="ing" value="ì§„í–‰ì¤‘ì„¤ë¬¸">
+                    <input type='button' class="research" name="research" id="end" value="ì¢…ë£Œëœì„¤ë¬¸">
+				</div>
+				<div id="test">
+				</div>
+				<!--
+				<c:forEach items="${list}" var="research"> -->
+					
+					<!--  
+						<li>
+						<a href="">
+						<span>${research.ctgr_nm}</span>
+						<span>${research.subj_nm}</span>
+						<span><fmt:formatDate pattern="yy.MM.dd"
+											value="${research.subj_regdate}" /></span>
+						<span><fmt:formatDate pattern="yy.MM.dd"
+											value="${research.subj_startdate}" />
+											~
+							<fmt:formatDate pattern="yy.MM.dd"
+											value="${research.subj_enddate}" /></span>
+						</a>
+						</li>-->
+					
+				<!--</c:forEach>
+				-->
+				
+				<div class='pull-right'>
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous">
+								<a href="${pageMaker.startPage - 1}">ì´ì „</a>
+							</li>
+						</c:if>
+						
+						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+						
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="${pageMaker.endPage + 1}">ë‹¤ìŒ</a></li>
+						</c:if>
+					</ul>
+				</div>
+				
 			</div>
 		</div>
-		<section id='content' class='clearflx'>
-			<div id='form_area' class='clearflx'>
-				<!--<form name='research_form' action=''>-->
-					<!-- ¿©±â ¸®¸ğÄÁ -->
-					<div id='remote'>
-						<div class='remote_btn'><button id='qst_btn'>+</button></div>
-						<div class='remote_btn'><button id='txt_btn'>T</button></div>
-						<div class='remote_btn'><button id='img_btn'>IM</button></div>
-						<div class='remote_btn'>by.jsh</div>
-					</div>			
-					<div class='research_content' class='clearflx'>
-						<input type='text' name='title' id='title' placeholder='Á¦¸ñ¾ø´Â ¼³¹®Áö'
-							autocomplete='off'>
-					</div>
-					
-					<div class='research_content'>
-						<input type='text' name='ask' id='ask' placeholder='Áú¹®'
-							autocomplete='off'>
-					</div>
-				<!--</form>-->
-			</div>
-			<div class='bottom'></div>
-		</section>
 	</div>
 </body>
+<script type="text/javascript">
+      /*
+      $(document).ready(function(){
+        $("a").on("click",function(event){ // aíƒœê·¸ í´ë¦­ì‹œ ì‘ë™
+          // í´ë¦­ëœ íƒœê·¸ì˜ ë³¸ë˜ì˜ ê¸°ëŠ¥ì„ ë§‰ìŒ ì¦‰, aíƒœê·¸ ë³¸ë˜ ê¸°ëŠ¥ì„ ë§‰ìŒ
+          //event.preventDefault();
+          //var txt = $(this).attr("href"); // hrefì— ì…ë ¥ëœ ê°’ì„ ê°€ì ¸ì˜´ ì¦‰ í´ë¦­ëœ aì˜ êµ­ì–´, ì˜ì–´, ìˆ˜í•™ ì¤‘ í•˜ë‚˜ë¥¼ ê°€ì ¸ì˜´
+ 
+          //alert(txt + "ê°€ í´ë¦­ë¨");
+        });
+      });
+      
+      function clickA(){
+    	  location.href = "/research/research_list";
+    	  $("#clickA").css("background", "red");
+      }
+      function clickB(){
+    	  location.href = "/research/research_list";
+    	  $("#clickB").css("background", "red");
+      }
+      */
+      $(document).ready(function(){
+    	  $("#ing").css("color", "#222");
+    	  $("#end").css("background", "#f9f9f9");
+    	  var data = {
+    			  research : "ì§„í–‰ì¤‘ì„¤ë¬¸"
+           }
+    	  
+    	  research.list(data,function(list){
+              var html = '';
+              if (list.length == 0){
+            	html += '<ul>';
+      			html += '<li>';
+      			html += '<a>';
+      			html += '<span> ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.';
+      			html += '</span>';
+      			html += '</a>';
+      			html += '</li>';
+      			html += '</ul>';
+              }else{
+                 for(var i =0, len = list.length||0; i < len; i++){
+                 
+                	html += '<ul>';
+         			html += '<li>';
+         			html += '<a>';
+         			html += '<span>' + list[i].ctgr_nm + '</span>';
+         			html += '<span>' + list[i].subj_nm + '</span>';
+         			html += '<span>' + research.displayTime(list[i].subj_regdate) + '</span>';
+         			html += '<span>' + research.displayTime(list[i].subj_startdate) + ' ~ ' 
+         				 + research.displayTime(list[i].subj_enddate) + '</span>';
+         			html += '</a>';
+         			html += '</li>';
+         			html += '</ul>';
+                 }
+              }
+              $('#test').html(html);
+           });
+    	  
+    	  
+      });
+      
+      $(".research").click(function(e) {
+    	  var researchVal = $(this).val();
+    	  var data = {
+    			  research : researchVal  
+           }
+    	  console.log(data);
+    	  research.list(data,function(list){
+              var html = '';
+              if (list.length == 0){
+            	html += '<ul>';
+      			html += '<li>';
+      			html += '<a>';
+      			html += '<span> ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.';
+      			html += '</span>';
+      			html += '</a>';
+      			html += '</li>';
+      			html += '</ul>';
+              }else{
+                 for(var i =0, len = list.length||0; i < len; i++){
+                 
+                	html += '<ul>';
+         			html += '<li>';
+         			html += '<a>';
+         			html += '<span>' + list[i].ctgr_nm + '</span>';
+         			html += '<span>' + list[i].subj_nm + '</span>';
+         			html += '<span>' + research.displayTime(list[i].subj_regdate) + '</span>';
+         			html += '<span>' + research.displayTime(list[i].subj_startdate) + ' ~ ' 
+         				 + research.displayTime(list[i].subj_enddate) + '</span>';
+         			html += '</a>';
+         			html += '</li>';
+         			html += '</ul>';
+                 }
+              }
+              $('#test').html(html);
+           });
+      });
+      
+      $("#ing").click(function() {
+    	  $("#ing").css("color", "#222");
+    	  $("#ing").css("background", "#fff");
+    	  $("#end").css("color", "#888");
+    	  $("#end").css("background", "#f9f9f9");
+      });
+      
+      $("#end").click(function() {
+    	  $("#end").css("color", "#222");
+    	  $("#end").css("background", "#fff");
+    	  $("#ing").css("color", "#888");
+    	  $("#ing").css("background", "#f9f9f9");
+      });
+      
+</script>
 </html>
