@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-//import org.fs.domain.ResearchVO;
-//import org.fs.service.ResearchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -25,24 +24,24 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class ResearchController {
-	
-//	private ResearchService service;
-//	
-//	@GetMapping("research_list")
-//	public void list() {}
-//	
-//	@PostMapping(value = "/research_listTab", 
-//		consumes = "application/json",
-//	    produces = {
-//	          MediaType.APPLICATION_XML_VALUE,
-//	          MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-//	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){
-//	   return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
-//	}
-//	
+	private ResearchService service;
+  
 	@GetMapping("research_reg")
 	public String regForm() {
-		return "research/research_register";
+	return "research/research_register";
+  }	
+	@GetMapping("research_list")
+	public void list() {
+		
+	}
+	
+	@PostMapping(value = "/research_listTab", 
+		consumes = "application/json",
+	    produces = {
+	          MediaType.APPLICATION_XML_VALUE,
+	          MediaType.APPLICATION_JSON_UTF8_VALUE}) 
+	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){		
+		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
 	}
 	
 	@PostMapping("research_reg")
