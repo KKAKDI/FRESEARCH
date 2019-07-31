@@ -53,12 +53,11 @@ public class ResearchController {
 		
 		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
 	}
-	@GetMapping("research_reg")
-	public String regForm() {
-		return "research/research_register";
+	@GetMapping("research_register")
+	public void regForm() {
 	}
 	
-	@PostMapping("research_reg")
+	@PostMapping("research_register")
 	public void reg(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");
 		log.info(values);

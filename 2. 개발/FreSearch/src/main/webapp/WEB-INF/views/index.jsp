@@ -117,7 +117,7 @@
 				<div class="login">
 					<ul>
 						<li><a href="">로그인</a></li>
-						<li><a href="">회원가입</a></li>
+						<li><a href="/member/signup">회원가입</a></li>
 						<li><a href="">가나다라</a></li>
 					</ul>
 					<div class="emblembox">
@@ -133,31 +133,31 @@
 					<!-- GNB 시작 -->
 					<ul>
 						<li>
-							<a href="">새소식</a>
+							<a href="/news/news_list">새소식</a>
 							<ul>
-								<li><a href="">공지사항</a></li>
-								<li><a href="">이벤트</a></li>
+								<li><a href="/news/news_list">공지사항</a></li>
+								<li><a href="/news/news_list">이벤트</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">리서치</a>
+							<a href="/research/research_list">리서치</a>
 							<ul>
-								<li><a href="">리서치목록</a></li>
-								<li><a href="">리서치 만들기</a></li>
+								<li><a href="/research/research_list">리서치목록</a></li>
+								<li><a href="/research/research_register">리서치 만들기</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">게시판</a>
+							<a href="/board/board_list">게시판</a>
 							<ul>
-								<li><a href="">게시판 목록</a></li>
-								<li><a href="">글쓰기</a></li>
+								<li><a href="/board/board_list">게시판 목록</a></li>
+								<li><a href="/board/board_register">글쓰기</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="">데이터베이스</a>
+							<a href="/stats/stats_list">데이터베이스</a>
 							<ul>
-								<li><a href="">통계 목록</a></li>
-								<li><a href="">차트</a></li>
+								<li><a href="/stats/stats_table">통계 목록</a></li>
+								<li><a href="/stats/stats_list">차트</a></li>
 							</ul>
 						</li>
 						<li>
@@ -249,7 +249,7 @@
 						<dt>자유게시판</dt>
 						<dd>어쩌구</dd>
 						<dd>임시내용입니다</dd>
-						<a href="">게시판 더보기  ></a>
+						<a href="/board/board_list">게시판 더보기  ></a>
 					</dl>
 				</div>
 			</div>
@@ -262,7 +262,7 @@
 						<dt>리서치참여/제작</dt>
 						<dd>저쩌꾸</dd>
 						<dd>임시내용입니다</dd>
-						<a href="">리서치 더보기  ></a>
+						<a href="/research/research_list">리서치 더보기  ></a>
 					</dl>
 				</div>
 			</div>
@@ -272,10 +272,10 @@
 				</div>
 				<div class="chart_text">
 					<dl>
-						<dt>통계</dt>
+						<dt>데이터베이스</dt>
 						<dd>에베베</dd>
 						<dd>임시내용입니다</dd>
-						<a href="">통계 더보기  ></a>
+						<a href="/stats/stats_list">통계 더보기  ></a>
 					</dl>
 				</div>
 			</div>
