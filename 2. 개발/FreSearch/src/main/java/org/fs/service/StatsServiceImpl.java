@@ -3,6 +3,7 @@ package org.fs.service;
 import java.util.List;
 import java.util.Map;
 
+import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 import org.fs.mapper.StatsMapper;
 import org.springframework.stereotype.Service;
@@ -71,4 +72,9 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getAddr.............");
 		return mapper.getTable(vo);
 	};
+	@Override
+	public List<StatsVO> getTableTest(StatsVO vo, Criteria cri){
+		log.info("getTableTest");
+		return mapper.getTableTest(vo, cri);
+	}
 }

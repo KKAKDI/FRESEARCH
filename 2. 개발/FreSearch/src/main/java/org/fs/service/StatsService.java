@@ -3,6 +3,7 @@ package org.fs.service;
 import java.util.List;
 import java.util.Map;
 
+import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 
 public interface StatsService {
@@ -16,5 +17,6 @@ public interface StatsService {
 	public List<StatsVO> getCategorySex(String sex);
 	public List<StatsVO> getCategoryMarriage(String marriage);
 	public List<StatsVO> getTable(StatsVO vo);
+	public List<StatsVO> getTableTest(StatsVO vo, Criteria cri);
 	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 
 
@@ -28,5 +29,7 @@ public interface StatsMapper {
 	public List<StatsVO> getCategoryMarriage(String marriage);
 	
 	public List<StatsVO> getTable(StatsVO vo);
+	
+	public List<StatsVO> getTableTest(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
 
 }

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+
 <%@include file="../includes/header.jsp"%>
 <!-- partial -->
 
@@ -468,38 +468,49 @@
 							</div>
 						</div>
 						 -->
-						
 
-
-						<section class="article-list-paging">
+					</section>
+					
+					
+					
+	<!-- 				
+	<div class="grid-margin-table-p stretch-card p">
+		<div class="card-table-p">
+			<div class="card-body-table-p">
+				<section class="article-list-p">
+					<section class="article-list-paging-p">
 							<div class="article-list-paging-content">
 								<ul class="article-list-paging-list">
-									<li
-										class="article-list-paging__item article-list-paging__item--prev">
-										<a href="" class="article-list-paging__button button"> <img
-											src="https://talk.op.gg/images/icon-arrow-left@2x.png"
-											width="24"> <span>이전</span>
+								<c:if test="${pageMaker.prev }"	>
+									<li	class="article-list-paging__item article-list-paging__item--prev">
+										<a href="" class="article-list-paging__button button"> 
+										<img	src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24"> 
+										<span>이전</span>
 									</a>
 									</li>
-									<li
-										class="article-list-paging__item article-list-paging__item--next">
-										<a href="" class="article-list-paging__button button"> <span>다음</span>
-											<img src="https://talk.op.gg/images/icon-arrow-right@2x.png"
-											width="24">
+									</c:if>
+									<c:if test="${pageMaker.next}">
+									<li	class="article-list-paging__item article-list-paging__item--next">	<a href="" class="article-list-paging__button button"> 
+									<span>다음</span>
+											<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">
 									</a>
 									</li>
+									</c:if>
 								</ul>
 							</div>
 						</section>
-
-
-
-
-
-
-
-
 					</section>
+				</div>
+			</div>
+		</div>
+		 -->
+
+
+
+
+
+
+
 
 				</div>
 			</div>
@@ -510,6 +521,15 @@
 
 
 
+<form id='actionForm' action="/board/board_list" method='get'>
+	<input type='hidden' id='pageNum' value='${pageMaker.cri.pageNum}'>
+	<input type='hidden' id='amount' value='${pageMaker.cri.amount}'>
+	<input type='hidden' id='keyword' value='${pageMaker.cri.keyword }'>
+	<input type='hidden' id='type' value='${pageMaker.cri.type }'> 
+	<input type='hidden' id='pageMakerPrev' value ='${pageMaker.prev} '>
+	<input type='hidden' id='pageMakerNext' value ='${pageMaker.next} '>
+</form>
+
 
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
@@ -519,43 +539,38 @@
 						
 						}, 1);*/
 							//console.log($('.sub-link').offset());
-						if ($(document).scrollTop() >= 69) {
-							$('.sub-link').attr('class',
-									'sub-link scroll-to-fixed-fixed');
-							$('.sub-link')
-									.attr(
-											'style',
-											'z-index: 1000; position: fixed; top: 109px; margin-left: 0px; width: 719px; left: 400.6px;');
-							$('.sub-link')
-									.next()
-									.first()
-									.attr('style',
-											'display: block; width: 728px; height: 48px; float: none;');
-						} else {
-							$('.sub-link').attr('class', 'sub-link');
-							$('.sub-link')
-									.attr('style',
-											'z-index: auto; position: static; top: autol');
-							$('.sub-link')
-									.next()
-									.first()
-									.attr('style',
-											'display: none; width: 728px; height: 48px; float: none;');
-						}
-					});
-	
+		if ($(document).scrollTop() >= 69) {
+			$('.sub-link').attr('class','sub-link scroll-to-fixed-fixed');
+			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 109px; margin-left: 0px; width: 719px; left: 400.6px;');
+			$('.sub-link').next().first().attr('style','display: block; width: 728px; height: 48px; float: none;');
+		} else {$('.sub-link').attr('class', 'sub-link');
+			$('.sub-link').attr('style','z-index: auto; position: static; top: autol');
+			$('.sub-link').next().first().attr('style',	'display: none; width: 728px; height: 48px; float: none;');
+		}
+	});
+	console.log("pageMakerPrev : "+$('#pageMakerPrev').val());
+	console.log("pageMakerPrev : "+$('#pageMakerNext').val());
+	var next = $('#pageMakerNext').val();
+
 	
 	$(document).ready(function(){
 		
+
 		
 		var data = {
 	    		ctgr_nm : "",
-	    		mbAddr : "",
-	    		mbSex : "",
+	    		mb_addr : "",
+	    		mb_sex : "여",
 	    		startAge : 0,
 	    		endAge : 99,
-	    		stats : "전체"
+	    		stats : "전체",
+	    		pageNum : 1,
+		    	amount : 2	
+	    		
 	    }
+		
+		
+		//console.log("하이 이건 나오냐 : "+JSON.stringify(data));
 		
 		
 		tableService.table(data,function(list){
@@ -580,20 +595,20 @@
 		    		html += '<div class="article-list-item">';
 					html += '<div class="article-list-item__vote">';
 					html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-					html +=	'<div>'+list[i].answer_NUMBER+'</div>';
+					html +=	'<div>'+list[i].answer_number+'</div>';
 					html += '</div>';
 					html += '<div class="article-list-item__content">';
 					html += '<div class="article-list-item__title">';
-					html +=	'<a href=""> <span>'+list[i].subj_NM;
+					html +=	'<a href=""> <span>'+list[i].subj_nm;
 					html +=	'</span> <em>[35]</em>';
 					html +=	'</div>';
 					html +=	'</a>';
 					html +=	'<div class="article-list-item-meta">';
 					html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 					html +=	'<div class="article--list-item-meta__item">';
-					html += '<span>'+list[i].subj_REGDATE+'</span>';
+					html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 					html +=	'<div class="article-list-item-meta__item">';
-					html +=	'<a href="">'+list[i].mb_NICK+'</a>';
+					html +=	'<a href="">'+list[i].mb_nick+'</a>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
@@ -606,25 +621,24 @@
 					html +=	'</div>';
 					html += '</div>';
 	    		}
-	    	//console.log("html : "+html);
-	    	html+= '<section class="article-list-paging">';
-	    	html+= '<div class="article-list-paging-content">';
-	    	html+= '<ul class="article-list-paging-list">';
-	    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
-	    	html+= '<a href="" class="article-list-paging__button button">';
-	    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
-	    	html+= '<span>이전</span>';
-	    	html+= '</a>';
-	    	html+= '</li>';
-	    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
-	    	html+= '<a href="" class="article-list-paging__button button"> <span>다음</span>';
-	    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
-	    	html+= '</a>';
-	    	html+= '</li>';
-	    	html+= '</ul>';
-	    	html+= '</div>';
-	    	html+= '</section>';
-	    	}
+		    	html+= '<section class="article-list-paging">';
+		    	html+= '<div class="article-list-paging-content">';
+		    	html+= '<ul class="article-list-paging-list">';
+		    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+		    	html+= '<a href="" class="article-list-paging__button button">';
+		    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+		    	html+= '<span>이전</span>';
+		    	html+= '</a>';
+		    	html+= '</li>';
+		    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+		    	html+= '<a href="" class="article-list-paging__button button"> <span>다음</span>';
+		    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+		    	html+= '</a>';
+		    	html+= '</li>';
+		    	html+= '</ul>';
+		    	html+= '</div>';
+		    	html+= '</section>';
+		    	}
 			$('section.article-list').html(html);
 	    });
 	});
@@ -650,22 +664,16 @@
 				var str = $(this).attr('class');
 				console.log("현재 누른 버튼" + str);
 
-				$(this).prevAll('.RadioButton').children('span').attr('class',
-						'jcf-radio jcf-unchecked');
-				$(this).nextAll('.RadioButton').children('span').attr('class',
-						'jcf-radio jcf-unchecked');
+				$(this).prevAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
+				$(this).nextAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
 
 				//$("span[name=1]").attr('class', 'jcf-radio jcf-unchecked');
-				$(this).prevAll('.RadioButton').children('label').attr('class',
-						'Label');
-				$(this).nextAll('.RadioButton').children('label').attr('class',
-						'Label');
+				$(this).prevAll('.RadioButton').children('label').attr('class',	'Label');
+				$(this).nextAll('.RadioButton').children('label').attr('class',	'Label');
 				//$(this).children('label').attr('class', 'Label');   ㅎㅎ 이거 알지?
 				//$('.RadioButton').children('label').attr('class', 'Label');
-				$(this).children().eq(1)
-						.attr('class', 'Label jcf-label-active');
-				$(this).children().first().attr('class',
-						'jcf-radio jcf-checked');
+				$(this).children().eq(1).attr('class', 'Label jcf-label-active');
+				$(this).children().first().attr('class','jcf-radio jcf-checked');
 				
 				
 				var checkLength = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').length;
@@ -725,11 +733,13 @@
 				    
 				    var data = {
 				    		ctgr_nm : checkValues[0],
-				    		mbAddr : checkValues[1],
-				    		mbSex : checkValues[2],
+				    		mb_addr : checkValues[1],
+				    		mb_sex : checkValues[2],
 				    		startAge : SA,
 				    		endAge : EA,
-				    		stats : checkValues[4]		
+				    		stats : checkValues[4],
+				    		pageNum : 1,
+				    		amount : 6				    		
 				    }
 				    
 				    
@@ -763,20 +773,20 @@
 					    		html += '<div class="article-list-item">';
 								html += '<div class="article-list-item__vote">';
 								html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-								html +=	'<div>'+list[i].answer_NUMBER+'</div>';
+								html +=	'<div>'+list[i].answer_number+'</div>';
 								html += '</div>';
 								html += '<div class="article-list-item__content">';
 								html += '<div class="article-list-item__title">';
-								html +=	'<a href=""> <span>'+list[i].subj_NM;
+								html +=	'<a href=""> <span>'+list[i].subj_nm;
 								html +=	'</span> <em>[35]</em>';
 								html +=	'</div>';
 								html +=	'</a>';
 								html +=	'<div class="article-list-item-meta">';
 								html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 								html +=	'<div class="article--list-item-meta__item">';
-								html += '<span>'+list[i].subj_REGDATE+'</span>';
+								html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 								html +=	'<div class="article-list-item-meta__item">';
-								html +=	'<a href="">'+list[i].mb_NICK+'</a>';
+								html +=	'<a href="">'+list[i].mb_nick+'</a>';
 								html += '</div>';
 								html += '</div>';
 								html += '</div>';
@@ -808,7 +818,13 @@
 					    	html+= '</section>';
 				    	}
 						$('section.article-list').html(html);
+				    	});
+				    $()
+				    
+				    
+				    
 				    });
+	 
 				
 				    
 				    
@@ -835,5 +851,4 @@
 				           
 				        }
 				    });*/
-			});
 </script>
