@@ -6,60 +6,158 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="getList" resultType="org.fs.domain.StatsVO">
 <![CDATA[
-select SUBJ_CODE as subjCode ,CTGR_CODE as ctgrCode, MB_EMAIL as mbEmail, MB_NICK as mbNick, SUBJ_NM as subjNm, SUBJ_REGDATE as subjRegdate, SUBJ_STARTDATE as subjStartDate, SUBJ_ENDDATE as subjEndDate from subject
+select SUBJ_CODE, CTGR_CODE, MB_EMAIL, MB_NICK, SUBJ_NM, SUBJ_REGDATE, SUBJ_STARTDATE, SUBJ_ENDDATE from subject
 ]]>
 </select>
 
 <select id="getMemberList" resultType="org.fs.domain.StatsVO">	<!-- MEMBER 테이블에서 전체 싹 뽑는 SQL문 -->
-select MB_ATT_CTGR_CODE as mbAttCtgrCode, MB_PWD as mbPwd, MB_ADDR as mbAddr, MB_BIRTHDATE as mbBirthDate, MB_SEX as mbSex, MB_PHONE as mbPhone, MB_REG_ATRT as mbRegAtrt, MB_JOINDATE as mbJoinDate from member
+SELECT mb_att_ctgr_code, 
+       mb_pwd, 
+       mb_addr, 
+       mb_birthdate, 
+       mb_sex, 
+       mb_phone, 
+       mb_reg_atrt, 
+       mb_joindate 
+FROM   member 
 </select>
 
  
 <select id="getAttCategory" resultType="org.fs.domain.StatsVO">	<!-- ATT_CATEGORY에서 전체 싹 뽑는 SQL문 -->
-select MB_ATT_CTGR_CODE as bmAttCtgrCode, MB_EMAIL as mbEmail, CTGR_CODE1 as ctgrCode1, CTGR_CODE2 as ctgrCode2, CTGR_CODE3 as ctgrCode3, CTGR_CODE5 as ctgrCode5, MB_MARRIAGE_YN as mbMarriageYn,MB_CHILD_YN as mbChildYn,MB_HOME_YN as mbHomeYn,MB_CAR_YN as mbCarYn from ATT_CATEGORY 
+SELECT mb_att_ctgr_code, 
+       mb_email, 
+       ctgr_code1, 
+       ctgr_code2, 
+       ctgr_code3, 
+       ctgr_code5, 
+       mb_marriage_yn, 
+       mb_child_yn, 
+       mb_home_yn, 
+       mb_car_yn 
+FROM   att_category  
 </select>
 
 <select id="getCategory" resultType="org.fs.domain.StatsVO">	<!-- 카테고리별 갯수,퍼센트 구하는 SQL문  -->
-select (select count(*) from (select * from area where substr(MB_ADDR,1 , 5) like '%'||#{area}||'%') where CTGR_CODE = c.CTGR_CODE)as count, c.CTGR_CODE,
-round((ratio_to_report((select count(*) as num from (select * from area where substr(MB_ADDR,1 , 5) like '%'||#{area}||'%') where CTGR_CODE =
-(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
-,c.CTGR_NM from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
-<!--and substr(b.MB_ADDR, 1, 5) like '%'||#{area}||'%'--> group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+SELECT (SELECT Count(*) 
+        FROM   (SELECT * 
+                FROM   area 
+                WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{area} || '%') 
+        WHERE  ctgr_code = c.ctgr_code)AS count, 
+       c.ctgr_code, 
+       Round(( Ratio_to_report((SELECT Count(*) AS num 
+                                FROM   (SELECT * 
+                                        FROM   area 
+                                        WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{area} || '%') 
+                                WHERE  ctgr_code = (SELECT ctgr_code 
+                                                    FROM   category 
+                                                    WHERE 
+                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%' PERCENT, 
+       c.ctgr_nm 
+FROM   subject a, 
+       member b, 
+       category c 
+WHERE  a.mb_nick = b.mb_nick 
+       AND c.ctgr_code = a.ctgr_code 
+GROUP  BY c.ctgr_code, 
+          c.ctgr_nm 
+ORDER  BY ctgr_code 
 </select>
 
 <select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsVO">
-select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE
-from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
-where NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge})
-where CTGR_CODE = c.CTGR_CODE)as count,
-c.CTGR_CODE, c.CTGR_NM,
-round((ratio_to_report((select count(*) as num from (select * from area where NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}) where CTGR_CODE =
-(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
-from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
-group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE 
+SELECT (SELECT Count(*) 
+        FROM   (SELECT * 
+                FROM   (SELECT c.ctgr_code, 
+                               c.ctgr_nm, 
+                               b.mb_nick, 
+                               b.mb_addr, 
+                               b.mb_birthdate 
+                        FROM   subject a, 
+                               member b, 
+                               category c 
+                        WHERE  a.mb_nick = b.mb_nick 
+                               AND c.ctgr_code = a.ctgr_code) 
+                WHERE  Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}) 
+        WHERE  ctgr_code = c.ctgr_code)AS count, 
+       c.ctgr_code, 
+       c.ctgr_nm, 
+       Round(( Ratio_to_report((SELECT Count(*) AS num 
+                                FROM   (SELECT * 
+                                        FROM   area 
+                                        WHERE  Nvl(Trunc(Months_between(sysdate,To_date(Substr(mb_birthdate, 1, 4),'YYYY')) / 12), 0)BETWEEN #{startAge} AND #{endAge}) 
+                                WHERE  ctgr_code = (SELECT ctgr_code 
+                                                    FROM   category 
+                                                    WHERE 
+                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
+FROM   subject a, 
+       member b, 
+       category c 
+WHERE  a.mb_nick = b.mb_nick 
+       AND c.ctgr_code = a.ctgr_code 
+GROUP  BY c.ctgr_code, 
+          c.ctgr_nm 
+ORDER  BY ctgr_code 
 </select>
 
 <select id="getCategorySex" resultType="org.fs.domain.StatsVO">
-select (select count(*) from (select * from (select c.CTGR_CODE,c.CTGR_NM, b.MB_NICK, b.MB_ADDR, b.MB_BIRTHDATE, b.MB_Sex
-from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE)
-where MB_SEX = #{sex}) where CTGR_CODE = c.CTGR_CODE)as count,
-c.CTGR_CODE, c.CTGR_NM,
-round((ratio_to_report((select count(*) as num from 
-(select * from area where MB_SEX = #{sex}) where CTGR_CODE =
-(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
-from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
-group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+SELECT (SELECT Count(*) 
+        FROM   (SELECT * 
+                FROM   (SELECT c.ctgr_code, 
+                               c.ctgr_nm, 
+                               b.mb_nick, 
+                               b.mb_addr, 
+                               b.mb_birthdate, 
+                               b.mb_sex 
+                        FROM   subject a, 
+                               member b, 
+                               category c 
+                        WHERE  a.mb_nick = b.mb_nick 
+                               AND c.ctgr_code = a.ctgr_code) 
+                WHERE  mb_sex = #{sex}) 
+        WHERE  ctgr_code = c.ctgr_code)AS count, 
+       c.ctgr_code, 
+       c.ctgr_nm, 
+       Round(( Ratio_to_report((SELECT Count(*) AS num 
+                                FROM   (SELECT * 
+                                        FROM   area 
+                                        WHERE  mb_sex = #{sex}) 
+                                WHERE  ctgr_code = (SELECT ctgr_code 
+                                                    FROM   category 
+                                                    WHERE 
+                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT 
+FROM   subject a, 
+       member b, 
+       category c 
+WHERE  a.mb_nick = b.mb_nick 
+       AND c.ctgr_code = a.ctgr_code 
+GROUP  BY c.ctgr_code, 
+          c.ctgr_nm 
+ORDER  BY ctgr_code 
 </select>
 
 <select id="getCategoryMarriage" resultType="org.fs.domain.StatsVO">
-select (select count(*) from (select * from area
-where MB_MARRIAGE_YN = #{marriage}) where CTGR_CODE = c.CTGR_CODE)as count,
-c.CTGR_CODE, c.CTGR_NM,
-round((ratio_to_report((select count(*) as num from 
-(select * from area where MB_MARRIAGE_YN = #{marriage}) where CTGR_CODE =
-(select  CTGR_CODE from category where CTGR_CODE = c.CTGR_CODE))) over()*100),2)||'%' percent
-from subject a , member b, category c where a.MB_NICK = b.MB_NICK and c.CTGR_CODE = a.CTGR_CODE  
-group by c.CTGR_CODE, c.CTGR_NM order by CTGR_CODE
+SELECT (SELECT Count(*) 
+        FROM   (SELECT * 
+                FROM   area 
+                WHERE  mb_marriage_yn = #{marriage}) 
+        WHERE  ctgr_code = c.ctgr_code)AS count, 
+       c.ctgr_code, 
+       c.ctgr_nm, 
+       Round(( Ratio_to_report((SELECT Count(*) AS num 
+                                FROM   (SELECT * 
+                                        FROM   area 
+                                        WHERE  mb_marriage_yn = #{marriage}) 
+                                WHERE  ctgr_code = (SELECT ctgr_code 
+                                                    FROM   category 
+                                                    WHERE 
+                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
+FROM   subject a, 
+       member b, 
+       category c 
+WHERE  a.mb_nick = b.mb_nick 
+       AND c.ctgr_code = a.ctgr_code 
+GROUP  BY c.ctgr_code, 
+          c.ctgr_nm 
+ORDER  BY ctgr_code 
 </select>
 <!-- 
 <select id="getTable" resultType="org.fs.domain.StatsVO">
@@ -112,8 +210,7 @@ group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_star
  
  
 <select id="getTable" resultType="org.fs.domain.StatsVO">
-SELECT rownum, 
-       answer_number, 
+SELECT answer_number, 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -125,7 +222,8 @@ SELECT rownum,
        subj_nm, 
        subj_startdate, 
        subj_enddate 
-FROM   (SELECT answer_number, 
+FROM   (SELECT rownum rn,
+	 		   answer_number, 
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -139,8 +237,8 @@ FROM   (SELECT answer_number,
                subj_enddate 
         FROM   stats_table 
         WHERE  ctgr_nm LIKE '%'||#{ctgr_nm}||'%'
-               AND mb_sex LIKE '%'|| #{mbSex}||'%' 
-               AND Substr(mb_addr, 1, 5) LIKE '%'||#{mbAddr}||'%' 
+               AND mb_sex LIKE '%'|| #{mb_sex}||'%' 
+               AND Substr(mb_addr, 1, 5) LIKE '%'||#{mb_addr}||'%' 
                AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
                <choose>
       				<when test="stats == '전체'">
@@ -157,19 +255,83 @@ FROM   (SELECT answer_number,
 	   				<when test="stats == '완료'">
 	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
 	   				</when>
-	   		 
-	   		
+	   				
 			   	</choose>
-	   		ORDER  BY subj_code)
+			  <![CDATA[ 	
+	   		  AND rownum <=10)
+	   		  where rn >=1
+	   		  ]]>
 </select>
+
+
+<select id="getTableTest" resultType="org.fs.domain.StatsVO">
+SELECT answer_number, 
+       subj_regdate, 
+       subj_code, 
+       ctgr_nm, 
+       mb_nick, 
+       mb_sex, 
+       mb_birthdate, 
+       mb_addr, 
+       qst_img, 
+       subj_nm, 
+       subj_startdate, 
+       subj_enddate 
+FROM   (SELECT rownum rn,
+	 		   answer_number, 
+               subj_regdate, 
+               subj_code, 
+               ctgr_nm, 
+               mb_nick, 
+               mb_sex, 
+               mb_birthdate, 
+               mb_addr, 
+               qst_img, 
+               subj_nm, 
+               subj_startdate, 
+               subj_enddate 
+        FROM   stats_table 
+        WHERE  ctgr_nm LIKE '%'||#{vo.ctgr_nm}||'%'
+               AND mb_sex LIKE '%'|| #{vo.mb_sex}||'%' 
+               AND Substr(mb_addr, 1, 5) LIKE '%'||#{vo.mb_addr}||'%'  
+               AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{vo.startAge} AND #{vo.endAge}
+              <choose>
+              
+      				<when test="vo.stats == '전체'.toString()">
+       				</when>
+       		
+       				<when test="vo.stats == '대기'.toString()">
+      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
+      				</when>
+      		
+       				<when test="vo.stats == '진행중'.toString()"> 
+	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
+	   				</when>
+	   		
+	   				<when test="vo.stats == '완료'.toString()">
+	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
+	   				</when>
+	   				
+			   	</choose>
+			  <![CDATA[ 	
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
+	   		  ]]>
+</select>
+
+
 
 
 <select id="getAge" resultType="org.fs.domain.StatsVO">	<!-- 멤버 테이블에서 나이 구하는 SQL문 -->
-SELECT NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0) as age FROM member
+SELECT Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0) AS age 
+FROM   member 
 </select>
 
 <select id="getAddr" resultType="int">		<!--  주소 구하는 SQL문 -->
-select count(*) from (select MB_ADDR from member where  SUBSTR(MB_ADDR, 1,5) like '%'||#{addr}||'%')
+SELECT Count(*) 
+FROM   (SELECT mb_addr
+        FROM   member
+        WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{addr}|| '%')
 </select>
 
 <!--  <select id="getAddr" resultType="int">

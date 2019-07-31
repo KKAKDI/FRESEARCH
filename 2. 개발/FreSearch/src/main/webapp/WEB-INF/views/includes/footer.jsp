@@ -1,28 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-        
-        
-        
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-          </div>
-        </footer>
-        
-        
-        
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-
+<!-- 내용 시작 끝 -->
+	<footer id="footer" class="clearfix">
+		<div class="footer_inner">
+			<div class="footer_logo">
+				<a href=""><img src="/resources/img/f_logo.png" alt="FRESEARCH"></a>
+			</div>
+			<div class="footer_text">
+				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>
+				<p>주소: (04108)서울특별시 마포구 백범로 23 3층 (신수동, 구프라자 3층)</p>
+				<p>TEL : 02-707-1480 | FAX : 02-707-0495 | GIT : <a href="https://github.com/KKAKDI/FRESEARCH">FRESEARCH</a> | <a href="">개인정보 처리방침</a></p>
+				<p>Copyright © FRESEARCH all rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+</div>
 </body>
-
 </html>
