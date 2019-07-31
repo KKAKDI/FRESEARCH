@@ -1,8 +1,10 @@
 package org.fs.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,17 +64,30 @@ public class testMapper {
 //	public void getCategoryMarriage() {
 //		mapper.getCategoryMarriage("기혼").forEach(stats->log.info(stats));
 //	}
+//	@Test
+//	public void getTable() {
+//		StatsVO vo = new StatsVO();
+//		vo.setCtgr_nm("교육");
+//		vo.setMb_sex("남");
+//		vo.setMb_addr("서울");
+//		vo.setStartAge(30);
+//		vo.setEndAge(39);
+//		//mapper.getTable(table).forEach(stats->log.info(stats));
+//		log.info(mapper.getTable(vo));
+//	}
 	@Test
-	public void getTable() {
+	public void getTableTest() {
 		StatsVO vo = new StatsVO();
-		vo.setCtgr_nm("교육");
-		vo.setMbSex("남");
-		vo.setMbAddr("서울");
-		vo.setStartAge(30);
-		vo.setEndAge(39);
-		//mapper.getTable(table).forEach(stats->log.info(stats));
-		log.info(mapper.getTable(vo));
+		Criteria cri = new Criteria();
+		vo.setCtgr_nm("");
+		vo.setMb_sex("여");
+		vo.setMb_addr("");
+		vo.setStats("전체");
+		vo.setStartAge(0);
+		vo.setEndAge(99);
+		cri.setPageNum(1);
+		cri.setAmount(3);
+		List<StatsVO> list = mapper.getTableTest(vo, cri);
+		list.forEach(stats -> log.info(stats.getSubj_code()));
 	}
-	
-
 }

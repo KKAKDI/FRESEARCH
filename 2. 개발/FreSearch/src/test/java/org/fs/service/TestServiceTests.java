@@ -1,5 +1,6 @@
 package org.fs.service;
 
+import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
 import org.junit.Test;
@@ -103,24 +104,44 @@ public class TestServiceTests {
 //	public void getCategoryAge() {
 //		service.getCategoryAge(20, 29).forEach(stats -> log.info(stats));
 //	}
-	@Test
-	public void getCategorySex() {
-		service.getCategorySex("여").forEach(stats -> log.info(stats));
-	}
+//	@Test
+//	public void getCategorySex() {
+//		service.getCategorySex("여").forEach(stats -> log.info(stats));
+//	}
 //	@Test
 //	public void getCategoryMarriage() {
 //		service.getCategoryMarriage("기혼").forEach(stats -> log.info(stats));
 //	}
 	
+//	@Test
+//	public void getTable() {
+//		StatsVO vo = new StatsVO();
+//		vo.setCtgr_nm("교육");
+//		vo.setMb_sex("남");
+//		vo.setMb_addr("서울");
+//		vo.setStartAge(30);
+//		vo.setEndAge(39);
+//		//mapper.getTable(table).forEach(stats->log.info(stats));
+//		log.info(service.getTable(vo));
+//	}
+//}
+
 	@Test
-	public void getTable() {
+	public void getTableTest() {
 		StatsVO vo = new StatsVO();
-		vo.setCtgr_nm("교육");
-		vo.setMbSex("남");
-		vo.setMbAddr("서울");
-		vo.setStartAge(30);
-		vo.setEndAge(39);
-		//mapper.getTable(table).forEach(stats->log.info(stats));
-		log.info(service.getTable(vo));
+		Criteria cri = new Criteria();
+		vo.setCtgr_nm("");
+		vo.setMb_addr("");
+		vo.setMb_sex("");
+		
+		cri.setPageNum(2);
+		cri.setAmount(2);
+		log.info(service.getTableTest(vo, cri));
+		
 	}
+			
+	
 }
+		
+		
+	
