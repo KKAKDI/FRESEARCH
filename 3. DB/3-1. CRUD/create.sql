@@ -170,10 +170,43 @@ CREATE TABLE REPLY (
 ALTER TABLE REPLY ADD CONSTRAINT PK_REPLY PRIMARY KEY (RPL_CODE);
 ALTER TABLE REPLY ADD CONSTRAINT FK_BOARD_TO_REPLY FOREIGN KEY (BRD_CODE) REFERENCES BOARD (BRD_CODE) ON DELETE CASCADE;
 
---통계 AREA 관련 VIEW
+--통계 AREA 관련 VIEW 1
 CREATE OR REPLACE VIEW AREA AS
 SELECT C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN
 FROM SUBJECT A, MEMBER B, CATEGORY C, ATT_CATEGORY D WHERE A.MB_NICK = B.MB_NICK AND C.CTGR_CODE = A.CTGR_CODE AND B.MB_EMAIL = D.MB_EMAIL;
+
+
+--통계 AREA 관련 VIEW 2
+create or replace view stats_table 
+AS
+SELECT (SELECT Count(*)
+        FROM   (SELECT *
+                FROM   answer)
+        WHERE  item_code = e.item_code) AS answer_number,
+       b.subj_regdate,
+       f.ctgr_nm,
+       b.subj_code,
+       a.mb_nick,
+       a.mb_sex,
+       a.mb_birthdate,
+       a.mb_addr,
+       c.qst_img,
+       b.subj_nm,
+       b.subj_startdate,
+       b.subj_enddate
+FROM   member a,
+       subject b,
+       question c,
+       item d,
+       answer e,
+       category f
+WHERE  b.mb_email = a.mb_email
+       AND b.subj_code = c.subj_code
+       AND c.qst_code = d.qst_code
+       AND d.item_code = e.item_code
+       AND f.ctgr_code = b.ctgr_code
+       
+group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code, a.mb_birthdate, a.mb_addr, a.mb_sex, b.subj_code;
 
 
 
