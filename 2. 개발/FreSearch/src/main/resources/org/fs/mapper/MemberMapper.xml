@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.MemberMapper">
+	
+	<insert id="register">
+		<selectKey keyProperty="mb_att_ctgr_code" order="BEFORE" resultType="String">
+			select dbms_random.string('X', 8) from dual
+		</selectKey>
+		
+		{
+		call 
+		declare 
+		begin 
+     	 	insert into member (
+				mb_email, mb_att_ctgr_code, mb_nick, mb_pwd, 
+				mb_addr, mb_birthdate, mb_sex, mb_phone, 
+				mb_reg_atrt, mb_email_key, mb_joindate
+			) values (
+				#{mb_email}, #{mb_att_ctgr_code}, #{mb_nick}, #{mb_pwd}, 
+				#{mb_addr}, #{mb_birthdate}, #{mb_sex}, #{mb_phone}, 
+				'일반', 'N', SYSDATE	
+			);
+		
+			insert into att_category (
+				mb_att_ctgr_code, mb_email, ctgr_code1, ctgr_code2, ctgr_code3,
+				ctgr_code4, ctgr_code5, mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
+			) values (
+				#{mb_att_ctgr_code}, #{mb_email}, #{ctgr_code1}, #{ctgr_code2}, #{ctgr_code3},
+				#{ctgr_code4}, #{ctgr_code5}, #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+			);
+     	end 
+    	} 
+	</insert>
+	
+	<select id="emailCheck" resultType="MemberVO">
+		select mb_email from member where mb_email = #{mb_email}
+	</select>
+	 
+	<select id="nickCheck" resultType="MemberVO">
+		select mb_nick from member where mb_nick = #{mb_nick}
+	</select>
+	
+	<select id="phoneCheck" resultType="MemberVO">
+		select mb_phone from member where mb_phone = #{mb_phone}
+	</select>
+	
+	<update id="getKey">
+		update member set mb_email_key = #{param2} where mb_nick=#{param1}
+	</update>
+	
+	<update id="changeKey">
+		update member set mb_email_key = 'Y' where mb_nick = #{param1} and mb_email_key = #{param2}
+	</update>
+	
+</mapper>
