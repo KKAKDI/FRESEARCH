@@ -208,7 +208,7 @@ WHERE  b.mb_email = a.mb_email
 group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code
  -->
  
- 
+ <!-- STATS_TABLE 리스트 뽑는 SQL-->
 <select id="getTable" resultType="org.fs.domain.StatsVO">
 SELECT answer_number, 
        subj_regdate, 
@@ -262,6 +262,52 @@ FROM   (SELECT rownum rn,
 	   		  where rn >=1
 	   		  ]]>
 </select>
+
+
+<!-- STATS_TABLE 전체 ROW 갯수 세는 SQL-->
+<select id="getTableCount" resultType="int">
+SELECT count(answer_number) 
+FROM   (SELECT rownum rn,
+	 		   answer_number, 
+               subj_regdate, 
+               subj_code, 
+               ctgr_nm, 
+               mb_nick, 
+               mb_sex, 
+               mb_birthdate, 
+               mb_addr, 
+               qst_img, 
+               subj_nm, 
+               subj_startdate, 
+               subj_enddate 
+        FROM   stats_table 
+        WHERE  ctgr_nm LIKE '%'||#{ctgr_nm}||'%'
+               AND mb_sex LIKE '%'|| #{mb_sex}||'%' 
+               AND Substr(mb_addr, 1, 5) LIKE '%'||#{mb_addr}||'%'  
+               AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
+              <choose>
+              
+      				<when test="stats == '전체'.toString()">
+      				)
+       				</when>
+       		
+       				<when test="stats == '대기'.toString()">
+      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd')) ]]>
+      				</when>
+      		
+       				<when test="stats == '진행중'.toString()"> 
+	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd')) ]]>
+	   				</when>
+	   		
+	   				<when test="stats == '완료'.toString()">
+	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd')) ]]>
+	   				</when>
+	   				
+			   	</choose>
+</select>
+
+
+
 
 
 <select id="getTableTest" resultType="org.fs.domain.StatsVO">
