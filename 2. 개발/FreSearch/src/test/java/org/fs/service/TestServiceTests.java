@@ -126,18 +126,32 @@ public class TestServiceTests {
 //	}
 //}
 
+//	@Test
+//	public void getTableTest() {
+//		StatsVO vo = new StatsVO();
+//		Criteria cri = new Criteria();
+//		vo.setCtgr_nm("");
+//		vo.setMb_addr("");
+//		vo.setMb_sex("");
+//		cri.setPageNum(2);
+//		cri.setAmount(2);
+//		log.info(service.getTableTest(vo, cri));
+//		
+//	}
+//	
 	@Test
-	public void getTableTest() {
+	public void getTableAllTest() {
 		StatsVO vo = new StatsVO();
 		Criteria cri = new Criteria();
 		vo.setCtgr_nm("");
 		vo.setMb_addr("");
 		vo.setMb_sex("");
-		
+		vo.setStartAge(0);
+		vo.setEndAge(99);
+		vo.setStats("전체");
 		cri.setPageNum(2);
 		cri.setAmount(2);
-		log.info(service.getTableTest(vo, cri));
-		
+		log.info(service.getTableAll(vo, cri));
 	}
 			
 	

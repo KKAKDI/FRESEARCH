@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.fs.domain.Criteria;
+import org.fs.domain.StatsPagingSearchDTO;
 import org.fs.domain.StatsVO;
 import org.fs.mapper.StatsMapper;
 import org.springframework.stereotype.Service;
@@ -76,5 +77,13 @@ public class StatsServiceImpl implements StatsService{
 	public List<StatsVO> getTableTest(StatsVO vo, Criteria cri){
 		log.info("getTableTest");
 		return mapper.getTableTest(vo, cri);
+	}
+	@Override
+	public StatsPagingSearchDTO getTableAll(StatsVO vo, Criteria cri){
+		return new StatsPagingSearchDTO(
+				mapper.getTableTest(vo, cri),
+				mapper.getTableCount(vo)
+				);
+		
 	}
 }
