@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
+import org.fs.domain.StatsPagingSearchDTO;
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
 import org.springframework.http.HttpStatus;
@@ -297,7 +298,7 @@ public class StatsController {
 			value = "/table/{pageNum}/{amount}", 
 			consumes = "application/json", 
 			produces = "application/json")
-	public ResponseEntity<List<StatsVO>> getTableTest(@RequestBody StatsVO vo,@ModelAttribute Criteria cri) {
+	public ResponseEntity<StatsPagingSearchDTO> getTableAll(@RequestBody StatsVO vo,@ModelAttribute Criteria cri) {
 		//Criteria cri1 = new Criteria(cri.getPageNum(), cri.getAmount());
 		log.info("조성식1 : "+vo.getCtgr_code());
 		log.info("조성식1 : "+vo.getMb_addr());
@@ -324,6 +325,6 @@ public class StatsController {
 //		log.info("조성식1 : "+vo.getStats());
 //		log.info("조성식2 : "+cri.getPageNum());
 //		log.info("조성식2 : "+cri.getAmount());
-		return new ResponseEntity<>(service.getTableTest(vo, cri), HttpStatus.OK);
+		return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);
 	}
 }
