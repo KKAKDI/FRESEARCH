@@ -556,7 +556,6 @@
 	$(document).ready(function(){
 		
 
-		
 		var data = {
 	    		ctgr_nm : "",
 	    		mb_addr : "",
@@ -567,80 +566,84 @@
 	    		pageNum : 1,
 		    	amount : 2	
 	    		
-	    }
+	    };
 		
 		
 		//console.log("하이 이건 나오냐 : "+JSON.stringify(data));
+		function showList(page){
+			console.log("show list " + page);
+			
+			
 		
-		
-		tableService.table(data,function(list){
-	    	var html = '';
-	    	if (list.length == 0){
-	    		html += '<div class="article-list-item-no-data">';
-				html += '<div class="article-list-item__content">';
-				html += '<div class="article-list-item__title">';
-				html +=	'<a href=""> <span> 데이터가 없습니다.';
-				html +=	'</span>';
-				html +=	'</div>';
-				html +=	'</a>';
-				html +=	'<div class="article-list-item-meta">';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html +=	'</div>';
-				html += '</div>';
-	    	}else{
-	    		for(var i =0, len = list.length||0; i < len; i++){
-	    		
-		    		html += '<div class="article-list-item">';
-					html += '<div class="article-list-item__vote">';
-					html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-					html +=	'<div>'+list[i].answer_number+'</div>';
-					html += '</div>';
+			tableService.table(data,function(getTableCount, getTableTest){
+		    	var html = '';
+		    	if (getTableTest.length == 0){
+		    		html += '<div class="article-list-item-no-data">';
 					html += '<div class="article-list-item__content">';
 					html += '<div class="article-list-item__title">';
-					html +=	'<a href=""> <span>'+list[i].subj_nm;
-					html +=	'</span> <em>[35]</em>';
+					html +=	'<a href=""> <span> 데이터가 없습니다.';
+					html +=	'</span>';
 					html +=	'</div>';
 					html +=	'</a>';
 					html +=	'<div class="article-list-item-meta">';
-					html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
-					html +=	'<div class="article--list-item-meta__item">';
-					html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
-					html +=	'<div class="article-list-item-meta__item">';
-					html +=	'<a href="">'+list[i].mb_nick+'</a>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
 					html +=	'</div>';
-					html +=	'<div class="article-list-item__thumbnail">';
-					html +=	'<a href="">';
-					html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
-					html += '?image=w_200" class="article-list-item__thumbnail" alt>';
-					html +=	'</a>';
-					html +=	'</div>';
 					html += '</div>';
-	    		}
-		    	html+= '<section class="article-list-paging">';
-		    	html+= '<div class="article-list-paging-content">';
-		    	html+= '<ul class="article-list-paging-list">';
-		    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
-		    	html+= '<a href="" class="article-list-paging__button button">';
-		    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
-		    	html+= '<span>이전</span>';
-		    	html+= '</a>';
-		    	html+= '</li>';
-		    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
-		    	html+= '<a href="" class="article-list-paging__button button"> <span>다음</span>';
-		    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
-		    	html+= '</a>';
-		    	html+= '</li>';
-		    	html+= '</ul>';
-		    	html+= '</div>';
-		    	html+= '</section>';
-		    	}
-			$('section.article-list').html(html);
-	    });
+		    	}else{
+		    		for(var i =0, len = getTableTest.length||0; i < len; i++){
+		    		
+			    		html += '<div class="article-list-item">';
+						html += '<div class="article-list-item__vote">';
+						html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+						html +=	'<div>'+getTableTest[i].answer_number+'</div>';
+						html += '</div>';
+						html += '<div class="article-list-item__content">';
+						html += '<div class="article-list-item__title">';
+						html +=	'<a href=""> <span>'+getTableTest[i].subj_nm;
+						html +=	'</span> <em>[35]</em>';
+						html +=	'</div>';
+						html +=	'</a>';
+						html +=	'<div class="article-list-item-meta">';
+						html +=	'<div class="article-list-item-meta__item">'+getTableTest[i].ctgr_nm+'</div>';
+						html +=	'<div class="article--list-item-meta__item">';
+						html += '<span>'+tableService.displayTime(getTableTest[i].subj_regdate)+'</span>';
+						html +=	'<div class="article-list-item-meta__item">';
+						html +=	'<a href="">'+getTableTest[i].mb_nick+'</a>';
+						html += '</div>';
+						html += '</div>';
+						html += '</div>';
+						html +=	'</div>';
+						html +=	'<div class="article-list-item__thumbnail">';
+						html +=	'<a href="">';
+						html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
+						html += '?image=w_200" class="article-list-item__thumbnail" alt>';
+						html +=	'</a>';
+						html +=	'</div>';
+						html += '</div>';
+		    		}
+			    	html+= '<section class="article-list-paging">';
+			    	html+= '<div class="article-list-paging-content">';
+			    	html+= '<ul class="article-list-paging-list">';
+			    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+			    	html+= '<a href="" class="article-list-paging__button button">';
+			    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+			    	html+= '<span>이전</span>';
+			    	html+= '</a>';
+			    	html+= '</li>';
+			    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+			    	html+= '<a href="" class="article-list-paging__button button" value> <span>다음</span>';
+			    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+			    	html+= '</a>';
+			    	html+= '</li>';
+			    	html+= '</ul>';
+			    	html+= '</div>';
+			    	html+= '</section>';
+			    	}
+				$('section.article-list').html(html);
+		    });
+		};
 	});
 	
 	
@@ -653,8 +656,6 @@
 	 if($(document).scrollTop() >= 0 && $(document).scrollTop() < 768){
 	 alert("스크롤의 위치가 0~768")
 	 }	
-	
-	
 	 });*/
 
 	 
@@ -749,11 +750,11 @@
 				    console.log(tableService);
 				    
 				    
-				    tableService.table(data,function(list){
+				    tableService.table(data,function(getTableCount,getTableTest ){
 				    	//<section class="article-list">
 
 				    	var html = '';
-				    	if (list.length == 0){
+				    	if (getTableTest.length == 0){
 				    		html += '<div class="article-list-item-no-data">';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
@@ -768,25 +769,25 @@
 							html +=	'</div>';
 							html += '</div>';
 				    	}else{
-				    		for(var i =0, len = list.length||0; i < len; i++){
+				    		for(var i =0, len = getTableTest.length||0; i < len; i++){
 				    		
 					    		html += '<div class="article-list-item">';
 								html += '<div class="article-list-item__vote">';
 								html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-								html +=	'<div>'+list[i].answer_number+'</div>';
+								html +=	'<div>'+getTableTest[i].answer_number+'</div>';
 								html += '</div>';
 								html += '<div class="article-list-item__content">';
 								html += '<div class="article-list-item__title">';
-								html +=	'<a href=""> <span>'+list[i].subj_nm;
+								html +=	'<a href=""> <span>'+getTableTest[i].subj_nm;
 								html +=	'</span> <em>[35]</em>';
 								html +=	'</div>';
 								html +=	'</a>';
 								html +=	'<div class="article-list-item-meta">';
-								html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+								html +=	'<div class="article-list-item-meta__item">'+getTableTest[i].ctgr_nm+'</div>';
 								html +=	'<div class="article--list-item-meta__item">';
-								html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
+								html += '<span>'+tableService.displayTime(getTableTest[i].subj_regdate)+'</span>';
 								html +=	'<div class="article-list-item-meta__item">';
-								html +=	'<a href="">'+list[i].mb_nick+'</a>';
+								html +=	'<a href="">'+getTableTest[i].mb_nick+'</a>';
 								html += '</div>';
 								html += '</div>';
 								html += '</div>';
@@ -820,14 +821,7 @@
 						$('section.article-list').html(html);
 				    	});
 				    $()
-				    
-				    
-				    
 				    });
-	 
-				
-				    
-				    
 				    /*두번째 ajax 방법
 				    $.ajax({
 				        type: "POST",

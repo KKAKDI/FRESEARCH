@@ -231,7 +231,8 @@ var tableService = (function() {
 			success : function(result, status, xhr) {
 				if (callback) {
 					//callback(data.ctgr_nm, data.mb_nick);
-					callback(result);
+					//callback(result); 댓글 목록만 가져오는 경우
+					callback(result.getTableCount, result.getTableTest);
 					
 				}
 			},

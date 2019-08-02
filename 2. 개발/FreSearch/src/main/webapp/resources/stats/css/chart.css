@@ -61,7 +61,7 @@
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
-	margin-left: 24rem;
+	margin-left: auto;
 	margin-right: auto;
 }
 
@@ -137,9 +137,9 @@
 }
 .card-table .card-body-table {
 	padding: 1.5rem 1.875rem;
-	margin-left: 0rem;
-	margin-right: auto;
-	width: 717px;
+	
+	
+	width: 100%;
 }
 .card-body-table-p{
 	margin-left: 0rem;
@@ -467,7 +467,7 @@ body {
 }
 .article-list-item__content {
     vertical-align: middle;
-    padding-right: 13px;
+    padding: 6px 13px 0px 0px;
 }
 .article-list-item__title {
     display: inline;
@@ -509,6 +509,7 @@ em {
     height: 60px;
     -o-object-fit: cover;
     object-fit: cover;
+    margin: 0px 0px 0px -12px;
     font-family: "object-fit: cover;";
     
 }
