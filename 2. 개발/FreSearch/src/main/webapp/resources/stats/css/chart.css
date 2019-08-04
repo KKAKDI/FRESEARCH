@@ -61,8 +61,8 @@
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
+
 }
 
 .content-wrapper {
@@ -467,7 +467,12 @@ body {
 }
 .article-list-item__content {
     vertical-align: middle;
+<<<<<<< HEAD
     padding: 6px 13px 0px 0px;
+=======
+        padding: 5px 0px;
+
+>>>>>>> JSS
 }
 .article-list-item__title {
     display: inline;
@@ -511,6 +516,7 @@ em {
     object-fit: cover;
     margin: 0px 0px 0px -12px;
     font-family: "object-fit: cover;";
+    margin: 0px 0px 0px -13px;
     
 }
 
@@ -696,13 +702,13 @@ form {
     display: block;
     clear: both;
 }
-a.button {
+input.button {
     display: inline-block;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-align: center;
 }
-a.button:hover{
+button.button:hover{
 	border : 1px solid black;
 }
 .article-list-paging__button {
@@ -712,6 +718,7 @@ a.button:hover{
     border-radius: 4px;
     background-color: #fff;
     border: 1px solid #dddfe4;
+    color: inherit;
 }
 a {
     text-decoration: none;
