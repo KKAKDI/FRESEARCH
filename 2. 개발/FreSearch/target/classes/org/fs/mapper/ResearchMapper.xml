@@ -29,7 +29,7 @@
 			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate
 			)
 		values(
-			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, SYSDATE, SYSDATE
+			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate}
 		)
 	</insert>
 	<insert id="qstReg">
@@ -48,7 +48,7 @@
 		insert into ITEM
 		values(
 			#{item_code},
-            (select qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})),
+            (select qst_code from(select rownum rn,qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})order by qst_regdate)where rn=#{rowNum}),
            	#{item_content},#{item_img},SYSDATE
 		)
 	</insert>	
