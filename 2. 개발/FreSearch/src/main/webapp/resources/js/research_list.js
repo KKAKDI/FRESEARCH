@@ -59,7 +59,7 @@ function updateDataResearch() {
 		console.log("여긴가4");
 	});
 }*/
-
+/*
 var research = (function() {
    function list(data, callback, error) {
       
@@ -112,4 +112,51 @@ var research = (function() {
 	   displayTime : displayTime
    }
 })();
+*/
 
+var researchService = (function(){
+	
+	function list(param, callback, error){
+		//var subj_code = param.subj_code;
+		var page = param.page || 1;
+		
+		$.getJSON("/research/pages/" + page + ".json",
+			function(data){
+				if(callback){
+					callback(data.replyCnt, data.list);
+				}
+			}).fail(function(xhr, status, err){
+				if(error){
+					error();
+				}
+			});
+	}
+	
+	function displayTime(timeValue){
+		var today = new Date();
+		var gap = today.getTime() - timeValue;
+		var dateObj = new Date(timeValue);
+		var str = "";
+		
+		if(gap < (1000 * 60 * 60 * 24) && gap >= 0){
+			var hh = dateObj.getHours();
+			var mi = dateObj.getMinutes();
+			var ss = dateObj.getSeconds();
+			
+			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+				':', (ss > 9 ? '' : '0') + ss ].join('');
+		}else{
+			var yy = dateObj.getFullYear().toString().substring(2,4);
+			var mm = dateObj.getMonth() + 1;
+			var dd = dateObj.getDate();
+			
+			return [ yy, '.', (mm > 9 ? '' : '0') + mm, '.',
+				(dd > 9 ? '' : '0') + dd ].join('');
+		}
+	};
+	
+	return {
+		list:list,
+		displayTime:displayTime
+	};
+})();

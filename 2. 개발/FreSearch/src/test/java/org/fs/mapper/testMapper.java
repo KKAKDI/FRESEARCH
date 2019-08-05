@@ -119,14 +119,26 @@ public class testMapper {
 //		StatsVO vo = new StatsVO();
 //		Criteria cri = new Criteria();
 //		vo.setCtgr_nm("");
-//		vo.setMb_sex("�뿬");
+//		vo.setMb_sex("여");
 //		vo.setMb_addr("");
-//		vo.setStats("�쟾泥�");
+//		vo.setStats("전체");
 //		vo.setStartAge(0);
 //		vo.setEndAge(99);
 //		cri.setPageNum(1);
 //		cri.setAmount(3);
 //		List<StatsVO> list = mapper.getTableTest(vo, cri);
 //		list.forEach(stats -> log.info(stats.getSubj_code()));
+//	}
+//	@Test
+//	public void getTableCount() {
+//		StatsVO vo = new StatsVO();
+//		vo.setCtgr_nm("");
+//		vo.setMb_sex("");
+//		vo.setMb_addr("");
+//		vo.setStats("전체");
+//		vo.setStartAge(0);
+//		vo.setEndAge(99);
+//
+//		log.info(mapper.getTableCount(vo));
 //	}
 }
