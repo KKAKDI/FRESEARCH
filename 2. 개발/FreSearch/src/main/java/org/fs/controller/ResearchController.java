@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
+import org.fs.domain.ResearchPageDTO;
 import org.fs.domain.ResearchVO;
 import org.fs.service.ResearchService;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -44,6 +45,20 @@ public class ResearchController {
 		
 	}
 	
+	@GetMapping(value = "/pages/{subj_code}/{page}",
+			produces = {
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ResearchPageDTO> list(
+			@PathVariable("page") int page,
+			@PathVariable("subj_code") String subj_code){
+		log.info("list.........");
+		Criteria cri = new Criteria(page, 6);
+		log.info("Research List bno : " + subj_code);
+		log.info(cri);
+		return new ResponseEntity<>(service.list(cri, subj_code), HttpStatus.OK);
+	}
+	/*
 	@PostMapping(value = "/research_listTab", 
 		consumes = "application/json",
 	    produces = {
@@ -51,10 +66,8 @@ public class ResearchController {
 	          MediaType.APPLICATION_JSON_UTF8_VALUE}) 
 	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){
 
-		log.info("ada");
-
 		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
-	}
+	}*/
 	@GetMapping("research_register")
 	public void regForm() {
 	}
