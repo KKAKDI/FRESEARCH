@@ -50,7 +50,7 @@ public class ResearchController {
 	          MediaType.APPLICATION_XML_VALUE,
 	          MediaType.APPLICATION_JSON_UTF8_VALUE}) 
 	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){
-		log.info("aaa");
+		log.info("aca");
 		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
 	}
 	@GetMapping("research_register")
