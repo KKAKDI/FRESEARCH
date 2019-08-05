@@ -455,9 +455,9 @@ body {
     border-top: 1px solid #ebeef1;
     background-color: #fff;
     padding: 8px 0;
-    padding-right: 14px;
     text-align: center;
     line-height: 52px;
+    cursor: pointer;
 }
 .article-list-item__vote {
     display: table-cell;
@@ -467,12 +467,7 @@ body {
 }
 .article-list-item__content {
     vertical-align: middle;
-<<<<<<< HEAD
-    padding: 6px 13px 0px 0px;
-=======
         padding: 5px 0px;
-
->>>>>>> JSS
 }
 .article-list-item__title {
     display: inline;
@@ -885,6 +880,7 @@ html {
     right: 0;
     margin-top: 6px;
     margin-right: 8px;
+    cursor: pointer;
 }
 button {
     background: none;

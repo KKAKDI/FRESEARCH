@@ -563,13 +563,13 @@
 
 
 		var page = 1;
-		
+		showStartList(page);
 		function showStartList(page){
 		
 			var data = {
 		    		ctgr_nm : "",
 		    		mb_addr : "",
-		    		mb_sex : "여",
+		    		mb_sex : "",
 		    		startAge : 0,
 		    		endAge : 99,
 		    		stats : "전체",
@@ -584,7 +584,6 @@
 			
 			tableService.table(data,function(list, cnt){
 		    	var html = '';
-		    	console.log("지금 간다 : "+ cnt);
 		    	
 		    	if (list.getTableTest == 0){
 		    		html += '<div class="article-list-item-no-data">';
@@ -637,18 +636,27 @@
 			    	html+= '<section class="article-list-paging">';
 			    	html+= '<div class="article-list-paging-content">';
 			    	html+= '<ul class="article-list-paging-list">';
-			    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
-			    	html+= '<button class="article-list-paging__button button" id="start_prev" value="'+page+'">';
-			    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
-			    	html+= '<span>이전</span>'
-			    	html+= '</button>'
-			    	html+= '</li>';
-			    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
-			    	html+= '<button class="article-list-paging__button button" id="start_next" value="'+page+'">';
-			    	html+= '<span>다음</span>'
-			    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
-			    	html+= '</button>'
-			    	html+= '</li>';
+			    	if (page ==1){
+			    		console.log("이게 왜 안뜨지?");
+			    	}else{
+			    		console.log("이건 나와야되는데 ");
+				    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+				    	html+= '<button class="article-list-paging__button button" id="start_prev" value="'+page+'">';
+				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+				    	html+= '<span>이전</span>'
+				    	html+= '</button>'
+				    	html+= '</li>';
+			    	}
+			    	if(page == Math.ceil(cnt/3.0)){
+			    		
+			    	}else{
+				    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+				    	html+= '<button class="article-list-paging__button button" id="start_next" value="'+page+'">';
+				    	html+= '<span>다음</span>'
+				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+				    	html+= '</button>'
+				    	html+= '</li>';
+			    	}
 			    	html+= '</ul>';
 			    	html+= '</div>';
 			    	html+= '</section>';
@@ -656,10 +664,8 @@
 				$('section.article-list').html(html);
 		    });
 		};
-		$('.article-list').off('click','#next').on('click','#next',function(e){
+		$('.article-list').off('click','#next').on('click','#start_next',function(e){
 			 e.preventDefault();
-			console.log("다음 눌렸다.");
-			//console.log($(this).children().val);
 			var page = $(this).val();
 			page ++; 
 			
@@ -669,10 +675,8 @@
 			showStartList(page);
 
 		});
-		 $('.article-list').off('click','#prev').on('click','#prev',function(e){
+		 $('.article-list').off('click','#prev').on('click','#start_prev',function(e){
 			 e.preventDefault();
-			console.log("다음 눌렸다.");
-			//console.log($(this).children().val);
 			var page = $(this).val();
 			page --; 
 			console.log("page : "+$(this).val());
@@ -701,10 +705,8 @@
 
 
 		
-				/*var st = $(this).children().children('input').val();
-				console.log("이거 나와봐" + st);*/
+			var st = $(this).children().children('input').val();
 			var str = $(this).attr('class');
-			console.log("현재 누른 버튼" + str);
 
 			$(this).prevAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
 			$(this).nextAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
@@ -742,7 +744,6 @@
 			showList(page);
 			
 			function showList(page){
-				console.log("여기까지는 들어오겠지?");
 			
 			    if(checkValues[0]=="전체"){
 			    	checkValues[0] = "";
@@ -811,8 +812,7 @@
 						html +=	'</span>';
 						html +=	'</div>';
 						html +=	'</a>';
-						html +=	'<div class="article-list-item-meta">';
-						html += '</div>';
+
 						html += '</div>';
 						html += '</div>';
 						html +=	'</div>';
@@ -849,24 +849,41 @@
 							html +=	'</div>';
 							html += '</div>';
 			    		}
-			    		html+= '<section class="article-list-paging">';
-				    	html+= '<div class="article-list-paging-content">';
-				    	html+= '<ul class="article-list-paging-list">';
-				    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
-				    	html+= '<button class="article-list-paging__button button" id="prev" value="'+page+'">';
-				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
-				    	html+= '<span>이전</span>'
-				    	html+= '</button>'
-				    	html+= '</li>';
-				    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
-				    	html+= '<button class="article-list-paging__button button" id="next" value="'+page+'">';
-				    	html+= '<span>다음</span>'
-				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
-				    	html+= '</button>'
-				    	html+= '</li>';
-				    	html+= '</ul>';
-				    	html+= '</div>';
-				    	html+= '</section>';
+			    		if(page == 1 && page == Math.ceil(cnt/3.0)){
+			    			console.log("뭐지 여기 들어왔나본데?1");
+			    			console.log("DSFDSF : "+page)
+			    			console.log("이건 뭔데 : "+Math.ceil(cnt/3.0));
+			    			
+			    		}else{
+			    			console.log("뭐지 여기 들어왔나본데?2");
+				    		html+= '<section class="article-list-paging">';
+					    	html+= '<div class="article-list-paging-content">';
+					    	html+= '<ul class="article-list-paging-list">';
+					    	if (page ==1){
+					    		console.log("이게 왜 안뜨지?");
+					    	}else{
+					    		console.log("이건 나와야되는데 ");
+						    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+						    	html+= '<button class="article-list-paging__button button" id="prev" value="'+page+'">';
+						    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+						    	html+= '<span>이전</span>'
+						    	html+= '</button>'
+						    	html+= '</li>';
+					    	}
+					    	if(page == Math.ceil(cnt/3.0)){
+					    		
+					    	}else{
+						    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+						    	html+= '<button class="article-list-paging__button button" id="next" value="'+page+'">';
+						    	html+= '<span>다음</span>'
+						    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+						    	html+= '</button>'
+						    	html+= '</li>';
+					    	}
+					    	html+= '</ul>';
+					    	html+= '</div>';
+					    	html+= '</section>';
+			    		}
 			    	}
 					$('section.article-list').html(html);
 			    });
@@ -897,9 +914,7 @@
 				
 				console.log("page++ : "+page);
 				showList(page);
-
 			});
-			 
 		 });
 				    /*두번째 ajax 방법
 				    $.ajax({
