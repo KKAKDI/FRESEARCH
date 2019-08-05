@@ -3,20 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../includes/header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>설문 목록</title>
-<link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/resources/js/research_list.js"></script>
-</head>
-
-<body>
-<input type='hidden' id='pageNum' value='${pageMaker.cri.pageNum}'>
-<input type='hidden' id='amount' value='${pageMaker.cri.amount}'>
 	<div class="page-content">
 		<div class="list-content">
 			<div class="detail-list">
@@ -30,47 +18,8 @@
 				</div>
 				<div id="test">
 				</div>
-				<!--
-				<c:forEach items="${list}" var="research"> -->
-					
-					<!--  
-						<li>
-						<a href="">
-						<span>${research.ctgr_nm}</span>
-						<span>${research.subj_nm}</span>
-						<span><fmt:formatDate pattern="yy.MM.dd"
-											value="${research.subj_regdate}" /></span>
-						<span><fmt:formatDate pattern="yy.MM.dd"
-											value="${research.subj_startdate}" />
-											~
-							<fmt:formatDate pattern="yy.MM.dd"
-											value="${research.subj_enddate}" /></span>
-						</a>
-						</li>-->
-					
-				<!--</c:forEach>
-				-->
-				
-				<div class='pull-right'>
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous">
-								<a href="${pageMaker.startPage - 1}">이전</a>
-							</li>
-						</c:if>
-						
-						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
-								<a href="${num}">${num}</a>
-							</li>
-						</c:forEach>
-						
-						<c:if test="${pageMaker.next}">
-							<li class="paginate_button next"><a href="${pageMaker.endPage + 1}">다음</a></li>
-						</c:if>
-					</ul>
+				<div class="paging">
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -101,40 +50,128 @@
     	  $("#end").css("background", "#f9f9f9");
     	  var data = {
     			  research : "진행중설문"
-           }
+          }
     	  
-    	  research.list(data,function(list){
-              var html = '';
-              if (list.length == 0){
-            	html += '<ul>';
-      			html += '<li>';
-      			html += '<a>';
-      			html += '<span> 데이터가 없습니다.';
-      			html += '</span>';
-      			html += '</a>';
-      			html += '</li>';
-      			html += '</ul>';
-              }else{
-                 for(var i =0, len = list.length||0; i < len; i++){
-                 
-                	html += '<ul>';
-         			html += '<li>';
-         			html += '<a>';
-         			html += '<span>' + list[i].ctgr_nm + '</span>';
-         			html += '<span>' + list[i].subj_nm + '</span>';
-         			html += '<span>' + research.displayTime(list[i].subj_regdate) + '</span>';
-         			html += '<span>' + research.displayTime(list[i].subj_startdate) + ' ~ ' 
-         				 + research.displayTime(list[i].subj_enddate) + '</span>';
-         			html += '</a>';
-         			html += '</li>';
-         			html += '</ul>';
-                 }
-              }
-              $('#test').html(html);
-           });
+    	  showList(1);
     	  
+    	  function showList(page){
     	  
-      });
+    		  researchService.list({page: page|| 1}, function(researchCnt, list){
+	              /*
+	    		  var html = '';
+	              if (list.length == 0 || list == null){
+	            	html += '<ul>';
+	      			html += '<li>';
+	      			html += '<a>';
+	      			html += '<span> 작성된 설문이 없습니다.';
+	      			html += '</span>';
+	      			html += '</a>';
+	      			html += '</li>';
+	      			html += '</ul>';
+	              }else{
+	                 for(var i =0, len = list.length||0; i < len; i++){
+	                 
+	                	html += '<ul>';
+	         			html += '<li>';
+	         			html += '<a>';
+	         			html += '<span>' + list[i].ctgr_nm + '</span>';
+	         			html += '<span>' + list[i].subj_nm + '</span>';
+	         			html += '<span>' + research.displayTime(list[i].subj_regdate) + '</span>';
+	         			html += '<span>' + research.displayTime(list[i].subj_startdate) + ' ~ ' 
+	         				 + research.displayTime(list[i].subj_enddate) + '</span>';
+	         			html += '</a>';
+	         			html += '</li>';
+	         			html += '</ul>';
+	                 }
+	              }*/
+	    		  if(page == -1){
+						pageNum = Math.ceil(researchCnt/10.0);
+						showList(pageNum);
+						return;
+					}
+					
+					var html="";
+					
+					if(list == null || list.length == 0){
+						html += '<ul>';
+		      			html += '<li>';
+		      			html += '<a>';
+		      			html += '<span> 작성된 설문이 없습니다.';
+		      			html += '</span>';
+		      			html += '</a>';
+		      			html += '</li>';
+		      			html += '</ul>';
+						return;
+					}
+					for(var i =0, len = list.length||0; i < len; i++){
+		                 
+	                	html += '<ul>';
+	         			html += '<li>';
+	         			html += '<a>';
+	         			html += '<span>' + list[i].subj_code + '</span>';
+	         			html += '<span>' + list[i].subj_nm + '</span>';
+	         			html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';
+	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
+	         				 + researchService.displayTime(list[i].subj_enddate) + '</span>';
+	         			html += '</a>';
+	         			html += '</li>';
+	         			html += '</ul>';
+	         		}
+	              $('#test').html(html);
+	           });
+    		  }
+    	  
+    	  var pageNum = 1;
+  		var researchPageFooter = $(".paging");
+  		
+  		function showResearchPage(researchCnt){
+  			var endNum = Math.ceil(pageNum / 10.0) * 10;
+  			var startNum = endNum - 9;
+  			
+  			var prev = startNum != 1;
+  			var next = false;
+  			
+  			if(endNum * 10 >= researchCnt){
+  				endNum = Math.ceil(researchCnt/10.0);
+  			}
+  			
+  			if(endNum * 10 < researchCnt){
+  				next = true;
+  			}
+  			
+  			var str = "<ul class='pagination pull-right'>";
+  			
+  			if(prev){
+  				str+= "<li class='page-item'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
+  			}
+  			
+  			for(var i = startNum; i<=endNum; i++){
+  				var active = pageNum == i? "active":"";
+  				str+= "<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+  			}
+  			
+  			if(next){
+  				str+= "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
+  			}
+  			
+  			str += "</ul></div>";
+  			console.log(html);
+  			researchPageFooter.html(html);
+  		}
+  		
+  		researchPageFooter.on("click", "li a", function(e){
+  			e.preventDefault();
+  			console.log("page click");
+  			
+  			var targetPageNum = $(this).attr("href");
+  			
+  			console.log("targetPageNum: " + targetPageNum);
+  			
+  			pageNum = targetPageNum;
+  			
+  			showList(pageNum);
+  		});
+    	  });
       
       $(".research").click(function(e) {
     	  var researchVal = $(this).val();
@@ -188,4 +225,4 @@
       });
       
 </script>
-</html>
+<%@include file="../includes/footer.jsp"%>
