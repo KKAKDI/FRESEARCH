@@ -293,7 +293,7 @@
 		<div class="qreserch_area">
 			<ul>
 				<li>
-					<a href="">
+					<a href="/research/research_list">
 						<!-- <img src="report.png" alt=""> -->
 						<dl>
 							<dt>흥미로운

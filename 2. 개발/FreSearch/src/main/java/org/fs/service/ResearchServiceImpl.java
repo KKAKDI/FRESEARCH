@@ -21,4 +21,21 @@ public class ResearchServiceImpl implements ResearchService{
 		return mapper.listStatus(vo);
 		
 	}
+
+	@Override
+	public void subjReg(ResearchVO vo) {
+	
+		
+	}
+
+	@Override
+	public void qstReg(ResearchVO vo) {
+	
+		
+	}
+
+	@Override
+	public void itemReg(ResearchVO vo) {	
+		
+	}
 }

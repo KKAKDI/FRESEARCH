@@ -61,13 +61,17 @@ public class ResearchController {
 	public void reg(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");
 		log.info(values);
+		
+		ResearchVO vo = new ResearchVO();
+		
 		String[] block = values.split("/block");
 		for(int i=0;i<block.length;i++) {
 			log.info("block"+i+": "+block[i]);
 			if(i==0) {
 				String[] header = block[i].split("#h#");
 				for(int j=0;j<header.length;j++) {
-					log.info("header"+j+": "+header[j]);				
+					log.info("header"+j+": "+header[j]);			
+					//주제코드 이메일 닉네임 주제명 등록일 시작일 종료일
 				}
 			}else {
 				String item[] = block[i].split("#t#");
@@ -75,6 +79,8 @@ public class ResearchController {
 				for(int k=0;k<item.length;k++) {
 					items[i][k]=item[k];
 					log.info("item["+i+"]["+k+"]: "+items[i][k]);
+					//item[i][k] i 0 = 질문 / i n 은 아이템
+					//질문코드 1회 생성 아이템 마다 코드 생성
 				}
 			}			
 		}
