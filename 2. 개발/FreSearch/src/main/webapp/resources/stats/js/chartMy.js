@@ -231,7 +231,8 @@ var tableService = (function() {
 			success : function(result, status, xhr) {
 				if (callback) {
 					//callback(data.ctgr_nm, data.mb_nick);
-					callback(result);
+					//callback(result); 리스트만 뽑아올때
+					callback(result.getTableTest, result.getTableCount);
 					
 				}
 			},

@@ -61,8 +61,8 @@
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
-	margin-left: 24rem;
-	margin-right: auto;
+	margin: 0 auto;
+
 }
 
 .content-wrapper {
@@ -137,9 +137,9 @@
 }
 .card-table .card-body-table {
 	padding: 1.5rem 1.875rem;
-	margin-left: 0rem;
-	margin-right: auto;
-	width: 717px;
+	
+	
+	width: 100%;
 }
 .card-body-table-p{
 	margin-left: 0rem;
@@ -455,9 +455,9 @@ body {
     border-top: 1px solid #ebeef1;
     background-color: #fff;
     padding: 8px 0;
-    padding-right: 14px;
     text-align: center;
     line-height: 52px;
+    cursor: pointer;
 }
 .article-list-item__vote {
     display: table-cell;
@@ -467,7 +467,7 @@ body {
 }
 .article-list-item__content {
     vertical-align: middle;
-    padding-right: 13px;
+        padding: 5px 0px;
 }
 .article-list-item__title {
     display: inline;
@@ -509,7 +509,9 @@ em {
     height: 60px;
     -o-object-fit: cover;
     object-fit: cover;
+    margin: 0px 0px 0px -12px;
     font-family: "object-fit: cover;";
+    margin: 0px 0px 0px -13px;
     
 }
 
@@ -695,13 +697,13 @@ form {
     display: block;
     clear: both;
 }
-a.button {
+input.button {
     display: inline-block;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-align: center;
 }
-a.button:hover{
+button.button:hover{
 	border : 1px solid black;
 }
 .article-list-paging__button {
@@ -711,6 +713,7 @@ a.button:hover{
     border-radius: 4px;
     background-color: #fff;
     border: 1px solid #dddfe4;
+    color: inherit;
 }
 a {
     text-decoration: none;
@@ -877,6 +880,7 @@ html {
     right: 0;
     margin-top: 6px;
     margin-right: 8px;
+    cursor: pointer;
 }
 button {
     background: none;
