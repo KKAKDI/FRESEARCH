@@ -8,8 +8,6 @@ import org.fs.domain.ResearchVO;
 
 public interface ResearchService {
 	
-	public void subjReg(ResearchVO vo);
-	public void qstReg(ResearchVO vo);
-	public void itemReg(ResearchVO vo);
+	public void researchReg(String values);
 	public ResearchPageDTO list(Criteria cri);
 }

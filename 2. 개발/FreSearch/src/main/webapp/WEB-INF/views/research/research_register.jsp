@@ -127,7 +127,7 @@
 			}			
 			console.log("data: "+data);		
 			$("#research_values").val(data);
-			form.attr("action","/research/research_reg");
+			form.attr("action","/research/research_register");
 			form.submit();
 		});
 	});
