@@ -6,8 +6,8 @@
 	
 	
 	
-	<select id="listStatus" resultType="ResearchVO">
-		
+	<select id="list" resultType="ResearchVO">
+		<!--  
 		select ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 		from category a, subject b
 		where a.ctgr_code = b.ctgr_code
@@ -25,7 +25,17 @@
            where rn > (#{pageNum} -1) * #{amount}
         ]]>
 		order by subj_enddate desc
-		
+		-->
+		<![CDATA[
+	select subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
+	from
+		(
+		select /*+INDEX(subject idx_subject) */
+			rownum rn, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
+		from subject
+		where rownum <= #{cri.pageNum} * #{cri.amount}
+		) where rn > (#{cri.pageNum} -1) * #{cri.amount}
+	]]>
 	</select>
 		
 </mapper>

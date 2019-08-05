@@ -62,13 +62,6 @@
 		});
 		//접근성을 위하여 tab키로 접근시 마우스로 접근한 것처럼 똑같이 나타나도록 작성한 스크립트
 		
-		$('.bxslider').bxSlider({
-			auto: true,
-			// autoControls: true, 갤러리 재생 정지 
-			stopAutoOnClick: true,
-			pager: true,
-			slideWidth: 1950
-		});
 		/* 
 		e가 들어간 것은 공지와 이벤트 구분을 위한 것입니다
 		var height = 높이 / num 공지의 개수를 알아보기 / max = 총 높이 move = 초기값*/ 
