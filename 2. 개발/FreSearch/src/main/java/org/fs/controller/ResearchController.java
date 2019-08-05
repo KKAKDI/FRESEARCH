@@ -3,7 +3,7 @@ package org.fs.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
+
 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 //import org.fs.domain.ResearchVO;
 //import org.fs.service.ResearchService;
 
-=======
+
 import javax.servlet.http.HttpServletRequest;
->>>>>>> 08fd5bba7aab24ccb230be50b2525646846c9659
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,15 +28,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
+
 
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-=======
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> 08fd5bba7aab24ccb230be50b2525646846c9659
+
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -46,16 +46,8 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class ResearchController {
-<<<<<<< HEAD
-	
-=======
->>>>>>> 08fd5bba7aab24ccb230be50b2525646846c9659
 	private ResearchService service;
-  
-	@GetMapping("research_reg")
-	public String regForm() {
-	return "research/research_register";
-  }	
+
 	@GetMapping("research_list")
 	public void list() {
 		
@@ -78,17 +70,12 @@ public class ResearchController {
 	    produces = {
 	          MediaType.APPLICATION_XML_VALUE,
 	          MediaType.APPLICATION_JSON_UTF8_VALUE}) 
-<<<<<<< HEAD
 	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){
 
 		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
 	}*/
 	@GetMapping("research_register")
-	public void regForm() {
-=======
-	public ResponseEntity<List<ResearchVO>> listStatus(@RequestBody ResearchVO vo){		
-		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
->>>>>>> 08fd5bba7aab24ccb230be50b2525646846c9659
+	public void regForm() {	
 	}
 	
 	@PostMapping("research_register")
