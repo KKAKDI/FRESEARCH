@@ -12,7 +12,7 @@ body {
 .page-content .list-content .detail-list {
 	
 }
-.page-content .list-content .detail-list ul {
+.page-content .list-content .detail-list #test ul {
     float: left;
     margin-right: 15px;
     margin-bottom: 15px;
@@ -21,7 +21,7 @@ body {
     transition: border-color .2s;
     cursor: pointer;
 }
-.page-content .list-content .detail-list li {
+.page-content .list-content .detail-list #test li {
     width: 390px;
     text-align: center;
     background: #fff;
@@ -34,7 +34,7 @@ body {
     height: 50px;
     padding: 10px;
 }
-.page-content .list-content .detail-list ul:hover {
+.page-content .list-content .detail-list #test ul:hover {
 	border: 1px solid #1428a0;
 }
 .page-content .list-content .detail-list li:nth-child(4) { color: red; }
@@ -88,6 +88,20 @@ body {
 }*/
 .page-content .list-content .detail-list a {
 	width: 100%;
+}
+
+.page-content .list-content .detail-list .paging li {
+    transition: background-color .2s;
+    display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 -1px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    line-height: 40px;
+    color: #888;
+    vertical-align: top;
+    text-align: center;
 }
 
 

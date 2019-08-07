@@ -53,16 +53,17 @@ public class ResearchController {
 		
 	}
 	
-	@GetMapping(value = "/pages/{page}",
+	@GetMapping(value = "/pages/{research}/{page}",
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ResearchPageDTO> list(
-			@PathVariable("page") int page){
+			@PathVariable("page") int page,
+			@PathVariable("research") String research){
 		log.info("list.........");
 		Criteria cri = new Criteria(page, 6);
 		log.info(cri);
-		return new ResponseEntity<>(service.list(cri), HttpStatus.OK);
+		return new ResponseEntity<>(service.list(cri, research), HttpStatus.OK);
 	}
 	/*
 	@PostMapping(value = "/research_listTab", 
@@ -74,9 +75,11 @@ public class ResearchController {
 
 		return new ResponseEntity<>(service.listStatus(vo), HttpStatus.OK);
 	}*/
+
 	@GetMapping("research_register")
 	public void regForm() {	
 	}
+
 	
 	@PostMapping("research_register")
 	public void reg(RedirectAttributes rttr,HttpServletRequest request) {

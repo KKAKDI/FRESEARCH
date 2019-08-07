@@ -31,15 +31,16 @@ public class ResearchServiceImpl implements ResearchService{
 	}*/
 	
 	@Override
-	public ResearchPageDTO list(Criteria cri) {
+	public ResearchPageDTO list(Criteria cri, String research) {
 		return new ResearchPageDTO(
-			mapper.list(cri));
+			mapper.getCountBySubjCode(research),
+			mapper.list(cri, research));
 	}
 
 
 	@Override
 	public void researchReg(String values)  {
-		String email = "admin@fresearch.com"; //¼öÁ¤ÇÒ °Í
+		String email = "admin@fresearch.com"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		String subName = null;
 		String[] block = values.split("/block");		
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy/MM/dd");
@@ -51,7 +52,7 @@ public class ResearchServiceImpl implements ResearchService{
 				ResearchVO headerVO = new ResearchVO();
 				for(int j=0;j<header.length;j++) {					
 					log.info("header"+j+": "+header[j]);			
-					//ÁÖÁ¦ÄÚµå ÀÌ¸ÞÀÏ ´Ð³×ÀÓ ÁÖÁ¦¸í µî·ÏÀÏ ½ÃÀÛÀÏ Á¾·áÀÏ	
+					//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 					try {
 						switch(j) {
 							case 0: headerVO.setSubj_nm(header[j]); subName=header[j]; break;
@@ -65,26 +66,26 @@ public class ResearchServiceImpl implements ResearchService{
 						log.info(e);
 					}					
 				}
-				//¿¹Á¦ Å×½ºÆ®¿ë
+				//ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½
 				headerVO.setMb_email(email);
 				headerVO.setMb_nick("admin");
-				mapper.subjReg(headerVO); //DBÀúÀå
+				mapper.subjReg(headerVO); //DBï¿½ï¿½ï¿½ï¿½
 			}else {
 				String item[] = block[i].split("#t#");
 				String [][] items = new String[block.length][item.length];
 				for(int k=0;k<item.length;k++) {
 					items[i][k]=item[k];
 					log.info("item["+i+"]["+k+"]: "+items[i][k]);
-					//item[i][k] i 0 = Áú¹® / i n Àº ¾ÆÀÌÅÛ
-					//Áú¹®ÄÚµå 1È¸ »ý¼º ¾ÆÀÌÅÛ ¸¶´Ù ÄÚµå »ý¼º
+					//item[i][k] i 0 = ï¿½ï¿½ï¿½ï¿½ / i n ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 1È¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 					if(i>0&&k==0) {
 						ResearchVO questionVO = new ResearchVO();
 						questionVO.setMb_email(email);
 						questionVO.setSubj_nm(subName);
 						questionVO.setQst_content(items[i][k]);
-						questionVO.setQst_type("°´°ü½Ä"); //¼öÁ¤ÇÊ¿ä
-						questionVO.setQst_img("");//¼öÁ¤ÇÊ¿ä
-						questionVO.setQst_url("");//¼öÁ¤ÇÊ¿ä
+						questionVO.setQst_type("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"); //ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
+						questionVO.setQst_img("");//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
+						questionVO.setQst_url("");//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
 						mapper.qstReg(questionVO);
 					}else {
 						ResearchVO itemVO = new ResearchVO();

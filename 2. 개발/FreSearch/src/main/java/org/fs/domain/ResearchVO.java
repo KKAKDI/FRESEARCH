@@ -35,6 +35,5 @@ public class ResearchVO {
 	private Date item_regdate;	 // 등록일
 	
 	private String research;
-	//select Row
 	private int rowNum;
 }
