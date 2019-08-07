@@ -118,18 +118,46 @@ var researchService = (function(){
 	
 	function list(param, callback, error){
 		//var subj_code = param.subj_code;
+		var research = param.data;
 		var page = param.page || 1;
 		
-		$.getJSON("/research/pages/" + page + ".json",
+		$.getJSON("/research/pages/" + research + "/" + page + ".json",
 			function(data){
 				if(callback){
-					callback(data.replyCnt, data.list);
+					callback(data.researchCnt, data.list);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
 					error();
 				}
 			});
+		/*
+		var ajax_last_num = 0;
+		var current_ajax_num = ajax_last_num;
+
+		$.ajax({
+	         type : "POST",
+	         url : "/research/pages/" + research + "/" + page,
+	         data : JSON.stringify(param),
+	         dataType : "json",
+	         async: true,
+	         contentType : "application/json; charset=UTF-8",
+	         beforeSend:function(request){ 
+	        	 ajax_last_num = ajax_last_num + 1;
+	         },
+	         success : function(request) {
+	        	 if(current_ajax_num == ajax_last_num - 1){
+	        		 if (callback) {
+	        			 callback(request.researchCnt, request.list);
+	        		 }
+	        	 }
+	         },
+	         error : function(xhr, status, er) {
+	            if(error){
+	               error(er);
+	            }
+	         }
+	      });*/
 	}
 	
 	function displayTime(timeValue){
@@ -138,7 +166,7 @@ var researchService = (function(){
 		var dateObj = new Date(timeValue);
 		var str = "";
 		
-		if(gap < (1000 * 60 * 60 * 24) && gap >= 0){
+		if(gap < (1000 * 60 * 60 * 24)){
 			var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
 			var ss = dateObj.getSeconds();

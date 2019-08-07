@@ -28,9 +28,9 @@ public class ResearchServiceImpl implements ResearchService{
 	}*/
 	
 	@Override
-	public ResearchPageDTO list(Criteria cri) {
+	public ResearchPageDTO list(Criteria cri, String research) {
 		return new ResearchPageDTO(
-			mapper.list(cri));
+			mapper.getCountBySubjCode(research),
+			mapper.list(cri, research));
 	}
-	
 }

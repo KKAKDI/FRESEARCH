@@ -10,6 +10,8 @@ public interface ResearchMapper {
 	
 	//public List<ResearchVO> listStatus(ResearchVO vo);
 	public List<ResearchVO> list(
-			@Param("cri") Criteria cri);
-	
+			@Param("cri") Criteria cri,
+			@Param("research") String research);
+	public int getCountBySubjCode(
+			@Param("research") String research);
 }

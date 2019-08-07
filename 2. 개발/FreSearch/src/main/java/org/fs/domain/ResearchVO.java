@@ -35,4 +35,5 @@ public class ResearchVO {
 	private Date item_regdate;	 // 등록일
 	
 	private String research;
+	//private int researchCnt;
 }

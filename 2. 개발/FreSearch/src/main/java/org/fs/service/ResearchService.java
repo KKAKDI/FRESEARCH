@@ -6,5 +6,5 @@ import org.fs.domain.ResearchPageDTO;
 public interface ResearchService {
 	
 	//public List<ResearchVO> listStatus(ResearchVO vo);
-	public ResearchPageDTO list(Criteria cri);
+	public ResearchPageDTO list(Criteria cri, String research);
 }
