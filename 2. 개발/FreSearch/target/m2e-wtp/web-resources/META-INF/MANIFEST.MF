@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Jss
 Build-Jdk: 1.8.0_211
+=======
+Built-By: CUH
+Build-Jdk: 1.8.0_191
+>>>>>>> 6173e39611b8f045d8483bf6196c6e83a61f5047
 Created-By: Maven Integration for Eclipse
 
