@@ -8,19 +8,18 @@
 	<div class="page-content">
 		<div class="list-content">
 			<div class="detail-list">
-			<h2>설문 목록</h2>
+				<h2>설문 목록</h2>
 				<div class="tab-content">
-					<input type='button' class="research" name="research" id="ing" value="진행중설문">
-                    <input type='button' class="research" name="research" id="end" value="종료된설문">
-				</div>
-				<div id="test">
-				</div>
-				<div class="paging">
+					<div class="tab-button">
+						<input type='button' class="research" name="research" id="ing" value="진행중설문">
+	                	<input type='button' class="research" name="research" id="end" value="종료된설문">
+					</div>
+					<div class="content" id="test"></div>
+					<div class="paging"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
 <script type="text/javascript">
       $(document).ready(function(){
     	  $("#ing").css("color", "#222");

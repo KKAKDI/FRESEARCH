@@ -9,10 +9,10 @@ body {
 .page-content .list-content {
 	width: 850px;
 }
-.page-content .list-content .detail-list {
-	
+.page-content .list-content .detail-list .tab-content #test{
+	padding-top: 15px;
 }
-.page-content .list-content .detail-list #test ul {
+.page-content .list-content .detail-list .tab-content #test ul {
     float: left;
     margin-right: 15px;
     margin-bottom: 15px;
@@ -21,7 +21,7 @@ body {
     transition: border-color .2s;
     cursor: pointer;
 }
-.page-content .list-content .detail-list #test li {
+.page-content .list-content .detail-list .tab-content #test li {
     width: 390px;
     text-align: center;
     background: #fff;
@@ -29,15 +29,17 @@ body {
     display: flex;
     /*padding: 10px;*/
 }
-.page-content .list-content .detail-list span {
+.page-content .list-content .detail-list .tab-content span {
 	display: block;
     height: 50px;
     padding: 10px;
 }
-.page-content .list-content .detail-list #test ul:hover {
+.page-content .list-content .detail-list .tab-content #test ul:hover {
 	border: 1px solid #1428a0;
 }
-.page-content .list-content .detail-list li:nth-child(4) { color: red; }
+.page-content .list-content .detail-list .tab-content #test span:nth-child(1) { 
+	color: red;
+}
 .page-content .list-content .detail-list h2 {
     position: relative;
     font-size: 25px;
@@ -55,10 +57,10 @@ body {
     left: 0px;
 }
 .page-content .list-content .detail-list .tab-content {
-	position: relative;
+	/*position: relative;
     margin-bottom: 15px;
+    margin-left: 15px;*/
     margin-top: -38px;
-    margin-left: 15px;
 }
 .page-content .list-content .detail-list .tab-content input[type=button]{ 
 	display: inline-block;
@@ -86,11 +88,31 @@ body {
 .page-content .list-content .detail-list .tab-content a:visited {
 	background: #000;
 }*/
-.page-content .list-content .detail-list a {
+
+.page-content .list-content .detail-list .tab-content #test a {
 	width: 100%;
 }
 
-.page-content .list-content .detail-list .paging li {
+.page-content .list-content .detail-list .tab-content .paging{
+	padding-top: 26%;
+}
+.page-content .list-content .detail-list .tab-content .paging ul{
+	text-align: center;
+	/*margin-top: 30%;*/
+}
+.page-content .list-content .detail-list .tab-content .paging li{
+    display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 -1px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    line-height: 40px;
+    color: #888;
+    vertical-align: top;
+}
+/*
+.page-content .list-content .detail-list .paging a:hover {
     transition: background-color .2s;
     display: inline-block;
     min-width: 40px;
@@ -102,9 +124,13 @@ body {
     color: #888;
     vertical-align: top;
     text-align: center;
+}*/
+.page-content .list-content .detail-list .tab-content .tab-button {
+	margin-left: 15px;
 }
+.page-content .list-content .detail-list .tab-content .content {
 
-
+}
 
 
 
