@@ -66,6 +66,12 @@ public class testMapper {
 //				
 //	}
 
+	
+//	@Test
+//	public void testContent() {
+//		log.info("researchGetContent: "+mapper.researchGet("N2FVD0F6"));
+//	}
+
 //	@Test
 //	public void testlist() {
 //		mapper.getList().forEach(stats -> log.info(stats));

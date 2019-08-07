@@ -5,18 +5,38 @@
 <mapper namespace="org.fs.mapper.ResearchMapper">
 	
 	<select id="list" resultType="ResearchVO">
-
-		<![CDATA[
-	select subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
+	
+	select ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 	from
 		(
-		select /*+INDEX(subject idx_subject) */
-			rownum rn, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
-		from subject
-		where rownum <= #{cri.pageNum} * #{cri.amount}
-		) where rn > (#{cri.pageNum} -1) * #{cri.amount}
-	]]>
+		select rownum rn, ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
+		from v_research
+		<![CDATA[ where rownum <= #{cri.pageNum} * #{cri.amount} ]]>
+		<choose>
+			<when test="research == '진행중설문'">
+				<![CDATA[ and subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+			</when>
+			<when test="research == '종료된설문'">
+				<![CDATA[ and subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+			</when>
+		</choose>
+		) 
+	<![CDATA[ where rn > (#{cri.pageNum} -1) * #{cri.amount} ]]>
+	
 	</select>
+	
+	<select id="getCountBySubjCode" resultType="int">
+		select count(subj_code) from subject
+		<choose>
+			<when test="research == '진행중설문'">
+				<![CDATA[ where subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+			</when>
+			<when test="research == '종료된설문'">
+				<![CDATA[ where subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+			</when>
+		</choose>
+	</select>
+	
 	<sql id="ran_code">	
 			select dbms_random.string('X', 8) from dual
 	</sql>
@@ -29,7 +49,7 @@
 			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate
 			)
 		values(
-			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, SYSDATE, SYSDATE
+			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate}
 		)
 	</insert>
 	<insert id="qstReg">
@@ -48,8 +68,13 @@
 		insert into ITEM
 		values(
 			#{item_code},
-            (select qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})),
+            (select qst_code from(select rownum rn,qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})order by qst_regdate)where rn=#{rowNum}),
            	#{item_content},#{item_img},SYSDATE
 		)
 	</insert>	
+	<select id='researchGet' resultType="ResearchVO">
+		select c.subj_code,c.ctgr_code,c.subj_nm,c.subj_startdate,c.subj_enddate,a.qst_code,a.qst_content,a.qst_type,a.qst_img,a.qst_url,b.item_code,b.item_content,b.item_img 
+		from question a,item b,subject c 
+		where c.subj_code=a.subj_code and a.qst_code = b.qst_code and a.subj_code=#{subj_code}
+	</select>
 </mapper>
