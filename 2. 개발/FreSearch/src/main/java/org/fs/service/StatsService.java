@@ -20,5 +20,4 @@ public interface StatsService {
 	public List<StatsVO> getTable(StatsVO vo);
 	public List<StatsVO> getTableTest(StatsVO vo, Criteria cri);
 	public StatsPagingSearchDTO getTableAll(StatsVO vo, Criteria cri);
-	
 }

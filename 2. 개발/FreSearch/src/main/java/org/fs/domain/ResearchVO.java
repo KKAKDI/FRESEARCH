@@ -36,4 +36,5 @@ public class ResearchVO {
 	
 	private String research;
 	//private int researchCnt;
+	private int rowNum;
 }

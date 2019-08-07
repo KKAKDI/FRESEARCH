@@ -19,7 +19,6 @@ a.no-uline {
 	
 }
 </style>
-sjdklfjaskldfjlk
 
 <!-- partial -->
 <div class="main-panel">
@@ -107,6 +106,9 @@ sjdklfjaskldfjlk
 				</div>
 			</div>
 		</div>
+		</div>
+		</div>
+		<%@include file="../includes/footer.jsp"%>
 
 
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
@@ -673,8 +675,4 @@ $("#addReplyBtn").on("click", function(e){
 
 
 
-
-
-		<!-- content-wrapper ends -->
-		<!-- partial:../../partials/_footer.html -->
-		<%@include file="../includes/footer.jsp"%>
+		

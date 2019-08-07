@@ -4,8 +4,6 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.fs.mapper.ResearchMapper">
 	
-	
-	
 	<select id="list" resultType="ResearchVO">
 		<!--  
 		select ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
@@ -26,7 +24,7 @@
         ]]>
 		order by subj_enddate desc
 		-->
-	
+		<![CDATA[
 	select ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 	from
 		(
@@ -57,5 +55,39 @@
 			</when>
 		</choose>
 	</select>
-		
+	<sql id="ran_code">	
+			select dbms_random.string('X', 8) from dual
+	</sql>
+	
+	<insert id="subjReg">
+		<selectKey keyProperty="subj_code" order="BEFORE" resultType="String">
+			<include refid="ran_code"></include>
+		</selectKey>
+		insert into SUBJECT(
+			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate
+			)
+		values(
+			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate}
+		)
+	</insert>
+	<insert id="qstReg">
+		<selectKey keyProperty="qst_code" order="BEFORE" resultType="String">
+			<include refid="ran_code"></include>
+		</selectKey>		
+		insert into QUESTION
+		values(
+			#{qst_code},(select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm}),#{qst_content},#{qst_type},#{qst_img},#{qst_url},SYSDATE
+		)	
+	</insert>
+	<insert id="itemReg">
+		<selectKey keyProperty="item_code" order="BEFORE" resultType="String">
+			<include refid="ran_code"></include>
+		</selectKey>
+		insert into ITEM
+		values(
+			#{item_code},
+            (select qst_code from(select rownum rn,qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})order by qst_regdate)where rn=#{rowNum}),
+           	#{item_content},#{item_img},SYSDATE
+		)
+	</insert>	
 </mapper>

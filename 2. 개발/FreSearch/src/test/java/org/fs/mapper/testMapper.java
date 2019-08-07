@@ -1,10 +1,12 @@
 package org.fs.mapper;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.fs.domain.Criteria;
+import org.fs.domain.ResearchVO;
 import org.fs.domain.StatsVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +25,46 @@ public class testMapper {
 	
 	
 	@Setter(onMethod_= @Autowired)
-	private StatsMapper mapper;
+//	private StatsMapper mapper;
+	private ResearchMapper mapper;
 	
-	
+	@Test
+	public void testSubReg() {
+		ResearchVO vo = new ResearchVO();
+		vo.setCtgr_code("A0000001");
+		vo.setMb_email("test@test.com");
+		vo.setMb_nick("admin");
+		vo.setSubj_nm("[테스트]설문지제목");
+
+		ResearchVO qstVO = new ResearchVO();
+		qstVO.setMb_email("test@test.com");
+		qstVO.setSubj_nm("[테스트]설문지제목");
+		qstVO.setQst_content("[테스트]질문");
+		qstVO.setQst_type("객관식");
+		qstVO.setQst_img("");
+		qstVO.setQst_url("");
+		
+		ResearchVO itemVO = new ResearchVO();
+		itemVO.setMb_email("test@test.com");
+		itemVO.setSubj_nm("[테스트]설문지제목");
+		itemVO.setItem_content("[테스트]아이템1");
+		itemVO.setItem_img("");
+		
+		ResearchVO itemVO2 = new ResearchVO();
+		itemVO2.setMb_email("test@test.com");
+		itemVO2.setSubj_nm("[테스트]설문지제목");
+		itemVO2.setItem_content("[테스트]아이템2");
+		itemVO2.setItem_img("");
+		
+		if(mapper.subjReg(vo)==1) {
+			if(mapper.qstReg(qstVO)==1) {
+					mapper.itemReg(itemVO);
+					mapper.itemReg(itemVO2);
+				}			
+			}
+				
+	}
+
 //	@Test
 //	public void testlist() {
 //		mapper.getList().forEach(stats -> log.info(stats));
@@ -45,12 +84,12 @@ public class testMapper {
 //	@Test
 //	public void getAddr() {
 //		
-//		log.info(mapper.getAddr("서울"));
+//		log.info(mapper.getAddr("�꽌�슱"));
 //		
 //	}
 //	@Test
 //	public void getCategory() {
-//		mapper.getCategory("인천").forEach(stats->log.info(stats));
+//		mapper.getCategory("�씤泥�").forEach(stats->log.info(stats));
 //	}
 //	@Test
 //	public void getCategoryAge() {
@@ -58,18 +97,18 @@ public class testMapper {
 ////	}
 //	@Test
 //	public void getCategorySex() {
-//		mapper.getCategorySex("여").forEach(stats->log.info(stats));
+//		mapper.getCategorySex("�뿬").forEach(stats->log.info(stats));
 //	}
 //	@Test
 //	public void getCategoryMarriage() {
-//		mapper.getCategoryMarriage("기혼").forEach(stats->log.info(stats));
+//		mapper.getCategoryMarriage("湲고샎").forEach(stats->log.info(stats));
 //	}
 //	@Test
 //	public void getTable() {
 //		StatsVO vo = new StatsVO();
-//		vo.setCtgr_nm("교육");
-//		vo.setMb_sex("남");
-//		vo.setMb_addr("서울");
+//		vo.setCtgr_nm("援먯쑁");
+//		vo.setMb_sex("�궓");
+//		vo.setMb_addr("�꽌�슱");
 //		vo.setStartAge(30);
 //		vo.setEndAge(39);
 //		//mapper.getTable(table).forEach(stats->log.info(stats));
@@ -90,16 +129,16 @@ public class testMapper {
 //		List<StatsVO> list = mapper.getTableTest(vo, cri);
 //		list.forEach(stats -> log.info(stats.getSubj_code()));
 //	}
-	@Test
-	public void getTableCount() {
-		StatsVO vo = new StatsVO();
-		vo.setCtgr_nm("");
-		vo.setMb_sex("");
-		vo.setMb_addr("");
-		vo.setStats("전체");
-		vo.setStartAge(0);
-		vo.setEndAge(99);
-
-		log.info(mapper.getTableCount(vo));
-	}
+//	@Test
+//	public void getTableCount() {
+//		StatsVO vo = new StatsVO();
+//		vo.setCtgr_nm("");
+//		vo.setMb_sex("");
+//		vo.setMb_addr("");
+//		vo.setStats("전체");
+//		vo.setStartAge(0);
+//		vo.setEndAge(99);
+//
+//		log.info(mapper.getTableCount(vo));
+//	}
 }

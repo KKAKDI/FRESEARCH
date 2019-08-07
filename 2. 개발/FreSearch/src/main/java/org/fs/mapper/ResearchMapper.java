@@ -14,4 +14,8 @@ public interface ResearchMapper {
 			@Param("research") String research);
 	public int getCountBySubjCode(
 			@Param("research") String research);
+	public int subjReg(ResearchVO vo);
+	public int qstReg(ResearchVO vo);
+	public int itemReg(ResearchVO vo);
+	public List<ResearchVO> list(	@Param("cri") Criteria cri);
 }
