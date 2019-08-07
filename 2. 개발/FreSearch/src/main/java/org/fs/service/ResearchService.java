@@ -8,7 +8,6 @@ import org.fs.domain.ResearchVO;
 
 public interface ResearchService {
 	
-	//public List<ResearchVO> listStatus(ResearchVO vo);
 	public ResearchPageDTO list(Criteria cri, String research);
 	public void researchReg(String values);
 }
