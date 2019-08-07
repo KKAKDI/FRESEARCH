@@ -99,4 +99,11 @@ public class ResearchServiceImpl implements ResearchService{
 			}			
 		}		
 	}
+
+
+	@Override
+	public List<ResearchVO> researchContent(String subj_code) {
+		List<ResearchVO> content = mapper.researchGet(subj_code);
+		return content;
+	}
 }

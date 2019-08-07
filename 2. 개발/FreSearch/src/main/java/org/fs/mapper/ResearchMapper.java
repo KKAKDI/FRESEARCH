@@ -12,4 +12,5 @@ public interface ResearchMapper {
 	public int qstReg(ResearchVO vo);
 	public int itemReg(ResearchVO vo);
 	public List<ResearchVO> list(	@Param("cri") Criteria cri);
+	public List<ResearchVO> researchGet(String subj_code);
 }

@@ -28,41 +28,46 @@ public class testMapper {
 //	private StatsMapper mapper;
 	private ResearchMapper mapper;
 	
+//	@Test
+//	public void testSubReg() {
+//		ResearchVO vo = new ResearchVO();
+//		vo.setCtgr_code("A0000001");
+//		vo.setMb_email("test@test.com");
+//		vo.setMb_nick("admin");
+//		vo.setSubj_nm("[테스트]설문지제목");
+//
+//		ResearchVO qstVO = new ResearchVO();
+//		qstVO.setMb_email("test@test.com");
+//		qstVO.setSubj_nm("[테스트]설문지제목");
+//		qstVO.setQst_content("[테스트]질문");
+//		qstVO.setQst_type("객관식");
+//		qstVO.setQst_img("");
+//		qstVO.setQst_url("");
+//		
+//		ResearchVO itemVO = new ResearchVO();
+//		itemVO.setMb_email("test@test.com");
+//		itemVO.setSubj_nm("[테스트]설문지제목");
+//		itemVO.setItem_content("[테스트]아이템1");
+//		itemVO.setItem_img("");
+//		
+//		ResearchVO itemVO2 = new ResearchVO();
+//		itemVO2.setMb_email("test@test.com");
+//		itemVO2.setSubj_nm("[테스트]설문지제목");
+//		itemVO2.setItem_content("[테스트]아이템2");
+//		itemVO2.setItem_img("");
+//		
+//		if(mapper.subjReg(vo)==1) {
+//			if(mapper.qstReg(qstVO)==1) {
+//					mapper.itemReg(itemVO);
+//					mapper.itemReg(itemVO2);
+//				}			
+//			}
+//				
+//	}
+	
 	@Test
-	public void testSubReg() {
-		ResearchVO vo = new ResearchVO();
-		vo.setCtgr_code("A0000001");
-		vo.setMb_email("test@test.com");
-		vo.setMb_nick("admin");
-		vo.setSubj_nm("[테스트]설문지제목");
-
-		ResearchVO qstVO = new ResearchVO();
-		qstVO.setMb_email("test@test.com");
-		qstVO.setSubj_nm("[테스트]설문지제목");
-		qstVO.setQst_content("[테스트]질문");
-		qstVO.setQst_type("객관식");
-		qstVO.setQst_img("");
-		qstVO.setQst_url("");
-		
-		ResearchVO itemVO = new ResearchVO();
-		itemVO.setMb_email("test@test.com");
-		itemVO.setSubj_nm("[테스트]설문지제목");
-		itemVO.setItem_content("[테스트]아이템1");
-		itemVO.setItem_img("");
-		
-		ResearchVO itemVO2 = new ResearchVO();
-		itemVO2.setMb_email("test@test.com");
-		itemVO2.setSubj_nm("[테스트]설문지제목");
-		itemVO2.setItem_content("[테스트]아이템2");
-		itemVO2.setItem_img("");
-		
-		if(mapper.subjReg(vo)==1) {
-			if(mapper.qstReg(qstVO)==1) {
-					mapper.itemReg(itemVO);
-					mapper.itemReg(itemVO2);
-				}			
-			}
-				
+	public void testContent() {
+		log.info("researchGetContent: "+mapper.researchGet("N2FVD0F6"));
 	}
 
 //	@Test

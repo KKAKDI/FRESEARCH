@@ -84,4 +84,9 @@ public class ResearchController {
 		log.info(values);
 		service.researchReg(values);		
 	}
+	@GetMapping("research_content")
+	public void content(@RequestParam("subj_code") String subj_code,Model model) {
+		List<ResearchVO> content = service.researchContent(subj_code);
+		model.addAttribute("content",content);
+	}
 }
