@@ -3,6 +3,7 @@ package org.fs.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.fs.domain.Criteria;
 import org.fs.domain.StatsPagingSearchDTO;
 import org.fs.domain.StatsVO;
@@ -82,6 +83,14 @@ public class StatsServiceImpl implements StatsService{
 	public StatsPagingSearchDTO getTableAll(StatsVO vo, Criteria cri){
 		return new StatsPagingSearchDTO(
 				mapper.getTableTest(vo, cri),
+				mapper.getTableCount(vo)
+				);
+		
+	}
+	@Override
+	public StatsPagingSearchDTO getTableSearch(StatsVO vo, Criteria cri){
+		return new StatsPagingSearchDTO(
+				mapper.getTableSearch(vo, cri),
 				mapper.getTableCount(vo)
 				);
 		

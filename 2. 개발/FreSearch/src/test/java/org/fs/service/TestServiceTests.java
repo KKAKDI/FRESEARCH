@@ -1,5 +1,6 @@
 package org.fs.service;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
@@ -138,20 +139,30 @@ public class TestServiceTests {
 //		log.info(service.getTableTest(vo, cri));
 //		
 //	}
-//	
+////	
+//	@Test
+//	public void getTableAllTest() {
+//		StatsVO vo = new StatsVO();
+//		Criteria cri = new Criteria();
+//		vo.setCtgr_nm("");
+//		vo.setMb_addr("");
+//		vo.setMb_sex("");
+//		vo.setStartAge(0);
+//		vo.setEndAge(99);
+//		vo.setStats("전체");
+//		cri.setPageNum(2);
+//		cri.setAmount(2);
+//		log.info(service.getTableAll(vo, cri));
+//	}
 	@Test
-	public void getTableAllTest() {
+	public void getTableResearch() {
 		StatsVO vo = new StatsVO();
 		Criteria cri = new Criteria();
-		vo.setCtgr_nm("");
-		vo.setMb_addr("");
-		vo.setMb_sex("");
-		vo.setStartAge(0);
-		vo.setEndAge(99);
-		vo.setStats("전체");
-		cri.setPageNum(2);
-		cri.setAmount(2);
-		log.info(service.getTableAll(vo, cri));
+		vo.setMb_nick("최운학");
+		vo.setSubj_nm("");
+		cri.setAmount(3);
+		cri.setPageNum(1);
+		log.info(service.getTableSearch(vo,cri));
 	}
 			
 	

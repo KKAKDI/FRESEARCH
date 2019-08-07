@@ -281,10 +281,20 @@ FROM   (SELECT rownum rn,
                subj_startdate, 
                subj_enddate 
         FROM   stats_table 
-        WHERE  ctgr_nm LIKE '%'||#{ctgr_nm}||'%'
-               AND mb_sex LIKE '%'|| #{mb_sex}||'%' 
-               AND Substr(mb_addr, 1, 5) LIKE '%'||#{mb_addr}||'%'  
-               AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
+        
+        <choose>
+        	<when test="(subj_nm =='' and mb_nick =='')or(subj_nm == null and mb_nick == null) ">
+       			WHERE  ctgr_nm LIKE '%'||#{ctgr_nm}||'%'
+               		AND mb_sex LIKE '%'|| #{mb_sex}||'%' 
+               		AND Substr(mb_addr, 1, 5) LIKE '%'||#{mb_addr}||'%'  
+               		AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge} 	
+        	</when>
+        	<otherwise>
+        		WHERE  MB_NICK LIKE '%'||#{mb_nick}||'%'
+              		AND SUBJ_NM LIKE '%'||#{subj_nm}||'%')
+        	</otherwise>
+        </choose>
+       
               <choose>
               
       				<when test="stats == '전체'.toString()">
@@ -309,7 +319,7 @@ FROM   (SELECT rownum rn,
 
 
 
-
+<!--  그냥 위에 셀렉트 박스 5개 눌러서 나오는 내용 -->
 <select id="getTableTest" resultType="org.fs.domain.StatsVO">
 SELECT answer_number, 
        subj_regdate, 
@@ -341,6 +351,8 @@ FROM   (SELECT rownum rn,
                AND mb_sex LIKE '%'|| #{vo.mb_sex}||'%' 
                AND Substr(mb_addr, 1, 5) LIKE '%'||#{vo.mb_addr}||'%'  
                AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{vo.startAge} AND #{vo.endAge}
+               <!-- AND MB_NICK = {vo.mb_nick}
+               AND SUBJ_NM LIKE '%'||{vo.subj_nm}||'%' -->
               <choose>
               
       				<when test="vo.stats == '전체'.toString()">
@@ -364,6 +376,44 @@ FROM   (SELECT rownum rn,
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
 </select>
+
+
+<!--  검색 내용에 맞게 데이터 내용 나오는 문 -->
+<select id="getTableSearch" resultType="org.fs.domain.StatsVO">
+SELECT answer_number, 
+       subj_regdate, 
+       subj_code, 
+       ctgr_nm, 
+       mb_nick, 
+       mb_sex, 
+       mb_birthdate, 
+       mb_addr, 
+       qst_img, 
+       subj_nm, 
+       subj_startdate, 
+       subj_enddate 
+FROM   (SELECT rownum rn,
+	 		   answer_number, 
+               subj_regdate, 
+               subj_code, 
+               ctgr_nm, 
+               mb_nick, 
+               mb_sex, 
+               mb_birthdate, 
+               mb_addr, 
+               qst_img, 
+               subj_nm, 
+               subj_startdate, 
+               subj_enddate 
+        FROM   stats_table 
+        WHERE  MB_NICK LIKE '%'||#{vo.mb_nick}||'%'
+               AND SUBJ_NM LIKE '%'||#{vo.subj_nm}||'%'
+	   		   <![CDATA[ 	
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
+	   		  ]]>
+</select>
+
 
 
 

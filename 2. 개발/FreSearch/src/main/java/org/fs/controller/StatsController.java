@@ -269,15 +269,17 @@ public class StatsController {
 		return new ResponseEntity<>(service.getCategoryMarriage(marriage), HttpStatus.OK);
 	}
 
-	@GetMapping("../index")
+	@GetMapping("/modal_test")
 	public void Sex() {
 		log.info("Sex: ");
 	}
-
-	@GetMapping("../index_boot")
-	public void Marriage() {
-		log.info("Marriage: ");
+	
+	@GetMapping("/stats_get")
+	public void SexSex() {
+		log.info("Sex: ");
 	}
+
+
 
 //	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PATCH},
 //			value = "/table",
@@ -325,6 +327,13 @@ public class StatsController {
 //		log.info("조성식1 : "+vo.getStats());
 //		log.info("조성식2 : "+cri.getPageNum());
 //		log.info("조성식2 : "+cri.getAmount());
-		return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);
+		
+		if ((vo.getMb_nick() == "" && vo.getSubj_nm() == "")|| (vo.getMb_nick() == null && vo.getSubj_nm() == null)) {
+			log.info("여기는 들어오면 안돼");
+			return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);
+		}else {
+			log.info("여기 들어왔다!!!!");
+			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
+		}
 	}
 }

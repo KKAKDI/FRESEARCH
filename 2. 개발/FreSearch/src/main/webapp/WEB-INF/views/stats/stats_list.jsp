@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <%@include file="../includes/header.jsp"%>
+<link rel="stylesheet" href="/resources/stats/css/chart.css">
 <style type='text/css'>
 a.no-uline {
 	text-decoration: none
