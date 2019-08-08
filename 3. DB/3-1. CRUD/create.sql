@@ -209,7 +209,14 @@ WHERE  b.mb_email = a.mb_email
 group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code, a.mb_birthdate, a.mb_addr, a.mb_sex, b.subj_code;
 
 
-
+--설문 목록 관련 VIEW
+create or replace view v_research
+AS
+select ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate 
+from category a, subject b
+where a.ctgr_code = b.ctgr_code
+group by rownum, ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
+order by subj_regdate desc;
 
 
 CREATE SEQUENCE NEWS_SEQ

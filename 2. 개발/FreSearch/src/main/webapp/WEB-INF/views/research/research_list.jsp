@@ -37,8 +37,8 @@
   					console.log("list : " + list);
   					console.log(list);
  
-	    		  if(page == -1){
-						pageNum = Math.ceil(researchCnt/6.0);
+	    		    if(page == -1){
+						pageNum = Math.ceil(researchCnt/5.0);
 						showList(pageNum);
 						return;
 					}
@@ -61,7 +61,9 @@
 	                	html += '<ul>';
 	         			html += '<li>';
 	         			html += '<a>';
-	         			html += '<span>' + list[i].ctgr_nm + '</span>';
+	         			if(list[i].ctgr_nm == "스포츠, 레저"){
+	         			html += '<span><img class="manImg" src="/resources/img/research.png"></img>' + list[i].ctgr_nm + '</span>';
+	         			}
 	         			html += '<span>' + list[i].subj_nm + '</span>';
 	         			html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
@@ -70,19 +72,19 @@
 	         			html += '</li>';
 	         			html += '</ul>';
 	         		}
-	              $('#test').html(html);
+	                $('#test').html(html);
 	              
-	              showResearchPage(researchCnt);
-	           });
-    		  }
+	                showResearchPage(researchCnt);
+	          });
+    	}
     	  
     	var pageNum = 1;
   		var researchPageFooter = $(".paging");
   		
   		function showResearchPage(researchCnt){
-  			var endNum = Math.ceil(pageNum / 6.0) * 6;
+  			var endNum = Math.ceil(pageNum / 5.0) * 5;
   			console.log("endNum : " + endNum);
-  			var startNum = endNum - 5;
+  			var startNum = endNum - 4;
   			console.log("startNum : " + startNum);
   			var prev = startNum != 1;
   			var next = false;
@@ -98,7 +100,7 @@
   			var str = "<ul class='pagination pull-right'>";
   			
   			if(prev){
-  				str+= "<li class='page-item'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
+  				str+= "<li class='page-item1 aaa'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
   			}
   			
   			for(var i = startNum; i<=endNum; i++){
@@ -107,30 +109,48 @@
   			}
   			
   			if(next){
-  				str+= "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
+  				str+= "<li class='page-item1 aaa'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
   			}
   			
-  			str += "</ul></div>";
+  			str += "</ul>";
   			console.log(str);
   			researchPageFooter.html(str);
   		}
   		
-  		researchPageFooter.on("click", "li a", function(e){
+  		/*researchPageFooter.on("click", "li a", function(e){*/
+  		researchPageFooter.off('click','li a').on('click','li a',function(e){ 
   			e.preventDefault();
   			console.log("page click");
   			
   			var targetPageNum = $(this).attr("href");
+  			var aa = $(this).attr("class");
+  			console.log("aa : " + aa);
+  			var a = researchPageFooter.children("ul").children("li").children("a").attr("class");
+  			console.log("children : " + a);
   			
+  			/*
+  			researchPageFooter.css("color", "#fff");
+  	  		researchPageFooter.css("background", "#222");
+  	  		researchPageFooter.css("font-style", "normal");*/
+
   			console.log("targetPageNum: " + targetPageNum);
   			
   			pageNum = targetPageNum;
   			
   			showList(pageNum);
   		});
+  		/*
+  		researchPageFooter.off('click','a').on('click','a',function(e){ 
+  			var str = "<ul class='pagination pull-right'>";
+  		
+  			researchPageFooter.css("color", "#fff");
+  			researchPageFooter.css("background", "#222");
+  			researchPageFooter.css("font-style", "normal");
+  		});*/
   	});
       
       //$(".research").click(function(e) {
-    	 $(".tab-content").off('click','.research').on('click','.research',function(e){  
+    $(".tab-content").off('click','.research').on('click','.research',function(e){  
     	  var research = $(this).val();
     	  showList(1);
     	  
@@ -143,7 +163,7 @@
   					console.log(list);
   					
 	    		  if(page == -1){
-						pageNum = Math.ceil(researchCnt/6.0);
+						pageNum = Math.ceil(researchCnt/5.0);
 						showList(pageNum);
 						return;
 					}
@@ -185,9 +205,9 @@
   		var researchPageFooter = $(".paging");
   		
   		function showResearchPage(researchCnt){
-  			var endNum = Math.ceil(pageNum / 6.0) * 6;
+  			var endNum = Math.ceil(pageNum / 5.0) * 5;
   			console.log("endNum : " + endNum);
-  			var startNum = endNum - 5;
+  			var startNum = endNum - 4;
   			console.log("startNum : " + startNum);
   			var prev = startNum != 1;
   			var next = false;
@@ -203,7 +223,7 @@
   			var str = "<ul class='pagination pull-right'>";
   			
   			if(prev){
-  				str+= "<li class='page-item'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
+  				str+= "<li class='page-item-move'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
   			}
   			
   			for(var i = startNum; i<=endNum; i++){
@@ -212,7 +232,7 @@
   			}
   			
   			if(next){
-  				str+= "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
+  				str+= "<li class='page-item-move'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
   			}
   			
   			str += "</ul></div>";
@@ -234,19 +254,28 @@
   			showList(pageNum);
   		});
   	});
-      
-      $("#ing").click(function() {
-    	  $("#ing").css("color", "#222");
-    	  $("#ing").css("background", "#fff");
-    	  $("#end").css("color", "#888");
-    	  $("#end").css("background", "#f9f9f9");
-      });
-      
-      $("#end").click(function() {
-    	  $("#end").css("color", "#222");
-    	  $("#end").css("background", "#fff");
-    	  $("#ing").css("color", "#888");
-    	  $("#ing").css("background", "#f9f9f9");
-      });
+  		
+  	$("#ing").click(function() {
+  		$("#ing").css("color", "#222");
+  		$("#ing").css("background", "#fff");
+  		$("#end").css("color", "#888");
+  		$("#end").css("background", "#f9f9f9");
+  	});
+
+  	$("#end").click(function() {
+  		$("#end").css("color", "#222");
+  		$("#end").css("background", "#fff");
+  		$("#ing").css("color", "#888");
+  		$("#ing").css("background", "#f9f9f9");
+  	});
+  	
+  	$(".paging").on('click','li a',function(e){ 
+  		
+  		$(".paging li a").css("color", "#fff");
+  		$(".paging li a").css("background", "#222");
+  		$(".paging li a").css("font-style", "normal");
+  		
+  	});
+  	
 </script>
 <%@include file="../includes/footer.jsp"%>

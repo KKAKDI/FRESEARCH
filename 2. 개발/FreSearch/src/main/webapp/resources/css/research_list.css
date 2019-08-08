@@ -92,10 +92,10 @@ body {
 .page-content .list-content .detail-list .tab-content #test a {
 	width: 100%;
 }
-
+/*
 .page-content .list-content .detail-list .tab-content .paging{
 	padding-top: 26%;
-}
+}*/
 .page-content .list-content .detail-list .tab-content .paging ul{
 	text-align: center;
 	/*margin-top: 30%;*/
@@ -105,12 +105,17 @@ body {
     min-width: 40px;
     height: 40px;
     margin: 0 -1px;
-    padding: 0 5px;
+    /*padding: 0 5px;*/
     box-sizing: border-box;
     line-height: 40px;
-    color: #888;
     vertical-align: top;
 }
+/*
+.page-content .list-content .detail-list .tab-content .paging li:hover{
+	background-color: #888;
+    font-style: normal;
+    cursor: pointer;
+}*/
 /*
 .page-content .list-content .detail-list .paging a:hover {
     transition: background-color .2s;
@@ -129,12 +134,41 @@ body {
 	margin-left: 15px;
 }
 .page-content .list-content .detail-list .tab-content .content {
-
+	display: inline-block;
+}
+.page-content .list-content .detail-list .tab-content .paging li a{
+	color: #888;
+	display: inline-block;
+    width: 100%;
+}
+.page-content .list-content .detail-list .tab-content .paging ul .page-item a:hover{
+	background-color: #888;
+    cursor: pointer;
+	color: #fff;
+}
+.page-content .list-content .detail-list .tab-content .paging ul .page-item-move a:hover{
+	background-color: #888;
+    cursor: pointer;
+	color: #888;
 }
 
-
-
-
+.page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link{
+	background-color: #222;
+    font-style: normal;
+    color: #fff;
+}
+/*
+.page-content .list-content .detail-list .tab-content .tab-button a:visited {
+	background-color: #222;
+    font-style: normal;
+    color: #fff;
+}*/
+/*
+.page-content .list-content .detail-list .tab-content .paging li a:link {
+	background-color: #222;
+    font-style: normal;
+    color: #fff;
+}*/
 
 
 
