@@ -6,6 +6,7 @@
 <html>
 
 <%@include file="../includes/header.jsp"%>
+<link rel="stylesheet" href="/resources/stats/css/chart.css">
 
 <div class="main-panel">
 	<div class="content-wrapper">

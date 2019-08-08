@@ -188,3 +188,4 @@ var researchService = (function(){
 		displayTime:displayTime
 	};
 })();
+

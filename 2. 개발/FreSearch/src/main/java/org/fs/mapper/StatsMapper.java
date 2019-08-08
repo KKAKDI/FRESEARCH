@@ -33,6 +33,8 @@ public interface StatsMapper {
 	public List<StatsVO> getTableTest(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
 	
 	public int getTableCount(StatsVO vo);
+	
+	public List<StatsVO> getTableSearch(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
 
 
 }

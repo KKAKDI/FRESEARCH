@@ -216,10 +216,9 @@ function updateDataMarriage() {
 	});
 	//timerID = setTimeout("updateDataAge()", 2000);
 }
+//첫 stats_table 페이지 and 셀렉트 박스 클릭후 페이지
 var tableService = (function() {
 	function table(data, callback, error) {
-		console.log("chartMy");
-		
 		
 		$.ajax({
 			type : "POST",
@@ -243,8 +242,36 @@ var tableService = (function() {
 
 			}
 		});
-	}
+	};
+// 검색 하고난 페이지
+		function tableSearch(data, callback, error) {
+			
+			$.ajax({
+				type : "POST",
+				url : '/stats/table/' + data.pageNum +'/'+ data.amount,
+				data : JSON.stringify(data),
+				dataType : "json",
+				//async: true,
+				contentType : "application/json; charset=UTF-8",
+				success : function(result, status, xhr) {
+					if (callback) {
+						//callback(data.ctgr_nm, data.mb_nick);
+						//callback(result); 리스트만 뽑아올때
+						callback(result.getTableTest, result.getTableCount);
+						
+					}
+				},
+				error : function(xhr, status, er) {
+					if(error){
+						error(er);
+					}
+
+				}
+			});
+		};
 	
+	
+// 시간 관련 ajax
 	function displayTime(timeValue) {
 
 		var today = new Date();
@@ -274,6 +301,7 @@ var tableService = (function() {
 	};
 	
 	return{
+		tableSearch : tableSearch,
 		displayTime : displayTime,
 		table : table
 		

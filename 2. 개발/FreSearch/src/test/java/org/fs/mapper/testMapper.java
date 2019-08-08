@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.fs.domain.Criteria;
 import org.fs.domain.ResearchVO;
 import org.fs.domain.StatsVO;
@@ -25,8 +26,8 @@ public class testMapper {
 	
 	
 	@Setter(onMethod_= @Autowired)
-//	private StatsMapper mapper;
-	private ResearchMapper mapper;
+	private StatsMapper mapper;
+//	private ResearchMapper mapper;
 	
 //	@Test
 //	public void testSubReg() {
@@ -64,11 +65,12 @@ public class testMapper {
 //			}
 //				
 //	}
+
 	
-	@Test
-	public void testContent() {
-		log.info("researchGetContent: "+mapper.researchGet("N2FVD0F6"));
-	}
+//	@Test
+//	public void testContent() {
+//		log.info("researchGetContent: "+mapper.researchGet("N2FVD0F6"));
+//	}
 
 //	@Test
 //	public void testlist() {
@@ -146,4 +148,14 @@ public class testMapper {
 //
 //		log.info(mapper.getTableCount(vo));
 //	}
+	@Test
+	public void getTableSearch() {
+		StatsVO vo = new StatsVO();
+		Criteria cri = new Criteria();
+		vo.setMb_nick("최운학");
+		vo.setSubj_nm("");
+		cri.setPageNum(1);
+		cri.setAmount(3);
+		log.info(mapper.getTableSearch(vo, cri));
+	}
 }

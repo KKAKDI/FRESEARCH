@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 
 <%@include file="../includes/header.jsp"%>
+<link rel="stylesheet" href="/resources/stats/css/chart.css">
 <!-- partial -->
 
 <div class="main-panel">
@@ -39,19 +40,18 @@
 				</ul>
 				<div class="sub-header-search">
 					<form action>
-						<label> <select name="target"
-							class="sub-header-search__select">
+						<label> 
+							<select name="target"	class="sub-header-search__select">
 								<option value="title">제목</option>
 								<option value="writer">작성자</option>
-								<option value="title+writer">제목 + 작성자</option>
-						</select>
-						</label> <input type="text" name="q" class="sub-header-search__input"
-							placeholder="검색">
-					</form>
-					<button class="sub-header-search__button">
-						<img src="https://talk.op.gg/images/icon-search@2x.png" width="24"
-							alt="검색">
+							</select>
+						</label> 
+						<input type="text" name="q" class="sub-header-search__input"placeholder="검색">
+						<button type="submit" class="sub-header-search__button">
+						<img src="https://talk.op.gg/images/icon-search@2x.png" width="24"	alt="검색">
 					</button>
+					</form>
+					
 				</div>
 			</div>
 			<div style="display: none; width: 728px; height: 48px; float: none;"></div>
@@ -524,17 +524,7 @@
 	</div>
 </div>
 
-
-
-<form id='actionForm' action="/board/board_list" method='get'>
-	<input type='hidden' id='pageNum' value='${pageMaker.cri.pageNum}'>
-	<input type='hidden' id='amount' value='${pageMaker.cri.amount}'>
-	<input type='hidden' id='keyword' value='${pageMaker.cri.keyword }'>
-	<input type='hidden' id='type' value='${pageMaker.cri.type }'> 
-	<input type='hidden' id='pageMakerPrev' value ='${pageMaker.prev} '>
-	<input type='hidden' id='pageMakerNext' value ='${pageMaker.next} '>
-</form>
-
+<%@include file="../includes/footer.jsp"%>
 
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
@@ -546,7 +536,7 @@
 							//console.log($('.sub-link').offset());
 		if ($(document).scrollTop() >= 69) {
 			$('.sub-link').attr('class','sub-link scroll-to-fixed-fixed');
-			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 109px; margin-left: 0px; width: 719px; left: 400.6px;');
+			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 109px; margin-left: 0px; width: 719px;');
 			$('.sub-link').next().first().attr('style','display: block; width: 728px; height: 48px; float: none;');
 		} else {$('.sub-link').attr('class', 'sub-link');
 			$('.sub-link').attr('style','z-index: auto; position: static; top: autol');
@@ -558,11 +548,170 @@
 	var next = $('#pageMakerNext').val();
 
 	
+	
+	
+	$('form').on('submit', function(e){
+		
+		event.preventDefault();
+		var input = $(this).find('input').val();
+		var option =$(this).find('option:selected').val();
+		
+		if (input ==""){
+			alert("검색어를 입력해주세요.");
+		}
+		console.log("input : "+input);
+		console.log("option : "+option);
+		
+		
+		
+		/////////////////////////////////////여기서부터는 검색 ajax!!//////////////////////////////////////////
+		var page = page || 1;
+			showList(page);
+			
+			function showList(page){
+				
+				if(option =="title"){
+					console.log("여기 안에 들어왔다 : " +page);
+					var data = {
+				    		mb_nick : "",
+				    		subj_nm : input,
+				    		pageNum : (page||1),
+					    	amount : 3	
+					}
+				}else{
+					var data = {
+				    		mb_nick : input,
+				    		subj_nm : "",
+				    		pageNum : (page||1),
+					    	amount : 3	
+					}
+				}
+				
+			    console.log(data);
+			    
+			    
+			    console.log(tableService);
+			    console.log("showList 안쪽에 page : "+page)
+			    
+			    
+			    tableService.table(data,function(list, cnt){
+			    	//<section class="article-list">
+
+			    	var html = '';
+			    	if (list.length == 0){
+			    		html += '<div class="article-list-item-no-data">';
+						html += '<div class="article-list-item__content">';
+						html += '<div class="article-list-item__title">';
+						html +=	'<a href=""> <span> 데이터가 없습니다.';
+						html +=	'</span>';
+						html +=	'</div>';
+						html +=	'</a>';
+
+						html += '</div>';
+						html += '</div>';
+						html +=	'</div>';
+						html += '</div>';
+			    	}else{
+			    		for(var i =0, len = list.length||0; i < len; i++){
+			    		
+				    		html += '<div class="article-list-item">';
+							html += '<div class="article-list-item__vote">';
+							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+							html +=	'<div>'+list[i].answer_number+'</div>';
+							html += '</div>';
+							html += '<div class="article-list-item__content">';
+							html += '<div class="article-list-item__title">';
+							html +=	'<a href=""> <span>'+list[i].subj_nm;
+							html +=	'</span> <em>[35]</em>';
+							html +=	'</div>';
+							html +=	'</a>';
+							html +=	'<div class="article-list-item-meta">';
+							html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+							html +=	'<div class="article--list-item-meta__item">';
+							html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
+							html +=	'<div class="article-list-item-meta__item">';
+							html +=	'<a href="">'+list[i].mb_nick+'</a>';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
+							html +=	'</div>';
+							html +=	'<div class="article-list-item__thumbnail">';
+							html +=	'<a href="">';
+							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
+							html += '?image=w_200" class="article-list-item__thumbnail" alt>';
+							html +=	'</a>';
+							html +=	'</div>';
+							html += '</div>';
+			    		}
+			    		if(page == 1 && page == Math.ceil(cnt/3.0)){
+			    			
+			    		}else{
+				    		html+= '<section class="article-list-paging">';
+					    	html+= '<div class="article-list-paging-content">';
+					    	html+= '<ul class="article-list-paging-list">';
+					    	if (page ==1){
+					    	}else{
+						    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+						    	html+= '<button class="article-list-paging__button button" id="prev" value="'+page+'">';
+						    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+						    	html+= '<span>이전</span>'
+						    	html+= '</button>'
+						    	html+= '</li>';
+					    	}
+					    	if(page == Math.ceil(cnt/3.0)){
+					    		
+					    	}else{
+						    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+						    	html+= '<button class="article-list-paging__button button" id="next" value="'+page+'">';
+						    	html+= '<span>다음</span>'
+						    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+						    	html+= '</button>'
+						    	html+= '</li>';
+					    	}
+					    	html+= '</ul>';
+					    	html+= '</div>';
+					    	html+= '</section>';
+			    		}
+			    	}
+					$('section.article-list').html(html);
+			    });
+			};
+			
+			 $('.article-list').off('click','#next').on('click','#next',function(e){
+				 e.preventDefault();
+				console.log("다음 눌렸다.");
+				//console.log($(this).children().val);
+				var page = $(this).val();
+				page ++; 
+				
+				console.log("page : "+$(this).val());
+				
+				console.log("page++ : "+page);
+				showList(page);
+
+			});
+			 
+			 $('.article-list').off('click','#prev').on('click','#prev',function(e){
+				 e.preventDefault();
+				console.log("다음 눌렸다.");
+				//console.log($(this).children().val);
+				var page = $(this).val();
+				page --; 
+				
+				console.log("page : "+$(this).val());
+				
+				console.log("page++ : "+page);
+				showList(page);
+			});
+		 });
+
+		////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	$(document).ready(function(){
 		
-
-
-		var page = 1;
+		var page = (page || 1);
 		showStartList(page);
 		function showStartList(page){
 		
@@ -570,11 +719,14 @@
 		    		ctgr_nm : "",
 		    		mb_addr : "",
 		    		mb_sex : "",
+		    		mb_nick : "",
+		    		subj_nm : "",
 		    		startAge : 0,
 		    		endAge : 99,
 		    		stats : "전체",
 		    		pageNum : page,
-			    	amount : 3	
+			    	amount : 3
+			    	
 		    		
 		    }
 			
@@ -702,8 +854,6 @@
 	 
 	$('.RadioButton').click(function(e) {
 		e.preventDefault();
-
-
 		
 			var st = $(this).children().children('input').val();
 			var str = $(this).attr('class');
@@ -739,7 +889,8 @@
 			
 			
 			
-			var page =1;
+			//var page =1;
+			var page = page || 1;
 			
 			showList(page);
 			
@@ -789,7 +940,7 @@
 			    		startAge : SA,
 			    		endAge : EA,
 			    		stats : checkValues[4],
-			    		pageNum : page,
+			    		pageNum : (page||1),
 			    		amount : 3				    		
 			    }
 			    
@@ -850,9 +1001,6 @@
 							html += '</div>';
 			    		}
 			    		if(page == 1 && page == Math.ceil(cnt/3.0)){
-			    			console.log("뭐지 여기 들어왔나본데?1");
-			    			console.log("DSFDSF : "+page)
-			    			console.log("이건 뭔데 : "+Math.ceil(cnt/3.0));
 			    			
 			    		}else{
 			    			console.log("뭐지 여기 들어왔나본데?2");
@@ -860,7 +1008,6 @@
 					    	html+= '<div class="article-list-paging-content">';
 					    	html+= '<ul class="article-list-paging-list">';
 					    	if (page ==1){
-					    		console.log("이게 왜 안뜨지?");
 					    	}else{
 					    		console.log("이건 나와야되는데 ");
 						    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
@@ -940,3 +1087,5 @@
 				        }
 				    });*/
 </script>
+
+>
