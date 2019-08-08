@@ -73,8 +73,8 @@
 		)
 	</insert>	
 	<select id='researchGet' resultType="ResearchVO">
-		select c.subj_code,c.ctgr_code,c.subj_nm,c.subj_startdate,c.subj_enddate,a.qst_code,a.qst_content,a.qst_type,a.qst_img,a.qst_url,b.item_code,b.item_content,b.item_img 
-		from question a,item b,subject c 
-		where c.subj_code=a.subj_code and a.qst_code = b.qst_code and a.subj_code=#{subj_code}
+		select c.subj_code,c.ctgr_code,d.ctgr_nm,c.subj_nm,c.subj_startdate,c.subj_enddate,a.qst_code,a.qst_content,a.qst_type,a.qst_img,a.qst_url,b.item_code,b.item_content,b.item_img 
+		from question a,item b,subject c,category d
+		where c.subj_code=a.subj_code and a.qst_code = b.qst_code and c.ctgr_code = d.ctgr_code and a.subj_code=#{subj_code}
 	</select>
 </mapper>

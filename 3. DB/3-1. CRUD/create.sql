@@ -114,7 +114,8 @@ CREATE TABLE NEWS (
 	NEWS_SUBJECT        VARCHAR2(240)    NULL,	     -- 제목
 	NEWS_CONTENT        VARCHAR2(3000)   NULL,           -- 내용
 	NEWS_VIEWS	    NUMBER	     DEFAULT 0,	     -- 조회수
-	NEWS_REGDATE	    DATE	     NULL	     -- 등록일
+	NEWS_REGDATE	    DATE	     NULL,	     -- 등록일
+    NEWS_IS_ATTACH  VARCHAR2(1) NOT NULL        -- 파일첨부 여부
 );
 ALTER TABLE NEWS ADD CONSTRAINT PK_NEWS PRIMARY KEY (NEWS_CODE);
 
@@ -209,7 +210,14 @@ WHERE  b.mb_email = a.mb_email
 group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code, a.mb_birthdate, a.mb_addr, a.mb_sex, b.subj_code;
 
 
-
+--설문 목록 관련 VIEW
+create or replace view v_research
+AS
+select ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate 
+from category a, subject b
+where a.ctgr_code = b.ctgr_code
+group by rownum, ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
+order by subj_regdate desc;
 
 
 CREATE SEQUENCE NEWS_SEQ

@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Jss
 Build-Jdk: 1.8.0_211
+=======
+Built-By: KWAK
+Build-Jdk: 1.8.0_202
+>>>>>>> afaea64fccfae91179ceb8aafd0293ba4770834d
 Created-By: Maven Integration for Eclipse
 

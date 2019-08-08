@@ -40,7 +40,7 @@ public class ResearchServiceImpl implements ResearchService{
 
 	@Override
 	public void researchReg(String values)  {
-		String email = "admin@fresearch.com"; //������ ��
+		String email = "admin@fresearch.com"; //占쏙옙占쏙옙占쏙옙 占쏙옙
 		String subName = null;
 		String[] block = values.split("/block");		
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy/MM/dd");
@@ -52,7 +52,7 @@ public class ResearchServiceImpl implements ResearchService{
 				ResearchVO headerVO = new ResearchVO();
 				for(int j=0;j<header.length;j++) {					
 					log.info("header"+j+": "+header[j]);			
-					//�����ڵ� �̸��� �г��� ������ ����� ������ ������	
+					//占쏙옙占쏙옙占쌘듸옙 占싱몌옙占쏙옙 占싻놂옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙	
 					try {
 						switch(j) {
 							case 0: headerVO.setSubj_nm(header[j]); subName=header[j]; break;
@@ -66,26 +66,26 @@ public class ResearchServiceImpl implements ResearchService{
 						log.info(e);
 					}					
 				}
-				//���� �׽�Ʈ��
+				//占쏙옙占쏙옙 占쌓쏙옙트占쏙옙
 				headerVO.setMb_email(email);
 				headerVO.setMb_nick("admin");
-				mapper.subjReg(headerVO); //DB����
+				mapper.subjReg(headerVO); //DB占쏙옙占쏙옙
 			}else {
 				String item[] = block[i].split("#t#");
 				String [][] items = new String[block.length][item.length];
 				for(int k=0;k<item.length;k++) {
 					items[i][k]=item[k];
 					log.info("item["+i+"]["+k+"]: "+items[i][k]);
-					//item[i][k] i 0 = ���� / i n �� ������
-					//�����ڵ� 1ȸ ���� ������ ���� �ڵ� ����
+					//item[i][k] i 0 = 占쏙옙占쏙옙 / i n 占쏙옙 占쏙옙占쏙옙占쏙옙
+					//占쏙옙占쏙옙占쌘듸옙 1회 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌘듸옙 占쏙옙占쏙옙
 					if(i>0&&k==0) {
 						ResearchVO questionVO = new ResearchVO();
 						questionVO.setMb_email(email);
 						questionVO.setSubj_nm(subName);
 						questionVO.setQst_content(items[i][k]);
-						questionVO.setQst_type("������"); //�����ʿ�
-						questionVO.setQst_img("");//�����ʿ�
-						questionVO.setQst_url("");//�����ʿ�
+						questionVO.setQst_type("占쏙옙占쏙옙占쏙옙"); //占쏙옙占쏙옙占십울옙
+						questionVO.setQst_img("");//占쏙옙占쏙옙占십울옙
+						questionVO.setQst_url("");//占쏙옙占쏙옙占십울옙
 						mapper.qstReg(questionVO);
 					}else {
 						ResearchVO itemVO = new ResearchVO();
