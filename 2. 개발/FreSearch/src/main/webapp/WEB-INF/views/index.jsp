@@ -268,7 +268,7 @@
 			</div>
 			<div class="hot_chart">
 				<div class="chart_icon">
-					<img src="/resources/img/icon02.png" alt="데이터베이스">
+					<img src="/resources/stats/images/stats_icon3.png" alt="데이터베이스">
 				</div>
 				<div class="chart_text">
 					<dl>

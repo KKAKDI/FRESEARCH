@@ -285,6 +285,7 @@
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">제주</label>
 										</div>
+										
 										<!-- <div id="rate_win_asc" class="RadioButton">
 											<span class="jcf-radio jcf-unchecked" > <input
 												type="radio" name="type" id="lose" value="lose"
@@ -576,14 +577,14 @@
 				    		mb_nick : "",
 				    		subj_nm : input,
 				    		pageNum : (page||1),
-					    	amount : 3	
+					    	amount : 10	
 					}
 				}else{
 					var data = {
 				    		mb_nick : input,
 				    		subj_nm : "",
 				    		pageNum : (page||1),
-					    	amount : 3	
+					    	amount : 10	
 					}
 				}
 				
@@ -725,7 +726,7 @@
 		    		endAge : 99,
 		    		stats : "전체",
 		    		pageNum : page,
-			    	amount : 3
+			    	amount : 10
 			    	
 		    		
 		    }
@@ -941,7 +942,7 @@
 			    		endAge : EA,
 			    		stats : checkValues[4],
 			    		pageNum : (page||1),
-			    		amount : 3				    		
+			    		amount : 10				    		
 			    }
 			    
 			    
