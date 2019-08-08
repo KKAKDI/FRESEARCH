@@ -40,7 +40,7 @@ hr {
 
 #content #form_area #remote {
 	background-color: #fff;
-	height: 194px;
+	height: 208px;
 	width: 50px;
 	display: inline-block;
 	position: absolute;
@@ -54,13 +54,13 @@ hr {
 
 #content #form_area #remote .remote_btn {
 	text-align: center;
-	padding: 10px 0 10px 0;
+	padding: 15px 0 0 0;
 }
 
 #content #form_area #remote .remote_btn button {
 	border-radius: 100%;
 	padding: 10px;
-	background-color: #cfcfcf;
+	background-color: #0C4DA2;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -118,10 +118,24 @@ hr {
 	display: inline-block;
 	width:25%;
 }
-
+#content .research_content #category_box input{
+	 -webkit-appearance: none;
+  	 border-radius: 50%;
+	 width: 16px;
+	 height: 16px;
+ 	 border: 2px solid #999;
+	 transition: 0.2s all linear;
+	 outline: none;
+	 margin-right: 5px;
+	 position: relative;
+	 top: 4px;
+}
+#content .research_content #category_box input:checked{
+	border: 8px solid #0C4DA2;
+}
 #content .research_content #category_box label {
 	display: inline-block;
-	width: 30%;
+	width: 29%;
 	height: 30px;
 }
 
@@ -133,7 +147,7 @@ hr {
 	border: 2px solid #0C4DA2;
 }
 
-#content .research_content>input[type=text] {
+#content .research_content>input[type=text] {	
 	width: 800px;
 	box-sizing: border-box;
 	padding: 15px;
@@ -150,23 +164,26 @@ hr {
 }
 
 #item_box {
-	padding: 10px 20px 0 20px;
-}
-
-#item_box .item_individual {
-	height: 40px;
+	padding: 10px 20px 10px 20px;
 }
 
 #item_box .item_individual>input[type=text] {
 	padding: 5px;
 	box-sizing: border-box;
-	width: 85%;
+	width: 84%;
+	height: 40px;
 	margin-left: 10px;
 	margin-right: 10px;
 	border: none;
 	border-bottom: 1px solid #fff;
 	font-size: 15px;
 	transition: all 0.5s;
+}
+#item_box .item_individual>input[type=radio]{
+	
+	 width: 20px;
+	 height: 38px;
+ 	
 }
 
 #item_box .item_individual>input[type=text]:focus {
@@ -198,7 +215,7 @@ hr {
 }
 
 #content .research_content button {
-	background-color: #cfcfcf;
+	background-color: #0C4DA2;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -209,7 +226,7 @@ hr {
 	display: none;
 	bottom: 20px;
 	margin-left: 80%;
-	padding: 0 20px 0 20px;
+	padding: 0 0 0 18px;
 }
 
 #content .research_content .active_btn {
@@ -265,4 +282,61 @@ hr {
 	color: #fff;
 	width: 50px;
 	height: 33px;
+}
+
+
+
+
+.research_content .content_box{
+	padding: 40px 20px 0 20px;
+}
+#research_subject{
+	font-size:35px;
+}
+#research_info{
+	padding: 0 0 20px 0;
+	margin-left:5px;
+}
+#research_ctegory{
+	display:inline-block;
+	width: 10%;
+}
+.research_content .content_box .research_turm{
+	display:inline-block;
+}
+.research_content .content_box .research_qst{
+	font-size:25px;
+	padding: 30px 0 20px 0;
+}
+.research_content .content_box .research_item{
+	padding:10px 5px 10px 5px;
+}
+.research_content .content_box .research_item input{
+  -webkit-appearance: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
+}
+.research_content .content_box .research_item input:checked{
+	border: 8px solid #0C4DA2;
+}
+
+.research_content .content_box .research_item label{
+	margin-left:5px;
+}
+.research_content .answer_box{
+	bottom: 20px;
+	margin: 0 auto;
+	width:240px;
+	padding:20px;
+}
+.research_content .answer_box > #research_answer{
+	width:200px;
+	background-color: #0C4DA2;
 }

@@ -5,6 +5,7 @@ encoding//src/main/java/org/fs/domain/NewsAttachVO.java=UTF-8
 encoding//src/main/java/org/fs/domain/NewsVO.java=UTF-8
 encoding//src/main/java/org/fs/domain/ResearchVO.java=UTF-8
 encoding//src/main/java/org/fs/mapper/BoardMapper.java=UTF-8
+encoding//src/main/java/org/fs/service/ResearchServiceImpl.java=UTF-8
 encoding//src/main/java/org/fs/service/StatsServiceImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/includes/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/research/research_register.jsp=UTF-8

@@ -164,7 +164,9 @@
 						<div class='remote_btn'>
 							<button id='img_btn'>IM</button>
 						</div>
-						<div class='remote_btn'>by.jsh</div>
+						<div class='remote_btn'>
+							<button id='img_btn'>...</button>
+						</div>
 					</div>
 					<div class='research_content clearflx'>
 						<input type='text' id='subj_nm' placeholder='제목없는 설문지' autocomplete='off'>
@@ -175,19 +177,19 @@
 						<div id='category'>
 							<div id='cate_title'>카테고리 선택</div>	
 							<div id='category_box'>												
-								<input type='radio' class='mb_att_category' name='category' value='A0000001'><label>교육,학문</label>
-								<input type='radio' class='mb_att_category' name='category' value='B0000001'><label>컴퓨터통신</label>
-								<input type='radio' class='mb_att_category' name='category' value='C0000001'><label>게임</label>
-								<input type='radio' class='mb_att_category' name='category' value='D0000001'><label>엔터테이먼트,예술</label>
-								<input type='radio' class='mb_att_category' name='category' value='E0000001'><label>생활</label>
-								<input type='radio' class='mb_att_category' name='category' value='F0000001'><label>건강</label>
-								<input type='radio' class='mb_att_category' name='category' value='G0000001'><label>사회,정치</label>														
-								<input type='radio' class='mb_att_category' name='category' value='H0000001'><label>경제</label>						
-								<input type='radio' class='mb_att_category' name='category' value='I0000001'><label>여행</label>
-								<input type='radio' class='mb_att_category' name='category' value='J0000001'><label>스포츠,레저</label>
-								<input type='radio' class='mb_att_category' name='category' value='K0000001'><label>쇼핑</label>
-								<input type='radio' class='mb_att_category' name='category' value='L0000001'><label>지역</label>
-								<input type='radio' class='mb_att_category' name='category' value='M0000001'><label>결혼</label>
+								<input type='radio' class='mb_att_category' name='category' value='A0000001' id='A'><label for='A'>교육,학문</label>
+								<input type='radio' class='mb_att_category' name='category' value='B0000001' id='B'><label for='B'>컴퓨터통신</label>
+								<input type='radio' class='mb_att_category' name='category' value='C0000001' id='C'><label for='C'>게임</label>
+								<input type='radio' class='mb_att_category' name='category' value='D0000001' id='D'><label for='D'>엔터테이먼트,예술</label>
+								<input type='radio' class='mb_att_category' name='category' value='E0000001' id='E'><label for='E'>생활</label>
+								<input type='radio' class='mb_att_category' name='category' value='F0000001' id='F'><label for='F'>건강</label>
+								<input type='radio' class='mb_att_category' name='category' value='G0000001' id='G'><label for='G'>사회,정치</label>														
+								<input type='radio' class='mb_att_category' name='category' value='H0000001' id='H'><label for='H'>경제</label>						
+								<input type='radio' class='mb_att_category' name='category' value='I0000001' id='I'><label for='I'>여행</label>
+								<input type='radio' class='mb_att_category' name='category' value='J0000001' id='J'><label for='J'>스포츠,레저</label>
+								<input type='radio' class='mb_att_category' name='category' value='K0000001' id='K'><label for='K'>쇼핑</label>
+								<input type='radio' class='mb_att_category' name='category' value='L0000001' id='L'><label for='L'>지역</label>
+								<input type='radio' class='mb_att_category' name='category' value='M0000001' id='M'><label for='M'>결혼</label>
 							</div>	
 						</div>												
 					</div>

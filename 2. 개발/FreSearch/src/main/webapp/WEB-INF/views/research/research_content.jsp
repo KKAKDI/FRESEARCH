@@ -24,7 +24,7 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<a id='prev' href=''>목록으로 돌아가기</a> <input type='text' id='top_title' autocomplete='off'>
+					<a id='prev' href='/research/research_list'>목록으로 돌아가기</a> <input type='text' id='top_title' autocomplete='off'>
 				</div>
 			</div>
 			<div class='logo'>
@@ -35,37 +35,47 @@
 			<div id='form_area' class='clearflx'>
 				<form name='research_form' id='research_form' action='' method='post'>
 				<input type='hidden' name='research_values' id='research_values' value=''>
-					<div class='research_content clearflx'>
-						<div>${content[0].subj_nm}</div>
-						<div>${content[0].subj_code}</div>
-						<div>${content[0].ctgr_code}</div>
-						<div><fmt:formatDate pattern="yy-MM-dd" value="${content[0].subj_startdate}" /></div>
-						<div><fmt:formatDate pattern="yy-MM-dd" value="${content[0].subj_enddate}" /></div>
-					<c:set var="qst_code" value="code"/>
-					<c:forEach items="${content}" var="research">	
-						<c:if test="${research.qst_code ne qst_code}">	
-							<div>${research.qst_code}</div>
-							<div>${research.qst_content}</div>	
-							<div>${research.qst_type}</div>
-							<div>${research.qst_img}</div>
-							<div>${research.qst_url}</div>
-							<c:set var="qst_code" value="${research.qst_code}"/>	
-						</c:if>			
-							<div>${research.item_code}</div>
-							<div>${research.item_content}</div>
-							<div>${research.item_img}</div>		
-					</c:forEach>
-						<div id='research_term'>
-							<div id='term_title'>조사 기간</div>
-							<input type='text' id='date_timepicker_start' name='start' autocomplete='off'> ~ <input type='text' id='date_timepicker_end' name='end' autocomplete='off'>
-							카테고리
-						</div>													
-					</div>
-					<div class='research_content clearflx'>
-						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off' value=''>
-						<ul id='item_box' class='clearflx'>
-							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off' value=''></li>						
-						</ul>
+					<div class='research_content active clearflx'>
+						<div class='content_box clearflx'>
+							<div id='research_subject'>${content[0].subj_nm}</div>
+							<input type='hidden' name='research_code' id='research_code' value='${content[0].subj_code}'>
+							<div id='research_info'>
+								<div id='research_ctegory'>${content[0].ctgr_nm}</div>
+								<div class='research_turm'>
+								<fmt:formatDate pattern="yy-MM-dd" value="${content[0].subj_startdate}" />
+								</div>
+								~
+								<div class='research_turm'>
+								<fmt:formatDate pattern="yy-MM-dd" value="${content[0].subj_enddate}" />
+								</div>
+							</div>
+						<c:set var="qst_code" value="code"/>
+						<c:set var="itemBN" value="0"/>
+						<c:set var="itemValue" value="0"/>
+						<c:forEach items="${content}" var="research">	
+							<c:if test="${research.qst_code ne qst_code}">	
+								<input type='hidden' name='qst_code' id='qst_code' value='${research.qst_code}'>
+								<div class='research_qst'>${research.qst_content}</div>	
+								<input type='hidden' name='qst_type' id='qst_type' value='${research.qst_type}'>
+								<div class='research_qst_img'>${research.qst_img}</div>
+								<div class='research_qst_url'>${research.qst_url}</div>
+								<c:set var="qst_code" value="${research.qst_code}"/>	
+								<c:set var="itemBN" value='${itemBN+1}'/>
+							</c:if>			
+								<input type='hidden' name='item_code' id='item_code' value='${research.item_code}'>
+								<div class='research_item_img'>${research.item_img}</div>		
+								<div class='research_item'>
+									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>
+									<label for='btn${itemValue}'>${research.item_content}</label>
+								</div>					
+								<c:set var="itemValue" value="${itemValue+1}"/>			
+						</c:forEach>
+						</div>	
+						<div id='submit_box'>
+							<div class='answer_box'>
+							<button id='research_answer'>제출하기</button>
+							</div>
+						</div>												
 					</div>
 				</form>
 			</div>
