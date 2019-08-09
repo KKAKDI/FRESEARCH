@@ -100,11 +100,27 @@ public class ResearchServiceImpl implements ResearchService{
 			}			
 		}		
 	}
-
-
+	
 	@Override
 	public List<ResearchVO> researchContent(String subj_code) {
 		List<ResearchVO> content = mapper.researchGet(subj_code);
 		return content;
+	}
+	
+	@Override
+	public void researchAnswer(String values) {
+			
+			String[] email = values.split("#email#");					
+			for(int i=0;i<email.length;i++) {
+				log.info("email["+i+"] : "+email[i]);
+				String[] nick = email[i].split("#nick#");
+				for(int j=0;j<nick.length;j++) {
+					log.info("nick["+j+"] : "+nick[j]);
+					String[] content = nick[j].split("#value#");
+					for(int k=0;k<content.length;k++) {
+						log.info("content["+k+"] : "+content[k]);					
+					}
+				}
+			}
 	}
 }

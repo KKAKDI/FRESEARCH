@@ -92,4 +92,9 @@ public class ResearchController {
 		List<ResearchVO> content = service.researchContent(subj_code);
 		model.addAttribute("content",content);
 	}
+	@PostMapping("research_content")
+	public void answer(RedirectAttributes rttr,HttpServletRequest request) {
+		String values = request.getParameter("research_values");
+		service.researchAnswer(values);
+	}
 }

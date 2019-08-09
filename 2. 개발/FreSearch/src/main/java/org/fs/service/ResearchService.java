@@ -10,4 +10,5 @@ public interface ResearchService {
 	public List<ResearchVO> researchContent(String subj_code);
 	public ResearchPageDTO list(Criteria cri, String research);
 	public void researchReg(String values);
+	public void researchAnswer(String values);
 }
