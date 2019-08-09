@@ -27,5 +27,5 @@ public interface NewsMapper {
 	
 	public List<NewsAttachVO> findByNews_code(int news_code);
 	
-	public void views(int news_code);
+	public int views(int news_code);
 }

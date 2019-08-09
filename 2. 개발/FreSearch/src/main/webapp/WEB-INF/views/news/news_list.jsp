@@ -3,119 +3,183 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/resources/css/reset.css">
 
-<%-- <%@include file="../includes/header.jsp" %> --%>
+<%@include file="../includes/header.jsp" %>
 
 <style>
-div {
-   text-align: center;
+.container_new{
+	padding-top: 105px;
+	width: 850px;
+	margin: 0 auto;
 }
-
 table {
-   width: 80%;
+   width: 850px;
    border-top: 1px solid #444444;
    border-collapse: collapse;
    margin: auto;
 }
-
+div.pagingArea, div.search {
+   text-align: center;
+   margin: auto;
+}
+div.search{
+	display: inline;
+	text-align: right;
+}
+input.search{
+	height: 22px;
+}
 th, td {
-   border-bottom: 1px solid #444444;
+   border-bottom: 1px solid #dcdcdc;
    padding: 10px;
 }
-
-th {
-   text-align: center;
-   background-color: #0c4da2;
-   font-family: "Times New Roman", Times, serif;
-   font-size: 20px;
-   color: white;
-}
-
 td {
    text-align: center;
+   color: #505050;
 }
-
+hr{
+	margin: 8 auto;
+	background-color: #0C4DA2;
+	width: 5%;
+}
 button {
    margin-bottom: 10px;
 }
-
-ul, li{
-	display:inline;
+button#regBtn{
+	text-align: right;
 }
-
+ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li.paginate_button next{
+	display:inline-block;
+	padding: 6px 12px;
+}
+a.move{
+	text-decoration: none;
+	color:#505050;
+}
+#pagingArea.a{
+	text-decoration: none;
+}
+a.move:hover{
+	text-decoration: underline;
+	color: #0C4DA2;
+	font-weight: bold;
+}
+td.subject{
+	text-align: left;
+}
+#pagingArea{
+	margin-top: 10px;
+	text-align: center;
+}
+li.paginate_button {
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.Header {
+    margin-top: 0px;
+}
 </style>
+<div class="container_new">
 
-<div>
 	<div>
-		<h1>새소식</h1>
+		<div>
+			<div class="container_form" style="text-align: center;">
+					<h2>공지사항 / 이벤트</h2>
+					<hr/>
+					<p>FreSearch 새소식을 제공합니다.</p>
+					<button id="regBtn" type="button">등록하기</button>
+					
+<%-- 검색 --%>
+
+<div class='search_form'>
+	<div class='search'>
+		<form id='searchForm' action="/news/news_list" method='get'>
+			<select name='type' style="width: 49px; height: 22px;">
+				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
+				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
+				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
+
+			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
+			<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=21px;></button>
+		</form>
 	</div>
 </div>
-<div>
-	<div>
-		<div>
-			<div>공지사항 / 이벤트</div>
-			<button id="regBtn" type="button">등록하기</button>
-		</div>
-		<!-- /.panel-heading -->
-		<div>
-			<table>
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>구분</th>
-						<th>제목</th>
-						<th>등록일</th>
-						<th>조회</th>
-						<th>첨부</th>
-					</tr>
-				</thead>
+
+<%-- 검색 끝 --%>
+
+				<table>
+					<thead>
+						<tr style="border-bottom: 1px solid red; border-top: 1px solid #0C4DA2;">
+							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;"></th>
+							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
+							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;"></th>
+							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
+							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
+							
+						</tr>
+					</thead>
+
+					<c:forEach items="${list}" var="news">
+						<tr>
+							<td style="font-weight: bold;">[${news.news_division}]</td>
+							<td class="subject"><a class='move' href=${news.news_code} style="text-align: left;">${news.news_subject}</a></td>
+							
+							<c:choose>
+							<c:when test="${news.news_is_attach == 'Y'}">
+							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+							</c:when>
+								<c:otherwise>
+	         						<td></td>
+	         					</c:otherwise>
+							</c:choose>
 						
-				<c:forEach items="${list}" var="news">
-					<tr>
-						<td>${news.news_code}</td>
-						<td>${news.news_division}</td>
-						<td><a class='move' href=${news.news_code}>
-								${news.news_subject}</a></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${news.news_regdate}" /></td>
-						<td>${news.news_views}</td>
-						<c:choose>
-						<c:when test="${fn:length(news.news_attach_uuid) > 1}">
-						<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
-						</c:when>
-							<c:otherwise>
-         						<td></td>
-         					</c:otherwise> 
-						</c:choose>
-					</tr>
-				</c:forEach>
-				
-			<!--<c:forEach items="${List}" var="data" varStatus="status">
-          <c:choose>
-           <c:when test="${fn:length(data.nm) > 14}">
-            <c:out value="${fn:substring(data.nm,0,13)}"/>....
-           </c:when>
-           <c:otherwise>
-            <c:out value="${data.nm}"/>
-           </c:otherwise> 
-          </c:choose>
-</c:forEach>-->
-				
-				
-				
-				
-				
-			</table>
+					
+					
+							<td>${news.news_views}</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${news.news_regdate}" /></td>
+						</tr>		
+					</c:forEach>	
+							
+					
+				<!--<c:forEach items="${List}" var="data" varStatus="status">
+	          <c:choose>
+	           <c:when test="${fn:length(data.nm) > 14}">
+	            <c:out value="${fn:substring(data.nm,0,13)}"/>....
+	           </c:when>
+	           <c:otherwise>
+	            <c:out value="${data.nm}"/>
+	           </c:otherwise> 
+	          </c:choose>
+	</c:forEach>-->
+					
+					
+					
+					
+					
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
+
+
 
 
 
 <%-- 페이징 --%>
-<div>
+<div id="pagingArea">
 	<ul class="pagination">
 
 		<c:if test="${pageMaker.prev}">
@@ -149,25 +213,6 @@ ul, li{
 
 
 
-<%-- 검색 --%>
-
-<div>
-	<div>
-		<form id='searchForm' action="/news/news_list" method='get'>
-			<select name='type'>
-				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
-				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
-				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
-
-			</select> <input type='text' name='keyword' value='${pageMaker.cri.keyword}' />
-			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
-			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
-			<button>검색</button>
-		</form>
-	</div>
-</div>
-
-<%-- 검색 끝 --%>
 
 
 <script type="text/javascript">
@@ -233,3 +278,4 @@ ul, li{
 	
 </script>
 
+<%@include file="../includes/footer.jsp" %>

@@ -14,5 +14,6 @@ public class NewsVO {
 	private int news_views;				// 조회수
 	private Date news_regdate;			// 등록일
 	private String news_attach_uuid;
-	private List<NewsAttachVO> AttachList; // 첨부파일 
+	private List<NewsAttachVO> AttachList; // 첨부파일
+	private String news_is_attach;
 }

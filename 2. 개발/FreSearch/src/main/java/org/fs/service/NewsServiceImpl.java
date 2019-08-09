@@ -44,7 +44,7 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public NewsVO get(int news_code) {
 		log.info("get......" + news_code);
-		mapper.views(news_code);
+		
 		return mapper.read(news_code);
 	}
 	
@@ -62,11 +62,12 @@ public class NewsServiceImpl implements NewsService {
 		attachMapper.deleteAll(news.getNews_code());
 
 		boolean modifyResult = mapper.update(news) == 1;
-		
+		log.info(modifyResult);
 		if (modifyResult && news.getAttachList().size() > 0) {
 
 			news.getAttachList().forEach(attach -> {
 
+				
 				attach.setNews_code(news.getNews_code());
 				attachMapper.insert(attach);
 			});
@@ -116,6 +117,12 @@ public class NewsServiceImpl implements NewsService {
 
 		attachMapper.deleteAll(news_code);
 	}
-	
+
+	@Override
+	public int newsViewCnt(int news_code) { // 조회수 추가
+		// TODO Auto-generated method stub
+		return mapper.views(news_code);
+	}
+
 
 }

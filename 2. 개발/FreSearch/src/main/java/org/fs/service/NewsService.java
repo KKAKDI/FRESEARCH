@@ -21,10 +21,12 @@ public interface NewsService {
 	
 	public List<NewsAttachVO> getAttachList(int news_code); // 첨부파일 목록 가져오기
 	
-	public void removeAttach(int news_code);
+	public void removeAttach(int news_code); // 첨부파일 삭제
 	
 	public NewsVO modifyGet(int news_code);
 	
 	// public void views(String param);
+	
+	public int newsViewCnt(int news_code); // 조회수 추가
 
 }
