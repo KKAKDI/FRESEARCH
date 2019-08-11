@@ -85,7 +85,8 @@ public class ResearchController {
 	public void reg(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");
 		log.info(values);
-		service.researchReg(values);		
+		service.researchReg(values);	
+		//Go to List 
 	}
 	@GetMapping("research_content")
 	public void content(@RequestParam("subj_code") String subj_code,Model model) {
@@ -96,5 +97,6 @@ public class ResearchController {
 	public void answer(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");
 		service.researchAnswer(values);
+		//Go to Status
 	}
 }
