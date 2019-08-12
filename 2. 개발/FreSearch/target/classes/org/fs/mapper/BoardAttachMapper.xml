@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.fs.mapper.BoardAttachMapper">
+	<insert id="insert">
+	insert into brd_attach (brd_attach_name, brd_attach_uuid, brd_attach_path, brd_attach_type, brd_code)
+	values (#{brd_attach_name}, #{brd_attach_uuid}, #{brd_attach_path}, #{brd_attach_type}, #{brd_code})
+	</insert>
+	
+	<delete id="delete">
+	delete from brd_attach where brd_attach_uuid = #{brd_attach_uuid}
+	</delete>
+	
+	<select id="findByBrd_code" resultType="org.fs.domain.BoardAttachVO">
+	select * from brd_attach where brd_code = #{brd_code}
+	</select>
+	
+	<delete id="deleteAll">
+		delete brd_attach where brd_code = #{brd_code}
+	</delete>
+	
+	<select id="getOldFiles"
+		resultType="org.fs.domain.BoardAttachVO">
+
+		select * from brd_attach where brd_attach_path = to_char(sysdate -1 ,'yyyy\mm\dd')
+
+	</select>
+</mapper>

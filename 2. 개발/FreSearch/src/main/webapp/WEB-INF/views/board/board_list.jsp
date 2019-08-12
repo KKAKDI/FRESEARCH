@@ -3,16 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<%@include file="../includes/header.jsp" %>
 	
 
 <style>
+div.free{
+
+	padding-top:120px; 
+
+}
+
 div {
+
 	text-align: center;
 }
 
 table {
-	width: 850px;
+	width: 1100px;
 	border-top: 1px solid #444444;
 	border-collapse: collapse;
 	margin: auto;
@@ -33,8 +40,13 @@ th {
 	color: white;
 }
 
+
 td {
 	text-align: center;
+}
+
+td.title{
+	font-weight : 600;
 }
 
 button {
@@ -47,7 +59,7 @@ ul, li {
 </style>
 
 
-<div>
+<div class="free" >
 	<div>
 		<h1>자유게시판</h1>
 		<button id="Writein" type="button">새로운 글 등록</button>
@@ -61,26 +73,29 @@ ul, li {
 			<table>
 				<thead>
 					<tr>
-						<th>번호</th>
+						<th style = width:10%;>번호</th>
+						<th style = width:40%;>제목</th>
 						<th>닉네임</th>
-						<th>제목</th>
-						<th>추천</th>
-						<th>비추천</th>
 						<th>조회수</th>
 						<th>등록일</th>
+						<th>추천</th>
+						<th>비추천</th>
 					</tr>
 				</thead>
 
 				<c:forEach items="${list}" var="board">
 					<tr>
 						<td>${board.brd_code}</td>
+						<td class="title"><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
 						<td>${board.mb_nick}</td>
-						<td><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
-						<td>${board.brd_like_cnt}</td>
-						<td>${board.brd_dislike_cnt}</td>
 						<td>${board.brd_views}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${board.brd_regdate}" /></td>
+						<td>${board.brd_like_cnt}</td>
+						<td>${board.brd_dislike_cnt}</td>
+						
+						
+						
 					</tr>
 				</c:forEach>
 
@@ -223,5 +238,5 @@ ul, li {
 </script>
 
 
-
+<%@include file="../includes/footer.jsp" %>
 
