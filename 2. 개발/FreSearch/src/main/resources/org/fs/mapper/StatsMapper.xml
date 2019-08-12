@@ -375,6 +375,18 @@ FROM   (SELECT rownum rn,
 	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
+GROUP BY answer_number, 
+       subj_regdate, 
+       subj_code, 
+       ctgr_nm, 
+       mb_nick, 
+       mb_sex, 
+       mb_birthdate, 
+       mb_addr, 
+       qst_img, 
+       subj_nm, 
+       subj_startdate, 
+       subj_enddate
 </select>
 
 

@@ -1,14 +1,14 @@
 -- 회원
-insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '주소1', 19890101, '남', 01011111111, '패널', 'Y', SYSDATE);
-insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '주소2', 19900202, '남', 01022222222, '패널', 'Y', SYSDATE);
-insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '주소3', 19890303, '남', 01033333333, '일반', 'N', SYSDATE);
-insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '주소4', 19890404, '남', 01044444444, '일반', 'N', SYSDATE);
-insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '주소5', 19910505, '여', 01055555555, '패널', 'Y', SYSDATE);
-insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '주소6', 19920606, '남', 01077777777, '일반', 'N', SYSDATE);
-insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '주소7', 19910707, '남', 01088888888, '일반', 'N', SYSDATE);
-insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '주소8', 19960808, '남', 01099999999, '패널', 'Y', SYSDATE);
-insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '주소9', 19930909, '여', 01012345678, '패널', 'Y', SYSDATE);
-insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '주소10', 19901010, '남', 01098765432, '일반', 'N', SYSDATE);
+insert into MEMBER values('aaa@google.com', 'A0000001', '최운학', 'pw01', '서울특별시 강서구 화곡동', 19890101, '남', '01011111111', '패널', 'Y', SYSDATE);
+insert into MEMBER values('bbb@google.com', 'A0000002', '곽지훈', 'pw02', '서울특별시 강서구 까치산로12길 7', 19900202, '남', '01022222222', '패널', 'Y', SYSDATE);
+insert into MEMBER values('ccc@google.com', 'A0000003', '변정우', 'pw03', '경기도 양평군 양평읍 군청앞길 2 양평군청 본관', 19890303, '남', '01033333333', '일반', 'N', SYSDATE);
+insert into MEMBER values('ddd@google.com', 'A0000004', '이재하', 'pw04', '경기도 양평군 양평읍 군청앞길 2 양평군청 본관', 19890404, '남', '01044444444', '일반', 'N', SYSDATE);
+insert into MEMBER values('eee@google.com', 'A0000005', '조성식', 'pw05', '경기도 양평군 양평읍 군청앞길 2 양평군청 본관', 19910505, '여', '01055555555', '패널', 'Y', SYSDATE);
+insert into MEMBER values('fff@google.com', 'A0000006', '박동진', 'pw06', '부산광역시 부산진구 새싹로 295', 19920606, '남', '01077777777', '일반', 'N', SYSDATE);
+insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '인천광역시 남동구 정각로 29 인천광역시청', 19910707, '남', '01088888888', '일반', 'N', SYSDATE);
+insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '인천광역시 남동구 정각로 29 인천광역시청', 19960808, '남', '01099999999', '패널', 'Y', SYSDATE);
+insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '인천광역시 남동구 정각로 29 인천광역시청', 19930909, '여', '01012345678', '패널', 'Y', SYSDATE);
+insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '인천광역시 남동구 정각로 29 인천광역시청', 19901010, '남', '01098765432', '일반', 'N', SYSDATE);
 
 -- 카테고리
 insert into CATEGORY values('A0000001', '교육, 학문', SYSDATE);
@@ -98,40 +98,40 @@ insert into NOTICE values('G0000009', 'iii@google.com', 'A0000009', '알림메시지9
 insert into NOTICE values('G0000010', 'jjj@google.com', 'A0000010', '알림메시지10', SYSDATE, SYSDATE, SYSDATE);
 
 -- 새소식
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목1', '새소식내용1', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목2', '새소식내용2', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목3', '새소식내용3', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목4', '새소식내용4', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목5', '새소식내용5', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목6', '새소식내용6', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목7', '새소식내용7', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목8', '새소식내용8', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목9', '새소식내용9', null, 0, SYSDATE);
-insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지사항', '새소식제목10', '새소식내용10', null, 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목1', '새소식내용1', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목2', '새소식내용2', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목3', '새소식내용3', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목4', '새소식내용4', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목5', '새소식내용5', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목6', '새소식내용6', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목7', '새소식내용7', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '이벤트', '새소식제목8', '새소식내용8', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목9', '새소식내용9', 0, SYSDATE);
+insert into NEWS values(NEWS_SEQ.NEXTVAL, '공지', '새소식제목10', '새소식내용10', 0, SYSDATE);
 
 -- 자유게시판
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'aaa@google.com', '최운학', '자게제목1', '자게내용1', null, 0, 0, 0, 'A0BCDE', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'bbb@google.com', '곽지훈', '자게제목2', '자게내용2', null, 0, 0, 0, 'B1CDEF', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ccc@google.com', '변정우', '자게제목3', '자게내용3', null, 0, 0, 0, 'C2DEFG', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ddd@google.com', '이재하', '자게제목4', '자게내용4', null, 0, 0, 0, 'D3EFGH', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'eee@google.com', '조성식', '자게제목5', '자게내용5', null, 0, 0, 0, 'E4FGHI', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'fff@google.com', '박동진', '자게제목6', '자게내용6', null, 0, 0, 0, 'F5GHIJ', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ggg@google.com', '손현준', '자게제목7', '자게내용7', null, 0, 0, 0, 'G6HIJK', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'hhh@google.com', '박상우', '자게제목8', '자게내용8', null, 0, 0, 0, 'H7IJKL', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'iii@google.com', '최정인', '자게제목9', '자게내용9', null, 0, 0, 0, 'I8JKLM', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'jjj@google.com', '최영훈', '자게제목10', '자게내용10', null, 0, 0, 0, 'J9KLMN', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'aaa@google.com', '최운학', '자게제목1', '자게내용1', 0, 0, 0, 'A0BCDE', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'bbb@google.com', '곽지훈', '자게제목2', '자게내용2', 0, 0, 0, 'B1CDEF', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ccc@google.com', '변정우', '자게제목3', '자게내용3', 0, 0, 0, 'C2DEFG', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ddd@google.com', '이재하', '자게제목4', '자게내용4', 0, 0, 0, 'D3EFGH', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'eee@google.com', '조성식', '자게제목5', '자게내용5', 0, 0, 0, 'E4FGHI', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'fff@google.com', '박동진', '자게제목6', '자게내용6', 0, 0, 0, 'F5GHIJ', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ggg@google.com', '손현준', '자게제목7', '자게내용7', 0, 0, 0, 'G6HIJK', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'hhh@google.com', '박상우', '자게제목8', '자게내용8', 0, 0, 0, 'H7IJKL', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'iii@google.com', '최정인', '자게제목9', '자게내용9', 0, 0, 0, 'I8JKLM', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'jjj@google.com', '최영훈', '자게제목10', '자게내용10', 0, 0, 0, 'J9KLMN', 0, SYSDATE);
 
 -- 댓글
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 2, 'aaa@google.com', '최운학', '댓글내용1', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 3, 'bbb@google.com', '곽지훈', '댓글내용2', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 4, 'ccc@google.com', '변정우', '댓글내용3', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 5, 'ddd@google.com', '이재하', '댓글내용4', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 6, 'eee@google.com', '조성식', '댓글내용5', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 7, 'fff@google.com', '박동진', '댓글내용6', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 8, 'ggg@google.com', '손현준', '댓글내용7', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 9, 'hhh@google.com', '박상우', '댓글내용8', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 10, 'iii@google.com', '최정인', '댓글내용9', null, 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 11, 'jjj@google.com', '최영훈', '댓글내용10', null, 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 2, 'aaa@google.com', '최운학', '댓글내용1', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 3, 'bbb@google.com', '곽지훈', '댓글내용2', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 4, 'ccc@google.com', '변정우', '댓글내용3', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 5, 'ddd@google.com', '이재하', '댓글내용4', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 6, 'eee@google.com', '조성식', '댓글내용5', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 7, 'fff@google.com', '박동진', '댓글내용6', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 8, 'ggg@google.com', '손현준', '댓글내용7', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 9, 'hhh@google.com', '박상우', '댓글내용8', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 10, 'iii@google.com', '최정인', '댓글내용9', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 11, 'jjj@google.com', '최영훈', '댓글내용10', 0, 0, SYSDATE);
 
 
 commit;

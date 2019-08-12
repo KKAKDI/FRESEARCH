@@ -9,6 +9,7 @@ insert into MEMBER values('ggg@google.com', 'A0000007', '손현준', 'pw07', '인천�
 insert into MEMBER values('hhh@google.com', 'A0000008', '박상우', 'pw08', '인천광역시 남동구 정각로 29 인천광역시청', 19960808, '남', '01099999999', '패널', 'Y', SYSDATE);
 insert into MEMBER values('iii@google.com', 'A0000009', '최정인', 'pw09', '인천광역시 남동구 정각로 29 인천광역시청', 19930909, '여', '01012345678', '패널', 'Y', SYSDATE);
 insert into MEMBER values('jjj@google.com', 'A0000010', '최영훈', 'pw10', '인천광역시 남동구 정각로 29 인천광역시청', 19901010, '남', '01098765432', '일반', 'N', SYSDATE);
+insert into MEMBER values('admin@fresearch.com', 'A0000011', 'admin', 'pw11', '서울특별시 강서구 화곡동', 19890101, '남', '01011111111', '관리자', 'Y', SYSDATE);
 
 -- 카테고리
 insert into CATEGORY values('A0000001', '교육, 학문', SYSDATE);

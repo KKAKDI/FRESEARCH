@@ -60,13 +60,14 @@ public class NewsServiceImpl implements NewsService {
 		log.info("modify......" + news);
 
 		attachMapper.deleteAll(news.getNews_code());
-
+		//System.out.println("getAttachList.size 머라고찍힘? sys "  + news.getAttachList().size());
 		boolean modifyResult = mapper.update(news) == 1;
-		log.info(modifyResult);
-		if (modifyResult && news.getAttachList().size() > 0) {
+		//log.info("getAttachList.size 머라고찍힘? " + news.getAttachList().size());
+		//log.info("modifyResult 머라고찍힘? " + modifyResult);
+		
+		if (modifyResult && news.getAttachList() != null && news.getAttachList().size() > 0) { // 업데이트 되고 첨부파일이 있을 경우
 
 			news.getAttachList().forEach(attach -> {
-
 				
 				attach.setNews_code(news.getNews_code());
 				attachMapper.insert(attach);
@@ -122,6 +123,20 @@ public class NewsServiceImpl implements NewsService {
 	public int newsViewCnt(int news_code) { // 조회수 추가
 		// TODO Auto-generated method stub
 		return mapper.views(news_code);
+	}
+
+	@Override
+	public List<NewsVO> getListEvent(Criteria cri) {
+		log.info("getList......");
+		
+		return mapper.getListWithPagingEvent(cri);
+	}
+
+	@Override
+	public int getTotalEvent(Criteria cri) {
+		log.info("get totalCountEvent");
+		
+		return mapper.getTotalCountEvent(cri);
 	}
 
 

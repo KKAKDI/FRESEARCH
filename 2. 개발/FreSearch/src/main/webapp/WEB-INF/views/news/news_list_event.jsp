@@ -102,7 +102,7 @@ li.paginate_button {
 
 <div class='search_form'>
 	<div class='search'>
-		<form id='searchForm' action="/news/news_list" method='get'>
+		<form id='searchForm' action="/news/news_list_event" method='get'>
 			<select name='type' style="width: 49px; height: 22px;">
 				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
 				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
@@ -183,7 +183,7 @@ li.paginate_button {
 	<ul class="pagination">
 
 		<c:if test="${pageMaker.prev}">
-			<li class="page-item"><a href="${path}/news/news_list?pageNum=1">첫페이지</a></li>
+			<li class="page-item"><a href="${path}/news/news_list_event?pageNum=1">첫페이지</a></li>
 			<li class="paginate_button previous"><a
 				href="${pageMaker.startPage-1}">Previous</a></li>
 		</c:if>
@@ -202,7 +202,7 @@ li.paginate_button {
 	</ul>
 </div>
 
-<form id='actionForm' action="/news/news_list" method='get'>
+<form id='actionForm' action="/news/news_list_event" method='get'>
 	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 	<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
