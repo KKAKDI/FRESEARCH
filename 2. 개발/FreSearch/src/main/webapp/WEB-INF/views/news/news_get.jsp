@@ -18,6 +18,7 @@ table {
 	table-layout: fixed;
 }
 
+
 .button {
 	text-align: center;
 	padding: 40 0;
@@ -30,12 +31,18 @@ table {
 td.column {
 	background-color: #f0f0f0;
 	color: #505050;
-	padding: 15 19;
+	padding: 23;
 	font-weight: bold;
 }
 
 td.column-data {
 	padding: 15 19;
+}
+
+td.column-content {
+	word-break:break-all; 
+	wrap:"hard";
+	white-space:pre-line;
 }
 
 hr {
@@ -133,17 +140,17 @@ div{
 					<p>FreSearch 새소식을 제공합니다.</p>
 					<table style="text-align: center;">
 						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column" style="width: 15%;">작성자</td>
-							<td class="column-data" style="width: 15%;">FreSearch</td>
+							<td class="column" style="width: 20%;">작성자</td>
+							<td class="column-data" colspan="2">FreSearch</td>
 							<td class="column" style="width: 20%;">날짜</td>
-							<td class="column-data"><fmt:formatDate pattern="yyyy-MM-dd"
+							<td class="column-data" colspan="2"><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${news.news_regdate}" /></td>
 						</tr>
 						<tr style="border-bottom: 1px solid #dcdcdc;">
-							<td class="column">제목</td>
-							<td class="column-data" style="text-align: left; padding: 15px 20px; width: 50%;">${news.news_subject}</td>
-							<td class="column">첨부파일</td>
-							<td>
+							<td class="column" style="width: 15%">제목</td>
+							<td class="column-data" style="text-align: left; padding: 15px 20px;" colspan="3">${news.news_subject}</td>
+							<td class="column" style="width: 15%">첨부파일</td>
+							<td style="width:*">
 								<div class='bigPictureWrapper'>
 									<div class='bigPicture'></div>
 								</div>
@@ -155,7 +162,7 @@ div{
 							</td>
 						</tr>
 						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-							<td colspan="4" style="background-color: #e5e5e5;  text-align: left; padding: 40 40; width: 100%">${news.news_content}</td>
+							<td class="column-content" colspan="6" style="background-color: #e5e5e5;  text-align: left; padding: 40 40;">${news.news_content}</td>
 						</tr>
 						
 

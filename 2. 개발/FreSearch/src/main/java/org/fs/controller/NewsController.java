@@ -41,13 +41,26 @@ public class NewsController {
 		
 	}
 	
-	@GetMapping("/news_list") // 게시글 전체 목록
+	@GetMapping("/news_list") // 게시글  공지 목록
 	public void list(Criteria cri, Model model) {
 		log.info("news_list" + cri);
 		
 		model.addAttribute("list", service.getList(cri));
 		
 		int total = service.getTotal(cri);
+		
+		log.info("total" + total);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+	}
+	
+	@GetMapping("/news_list_event") // 게시글 이벤트 목록
+	public void listEvent(Criteria cri, Model model) {
+		log.info("news_listEvent" + cri);
+		
+		model.addAttribute("list", service.getListEvent(cri));
+		
+		int total = service.getTotalEvent(cri);
 		
 		log.info("total" + total);
 		
@@ -98,11 +111,20 @@ public class NewsController {
 	@PostMapping("/news_modify") // 게시글 수정(관리자만)
 	public String modify(NewsVO news, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + news);
-		
-		if (service.modify(news)) {
-			rttr.addFlashAttribute("result", "success");
+
+		if(news.getAttachList() != null) { //파일 유무에 따라 파일첨부 컬럼 셋팅
+			
+			news.getAttachList().forEach(attach -> log.info(attach));	
+			news.setNews_is_attach("Y");
+		} else {
+			news.setNews_is_attach("N");
 		}
 
+		if (service.modify(news)) {
+			
+			rttr.addFlashAttribute("result", "success");
+		}
+		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
