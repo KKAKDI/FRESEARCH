@@ -38,6 +38,7 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	-ms-box-shadow: none;
+	box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
 }
 .card-mini {
 	position: relative;
@@ -99,6 +100,7 @@
 	margin-left: 0px;
 	margin-right: auto;
 	width : 100%;
+	box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
 }
 .card-table-p {
 	position: relative;
@@ -275,7 +277,7 @@ body {
 	vertical-align: middle;
 	user-select: none;
 	background-color: transparent;
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 	padding: 0.75rem 1.5rem;
 	font-size: 0.875rem;
 	line-height: 1;
@@ -357,7 +359,6 @@ body {
 	.show>.btn-outline-secondary.dropdown-toggle:focus {
 	box-shadow: 0 0 0 0.2rem rgba(104, 104, 104, 0.5);
 }
-
 .stretch-card {
 	display: -webkit-flex;
 	display: -webkit-inline-box;
@@ -365,7 +366,27 @@ body {
 	align-items: stretch;
 	-webkit-justify-content: stretch;
 	justify-content: stretch;
+	
 }
+.row>.stretch-card {
+	display: -webkit-flex;
+	display: -webkit-inline-box;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+	-webkit-justify-content: stretch;
+	justify-content: stretch;
+	box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+}
+/*.row>.stretch-card:hover {
+	display: -webkit-flex;
+	display: -webkit-inline-box;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+	-webkit-justify-content: stretch;
+	justify-content: stretch;
+	box-shadow : 0px 0px 8px;
+}*/
+
 .p{
 	width:100%;
 }
@@ -529,8 +550,7 @@ em {
     margin-top : 15px;
 }
 .Box {
-    border: 1px solid #cdd2d2;
-    box-shadow: 0 1px #dcdfdf;
+    /*border: 1px solid #cdd2d2;*/
     background: #f2f2f2;
     border-radius: 2px;
 }
@@ -540,6 +560,7 @@ form {
 }
 .StatisticsFilter {
     width: 100%;
+    box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
 }
 .HeaderCell {
     border-bottom: 1px solid #d5d8d8;
@@ -555,6 +576,7 @@ form {
     border-right: 1px solid #d5d8d8;
     vertical-align: top;
 }
+
 .ButtonWrap {
     height: 150px;
     padding: 12px 20px 0;
@@ -723,8 +745,7 @@ a {
     position: relative;
     margin-bottom: 8px;
     background-color: #fff;
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.15);
+    box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
     margin-top: 88px;
 }
 .sub-header-info {
@@ -945,7 +966,21 @@ button, input {
     border-color: #1a78ae;
 	
 }
+.Row>.Cell-Top>.Progress.Blue{
+	background-color: #1f8ecd;
+    border-color: #1a78ae;
+    vertical-align: middle;
+	
+}
 .Row>.Cell>.Progress {
+    display: inline-block;
+    max-width: 60%;
+    height: 8px;
+    border: 1px solid #b8bfbf;
+    background-color: #c3c8c8;
+    vertical-align: middle;
+}
+.Row>.Cell-Top>.Progress {
     display: inline-block;
     max-width: 60%;
     height: 8px;
@@ -954,21 +989,30 @@ button, input {
 }
 
 .GetTable td{
-	border-right:none;
-	border-top: 1px solid #d5d8d8;
-	
+	/*border-right:none;
+	border-top: 1px solid #d5d8d8;*/
+	border:none;
 }
 .Content>.Row>.Cell {
-    font-size: 12px;
+    font-size: 18px;
     color: #555e5e;
+    background-color: rgba(39, 120, 24, 0.05);
+}
+.Content>.Row>.Cell-Top{
+	border-top: none;
+    font-size: 18px;
+    color: #555e5e;
+    background-color: #FFFFFF;
+    vertical-align: middle;
+	
 }
 
 .google{
+	padding-top: 163px;
 	width: 100%;
-	position : absolute;
+	position : relative;
 	background: #f2f2f2;
 	padding-bottom: 70px;
-	box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
 }
 
 .google-1{
@@ -1017,7 +1061,7 @@ button, input {
     flex-direction: column;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 135%;
     margin-bottom: 32px;
     margin-right: 8px;
@@ -1038,15 +1082,17 @@ button, input {
 	position:relative;
 	
 	width:100%;
-	
+	border-left:3px solid #0C4DA2;
 	z-index:0;
 }
 .shadow:hover{
 	z-index:100;
 	margin: 0 auto;
 	width: 770px;
-	box-shadow : 0px 0px 8px;
+	box-shadow : 0px 0px 3px;
+	border-left:3px solid #0C4DA2;
 }
+
 
 .content-top{
 	position: relative;
@@ -1054,7 +1100,7 @@ button, input {
     /*width: 770px;*/
 }
 .top-top{
-	font-size :24px;
+	font-size :35px;
 	padding-bottom: 64px;
     background: #FFFFFF;
     box-sizing: border-box;
@@ -1068,6 +1114,7 @@ button, input {
 	margin: 0 auto;
 	box-shadow: 0 0 2px rgba(0,0,0,.12), 
 	0 2px 4px rgba(0,0,0,.24);
+	
 	width: 770px;
 }
 .security{
@@ -1076,5 +1123,23 @@ button, input {
     min-width: 0%;
     padding: 32px 32px 0 42px;
 }
+body{
+	background: #f4f4f4
+}
+.top-top{
+    border-left: 3px solid #0C4DA2;
+}
+.ContentWrap>.Content>.Box>.Content>#ChampionStatsTable>.GetTable-Mp{
+	width: 100%;
+    table-layout: fixed;
+}
+.Row{
+	vertical-align: middle;
+}
 
+.Content>.Row>.Cell-Oven {
+    font-size: 18px;
+    color: #555e5e;
+    background-color: rgb(208, 208, 208);
+}
 

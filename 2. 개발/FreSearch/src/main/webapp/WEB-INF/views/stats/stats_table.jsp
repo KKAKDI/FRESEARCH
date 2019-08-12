@@ -24,7 +24,7 @@
 							src="https://talk.op.gg/images/icon-write@2x.png" alt="글쓰기 "
 							width="24"> </a></li>
 				</ul>
-			</div>
+			</div> 
 			<div class="sub-link" id="sub-menu"
 				style="z-index: auto; position: static; top: autol">
 				<ul class="sub-link__list">
@@ -38,8 +38,8 @@
 					<li class="sub-link__item"><a href=""><img
 							src="https://talk.op.gg/images/icon-boost@2x.png" width="24"><span>10추</span></a></li>
 				</ul>
-				<div class="sub-header-search">
-					<form action>
+	 			<div class="sub-header-search"> 
+					<form action> 
 						<label> 
 							<select name="target"	class="sub-header-search__select">
 								<option value="title">제목</option>
@@ -525,7 +525,7 @@
 	</div>
 </div>
 
-<%@include file="../includes/footer.jsp"%>
+
 
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
@@ -644,7 +644,7 @@
 							html +=	'</div>';
 							html += '</div>';
 			    		}
-			    		if(page == 1 && page == Math.ceil(cnt/3.0)){
+			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
 			    			
 			    		}else{
 				    		html+= '<section class="article-list-paging">';
@@ -659,7 +659,7 @@
 						    	html+= '</button>'
 						    	html+= '</li>';
 					    	}
-					    	if(page == Math.ceil(cnt/3.0)){
+					    	if(page == Math.ceil(cnt/10.0)){
 					    		
 					    	}else{
 						    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
@@ -764,7 +764,7 @@
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
-						html +=	'<a href=""> <span>'+list[i].subj_nm;
+						html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
 						html +=	'</span> <em>[35]</em>';
 						html +=	'</div>';
 						html +=	'</a>';
@@ -800,7 +800,7 @@
 				    	html+= '</button>'
 				    	html+= '</li>';
 			    	}
-			    	if(page == Math.ceil(cnt/3.0)){
+			    	if(page == Math.ceil(cnt/10.0)){
 			    		
 			    	}else{
 				    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
@@ -1001,7 +1001,7 @@
 							html +=	'</div>';
 							html += '</div>';
 			    		}
-			    		if(page == 1 && page == Math.ceil(cnt/3.0)){
+			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
 			    			
 			    		}else{
 			    			console.log("뭐지 여기 들어왔나본데?2");
@@ -1018,7 +1018,7 @@
 						    	html+= '</button>'
 						    	html+= '</li>';
 					    	}
-					    	if(page == Math.ceil(cnt/3.0)){
+					    	if(page == Math.ceil(cnt/10.0)){
 					    		
 					    	}else{
 						    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
@@ -1087,6 +1087,7 @@
 				           
 				        }
 				    });*/
-</script>
 
->
+
+</script>
+<%@include file="../includes/footer.jsp"%>

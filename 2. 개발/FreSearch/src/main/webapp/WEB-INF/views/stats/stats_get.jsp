@@ -3,18 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/stats/css/chart.css">
-
-
-
 <%@include file="../includes/header.jsp"%>
 
-
-
-
+ 
+ 
 
 <!--  op.gg 테이블 벤치마킹 -->
 <!-- 
@@ -29,7 +23,7 @@
 								<col width="130">
 								<col width="173">
 								<col width="173">
-								<col width="133">
+								<col width="133">  
 								<col width="133">
 								<col width="133">
 							</colgroup>
@@ -174,11 +168,15 @@
 										<span class="what">응답 5개</span>
 									</div>
 								</div>
-								<div class="opacity">
+									<div class="opacity">
+									</div>
 								</div>
-							</div>
 							<div class="first-text-text">
+													
 							
+							
+
+
 							
 <div class="security">
 							
@@ -186,46 +184,16 @@
 	<div class="ContentWrap">
 		<div class="Content">
 			<div class="Box">
-				<div class="Content">
+				<div class="Content"> 
 					<div id="ChampionStatsTable">
-						<table class="GetTable table" role="grid">
+						<table class="GetTable-Mp table" role="grid">
 							<colgroup>
-								<col width="10%">
-								<col width="20%">
-								<col width="20%">
+								<col width="30%">
+								<col width="20%"> 
 								<col width="10%"> 
-							</colgroup>
+							</colgroup> 
 							<thead class="Header"> 
 								<tr class="Row table" role="row">
-									<th class="HeaderCell Rank tablesorter-header tablesorter-headerUnSorted" data-column="0" 
-									tabindex="0" scope="col" role="columnheader" 
-									aria-disabled="false" unselectable="on" aria-sort="none" 
-									aria-label="#: No sort applied, activate to apply an ascending sort" style="user-select: none;">
-										<div class="tablesorter-header-inner">#
-										</div>
-									</th> 
-									
-									<th class="HeaderCell tablesorter-header tablesorter-headerUnSorted" colspan="1" 
-									data-column="1" tabindex="0" scope="col" role="columnheader" aria-disabled="false" 
-									unselectable="on" aria-sort="none" aria-label="챔피언: No sort applied, activate to apply a descending sort" 
-									style="user-select: none;">
-										<div class="tablesorter-header-inner">아이템
-										</div>
-									</th>
-									
-									<th class="HeaderCell tablesorter-header tablesorter-headerUnSorted" data-column="3" tabindex="0" 
-									scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" 
-									aria-label="승률: No sort applied, activate to apply a descending sort" style="user-select: none;">
-										<div class="tablesorter-header-inner">답변자 백분율
-										</div>
-									</th>
-									
-									<th class="HeaderCell tablesorter-header tablesorter-headerUnSorted" data-column="4" 
-									tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" 
-									aria-label="플레이수: No sort applied, activate to apply a descending sort" style="user-select: none;">
-										<div class="tablesorter-header-inner">답변자 수
-										</div>
-									</th>
 									
 									<!-- <th class="HeaderCell tablesorter-header tablesorter-headerUnSorted" data-column="5" tabindex="0" 
 									scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" 
@@ -238,40 +206,37 @@
 									scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" 
 									aria-label="CS: No sort applied, activate to apply a descending sort" style="user-select: none;">
 										<div class="tablesorter-header-inner">CS
-										</div>
+										</div> 
 									</th>
 									 -->
 								</tr>
 							</thead>
 							<tbody class="Content" aria-live="plite" aria-relevant="all">
 								<tr class="Row Top" role="row">
-									<td class="Cell Rank">1
-									</td>
 									<!-- <td class="Cell ChampionImage">
 									</td> -->
-									<td class="Cell ChampionName">
+									<td class="Cell-Top ChampionName">
 										<span>결혼 하셨습니까?</span>
 									</td>
-									<td class="Cell" data-value="53.988620395752">
+									<td class="Cell-Top" data-value="53.988620395752">
 										<div class="Progress Blue" style="width: 39.064719%"></div>
 										<span class="Value">53.99%</span>
 									</td>
-									<td class="Cell">
+									<td class="Cell-Top">
 										43,411
 									</td>
 
 									
 								</tr>
 								<tr class="Row Top" role="row">
-									<td class="Cell Rank">2</td>
-									<td class="Cell ChampionName">
-										<a href="/champion/Jinx/" target="_blank">키가 몇 cm 입니까ㅇㄴㄻㄴㅇㄹㄴㄹㄹ</a>
+									<td class="Cell-Top ChampionName">
+										<span>키가 몇 cm 입니까ㅇㄴㄻㄴㅇㄹㄴㄴㅇㄹㄴㄹㄹ</span>
 									</td>
-									<td class="Cell" data-value="53.295128261014">
+									<td class="Cell-Top" data-value="53.295128261014">
 										<div class="Progress Blue" style="width: 71.910031003373%"></div>
 										<span class="Value">53.30%</span>
 									</td>
-									<td class="Cell">
+									<td class="Cell-Top"> 
 										422,108
 									</td>
 			
@@ -285,7 +250,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 </div>
 	
 	
@@ -311,6 +276,53 @@
 								</div>
 							</div>
 							<div class="first-text-text">
+							
+							
+							<div class="security">
+							
+							<!-- 테이블 -->
+	<div class="ContentWrap">
+		<div class="Content">
+			<div class="Box">
+				<div class="Content">
+					<div id="ChampionStatsTable">
+						<table class="GetTable table" role="grid">
+							<colgroup>
+								<col width="100%">
+							</colgroup>
+							<tbody class="Content" aria-live="plite" aria-relevant="all">
+								<tr class="Row Top" role="row">
+									<td class="Cell-Oven ChampionName">
+										<span>결혼 하셨습니까?</span>
+									</td>  
+								</tr>
+								<tr class="Row Top" role="row">
+									<td class="Cell ChampionName">
+										<span>키가 몇 cm 입니까ㅇㄴㄻㄴㅇㄹㄴㄴㅇㄹㄴㄹㄹ</span>
+									</td>
+								</tr>
+								
+								
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 테이블 끝 -->
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							</div>
 						</div> 
 					</div>
@@ -364,6 +376,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 
 <%@include file="../includes/footer.jsp"%>
