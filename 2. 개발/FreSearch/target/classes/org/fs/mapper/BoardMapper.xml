@@ -36,11 +36,11 @@
 		<![CDATA[
 		
 		select 
-		brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate
+		brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views
 		from
 		(
 		 select /*+INDEX_DESC(board pk_board)*/
-		 rownum rn, brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate
+		 rownum rn, brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views
 		 from board
 		 where 
 		 ]]>
@@ -88,9 +88,9 @@
 	delete board where brd_code = #{brd_code}
 	</delete>
 	
-	<update id="updateView">
+	<update id="views">
 	
-	update board set brd_views = nvl(brd_views, 0) +1
+	update board set brd_views = brd_views +1
 	where brd_code = #{brd_code} 
 	
 	

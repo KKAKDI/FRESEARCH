@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -59,10 +60,13 @@ public class NewsController {
 		log.info("=========================");
 		
 		log.info("register: " + news);
-		
-		if(news.getAttachList() != null) {
+		log.info("겟어태치:" + news.getAttachList());
+		if(news.getAttachList() != null) { //파일 유무에 따라 파일첨부 컬럼 셋팅
 			
-			news.getAttachList().forEach(attach -> log.info(attach));
+			news.getAttachList().forEach(attach -> log.info(attach));	
+			news.setNews_is_attach("Y");
+		} else {
+			news.setNews_is_attach("N");
 		}
 		
 		log.info("=========================");
@@ -103,7 +107,7 @@ public class NewsController {
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-
+		
 		return "redirect:/news/news_list";
 	}
 
@@ -167,6 +171,14 @@ public class NewsController {
 	
 		return new ResponseEntity<>(service.getAttachList(news_code), HttpStatus.OK);
 	
+	}
+	
+	@RequestMapping(value="newsViewCnt" , method = RequestMethod.POST)  // 조회수 추가
+	public @ResponseBody int newsViewCnt(int news_code)  {
+		
+		
+		return service.newsViewCnt(news_code);
+		
 	}
 	
 	

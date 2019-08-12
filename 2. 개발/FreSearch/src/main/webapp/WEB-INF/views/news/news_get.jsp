@@ -2,96 +2,221 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<%-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> --%>
+
+<link rel="stylesheet" href="/resources/css/reset.css">
+<%@include file="../includes/header.jsp" %>
 
 <style>
 
+table {
+	width: 850px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: fixed;
+}
+
+.button {
+	text-align: center;
+	padding: 40 0;
+}
+
+.container_new {
+	padding-top: 125px;
+}
+
+td.column {
+	background-color: #f0f0f0;
+	color: #505050;
+	padding: 15 19;
+	font-weight: bold;
+}
+
+td.column-data {
+	padding: 15 19;
+}
+
+hr {
+	margin: 8 auto;
+	background-color: blue;
+	width: 5%;
+}
+
+.uploadResult {
+
+   width:100%;
+
+}
+
+.uploadResult ul {
+   flex-flow:row;
+   justify-content:center;
+   align-items:center;
+   <%-- height : 100px; --%>
+   padding : 10px;
+   text-align:center;
+   <%-- background-color: #e9ecef; --%>
+   margin: 0;
+   width: 340px; // 첨부파일 부분 가로길이
+   }
+
+.uploadResult ul li {
+   list-style: none;
+   padding: 10px;
+   align-content: center;
+   text-align: center;
+   display: inline;
+}
+
+.uploadResult ul li img { // 섬네일 이미지 크기 조정
+   width: 10px;
+   
+}
+
+.uploadResult ul li span {
+   color:black;
+}
+
+.bigPictureWrapper {
+   position: absolute;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   top:0%;
+   height:100%;
+   background-color: gray;
+   z-index: 100;
+   background:rgba(255,255,255,0.5);
+
+}
+
+.bigPicture {
+   display:flex;
+   position: relative;
+   justify-content: center;
+   align-items: center;
+
+}
+
+.bigPicture img {
+   width: 600px;
+   
+}
+
+.Header {
+    margin-top: 0px;
+}
+
 div{
-text-align: left;
-width: 850px;
-margin : auto;
+	text-align: center;
 }
-
-body {
-  padding-top: 70px;
-
-  padding-bottom: 30px;
-}
-
 </style>
 
-<div>
-	<div>
-		<h2>게시글</h1>
-	</div>
-</div>
-<div>
+<div class="container_new">
 	<div>
 		<div>
 			<div>
 
 				<form id='operForm' action="/news/news_modify" method="get">
-					<input type='hidden' id='news_code' name='news_code'
-						value=${news.news_code}> <input type='hidden'
-						name='pageNum' value=${cri.pageNum}> <input type='hidden'
-						name='amount' value=${cri.amount}> <input type='hidden'
-						name='keyword' value=${cri.keyword}> <input type='hidden'
-						name='type' value=${cri.type}>
-
+					<input type='hidden' id='news_code' name='news_code' value=${news.news_code}> 
+						<input type='hidden' name='pageNum' value=${cri.pageNum}> 
+						<input type='hidden' name='amount' value=${cri.amount}> 
+						<input type='hidden' name='keyword' value=${cri.keyword}> 
+						<input type='hidden' name='type' value=${cri.type}>
 				</form>
 
-				<div class="form-group">
-					<label>글번호</label><input id="news_code" class="form-control"
-						name='news_code' value=${news.news_code } readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label>구분</label><input id="news_division" class="form-control"
-						name='news_division' value=${news.news_division
-						} readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label>제목</label><input id="news_subject" class="form-control"
-						name='news_subject' value=${news.news_subject
-						} readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label>글 내용</label>
-					<textarea id="news_content" class="form-control" rows="6"
-						name='news_content' readonly="readonly">${news.news_content}</textarea>
-				</div>
+				<div style="text-align: center;">
+					<h2>공지사항 / 이벤트</h2>
+					<hr/>
+					<p>FreSearch 새소식을 제공합니다.</p>
+					<table style="text-align: center;">
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">작성자</td>
+							<td class="column-data" style="width: 15%;">FreSearch</td>
+							<td class="column" style="width: 20%;">날짜</td>
+							<td class="column-data"><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${news.news_regdate}" /></td>
+						</tr>
+						<tr style="border-bottom: 1px solid #dcdcdc;">
+							<td class="column">제목</td>
+							<td class="column-data" style="text-align: left; padding: 15px 20px; width: 50%;">${news.news_subject}</td>
+							<td class="column">첨부파일</td>
+							<td>
+								<div class='bigPictureWrapper'>
+									<div class='bigPicture'></div>
+								</div>
+								<div class='uploadResult'>
+									<ul>
+									
+									</ul>
+								</div>
+							</td>
+						</tr>
+						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+							<td colspan="4" style="background-color: #e5e5e5;  text-align: left; padding: 40 40; width: 100%">${news.news_content}</td>
+						</tr>
+						
 
+						
+					</table>
+				</div>
+				
+				
+<%--
+			<table>
+				<tr>
+					<div class="form-group">
+						<th>번호</th><td colspan="2"><input id="news_code" class="form-control"
+							name='news_code' value=${news.news_code} readonly="readonly"></td>
+					</div>
+					<div class="form-group">
+						<th>구분</th><td colspan="2"><input id="news_division" class="form-control" colspan="2"
+							name='news_division' value=${news.news_division} readonly="readonly"></td>
+					</div>
+				</tr>
+				<tr>
+					<div class="form-group">
+						<th>제목</th><td colspan="4"><input id="news_subject" class="form-control"
+							name='news_subject' value=${news.news_subject} readonly="readonly"></td>
+					</div>
+				</tr>
+				<tr>
+					<div class="form-group">
+						<th>내용</th>
+						<td colspan="6"><textarea id="news_content" class="form-control" rows="6"
+							name='news_content' readonly="readonly">${news.news_content}</textarea></td>
+					</div>
+				</tr>
+				<tr>
 				<div class='bigPictureWrapper'>
 					<div class='bigPicture'></div>
 				</div>
-
-				<div>
-					<div>
+					<th><label>첨부파일</label></th>
+					<td>
 						<div>
-
-							<div>첨부파일</div>
-							<div>
-
-								<div class='uploadResult'>
-									<ul>
-									</ul>
-								</div>
+							<div class='uploadResult'>
+								<ul>
+								</ul>
 							</div>
 						</div>
-					</div>
-				</div>
-
+					</td>
+				</tr>
+			</table>
+--%>
+			<div class="button">
 				<button data-oper='modify' class="btn btn-default">수정</button>
 				<button data-oper='list' class="btn btn-info">목록</button>
-
+			</div>
 
 			</div>
 		</div>
 	</div>
 </div>
-<!-- /.row -->
 
 
-<script type="text/javascript">
+<script type="text/javascript"> // 첨부파일 관련 스크립트
 	$(document).ready(function() {
 		(function() {
 			var news_code = ${news.news_code};
@@ -104,15 +229,14 @@ body {
 							//image type
 							if (attach.news_attach_type) {
 								var fileCallPath = encodeURIComponent(attach.news_attach_path+ "/s_"+ attach.news_attach_uuid+ "_"+ attach.news_attach_name);
-								str += "<li data-path='"+attach.news_attach_path+"' data-uuid='"+attach.news_attach_uuid+"' data-filename='"+attach.news_attach_name+"' data-type='"+attach.news_attach_type+"' ><div>";
-								str += "<img src='/display?fileName="+ fileCallPath+ "'>";
-								str += "</div>";
+								str += "<li data-path='"+attach.news_attach_path+"' data-uuid='"+attach.news_attach_uuid+"' data-filename='"+attach.news_attach_name+"' data-type='"+attach.news_attach_type+"' >";
+								<%-- str += "<img src='/display?fileName="+ fileCallPath+ "'>"; --%>
+								str += "<img src='/resources/img/downimg.png'></a>";
 								str + "</li>";
 							} else {
-								str += "<li data-path='"+attach.news_attach_path+"' data-uuid='"+attach.news_attach_uuid+"' data-filename='"+attach.news_attach_name+"' data-type='"+attach.news_attach_type+"' ><div>";
+								str += "<li data-path='"+attach.news_attach_path+"' data-uuid='"+attach.news_attach_uuid+"' data-filename='"+attach.news_attach_name+"' data-type='"+attach.news_attach_type+"' >";
 								str += "<span> "+ attach.news_attach_name+ "</span><br/>";
-								str += "<img src='/resources/img/attach.png'></a>";
-								str += "</div>";
+								str += "<img src='/resources/img/downimg.png'></a>";
 								str + "</li>";
 							}
 						});
@@ -123,14 +247,10 @@ body {
 	
 				})();//end function
 
-						$(".uploadResult").on(
-								"click",
-								"li",
-								function(e) {
+						$(".uploadResult").on("click", "li", function(e) {
 									console.log("view image");
 									var liObj = $(this);
-									var path = encodeURIComponent(liObj
-											.data("path")
+									var path = encodeURIComponent(liObj.data("path")
 											+ "/"
 											+ liObj.data("uuid")
 											+ "_"
@@ -141,49 +261,96 @@ body {
 												new RegExp(/\\/g), "/"));
 									} else {
 										//download
-										self.location = "/download?fileName="
-												+ path
+										self.location = "/download?fileName=" + path
 									}
 								});
 
 						function showImage(fileCallPath) { // 이미지파일 보여주기
 
-							alert(fileCallPath);
+							// alert(fileCallPath);
 
 							$(".bigPictureWrapper").css("display", "flex").show();
 
 							$(".bigPicture").html("<img src='/display?fileName="+ fileCallPath + "' >")
-							.animate({width : '100%', height : '100%'}, 500);
+							.animate({width : '100%', height : '100%'}, 10);
 
 						}
 						$(".bigPictureWrapper").on("click", function(e) { // 이미지 파일 닫기
-							$(".bigPicture").animate({width : '0%', height : '0%'}, 500);
+							$(".bigPicture").animate({width : '0%', height : '0%'}, 10);
 							setTimeout(function() {
 								$('.bigPictureWrapper').hide();
-							}, 500);
+							}, 10);
 						});
-
 					});
 </script>
 
 <script type="text/javascript">
 	// 수정 페이지
 	$(document).ready(function() {
-
 		var operForm = $("#operForm");
-
+		
 		$("button[data-oper='modify']").on("click", function(e) {
-
 			operForm.attr("action", "/news/news_modify").submit();
-
 		});
-
 		$("button[data-oper='list']").on("click", function(e) {
-
 			operForm.find("#news_code").remove();
 			operForm.attr("action", "/news/news_list")
 			operForm.submit();
-
 		});
 	});
 </script>
+
+<script> // 조회수 스크립트
+	var news_code = $("#news_code").val();
+	var news_codes = [];
+	console.log(Cookies.get("ck_news_codes"));
+	if (Cookies.get("ck_news_codes") == undefined) {
+		news_codes.push(news_code);
+		Cookies.set('ck_news_codes', news_codes);
+		$.ajax({
+			url : "newsViewCnt",
+			type : "post",
+			dataType : "json",
+			data : {
+				"news_code" : news_code
+			},
+			success : function(d) {
+				console.log(d);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		})
+	} else {
+		var ck_news_codes = JSON.parse(Cookies.get("ck_news_codes"));
+		var is_equal = 0;
+		
+		for (var i = 0; i < ck_news_codes.length; i++) {
+			if (news_code == ck_news_codes[i]) {
+				is_equal = 1;
+				break;
+			}
+		}
+		if (is_equal == 0) {
+			//ck_news_codes.push(news_code);
+			$.ajax({
+				url : "newsViewCnt",
+				type : "post",
+				dataType : "json",
+				data : {
+					"news_code" : news_code
+				},
+				success : function(d) {
+					console.log(d);
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+			ck_news_codes.push(news_code);
+			Cookies.set('ck_news_codes', ck_news_codes);
+		}
+	};
+</script>
+
+<%@include file="../includes/footer.jsp" %>

@@ -41,8 +41,8 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 	select NEWS_SEQ.nextval from dual
 	</selectKey>
 
-	insert into NEWS (NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE)
-	values (#{news_code}, #{news_division}, #{news_subject}, #{news_content}, SYSDATE)
+	insert into NEWS (NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_IS_ATTACH)
+	values (#{news_code}, #{news_division}, #{news_subject}, #{news_content}, SYSDATE, #{news_is_attach})
 </insert>
 
 <select id="read" resultType="org.fs.domain.NewsVO">
@@ -66,20 +66,20 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 <select id="getListWithPaging" resultType="org.fs.domain.NewsVO">
   <![CDATA[
   select 
-    news_code, news_division, news_subject, news_content, news_regdate, news_views , news_attach_uuid 
+    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS, NEWS_IS_ATTACH
   from 
       (
       select /*+INDEX_DESC(news pk_news) */
-        rownum rn, a.NEWS_CODE, a.NEWS_DIVISION, a.NEWS_SUBJECT, a.NEWS_CONTENT, a.NEWS_REGDATE, a.NEWS_VIEWS, b.news_attach_uuid
+        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS, NEWS_IS_ATTACH
       from 
-        NEWS a LEFT JOIN news_attach b ON
- 
+        NEWS
+      where 
   ]]>
 
   <include refid="criteria"></include> 
       
   <![CDATA[    
-      rownum <= #{pageNum} * #{amount} and a.news_code = b.news_code
+      rownum <= #{pageNum} * #{amount}
       )
   where rn > (#{pageNum} -1) * #{amount}   
   ]]>

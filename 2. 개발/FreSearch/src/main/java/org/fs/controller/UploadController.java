@@ -107,7 +107,7 @@ public class UploadController {
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
 		log.info("upload path: " + uploadPath);
 		
-		if(uploadPath.exists() == false) {
+		if(uploadPath.exists() == false) { // 해당 경로에 폴더가 없으면 만들어줌
 			uploadPath.mkdirs();
 		}
 		// make yyyy/MM/dd folder
@@ -128,7 +128,7 @@ public class UploadController {
 			
 			attachDTO.setFileName(uploadFileName);
 			
-			UUID uuid = UUID.randomUUID();
+			UUID uuid = UUID.randomUUID(); // 파일 이름 랜덤값 생성
 			
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
 				
