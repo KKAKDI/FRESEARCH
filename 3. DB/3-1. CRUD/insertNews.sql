@@ -1,4 +1,4 @@
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (1,'이벤트','[FreSearch] 벌써1주일?! FreSearch 1주일 기념 설문조사 이벤트!',0,'◆ Event. 벌써 1주일!? 당신과 함께한 FreSearch 설문조사!
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (111,'이벤트','[FreSearch] 벌써1주일?! FreSearch 1주일 기념 설문조사 이벤트!','◆ Event. 벌써 1주일!? 당신과 함께한 FreSearch 설문조사!
 
 
 FreSearch에서 제공하는 설문조사에 참여해 주세요~!
@@ -21,7 +21,7 @@ FreSearch에서 제공하는 설문조사에 참여해 주세요~!
 감사합니다.
 ',to_date('19/08/12','RR/MM/DD'),'Y');
 
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (2,'공지','자유로운 리서치&통계 서비스인 "FreSerach" 가 서비스를 시작 되었습니다.',1,'안녕하세요, FreSerach 입니다.
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (222,'공지','자유로운 리서치&통계 서비스인 "FreSerach" 가 서비스를 시작 되었습니다.','안녕하세요, FreSerach 입니다.
 
 자유로운 리서치&통계 서비스인 "FreSerach" 가 서비스를 시작합니다.
 
@@ -32,7 +32,7 @@ Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,N
 회원분들의 많은 이용 바랍니다. 
 
 감사합니다.',to_date('19/08/12','RR/MM/DD'),'N');
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (3,'공지','8월 24일(토) 오전 2시~6시, FreSearch 서버 점검 안내',1,'8월 24일(토) 오전 2시~6시, FreSearch 서버 점검 안내
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (333,'공지','8월 24일(토) 오전 2시~6시, FreSearch 서버 점검 안내','8월 24일(토) 오전 2시~6시, FreSearch 서버 점검 안내
 
 안녕하세요. FreSearch 입니다.
 
@@ -64,7 +64,7 @@ Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,N
 
 
 감사합니다.',to_date('19/08/12','RR/MM/DD'),'Y');
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (4,'공지','신고 기능이 잠시 중지됩니다.',1,'안녕하세요, FreSearch 팀입니다. 
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (444,'공지','신고 기능이 잠시 중지됩니다.','안녕하세요, FreSearch 팀입니다. 
 
 FreSearch 는 게시글의 성인 음란 사이트나 도박 사이트 등 
 불법 사이트 광고부터 이용자에게 피해를 줄 수 있는 악성코드 글들을 
@@ -80,7 +80,7 @@ FreSearch 는 게시글의 성인 음란 사이트나 도박 사이트 등
 최대한 빠르게 조치하도록 하겠습니다.
 
 감사합니다.',to_date('19/08/12','RR/MM/DD'),'N');
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (5,'공지','2019년 8월 31일 이용약관 일부 개정 안내',1,'안녕하세요. FreSearch 입니다.
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (555,'공지','2019년 8월 31일 이용약관 일부 개정 안내','안녕하세요. FreSearch 입니다.
 
 FreSearch 의 이용약관은 지난 2019년 8월 31일을 끝으로 개정되지 않아 
 현재의 인터넷 사용자 환경을 모두 반영하는데 부족함이 있었습니다. 
@@ -127,7 +127,7 @@ FreSearch 의 이용약관은 지난 2019년 8월 31일을 끝으로 개정되지 않아
 ※ 변경된 약관 사항에 동의하지 않으면 서비스 이용을 중단하고 이용 계약을 해지할 수 있습니다. 이러한 명시적인 거부의 의사 표시를 하지 아니할 경우 약관 변경에 동의한 것으로 간주합니다. 
 
 감사합니다.',to_date('19/08/12','RR/MM/DD'),'N');
-Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_VIEWS,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (6,'이벤트','통계 예측 이벤트 ''2045년 우리는?',1,'▶ 참여 방법
+Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE,NEWS_IS_ATTACH) values (666,'이벤트','통계 예측 이벤트 ''2045년 우리는?','▶ 참여 방법
 STEP1. 아래의 세 가지 설문을 확인한다
 
 1. 2045년 1인가구 비중이 가장 많은 시도는?             
@@ -149,3 +149,5 @@ STEP3. 본 이벤트를 ‘공유’하면 당첨확률 UP!
  스타벅스 다크 모카 프라푸치노 Tall   (20명)
 
 ',to_date('19/08/12','RR/MM/DD'),'N');
+
+commit;
