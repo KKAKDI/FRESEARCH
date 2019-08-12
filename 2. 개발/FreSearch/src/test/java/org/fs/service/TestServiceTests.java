@@ -24,7 +24,7 @@ public class TestServiceTests {
 	
 	@Test
 	public void testAnswer() {
-		String values = "admin@fresearch.com#email#admin#nick#2ENCBE9N#code#ㅁ2#value#383ENFG5#code#ㅁㅁ2#value#UFH2QB34#code#ㅁㅁㅁ1#value#03HB7LAQ#code#ㅁㅁㅁㅁ1#value#";
+		String values = "admin@fresearch.com#email#admin#nick#IKGSBYET#code#생질1#value#SG039RCJ#code#1#value#";
 		service.researchAnswer(values);
 	}
 	/*@Test
