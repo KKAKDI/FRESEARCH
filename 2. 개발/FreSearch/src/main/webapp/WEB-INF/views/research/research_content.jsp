@@ -18,6 +18,12 @@
 </head>
 <script>
 	$(function() {
+		/*
+		$(document).on("click",".research_item",function(){
+			$(".research_item").removeClass("active_item");
+			$(this).addClass("active_item");
+		});
+		*/
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;
@@ -29,11 +35,12 @@
 			research_values += user_nick +"#nick#";
 			
 			for(var i=1;i<=values_index;i++){
-				research_values += $("#item_code"+i).val()+"#code#";
+				research_values += $(".research_item .item_code"+i)[0].value+"#code#";
 				research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";		
 			}
 			$("#research_values").val(research_values);
 			form.attr("action","/research/research_content");
+			console.log(research_values);
 			form.submit();
 		});
 	});
@@ -80,10 +87,10 @@
 								<div class='research_qst_url'>${research.qst_url}</div>
 								<c:set var="qst_code" value="${research.qst_code}"/>	
 								<c:set var="itemBN" value='${itemBN+1}'/>
-							</c:if>			
-								<input type='hidden' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
-								<div class='research_item_img'>${research.item_img}</div>		
+							</c:if>				
 								<div class='research_item'>
+								<div class='research_item_img'>${research.item_img}</div>
+									<input type='hidden' class='item_code${itemBN}' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
 									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>
 									<label for='btn${itemValue}'>${research.item_content}</label>
 								</div>					

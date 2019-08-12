@@ -115,11 +115,11 @@ public class ResearchServiceImpl implements ResearchService {
 		String[] email = values.split("#email#");
 		for (int i = 0; i < email.length; i++) {
 			AnswerVO answer = new AnswerVO();
-			//log.info("email[" + i + "] : " + email[i]);			
+			log.info("email[" + i + "] : " + email[i]);			
 			if(i>0){
 				String[] nick = email[i].split("#nick#");
 				for (int j = 0; j < nick.length; j++) {
-					//log.info("nick[" + j + "] : " + nick[j]);
+					log.info("nick[" + j + "] : " + nick[j]);
 					if(j==0) {
 						answer.setMb_nick(nick[0]);					
 						answer.setMb_email(email[0]);			
@@ -128,9 +128,9 @@ public class ResearchServiceImpl implements ResearchService {
 						String[] content = nick[j].split("#value#");
 						for (int k = 0; k < content.length; k++) {
 							String[] value = content[k].split("#code#");
-							//log.info("content[" + k + "] : " + content[k]);							
-							//log.info("code: " + value[0]);
-							//log.info("value: " + value[1]);
+							log.info("content[" + k + "] : " + content[k]);							
+							log.info("code: " + value[0]);
+							log.info("value: " + value[1]);
 							answer.setItem_code(value[0]);
 							answer.setAsw_content(value[1]);
 							log.info(answer);

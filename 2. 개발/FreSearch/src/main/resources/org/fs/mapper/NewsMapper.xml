@@ -58,7 +58,8 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 	set NEWS_SUBJECT = #{news_subject},
 	NEWS_DIVISION = #{news_division},
 	NEWS_CONTENT = #{news_content},
-	NEWS_REGDATE = sysdate
+	NEWS_REGDATE = sysdate,
+	NEWS_IS_ATTACH = #{news_is_attach}
 	where NEWS_CODE = #{news_code}
 </update>
 
@@ -73,7 +74,7 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
         rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS, NEWS_IS_ATTACH
       from 
         NEWS
-      where 
+      where NEWS_DIVISION='공지' and
   ]]>
 
   <include refid="criteria"></include> 
@@ -81,13 +82,47 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
   <![CDATA[    
       rownum <= #{pageNum} * #{amount}
       )
-  where rn > (#{pageNum} -1) * #{amount}   
+  where rn > (#{pageNum} -1) * #{amount}
   ]]>
   </select>
+  
+  
+  <select id="getListWithPagingEvent" resultType="org.fs.domain.NewsVO">
+  <![CDATA[
+  select 
+    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS, NEWS_IS_ATTACH
+  from 
+      (
+      select /*+INDEX_DESC(news pk_news) */
+        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS, NEWS_IS_ATTACH
+      from 
+        NEWS
+      where NEWS_DIVISION='이벤트' and
+  ]]>
+
+  <include refid="criteria"></include> 
+      
+  <![CDATA[    
+      rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}
+  ]]>
+  </select>
+  
+  
 	
 	<select id="getTotalCount" resultType="int">
 		select count(*) from NEWS 
-		where 
+		where news_division='공지' and
+		
+		<include refid="criteria"></include>
+		
+		news_code > 0
+	</select>
+	
+		<select id="getTotalCountEvent" resultType="int">
+		select count(*) from NEWS 
+		where news_division='이벤트' and
 		
 		<include refid="criteria"></include>
 		

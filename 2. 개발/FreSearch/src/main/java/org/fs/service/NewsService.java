@@ -17,7 +17,11 @@ public interface NewsService {
 	
 	public List<NewsVO> getList(Criteria cri);
 	
+	public List<NewsVO> getListEvent(Criteria cri);
+	
 	public int getTotal(Criteria cri);
+	
+	public int getTotalEvent(Criteria cri);
 	
 	public List<NewsAttachVO> getAttachList(int news_code); // 첨부파일 목록 가져오기
 	

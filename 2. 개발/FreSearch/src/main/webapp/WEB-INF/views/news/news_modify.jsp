@@ -48,6 +48,10 @@ body {
 						<textarea id="news_content" class="form-control" rows="6"
 							name='news_content'>${news.news_content}</textarea>
 					</div>
+					
+					<div>
+					<input type='hidden' name='news_is_attach' value=${news.news_is_attach}>
+					</div>
 
 					<button type="submit" data-oper='modify' class="btn btn-success">수정</button>
 					<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>

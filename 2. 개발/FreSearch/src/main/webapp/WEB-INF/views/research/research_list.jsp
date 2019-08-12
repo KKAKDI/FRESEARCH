@@ -60,12 +60,68 @@
 		                 
 	                	html += '<ul>';
 	         			html += '<li>';
-	         			html += '<a>';
-	         			if(list[i].ctgr_nm == "스포츠, 레저"){
-	         			html += '<span><img class="manImg" src="/resources/img/research.png"></img>' + list[i].ctgr_nm + '</span>';
+	         			html += "<a href='/research/research_content?subj_code="+list[i].subj_code+"'>";
+	         			if(list[i].ctgr_nm == "교육, 학문"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/education.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "컴퓨터 통신"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/computer.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "게임"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/game.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "엔터테인먼트, 예술"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/entertainment.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "생활"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/life.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "건강"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/health.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "사회, 정치"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/social.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "경제"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/economy.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "여행"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/travel.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "스포츠, 레저"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/sports.PNG"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "쇼핑"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/shopping.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "지역"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/area.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "결혼"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/marriage.jpg"></img>';
+	         				html += '</div>';
+	         			}else{
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/noimg.jpg"></img>';
+	         				html += '</div>';
 	         			}
+	         			/*html += '<span>' + list[i].subj_code + '</span>';*/
+	         			html += '<span>' + list[i].ctgr_nm + '</span>';
 	         			html += '<span>' + list[i].subj_nm + '</span>';
-	         			html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';
+	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
 	         				 + researchService.displayTime(list[i].subj_enddate) + '</span>';
 	         			html += '</a>';
@@ -186,9 +242,66 @@
 	                	html += '<ul>';
 	         			html += '<li>';
 	         			html += '<a>';
+	         			if(list[i].ctgr_nm == "교육, 학문"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/education.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "컴퓨터 통신"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/computer.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "게임"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/game.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "엔터테인먼트, 예술"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/entertainment.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "생활"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/life.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "건강"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/health.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "사회, 정치"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/social.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "경제"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/economy.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "여행"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/travel.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "스포츠, 레저"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/sports.PNG"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "쇼핑"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/shopping.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "지역"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/area.jpg"></img>';
+	         				html += '</div>';
+	         			}else if(list[i].ctgr_nm == "결혼"){
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/marriage.jpg"></img>';
+	         				html += '</div>';
+	         			}else{
+	         				html += '<div class="ctgr_img">';
+	         				html += '<img src="/resources/img/noimg.jpg"></img>';
+	         				html += '</div>';
+	         			}
 	         			html += '<span>' + list[i].ctgr_nm + '</span>';
 	         			html += '<span>' + list[i].subj_nm + '</span>';
-	         			html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';
+	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
 	         				 + researchService.displayTime(list[i].subj_enddate) + '</span>';
 	         			html += '</a>';

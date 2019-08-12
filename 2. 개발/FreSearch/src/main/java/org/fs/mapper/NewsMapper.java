@@ -13,6 +13,8 @@ public interface NewsMapper {
 	
 	public List<NewsVO> getListWithPaging(Criteria cri);
 	
+	public List<NewsVO> getListWithPagingEvent(Criteria cri);
+	
 	public void insert(NewsVO news);
 	
 	public Integer insertSelectKey(NewsVO news);
@@ -24,6 +26,8 @@ public interface NewsMapper {
 	public int update(NewsVO news);
 	
 	public int getTotalCount(Criteria cri);
+	
+	public int getTotalCountEvent(Criteria cri);
 	
 	public List<NewsAttachVO> findByNews_code(int news_code);
 	
