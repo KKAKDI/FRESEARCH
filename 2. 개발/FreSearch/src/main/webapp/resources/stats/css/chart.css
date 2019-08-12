@@ -154,7 +154,7 @@
 		padding: 1.5rem 1.875rem;
 	margin-left: 0rem;
 	margin-right: auto;
-	width: 364px;
+	width: 360px;
 	
 }
 
@@ -545,7 +545,7 @@ em {
     margin-right: 8px;
 }
 .Header{
-    width: 718px;
+    width: 100%;
     margin: 0 auto;
     margin-top : 15px;
 }

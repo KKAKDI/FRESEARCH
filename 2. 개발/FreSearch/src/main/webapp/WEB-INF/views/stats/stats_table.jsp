@@ -62,11 +62,11 @@
 					<form id="" action="" method="post" onsubmit="">
 						<table class="StatisticsFilter">
 							<colgroup>
-								<col width="193">
-								<col width="193">
-								<col width="193">
-								<col width="194">
-								<col width="194">
+								<col width="20%">
+								<col width="20%">
+								<col width="30%">
+								<col width="10%">
+								<col width="20%">
 							</colgroup>
 							<thead class="Header">
 								<tr class="Row">
