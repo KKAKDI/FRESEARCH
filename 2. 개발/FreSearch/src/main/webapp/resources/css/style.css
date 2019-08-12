@@ -57,7 +57,7 @@ body {
 
 .container .fixed_box .header .upper .login ul {
     float: right;
-    width: 180px;
+    width: 160px;
 
     /* HTML login 1, 2, 3 항목에 맞게 변경 후 border:1px solid #111; 지우기  */
 }
@@ -133,8 +133,9 @@ body {
 }
 
 #GNB>ul>li>a {
-    display: block;
-    padding: 0 53px;
+    display: inline-block;
+    padding: 0 30px;
+    width:155px;
     height: 80px;
     line-height: 80px;
     font-size: 15px;
