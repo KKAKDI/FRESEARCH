@@ -18,47 +18,17 @@
 		$(window).load(function () {
 			$(".loading").fadeOut(700);
 		});
-		$("#GNB > ul > li").hover(
+			$("#GNB > ul > li").hover(
 			function () {
 				$(this).children("a").addClass("active");
 				$(this).find("ul").addClass("active");
-				$(this).parent("ul").stop().animate({ "height": 178 }, 300);
-				$(this).parents().find(".GNB_sub").stop().animate({ "height": 96 }, 300);
-				/* 마우스가 들어온다면 이벤트가 발생된다
-				GNB ul li 자식 a에게 active 를 addClass - 관련 css-style-126
-				GNB ul li 자식 중 ul을 찾아 active 를 addClass - 관련 css-style-135
-				GNB ul li의 부모인 ul의 height를 animate 효과로 3초동안 변경
-				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 height를 animate 효과로 3초동안 변경
-				*/
 			},
 			// 마우스가 떠난다면
 			function () {
 				$(this).children("a").removeClass("active");
 				$(this).find("ul").removeClass("active");
-				$(this).parent("ul").stop().animate({ "height": 80 }, 300);
-				$(this).parents().find(".GNB_sub").stop().animate({ "height": 0 }, 300);
-				/* 마우스가 떠난다면 이벤트가 발생된다 
-				GNB ul li 자식 a에게 active를 removeClass css-style-126
-				GNB ul li 자식 중 ul을 찾아 active를 removeClass - 관련 css-style-135
-				GNB ul li의 부모인 ul의 변경했던 height를 3초간 animate를 주어 원래대로 변경
-				GNB ul li의 모든 부모들의 자식 중 GNB_sub를 찾아 변경했던 height를 3초간 animate를 주어 원래대로 변경
-				*/
 			}
 		);
-		$("#GNB > ul > li").focusin(function () {
-			$(this).children("a").addClass("active");
-			$(this).find("ul").addClass("active");
-			$(this).parent("ul").stop().animate({ "height": 178 }, 300);
-			$(this).parents().find(".GNB_sub").stop().animate({ "height": 142 }, 300);
-		});
-		$("#GNB > ul > li").focusout(function () {
-			$(this).children("a").removeClass("active");
-			$(this).find("ul").removeClass("active");
-			$(this).parent("ul").stop().animate({ "height": 80 }, 300);
-			$(this).parents().find(".GNB_sub").stop().animate({ "height": 0 }, 300);
-		});
-		//접근성을 위하여 tab키로 접근시 마우스로 접근한 것처럼 똑같이 나타나도록 작성한 스크립트
-		
 		$('.bxslider').bxSlider({
 			auto: true,
 			// autoControls: true, 갤러리 재생 정지 
@@ -118,7 +88,7 @@
 					<ul>
 						<li><a href="">로그인</a></li>
 						<li><a href="/member/signup">회원가입</a></li>
-						<li><a href="">가나다라</a></li>
+						<li><a href="">알림</a></li>
 					</ul>
 					<div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
@@ -127,45 +97,25 @@
 			
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href=""><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->
 					<ul>
 						<li>
 							<a href="/news/news_list">새소식</a>
-							<ul>
-								<li><a href="/news/news_list">공지사항</a></li>
-								<li><a href="/news/news_list">이벤트</a></li>
-							</ul>
 						</li>
 						<li>
 							<a href="/research/research_list">리서치</a>
-							<ul>
-								<li><a href="/research/research_list">리서치목록</a></li>
-								<li><a href="/research/research_register">리서치 만들기</a></li>
-							</ul>
 						</li>
 						<li>
 							<a href="/board/board_list">게시판</a>
-							<ul>
-								<li><a href="/board/board_list">게시판 목록</a></li>
-								<li><a href="/board/board_register">글쓰기</a></li>
-							</ul>
 						</li>
 						<li>
 							<a href="/stats/stats_list">데이터베이스</a>
-							<ul>
-								<li><a href="/stats/stats_table">통계 목록</a></li>
-								<li><a href="/stats/stats_list">차트</a></li>
-							</ul>
 						</li>
 						<li>
-							<a href="">문의</a>
-							<ul>
-								<li><a href="">패널신청</a></li>
-								<li><a href="">승인요청</a></li>
-							</ul>
+							<a href="">패널신청</a>
 						</li>
 					</ul>
 				</nav>
@@ -350,12 +300,12 @@
 	<footer id="footer" class="clearfix">
 		<div class="footer_inner">
 			<div class="footer_logo">
-				<a href=""><img src="/resources/img/f_logo.png" alt="FRESEARCH"></a>
+				<a href=""><img src="/resources/img/logo.png" alt="FRESEARCH"></a>
 			</div>
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>
 				<p>주소: (04108)서울특별시 마포구 백범로 23 3층 (신수동, 구프라자 3층)</p>
-				<p>TEL : 02-707-1480 | FAX : 02-707-0495 | GIT : <a href="https://github.com/KKAKDI/FRESEARCH">FRESEARCH</a> | <a href="">개인정보 처리방침</a></p>
+				<p>TEL : 02-707-1480 | FAX : 02-707-0495 |<a href="https://github.com/KKAKDI/FRESEARCH"> GIT : FRESEARCH</a></p>
 				<p>Copyright © FRESEARCH all rights reserved.</p>
 			</div>
 		</div>
