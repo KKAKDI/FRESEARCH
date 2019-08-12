@@ -9,7 +9,7 @@
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>
 				<p>주소: (04108)서울특별시 마포구 백범로 23 3층 (신수동, 구프라자 3층)</p>
-				<p>TEL : 02-707-1480 | FAX : 02-707-0495 | GIT : <a href="https://github.com/KKAKDI/FRESEARCH">FRESEARCH</a> | <a href="">개인정보 처리방침</a></p>
+				<p>TEL : 02-707-1480 | FAX : 02-707-0495 |<a href="https://github.com/KKAKDI/FRESEARCH"> GIT : FRESEARCH</a></p>
 				<p>Copyright © FRESEARCH all rights reserved.</p>
 			</div>
 		</div>

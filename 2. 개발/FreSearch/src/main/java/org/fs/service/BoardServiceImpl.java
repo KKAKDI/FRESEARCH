@@ -1,9 +1,11 @@
 package org.fs.service;
 
-import java.util.List; 
+import java.util.List;
 
+import org.fs.domain.BoardAttachVO;
 import org.fs.domain.BoardVO;
 import org.fs.domain.Criteria;
+import org.fs.mapper.BoardAttachMapper;
 import org.fs.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +20,27 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService{
 	
-	@Setter(onMethod_ = {@Autowired})
+	@Setter(onMethod_= @Autowired)
 	private BoardMapper mapper;
 	
-	@Override												//게시글 등록
-	public void register(BoardVO board) {
+	@Setter(onMethod_= @Autowired)
+	private BoardAttachMapper attachMapper;
+	
+	@Transactional
+	@Override												
+	public void register(BoardVO board) {			//게시글 등록
 
 		log.info("register......" + board);
 
 		mapper.insertSelectKey(board);
+		
+		if(board.getAttachList()== null || board.getAttachList().size() <= 0) {
+			return;
+		}
+		board.getAttachList().forEach(attach -> {
+			attach.setBrd_code(board.getBrd_code());
+			attachMapper.insert(attach);
+		});
 	}
 	
 	@Override
@@ -70,8 +84,19 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.getTotalCount(cri);
 	}
 
+	@Override
+	public List<BoardAttachVO> getAttachList(int brd_code) {
+		
+		log.info("get Attach List by brd_code" + brd_code);
+		
+		return attachMapper.findByBrd_code(brd_code);
+		
+	}
 
-
-
+	@Override
+	public int brdViewCnt(int brd_code) {
+		
+		return mapper.views(brd_code);
+	}
 
 }

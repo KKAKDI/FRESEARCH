@@ -77,4 +77,13 @@
 		from question a,item b,subject c,category d
 		where c.subj_code=a.subj_code and a.qst_code = b.qst_code and c.ctgr_code = d.ctgr_code and a.subj_code=#{subj_code}
 	</select>
+	<insert id='answerReg'>
+		<selectKey keyProperty="asw_code" order="BEFORE" resultType="String">
+			<include refid="ran_code"></include>
+		</selectKey>
+		insert into ANSWER
+		values(
+			#{asw_code},#{item_code},#{mb_email},#{mb_nick},#{asw_content},SYSDATE
+		)
+	</insert>
 </mapper>

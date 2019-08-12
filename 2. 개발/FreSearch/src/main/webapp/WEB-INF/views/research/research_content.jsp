@@ -17,7 +17,26 @@
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
 </head>
 <script>
-
+	$(function() {
+		$(document).on("click","#research_answer",function(){
+			var research_values = "";
+			var values_index= $(".research_qst").length;
+			var user_email ="admin@fresearch.com";
+			var user_nick ="admin";
+			var form = $("#research_form");
+			
+			research_values += user_email+"#email#";
+			research_values += user_nick +"#nick#";
+			
+			for(var i=1;i<=values_index;i++){
+				research_values += $("#item_code"+i).val()+"#code#";
+				research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";		
+			}
+			$("#research_values").val(research_values);
+			form.attr("action","/research/research_content");
+			form.submit();
+		});
+	});
 </script>
 <body>
 	<div class='container'>
@@ -51,7 +70,7 @@
 							</div>
 						<c:set var="qst_code" value="code"/>
 						<c:set var="itemBN" value="0"/>
-						<c:set var="itemValue" value="0"/>
+						<c:set var="itemValue" value="1"/>
 						<c:forEach items="${content}" var="research">	
 							<c:if test="${research.qst_code ne qst_code}">	
 								<input type='hidden' name='qst_code' id='qst_code' value='${research.qst_code}'>
@@ -62,7 +81,7 @@
 								<c:set var="qst_code" value="${research.qst_code}"/>	
 								<c:set var="itemBN" value='${itemBN+1}'/>
 							</c:if>			
-								<input type='hidden' name='item_code' id='item_code' value='${research.item_code}'>
+								<input type='hidden' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
 								<div class='research_item_img'>${research.item_img}</div>		
 								<div class='research_item'>
 									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>

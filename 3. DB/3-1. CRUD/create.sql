@@ -114,7 +114,8 @@ CREATE TABLE NEWS (
 	NEWS_SUBJECT        VARCHAR2(240)    NULL,	     -- 제목
 	NEWS_CONTENT        VARCHAR2(3000)   NULL,           -- 내용
 	NEWS_VIEWS	    NUMBER	     DEFAULT 0,	     -- 조회수
-	NEWS_REGDATE	    DATE	     NULL	     -- 등록일
+	NEWS_REGDATE	    DATE	     NULL,	     -- 등록일
+    NEWS_IS_ATTACH  VARCHAR2(1) NOT NULL        -- 파일첨부 여부
 );
 ALTER TABLE NEWS ADD CONSTRAINT PK_NEWS PRIMARY KEY (NEWS_CODE);
 

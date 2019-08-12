@@ -2,52 +2,82 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="/resources/css/reset.css">
+<%@include file="../includes/header.jsp" %>
 
 <style>
-div {
-	text-align: left;
-	width: 850px;
-	margin: auto;
+
+.container_new{
+	padding-top: 125px;
 }
 
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
+table {
+	width: 850px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: fixed;
 }
+
+td.column {
+	background-color: #f0f0f0;
+	color: #505050;
+	padding: 15 19;
+	font-weight: bold;
+}
+
+td.column-data {
+	padding: 15 19;
+}
+
+div.button {
+	text-align: right;
+}
+
+hr {
+	margin: 8 auto;
+	background-color: blue;
+	width: 5%;
+}
+
 </style>
 
 
-<div>
-	<div>
-		<h2>등록하기</h1>
-	</div>
-</div>
-<div>
+<div class="container_new">
 	<div>
 		<div>
-			<div>
-				<form role="form" action="/news/news_register" method="post">
-					<div class="form-group">
-						<label>구분</label><select name='news_division'>
-							<option value="공지사항">공지</option>
-							<option value="이벤트">이벤트</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>제목</label><input class="form-control" name='news_subject'>
-					</div>
-					<div class="form-group">
-						<label>글 내용</label>
-						<textarea class="form-control" rows="6" name='news_content'
-							style="display: block;"></textarea>
-					</div>
-					<button type="submit">등록</button>
-					<button type="reset">다시쓰기</button>
-					<button type="button" onclick="location.href='news_list'">목록</button>
-
-				</form>
-
+			<div style="text-align: center;">
+				<h2>공지사항 / 이벤트</h2>
+					<hr/>
+					<p>FreSearch 새소식을 제공합니다.</p>
+				<table style="text-align: center;">
+					<form role="form" action="/news/news_register" method="post">
+						
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">구분</td>
+							<td><select name='news_division'>
+								<option value="공지">공지</option>
+								<option value="이벤트">이벤트</option>
+							</select></td>
+							<td class="column" style="width: 15%;">작성자</td>
+							<td class="column-data" style="width: 15%;">FreSearch</td>
+						</tr>
+						
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column">제목</td>
+							<td class="column-data"><input class="form-control" name='news_subject'></td>
+						</tr>
+						
+						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+						<td>
+							<textarea class="form-control" rows="6" name='news_content'
+								style="display: block;"></textarea>
+						</td>
+						</tr>
+	
+					</form>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -59,7 +89,7 @@ body {
 		<div>
 			<div>File Attach</div>
 			<div>
-				<div>
+				<div class='uploadDiv'>
 					<input type="file" name='uploadFile' multiple>
 				</div>
 				<div class='uploadResult'>
@@ -72,6 +102,12 @@ body {
 
 	</div>
 
+</div>
+
+<div class="button">
+	<button type="submit">등록</button>
+	<button type="reset">다시쓰기</button>
+	<button type="button" onclick="location.href='news_list'">목록</button>
 </div>
 
 <script>
@@ -218,5 +254,5 @@ body {
 	});
 </script>
 
-                        	
+<%@include file="../includes/footer.jsp" %>                        	
                         	
