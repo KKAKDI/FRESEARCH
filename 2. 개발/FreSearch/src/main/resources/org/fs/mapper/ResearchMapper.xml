@@ -6,10 +6,10 @@
 	
 	<select id="list" resultType="ResearchVO">
 	
-	select ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
+	select subj_code, ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 	from
 		(
-		select rownum rn, ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
+		select rownum rn, subj_code, ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 		from v_research
 		<![CDATA[ where rownum <= #{cri.pageNum} * #{cri.amount} ]]>
 		<choose>
