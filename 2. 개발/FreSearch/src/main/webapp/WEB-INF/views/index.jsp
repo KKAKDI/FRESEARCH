@@ -141,23 +141,23 @@
 			<div class="notice">
 				<ul class="notice_rolling">
 					<li>
-						<a href="">공지사항 <span>임시내용입니다.</span>
-							<span class="notice_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=555">공지사항 <span>2019년 8월 31일 이용약관 일부 개정 안내</span>
+							<span class="notice_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">공지사항 <span>2임시내용입니다.</span>
-							<span class="notice_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=444">공지사항 <span>신고 기능이 잠시 중지됩니다.</span>
+							<span class="notice_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">공지사항 <span>3임시내용입니다.</span>
-							<span class="notice_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=333">공지사항 <span>8월 24일(토) 오전 2시~6시, FreSearch 서버 점검 안내</span>
+							<span class="notice_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">공지사항 <span>4임시내용입니다.</span>
-							<span class="notice_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=222">공지사항 <span>"FreSerach" 가 서비스를 시작 되었습니다.</span>
+							<span class="notice_date">2019.08.13</span>
 						</a>
 					</li>
 				</ul>
@@ -165,23 +165,23 @@
 			<div class="event">
 				<ul class="event_rolling">
 					<li>
-						<a href="">이벤트 <span>임시내용입니다.</span>
-							<span class="event_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=666">이벤트 <span>통계 예측 이벤트 '2045년 우리는?</span>
+							<span class="event_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">이벤트 <span>2임시내용입니다.</span>
-							<span class="event_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=111">이벤트 <span>[FreSearch] FreSearch 1주일 기념 설문조사 이벤트!</span>
+							<span class="event_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">이벤트 <span>3임시내용입니다.</span>
-							<span class="event_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=777">이벤트 <span>매주 진행되는 리서치 이벤트!!</span>
+							<span class="event_date">2019.08.13</span>
 						</a>
 					</li>
 					<li>
-						<a href="">이벤트 <span>4임시내용입니다.</span>
-							<span class="event_date">0000.00.00</span>
+						<a href="/news/news_get?news_code=888">이벤트 <span>서비스 오픈 기념 이벤트!!</span>
+							<span class="event_date">2019.08.13</span>
 						</a>
 					</li>
 				</ul>
@@ -212,7 +212,7 @@
 						<dt>리서치참여/제작</dt>
 						<dd>저쩌꾸</dd>
 						<dd>임시내용입니다</dd>
-						<a href="/research/research_list">리서치 더보기  ></a>
+						<a href="/research/research_register">리서치 더보기  ></a>
 					</dl>
 				</div>
 			</div>
@@ -256,40 +256,40 @@
 					
 				</li>
 				<li>
-					<a href="">
+					<a href="/research/research_content?subj_code=8O18KXBD">
 						<div class='item_box'><img src="/resources/img/qresearch01.png" alt="research_1"></div>
 						<dl>
 							<dt>어떤 결재를 가장 선호하나요?</dt>
-							<dd>2000. 00. 00 ~ 2000. 00. 00</dd>
+							<dd>2019. 08. 13 ~ 2019. 08. 30</dd>
 						</dl>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/research/research_content?subj_code=2A19HBCB">
 						<div class='item_box'><img src="/resources/img/qresearch02.png" alt="research_2"></div>
 						<dl>
 							<dt>가장 좋아하는 간단한 한 끼는?</dt>
-							<dd>2000. 00. 00 ~ 2000. 00. 00</dd>
+							<dd>2019. 08. 13 ~ 2019. 08. 23</dd>
 						</dl>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/research/research_content?subj_code=4KTGHZ41">
 						<div class='item_box'><img src="/resources/img/qresearch03.png" alt="research_3"></div>
 						<dl>
 							<dt>메신저 프로필 사진 
 							</br>무엇으로 하시나요?</dt>
-							<dd>2000. 00. 00 ~ 2000. 00. 00</dd>
+							<dd>2019. 08. 14 ~ 2020. 01. 23</dd>
 						</dl>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/research/research_content?subj_code=N2IQ5NED">
 						<div class='item_box'><img src="/resources/img/qresearch04.png" alt="research_4"></div>
 						<dl>
 							<dt>싫지만 자주 봐야 하는
 							</br>사람을 대하는 나만의 방법은?</dt>
-							<dd>2000. 00. 00 ~ 2000. 00. 00</dd>
+							<dd>2019. 08. 13 ~ 2025. 05. 14</dd>
 						</dl>
 					</a>
 				</li>

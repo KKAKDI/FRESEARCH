@@ -25,7 +25,9 @@ hr {
 	width: 430px;
 	margin: 0 auto;
 }
-
+.research_header .logo img{
+	width:400px;
+}
 #content {
 	clear: both;
 	float: none;
