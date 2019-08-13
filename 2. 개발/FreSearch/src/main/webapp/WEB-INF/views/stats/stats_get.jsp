@@ -217,7 +217,7 @@
 									</td> -->
 									<td class="Cell-Top ChampionName">
 										<span>결혼 하셨습니까?
-										<!-- ${list[0].subj_nm}, ${list[0].item_content} --></span>
+										</span>
 									</td>
 									<td class="Cell-Top" data-value="53.988620395752">
 										<div class="Progress Blue" style="width: 39.064719%"></div>
