@@ -275,8 +275,12 @@ public class StatsController {
 	}
 	
 	@GetMapping("/stats_get")
-	public void SexSex() {
-		log.info("Sex: ");
+	public void SexSex(@RequestParam("subj_code") String subj_code, Model model) {
+		List<StatsVO> list = service.getStatsContent(subj_code);
+		log.info(list.get(0).getSubj_nm());
+		log.info(list.get(0).getAsw_content());
+		log.info(list.get(1).getAsw_content()); 
+		model.addAttribute("list", list);
 	}
 
 

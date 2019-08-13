@@ -35,6 +35,8 @@ public interface StatsMapper {
 	public int getTableCount(StatsVO vo);
 	
 	public List<StatsVO> getTableSearch(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
+	
+	public List<StatsVO> getStatsContent(String subj_code);
 
 
 }

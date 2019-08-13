@@ -93,6 +93,10 @@ public class StatsServiceImpl implements StatsService{
 				mapper.getTableSearch(vo, cri),
 				mapper.getTableCount(vo)
 				);
-		
+	}
+	@Override
+	public List<StatsVO> getStatsContent(String subj_code){
+		log.info("getTableTest");
+		return mapper.getStatsContent(subj_code);
 	}
 }

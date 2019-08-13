@@ -148,14 +148,18 @@ public class testMapper {
 //
 //		log.info(mapper.getTableCount(vo));
 //	}
+//	@Test
+//	public void getTableSearch() {
+//		StatsVO vo = new StatsVO();
+//		Criteria cri = new Criteria();
+//		vo.setMb_nick("최운학");
+//		vo.setSubj_nm("");
+//		cri.setPageNum(1);
+//		cri.setAmount(3);
+//		log.info(mapper.getTableSearch(vo, cri));
+//	}
 	@Test
-	public void getTableSearch() {
-		StatsVO vo = new StatsVO();
-		Criteria cri = new Criteria();
-		vo.setMb_nick("최운학");
-		vo.setSubj_nm("");
-		cri.setPageNum(1);
-		cri.setAmount(3);
-		log.info(mapper.getTableSearch(vo, cri));
+	public void getStatsContent() {
+		log.info(mapper.getStatsContent("0ZPO83PX"));
 	}
 }

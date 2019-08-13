@@ -622,7 +622,7 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href=""> <span>'+list[i].subj_nm;
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
 							html +=	'</span> <em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
@@ -979,7 +979,7 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href=""> <span>'+list[i].subj_nm;
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
 							html +=	'</span> <em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
