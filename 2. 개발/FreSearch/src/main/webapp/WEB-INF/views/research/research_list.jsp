@@ -11,7 +11,7 @@
 				<div class="list-head">
 				<h2>설문 목록</h2>
 				<span>
-					<a href="">등록</a>
+					<a href="/research/research_register">등록</a>
 				</span>
 				</div>
 				<div class="tab-content">
