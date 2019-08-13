@@ -8,7 +8,12 @@
 	<div class="page-content">
 		<div class="list-content">
 			<div class="detail-list">
+				<div class="list-head">
 				<h2>설문 목록</h2>
+				<span>
+					<a href="">등록</a>
+				</span>
+				</div>
 				<div class="tab-content">
 					<div class="tab-button">
 						<input type='button' class="research" name="research" id="ing" value="진행중설문">
