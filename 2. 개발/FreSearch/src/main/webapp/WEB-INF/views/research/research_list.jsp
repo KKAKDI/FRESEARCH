@@ -24,6 +24,7 @@
       $(document).ready(function(){
     	  $("#ing").css("color", "#222");
     	  $("#end").css("background", "#f9f9f9");
+    	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
     	  
@@ -58,7 +59,7 @@
 					}
 					for(var i =0, len = list.length||0; i < len; i++){
 		                 
-	                	html += '<ul>';
+	                	html += '<ul class="research_list">';
 	         			html += '<li>';
 	         			html += "<a href='/research/research_content?subj_code="+list[i].subj_code+"'>";
 	         			if(list[i].ctgr_nm == "교육, 학문"){
@@ -156,7 +157,7 @@
   			var str = "<ul class='pagination pull-right'>";
   			
   			if(prev){
-  				str+= "<li class='page-item1 aaa'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
+  				str+= "<li class='page-item-move'><a class='page-link' href='"+(startNum - 1)+"'>이전</a></li>";
   			}
   			
   			for(var i = startNum; i<=endNum; i++){
@@ -165,7 +166,7 @@
   			}
   			
   			if(next){
-  				str+= "<li class='page-item1 aaa'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
+  				str+= "<li class='page-item-move'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
   			}
   			
   			str += "</ul>";
@@ -179,15 +180,6 @@
   			console.log("page click");
   			
   			var targetPageNum = $(this).attr("href");
-  			var aa = $(this).attr("class");
-  			console.log("aa : " + aa);
-  			var a = researchPageFooter.children("ul").children("li").children("a").attr("class");
-  			console.log("children : " + a);
-  			
-  			/*
-  			researchPageFooter.css("color", "#fff");
-  	  		researchPageFooter.css("background", "#222");
-  	  		researchPageFooter.css("font-style", "normal");*/
 
   			console.log("targetPageNum: " + targetPageNum);
   			
@@ -241,7 +233,7 @@
 		                 
 	                	html += '<ul>';
 	         			html += '<li>';
-	         			html += '<a>';
+	         			html += "<a href='/research/research_content?subj_code="+list[i].subj_code+"'>";
 	         			if(list[i].ctgr_nm == "교육, 학문"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/education.jpg"></img>';
@@ -299,6 +291,7 @@
 	         				html += '<img src="/resources/img/noimg.jpg"></img>';
 	         				html += '</div>';
 	         			}
+	         			/*html += '<span>' + "[" +list[i].ctgr_nm + "] " + list[i].subj_nm +'</span>';*/
 	         			html += '<span>' + list[i].ctgr_nm + '</span>';
 	         			html += '<span>' + list[i].subj_nm + '</span>';
 	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
@@ -371,24 +364,33 @@
   	$("#ing").click(function() {
   		$("#ing").css("color", "#222");
   		$("#ing").css("background", "#fff");
+  		$("#ing").css("font-weight", "700");
   		$("#end").css("color", "#888");
   		$("#end").css("background", "#f9f9f9");
+  		$("#end").css("font-weight", "400");
   	});
 
   	$("#end").click(function() {
   		$("#end").css("color", "#222");
   		$("#end").css("background", "#fff");
+  		$("#end").css("font-weight", "700");
   		$("#ing").css("color", "#888");
   		$("#ing").css("background", "#f9f9f9");
+  		$("#ing").css("font-weight", "400");
   	});
   	
-  	$(".paging").on('click','li a',function(e){ 
-  		
+  	$(".paging").on('click','li a',function(){ 
   		$(".paging li a").css("color", "#fff");
   		$(".paging li a").css("background", "#222");
   		$(".paging li a").css("font-style", "normal");
-  		
   	});
-  	
+  	/*
+  	$("#test ul",$(this)).hover(
+	  	function() {
+	  		$("#test ul").css("filter", "brightness(70%)");
+	  	}, 
+	  	function(){
+	  		$("#test ul").css("filter", "brightness(100%)");
+	  	});*/
 </script>
 <%@include file="../includes/footer.jsp"%>

@@ -28,7 +28,8 @@
 		<input type="hidden" name="mb_birthdate" id="mb_birthdate" value="">
 		<input type="hidden" name="mb_addr" id="mb_addr" value="">
 		<input type="hidden" name="mb_att_category" id="mb_att_category" value="">
-			<h2>회원가입</h2>
+			<!-- <h2>회원가입</h2> -->
+			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 			<div class="form-row">
 				<label for="mb_email">이메일</label>
 				<input type="text" name="mb_email" id="mb_email" placeholder="이메일" autocomplete="off" maxlength="30">

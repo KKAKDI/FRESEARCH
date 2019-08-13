@@ -10,28 +10,29 @@ body {
 	background: #fff;
 	width: 670px;
 	border-radius: 8px;
-	margin: 175px 0;
+	margin: 100px 0;
 }
 .form-detail {
 	padding: 30px 45px 30px 45px;
 }
 .form-detail h2 {
-	position: relative;
-	font-size: 25px;
+	/*position: relative;
+	font-size: 25px;*/
 	text-align: center;
 	padding: 3px 0 20px;
 	margin-bottom: 40px;
 }
+/*
 .form-detail h2::after {
 	background: #1428a0;
-	width: 90px;
+	width: 100px;
 	height: 2px;
 	content: "";
 	position: absolute;
 	top: 100%;
 	left: 50%;
     transform: translateX(-50%);
-}
+}*/
 .form-detail label {
 	display: block;
 	font-size: 18px;
