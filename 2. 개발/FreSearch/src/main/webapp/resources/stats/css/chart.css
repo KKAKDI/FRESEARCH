@@ -189,8 +189,9 @@ p {
 	margin-bottom: .5rem;
 }
 .footer_text p{
-	font-size: 0.875rem;
-	line-height: 1.3rem;
+	font-size: 13px;
+    line-height: 1.3rem;
+    margin: unset;
 
 }
 
