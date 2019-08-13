@@ -165,6 +165,12 @@ var researchService = (function(){
 		var gap = today.getTime() - timeValue;
 		var dateObj = new Date(timeValue);
 		var str = "";
+		
+		var yy = dateObj.getFullYear().toString().substring(2,4);
+		var mm = dateObj.getMonth() + 1;
+		var dd = dateObj.getDate();
+		
+		return [ yy, '.', (mm > 9 ? '' : '0') + mm, '.', (dd > 9 ? '' : '0') + dd ].join('');
 		/*
 		if(gap < (1000 * 60 * 60 * 24)){
 			var hh = dateObj.getHours();
@@ -173,14 +179,14 @@ var researchService = (function(){
 			
 			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
 				':', (ss > 9 ? '' : '0') + ss ].join('');
-		}else{*/
+		}else{
 			var yy = dateObj.getFullYear().toString().substring(2,4);
 			var mm = dateObj.getMonth() + 1;
 			var dd = dateObj.getDate();
 			
 			return [ yy, '.', (mm > 9 ? '' : '0') + mm, '.',
 				(dd > 9 ? '' : '0') + dd ].join('');
-		/*}*/
+		}*/
 	};
 	
 	return {
