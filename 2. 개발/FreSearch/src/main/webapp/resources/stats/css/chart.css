@@ -128,7 +128,7 @@
 	border-radius: 0;
 	margin-left: 0rem;
 	margin-right: auto;
-	width: 737px;
+	width: 729.5px;
 }
 
 .card .card-body {
@@ -154,7 +154,7 @@
 		padding: 1.5rem 1.875rem;
 	margin-left: 0rem;
 	margin-right: auto;
-	width: 360px;
+	width: 100%;
 	
 }
 
@@ -187,6 +187,11 @@ p {
 	font-size: 0.875rem;
 	line-height: 1.3rem;
 	margin-bottom: .5rem;
+}
+.footer_text p{
+	font-size: 0.875rem;
+	line-height: 1.3rem;
+
 }
 
 .table-responsive {

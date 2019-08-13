@@ -375,6 +375,18 @@ FROM   (SELECT rownum rn,
 	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
+GROUP BY answer_number, 
+       subj_regdate, 
+       subj_code, 
+       ctgr_nm, 
+       mb_nick, 
+       mb_sex, 
+       mb_birthdate, 
+       mb_addr, 
+       qst_img, 
+       subj_nm, 
+       subj_startdate, 
+       subj_enddate
 </select>
 
 
@@ -434,7 +446,46 @@ FROM   (SELECT mb_addr
 select count(*) from (select MB_ADDR from member where  MB_ADDR like '%서울%')
 
 </select>-->
-
+<select id="getStatsContent" resultType="org.fs.domain.StatsVO">
+SELECT DISTINCT a.subj_code, 
+                b.qst_code, 
+                c.item_code, 
+                e.ctgr_nm, 
+                a.subj_nm, 
+                b.qst_content, 
+                c.item_content, 
+                (SELECT asw_content 
+                 FROM   answer 
+                 WHERE  item_code = c.item_code)AS ASW_CONTENT, 
+                a.subj_startdate, 
+                a.subj_enddate, 
+                c.item_regdate 
+FROM   subject a, 
+       question b, 
+       item c, 
+       answer d, 
+       category e 
+WHERE  a.subj_code = b.subj_code 
+       AND b.qst_code = c.qst_code 
+       AND a.ctgr_code = e.ctgr_code 
+       AND a.subj_code = #{subj_code} 
+GROUP  BY a.mb_nick, 
+          a.subj_code, 
+          b.qst_code, 
+          c.item_code, 
+          e.ctgr_nm, 
+          a.subj_nm, 
+          b.qst_content, 
+          b.qst_type, 
+          c.item_content, 
+          d.asw_code, 
+          d.mb_email, 
+          c.qst_code, 
+          c.item_regdate, 
+          a.subj_startdate, 
+          a.subj_enddate, 
+          d.asw_regdate
+</select>
 
 
 </mapper>

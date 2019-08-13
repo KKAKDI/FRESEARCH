@@ -209,14 +209,15 @@
 										</div> 
 									</th>
 									 -->
-								</tr>
+								</tr> 
 							</thead>
 							<tbody class="Content" aria-live="plite" aria-relevant="all">
 								<tr class="Row Top" role="row">
 									<!-- <td class="Cell ChampionImage">
 									</td> -->
 									<td class="Cell-Top ChampionName">
-										<span>결혼 하셨습니까?</span>
+										<span>결혼 하셨습니까?
+										</span>
 									</td>
 									<td class="Cell-Top" data-value="53.988620395752">
 										<div class="Progress Blue" style="width: 39.064719%"></div>

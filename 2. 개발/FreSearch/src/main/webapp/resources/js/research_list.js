@@ -166,6 +166,12 @@ var researchService = (function(){
 		var dateObj = new Date(timeValue);
 		var str = "";
 		
+		var yy = dateObj.getFullYear().toString().substring(2,4);
+		var mm = dateObj.getMonth() + 1;
+		var dd = dateObj.getDate();
+		
+		return [ yy, '.', (mm > 9 ? '' : '0') + mm, '.', (dd > 9 ? '' : '0') + dd ].join('');
+		/*
 		if(gap < (1000 * 60 * 60 * 24)){
 			var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
@@ -180,7 +186,7 @@ var researchService = (function(){
 			
 			return [ yy, '.', (mm > 9 ? '' : '0') + mm, '.',
 				(dd > 9 ? '' : '0') + dd ].join('');
-		}
+		}*/
 	};
 	
 	return {

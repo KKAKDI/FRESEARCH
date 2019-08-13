@@ -622,7 +622,7 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href=""> <span>'+list[i].subj_nm;
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
 							html +=	'</span> <em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
@@ -636,12 +636,12 @@
 							html += '</div>';
 							html += '</div>';
 							html +=	'</div>';
-							html +=	'<div class="article-list-item__thumbnail">';
+							/*html +=	'<div class="article-list-item__thumbnail">';
 							html +=	'<a href="">';
 							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
 							html += '?image=w_200" class="article-list-item__thumbnail" alt>';
 							html +=	'</a>';
-							html +=	'</div>';
+							html +=	'</div>';*/
 							html += '</div>';
 			    		}
 			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
@@ -778,12 +778,12 @@
 						html += '</div>';
 						html += '</div>';
 						html +=	'</div>';
-						html +=	'<div class="article-list-item__thumbnail">';
+						/*html +=	'<div class="article-list-item__thumbnail">';
 						html +=	'<a href="">';
 						html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
 						html += '?image=w_200" class="article-list-item__thumbnail" alt>';
 						html +=	'</a>';
-						html +=	'</div>';
+						html +=	'</div>';*/
 						html += '</div>';
 		    		}
 			    	html+= '<section class="article-list-paging">';
@@ -979,7 +979,7 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href=""> <span>'+list[i].subj_nm;
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
 							html +=	'</span> <em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
@@ -992,13 +992,13 @@
 							html += '</div>';
 							html += '</div>';
 							html += '</div>';
-							html +=	'</div>';
-							html +=	'<div class="article-list-item__thumbnail">';
+							html +=	'</div>'; 
+							/*html +=	'<div class="article-list-item__thumbnail">';
 							html +=	'<a href="">';
 							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
 							html += '?image=w_200" class="article-list-item__thumbnail" alt>';
 							html +=	'</a>';
-							html +=	'</div>';
+							html +=	'</div>';*/
 							html += '</div>';
 			    		}
 			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
