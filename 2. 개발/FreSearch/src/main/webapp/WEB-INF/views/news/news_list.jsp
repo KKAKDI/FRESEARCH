@@ -61,7 +61,7 @@ a.move{
 #pagingArea.a{
 	text-decoration: none;
 }
-a.move:hover{
+a.move:hover{ 
 	text-decoration: underline;
 	color: #0C4DA2;
 	font-weight: bold;
@@ -72,6 +72,7 @@ td.subject{
 #pagingArea{
 	margin-top: 10px;
 	text-align: center;
+	margin-bottom: 160px;
 }
 li.paginate_button {
 	position: relative;
