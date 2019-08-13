@@ -58,7 +58,19 @@ public class StatsVO {
 	
 	private String stats;
 	
+	///question
+	private String qst_code;
+	private String qst_content;
 	
+	
+	//answer
+	private String asw_content;
+	
+	
+	///item
+	private String item_code;
+	private String item_content;
+	private Date item_regdate;
 	
 	
 	
