@@ -248,3 +248,5 @@ insert into SUBJECT values('C0000028', 'A0000001', 'aaa@google.com', '최운학', '
 insert into QUESTION values('D0000028', 'C0000028', '질문11', '객관식', null, null, SYSDATE);
 insert into ITEM values('E0000028', 'D0000028', '아이템내용11', null, SYSDATE);
 insert into ANSWER values('F0000028', 'E0000028', 'aaa@google.com', '최운학', '답변내용11', SYSDATE);
+
+commit;
