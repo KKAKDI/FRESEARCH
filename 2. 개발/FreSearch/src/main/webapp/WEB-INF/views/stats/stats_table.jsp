@@ -622,8 +622,8 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
-							html +=	'</span> <em>[35]</em>';
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
+							//html +=	'<em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
@@ -736,9 +736,10 @@
 			
 			
 			tableService.table(data,function(list, cnt){
+		    	//<section class="article-list">
+
 		    	var html = '';
-		    	
-		    	if (list.getTableTest == 0){
+		    	if (list.length == 0){
 		    		html += '<div class="article-list-item-no-data">';
 					html += '<div class="article-list-item__content">';
 					html += '<div class="article-list-item__title">';
@@ -746,16 +747,13 @@
 					html +=	'</span>';
 					html +=	'</div>';
 					html +=	'</a>';
-					html +=	'<div class="article-list-item-meta">';
-					html += '</div>';
+
 					html += '</div>';
 					html += '</div>';
 					html +=	'</div>';
 					html += '</div>';
 		    	}else{
-
 		    		for(var i =0, len = list.length||0; i < len; i++){
-
 		    		
 			    		html += '<div class="article-list-item">';
 						html += '<div class="article-list-item__vote">';
@@ -764,8 +762,8 @@
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
-						html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
-						html +=	'</span> <em>[35]</em>';
+						html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
+						//html +=	' <em>[35]</em>';
 						html +=	'</div>';
 						html +=	'</a>';
 						html +=	'<div class="article-list-item-meta">';
@@ -786,34 +784,36 @@
 						html +=	'</div>';*/
 						html += '</div>';
 		    		}
-			    	html+= '<section class="article-list-paging">';
-			    	html+= '<div class="article-list-paging-content">';
-			    	html+= '<ul class="article-list-paging-list">';
-			    	if (page ==1){
-			    		console.log("이게 왜 안뜨지?");
-			    	}else{
-			    		console.log("이건 나와야되는데 ");
-				    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
-				    	html+= '<button class="article-list-paging__button button" id="start_prev" value="'+page+'">';
-				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
-				    	html+= '<span>이전</span>'
-				    	html+= '</button>'
-				    	html+= '</li>';
-			    	}
-			    	if(page == Math.ceil(cnt/10.0)){
-			    		
-			    	}else{
-				    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
-				    	html+= '<button class="article-list-paging__button button" id="start_next" value="'+page+'">';
-				    	html+= '<span>다음</span>'
-				    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
-				    	html+= '</button>'
-				    	html+= '</li>';
-			    	}
-			    	html+= '</ul>';
-			    	html+= '</div>';
-			    	html+= '</section>';
-			    	}
+		    		if(page == 1 && page == Math.ceil(cnt/10.0)){
+		    			
+		    		}else{
+			    		html+= '<section class="article-list-paging">';
+				    	html+= '<div class="article-list-paging-content">';
+				    	html+= '<ul class="article-list-paging-list">';
+				    	if (page ==1){
+				    	}else{
+					    	html+= '<li class="article-list-paging__item article-list-paging__item--prev">';
+					    	html+= '<button class="article-list-paging__button button" id="start_prev" value="'+page+'">';
+					    	html+= '<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">';
+					    	html+= '<span>이전</span>'
+					    	html+= '</button>'
+					    	html+= '</li>';
+				    	}
+				    	if(page == Math.ceil(cnt/10.0)){
+				    		
+				    	}else{
+					    	html+= '<li class="article-list-paging__item article-list-paging__item--next">';
+					    	html+= '<button class="article-list-paging__button button" id="start_next" value="'+page+'">';
+					    	html+= '<span>다음</span>'
+					    	html+= '<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">';
+					    	html+= '</button>'
+					    	html+= '</li>';
+				    	}
+				    	html+= '</ul>';
+				    	html+= '</div>';
+				    	html+= '</section>';
+		    		}
+		    	}
 				$('section.article-list').html(html);
 		    });
 		};
@@ -979,8 +979,8 @@
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
-							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm;
-							html +=	'</span> <em>[35]</em>';
+							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
+							//html +=	' <em>[35]</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
