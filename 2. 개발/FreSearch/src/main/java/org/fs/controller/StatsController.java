@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Param; 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
 import org.fs.domain.StatsPagingSearchDTO;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+ 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 

@@ -1006,10 +1006,12 @@ button, input {
 }
 .Content>.Row>.Cell-Top{
 	border-top: none;
-    font-size: 18px;
+    font: 400 13px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     color: #555e5e;
     background-color: #FFFFFF;
     vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
 	
 }
 
@@ -1076,7 +1078,7 @@ button, input {
 }
 .what{
 	color: rgba(0,0,0,0.54);
-    font: 400 13px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font: 400 18px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     padding-top: 8px;
 }
 .opacity{
@@ -1115,6 +1117,8 @@ button, input {
     padding: 32px 32px 30px 42px;
     border-top:1px solid #f2f2f2;
     border-bottom:1px solid #f2f2f2;
+    flex-direction: column;
+    display: flex;
 }
 .google-shadow{
 	margin: 0 auto;
@@ -1127,7 +1131,7 @@ button, input {
 	box-sizing: border-box;
     max-width: 100%;
     min-width: 0%;
-    padding: 32px 32px 0 42px;
+    padding: 20px 32px 0 42px;
 }
 body{
 	background: #f4f4f4
