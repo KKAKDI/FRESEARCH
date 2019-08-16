@@ -453,10 +453,17 @@ SELECT DISTINCT a.subj_code,
                 e.ctgr_nm, 
                 a.subj_nm, 
                 b.qst_content, 
-                c.item_content, 
-                (SELECT asw_content 
+                c.item_content,
+        
+                (SELECT count(asw_content)
                  FROM   answer 
-                 WHERE  item_code = c.item_code)AS ASW_CONTENT, 
+                 WHERE  item_code = c.item_code)AS ASW_CONTENT,
+                 
+                 ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
+                 FROM   answer
+                 WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
+
+                 
                 a.subj_startdate, 
                 a.subj_enddate, 
                 c.item_regdate 
@@ -476,15 +483,11 @@ GROUP  BY a.mb_nick,
           e.ctgr_nm, 
           a.subj_nm, 
           b.qst_content, 
-          b.qst_type, 
           c.item_content, 
-          d.asw_code, 
-          d.mb_email, 
-          c.qst_code, 
           c.item_regdate, 
           a.subj_startdate, 
-          a.subj_enddate, 
-          d.asw_regdate
+          a.subj_enddate
+order by qst_code desc, asw_content desc
 </select>
 
 

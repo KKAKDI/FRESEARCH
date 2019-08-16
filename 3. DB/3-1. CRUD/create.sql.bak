@@ -180,8 +180,7 @@ FROM SUBJECT A, MEMBER B, CATEGORY C, ATT_CATEGORY D WHERE A.MB_NICK = B.MB_NICK
 --통계 AREA 관련 VIEW 2
 create or replace view stats_table 
 AS
-SELECT DISTINCT
-       (SELECT Count(*)
+SELECT (SELECT Count(*)
         FROM   (SELECT *
                 FROM   answer)
         WHERE  item_code = e.item_code) AS answer_number,
@@ -208,8 +207,7 @@ WHERE  b.mb_email = a.mb_email
        AND d.item_code = e.item_code
        AND f.ctgr_code = b.ctgr_code
        
-group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code, a.mb_birthdate, a.mb_addr, a.mb_sex, b.subj_code
-order by b.subj_regdate desc;
+group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code, a.mb_birthdate, a.mb_addr, a.mb_sex, b.subj_code;
 
 
 --설문 목록 관련 VIEW
