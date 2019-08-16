@@ -278,6 +278,9 @@ body {
     font-style: normal;
     color: #fff;
 }
+.page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link:hover{
+	cursor: auto;
+}
 /*
 .page-content .list-content .detail-list .tab-content .tab-button a:visited {
 	background-color: #222;

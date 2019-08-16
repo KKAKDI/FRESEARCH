@@ -54,4 +54,34 @@
 		update member set mb_email_key = 'Y' where mb_nick = #{param1} and mb_email_key = #{param2}
 	</update>
 	
+	<resultMap type="org.fs.domain.MemberVO" id="memberMap">
+		<id property="mb_email" column="mb_email"/>
+		<id property="mb_att_ctgr_code" column="mb_att_ctgr_code"/>
+		<result property="mb_nick" column="mb_nick"/>
+		<result property="mb_pwd" column="mb_pwd"/>
+		<result property="mb_addr" column="mb_addr"/>
+		<result property="mb_birthdate" column="mb_birthdate"/>
+		<result property="mb_sex" column="mb_sex"/>
+		<result property="mb_phone" column="mb_phone"/>
+		<result property="mb_reg_atrt" column="mb_reg_atrt"/>
+		<result property="mb_email_key" column="mb_email_key"/>
+		<result property="mb_joindate" column="mb_joindate"/>
+		<collection property="authList" resultMap="authMap">
+		</collection>	
+	</resultMap>
+	
+	<resultMap type="org.fs.domain.AuthVO" id="authMap">
+		<result property="mb_email" column="mb_email"/>
+		<result property="mb_att_ctgr_code" column="mb_att_ctgr_code"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT
+			mem.mb_email, mem.mb_att_ctgr_code, mb_nick, mb_pwd, mb_addr, mb_birthdate, mb_sex, mb_phone, mb_reg_atrt, mb_email_key, mb_joindate, auth
+		FROM
+			member mem LEFT OUTER JOIN member_auth auth on mem.mb_email = auth.mb_email
+		WHERE mem.mb_email = #{mb_email}
+	</select>
+	
 </mapper>

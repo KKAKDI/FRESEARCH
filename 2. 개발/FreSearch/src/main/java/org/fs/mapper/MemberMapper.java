@@ -1,6 +1,7 @@
 package org.fs.mapper;
 
 import org.fs.domain.MemberVO;
+import org.fs.domain.MemberVO2;
 
 public interface MemberMapper {
 	
@@ -12,4 +13,6 @@ public interface MemberMapper {
 	
 	public int getKey(String mb_nick, String mb_email_key);
 	public int changeKey(String mb_nick, String mb_email_key);
+	
+	public MemberVO read(String mb_email);
 }

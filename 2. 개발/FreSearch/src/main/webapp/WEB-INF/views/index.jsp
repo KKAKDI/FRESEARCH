@@ -86,7 +86,7 @@
 				<!-- 상단 로그인 -->
 				<div class="login">
 					<ul>
-						<li><a href="">로그인</a></li>
+						<li><a href="/member/signin">로그인</a></li>
 						<li><a href="/member/signup">회원가입</a></li>
 						<li><a href="">알림</a></li>
 					</ul>

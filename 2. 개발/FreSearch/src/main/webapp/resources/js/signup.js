@@ -94,27 +94,32 @@ $(document).ready(function(){
 				console.log(data);
 				if(data == 1){
 					$("#email_check").text("이미 사용중인 이메일입니다.");
-					$("#email_check").css("color", "red");
+					$("#email_check").css("color", "#d0021b");
+					$("#mb_email").css("border-bottom", "2px solid #d0021b");
 					check = false;
 					signupCheck();
 				}else {
 					if(regEmail.test(mb_email)){
 						$("#email_check").text("");
+						$("#mb_email").css("border-bottom", "1px solid #ddd");
 						check = true;
 						signupCheck();
 					}else if(!regEmail.test(mb_email) && mb_email != ""){
 						$("#email_check").text("이메일 형식에 맞지 않습니다.");
-						$("#email_check").css("color", "red");
+						$("#email_check").css("color", "#d0021b");
+						$("#mb_email").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else if(mb_email == ""){
 						$("#email_check").text("이메일을 입력해주세요.");
-						$("#email_check").css("color", "red");
+						$("#email_check").css("color", "#d0021b");
+						$("#mb_email").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else{
 						$("#email_check").text("이메일 형식에 맞지 않습니다.");
-						$("#email_check").css("color", "red");
+						$("#email_check").css("color", "#d0021b");
+						$("#mb_email").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}
@@ -136,27 +141,32 @@ $(document).ready(function(){
 				console.log(data);
 				if(data == 1){
 					$("#nick_check").text("이미 사용중인 닉네임입니다.");
-					$("#nick_check").css("color", "red");
+					$("#nick_check").css("color", "#d0021b");
+					$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 					check = false;
 					signupCheck();
 				}else {
 					if(regNick.test(mb_nick)){
 						$("#nick_check").text("");
+						$("#mb_nick").css("border-bottom", "1px solid #ddd");
 						check = true;
 						signupCheck();
 					}else if(!regNick.test(mb_nick) && mb_nick != ""){
 						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
-						$("#nick_check").css("color", "red");
+						$("#nick_check").css("color", "#d0021b");
+						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else if(mb_nick == ""){
 						$("#nick_check").text("닉네임을 입력해주세요.");
-						$("#nick_check").css("color", "red");
+						$("#nick_check").css("color", "#d0021b");
+						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else{
 						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
-						$("#nick_check").css("color", "red");
+						$("#nick_check").css("color", "#d0021b");
+						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}
@@ -171,21 +181,25 @@ $(document).ready(function(){
 		
 		if(regPwd.test(mb_pwd)){
 			$("#pwd_check").text("");
+			$("#mb_pwd").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}else if(!regPwd.test(mb_pwd) && mb_pwd != ""){
 			$("#pwd_check").text("4~12자 영문 대 소문자, 숫자를 입력해주세요.");
-			$("#pwd_check").css("color", "red");
+			$("#pwd_check").css("color", "#d0021b");
+			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else if(mb_pwd == ""){
 			$("#pwd_check").text("비밀번호를 입력해주세요.");
-			$("#pwd_check").css("color", "red");
+			$("#pwd_check").css("color", "#d0021b");
+			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else{
 			$("#pwd_check").text("비밀번호 형식에 맞지 않습니다.");
-			$("#pwd_check").css("color", "red");
+			$("#pwd_check").css("color", "#d0021b");
+			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}
@@ -197,21 +211,25 @@ $(document).ready(function(){
 		
 		if(regPwd.test(mb_pwd2)){
 			$("#pwd2_check").text("");
+			$("#mb_pwd2").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}else if(!regPwd.test(mb_pwd2) && mb_pwd2 != ""){
 			$("#pwd2_check").text("4~12자 영문 대 소문자, 숫자를 입력해주세요.");
-			$("#pwd2_check").css("color", "red");
+			$("#pwd2_check").css("color", "#d0021b");
+			$("#mb_pwd2").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else if(mb_pwd2 == ""){
 			$("#pwd2_check").text("비밀번호를 입력해주세요.");
-			$("#pwd2_check").css("color", "red");
+			$("#pwd2_check").css("color", "#d0021b");
+			$("#mb_pwd2").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else{
 			$("#pwd2_check").text("비밀번호 형식에 맞지 않습니다.");
-			$("#pwd2_check").css("color", "red");
+			$("#pwd2_check").css("color", "#d0021b");
+			$("#mb_pwd2").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}
@@ -219,7 +237,8 @@ $(document).ready(function(){
 		if(mb_pwd != "" && mb_pwd2 != ""){
 			if(mb_pwd != mb_pwd2){
 				$("#pwd2_check").text("비밀번호가 다릅니다.");
-				$("#pwd2_check").css("color", "red");
+				$("#pwd2_check").css("color", "#d0021b");
+				$("#mb_pwd2").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
 			}
@@ -234,21 +253,25 @@ $(document).ready(function(){
 		
 		if(regYear.test(mb_birth_yy) && mb_birth_yy >= 1900 && mb_birth_yy <= yearNow){
 			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}else if(!regYear.test(mb_birth_yy) && mb_birth_yy != ""){
 			$("#birth_check").text("년도에 4자리 숫자를 입력해주세요.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else if(mb_birth_yy == ""){
 			$("#birth_check").text("년도를 입력해주세요.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else{
 			$("#birth_check").text("1900년도부터 현재년도까지 입력 가능합니다.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}
@@ -264,28 +287,35 @@ $(document).ready(function(){
 		if((regYear.test(mb_birth_yy) && mb_birth_yy >= 1900 && mb_birth_yy <= yearNow) 
 				&& mb_birth_mm == "월") {   
 			$("#birth_check").text("월을 선택해주세요.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else if(mb_birth_mm == "월" 
 			|| mb_birth_mm > 0){
 			if(!regYear.test(mb_birth_yy)){
 				$("#birth_check").text("년도에 4자리 숫자를 입력해주세요.");
-				$("#birth_check").css("color", "red");
+				$("#birth_check").css("color", "#d0021b");
+				$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
 			}else if(mb_birth_yy < 1900 || mb_birth_yy > yearNow){
 				$("#birth_check").text("1900년도부터 현재년도까지 입력 가능합니다.");
-				$("#birth_check").css("color", "red");
+				$("#birth_check").css("color", "#d0021b");
+				$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
 			}else {
 				$("#birth_check").text("");
+				$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+				$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
 				check = true;
 				signupCheck();
 			}
 		}else {
 			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}
@@ -303,18 +333,23 @@ $(document).ready(function(){
 				&& (mb_birth_mm > 0)
 				&& (mb_birth_dd >= 1 && mb_birth_dd <= 31)){
 			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}else if((mb_birth_yy >= 1900 && mb_birth_yy <= yearNow ) && regYear.test(mb_birth_yy) 
-				&& mb_birth_yy != "" && mb_birth_dd == ""){
+				&& mb_birth_yy != "월" && mb_birth_dd == ""){
 			if(mb_birth_mm > 0){
 				$("#birth_check").text("일을 입력해주세요.");
-				$("#birth_check").css("color", "red");
+				$("#birth_check").css("color", "#d0021b");
+				$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
 			}else if(mb_birth_mm == "월"){
 				$("#birth_check").text("월을 선택해주세요.");
-				$("#birth_check").css("color", "red");
+				$("#birth_check").css("color", "#d0021b");
+				$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
 			}
@@ -322,14 +357,16 @@ $(document).ready(function(){
 		
 		if(mb_birth_mm == 2 && mb_birth_dd > 29){
 			$("#birth_check").text("2월은 29일까지 입력 가능합니다.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else if(mb_birth_mm != 2
 				&& mb_birth_mm != "월"
 				&& mb_birth_dd < 1 || mb_birth_dd > 31){
 			$("#birth_check").text("1일부터 31일까지 입력 가능합니다.");
-			$("#birth_check").css("color", "red");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}
@@ -348,27 +385,32 @@ $(document).ready(function(){
 				console.log(data);
 				if(data == 1){
 					$("#phone_check").text("이미 사용중인 전화번호입니다.");
-					$("#phone_check").css("color", "red");
+					$("#phone_check").css("color", "#d0021b");
+					$("#mb_phone").css("border-bottom", "2px solid #d0021b");
 					check = false;
 					signupCheck();
 				}else {
 					if(regPhone.test(mb_phone)){
 						$("#phone_check").text("");
+						$("#mb_phone").css("border-bottom", "1px solid #ddd");
 						check = true;
 						signupCheck();
 					}else if(!regPhone.test(mb_phone) && mb_phone != ""){
 						$("#phone_check").text("-제외하고 11자리 숫자를 입력해주세요.");
-						$("#phone_check").css("color", "red");
+						$("#phone_check").css("color", "#d0021b");
+						$("#mb_phone").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else if(mb_phone == ""){
 						$("#phone_check").text("전화번호를 입력해주세요.");
-						$("#phone_check").css("color", "red");
+						$("#phone_check").css("color", "#d0021b");
+						$("#mb_phone").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}else{
 						$("#phone_check").text("전화번호 형식에 맞지 않습니다.");
-						$("#phone_check").css("color", "red");
+						$("#phone_check").css("color", "#d0021b");
+						$("#mb_phone").css("border-bottom", "2px solid #d0021b");
 						check = false;
 						signupCheck();
 					}
@@ -383,11 +425,13 @@ $(document).ready(function(){
 		
 		if(mb_addr3 == ""){
 			$("#addr_check").text("상세주소를 입력해주세요.");
-			$("#addr_check").css("color", "red");
+			$("#addr_check").css("color", "#d0021b");
+			$("#mb_addr3").css("border-bottom", "2px solid #d0021b");
 			check = false;
 			signupCheck();
 		}else{
 			$("#addr_check").text("");
+			$("#mb_addr3").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}
@@ -396,22 +440,26 @@ $(document).ready(function(){
 	$(".mb_att_category").on("click" , function(){
 		
 		var cnt = $("input:checked[class='mb_att_category']").size();
+		var cnt2 = $("input:checked[class='mb_agree']").size();
 		
 		if(cnt > 5){
 			$(this).attr("checked" , false);
 		}
 		if(cnt == 0){
 			$("#cate_check").text("관심카테고리를 체크해주세요.");
-			$("#cate_check").css("color", "red");
+			$("#cate_check").css("color", "#d0021b");
 			$("#agree_check").text("");
 			check = false;
 			signupCheck();
-		}else if(cnt > 0){
+		}else if(cnt > 0 && cnt2 < 2){
 			$("#cate_check").text("");
 			$("#agree_check").text("약관에 동의해주세요.");
-			$("#agree_check").css("color", "red");
+			$("#agree_check").css("color", "#d0021b");
 			check = true;
 			signupCheck();
+		}else if(cnt > 0 && cnt2 == 2){
+			$("#cate_check").text("");
+			$("#agree_check").text("");
 		}
 
 		for(var i=0; i<cnt; i++){
@@ -448,7 +496,7 @@ $(document).ready(function(){
 		
 		if(cnt == 0){
 			$("#cate_check").text("관심카테고리를 체크해주세요.");
-			$("#cate_check").css("color", "red");
+			$("#cate_check").css("color", "#d0021b");
 		}
 		if(cnt > 0 && cnt2 == 2){
 			$("#agree_check").text("");
@@ -460,7 +508,7 @@ $(document).ready(function(){
 			signupCheck();
 		}else if(cnt2 < 2){
 			$("#agree_check").text("약관에 동의해주세요.");
-			$("#agree_check").css("color", "red");
+			$("#agree_check").css("color", "#d0021b");
 			check = false;
 			signupCheck();
 		}
