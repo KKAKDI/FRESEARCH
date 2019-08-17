@@ -13,212 +13,9 @@
 
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
+<script src="/resources/js/research_register.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<script>
-	$(function() {		
-		$.datetimepicker.setLocale('ko');
-		$('#date_timepicker_start').datetimepicker({
-			  format:'Y/m/d',
-			  onShow:function( ct ){
-			   this.setOptions({
-				minDate:'',
-			    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
-			   })
-			  },
-			  timepicker:false
-		 });
-			
-		$('#date_timepicker_end').datetimepicker({
-			  format:'Y/m/d',
-			  onShow:function( ct ){
-			   this.setOptions({
-			    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
-			   })
-			  },
-			  timepicker:false
-		 });
-		
-		$.emptyCheck = function(){
-				swal({
-					title:"Oops",
-					text:"작성되지 않은 공간이 있습니다.",
-					icon:"error",
-					button:"확인",
-				});			
-				return false;
-		};	 
-		
-		$(document).on("click","#qst_btn",
-						function() {
-							$("#content #form_area .research_content").removeClass("active");
-							$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-							$("#content #form_area .research_content #item_box").removeClass("active_item");
-							$("#content #form_area .research_content hr").removeClass("active_btn");
-							$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
-							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div></div>");						
-							var offset = $(".active").offset().top;
-							$("#remote").css("top", offset - 210);							
-							return false;
-		});
-		//추가된 태그 함수 실행
-		$(document).on("click", ".research_content", function() {
-			$("#content #form_area .research_content").removeClass("active");
-			$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-			$("#content #form_area .research_content #item_box").removeClass("active_item");
-			$("#content #form_area .research_content hr").removeClass("active_btn");
-			$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
-			$(this).addClass("active");			
-			$(this).children("hr").addClass("active_btn");
-			$(this).children(".bottom_box").addClass("active_btn");
-			$(this).children("#item_box").addClass("active_item");
-			$(this).children().children(".item_individual").addClass("active_individual");
-			var offset = $(".active").offset().top;
-			$("#remote").css("top", offset - 210);			
-		});	
-		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' value='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
-				return false;
-			}
-		);
-		$(document).on("click","#qst_etc",function(){
-			var flag = $(".active_individual").children(".disabled").val();			
-			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
-				return false;
-			}else{
-				$("#qst_etc").attr("disable");		
-				return false;
-			}				
-		});
-		
-		$(document).on("click","#qst_del",function(){
-			var index = $(this).parents().find(".research_content").length;
-			if(index>2){
-				$(this).parents().find(".active").remove();
-				$("#remote").css("top", 0);
-				return false;
-			}else{
-				$("#qst_del").attr("disable");	
-				return false;
-			}
-		});
-		
-		$(document).on("click","#item_del",function(){
-			var index = $(this).parents().find(".active_item .item_individual").length;			
-			if(index>1){
-				$(this).parent().parent(".active_item .item_individual").remove();
-				return false;
-			}else{
-				$("#item_del").attr("disable");	
-				return false;
-			}				
-		});
-		
-		$(document).on("click","#send_form",function(){
-			var subjectname = $("#subj_nm").val();
-			var startdate = $("#date_timepicker_start").val();
-			var enddate = $("#date_timepicker_end").val();
-			var category = $("#category_box input[type=radio]:checked");
-			
-			if(subjectname!=''&&startdate!=''&&enddate!=''&&category.length>0){
-				// 구분자 (|, #h#, #s#, #i#)
-				var data = '';
-				var item_index = 0;
-				var qst_index =  $(".research_content #qst_content").length;
-				var form = $("#research_form");
-				var checkCnt= 0;
-				
-				data += $("#subj_nm").val()+"#h#";
-				data += $("#category_box input[type=radio]:checked").val()+"#h#";
-				data += $("#date_timepicker_start").val()+"#h#";
-				data += $("#date_timepicker_end").val()+"#h#";
-				data += "/block";
-				
-				for(var i = 0;i<qst_index;i++){
-					if($(".research_content #qst_content")[i].value==''){
-						$.emptyCheck();
-						checkCnt++;
-						break;
-					}else{
-						data += $(".research_content #qst_content")[i].value+"#t#";
-						item_index = $(".research_content #item_box")[i].childElementCount;
-						for(var j=0;j<item_index;j++){					
-							if($(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value==''){
-								$.emptyCheck();
-								checkCnt++;
-								break;
-							}else{
-								data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
-							}							
-						}
-						data+="/block";
-					}					
-				}
-				if(checkCnt>0){
-					return false;
-				}else{
-					console.log("data: "+data);		
-					$("#research_values").val(data);
-					form.attr("action","/research/research_register");
-					swal({
-						title:"등록되었습니다!",
-						text:"리서치가 성공적으로 등록되었습니다!",
-						icon:"success",
-						button:"확인",
-					})
-					.then((willDelete) => {
-						form.submit();								
-					});							
-				}					
-			}else{
-				$.emptyCheck();
-			}
-		});
-		
-		$("#subj_nm").focusout(function(){
-			$("#top_title").val($("#subj_nm").val());
-		});
-		$("#top_title").focusout(function(){
-			$("#subj_nm").val($("#top_title").val());
-		});		
-		$("#prev_btn").click(function(){
-			swal({
-				title:"돌아가시겠습니까?",
-				text:"그동안 작성된 정보를 모두 잃습니다.",
-				icon:"warning",
-				buttons:["아니오","네"],
-				dangerMode:true,
-			})
-			.then((willDelete) => {
-				if(willDelete){
-					location.replace("/research/research_list");
-				}
-				else{
-					
-				}				
-			});
-		});
-		$("#delete_form").click(function(){
-			swal({
-				title:"삭제하시겠습니까?",
-				text:"그동안 작성된 정보를 모두 잃습니다.",
-				icon:"warning",
-				buttons:["아니오","네"],
-				dangerMode:true,
-			})
-			.then((willDelete) => {
-				if(willDelete){
-					location.replace("/research/research_register");
-				}
-				else{
-					
-				}				
-			});
-		});
-	});
-</script>
 <body>
 	<div class='container'>
 		<div class='research_header'>
@@ -246,13 +43,10 @@
 							<button id='qst_btn'>+</button>
 						</div>
 						<div class='remote_btn'>
-							<button id='txt_btn'>T</button>
+							<button id='txt_btn'>IM</button>
 						</div>
 						<div class='remote_btn'>
-							<button id='img_btn'>IM</button>
-						</div>
-						<div class='remote_btn'>
-							<button id='img_btn'>...</button>
+							<button id='qst_del'>X</button>
 						</div>
 					</div>
 					<div class='research_content clearflx'>
@@ -281,15 +75,17 @@
 						</div>												
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'>
-						<ul id='item_box' class='clearflx'>
-							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>						
-						</ul>
+						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option></select>
+						<div class='qst_swap'>
+							<ul id='item_box' class='clearflx'>
+								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>
+							</ul>
+						</div>
 						<div class='etc_box'>
 						</div>
 						<hr>
 						<div class='bottom_box'>														
-							<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div>	
+							<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div>	
 						</div>	
 					</div>
 				</form>

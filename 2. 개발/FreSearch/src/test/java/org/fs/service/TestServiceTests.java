@@ -19,15 +19,23 @@ import lombok.extern.log4j.Log4j;
 public class TestServiceTests {
 	
 	@Setter(onMethod_ = {@Autowired} )
-	private StatsService service;
-	//private ResearchService service;
+	//private StatsService service;
+	private ResearchService service;
+	
+	
+	@Test
+	public void testReg() {
+		String values = "qwe#h#E0000001#h#2019/08/18#h#2019/08/19#h#/block111111111111111#t#0#t#1#t#2#t#3#t#기타#t#/block222222222222#t#1#t#단답형 텍스트#t#/block";
+		service.researchReg(values);
+	}
 	
 //	@Test
 //	public void testAnswer() {
 //		String values = "admin@fresearch.com#email#admin#nick#IKGSBYET#code#생질1#value#SG039RCJ#code#1#value#";
 //		service.researchAnswer(values);
 //	}
-	/*@Test
+	/*
+	@Test
 	public void testGetList() {
 		int CtgrCode = 0;
 		service.getList().forEach(stats -> log.info(stats));
@@ -170,12 +178,12 @@ public class TestServiceTests {
 //		cri.setPageNum(1);
 //		log.info(service.getTableSearch(vo,cri));
 //	}
-	@Test
-	public void getStatsContent() {
-		StatsVO vo = new StatsVO();
-		vo.setSubj_code("0ZPO83PX");
-		log.info(service.getStatsContent("0ZPO83PX"));
-	}
+//	@Test
+//	public void getStatsContent() {
+//		StatsVO vo = new StatsVO();
+//		vo.setSubj_code("0ZPO83PX");
+//		log.info(service.getStatsContent("0ZPO83PX"));
+//	}
 			
 	
 }
