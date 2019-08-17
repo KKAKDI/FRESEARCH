@@ -35,7 +35,7 @@
 			research_values += user_nick +"#nick#";
 			
 			for(var i=1;i<=values_index;i++){
-				research_values += $(".research_item .item_code"+i)[0].value+"#code#";
+				research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";
 				research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";		
 			}
 			$("#research_values").val(research_values);
