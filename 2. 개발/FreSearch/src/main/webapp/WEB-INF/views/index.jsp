@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -16,7 +16,7 @@
 <script>
 	$(function(){
 		$(window).load(function () {
-			$(".loading").fadeOut(700);
+			$(".loading").fadeOut(500);
 		});
 			$("#GNB > ul > li").hover(
 			function () {
