@@ -18,12 +18,6 @@
 </head>
 <script>
 	$(function() {
-		/*
-		$(document).on("click",".research_item",function(){
-			$(".research_item").removeClass("active_item");
-			$(this).addClass("active_item");
-		});
-		*/
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;

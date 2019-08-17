@@ -14,7 +14,7 @@ hr {
 
 .research_header {
 	width: 100%;
-	background-color: #6bceff;
+	background-color: #1428a0;
 	height: 200px;
 }
 
@@ -59,7 +59,7 @@ hr {
 #content #form_area #remote .remote_btn button {
 	border-radius: 100%;
 	padding: 10px;
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -78,7 +78,7 @@ hr {
 }
 
 #content .research_content.active {
-	border-left: 3px solid #0C4DA2;
+	border-left: 3px solid #1428a0;
 }
 
 #research_term {
@@ -130,11 +130,11 @@ hr {
 	 top: 4px;
 }
 #content .research_content #category_box input:checked{
-	border: 8px solid #0C4DA2;
+	border: 8px solid #1428a0;
 }
 #content .research_content #category_box label {
 	display: inline-block;
-	width: 29%;
+	width: 28%;
 	height: 30px;
 }
 
@@ -143,7 +143,7 @@ hr {
 }
 
 #datepicker:focus {
-	border: 2px solid #0C4DA2;
+	border: 2px solid #1428a0;
 }
 
 #content .research_content>input[type=text] {	
@@ -158,7 +158,7 @@ hr {
 }
 
 #content input[type=text]:focus {
-	border-bottom: 2px solid #0C4DA2;
+	border-bottom: 2px solid #1428a0;
 	outline: none;
 }
 
@@ -186,7 +186,7 @@ hr {
 }
 
 #item_box .item_individual>input[type=text]:focus {
-	border-bottom: 2px solid #0C4DA2;
+	border-bottom: 2px solid #1428a0;
 	outline: none;
 }
 
@@ -214,7 +214,7 @@ hr {
 }
 
 #content .research_content button {
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -246,15 +246,18 @@ hr {
 	display: inline-block;
 }
 
-#left_top_box #prev {
+#left_top_box #prev_btn {
+	background-color: transparent;
+	border: none;
 	color: #fff;
+	height: 33px;
 }
 
 #left_top_box input[type=text] {
 	margin-left: 20px;
 	background: transparent;
 	border-bottom: 2px solid transparent;
-	width: 200px;
+	width: 250px;
 	border: none;
 	font-size: 20px;
 	color: #fff;
@@ -323,7 +326,7 @@ hr {
   top: 4px;
 }
 .research_content .content_box .research_item input:checked{
-	border: 8px solid #0C4DA2;
+	border: 8px solid #1428a0;
 }
 
 .research_content .content_box .research_item label{
@@ -337,5 +340,5 @@ hr {
 }
 .research_content .answer_box > #research_answer{
 	width:200px;
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 }
