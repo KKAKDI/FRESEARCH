@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/datepicker/jquery.datetimepicker.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
 </head>
@@ -60,6 +60,23 @@
 			.then((willDelete) => {
 				if(willDelete){
 					location.replace("/research/research_list");
+				}
+				else{
+					
+				}				
+			});
+		});
+		$("#delete_form").click(function(){
+			swal({
+				title:"삭제하시겠습니까?",
+				text:"그동안 작성된 정보를 모두 잃습니다.",
+				icon:"warning",
+				buttons:["아니오","네"],
+				dangerMode:true,
+			})
+			.then((willDelete) => {
+				if(willDelete){
+					//controler 연결 필요
 				}
 				else{
 					
