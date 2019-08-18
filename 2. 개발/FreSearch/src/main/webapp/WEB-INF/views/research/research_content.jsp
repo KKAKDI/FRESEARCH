@@ -49,6 +49,23 @@
 			console.log(research_values);
 			form.submit();
 		});
+		$("#prev_btn").click(function(){
+			swal({
+				title:"돌아가시겠습니까?",
+				text:"그동안 작성된 정보를 모두 잃습니다.",
+				icon:"warning",
+				buttons:["아니오","네"],
+				dangerMode:true,
+			})
+			.then((willDelete) => {
+				if(willDelete){
+					location.replace("/research/research_list");
+				}
+				else{
+					
+				}				
+			});
+		});
 	});
 </script>
 <body>
