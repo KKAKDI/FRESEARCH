@@ -18,12 +18,6 @@
 </head>
 <script>
 	$(function() {
-		/*
-		$(document).on("click",".research_item",function(){
-			$(".research_item").removeClass("active_item");
-			$(this).addClass("active_item");
-		});
-		*/
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;
@@ -34,9 +28,21 @@
 			research_values += user_email+"#email#";
 			research_values += user_nick +"#nick#";
 			
+
 			for(var i=1;i<=values_index;i++){
-				research_values += $(".research_item .item_code"+i)[0].value+"#code#";
-				research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";		
+				var type = $(".research_qst .qst_type")[i-1].value;
+				if(type==0){
+					research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";					
+					if($("input:radio[name='item"+i+"']:checked").val()=='기타'){
+						research_values += $("input:radio[name='item"+i+"']:checked").next().val()+"#value#";			
+					}else{
+						research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";	
+					}
+				}else{
+					console.log($("input:text[name='item"+i+"']").val());
+					research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
+					research_values += $("input:text[name='item"+i+"']").val()+"#value#";
+				}				
 			}
 			$("#research_values").val(research_values);
 			form.attr("action","/research/research_content");
@@ -78,32 +84,53 @@
 						<c:set var="qst_code" value="code"/>
 						<c:set var="itemBN" value="0"/>
 						<c:set var="itemValue" value="1"/>
-						<c:forEach items="${content}" var="research">	
-							<c:if test="${research.qst_code ne qst_code}">	
+						<div class='qst_content'>
+						<c:forEach items="${content}" var="research">							
+							<c:if test="${research.qst_code ne qst_code}">							
 								<input type='hidden' name='qst_code' id='qst_code' value='${research.qst_code}'>
-								<div class='research_qst'>${research.qst_content}</div>	
-								<input type='hidden' name='qst_type' id='qst_type' value='${research.qst_type}'>
+								<div class='research_qst'>${research.qst_content}	
+								<input type='hidden' name='qst_type' class='qst_type' value='${research.qst_type}'>
+								</div>
 								<div class='research_qst_img'>${research.qst_img}</div>
-								<div class='research_qst_url'>${research.qst_url}</div>
+								<div class='research_qst_url'>${research.qst_url}</div>								
 								<c:set var="qst_code" value="${research.qst_code}"/>	
-								<c:set var="itemBN" value='${itemBN+1}'/>
-							</c:if>				
+								<c:set var="itemBN" value='${itemBN+1}'/>								
+							</c:if>
+							<c:choose>
+								<c:when test="${research.qst_type eq 0}">
 								<div class='research_item'>
 								<div class='research_item_img'>${research.item_img}</div>
 									<input type='hidden' class='item_code${itemBN}' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
 									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>
+									<c:choose>
+									<c:when test="${research.item_content eq '기타'}">									
+									<input type='text' placeholder='기타' autocomplete='off'>
+									</c:when>
+									<c:when test="${research.item_content ne '기타'}">	
 									<label for='btn${itemValue}'>${research.item_content}</label>
+									</c:when>
+									</c:choose>
 								</div>					
+								<c:set var="itemValue" value="${itemValue+1}"/>		
+								</c:when>
+								<c:when test="${research.qst_type eq 1}">
+								<div class='research_item'>
+									<input type='hidden' class='item_code${itemBN}' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
+									<input type='text' class='item_choice' id='btn${itemValue}'name='item${itemBN}' placeholder='나의 답변' autocomplete='off'>
+								</div>	
 								<c:set var="itemValue" value="${itemValue+1}"/>			
+								</c:when>
+							</c:choose>										
 						</c:forEach>
+						</div>	
 						</div>	
 						<div id='submit_box'>
 							<div class='answer_box'>
 							<button id='research_answer'>제출하기</button>
 							</div>
 						</div>												
-					</div>
-				</form>
+					</div>  
+				</form>				
 			</div>
 			<div class='bottom'></div>
 		</section>

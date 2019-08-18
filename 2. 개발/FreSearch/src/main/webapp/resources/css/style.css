@@ -1,8 +1,7 @@
 @charset "utf-8";
 
 body {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1em;
+
 }
 
 /* #0C4DA2 */
@@ -31,7 +30,7 @@ body {
 .container .fixed_box .header {
     width: 100%;
     background: #fff;
-    height: 109px;
+    height: 106px;
     /* background: #dcdcdc; */
 }
 
@@ -114,6 +113,7 @@ body {
 .container .fixed_box .header .header_inner #GNB
 편의상 #GNB로 표기
 */
+
 #GNB {
     float: right;
     width: 840px;
@@ -143,13 +143,11 @@ body {
     font-weight: 600;
     background-color: #fff;
     color: rgb(80, 80, 80);
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
+    transition: color 0.3s;
 }
 
-#GNB>ul>li>a.active {
+#GNB>ul>li>a:hover, #GNB>ul>li>a:focus {
     color: #0C4DA2;
-    border-bottom: 2px solid #0C4DA2;
 }
 
 #GNB ul ul {
@@ -189,7 +187,7 @@ body {
     box-shadow: 0 0 0 transparent;
     border: none;
     background: transparent;
-    padding-top: 109px;
+    padding-top: 106px;
     margin-bottom: 0;
 }
 

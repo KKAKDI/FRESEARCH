@@ -1,10 +1,7 @@
 @charset "utf-8";
 
 body {
-	font-family: "Open Sans", sans-serif;
 	min-width: 850px;
-	font-weight: 500;
-	font-size: 16px;
 	vertical-align: top;
 	background-color: #f4f4f4;
 }
@@ -17,7 +14,7 @@ hr {
 
 .research_header {
 	width: 100%;
-	background-color: #6bceff;
+	background-color: #1428a0;
 	height: 200px;
 }
 
@@ -42,7 +39,7 @@ hr {
 
 #content #form_area #remote {
 	background-color: #fff;
-	height: 208px;
+	height: 165px;
 	width: 50px;
 	display: inline-block;
 	position: absolute;
@@ -62,7 +59,7 @@ hr {
 #content #form_area #remote .remote_btn button {
 	border-radius: 100%;
 	padding: 10px;
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -81,7 +78,7 @@ hr {
 }
 
 #content .research_content.active {
-	border-left: 3px solid #0C4DA2;
+	border-left: 3px solid #1428a0;
 }
 
 #research_term {
@@ -133,11 +130,11 @@ hr {
 	 top: 4px;
 }
 #content .research_content #category_box input:checked{
-	border: 8px solid #0C4DA2;
+	border: 8px solid #1428a0;
 }
 #content .research_content #category_box label {
 	display: inline-block;
-	width: 29%;
+	width: 28%;
 	height: 30px;
 }
 
@@ -146,7 +143,7 @@ hr {
 }
 
 #datepicker:focus {
-	border: 2px solid #0C4DA2;
+	border: 2px solid #1428a0;
 }
 
 #content .research_content>input[type=text] {	
@@ -160,13 +157,49 @@ hr {
 	transition: all 0.5s;
 }
 
-#content input[type=text]:focus {
-	border-bottom: 2px solid #0C4DA2;
+#content .research_content>#qst_content{
+	width: 585px;
+	box-sizing: border-box;
+	padding: 15px;
+	margin-left: 20px;
+	border: none;
+	border-bottom: 1px solid #000;
+	font-size: 25px;
+	transition: all 0.5s;
+}
+
+select { 
+	width: 200px; /* 원하는 너비설정 */ 
+	padding: .8em .5em; /* 여백으로 높이 설정 */ 
+	margin:15px;
+	font-family: inherit; /* 폰트 상속 */ 
+	background: url('/resources/img/arrow.png') no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
+	border: 1px solid #999; 
+	border-radius: 0px; /* iOS 둥근모서리 제거 */ 
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+	-moz-appearance: none; 
+	appearance: none; 
+	outline:none;
+}
+
+
+#content input[type=text]:focus,#content .research_content>#qst_content:focus {
+	border-bottom: 2px solid #1428a0;
 	outline: none;
 }
 
 #item_box {
 	padding: 10px 20px 10px 20px;
+}
+
+#item_box .item_individual .disabled {
+	background-color: #fff;
+}
+#item_box .item_individual > #disabled_sel {
+	width: 500px;
+	border-bottom: 1px solid #000;
+	background-color: #fff;
+	margin-bottom: 15px;
 }
 
 #item_box .item_individual>input[type=text] {
@@ -182,21 +215,15 @@ hr {
 	transition: all 0.5s;
 }
 #item_box .item_individual>input[type=radio]{
-	
 	 width: 20px;
-	 height: 38px;
- 	
+	 height: 38px;	
 }
 
 #item_box .item_individual>input[type=text]:focus {
-	border-bottom: 2px solid #0C4DA2;
+	border-bottom: 2px solid #1428a0;
 	outline: none;
 }
 
-#item_box .item_individual .disabled {
-	background-color: #fff;
-	outline: none;
-}
 /*
  기타 라벨 이었던 것 
 #item_box .item_individual label{
@@ -217,7 +244,7 @@ hr {
 }
 
 #content .research_content button {
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -226,9 +253,8 @@ hr {
 
 #content .research_content .bottom_box {
 	display: none;
-	bottom: 20px;
-	margin-left: 80%;
-	padding: 0 0 0 18px;
+	margin-left: 85%;
+	padding: 0 0 0 17px;
 }
 
 #content .research_content .active_btn {
@@ -249,15 +275,18 @@ hr {
 	display: inline-block;
 }
 
-#left_top_box #prev {
+#left_top_box #prev_btn {
+	background-color: transparent;
+	border: none;
 	color: #fff;
+	height: 33px;
 }
 
 #left_top_box input[type=text] {
 	margin-left: 20px;
 	background: transparent;
 	border-bottom: 2px solid transparent;
-	width: 200px;
+	width: 250px;
 	border: none;
 	font-size: 20px;
 	color: #fff;
@@ -313,7 +342,7 @@ hr {
 .research_content .content_box .research_item{
 	padding:10px 5px 10px 5px;
 }
-.research_content .content_box .research_item input{
+.research_content .content_box .research_item input[type=radio]{
   -webkit-appearance: none;
   border-radius: 50%;
   width: 16px;
@@ -325,8 +354,18 @@ hr {
   position: relative;
   top: 4px;
 }
+.research_content .content_box .research_item input[type=text]{
+	box-sizing: border-box;
+	width: 40%;
+	height: 30px;
+	margin-left: 5px;
+	border: none;
+	border-bottom: 2px solid #fff;
+	font-size: 15px;
+	transition: all 0.5s;
+}
 .research_content .content_box .research_item input:checked{
-	border: 8px solid #0C4DA2;
+	border: 8px solid #1428a0;
 }
 
 .research_content .content_box .research_item label{
@@ -340,5 +379,5 @@ hr {
 }
 .research_content .answer_box > #research_answer{
 	width:200px;
-	background-color: #0C4DA2;
+	background-color: #1428a0;
 }

@@ -13,140 +13,24 @@
 
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
+<script src="/resources/js/research_register.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<script>
-	$(function() {
-			$.datetimepicker.setLocale('ko');
-			$('#date_timepicker_start').datetimepicker({
-			  format:'Y/m/d',
-			  onShow:function( ct ){
-			   this.setOptions({
-				minDate:'',
-			    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
-			   })
-			  },
-			  timepicker:false
-			 });
-			 $('#date_timepicker_end').datetimepicker({
-			  format:'Y/m/d',
-			  onShow:function( ct ){
-			   this.setOptions({
-			    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
-			   })
-			  },
-			  timepicker:false
-			 });
-			 
-		$(document).on("click","#qst_btn",
-						function() {
-							$("#content #form_area .research_content").removeClass("active");
-							$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-							$("#content #form_area .research_content #item_box").removeClass("active_item");
-							$("#content #form_area .research_content hr").removeClass("active_btn");
-							$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' placeholder='질문' autocomplete='off' value=''><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
-							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div></div>");						
-							var offset = $(".active").offset().top;
-							$("#remote").css("top", offset - 210);							
-							return false;
-		});
-		//추가된 태그 함수 실행
-		$(document).on("click", ".research_content", function() {
-			$("#content #form_area .research_content").removeClass("active");
-			$("#content #form_area .research_content .bottom_box").removeClass("active_btn");
-			$("#content #form_area .research_content #item_box").removeClass("active_item");
-			$("#content #form_area .research_content hr").removeClass("active_btn");
-			$("#content #form_area .research_content #item_box .item_individual").removeClass("active_individual");
-			$(this).addClass("active");			
-			$(this).children("hr").addClass("active_btn");
-			$(this).children(".bottom_box").addClass("active_btn");
-			$(this).children("#item_box").addClass("active_item");
-			$(this).children().children(".item_individual").addClass("active_individual");
-			var offset = $(".active").offset().top;
-			$("#remote").css("top", offset - 210);			
-		});	
-		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
-				return false;
-			}
-		);
-		$(document).on("click","#qst_etc",function(){
-			var flag = $(".active_individual").children(".disabled").val();			
-			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
-				return false;
-			}else{
-				$("#qst_etc").attr("disable");		
-				return false;
-			}				
-		});
-		
-		$(document).on("click","#qst_del",function(){
-			var index = $(this).parents().find(".research_content").length;
-			if(index>2){
-				$(this).parents().find(".active").remove();
-				$("#remote").css("top", 0);
-				return false;
-			}else{
-				$("#qst_del").attr("disable");	
-				return false;
-			}
-		});
-		
-		$(document).on("click","#item_del",function(){
-			var index = $(this).parents().find(".active_item .item_individual").length;			
-			if(index>1){
-				$(this).parent().parent(".active_item .item_individual").remove();
-				return false;
-			}else{
-				$("#item_del").attr("disable");	
-				return false;
-			}				
-		});
-		
-		$(document).on("click","#send_form",function(){
-			// 구분자 (|, #h#, #s#, #i#)
-			var data = '';
-			var item_index = 0;
-			var qst_index =  $(".research_content #qst_content").length;
-			var form = $("#research_form");
-			
-			data += $("#subj_nm").val()+"#h#";
-			data += $("#category_box input[type=radio]:checked").val()+"#h#";
-			data += $("#date_timepicker_start").val()+"#h#";
-			data += $("#date_timepicker_end").val()+"#h#";
-			data += "/block";
-			
-			for(var i = 0;i<qst_index;i++){				
-				data += $(".research_content #qst_content")[i].value+"#t#";
-				item_index = $(".research_content #item_box")[i].childElementCount;
-				for(var j=0;j<item_index;j++){					
-					data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
-				}
-				data+="/block";
-			}			
-			console.log("data: "+data);		
-			$("#research_values").val(data);
-			form.attr("action","/research/research_register");
-			form.submit();
-		});
-	});
-</script>
 <body>
 	<div class='container'>
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<a id='prev' href=''>목록으로 돌아가기</a> <input type='text' id='top_title' autocomplete='off'>
+					<button id='prev_btn'>목록으로 돌아가기</button> <input type='text' id='top_title' autocomplete='off' value=''>
 				</div>
 				<div id='right_top_box'>
-					<a href='palette'>팔렛</a>
+					<button id='palette'>팔렛</button>
 					<button id='send_form'>보내기</button>
-					<a href='delete_form'>삭제</a>
+					<button id='delete_form'>삭제</button>
 				</div>
 			</div>
 			<div class='logo'>
-				<a href=""><img src="/resources/img/logo.png" alt="logo"></a>
+				<img src="/resources/img/logo.png" alt="logo">
 			</div>
 		</div>
 		<section id='content' class='clearflx'>
@@ -159,13 +43,10 @@
 							<button id='qst_btn'>+</button>
 						</div>
 						<div class='remote_btn'>
-							<button id='txt_btn'>T</button>
+							<button id='txt_btn'>IM</button>
 						</div>
 						<div class='remote_btn'>
-							<button id='img_btn'>IM</button>
-						</div>
-						<div class='remote_btn'>
-							<button id='img_btn'>...</button>
+							<button id='qst_del'>X</button>
 						</div>
 					</div>
 					<div class='research_content clearflx'>
@@ -194,15 +75,17 @@
 						</div>												
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off' value=''>
-						<ul id='item_box' class='clearflx'>
-							<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' placeholder='보기' autocomplete='off' value=''><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>						
-						</ul>
+						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option></select>
+						<div class='qst_swap'>
+							<ul id='item_box' class='clearflx'>
+								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>
+							</ul>
+						</div>
 						<div class='etc_box'>
 						</div>
 						<hr>
 						<div class='bottom_box'>														
-							<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div><div class='bottom_button_box'><button id=qst_del>X</button></div>	
+							<div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div>	
 						</div>	
 					</div>
 				</form>
