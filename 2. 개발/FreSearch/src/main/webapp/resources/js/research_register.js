@@ -38,10 +38,10 @@ $(function() {
 							$(".research_content .qst_swap #item_box").removeClass("active_item");
 							$(".research_content hr").removeClass("active_btn");
 							$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul></div>");
-							$("#content #form_area .active").append("<hr class='active_btn'><div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add>+</button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li></ul></div>");
+							$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
 							var offset = $(".active").offset().top;
-							$("#remote").css("top", offset - 210);							
+							$("#remote").css("top", offset - 160);							
 							return false;
 		});
 		//추가된 태그 함수 실행
@@ -52,26 +52,27 @@ $(function() {
 			$(".research_content hr").removeClass("active_btn");
 			$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
 			$(this).addClass("active");			
-			$(this).children("hr").addClass("active_btn");
+			$(this).children().find("hr").addClass("active_btn");
 			$(this).children().find("#item_box").addClass("active_item");
 			$(this).children().find(".item_individual").addClass("active_individual");
 			if($(".active #selBox option:selected").val()==1){
 				$(".research_content .bottom_box").removeClass("active_btn");
+				$(".research_content hr").removeClass("active_btn");
 			}else{
 				$(this).children(".bottom_box").addClass("active_btn");
 			}			
 			var offset = $(".active").offset().top;
-			$("#remote").css("top", offset - 210);			
+			$("#remote").css("top", offset - 160);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li>");
 				return false;
 			}
 		);
 		$(document).on("click","#qst_etc",function(){
 			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li>");				
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li>");				
 				return false;
 			}else{
 				$("#qst_etc").attr("disable");		
@@ -95,14 +96,15 @@ $(function() {
 		});
 		
 		$(document).on("click","#item_del",function(){
-			var index = $(this).parents().find(".active_item .item_individual").length;			
+			var index = $(this).parents().find(".active_item .item_individual").length;					
 			if(index>1){
-				$(this).parents().find(".active_item .item_individual").remove();//급수정 parent().parent() 였음
+				$(this).parent().parent(".active_item .item_individual").remove();//parens().find() 로 검색시 모두 삭제됨
 				return false;
 			}else{
 				$("#item_del").attr("disable");	
 				return false;
-			}				
+			}	
+			return false;
 		});
 		
 		$(document).on("change","#selBox",function(){
@@ -113,7 +115,7 @@ $(function() {
 				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='text' class='item_txt' id='disabled_sel' autocomplete='off' value='단답형 텍스트' readonly></li></ul>");
 			}else{
 				$(this).parents().find(".active_item").remove();
-				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img>IM</button></div><div class='button_box'><button id=item_del>X</button></div></li></ul>");
+				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li></ul>");
 			}
 		});
 		

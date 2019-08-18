@@ -56,12 +56,16 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<a id='prev' href='/research/research_list'>목록으로 돌아가기</a> <input type='text' id='top_title' autocomplete='off'>
+					<button id='prev_btn'></button> <input type='text' id='top_title' autocomplete='off'>
+				</div>				
+				<div id='right_top_box'>
+					<!-- session 채크 -->
+					<button id='delete_form'></button>
 				</div>
 			</div>
 			<div class='logo'>
-				<a href=""><img src="/resources/img/logo.png" alt="logo"></a>
-			</div>
+				<img src="/resources/img/logo.png" alt="logo">
+			</div>			
 		</div>
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
