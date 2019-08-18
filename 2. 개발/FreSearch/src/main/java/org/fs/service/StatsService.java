@@ -23,4 +23,5 @@ public interface StatsService {
 	public StatsPagingSearchDTO getTableAll(StatsVO vo, Criteria cri);
 	public StatsPagingSearchDTO getTableSearch(StatsVO vo, Criteria cri);
 	public List<StatsVO> getStatsContent(String subj_code);
+	public List<StatsVO> header();
 }

@@ -99,4 +99,10 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getTableTest");
 		return mapper.getStatsContent(subj_code);
 	}
+	
+	@Override
+	public List<StatsVO> header(){
+		log.info("getTableTest");
+		return mapper.header();
+	}
 }
