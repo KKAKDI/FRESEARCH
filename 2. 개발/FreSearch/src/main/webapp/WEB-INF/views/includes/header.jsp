@@ -68,6 +68,7 @@
                    <a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
                    
                    </c:forEach>
+
                  </div>
                </div>
                
