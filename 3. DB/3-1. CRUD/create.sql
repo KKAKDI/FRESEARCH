@@ -137,11 +137,11 @@ CREATE TABLE BOARD (
 	MB_NICK		  VARCHAR2(200)     NOT NULL, -- 닉네임
 	BRD_SUBJECT       VARCHAR2(240)    NULL,	    -- 제목
 	BRD_CONTENT	  VARCHAR2(3000)   NULL,            -- 내용
-	BRD_LIKE_CNT      NUMBER           NULL,	    -- 추천수
-	BRD_DISLIKE_CNT   NUMBER           NULL,	    -- 비추천수
-	BRD_REPORT_CNT    NUMBER           NULL,	    -- 신고횟수
+	BRD_LIKE_CNT      NUMBER           DEFAULT 0,	    -- 추천수
+	BRD_DISLIKE_CNT   NUMBER           DEFAULT 0,	    -- 비추천수
+	BRD_REPORT_CNT    NUMBER           DEFAULT 0,	    -- 신고횟수
 	BRD_REGKEY        VARCHAR2(20)     NULL,            -- 등록키
-	BRD_VIEWS         NUMBER           NULL,	    -- 조회수
+	BRD_VIEWS         NUMBER           DEFAULT 0,	    -- 조회수
 	BRD_REGDATE       DATE             NULL		    -- 등록일
 );
 ALTER TABLE BOARD ADD CONSTRAINT PK_BOARD PRIMARY KEY (BRD_CODE);
