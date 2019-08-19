@@ -72,7 +72,7 @@ $(function() {
 		$(document).on("click","#qst_etc",function(){
 			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li>");				
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_del></button></div></li>");				
 				return false;
 			}else{
 				$("#qst_etc").attr("disable");		
@@ -223,15 +223,12 @@ $(function() {
 		});
 		$("#remote .remote_btn").hover(
 				function () {		
-					$(this).toggleClass("special");	
-					if($(".remote_btn").children()[0]==$(this).children()[0]){
-						console.log("질문추가");
+					$(this).toggleClass("special");						
+					if("qst_btn"==$(this).children().attr("id")){
 						$(this).attr('data-before','질문 추가');
-					}else if($(".remote_btn").children()[1]==$(this).children()[0]){
-						console.log("이미지추가");
+					}else if("img_btn"==$(this).children().attr("id")){
 						$(this).attr('data-before','이미지 추가');
 					}else{
-						console.log("질문삭제");
 						$(this).attr('data-before','질문 삭제');
 					}
 				},
@@ -240,4 +237,27 @@ $(function() {
 					$(this).toggleClass("special");			
 				}
 			);
+		$(document).on('mouseover','.button_box button',function(){
+				$(this).toggleClass("button_info");					
+				if("item_img"==$(this).attr("id")){
+					$(this).attr('data-before','이미지 추가');
+				}else{
+					$(this).attr('data-before','아이템 삭제');
+				}
+		});
+		$(document).on('mouseout','.button_box button',function(){
+			$(this).toggleClass("button_info");	
+		});
+		
+		$(document).on('mouseover','.bottom_button_box button',function(){
+			$(this).toggleClass("bottom_button_info");				
+			if("qst_add"==$(this).attr("id")){
+				$(this).attr('data-before','아이템 추가');
+			}else{
+				$(this).attr('data-before','기타 추가');
+			}
+		});
+		$(document).on('mouseout','.bottom_button_box button',function(){
+			$(this).toggleClass("bottom_button_info");	
+		});
 	});

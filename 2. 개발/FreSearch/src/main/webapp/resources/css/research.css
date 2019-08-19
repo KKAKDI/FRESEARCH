@@ -266,40 +266,24 @@ select {
 	position:relative;
 }
 
-#item_img:before {
+.button_info::before {
     color: #fff;
     padding: 5px;
     text-align: center;
-    font-size: 12px;
-    content: "이미지 추가";
+    font-size: 10px;
+    content:  attr(data-before);
     display: block;
     position: absolute;
-    right: -20px;
+    right: -10px;
     top: -22px;
-    width: 65px;
-    height: 15px;
+    width: 55px;
+    height: 14px;
     background-color: rgba(20,40,160,0.7);
     border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     -webkit-border-radius: 0.3em;
 }
-#item_del:before {
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-    font-size: 12px;
-    content: "아이템 삭제";
-    display: block;
-    position: absolute;
-    right: -20px;
-    top: -22px;
-    width: 65px;
-    height: 15px;
-    background-color: rgba(20,40,160,0.7);
-    border-radius: 0.3em;
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
-}
+
 #content .research_content button {
 	border: none;
 	color: #fff;
@@ -310,7 +294,7 @@ select {
 #content .research_content .bottom_box {
 	display: none;
 	margin-left: 85%;
-	padding: 0 0 0 17px;
+	padding: 0 0 0 17px;	
 }
 
 #content .research_content .active_btn {
@@ -320,6 +304,25 @@ select {
 #content .research_content .bottom_box .bottom_button_box {
 	padding: 5px;
 	display: inline-block;
+	position:relative;
+}
+
+.bottom_button_info::before {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+    content:  attr(data-before);
+    display: block;
+    position: absolute;
+    right: -12px;
+    top: 45px;
+    width: 55px;
+    height: 14px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
 }
 
 
