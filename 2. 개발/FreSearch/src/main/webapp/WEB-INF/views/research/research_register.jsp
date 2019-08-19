@@ -39,14 +39,14 @@
 				<input type='hidden' name='research_values' id='research_values' value=''>
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
-						<div class='remote_btn'>
-							<button id='qst_btn'></button>
+						<div class='remote_btn'>							
+							<button id='qst_btn'></button>							
 						</div>
-						<div class='remote_btn'>
-							<button id='img_btn'></button>
+						<div class='remote_btn'>							
+							<button id='img_btn'></button>							
 						</div>
-						<div class='remote_btn'>
-							<button id='qst_del'></button>
+						<div class='remote_btn'>							
+							<button id='qst_del'></button>							
 						</div>
 					</div>
 					<div class='research_content clearflx'>

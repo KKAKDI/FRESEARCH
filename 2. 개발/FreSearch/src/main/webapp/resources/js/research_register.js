@@ -221,4 +221,23 @@ $(function() {
 				}				
 			});
 		});
+		$("#remote .remote_btn").hover(
+				function () {		
+					$(this).toggleClass("special");	
+					if($(".remote_btn").children()[0]==$(this).children()[0]){
+						console.log("질문추가");
+						$(this).attr('data-before','질문 추가');
+					}else if($(".remote_btn").children()[1]==$(this).children()[0]){
+						console.log("이미지추가");
+						$(this).attr('data-before','이미지 추가');
+					}else{
+						console.log("질문삭제");
+						$(this).attr('data-before','질문 삭제');
+					}
+				},
+				// 마우스가 떠난다면
+				function () {
+					$(this).toggleClass("special");			
+				}
+			);
 	});

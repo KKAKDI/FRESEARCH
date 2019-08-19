@@ -43,7 +43,7 @@ hr {
 	position: relative;
 }
 
-#content #form_area #remote {
+#remote {
 	background-color: #fff;
 	height: 165px;
 	width: 55px;
@@ -57,12 +57,30 @@ hr {
 	transition: all 1s;
 }
 
-#content #form_area #remote .remote_btn {
+#remote .remote_btn {
 	text-align: center;
 	padding: 15px 0 0 0;
+	position:relative;
+}
+.special::before {
+	color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    content: attr(data-before);
+    display: block;
+    position: absolute;
+    right: -85px;
+    top: 20px;
+    width: 65px;
+    height: 18px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius:0.3em;
+  	-moz-border-radius: 0.3em;
+ 	-webkit-border-radius: 0.3em;
 }
 
-#content #form_area #remote .remote_btn button {
+#remote .remote_btn button {
 	padding: 10px;
 	border: none;
 	color: #fff;
@@ -245,8 +263,43 @@ select {
 #item_box .active_individual .button_box {
 	padding: 5px;
 	display: inline-block;
+	position:relative;
 }
 
+#item_img:before {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    content: "이미지 추가";
+    display: block;
+    position: absolute;
+    right: -20px;
+    top: -22px;
+    width: 65px;
+    height: 15px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+}
+#item_del:before {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    content: "아이템 삭제";
+    display: block;
+    position: absolute;
+    right: -20px;
+    top: -22px;
+    width: 65px;
+    height: 15px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+}
 #content .research_content button {
 	border: none;
 	color: #fff;
@@ -268,6 +321,7 @@ select {
 	padding: 5px;
 	display: inline-block;
 }
+
 
 #top_box {
 	padding: 20px 20px 0 20px;
@@ -354,6 +408,8 @@ select {
     width: 30.5px;
     height: 30.5px;
 }
+
+
 
 /*content*/
 .research_content .content_box{
