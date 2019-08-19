@@ -21,6 +21,8 @@ public interface BoardService {
 	public int getTotal(Criteria cri);										//페이징 전체 게시글 표시
 	
 	public List<BoardAttachVO> getAttachList(int brd_code);	//파일 업로드
+	
+	public void removeAttach(int brd_code); // 첨부파일 삭제
 
 	public int brdViewCnt(int brd_code); 								//조회수 추가
 

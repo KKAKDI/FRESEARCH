@@ -1,5 +1,8 @@
 package org.fs.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.fs.domain.BoardAttachVO;
@@ -103,7 +106,13 @@ public class BoardController {
 	public String delete(@RequestParam("brd_code") int brd_code ,@ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		
 		log.info("remove : " + brd_code);
+		
+		List<BoardAttachVO> attachList = service.getAttachList(brd_code);
+		
 		if(service.delete(brd_code)) {
+			
+			deleteFiles(attachList);
+			
 			ra.addAttribute("result" , "success");
 		}
 		return "redirect:/board/board_list" + cri.getListLink();
@@ -116,7 +125,35 @@ public class BoardController {
 		
 	}
 	
-	
+	// 파일 삭제 처리
+			private void deleteFiles(List<BoardAttachVO> attachList) {
+				
+				if(attachList == null || attachList.size() == 0) {
+					return;
+			}
+				log.info("delete attach file..........");
+				log.info("attachList");
+				
+				attachList.forEach(attach -> {
+					try {
+						Path file = Paths.get("C:/upload/"+attach.getBrd_attach_path()+"/"+attach.getBrd_attach_uuid()+"_"+attach.getBrd_attach_name());
+						
+						Files.deleteIfExists(file);
+						
+						if(Files.probeContentType(file).startsWith("image")) {
+							
+							Path thumbNail = Paths.get("C:/upload/"+attach.getBrd_attach_path()+"/s_"+attach.getBrd_attach_uuid()+"_"+attach.getBrd_attach_name());
+							
+							Files.delete(thumbNail);
+						}
+						
+					}catch(Exception e) {
+						log.error("delete file error" + e.getMessage());
+					} //end cath
+					
+				});//end foreach
+				
+			}
 	
 
 }
