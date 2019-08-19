@@ -282,6 +282,11 @@ public class StatsController {
 		List<StatsVO> list = service.getStatsContent(subj_code);
 		model.addAttribute("list", list);
 	}
+	@GetMapping("/websocket-echo")
+	public void stats_test() {
+		
+	}
+	
 
 
 
