@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/datepicker/jquery.datetimepicker.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
 </head>
@@ -49,6 +49,40 @@
 			console.log(research_values);
 			form.submit();
 		});
+		$("#prev_btn").click(function(){
+			swal({
+				title:"돌아가시겠습니까?",
+				text:"그동안 작성된 정보를 모두 잃습니다.",
+				icon:"warning",
+				buttons:["아니오","네"],
+				dangerMode:true,
+			})
+			.then((willDelete) => {
+				if(willDelete){
+					location.replace("/research/research_list");
+				}
+				else{
+					
+				}				
+			});
+		});
+		$("#delete_form").click(function(){
+			swal({
+				title:"삭제하시겠습니까?",
+				text:"그동안 작성된 정보를 모두 잃습니다.",
+				icon:"warning",
+				buttons:["아니오","네"],
+				dangerMode:true,
+			})
+			.then((willDelete) => {
+				if(willDelete){
+					//controler 연결 필요
+				}
+				else{
+					
+				}				
+			});
+		});
 	});
 </script>
 <body>
@@ -56,12 +90,16 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<a id='prev' href='/research/research_list'>목록으로 돌아가기</a> <input type='text' id='top_title' autocomplete='off'>
+					<button id='prev_btn'></button> <input type='text' id='top_title' autocomplete='off'>
+				</div>				
+				<div id='right_top_box'>
+					<!-- session 채크 -->
+					<button id='delete_form'></button>
 				</div>
 			</div>
 			<div class='logo'>
-				<a href=""><img src="/resources/img/logo.png" alt="logo"></a>
-			</div>
+				<img src="/resources/img/logo.png" alt="logo">
+			</div>			
 		</div>
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>

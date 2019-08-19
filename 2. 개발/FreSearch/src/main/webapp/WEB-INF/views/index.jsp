@@ -192,7 +192,7 @@
 		<div class="research_area clearfix">
 			<div class="hot_board">
 				<div class="board_icon">
-					<img src="/resources/img/icon02.png" alt="자유게시판">
+					<img src="/resources/img/icon_image01.png" alt="자유게시판">
 				</div>
 				<div class="board_text">
 					<dl>
@@ -205,7 +205,7 @@
 			</div>
 			<div class="hot_search">
 				<div class="search_icon">
-					<img src="/resources/img/icon02.png" alt="리서치참여및제작">
+					<img src="/resources/img/icon_image03.png" alt="리서치참여및제작">
 				</div>
 				<div class="search_text">
 					<dl>
@@ -218,7 +218,7 @@
 			</div>
 			<div class="hot_chart">
 				<div class="chart_icon">
-					<img src="/resources/stats/images/stats_icon3.png" alt="데이터베이스">
+					<img src="/resources/img/icon_image02.png" alt="데이터베이스">
 				</div>
 				<div class="chart_text">
 					<dl>

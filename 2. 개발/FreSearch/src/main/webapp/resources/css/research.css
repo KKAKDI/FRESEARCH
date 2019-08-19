@@ -5,25 +5,31 @@ body {
 	vertical-align: top;
 	background-color: #f4f4f4;
 }
-
+button{
+	outline:none;
+}
 hr {
 	display: none;
 	width: 795px;
 	margin-left: 25px;
+	border: 0.3px dotted
+}
+#hr{
+	height:10px;
 }
 
 .research_header {
 	width: 100%;
 	background-color: #1428a0;
-	height: 200px;
+	height: 150px;
 }
 
 .research_header .logo {
-	width: 430px;
+	width: 200px;
 	margin: 0 auto;
 }
 .research_header .logo img{
-	width:400px;
+	width:200px;
 }
 #content {
 	clear: both;
@@ -40,11 +46,11 @@ hr {
 #content #form_area #remote {
 	background-color: #fff;
 	height: 165px;
-	width: 50px;
+	width: 55px;
 	display: inline-block;
 	position: absolute;
 	top: 0;
-	right: -60px;
+	right: -65px;
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -57,13 +63,11 @@ hr {
 }
 
 #content #form_area #remote .remote_btn button {
-	border-radius: 100%;
 	padding: 10px;
-	background-color: #1428a0;
 	border: none;
 	color: #fff;
-	width: 33px;
-	height: 33px;
+	width: 45px;
+	height: 35px;
 }
 
 #content .research_content {
@@ -74,7 +78,7 @@ hr {
 	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	padding: 0 0 20px 0;
+	padding: 0 0 10px 0;
 }
 
 #content .research_content.active {
@@ -98,7 +102,7 @@ hr {
 	padding:5px;
 	margin: 0 10px;
 	border: none;
-	border-bottom: 2px solid #000;
+	border-bottom: 1px dotted #000;
 	font-size: 17px;
 	transition: all 0.5s;
 }
@@ -244,7 +248,6 @@ select {
 }
 
 #content .research_content button {
-	background-color: #1428a0;
 	border: none;
 	color: #fff;
 	width: 33px;
@@ -279,6 +282,7 @@ select {
 	background-color: transparent;
 	border: none;
 	color: #fff;
+	width:33px;
 	height: 33px;
 }
 
@@ -314,10 +318,44 @@ select {
 	width: 50px;
 	height: 33px;
 }
+/*btn img*/
+#prev_btn{
+	background: url( "/resources/img/bicon02_2.png" ) no-repeat 50% 50%;
+}
+#palette{
+	
+}
+#qst_btn{
+	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
+}
+#img_btn{
+	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
+}
+#qst_del{
+	background: url( "/resources/img/bicon10_1.png" ) no-repeat 50% 50%;
+}
+#delete_form{
+	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 50%;
+}
+#item_img{
+	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
+}
+#item_del{
+	background: url( "/resources/img/bicon07_1.png" ) no-repeat 50% 50%;
+}
+#qst_add{
+	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
+}
+.active .active_btn .bottom_button_box > #qst_etc{
+	border: 2px solid #000;
+    background-color: #fff;
+    color: #1428a0;
+    font-weight: 700;
+    width: 30.5px;
+    height: 30.5px;
+}
 
-
-
-
+/*content*/
 .research_content .content_box{
 	padding: 40px 20px 0 20px;
 }
@@ -356,11 +394,11 @@ select {
 }
 .research_content .content_box .research_item input[type=text]{
 	box-sizing: border-box;
-	width: 40%;
-	height: 30px;
+	width: 45%;
+	height: 25px;
 	margin-left: 5px;
 	border: none;
-	border-bottom: 2px solid #fff;
+	border-bottom: 1px dotted #000;
 	font-size: 15px;
 	transition: all 0.5s;
 }
@@ -381,3 +419,4 @@ select {
 	width:200px;
 	background-color: #1428a0;
 }
+
