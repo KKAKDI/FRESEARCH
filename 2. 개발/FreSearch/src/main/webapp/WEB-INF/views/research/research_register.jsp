@@ -24,8 +24,8 @@
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value=''>
 				</div>				
 				<div id='right_top_box'>
-					<button id='palette'>팔레트</button>
-					<button id='send_form'>작성</button>
+					<button  id='palette'>팔레트</button>
+					<button onclick="send();" id='send_form'>작성</button>
 					<button id='delete_form'></button>
 				</div>
 			</div>	
@@ -94,4 +94,65 @@
 		</section>
 	</div>	
 </body>
+<script>
+        var ws;
+        var messages = document.getElementById("message");
+        
+        $(document).ready(function(){
+        	
+
+
+        	console.log("들어왔다")
+            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+            {
+                writeResponse("WebSocket is already opend.");
+
+                
+                return;
+            } 
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket('ws://localhost:8080/echo');
+
+            
+            ws.onopen=function(event){
+                if(event.data===undefined) return;
+                writeResponse(event.data);
+            };
+            ws.onmessage=function(event){
+                writeResponse(event.data);
+            };
+            ws.onclose=function(event){
+                writeResponse("Connection closed");
+            }
+
+            
+/*           send()
+            function send(){
+            	console.log("send 들어왔다")
+                var text = document.getElementById("messageinput").value;
+            	var text = "갱신";
+                ws.send(text);
+                text=""; 
+           } */
+            
+             
+            
+        });
+        function send(){
+            //var text = document.getElementById("messageinput").value;
+        	console.log("뭐하냐");
+            var text = "갱신";
+            ws.send(text);
+            text="";
+            
+        }
+        function closeSocket(){
+            ws.close();
+        }
+        function writeResponse(text){
+        	console.log(text);
+            //message.innerHTML+="<br/>"+text;
+        }
+    </script>
 </html>

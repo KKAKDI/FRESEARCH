@@ -203,7 +203,7 @@ public class StatsController {
 	public void table(Model model) {
 		Criteria cri = new Criteria();
 		model.addAttribute("pageMaker", new PageDTO(cri,123));
-		model.addAttribute("alarm", service.header());
+		//model.addAttribute("alarm", service.header());
 		log.info("stats_table");
 	}
 
@@ -284,6 +284,10 @@ public class StatsController {
 	}
 	@GetMapping("/websocket-echo")
 	public void stats_test() {
+		
+	}
+	@GetMapping("/alarm")
+	public void alarm_test() {
 		
 	}
 	

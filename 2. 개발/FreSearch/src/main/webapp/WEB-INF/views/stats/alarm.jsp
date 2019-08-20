@@ -56,7 +56,7 @@
 
     function onMessage(evt) {
 
-    		$('#count').append(evt.data);
+    		$('#count').html("테스트 : " +evt.data);
 
     }
 
@@ -78,6 +78,9 @@
 
 </head>
 <body>
+
+
+<div id="count">테스트</div>
 
 </body>
 </html>

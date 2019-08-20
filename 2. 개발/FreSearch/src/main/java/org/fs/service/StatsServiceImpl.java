@@ -105,4 +105,10 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getTableTest");
 		return mapper.header();
 	}
+	
+	@Override
+	public String headerCount() {
+		log.info("headerCount");
+		return mapper.headerCount();
+	}
 }

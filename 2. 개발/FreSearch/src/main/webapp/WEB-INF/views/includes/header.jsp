@@ -62,7 +62,7 @@
                   <img src="/resources/img/image_1.png" alt="emblem">
                </div> -->
                <div class="dropdown">
-                 <button class="dropbtn">알림</button>
+                 <button class="dropbtn" id="alarm">알림</button>
                  <div class="dropdown-content" style="overflow:auto; width:300px; height:200px; ">
                  	<c:forEach items="${alarm}" var="list" >
                    <a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
@@ -179,3 +179,119 @@
 	   });
    
 </script>
+
+
+
+
+<!-- 웹소켓 시작 -->
+<script>
+        var ws;
+        var messages = document.getElementById("message");
+        
+        $(document).ready(function(){
+        	
+
+
+        	console.log("#WebSocket 연결")
+            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+            {
+                writeResponse("WebSocket is already opend.");
+
+                
+                return;
+            } 
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket('ws://localhost:8080/echo');
+
+            
+            ws.onopen=function(event){
+            	console.log("onopen1 : "+event)
+            	console.log("onopen2 : "+event.data)
+                if(event.data===undefined) return;
+                writeResponse(event.data);
+            };
+            ws.onmessage=function(event){
+            	console.log("onmessage1 : "+event)
+            	//console.log("onmessage2 : "+event.data)
+                writeResponse(event.data);
+            };
+            ws.onclose=function(event){
+            	console.log("onclose1 : "+event)
+            	console.log("onclose2 : "+event.data)
+                writeResponse("Connection closed");
+            }
+            console.log("alarm data 전송")
+            $('#alarm').html("알림 : " +event.data);
+
+            
+/*           send()
+            function send(){
+            	console.log("send 들어왔다")
+                var text = document.getElementById("messageinput").value;
+            	var text = "갱신";
+                ws.send(text);
+                text=""; 
+           } */
+            
+             
+            
+        });
+        
+        //웹소켓 메세지 전송
+        function send(){
+            //var text = document.getElementById("messageinput").value;
+        	console.log("send1 : "+event)
+        	console.log("send2 : "+event.data)
+            var text = "갱신";
+            ws.send(text);
+            text="";
+            
+        }
+        
+        //웹소켓 닫힘
+        function closeSocket(){
+        	console.log("#closeSocket");
+            ws.close();
+        }
+        
+/*         var data = {
+	    		mb_nick : input,
+	    		subj_nm : "",
+	    		pageNum : (page||1),
+		    	amount : 10	
+		}   */     
+        
+        
+        //웹소켓 반응?
+        function writeResponse(text){
+        	
+        	console.log("writeResponse1 : "+event)
+        	//console.log("writeResponse2 : "+event.data)
+        	console.log(event.data);
+        	var obj = event.data;
+        	console.log("obj Type : "+typeof obj);
+        	//var JSONObj = JSON.parse(obj);
+        	console.log("obj Type : "+typeof JSONObj);
+        	//var jsonObj = JSON.parse(obj);
+
+        	var test = {
+    	    		mb_nick : "input",
+    	    		subj_nm : "",
+    	    		pageNum : "(page||1)",
+    		    	amount : "10"	
+    		}
+        	console.log("test : "+typeof test);
+        	console.log("test.mb_nick : "+test.mb_nick);
+        	var testStr = JSON.stringify(test);
+        	console.log("test : "+typeof testStr);
+        	console.log("test.mb_nick : "+test.mb_nick);
+        	var testJSON = JSON.parse(testStr);
+        	console.log("testJSON : "+testJSON);
+        	//console.log("타입이 뭐냐 :"+jQuery.type(obj));
+        	
+        	//$('#alarm').html("알림 : " +result.length);
+        	
+            //message.innerHTML+="<br/>"+text;
+        }
+    </script>

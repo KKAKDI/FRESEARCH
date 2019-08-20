@@ -162,8 +162,12 @@ public class testMapper {
 //	public void getStatsContent() {
 //		log.info(mapper.getStatsContent("0ZPO83PX"));
 //	}
+//	@Test
+//	public void header() {
+//		log.info(mapper.header());
+//	}
 	@Test
-	public void header() {
-		log.info(mapper.header());
+	public void headerCount() {
+		log.info(mapper.headerCount());
 	}
 }

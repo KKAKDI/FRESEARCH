@@ -186,7 +186,7 @@ public class TestServiceTests {
 //	}
 	@Test
 	public void header() {
-		log.info(service.header());
+		log.info(service.headerCount());
 	}
 			
 	

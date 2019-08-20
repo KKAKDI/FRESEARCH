@@ -501,6 +501,15 @@ or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google
 
 </select>
 
+<select id="headerCount" resultType="String">
+select count(subj_code) from subject 
+where ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com') 
+or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
+or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
+or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
+or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
+</select>
+
 
 
 
