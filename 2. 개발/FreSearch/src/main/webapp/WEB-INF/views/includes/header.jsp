@@ -255,12 +255,7 @@
             ws.close();
         }
         
-/*         var data = {
-	    		mb_nick : input,
-	    		subj_nm : "",
-	    		pageNum : (page||1),
-		    	amount : 10	
-		}   */     
+
         
         
         //웹소켓 반응?
@@ -271,26 +266,14 @@
         	console.log(event.data);
         	var obj = event.data;
         	console.log("obj Type : "+typeof obj);
-        	//var JSONObj = JSON.parse(obj);
-        	console.log("obj Type : "+typeof JSONObj);
+        	obj = JSON.parse(obj);
+        	console.log("obj Type : "+typeof obj);
+        	console.log("JSONObj[0].subj_nm : "+obj[0].subj_nm);
         	//var jsonObj = JSON.parse(obj);
 
-        	var test = {
-    	    		mb_nick : "input",
-    	    		subj_nm : "",
-    	    		pageNum : "(page||1)",
-    		    	amount : "10"	
-    		}
-        	console.log("test : "+typeof test);
-        	console.log("test.mb_nick : "+test.mb_nick);
-        	var testStr = JSON.stringify(test);
-        	console.log("test : "+typeof testStr);
-        	console.log("test.mb_nick : "+test.mb_nick);
-        	var testJSON = JSON.parse(testStr);
-        	console.log("testJSON : "+testJSON);
         	//console.log("타입이 뭐냐 :"+jQuery.type(obj));
         	
-        	//$('#alarm').html("알림 : " +result.length);
+        	$('#alarm').html("알림 : " +obj.length);
         	
             //message.innerHTML+="<br/>"+text;
         }

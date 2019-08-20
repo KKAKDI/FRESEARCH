@@ -11,6 +11,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.Setter;
  
 public class EchoHandler extends TextWebSocketHandler {
@@ -26,10 +28,14 @@ public class EchoHandler extends TextWebSocketHandler {
       @Override
       public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessionList.add(session);
+        String json = new ObjectMapper().writeValueAsString(service.header());
+
+        
         for (WebSocketSession sess : sessionList) {
-            sess.sendMessage(new TextMessage((CharSequence) service.header().toString()));
+            sess.sendMessage(new TextMessage(json));
             System.out.println("#sendMessage : "+sess);
         }
+        
         System.out.println("{} 연결됨"+ session.getId());
       }
      
