@@ -63,7 +63,7 @@
                </div> -->
                <div class="dropdown">
                  <button class="dropbtn" id="alarm">알림</button>
-                 <div class="dropdown-content" style="overflow:auto; width:300px; height:200px; ">
+                 <div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
                  	<c:forEach items="${alarm}" var="list" >
                    <a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
                    
@@ -263,18 +263,21 @@
         	
         	console.log("writeResponse1 : "+event)
         	//console.log("writeResponse2 : "+event.data)
-        	console.log(event.data);
         	var obj = event.data;
-        	console.log("obj Type : "+typeof obj);
         	obj = JSON.parse(obj);
-        	console.log("obj Type : "+typeof obj);
-        	console.log("JSONObj[0].subj_nm : "+obj[0].subj_nm);
-        	//var jsonObj = JSON.parse(obj);
-
-        	//console.log("타입이 뭐냐 :"+jQuery.type(obj));
-        	
+        	console.log("obj : "+obj[0].subj_nm);
         	$('#alarm').html("알림 : " +obj.length);
         	
+        	var html ='';
+        	for(var i = 0; i< obj.lenght; i++){
+        		html += obj[i].subj_nm;
+        	}
+        	console.log("html : "+html);
+        	
+        	
+        	
+        	
+        	$('#alarm_content').html(html);
             //message.innerHTML+="<br/>"+text;
         }
     </script>
