@@ -829,7 +829,7 @@ a {
 .sub-link {
     overflow-x: auto;
     overflow-y: hidden;
-    max-height: 48px;
+    height: 75px;
     padding-top: 18px;
     padding-bottom: 17px;
 }
