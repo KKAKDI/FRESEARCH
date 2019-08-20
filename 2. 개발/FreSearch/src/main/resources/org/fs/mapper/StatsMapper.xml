@@ -498,6 +498,7 @@ or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = 'aaa@google
 or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
 or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
 or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
+order by subj_regdate desc
 
 </select>
 

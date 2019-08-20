@@ -19,6 +19,67 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 
+<style>
+
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 24px;
+  color: #fff;
+}
+/* html, body {height: 100%;}
+body {align-items: center;display: flex;font-family: sans-serif;justify-content: center;}
+.container{position:relative;-webkit-perspective: 1000;-webkit-backface-visibility: hidden;}  */
+.badge-num {
+  box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #ff0000;
+    cursor: default;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 6px;
+    height: 17px;
+    line-height: 1.55em;
+    top: 0px;
+    right: -6px;
+    border: 1px solid #000000;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    width: 17px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    animation: pulse 1.5s 1;
+    margin-top: 1px;
+}
+.badge-num:after {
+  content: '';
+  position: absolute;
+  top:-2px;
+  left:-2px;
+  border:2px solid rgba(255,0,0,.5);
+  opacity:0;
+  border-radius: 50%;
+  width:100%;
+  height:100%;
+  animation: sonar 1.5s 1;
+}
+@keyframes sonar { 
+  0% {transform: scale(.9); opacity:1;}
+  100% {transform: scale(2);opacity: 0;}
+}
+@keyframes pulse {
+  0% {transform: scale(1);}
+  20% {transform: scale(1.4); } 
+  50% {transform: scale(.9);} 
+  80% {transform: scale(1.2);} 
+  100% {transform: scale(1);}
+}
+
+
+</style>
+
 </head>
 <body>
 <div class="loading">로딩</div>
@@ -62,14 +123,29 @@
                   <img src="/resources/img/image_1.png" alt="emblem">
                </div> -->
                <div class="dropdown">
-                 <button class="dropbtn" id="alarm">알림</button>
-                 <div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
-                 	<c:forEach items="${alarm}" var="list" >
-                   <a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
+               
+               <!-- 종모양 알림 -->
+	               	<div class="container" id="badge">
+	               		
+	     					<a class="entypo-bell">
+	     					</a>
+	     				
+					</div>
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
+						<a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
+					</div>
+				<!-- 종모양 알림 끝 -->
+				
+				
+                 	<!-- <button class="dropbtn" id="alarm">알림</button>
+                 	<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
+	                 	<c:forEach items="${alarm}" var="list" >
+	             	      <a href="#">실험용입니다.</a>
                    
-                   </c:forEach>
+                  		</c:forEach>
 
-                 </div>
+                 </div>  -->
+                 
                </div>
                
             </div>
@@ -207,7 +283,7 @@
             
             ws.onopen=function(event){
             	console.log("onopen1 : "+event)
-            	console.log("onopen2 : "+event.data)
+            	//console.log("onopen2 : "+event.data)
                 if(event.data===undefined) return;
                 writeResponse(event.data);
             };
@@ -269,10 +345,9 @@
         	$('#alarm').html("알림 : " +obj.length);
         	
         	var html ='';
-        	for(var i = 0; i< obj.lenght; i++){
-        		html += obj[i].subj_nm;
+        	for(var i = 0; i< obj.length; i++){
+        		html += '<a href="/stats/stats_get?subj_code='+obj[i].subj_code+'">'+obj[i].subj_nm+'</a>';
         	}
-        	console.log("html : "+html);
         	
         	
         	
@@ -280,4 +355,38 @@
         	$('#alarm_content').html(html);
             //message.innerHTML+="<br/>"+text;
         }
-    </script>
+</script>
+    <!-- 웹소켓 끝 -->
+    
+    <!-- 종 jquery 시작 -->
+<script>
+/*     (function(d){
+    	  var i = 1;
+    	  var badge = document.getElementById('badge');
+    	  
+    	  var int = window.setInterval(updateBadge, 10000);
+    	  var badgeNum;    
+    	  function updateBadge(){
+    	        var badgeChild = badge.children[0];
+    	            if(badgeChild.className==='badge-num')
+    	                badge.removeChild(badge.children[0]);
+    	        
+    	        badgeNum = document.createElement('div'); 
+    	      badgeNum.setAttribute('class','badge-num');
+    	        badgeNum.innerHTML = i++;
+    	        var insertedElement = badge.insertBefore(badgeNum,badge.firstChild); 
+    	      console.log(badge.children[0]);
+    	  }
+    	})(document); */
+
+  $(document).ready(function(){
+	console.log("왜 안되지?")
+	html = '';
+	html += '<div class="badge-num">6</div>';
+	html += '<a class="entypo-bell"></a>'
+
+    $("#badge").html(html);
+  });
+    	
+    	
+</script>
