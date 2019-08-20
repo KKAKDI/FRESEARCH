@@ -38,13 +38,13 @@ $(function() {
 							$(".research_content .qst_swap #item_box").removeClass("active_item");
 							$(".research_content hr").removeClass("active_btn");
 							$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li></ul></div>");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type='file' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><output id='list'></output></li></ul></div>");
 							$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 160);							
 							return false;
 		});
-		//추가된 태그 함수 실행
+		// 추가된 태그 함수 실행
 		$(document).on("click", ".research_content", function() {
 			$(".research_content").removeClass("active");
 			$(".research_content .bottom_box").removeClass("active_btn");
@@ -65,7 +65,7 @@ $(function() {
 			$("#remote").css("top", offset - 160);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type='file' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><output id='list'></output></li>");
 				return false;
 			}
 		);
@@ -98,7 +98,7 @@ $(function() {
 		$(document).on("click","#item_del",function(){
 			var index = $(this).parents().find(".active_item .item_individual").length;					
 			if(index>1){
-				$(this).parent().parent(".active_item .item_individual").remove();//parens().find() 로 검색시 모두 삭제됨
+				$(this).parent().parent(".active_item .item_individual").remove();// parens().find()로 검색시 모두 삭제됨
 				return false;
 			}else{
 				$("#item_del").attr("disable");	
@@ -237,13 +237,25 @@ $(function() {
 					$(this).toggleClass("special");			
 				}
 			);
+		
+		$(document).on('mouseover','label',function(){
+			if("button_box"==$(this).parent().attr("class")){				
+				$(this).toggleClass("button_info");
+				$(this).attr('data-before','이미지 추가');
+			}						
+		});
+		$(document).on('mouseout','label',function(){
+			if("button_box"==$(this).parent().attr("class")){
+				$(this).toggleClass("button_info");
+			}						
+		});
 		$(document).on('mouseover','.button_box button',function(){
 				$(this).toggleClass("button_info");					
-				if("item_img"==$(this).attr("id")){
-					$(this).attr('data-before','이미지 추가');
-				}else{
+			//	if("item_img"==$(this).attr("id")){
+			//		$(this).attr('data-before','이미지 추가');
+			//	}else{
 					$(this).attr('data-before','아이템 삭제');
-				}
+			//	}
 		});
 		$(document).on('mouseout','.button_box button',function(){
 			$(this).toggleClass("button_info");	
@@ -260,4 +272,46 @@ $(function() {
 		$(document).on('mouseout','.bottom_button_box button',function(){
 			$(this).toggleClass("bottom_button_info");	
 		});
+		
+		
+		// 이미지 업로드 미리보기 소스
+		
+		$.handleFileSelect = function (evt) {
+		    var files = evt.target.files;
+
+		    // Loop through the FileList and render image files as thumbnails.
+		    for (var i = 0, f; f = files[i]; i++) {
+
+		      // Only process image files.
+		      if (!f.type.match('image.*')) {
+		        continue;
+		      }
+
+		      var reader = new FileReader();
+
+		      // Closure to capture the file information.
+		      reader.onload = (function(theFile) {
+		        return function(e) {
+		          // Render thumbnail.
+		          var div = document.createElement('div');
+		          div.innerHTML = 
+		          [
+		            '<img style="height: 100%; width:100%; margin: 5px" src="', 
+		            e.target.result,
+		            '" title="', escape(theFile.name), 
+		            '"/>'
+		          ].join('');
+		          console.log($(this).parents(".active_individual"));
+		          console.log($(this).parents(".active_individual").nodeType);
+		          var target = $(this).parents(".active_individual").nodeType;
+		          document.getElementById('list').insertBefore(div, target);
+		        };
+		      })(f);
+
+		      // Read in the image file as a data URL.
+		      reader.readAsDataURL(f);
+		    }
+		  }
+		$(document).on("change","#item_img",$.handleFileSelect);
+		  //document.getElementById('item_img').addEventListener('change', handleFileSelect, false);
 	});
