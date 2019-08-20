@@ -43,7 +43,7 @@ hr {
 	position: relative;
 }
 
-#content #form_area #remote {
+#remote {
 	background-color: #fff;
 	height: 165px;
 	width: 55px;
@@ -57,12 +57,30 @@ hr {
 	transition: all 1s;
 }
 
-#content #form_area #remote .remote_btn {
+#remote .remote_btn {
 	text-align: center;
 	padding: 15px 0 0 0;
+	position:relative;
+}
+.special::before {
+	color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    content: attr(data-before);
+    display: block;
+    position: absolute;
+    right: -85px;
+    top: 20px;
+    width: 65px;
+    height: 18px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius:0.3em;
+  	-moz-border-radius: 0.3em;
+ 	-webkit-border-radius: 0.3em;
 }
 
-#content #form_area #remote .remote_btn button {
+#remote .remote_btn button {
 	padding: 10px;
 	border: none;
 	color: #fff;
@@ -210,19 +228,30 @@ select {
 	padding: 5px;
 	box-sizing: border-box;
 	width: 84%;
-	height: 40px;
-	margin-left: 10px;
-	margin-right: 10px;
+	height: 43px;
+	margin-left: 5px;
+	margin-right: 15px;
 	border: none;
 	border-bottom: 1px solid #fff;
 	font-size: 15px;
 	transition: all 0.5s;
 }
 #item_box .item_individual>input[type=radio]{
-	 width: 20px;
-	 height: 38px;	
+	 -webkit-appearance: none;
+  	 border-radius: 50%;
+	 width: 18px;
+	 height: 18px;
+ 	 border: 2px solid #999;
+	 transition: 0.2s all linear;
+	 outline: none;
+	 margin-top: 8px;
+	 margin-right: 1px;
+	 position: relative;
+	 top: 4px;		 
 }
-
+#item_box .item_individual>input:checked{
+	border: 9px solid #1428a0;
+}
 #item_box .item_individual>input[type=text]:focus {
 	border-bottom: 2px solid #1428a0;
 	outline: none;
@@ -245,6 +274,25 @@ select {
 #item_box .active_individual .button_box {
 	padding: 5px;
 	display: inline-block;
+	position:relative;
+}
+
+.button_info::before {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+    content:  attr(data-before);
+    display: block;
+    position: absolute;
+    right: -10px;
+    top: -22px;
+    width: 55px;
+    height: 14px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
 }
 
 #content .research_content button {
@@ -257,7 +305,7 @@ select {
 #content .research_content .bottom_box {
 	display: none;
 	margin-left: 85%;
-	padding: 0 0 0 17px;
+	padding: 0 0 0 17px;	
 }
 
 #content .research_content .active_btn {
@@ -267,7 +315,27 @@ select {
 #content .research_content .bottom_box .bottom_button_box {
 	padding: 5px;
 	display: inline-block;
+	position:relative;
 }
+
+.bottom_button_info::before {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+    content:  attr(data-before);
+    display: block;
+    position: absolute;
+    right: -12px;
+    top: 45px;
+    width: 55px;
+    height: 14px;
+    background-color: rgba(20,40,160,0.7);
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+}
+
 
 #top_box {
 	padding: 20px 20px 0 20px;
@@ -315,7 +383,7 @@ select {
 	background-color: transparent;
 	border: none;
 	color: #fff;
-	width: 50px;
+	width: 45px;
 	height: 33px;
 }
 /*btn img*/
@@ -335,7 +403,7 @@ select {
 	background: url( "/resources/img/bicon10_1.png" ) no-repeat 50% 50%;
 }
 #delete_form{
-	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 50%;
+	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 40%;
 }
 #item_img{
 	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
@@ -353,7 +421,10 @@ select {
     font-weight: 700;
     width: 30.5px;
     height: 30.5px;
+    margin-left: 1px;
 }
+
+
 
 /*content*/
 .research_content .content_box{

@@ -51,12 +51,26 @@ public class BoardServiceImpl implements BoardService{
 		return  mapper.read(brd_code);
 	}
 
+	@Transactional
 	@Override
-	public boolean modify(BoardVO board) {			//게시글 삭제
+	public boolean modify(BoardVO board) {			//게시글 수정
 
 		log.info("modify......" + board);
 
-		return mapper.update(board) == 1;
+		attachMapper.deleteAll(board.getBrd_code());
+		
+		boolean modifyResult = mapper.update(board) == 1;
+
+		log.info("########:" + board.getAttachList());
+		if (modifyResult && board.getAttachList() != null && board.getAttachList().size() > 0) { // 업데이트 되고 첨부파일이 있을 경우
+
+			board.getAttachList().forEach(attach -> {	
+				attach.setBrd_code(board.getBrd_code());
+				attachMapper.insert(attach);
+			});
+		}
+
+		return modifyResult;
 	}
 	
 	@Transactional
@@ -64,6 +78,8 @@ public class BoardServiceImpl implements BoardService{
 	public boolean delete(int brd_code) {				//게시글 삭제
 		
 		log.info("remove...." + brd_code);
+		
+		attachMapper.deleteAll(brd_code);
 
 		return mapper.delete(brd_code) == 1;
 	}
@@ -97,6 +113,14 @@ public class BoardServiceImpl implements BoardService{
 	public int brdViewCnt(int brd_code) {
 		
 		return mapper.views(brd_code);
+	}
+
+	@Override
+	public void removeAttach(int brd_code) {
+
+		log.info("remove all attach files");
+
+		attachMapper.deleteAll(brd_code);
 	}
 
 }
