@@ -433,6 +433,12 @@ select {
 #qst_add{
 	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
 }
+#img_del{	
+	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 50%;
+	position: absolute;
+	top:-10px;
+    left: 165px;
+}
 .active .active_btn .bottom_button_box > #qst_etc{
 	border: 2px solid #000;
     background-color: #fff;
@@ -444,9 +450,14 @@ select {
 }
 /* 이미지 관련  */
 
-#list > div{
+img{	
 	width: 180px;
-	max-height: 400px;
+	max-height: 400px;	
+}
+#img_box{
+	display:none;
+	position: relative;
+	padding-top:5px;
 }
 
 /*content*/
