@@ -522,11 +522,13 @@ $(document).ready(function(){
 			$("#cate_check").text("");
 			$("#agree_check").text("약관에 동의해주세요.");
 			$("#agree_check").css("color", "#d0021b");
-			check = true;
+			check = false;
 			signupCheck();
 		}else if(cnt > 0 && cnt2 == 2){
 			$("#cate_check").text("");
 			$("#agree_check").text("");
+			check = true;
+			signupCheck();
 		}
 
 		for(var i=0; i<cnt; i++){
@@ -571,7 +573,7 @@ $(document).ready(function(){
 			signupCheck();
 		}else if(cnt == 0 && cnt2 < 2){
 			$("#agree_check").text("");
-			check = false;
+			check = true;
 			signupCheck();
 		}else if(cnt2 < 2){
 			$("#agree_check").text("약관에 동의해주세요.");
