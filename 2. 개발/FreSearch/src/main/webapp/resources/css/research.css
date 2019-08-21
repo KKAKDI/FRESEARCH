@@ -45,7 +45,7 @@ hr {
 
 #remote {
 	background-color: #fff;
-	height: 165px;
+	height: 169px;
 	width: 55px;
 	display: inline-block;
 	position: absolute;
@@ -59,7 +59,7 @@ hr {
 
 #remote .remote_btn {
 	text-align: center;
-	padding: 15px 0 0 0;
+	padding: 16px 0 0 0;
 	position:relative;
 }
 .special::before {
@@ -249,9 +249,7 @@ select {
 	 position: relative;
 	 top: 4px;		 
 }
-#item_box .item_individual>input:checked{
-	border: 9px solid #1428a0;
-}
+
 #item_box .item_individual>input[type=text]:focus {
 	border-bottom: 2px solid #1428a0;
 	outline: none;
@@ -275,6 +273,26 @@ select {
 	padding: 5px;
 	display: inline-block;
 	position:relative;
+}
+#item_box .active_individual .button_box label{
+	display: inline-block;
+	cursor: pointer;
+	border: none;
+    color: #fff;
+    width: 33px;
+    height: 33px;
+    background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
+}
+
+#item_box .active_individual .button_box input[type="file"]{
+	position: absolute;
+	width: 33px;
+	height: 33px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
 }
 
 .button_info::before {
@@ -307,6 +325,7 @@ select {
 	margin-left: 85%;
 	padding: 0 0 0 17px;	
 }
+
 
 #content .research_content .active_btn {
 	display: inline-block;
@@ -423,8 +442,12 @@ select {
     height: 30.5px;
     margin-left: 1px;
 }
+/* 이미지 관련  */
 
-
+#list > div{
+	width: 180px;
+	max-height: 400px;
+}
 
 /*content*/
 .research_content .content_box{

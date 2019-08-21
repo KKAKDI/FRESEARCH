@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/datepicker/jquery.datetimepicker.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
 <script src="/resources/js/research_register.js"></script>
@@ -78,7 +78,7 @@
 						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option></select>
 						<div class='qst_swap'>
 							<ul id='item_box' class='clearflx'>
-								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li>
+								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type="file" id='item_img'/></div><div class='button_box'><button id=item_del></button></div><output id="list"></output></li>
 							</ul>
 						</div>
 						<div class='etc_box'>
