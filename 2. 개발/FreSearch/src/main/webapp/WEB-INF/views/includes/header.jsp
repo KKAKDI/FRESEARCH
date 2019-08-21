@@ -131,9 +131,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	     					</a>
 	     				
 					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
-						<a href="/stats/stats_get?subj_code=${list.subj_code}">${list.subj_nm }</a>
-					</div>
 				<!-- 종모양 알림 끝 -->
 				
 				
