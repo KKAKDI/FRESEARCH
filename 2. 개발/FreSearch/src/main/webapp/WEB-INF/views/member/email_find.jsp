@@ -14,9 +14,13 @@
 </head>
 <body>
 	<div class="page-wrapper">
-		<div class="page-content">
-			<form class="page-form" action="/login" method="post" autocomplete="off">
+	<header class="header-member" style="position: absolute; margin-top: 18px;">
 				<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
+			</header>
+		<div class="page-content">
+			
+			<form class="page-form" action="/login" method="post" autocomplete="off">
+				<h2 style="border-bottom: 1px solid #d9d9d9; padding-bottom: 15px; font-size: 18px;">이메일 찾기</h2>
 				<div class="page-form-input">
 					<label for="mb_email">이메일</label> 
 					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30">
