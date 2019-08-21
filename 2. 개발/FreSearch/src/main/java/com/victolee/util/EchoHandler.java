@@ -27,13 +27,18 @@ public class EchoHandler extends TextWebSocketHandler {
       // 클라이언트와 연결 이후에 실행되는 메서드
       @Override
       public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    	  
         sessionList.add(session);
-        String json = new ObjectMapper().writeValueAsString(service.header());
-
         
-        for (WebSocketSession sess : sessionList) {
-            sess.sendMessage(new TextMessage(json));
-        }
+        
+//        System.out.println("#session.getId() : "+session.getId());
+//        String json = new ObjectMapper().writeValueAsString(service.header(session.getId()));
+//        System.out.println("#session.service : "+service.header(session.getId()));
+//
+//        
+//        for (WebSocketSession sess : sessionList) {
+//            sess.sendMessage(new TextMessage(json));
+//        }
         
         System.out.println("{} 연결됨"+ session.getId()); 
       }
@@ -41,6 +46,7 @@ public class EchoHandler extends TextWebSocketHandler {
       // 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
       @Override
       protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+    	  System.out.println("#session.getId() : "+session.getId());
         System.out.println(("{}로 부터 {} 받음"+ session.getId()+ message.getPayload()));
         
         
@@ -61,11 +67,10 @@ public class EchoHandler extends TextWebSocketHandler {
         Thread.sleep(2000);
         
         
-        String json = new ObjectMapper().writeValueAsString(service.header());
-//		이건 내꺼        
-        for (WebSocketSession sess : sessionList) {
-        sess.sendMessage(new TextMessage(json));
-        }
+//        String json = new ObjectMapper().writeValueAsString(service.header(session.getId()));
+//        for (WebSocketSession sess : sessionList) {
+//        sess.sendMessage(new TextMessage(json));
+//        }
       }
 //현재 수신자에게 몇개의 메세지가 와있는지 디비에서 검색함.
 

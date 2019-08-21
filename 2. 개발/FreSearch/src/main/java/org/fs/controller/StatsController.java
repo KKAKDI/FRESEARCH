@@ -346,4 +346,17 @@ public class StatsController {
 			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
 		}
 	}
+	
+	@RequestMapping(method = { RequestMethod.POST,
+			RequestMethod.PATCH }, 
+			value = "/header", 
+			consumes = "application/json", 
+			produces = "application/json")
+	public ResponseEntity<List<StatsVO>> getHeader(@RequestBody StatsVO vo) {
+			System.out.println("#여기 들어오나?");
+
+			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
+		
+	}
 }
+

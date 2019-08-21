@@ -7,6 +7,9 @@
 <head>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+
+
+
 <title>FRESEARCH</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -18,6 +21,7 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/signin.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <style>
 @import url(http://weloveiconfonts.com/api/?family=entypo);
@@ -74,9 +78,18 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   80% {transform: scale(1.2);} 
   100% {transform: scale(1);}
 }
+
+#alarm_content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+}
 </style>
 </head>
 <body>
+
 <div class="loading">로딩</div>
 <div class="container">
 	<div class="fixed_box">
@@ -110,13 +123,13 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 					    	<div class="bar"></div>
 					    	<a class="member_menu" href="#">
 					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_menu">마이페이지</span>
+					    		<span class="span_menu">마이페이지 </span>
 					    	</a>
 							<a href="/" class="member_menu" id="logout">
 								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
 								<span class="span_menu">로그아웃</span>
 							</a>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
@@ -128,6 +141,13 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 					  </div>
 					</div>
 					
+					
+					
+
+					
+					
+					
+					
 					<div class="dropdown">
                
                		<!-- 종모양 알림 -->
@@ -138,6 +158,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 					</div>
 					<!-- 종모양 알림 끝 -->
                		</div>
+
 					<!-- <div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
 					</div> -->
@@ -174,6 +195,8 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 		</div>
 		<!-- header 끝 -->
 	</div>
+	
+<script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
 
 
@@ -259,9 +282,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         var messages = document.getElementById("message");
         
         $(document).ready(function(){
-
-        	console.log("#WebSocket 연결")
-        	console.log("event.data : "+event.data)
+        	//console.log("ID : "+$("#ID").html().trim());
+        	var mb_email =($)
+        	console.log("#WebSocket 연결");
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {
                 writeResponse("WebSocket is already opend.");
@@ -275,6 +298,26 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             ws.onopen=function(event){
             	console.log("onopen1 : "+event)
             	//console.log("onopen2 : "+event.data)
+            	
+            	
+            	
+            	//ajax 알림 리스트 and 알림 종 갯수  시작
+
+             	var data ={
+            		//mb_email : $(".bar").prev().html().trim()
+            		mb_email : "bbb@google.com"
+            	}
+            	console.log("data : "+data.mb_email);
+            	
+            	tableService.header(data,function(list){
+            		for(var i=0; i < list.length; i++){
+            			console.log("실험 가자  : "+list[i].subj_nm);
+            		}
+            	})
+            	 
+            	
+            	
+            	
                 if(event.data===undefined) return;
                 writeResponse(event.data);
             };
@@ -325,6 +368,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	$('#alarm_content').html(html);
             //message.innerHTML+="<br/>"+text;
         }
+        
+        
+        
         
 </script>
     <!-- 웹소켓 끝 -->
