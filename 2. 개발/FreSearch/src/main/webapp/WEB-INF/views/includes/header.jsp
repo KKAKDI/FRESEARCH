@@ -269,6 +269,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 
         	console.log("#WebSocket 연결")
+        	console.log("event.data : "+event.data)
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {
                 writeResponse("WebSocket is already opend.");
@@ -294,7 +295,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             };
             ws.onclose=function(event){
             	console.log("onclose1 : "+event)
-            	console.log("onclose2 : "+event.data)
+            	//console.log("onclose2 : "+event.data)
                 writeResponse("Connection closed");
             }
             console.log("alarm data 전송")
@@ -318,7 +319,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         function send(){
             //var text = document.getElementById("messageinput").value;
         	console.log("send1 : "+event)
-        	console.log("send2 : "+event.data)
+        	//console.log("send2 : "+event.data)
             var text = "갱신";
             ws.send(text);
             text="";
@@ -335,58 +336,21 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         
         
         //웹소켓 반응?
-        function writeResponse(text){
-        	
-        	console.log("writeResponse1 : "+event)
-        	//console.log("writeResponse2 : "+event.data)
+        function writeResponse(text, num){
         	var obj = event.data;
         	obj = JSON.parse(obj);
-        	console.log("obj : "+obj[0].subj_nm);
-        	$('#alarm').html("알림 : " +obj.length);
-        	
-        	var html ='';
-        	for(var i = 0; i< obj.length; i++){
-        		html += '<a href="/stats/stats_get?subj_code='+obj[i].subj_code+'">'+obj[i].subj_nm+'</a>';
-        	}
-        	
-        	
-        	
-        	
+        	if($(".badge-num").html() != obj.length){
+	        	$('#badge').html('<div class="badge-num" id="qqq">'+obj.length+'</div><a class="entypo-bell"></a>');
+	        	
+	        	var html ='';
+	        	for(var i = 0; i< obj.length; i++){
+	        		html += '<a href="/stats/stats_get?subj_code='+obj[i].subj_code+'">'+obj[i].subj_nm+'</a>';
+	        	}
+      		}else{
+      		}
         	$('#alarm_content').html(html);
             //message.innerHTML+="<br/>"+text;
         }
+        
 </script>
     <!-- 웹소켓 끝 -->
-    
-    <!-- 종 jquery 시작 -->
-<script>
-/*     (function(d){
-    	  var i = 1;
-    	  var badge = document.getElementById('badge');
-    	  
-    	  var int = window.setInterval(updateBadge, 10000);
-    	  var badgeNum;    
-    	  function updateBadge(){
-    	        var badgeChild = badge.children[0];
-    	            if(badgeChild.className==='badge-num')
-    	                badge.removeChild(badge.children[0]);
-    	        
-    	        badgeNum = document.createElement('div'); 
-    	      badgeNum.setAttribute('class','badge-num');
-    	        badgeNum.innerHTML = i++;
-    	        var insertedElement = badge.insertBefore(badgeNum,badge.firstChild); 
-    	      console.log(badge.children[0]);
-    	  }
-    	})(document); */
-
-  $(document).ready(function(){
-	console.log("왜 안되지?")
-	html = '';
-	html += '<div class="badge-num">6</div>';
-	html += '<a class="entypo-bell"></a>'
-
-    $("#badge").html(html);
-  });
-    	
-    	
-</script>
