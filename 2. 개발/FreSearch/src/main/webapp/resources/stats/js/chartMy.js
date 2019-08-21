@@ -16,14 +16,11 @@ var html = '';
 var area = '';
 $(document).ready(function() {
 	$("input[name=1]").click(function(e) {
-		console.log("버튼 눌렸다.");
 
 		area = $(this).val();
 		html = area;
 		html += '<code>지역</code>';
 		$("#area").html(html);
-		console.log(html);
-		console.log(area);
 		updateDataArea();
 	});
 });
@@ -68,14 +65,11 @@ var age = '';
 $(document).ready(function() {
 
 	$("input[name=2]").click(function(e) {
-		console.log("버튼 눌렸다.");
 
 		age = $(this).val();
 		html = age;
 		html += '<code>나이</code>';
 		$("#area").html(html);
-		console.log(html);
-		console.log(age);
 		updateDataAge();
 	});
 });
@@ -120,14 +114,11 @@ var age = '';
 $(document).ready(function() {
 
 	$("input[name=3]").click(function(e) {
-		console.log("버튼 눌렸다.");
 
 		sex = $(this).val();
 		html = sex;
 		html += '<code>성별</code>';
 		$("#area").html(html);
-		console.log(html);
-		console.log(sex);
 		updateDataSex();
 	});
 });
@@ -172,14 +163,11 @@ var marriage = '';
 $(document).ready(function() {
 
 	$("input[name=4]").click(function(e) {
-		console.log("버튼 눌렸다.");
 
 		marriage = $(this).val();
 		html = marriage;
 		html += '<code>결혼 유무</code>';
 		$("#area").html(html);
-		console.log(html);
-		console.log(marriage);
 		updateDataMarriage();
 	});
 });

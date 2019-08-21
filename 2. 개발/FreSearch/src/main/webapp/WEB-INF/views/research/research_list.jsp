@@ -9,6 +9,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <link rel="stylesheet" href="/resources/css/research_list.css">
+
 <script src="/resources/js/research_list.js"></script>
 </head>
 	<div class="page-content">

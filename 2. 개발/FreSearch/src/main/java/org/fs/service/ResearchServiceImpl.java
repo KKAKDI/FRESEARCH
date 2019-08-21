@@ -38,7 +38,7 @@ public class ResearchServiceImpl implements ResearchService {
 
 	@Override
 	public void researchReg(String values) {
-		String email = "admin@fresearch.com"; // 占쏙옙占쏙옙占쏙옙 占쏙옙
+		String email = "admin@fresearch.com"; 
 		String subName = null;
 		String[] block = values.split("/block");
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy/MM/dd");
@@ -50,7 +50,6 @@ public class ResearchServiceImpl implements ResearchService {
 				ResearchVO headerVO = new ResearchVO();
 				for (int j = 0; j < header.length; j++) {
 					log.info("header" + j + ": " + header[j]);
-					// 占쏙옙占쏙옙占쌘듸옙 占싱몌옙占쏙옙 占싻놂옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 					try {
 						switch (j) {
 						case 0:
@@ -71,26 +70,25 @@ public class ResearchServiceImpl implements ResearchService {
 						log.info(e);
 					}
 				}
-				// 占쏙옙占쏙옙 占쌓쏙옙트占쏙옙
 				headerVO.setMb_email(email);
 				headerVO.setMb_nick("admin");
-				mapper.subjReg(headerVO); // DB占쏙옙占쏙옙
+				mapper.subjReg(headerVO); 
 			} else {
 				String item[] = block[i].split("#t#");
 				String[][] items = new String[block.length][item.length];
 				for (int k = 0; k < item.length; k++) {
 					items[i][k] = item[k];
 					log.info("item[" + i + "][" + k + "]: " + items[i][k]);
-					if (i > 0 && k == 0) {
-						ResearchVO questionVO = new ResearchVO();
+					ResearchVO questionVO = new ResearchVO();
+					if(i>0 && k==1){
 						questionVO.setMb_email(email);
 						questionVO.setSubj_nm(subName);
-						questionVO.setQst_content(items[i][k]);
-						questionVO.setQst_type("0"); // 占쏙옙占쏙옙占십울옙
-						questionVO.setQst_img("");// 占쏙옙占쏙옙占십울옙
-						questionVO.setQst_url("");// 占쏙옙占쏙옙占십울옙
+						questionVO.setQst_content(items[i][0]);						
+						questionVO.setQst_img("");
+						questionVO.setQst_url("");			
+						questionVO.setQst_type(items[i][k]); 
 						mapper.qstReg(questionVO);
-					} else {
+					}else if(k>1){
 						ResearchVO itemVO = new ResearchVO();
 						itemVO.setMb_email(email);
 						itemVO.setSubj_nm(subName);

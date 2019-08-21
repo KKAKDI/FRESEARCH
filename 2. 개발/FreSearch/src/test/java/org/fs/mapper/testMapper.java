@@ -158,8 +158,16 @@ public class testMapper {
 //		cri.setAmount(3);
 //		log.info(mapper.getTableSearch(vo, cri));
 //	}
+//	@Test
+//	public void getStatsContent() {
+//		log.info(mapper.getStatsContent("0ZPO83PX"));
+//	}
+//	@Test
+//	public void header() {
+//		log.info(mapper.header());
+//	}
 	@Test
-	public void getStatsContent() {
-		log.info(mapper.getStatsContent("0ZPO83PX"));
+	public void headerCount() {
+		log.info(mapper.headerCount());
 	}
 }

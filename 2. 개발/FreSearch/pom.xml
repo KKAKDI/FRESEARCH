@@ -261,6 +261,22 @@
 	    <artifactId>spring-social-google</artifactId>
         <version>1.0.0.RELEASE</version>
     </dependency>
+	
+	<!-- 웹 소켓 관련 폼 -->
+	<!-- Spring WebSocket -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-websocket</artifactId>
+	    <version>5.0.6.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>ch.qos.logback</groupId>
+	    <artifactId>logback-classic</artifactId>
+	    <version>1.2.3</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- 웹 소켄 관련 폼 끝 -->
       
    </dependencies>
    <build>

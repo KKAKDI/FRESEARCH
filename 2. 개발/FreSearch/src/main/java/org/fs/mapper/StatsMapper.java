@@ -38,5 +38,9 @@ public interface StatsMapper {
 	
 	public List<StatsVO> getStatsContent(String subj_code);
 
+	public List<StatsVO> header();
+	
+	public String headerCount();
+
 
 }

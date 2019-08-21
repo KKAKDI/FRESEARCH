@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
- 
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -30,6 +31,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/stats")
 @AllArgsConstructor
+@SessionAttributes({"alarm","sawonDetail"})
 public class StatsController {
 	private StatsService service;
 
@@ -201,6 +203,7 @@ public class StatsController {
 	public void table(Model model) {
 		Criteria cri = new Criteria();
 		model.addAttribute("pageMaker", new PageDTO(cri,123));
+		//model.addAttribute("alarm", service.header());
 		log.info("stats_table");
 	}
 
@@ -275,10 +278,19 @@ public class StatsController {
 	}
 	
 	@GetMapping("/stats_get")
-	public void SexSex(@RequestParam("subj_code") String subj_code, Model model) {
+	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
 		model.addAttribute("list", list);
 	}
+	@GetMapping("/websocket-echo")
+	public void stats_test() {
+		
+	}
+	@GetMapping("/alarm")
+	public void alarm_test() {
+		
+	}
+	
 
 
 

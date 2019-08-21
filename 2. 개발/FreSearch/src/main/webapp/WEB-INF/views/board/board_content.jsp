@@ -17,7 +17,7 @@ h1 {
 
 div {
 	text-align: left;
-	width: 850px;
+	width: 1100px;
 	margin: auto;
 }
 
@@ -281,6 +281,59 @@ $(document).ready(function() {
 	});
 </script>
 
+<script> // 조회수 스크립트
+   var brd_code = $("#brd_code").val();
+   var brd_codes = [];
+   console.log(Cookies.get("ck_brd_codes"));
+   if (Cookies.get("ck_brd_codes") == undefined) {
+      brd_codes.push(brd_code);
+      Cookies.set('ck_brd_codes', brd_codes);
+      $.ajax({
+         url : "brdViewCnt",
+         type : "post",
+         dataType : "json",
+         data : {
+            "brd_code" : brd_code
+         },
+         success : function(d) {
+            console.log(d);
+         },
+         error : function(e) {
+            console.log(e);
+         }
+      })
+   } else {
+      var ck_brd_codes = JSON.parse(Cookies.get("ck_brd_codes"));
+      var is_equal = 0;
+      
+      for (var i = 0; i < ck_brd_codes.length; i++) {
+         if (brd_code == ck_brd_codes[i]) {
+            is_equal = 1;
+            break;
+         }
+      }
+      if (is_equal == 0) {
+         //ck_brd_codes.push(brd_code);
+         $.ajax({
+            url : "brdViewCnt",
+            type : "post",
+            dataType : "json",
+            data : {
+               "brd_code" : brd_code
+            },
+            success : function(d) {
+               console.log(d);
+            },
+            error : function(e) {
+               console.log(e);
+            }
+         });
+         ck_brd_codes.push(brd_code);
+         Cookies.set('ck_brd_codes', ck_brd_codes);
+      }
+   };
+</script>
+
  
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -356,55 +409,3 @@ $(document).ready(function() {
 	});
 </script>
 
-<script> // 조회수 스크립트
-   var brd_code = $("#brd_code").val();
-   var brd_codes = [];
-   console.log(Cookies.get("ck_brd_codes"));
-   if (Cookies.get("ck_brd_codes") == undefined) {
-      brd_codes.push(brd_code);
-      Cookies.set('ck_brd_codes', brd_codes);
-      $.ajax({
-         url : "brdViewCnt",
-         type : "post",
-         dataType : "json",
-         data : {
-            "brd_code" : brd_code
-         },
-         success : function(d) {
-            console.log(d);
-         },
-         error : function(e) {
-            console.log(e);
-         }
-      })
-   } else {
-      var ck_brd_codes = JSON.parse(Cookies.get("ck_brd_codes"));
-      var is_equal = 0;
-      
-      for (var i = 0; i < ck_brd_codes.length; i++) {
-         if (brd_code == ck_brd_codes[i]) {
-            is_equal = 1;
-            break;
-         }
-      }
-      if (is_equal == 0) {
-         //ck_brd_codes.push(brd_code);
-         $.ajax({
-            url : "brdViewCnt",
-            type : "post",
-            dataType : "json",
-            data : {
-               "brd_code" : brd_code
-            },
-            success : function(d) {
-               console.log(d);
-            },
-            error : function(e) {
-               console.log(e);
-            }
-         });
-         ck_brd_codes.push(brd_code);
-         Cookies.set('ck_brd_codes', ck_brd_codes);
-      }
-   };
-</script>

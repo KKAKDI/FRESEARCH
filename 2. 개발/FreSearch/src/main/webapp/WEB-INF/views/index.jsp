@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
+<link rel="stylesheet" href="fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -17,7 +17,7 @@
 <script>
 	$(function(){
 		$(window).load(function () {
-			$(".loading").fadeOut(700);
+			$(".loading").fadeOut(500);
 		});
 			$("#GNB > ul > li").hover(
 			function () {
@@ -225,7 +225,7 @@
 		<div class="research_area clearfix">
 			<div class="hot_board">
 				<div class="board_icon">
-					<img src="/resources/img/icon02.png" alt="자유게시판">
+					<img src="/resources/img/icon_image01.png" alt="자유게시판">
 				</div>
 				<div class="board_text">
 					<dl>
@@ -238,7 +238,7 @@
 			</div>
 			<div class="hot_search">
 				<div class="search_icon">
-					<img src="/resources/img/icon02.png" alt="리서치참여및제작">
+					<img src="/resources/img/icon_image03.png" alt="리서치참여및제작">
 				</div>
 				<div class="search_text">
 					<dl>
@@ -251,7 +251,7 @@
 			</div>
 			<div class="hot_chart">
 				<div class="chart_icon">
-					<img src="/resources/stats/images/stats_icon3.png" alt="데이터베이스">
+					<img src="/resources/img/icon_image02.png" alt="데이터베이스">
 				</div>
 				<div class="chart_text">
 					<dl>
