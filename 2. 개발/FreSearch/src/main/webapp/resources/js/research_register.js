@@ -310,7 +310,7 @@ $(function() {
 					});			
 	                return false;
 	            }else{
-	            	$(node).parent().show();    
+	            	$(node).parent().show();  
 	            }
 	        }	      
 	    });

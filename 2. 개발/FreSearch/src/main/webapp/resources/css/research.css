@@ -436,8 +436,8 @@ select {
 #img_del{	
 	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 50%;
 	position: absolute;
-	top:-10px;
-    left: 165px;
+	top:-5px;
+    left: 185px;
 }
 .active .active_btn .bottom_button_box > #qst_etc{
 	border: 2px solid #000;
@@ -457,7 +457,7 @@ img{
 #img_box{
 	display:none;
 	position: relative;
-	padding-top:5px;
+	padding: 5px 0 5px 25px;
 }
 
 /*content*/
