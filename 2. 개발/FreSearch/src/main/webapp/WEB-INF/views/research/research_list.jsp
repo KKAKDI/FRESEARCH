@@ -2,10 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" href="/resources/css/research_list.css">
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@include file="../includes/header.jsp"%>
+<head>
+<meta charset="UTF-8">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+<link rel="stylesheet" href="/resources/css/research_list.css">
 
 <script src="/resources/js/research_list.js"></script>
+</head>
 	<div class="page-content">
 		<div class="list-content">
 			<div class="detail-list">
@@ -23,6 +29,7 @@
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
 				</div>
+				<div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div>
 			</div>
 		</div>
 	</div>

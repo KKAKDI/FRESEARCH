@@ -614,7 +614,7 @@ form {
     top: 0;
 }
 .jcf-radio.jcf-checked span {
-    background: url(https://opgg-static.akamaized.net/images/site/bg-radio-on.png) no-repeat;
+    background: url(/resources/img/bg-radio-on.png) no-repeat;
 }
 .jcf-radio span {
     position: absolute;
