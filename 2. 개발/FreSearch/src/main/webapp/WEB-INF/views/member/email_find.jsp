@@ -8,7 +8,9 @@
 <title>FreSearch Info Find</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/info_find.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/resources/js/info_find.js"></script>
 </head>
 <body>
 	<div class="page-wrapper">

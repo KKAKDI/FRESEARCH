@@ -177,12 +177,30 @@ ALTER TABLE REPLY ADD CONSTRAINT FK_BOARD_TO_REPLY FOREIGN KEY (BRD_CODE) REFERE
 CREATE TABLE APPLY (
 	APPLY_CODE	  NUMBER	  NOT NULL,	   -- 신청코드
 	MB_EMAIL	    VARCHAR2(40)  NOT NULL,        -- 이메일
+	MB_ATT_CTGR_CODE    VARCHAR2(20)  NOT NULL,        -- 관심카테고리코드
 	APPLY_APPLYDATE     DATE          NOT NULL,		   -- 신청일
 	APPLY_APPROVALDATE  DATE          NULL		   -- 승인일
 );
 
 ALTER TABLE APPLY ADD CONSTRAINT PK_APPLY PRIMARY KEY (APPLY_CODE);
-ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY_EMAIL FOREIGN KEY (MB_EMAIL) REFERENCES MEMBER(MB_ATT_CTGR_CODE, MB_EMAIL);
+ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY_EMAIL FOREIGN KEY (MB_ATT_CTGR_CODE, MB_EMAIL) REFERENCES MEMBER(MB_ATT_CTGR_CODE, MB_EMAIL);
+
+-- 회원 권한
+create table member_auth (
+    mb_email varchar2(40) not null,
+    mb_att_ctgr_code varchar2(20) not null,
+    auth varchar2(50) not null,
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code)
+);
+
+-- 로그인 상태 유지
+create table persistent_logins (
+    username varchar2(64) not null,
+    series varchar2(64) primary key,
+    token varchar2(64) not null,
+    last_used timestamp not null
+);
+
 
 --통계 AREA 관련 VIEW 1
 CREATE OR REPLACE VIEW AREA AS

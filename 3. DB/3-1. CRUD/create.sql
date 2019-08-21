@@ -185,6 +185,23 @@ CREATE TABLE APPLY (
 ALTER TABLE APPLY ADD CONSTRAINT PK_APPLY PRIMARY KEY (APPLY_CODE);
 ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY_EMAIL FOREIGN KEY (MB_ATT_CTGR_CODE, MB_EMAIL) REFERENCES MEMBER(MB_ATT_CTGR_CODE, MB_EMAIL);
 
+-- 회원 권한
+create table member_auth (
+    mb_email varchar2(40) not null,
+    mb_att_ctgr_code varchar2(20) not null,
+    auth varchar2(50) not null,
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code)
+);
+
+-- 로그인 상태 유지
+create table persistent_logins (
+    mb_email varchar2(40) not null,
+    series varchar2(64) primary key,
+    token varchar2(64) not null,
+    last_used timestamp not null
+);
+
+
 --통계 AREA 관련 VIEW 1
 CREATE OR REPLACE VIEW AREA AS
 SELECT C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN
