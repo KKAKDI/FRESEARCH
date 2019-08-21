@@ -269,7 +269,7 @@
 	    <artifactId>spring-websocket</artifactId>
 	    <version>5.0.6.RELEASE</version>
 	</dependency>
-	
+
 	<dependency>
 	    <groupId>ch.qos.logback</groupId>
 	    <artifactId>logback-classic</artifactId>
