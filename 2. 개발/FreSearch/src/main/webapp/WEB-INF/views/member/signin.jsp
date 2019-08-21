@@ -38,7 +38,7 @@
 				<div class="page-form-checkbox">
 					<input type="checkbox" name="remember-me" id="mb_remEmail">
 					<label for=mb_remEmail>로그인 상태 유지</label>
-					<a href="/member/info_find">이메일 찾기</a>
+					<a href="email_find">이메일 찾기</a>
 					<span>|</span>
 					<a href="">비밀번호 찾기</a>
 					<span>|</span>

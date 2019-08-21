@@ -217,7 +217,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/info_find")
+	@GetMapping("/email_find")
 	public void infoFind() {}
 	
 	/*
