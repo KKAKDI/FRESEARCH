@@ -5,21 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>FreSearch Sign Up</title>
-<!--  <link rel="stylesheet" href="/resources/assets/css/sign_up.css"> -->
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/signup.css">
-<!--  <link href="/resources/assets/css/magic-check.css" rel="stylesheet">-->
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script src="/resources/js/signup.js"></script>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<!--  <script src="/resources/assets/js/sign_up.js"></script> -->
-<script>
-	
-</script>
 </head>
 <body>
 <div class="page-content">
@@ -175,6 +168,7 @@
 				<div id="agree_check" class="agree_check"></div>
 			</div>
          	<input type="submit" id="signup_fin" class="signup_fin" value="가입하기" disabled>
+         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 </div>

@@ -150,6 +150,7 @@ body {
     top: 100%;
     left: 0px;
 }
+/*
 .page-content .list-content .detail-list .list-head span {
 	position: absolute;
     margin-left: 681px;
@@ -160,9 +161,18 @@ body {
     text-align: center;
     padding-top: 10px;
     cursor: pointer;
-}
+}*/
 .page-content .list-content .detail-list .list-head span a {
 	color: #fff;
+	position: absolute;
+    margin-left: 681px;
+    margin-top: -46px;
+    background: #1428a0;
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 .page-content .list-content .detail-list .tab-content {
 	/*position: relative;

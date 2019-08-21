@@ -50,9 +50,7 @@ public class ResearchController {
 	private ResearchService service;
 
 	@GetMapping("research_list")
-	public void list() {
-		
-	}
+	public void list() {}
 	
 	@GetMapping(value = "/pages/{research}/{page}",
 			produces = {

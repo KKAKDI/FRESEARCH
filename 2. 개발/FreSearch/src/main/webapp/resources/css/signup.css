@@ -51,6 +51,7 @@ body {
     border-bottom : 1px solid #ddd;
     transition: all 0.1s;
     position: absolute;
+    background: #fff;
 }
 .form-row-addr2 input[type=text],
 .form-row-addr3 input[type=text] {

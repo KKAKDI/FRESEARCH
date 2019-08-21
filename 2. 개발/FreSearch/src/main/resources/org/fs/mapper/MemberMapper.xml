@@ -24,11 +24,113 @@
 			);
 		
 			insert into att_category (
-				mb_att_ctgr_code, mb_email, ctgr_code1, ctgr_code2, ctgr_code3,
-				ctgr_code4, ctgr_code5, mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
+				mb_att_ctgr_code, mb_email, 
+				<if test="ctgr_code1 != null">
+					ctgr_code1,
+				</if>
+				<if test="ctgr_code2 != null">
+					ctgr_code2,
+				</if>
+				<if test="ctgr_code3 != null">
+					ctgr_code3,
+				</if>
+				<if test="ctgr_code4 != null">
+					ctgr_code4,
+				</if>
+				<if test="ctgr_code5 != null">
+					ctgr_code5,
+				</if>
+				mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
 			) values (
-				#{mb_att_ctgr_code}, #{mb_email}, #{ctgr_code1}, #{ctgr_code2}, #{ctgr_code3},
-				#{ctgr_code4}, #{ctgr_code5}, #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+				#{mb_att_ctgr_code}, #{mb_email}, 
+				<if test="ctgr_code1 != null">
+					#{ctgr_code1},
+				</if>
+				<if test="ctgr_code2 != null">
+					#{ctgr_code2},
+				</if>
+				<if test="ctgr_code3 != null">
+					#{ctgr_code3},
+				</if>
+				<if test="ctgr_code4 != null">
+					#{ctgr_code4},
+				</if>
+				<if test="ctgr_code5 != null">
+					#{ctgr_code5},
+				</if>
+				 #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+			);
+			
+			insert into member_auth(
+				mb_email, mb_att_ctgr_code, auth
+			) values(
+				#{mb_email}, #{mb_att_ctgr_code}, 'ROLE_USER'
+			);
+     	end 
+    	} 
+	</insert>
+	
+	<insert id="googleRegister">
+		<selectKey keyProperty="mb_att_ctgr_code" order="BEFORE" resultType="String">
+			select dbms_random.string('X', 8) from dual
+		</selectKey>
+		
+		{
+		call 
+		declare 
+		begin 
+     	 	insert into member (
+				mb_email, mb_att_ctgr_code, mb_nick, mb_pwd, 
+				mb_addr, mb_birthdate, mb_sex, mb_phone, 
+				mb_reg_atrt, mb_email_key, mb_joindate
+			) values (
+				#{mb_email}, #{mb_att_ctgr_code}, #{mb_nick}, #{mb_pwd}, 
+				#{mb_addr}, #{mb_birthdate}, #{mb_sex}, #{mb_phone}, 
+				'일반', 'Y', SYSDATE	
+			);
+		
+			insert into att_category (
+				mb_att_ctgr_code, mb_email, 
+				<if test="ctgr_code1 != null">
+					ctgr_code1,
+				</if>
+				<if test="ctgr_code2 != null">
+					ctgr_code2,
+				</if>
+				<if test="ctgr_code3 != null">
+					ctgr_code3,
+				</if>
+				<if test="ctgr_code4 != null">
+					ctgr_code4,
+				</if>
+				<if test="ctgr_code5 != null">
+					ctgr_code5,
+				</if>
+				mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
+			) values (
+				#{mb_att_ctgr_code}, #{mb_email}, 
+				<if test="ctgr_code1 != null">
+					#{ctgr_code1},
+				</if>
+				<if test="ctgr_code2 != null">
+					#{ctgr_code2},
+				</if>
+				<if test="ctgr_code3 != null">
+					#{ctgr_code3},
+				</if>
+				<if test="ctgr_code4 != null">
+					#{ctgr_code4},
+				</if>
+				<if test="ctgr_code5 != null">
+					#{ctgr_code5},
+				</if>
+				 #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+			);
+			
+			insert into member_auth(
+				mb_email, mb_att_ctgr_code, auth
+			) values(
+				#{mb_email}, #{mb_att_ctgr_code}, 'ROLE_USER'
 			);
      	end 
     	} 
@@ -46,6 +148,14 @@
 		select mb_phone from member where mb_phone = #{mb_phone}
 	</select>
 	
+	<select id="birthCheck" resultType="MemberVO">
+		select mb_birthdate from member where mb_birthdate = #{mb_birthdate}
+	</select>
+	<!--  
+	<select id="pwdCheck" resultType="MemberVO">
+		select mb_pwd from member where mb_pwd = #{mb_pwd}
+	</select>
+	-->
 	<update id="getKey">
 		update member set mb_email_key = #{param2} where mb_nick=#{param1}
 	</update>

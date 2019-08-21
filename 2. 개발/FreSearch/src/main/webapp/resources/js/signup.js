@@ -327,7 +327,9 @@ $(document).ready(function(){
 		var mb_birth_dd = $("#mb_birth_dd").val();
 		var today = new Date();
 		var yearNow = today.getFullYear();
+		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + $("#mb_birth_dd").val();
 		
+		/*
 		if(regYear.test(mb_birth_yy) && regDay.test(mb_birth_dd) 
 				&& (mb_birth_yy >= 1900 && mb_birth_yy <= yearNow )
 				&& (mb_birth_mm > 0)
@@ -370,6 +372,71 @@ $(document).ready(function(){
 			check = false;
 			signupCheck();
 		}
+		*/
+		
+		$.ajax({
+			url : "/member/birthCheck",
+			type : "get",
+			data : {mb_birthdate : mb_birthdate},
+			dataTyep : "json",
+			success : function(data){
+				
+				console.log(data);
+				if(data == 1){
+					$("#birth_check").text("이미 사용중인 생년월일입니다.");
+					$("#birth_check").css("color", "#d0021b");
+					$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
+					$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+					$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+					check = false;
+					signupCheck();
+				}else {
+					if(regYear.test(mb_birth_yy) && regDay.test(mb_birth_dd) 
+							&& (mb_birth_yy >= 1900 && mb_birth_yy <= yearNow )
+							&& (mb_birth_mm > 0)
+							&& (mb_birth_dd >= 1 && mb_birth_dd <= 31)){
+						$("#birth_check").text("");
+						$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+						$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+						$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
+						check = true;
+						signupCheck();
+					}else if((mb_birth_yy >= 1900 && mb_birth_yy <= yearNow ) && regYear.test(mb_birth_yy) 
+							&& mb_birth_yy != "월" && mb_birth_dd == ""){
+						if(mb_birth_mm > 0){
+							$("#birth_check").text("일을 입력해주세요.");
+							$("#birth_check").css("color", "#d0021b");
+							$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+							check = false;
+							signupCheck();
+						}else if(mb_birth_mm == "월"){
+							$("#birth_check").text("월을 선택해주세요.");
+							$("#birth_check").css("color", "#d0021b");
+							$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+							check = false;
+							signupCheck();
+						}
+					}
+					
+					if(mb_birth_mm == 2 && mb_birth_dd > 29){
+						$("#birth_check").text("2월은 29일까지 입력 가능합니다.");
+						$("#birth_check").css("color", "#d0021b");
+						$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+						check = false;
+						signupCheck();
+					}else if(mb_birth_mm != 2
+							&& mb_birth_mm != "월"
+							&& mb_birth_dd < 1 || mb_birth_dd > 31){
+						$("#birth_check").text("1일부터 31일까지 입력 가능합니다.");
+						$("#birth_check").css("color", "#d0021b");
+						$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+						check = false;
+						signupCheck();
+					}
+				}
+			}
+		});	
+		
 	});
 	
 	$("#mb_phone").blur(function(){
