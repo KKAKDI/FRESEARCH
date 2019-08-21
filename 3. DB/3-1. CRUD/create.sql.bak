@@ -31,6 +31,7 @@ CREATE TABLE ATT_CATEGORY (
     CTGR_CODE3		VARCHAR2(20)    NULL,        -- 카테고리코드3
     CTGR_CODE4		VARCHAR2(20)    NULL,        -- 카테고리코드4
     CTGR_CODE5		VARCHAR2(20)	NULL,        -- 카테고리코드5
+    READ		CHAR(1)		NULL,	     -- 읽음 유무
     MB_MARRIAGE_YN	VARCHAR2(10)    NULL,        -- 결혼유무
     MB_CHILD_YN		VARCHAR2(10)    NULL,        -- 자녀유무
     MB_HOME_YN		VARCHAR2(10)	NULL,        -- 자가유무
@@ -183,8 +184,6 @@ CREATE TABLE APPLY (
 
 ALTER TABLE APPLY ADD CONSTRAINT PK_APPLY PRIMARY KEY (APPLY_CODE);
 ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY_EMAIL FOREIGN KEY (MB_ATT_CTGR_CODE, MB_EMAIL) REFERENCES MEMBER(MB_ATT_CTGR_CODE, MB_EMAIL);
-<<<<<<< HEAD
-=======
 
 -- 회원 권한
 create table member_auth (
@@ -196,13 +195,12 @@ create table member_auth (
 
 -- 로그인 상태 유지
 create table persistent_logins (
-    username varchar2(64) not null,
+    mb_email varchar2(40) not null,
     series varchar2(64) primary key,
     token varchar2(64) not null,
     last_used timestamp not null
 );
 
->>>>>>> adf5065439bc2d4e0079b56f0b2b7b751c5f849b
 
 --통계 AREA 관련 VIEW 1
 CREATE OR REPLACE VIEW AREA AS

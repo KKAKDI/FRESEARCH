@@ -3,7 +3,7 @@ CREATE TABLE MEMBER (
 	MB_EMAIL	    VARCHAR2(40)  NOT NULL,        -- 이메일
 	MB_ATT_CTGR_CODE    VARCHAR2(20)  NOT NULL,        -- 관심카테고리코드
 	MB_NICK		    VARCHAR2(24)  NOT NULL,	   -- 닉네임
-	MB_PWD		    VARCHAR2(30)  NOT NULL,        -- 비밀번호
+	MB_PWD		    VARCHAR2(300)  NOT NULL,        -- 비밀번호
 	MB_ADDR		    VARCHAR2(300) NULL,            -- 거주지
 	MB_BIRTHDATE        NUMBER        NULL,            -- 생년월일
 	MB_SEX              VARCHAR2(10)  NULL,            -- 성별
