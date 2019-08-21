@@ -1,5 +1,9 @@
 body {
-	margin : 0;
+	background-color: #f4f4f4;
+	font-family: "Open Sans", sans-serif;
+   	min-width: 850px;
+   	font-weight: 500;
+   	font-size: 16px;
 }
 .page-content {
 	background: #f4f4f4;
@@ -10,7 +14,7 @@ body {
 	background: #fff;
 	width: 670px;
 	border-radius: 8px;
-	margin: 100px 0;
+	margin: 90px 0;
 }
 .form-detail {
 	padding: 30px 45px 30px 45px;
@@ -41,21 +45,22 @@ body {
 .form-row input[type=text],
 .form-detail input[type=password] {
 	width: 100%;
-	padding : 10.5px 0px 10.5px 15px;
+	padding : 10.5px 0px 10.5px 2px;
     /*padding: 10.5px 15px;*/
     border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
     position: absolute;
+    background: #fff;
 }
 .form-row-addr2 input[type=text],
 .form-row-addr3 input[type=text] {
 	width: 100%;
-	padding : 10.5px 0px 10.5px 15px;
+	padding : 10.5px 0px 10.5px 2px;
 	/*width: 94.5%;
     padding: 10.5px 15px;*/
     border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
     position: absolute;
 }
@@ -165,20 +170,18 @@ body {
 } 
 .form-row-addr1 input[type=text]{
 	width: 40%;
-	padding: 10.5px 15px;
+	padding : 10.5px 0px 10.5px 2px;
     font-size: 16px;
     border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
 }
-.check 
-{
+.check {
 	position: absolute;
     margin-top: 40px;
 }
 .cate_check,
-.agree_check
-{
+.agree_check {
 	position: absolute;
 }
 input[type="radio"] { 
@@ -224,7 +227,7 @@ input[type="radio"]:checked + label:after {
     font-size: 16px;
     margin-right: 10px;
     border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
 }
 .mb_birth_mm { 
@@ -249,7 +252,7 @@ input[type="radio"]:checked + label:after {
 	padding: 7.4px 15px;
 	font-size: 16px;
 	border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
 }
 .mb_birth_dd input {
@@ -258,7 +261,7 @@ input[type="radio"]:checked + label:after {
     font-size: 16px;
     margin-left: 10px;
     border: none;
-    border-bottom : 1px solid #000;
+    border-bottom : 1px solid #ddd;
     transition: all 0.1s;
     position: absolute;
 }

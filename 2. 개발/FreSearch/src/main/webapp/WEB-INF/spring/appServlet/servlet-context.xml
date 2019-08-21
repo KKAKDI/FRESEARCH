@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
-		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -24,12 +27,26 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.fs.controller" />
+	
+	<security:global-method-security
+		pre-post-annotations="enabled" secured-annotations="enabled" />
 
 	<beans:bean id="multipartResolver"
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
 	
-	
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅-->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com" />
+		<beans:constructor-arg value="n1EZJjb0c2GNi480g_TYYhUe" />
+	</beans:bean>
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+		<beans:property name="redirectUri" value="http://localhost:8080/member/signin/oauth2callback" />
+	</beans:bean>
 	
         <websocket:handlers>
                <websocket:mapping handler="echoHandler" path="/echo"/>
@@ -41,8 +58,5 @@
                <!-- <websocket:sockjs /> -->
         </websocket:handlers>
         <beans:bean id="echoHandler" class="com.victolee.util.EchoHandler" />
-        
-        
-
 	
 </beans:beans>

@@ -1,6 +1,7 @@
 package org.fs.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -27,4 +28,6 @@ public class MemberVO {
 	private String mb_child_yn;		 // 자녀유무
 	private String mb_home_yn;		 // 자가유무
 	private String mb_car_yn;		 // 자차유무
+	
+	private List<AuthVO> authList;
 }

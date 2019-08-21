@@ -27,6 +27,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public void googleSignUp(MemberVO member) {
+		
+		mapper.googleRegister(member);
+	}
+	
+	@Override
 	public MemberVO emailCheck(String mb_email) {
 		
 		return mapper.emailCheck(mb_email);
@@ -43,6 +49,17 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.phoneCheck(mb_phone);
 	}
+	@Override
+	public MemberVO birthCheck(String mb_birthdate) {
+		
+		return mapper.birthCheck(mb_birthdate);
+	}
+	/*
+	@Override
+	public MemberVO pwdCheck(String mb_pwd) {
+		
+		return mapper.pwdCheck(mb_pwd);
+	}*/
 	
 	@Override
 	public String ranNum() {
