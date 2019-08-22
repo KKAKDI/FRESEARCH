@@ -301,19 +301,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             	
             	
             	
-            	//ajax 알림 리스트 and 알림 종 갯수  시작
-
-             	var data ={
-            		//mb_email : $(".bar").prev().html().trim()
-            		mb_email : "bbb@google.com"
-            	}
-            	console.log("data : "+data.mb_email);
             	
-            	tableService.header(data,function(list){
-            		for(var i=0; i < list.length; i++){
-            		}
-            	})
-            	 
             	
             	
             	
@@ -351,21 +339,34 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             ws.close();
         }
         
+        
+        
+        
+        
         //웹소켓 반응?
         function writeResponse(text){
-        	var obj = event.data;
-        	obj = JSON.parse(obj);
-        	if($(".badge-num").html() != obj.length){
-	        	$('#badge').html('<div class="badge-num" id="qqq">'+obj.length+'</div><a class="entypo-bell"></a>');
-	        	
-	        	var html ='';
-	        	for(var i = 0; i< obj.length; i++){
-	        		html += '<a href="/stats/stats_get?subj_code='+obj[i].subj_code+'">'+obj[i].subj_nm+'</a>';
-	        	}
-      		}else{
-      		}
-        	$('#alarm_content').html(html);
-            //message.innerHTML+="<br/>"+text;
+        	//ajax 알림 리스트 and 알림 종 갯수  시작
+        	console.log("security_email : "+$("sec:authentication").attr('property'));
+         	var data ={
+        		mb_email : "bbb@google.com"
+        	}
+        	console.log("mb_email : "+data.mb_email);
+        	
+        	tableService.header(data,function(list){
+        		var html = '';
+        		
+        		
+        		if($(".badge-num").html() != list.length){
+        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+        			for(var i=0; i < list.length; i++){
+        			html += '<a href="/stats/stats_get?subj_code='+list[i].subj_code+'">'+list[i].subj_nm+'</a>';
+        			}
+        		}else{
+        			
+        		}
+        		$('#alarm_content').html(html);
+        	});
+        	//ajax 알림 리스트 and 알림 종 갯수 끝
         }
         
         
