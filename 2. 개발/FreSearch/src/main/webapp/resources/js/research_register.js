@@ -141,7 +141,7 @@ $(function() {
 				data += $("#date_timepicker_start").val()+"#h#";
 				data += $("#date_timepicker_end").val()+"#h#";
 				data += "/block";
-				
+				console.log("질문 개수:"+qst_index);
 				for(var i = 0;i<qst_index;i++){
 					if($(".research_content #qst_content")[i].value==''){
 						$.emptyCheck();
@@ -151,20 +151,22 @@ $(function() {
 						data += $(".research_content #qst_content")[i].value+"#t#";
 						data += $(".research_content #selBox option:selected")[i].value+"#t#";
 						item_index = $(".research_content #item_box")[i].childElementCount;
+						console.log("아이템 개수:"+item_index);
 						for(var j=0;j<item_index;j++){					
+							console.log($(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value);
 							if($(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value==''){
 								$.emptyCheck();
 								checkCnt++;
 								break;
-							}else{
-								data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
+							}else if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){								
 								 var reader = new FileReader();
-								 
+								 var imgpath = "";
+								 data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value;
 								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
+									 	data+= "#img#";
 								        var formData = new FormData();			
 										var inputFile = $("input[name='item_img']");
-										var files = inputFile[0].files;			
-										console.log(files);
+										var files = inputFile[0].files;	
 										
 						            	for(var i = 0; i < files.length; i++){
 						        			console.log(files);
@@ -176,13 +178,16 @@ $(function() {
 						       			 contentType: false,
 						       			 data: formData,
 						       			 type: 'POST',
-						       			 dataType: 'json',
+						       			 dataType: 'text',
 						       			 success: function(result){
 						       				console.log("resilt: "+result);
+						       				imgpath = result;
+						       				console.log(imgpath);
+								        	data += imgpath+"#t#";
 						       			}
-						       		})
-						       		
+						       		})						       		
 								 }
+								data += "#t#";								 
 							}							
 						}
 						data+="/block";
@@ -201,8 +206,8 @@ $(function() {
 						button:"확인",
 					})
 					.then((willDelete) => {
-						//return false;
-						form.submit();								
+						return false;
+						//form.submit();								
 					});							
 				}					
 			}else{
@@ -332,8 +337,10 @@ $(function() {
 	        readURL(this,node);
 	    });
 	    $(document).on("click","#img_del",function() {	    
-	    	$(this).prev().attr('src','');
-	    	$(this).parent().hide();
+	    	$(this).prev().attr('src','');	    	
+	    	$(this).parent().hide();	    	
+	    	$(this).next().remove();
+	    	$(this).next().append("<input type='file' name='item_img' id='item_img'/>");
 	    	return false;
 	    });
 	});
