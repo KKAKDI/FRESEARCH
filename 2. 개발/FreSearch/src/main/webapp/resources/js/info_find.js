@@ -1,74 +1,138 @@
 $(document).ready(function(){
 	
-	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
-	var regPwd = /^[A-Za-z0-9]{4,12}$/;
+	var regNick = /^[a-zA-Z가-힣0-9]{2,6}$/;
+	var regYear = /^[0-9]{4}$/;
+	var regDay = /^[0-9]{1,2}$/;
+	var regPhone = /^[0-9]{11}$/;
 	
-	$("#mb_email").blur(function(){
-		
-		var mb_email = $('#mb_email').val();
-		
-		$.ajax({
-			url : "/member/emailCheck",
-			type : "get",
-			data : {mb_email : mb_email},
-			dataTyep : "json",
-			success : function(data){
-				
-				console.log(data);
-				if(regEmail.test(mb_email)){
-					$("#email_check").text("");
-					$("#mb_email").css("border-bottom", "1px solid #ddd");
-				}else if(!regEmail.test(mb_email) && mb_email != ""){
-					$("#email_check").text("이메일 형식에 맞지 않습니다.");
-					$("#email_check").css("color", "#d0021b");
-					$("#mb_email").css("border-bottom", "2px solid #d0021b");
-				}else if(mb_email == ""){
-					$("#email_check").text("이메일을 입력해주세요.");
-					$("#email_check").css("color", "#d0021b");
-					$("#mb_email").css("border-bottom", "2px solid #d0021b");
-				}
-			}
-		});	
-	});
+	var check = false;
+	
+	function findCheck(){
+		if(check == true){
+			if($("#mb_nick").val() != "" && $("#mb_birth_yy").val() != "" 
+				&& $("select[name=mb_birth_mm] option:selected").val() != "월"
+				&& $("#mb_birth_dd").val() != "" && $("#mb_phone").val() != "") {
 
-	$("#mb_pwd").blur(function(){
-		
-		var mb_pwd = $('#mb_pwd').val();
-		
-		if(regPwd.test(mb_pwd)){
-			$("#pwd_check").text("");
-			$("#mb_pwd").css("border-bottom", "1px solid #ddd");
-		}else if(!regPwd.test(mb_pwd) && mb_pwd != ""){
-			$("#pwd_check").text("4~12자 영문 대 소문자, 숫자를 입력해주세요.");
-			$("#pwd_check").css("color", "#d0021b");
-			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-		}else if(mb_pwd == ""){
-			$("#pwd_check").text("비밀번호를 입력해주세요.");
-			$("#pwd_check").css("color", "#d0021b");
-			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-		}
-		/*
-		$.ajax({
-			url : "/member/pwdCheck",
-			type : "get",
-			data : {mb_pwd : mb_pwd},
-			dataTyep : "json",
-			success : function(data){
-				
-				console.log(data);
-				if(data == 1){
-					$("#pwd_check").text("이미 사용중인 비밀번호입니다.");
-					$("#pwd_check").css("color", "#d0021b");
-					$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-				}else {
-					if(mb_pwd == ""){
-						$("#pwd_check").text("비밀번호를 입력해주세요.");
-						$("#pwd_check").css("color", "#d0021b");
-						$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-					}
-				}
+				$("#emailFind").css("opacity", "initial");
+				$("#emailFind").css("cursor", "pointer");
+				$("#emailFind").attr("disabled", false);
 			}
-		});	*/
+		}else if(check == false){
+			if($("#mb_nick").val() == "" || $("#mb_birth_yy").val() == "" 
+				|| $("select[name=mb_birth_mm] option:selected").val() == "월"
+				|| $("#mb_birth_dd").val() == "" || $("#mb_phone").val() == "") {
+		
+				$("#emailFind").css("opacity", 0.5);
+				$("#emailFind").css("cursor", "initial");
+				$("#emailFind").attr("disabled", true);
+			}
+		}
+	}
+	
+	$("#mb_nick").keyup(function(){
+		
+		var mb_nick = $('#mb_nick').val();
+		
+		if(mb_nick == ""){
+			$("#nick_check").text("닉네임을 입력해주세요.");
+			$("#nick_check").css("color", "#d0021b");
+			$("#mb_nick").css("border-bottom", "2px solid #d0021b");
+			check = false;
+			findCheck();
+		}else {
+			$("#nick_check").text("");
+			$("#mb_nick").css("border-bottom", "1px solid #ddd");
+			check = true;
+			findCheck();
+		}
+	});
+	
+	$("#mb_birth_yy").keyup(function(){
+
+		var mb_birth_yy = $("#mb_birth_yy").val();
+		var mb_birth_mm = $("select[name=mb_birth_mm] option:selected").val();
+		var mb_birth_dd = $("#mb_birth_dd").val();
+		
+		if(mb_birth_yy == ""){
+			$("#birth_check").text("생년월일을 입력해주세요.");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+			check = false;
+			findCheck();
+		}else if(mb_birth_yy != "" && mb_birth_mm != "월" && mb_birth_dd != ""){
+			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
+			check = true;
+			findCheck();
+		}
+	});
+	
+	$('#mb_birth_mm').blur(function(){
+		var mb_birth_yy = $("#mb_birth_yy").val();
+		var mb_birth_mm = $("select[name=mb_birth_mm] option:selected").val();
+		var mb_birth_dd = $("#mb_birth_dd").val();
+		
+		if(mb_birth_mm == "월") {   
+			$("#birth_check").text("생년월일을 입력해주세요.");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+			check = false;
+			findCheck();
+		}else if(mb_birth_yy != "" && mb_birth_mm != "월" && mb_birth_dd != ""){
+			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
+			check = true;
+			findCheck();
+		}
+	});
+	
+	$("#mb_birth_dd").keyup(function(){
+		var mb_birth_yy = $("#mb_birth_yy").val();
+		var mb_birth_mm = $("select[name=mb_birth_mm] option:selected").val();
+		var mb_birth_dd = $("#mb_birth_dd").val();
+		
+		if(mb_birth_dd == "") {   
+			$("#birth_check").text("생년월일을 입력해주세요.");
+			$("#birth_check").css("color", "#d0021b");
+			$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+			$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+			check = false;
+			findCheck();
+		}else if(mb_birth_yy != "" && mb_birth_mm != "월" && mb_birth_dd != ""){
+			$("#birth_check").text("");
+			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
+			check = true;
+			findCheck();
+		}
+	});
+	
+	$("#mb_phone").keyup(function(){
+		
+		var mb_phone = $("#mb_phone").val();
+		
+		if(mb_phone == "") {   
+			$("#phone_check").text("전화번호를 입력해주세요.");
+			$("#phone_check").css("color", "#d0021b");
+			$("#mb_phone").css("border-bottom", "2px solid #d0021b");
+			check = false;
+			findCheck();
+		}else if(mb_phone != ""){
+			$("#phone_check").text("");
+			$("#mb_phone").css("border-bottom", "1px solid #ddd");
+			check = true;
+			findCheck();
+		}
 	});
 });
 
