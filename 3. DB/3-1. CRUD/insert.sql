@@ -321,16 +321,16 @@ insert into BOARD values(BOARD_SEQ.NEXTVAL, 'iii@google.com', '최정인', '자게제�
 insert into BOARD values(BOARD_SEQ.NEXTVAL, 'jjj@google.com', '최영훈', '자게제목10', '자게내용10', 0, 0, 0, 'J9KLMN', 0, SYSDATE);
 
 -- 댓글
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 2, 'aaa@google.com', '최운학', '댓글내용1', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 3, 'bbb@google.com', '곽지훈', '댓글내용2', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 4, 'ccc@google.com', '변정우', '댓글내용3', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 5, 'ddd@google.com', '이재하', '댓글내용4', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 6, 'eee@google.com', '조성식', '댓글내용5', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 7, 'fff@google.com', '박동진', '댓글내용6', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 8, 'ggg@google.com', '손현준', '댓글내용7', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 9, 'hhh@google.com', '박상우', '댓글내용8', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 10, 'iii@google.com', '최정인', '댓글내용9', 0, 0, SYSDATE);
-insert into REPLY values(REPLY_SEQ.NEXTVAL, 11, 'jjj@google.com', '최영훈', '댓글내용10', 0, 0, SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 2, 'aaa@google.com', '최운학', '댓글내용1', SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 3, 'bbb@google.com', '곽지훈', '댓글내용2',  SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 4, 'ccc@google.com', '변정우', '댓글내용3', SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 5, 'ddd@google.com', '이재하', '댓글내용4',  SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 6, 'eee@google.com', '조성식', '댓글내용5', SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 7, 'fff@google.com', '박동진', '댓글내용6',  SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 8, 'ggg@google.com', '손현준', '댓글내용7', SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 9, 'hhh@google.com', '박상우', '댓글내용8', SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 10, 'iii@google.com', '최정인', '댓글내용9',  SYSDATE);
+insert into REPLY values(REPLY_SEQ.NEXTVAL, 11, 'jjj@google.com', '최영훈', '댓글내용10', SYSDATE);
 
 
 commit;
