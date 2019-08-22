@@ -79,7 +79,7 @@
 						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option></select>
 						<div class='qst_swap'>
 							<ul id='item_box' class='clearflx'>
-								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type="file" id='item_img'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id="list"/><button id='img_del'></button></div></li>
+								<li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type="file" name='item_img' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id="list"/><button id='img_del'></button></div></li>
 							</ul>
 						</div>
 						<div class='etc_box'>

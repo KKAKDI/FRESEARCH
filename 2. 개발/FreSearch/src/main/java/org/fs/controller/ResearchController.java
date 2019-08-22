@@ -106,8 +106,7 @@ public class ResearchController {
 		String values = request.getParameter("research_values");
 		service.researchAnswer(values);
 		return "redirect:/stats/stats_table";
-	}
-	
-	
+	}	
+
 	
 }

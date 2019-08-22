@@ -11,9 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.fs.domain.AttachFileDTO;
+import org.omg.CORBA.Request;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -42,10 +46,10 @@ public class UploadController {
 	}
 	
 	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+	public void uploadFormPost(MultipartFile[] uploadFile, Model model,HttpServletRequest request) {
 
 		String uploadFolder = "C:/upload";
-
+		
 		for (MultipartFile multipartFile : uploadFile) {
 
 			log.info("-------------------------------------");
@@ -100,7 +104,7 @@ public class UploadController {
 		
 		log.info("update ajax post........");
 		
-		String uploadFolder = "C:/upload"; // 파일 저장 폴더 위치
+		String uploadFolder = "C:\\upload"; // 파일 저장 폴더 위치
 		
 		String uploadFolderPath = getFolder();
 		// make folder ---------
