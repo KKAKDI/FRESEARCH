@@ -40,7 +40,7 @@ $(function() {
 							$(".research_content .qst_swap #item_box").removeClass("active_item");
 							$(".research_content hr").removeClass("active_btn");
 							$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul></div>");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul></div>");
 							$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 160);							
@@ -68,7 +68,7 @@ $(function() {
 			$("#remote").css("top", offset - 160);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li>");
 				i++;
 				return false;
 			}
@@ -113,13 +113,12 @@ $(function() {
 		
 		$(document).on("change","#selBox",function(){
 			var value = $(this).val();
-			console.log(value);
 			if(value=='1'){
 				$(this).parents().find(".active_item").remove();
 				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='text' class='item_txt' id='disabled_sel' autocomplete='off' value='단답형 텍스트' readonly></li></ul>");
 			}else{
 				$(this).parents().find(".active_item").remove();
-				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><button id=item_img></button></div><div class='button_box'><button id=item_del></button></div></li></ul>");
+				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul>");
 			}
 		});
 		
@@ -160,9 +159,29 @@ $(function() {
 							}else{
 								data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
 								 var reader = new FileReader();
+								 
 								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
-									 console.log("들어왔냐");
-									 console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
+								        var formData = new FormData();			
+										var inputFile = $("input[name='item_img']");
+										var files = inputFile[0].files;			
+										console.log(files);
+										
+						            	for(var i = 0; i < files.length; i++){
+						        			console.log(files);
+						        			formData.append("uploadFile", files[i]);
+						        		}
+						        		$.ajax({
+						       			 url: '../uploadAjaxAction',
+						       			 processData: false,
+						       			 contentType: false,
+						       			 data: formData,
+						       			 type: 'POST',
+						       			 dataType: 'json',
+						       			 success: function(result){
+						       				console.log("resilt: "+result);
+						       			}
+						       		})
+						       		
 								 }
 							}							
 						}
@@ -287,32 +306,30 @@ $(function() {
 		// 이미지 업로드 미리보기 소스
 		
 	    function readURL(input,node) {
-	        if (input.files && input.files[0]) {
-	            var reader = new FileReader();
-	            reader.onload = function(e) {
-	              node.setAttribute('src', e.target.result);
-	            }
-	            reader.readAsDataURL(input.files[0]);
-	        }
-	    }
-	    $(document).on("change","[id^='item_img']",function() {	    	
-	    	var node = this.parentNode.nextSibling.nextSibling.firstChild;	    	
-	        readURL(this,node);
-	        var filename = this.value;
-	        if(filename !=''){
-	        	var ext = filename.slice(filename.lastIndexOf(".") + 1).toLowerCase();
-	        	if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
-	        		swal({
+	    	var filename = input.value;
+	    	if(filename !=''){
+	    		var ext = filename.slice(filename.lastIndexOf(".") + 1).toLowerCase();	    	
+		    	if(!(ext == "gif" || ext == "jpg" || ext == "png")){
+		    		swal({
 						title:"이미지가 아닙니다.",
 						text:"이미지파일 (.jpg, .png, .gif ) 만 업로드 가능합니다.",
 						icon:"error",
 						button:"확인",
-					});			
+					});		
 	                return false;
-	            }else{
-	            	$(node).parent().show();  
-	            }
-	        }	      
+		    	}else if(input.files && input.files[0]) {
+		            var reader = new FileReader();
+		            reader.onload = function(e) {
+		              node.setAttribute('src', e.target.result);
+		          	$(node).parent().show();  
+		            }
+		            reader.readAsDataURL(input.files[0]);
+		        }
+	    	}
+	    }
+	    $(document).on("change","[id^='item_img']",function() {	    	
+	    	var node = this.parentNode.nextSibling.nextSibling.firstChild;		       
+	        readURL(this,node);
 	    });
 	    $(document).on("click","#img_del",function() {	    
 	    	$(this).prev().attr('src','');

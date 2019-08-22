@@ -31,6 +31,8 @@
 	<security:global-method-security
 		pre-post-annotations="enabled" secured-annotations="enabled" />
 
+	<!-- 파일 업로드 -->
+	<context:component-scan base-package="org.fs.controller"/>
 	<beans:bean id="multipartResolver"
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</beans:bean>
@@ -57,6 +59,10 @@
                </websocket:handshake-interceptors>
                <!-- <websocket:sockjs /> -->
         </websocket:handlers>
-        <beans:bean id="echoHandler" class="com.victolee.util.EchoHandler" />
+    
+   	<beans:bean id="echoHandler" class="com.victolee.util.EchoHandler" />
+	
+	
+	
 	
 </beans:beans>
