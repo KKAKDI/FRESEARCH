@@ -153,25 +153,29 @@ $(function() {
 						item_index = $(".research_content #item_box")[i].childElementCount;
 						console.log("아이템 개수:"+item_index);
 						for(var j=0;j<item_index;j++){					
-							console.log($(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value);
-							if($(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value==''){
+							console.log("["+i+"]["+j+"]:");
+							console.log($(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value);
+							if($(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value==''){
 								$.emptyCheck();
 								checkCnt++;
 								break;
-							}else if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){								
+							}else{								
 								 var reader = new FileReader();
 								 var imgpath = "";
-								 data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value;
+								 console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
 								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
-									 	data+= "#img#";
+									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";
 								        var formData = new FormData();			
 										var inputFile = $("input[name='item_img']");
 										var files = inputFile[0].files;	
-										
-						            	for(var i = 0; i < files.length; i++){
+										console.log(files);
+										formData.append("uploadFile", $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
+										/*
+						            	for(var k = 0; k < files.length; i++){
 						        			console.log(files);
-						        			formData.append("uploadFile", files[i]);
+						        			formData.append("uploadFile", files[k]);
 						        		}
+						            	*/
 						        		$.ajax({
 						       			 url: '../uploadAjaxAction',
 						       			 processData: false,
@@ -185,10 +189,12 @@ $(function() {
 						       				console.log(imgpath);
 								        	data += imgpath+"#t#";
 						       			}
-						       		})						       		
-								 }
-								data += "#t#";								 
-							}							
+						       		})	
+						       						       		
+								 }else{
+									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#t#";		
+								 }					 
+							}						
 						}
 						data+="/block";
 					}					
