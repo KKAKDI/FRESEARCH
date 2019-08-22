@@ -162,12 +162,13 @@ public class testMapper {
 //	public void getStatsContent() {
 //		log.info(mapper.getStatsContent("0ZPO83PX"));
 //	}
-//	@Test
-//	public void header() {
-//		log.info(mapper.header());
-//	}
 	@Test
-	public void headerCount() {
-		log.info(mapper.headerCount());
+	public void header() {
+		String mb_email= "bbb@google.com";
+		log.info(mapper.header(mb_email));
 	}
+//	@Test
+//	public void headerCount() {
+//		log.info(mapper.headerCount());
+//	}
 }

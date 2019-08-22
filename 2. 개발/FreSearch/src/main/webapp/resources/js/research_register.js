@@ -1,4 +1,6 @@
 $(function() {		
+	
+		var i=0;
 		$.datetimepicker.setLocale('ko');
 		$('#date_timepicker_start').datetimepicker({
 			  format:'Y/m/d',
@@ -38,10 +40,11 @@ $(function() {
 							$(".research_content .qst_swap #item_box").removeClass("active_item");
 							$(".research_content hr").removeClass("active_btn");
 							$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type='file' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><output id='list'></output></li></ul></div>");
+							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul></div>");
 							$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
 							var offset = $(".active").offset().top;
 							$("#remote").css("top", offset - 160);							
+							i++;
 							return false;
 		});
 		// 추가된 태그 함수 실행
@@ -65,7 +68,8 @@ $(function() {
 			$("#remote").css("top", offset - 160);			
 		});	
 		$(document).on("click","#qst_add",function(){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type='file' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><output id='list'></output></li>");
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img"+i+"'></label><input type='file' id='item_img"+i+"'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li>");
+				i++;
 				return false;
 			}
 		);
@@ -155,6 +159,11 @@ $(function() {
 								break;
 							}else{
 								data += $(".research_content #item_box")[i].querySelectorAll('.item_txt')[j].value+"#t#";
+								 var reader = new FileReader();
+								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
+									 console.log("들어왔냐");
+									 console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
+								 }
 							}							
 						}
 						data+="/block";
@@ -173,6 +182,7 @@ $(function() {
 						button:"확인",
 					})
 					.then((willDelete) => {
+						//return false;
 						form.submit();								
 					});							
 				}					
@@ -276,42 +286,37 @@ $(function() {
 		
 		// 이미지 업로드 미리보기 소스
 		
-		$.handleFileSelect = function (evt) {
-		    var files = evt.target.files;
-
-		    // Loop through the FileList and render image files as thumbnails.
-		    for (var i = 0, f; f = files[i]; i++) {
-
-		      // Only process image files.
-		      if (!f.type.match('image.*')) {
-		        continue;
-		      }
-
-		      var reader = new FileReader();
-
-		      // Closure to capture the file information.
-		      reader.onload = (function(theFile) {
-		        return function(e) {
-		          // Render thumbnail.
-		          var div = document.createElement('div');
-		          div.innerHTML = 
-		          [
-		            '<img style="height: 100%; width:100%; margin: 5px" src="', 
-		            e.target.result,
-		            '" title="', escape(theFile.name), 
-		            '"/>'
-		          ].join('');
-		          console.log($(this).parents(".active_individual"));
-		          console.log($(this).parents(".active_individual").nodeType);
-		          var target = $(this).parents(".active_individual").nodeType;
-		          document.getElementById('list').insertBefore(div, target);
-		        };
-		      })(f);
-
-		      // Read in the image file as a data URL.
-		      reader.readAsDataURL(f);
-		    }
-		  }
-		$(document).on("change","#item_img",$.handleFileSelect);
-		  //document.getElementById('item_img').addEventListener('change', handleFileSelect, false);
+	    function readURL(input,node) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	            reader.onload = function(e) {
+	              node.setAttribute('src', e.target.result);
+	            }
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	    $(document).on("change","[id^='item_img']",function() {	    	
+	    	var node = this.parentNode.nextSibling.nextSibling.firstChild;	    	
+	        readURL(this,node);
+	        var filename = this.value;
+	        if(filename !=''){
+	        	var ext = filename.slice(filename.lastIndexOf(".") + 1).toLowerCase();
+	        	if (!(ext == "gif" || ext == "jpg" || ext == "png")) {
+	        		swal({
+						title:"이미지가 아닙니다.",
+						text:"이미지파일 (.jpg, .png, .gif ) 만 업로드 가능합니다.",
+						icon:"error",
+						button:"확인",
+					});			
+	                return false;
+	            }else{
+	            	$(node).parent().show();  
+	            }
+	        }	      
+	    });
+	    $(document).on("click","#img_del",function() {	    
+	    	$(this).prev().attr('src','');
+	    	$(this).parent().hide();
+	    	return false;
+	    });
 	});

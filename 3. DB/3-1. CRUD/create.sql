@@ -31,7 +31,6 @@ CREATE TABLE ATT_CATEGORY (
     CTGR_CODE3		VARCHAR2(20)    NULL,        -- 카테고리코드3
     CTGR_CODE4		VARCHAR2(20)    NULL,        -- 카테고리코드4
     CTGR_CODE5		VARCHAR2(20)	NULL,        -- 카테고리코드5
-    READ		CHAR(1)		NULL,	     -- 읽음 유무
     MB_MARRIAGE_YN	VARCHAR2(10)    NULL,        -- 결혼유무
     MB_CHILD_YN		VARCHAR2(10)    NULL,        -- 자녀유무
     MB_HOME_YN		VARCHAR2(10)	NULL,        -- 자가유무
@@ -166,8 +165,6 @@ CREATE TABLE REPLY (
 	MB_EMAIL	  VARCHAR2(40)    NOT NULL, -- 이메일
 	MB_NICK		  VARCHAR2(24)    NOT NULL, -- 닉네임
 	RPL_CONTENT	  VARCHAR2(1000)  NULL,		   -- 내용
-	RPL_LIKE_CNT      NUMBER	  NULL,		   -- 추천수
-	RPL_DISLIKE_CNT   NUMBER	  NULL,		   -- 비추천수
 	RPL_REGDATE	  DATE            NULL		   -- 등록일
 );
 ALTER TABLE REPLY ADD CONSTRAINT PK_REPLY PRIMARY KEY (RPL_CODE);

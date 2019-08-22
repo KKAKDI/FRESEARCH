@@ -101,9 +101,9 @@ public class StatsServiceImpl implements StatsService{
 	}
 	
 	@Override
-	public List<StatsVO> header(){
+	public List<StatsVO> header(String mb_email){
 		log.info("getTableTest");
-		return mapper.header();
+		return mapper.header(mb_email);
 	}
 	
 	@Override

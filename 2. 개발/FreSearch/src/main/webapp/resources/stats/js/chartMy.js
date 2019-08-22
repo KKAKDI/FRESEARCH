@@ -204,8 +204,9 @@ function updateDataMarriage() {
 	});
 	//timerID = setTimeout("updateDataAge()", 2000);
 }
-//첫 stats_table 페이지 and 셀렉트 박스 클릭후 페이지
+
 var tableService = (function() {
+	//첫 stats_table 페이지 and 셀렉트 박스 클릭후 페이지
 	function table(data, callback, error) {
 		
 		$.ajax({
@@ -288,10 +289,34 @@ var tableService = (function() {
 		}
 	};
 	
+	function header(data, callback, error) {
+		
+		$.ajax({
+			type : "POST",
+			url : '/stats/header',
+			data : JSON.stringify(data),
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			success : function(result, status, xhr) {
+				if (callback) {
+					callback(result);
+					
+				}
+			},
+			error : function(xhr, status, er) {
+				if(error){
+					error(er);
+				}
+
+			}
+		});
+	};
+	
 	return{
 		tableSearch : tableSearch,
 		displayTime : displayTime,
-		table : table
+		table : table,
+		header : header
 		
 		
 	}

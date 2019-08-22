@@ -36,6 +36,14 @@
 		
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 		
+		
+		<!-- csrf 작동 중지!!! -->
+		<security:csrf disabled="true"/>
+		
+		
+		
+		
+		
 		<security:logout logout-url="/logout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" logout-success-url="/"/>
 		<!--
 		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" success-handler-ref="logoutSuccessHandler"/>
