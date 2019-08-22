@@ -27,16 +27,16 @@ insert into CATEGORY values('L0000001', '지역', SYSDATE);
 insert into CATEGORY values('M0000001', '결혼', SYSDATE);
 
 -- 관심카테고리
-insert into ATT_CATEGORY values('A0000001', 'aaa@google.com', 'A0000001', 'B0000001', 'C0000001', 'D0000001', 'E0000001', 0, '미혼', '무', '무', '유');
-insert into ATT_CATEGORY values('A0000002', 'bbb@google.com', 'F0000001', 'G0000001', 'H0000001', 'I0000001', 'J0000001', 0, '기혼', '유', '유', '유');
-insert into ATT_CATEGORY values('A0000003', 'ccc@google.com', 'K0000001', 'L0000001', 'M0000001', 'A0000001', 'B0000001', 0, '미혼', '무', '유', '유');
-insert into ATT_CATEGORY values('A0000004', 'ddd@google.com', 'C0000001', 'D0000001', 'E0000001', 'F0000001', 'G0000001', 0, '미혼', '무', '무', '무');
-insert into ATT_CATEGORY values('A0000005', 'eee@google.com', 'H0000001', 'I0000001', 'J0000001', 'K0000001', 'L0000001', 0, '기혼', '유', '유', '유');
-insert into ATT_CATEGORY values('A0000006', 'fff@google.com', 'M0000001', 'A0000001', 'B0000001', 'C0000001', 'D0000001', 0, '기혼', '유', '유', '무');
-insert into ATT_CATEGORY values('A0000007', 'ggg@google.com', 'E0000001', 'F0000001', 'G0000001', 'H0000001', 'I0000001', 0, '기혼', '유', '무', '유');
-insert into ATT_CATEGORY values('A0000008', 'hhh@google.com', 'J0000001', 'K0000001', 'L0000001', 'M0000001', 'A0000001', 0, '미혼', '무', '무', '유');
-insert into ATT_CATEGORY values('A0000009', 'iii@google.com', 'B0000001', 'C0000001', 'D0000001', 'E0000001', 'F0000001', 0, '미혼', '무', '유', '유');
-insert into ATT_CATEGORY values('A0000010', 'jjj@google.com', 'G0000001', 'H0000001', 'I0000001', 'J0000001', 'K0000001', 0, '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000001', 'aaa@google.com', 'A0000001', 'B0000001', 'C0000001', 'D0000001', 'E0000001', '미혼', '무', '무', '유');
+insert into ATT_CATEGORY values('A0000002', 'bbb@google.com', 'F0000001', 'G0000001', 'H0000001', 'I0000001', 'J0000001', '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000003', 'ccc@google.com', 'K0000001', 'L0000001', 'M0000001', 'A0000001', 'B0000001', '미혼', '무', '유', '유');
+insert into ATT_CATEGORY values('A0000004', 'ddd@google.com', 'C0000001', 'D0000001', 'E0000001', 'F0000001', 'G0000001', '미혼', '무', '무', '무');
+insert into ATT_CATEGORY values('A0000005', 'eee@google.com', 'H0000001', 'I0000001', 'J0000001', 'K0000001', 'L0000001', '기혼', '유', '유', '유');
+insert into ATT_CATEGORY values('A0000006', 'fff@google.com', 'M0000001', 'A0000001', 'B0000001', 'C0000001', 'D0000001', '기혼', '유', '유', '무');
+insert into ATT_CATEGORY values('A0000007', 'ggg@google.com', 'E0000001', 'F0000001', 'G0000001', 'H0000001', 'I0000001', '기혼', '유', '무', '유');
+insert into ATT_CATEGORY values('A0000008', 'hhh@google.com', 'J0000001', 'K0000001', 'L0000001', 'M0000001', 'A0000001', '미혼', '무', '무', '유');
+insert into ATT_CATEGORY values('A0000009', 'iii@google.com', 'B0000001', 'C0000001', 'D0000001', 'E0000001', 'F0000001', '미혼', '무', '유', '유');
+insert into ATT_CATEGORY values('A0000010', 'jjj@google.com', 'G0000001', 'H0000001', 'I0000001', 'J0000001', 'K0000001', '기혼', '유', '유', '유');
 
 -- 주제
 insert into SUBJECT values('C0000001', 'A0000001', 'aaa@google.com', '최운학', '당신이 교육, 학문 카테고리에서 가장 좋아하는 설문 주제는?', '19/05/20', '19/06/01', '19/06/20');
