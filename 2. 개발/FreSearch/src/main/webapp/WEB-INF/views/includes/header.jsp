@@ -311,7 +311,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             	
             	tableService.header(data,function(list){
             		for(var i=0; i < list.length; i++){
-            			console.log("실험 가자  : "+list[i].subj_nm);
             		}
             	})
             	 
