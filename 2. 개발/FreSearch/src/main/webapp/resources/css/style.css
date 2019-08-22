@@ -148,6 +148,7 @@ body {
 
 #GNB>ul>li>a:hover, #GNB>ul>li>a:focus {
     color:#1428a0;
+  	border-bottom:2px solid #1428a0;
 }
 
 #GNB ul ul {
