@@ -154,7 +154,8 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	               	<div class="container" id="badge">
 	     				<a class="entypo-bell"></a>
 					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; height:200px; ">
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
+					<a>로그인 후 이용해 주세요.</a>
 					</div>
 					<!-- 종모양 알림 끝 -->
                		</div>
@@ -220,13 +221,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 		function() {
 			$(this).children("a").removeClass("active");
 			$(this).find("ul").removeClass("active");
-		});
-		$('.bxslider').bxSlider({
-			auto : true,
-			// autoControls: true, 갤러리 재생 정지 
-			stopAutoOnClick : true,
-			pager : true,
-			slideWidth : 1950
 		});
 		/* 
 		e가 들어간 것은 공지와 이벤트 구분을 위한 것입니다
@@ -296,24 +290,12 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             ws = new WebSocket('ws://localhost:8080/echo');
             
             ws.onopen=function(event){
-            	console.log("onopen1 : "+event)
+            	console.log("onopen : "+event)
             	//console.log("onopen2 : "+event.data)
             	
             	
             	
-            	//ajax 알림 리스트 and 알림 종 갯수  시작
-
-             	var data ={
-            		//mb_email : $(".bar").prev().html().trim()
-            		mb_email : "bbb@google.com"
-            	}
-            	console.log("data : "+data.mb_email);
             	
-            	tableService.header(data,function(list){
-            		for(var i=0; i < list.length; i++){
-            		}
-            	})
-            	 
             	
             	
             	
@@ -321,23 +303,21 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                 writeResponse(event.data);
             };
             ws.onmessage=function(event){
-            	console.log("onmessage1 : "+event)
+            	console.log("onmessage : "+event)
             	//console.log("onmessage2 : "+event.data)
                 writeResponse(event.data);
             };
             ws.onclose=function(event){
-            	console.log("onclose1 : "+event)
+            	console.log("onclose : "+event)
             	//console.log("onclose2 : "+event.data)
                 writeResponse("Connection closed");
             }
-            console.log("alarm data 전송")
-            $('#alarm').html("알림 : " +event.data);  
         });
         
         //웹소켓 메세지 전송
         function send(){
             //var text = document.getElementById("messageinput").value;
-        	console.log("send1 : "+event)
+        	console.log("send : "+event)
         	//console.log("send2 : "+event.data)
             var text = "갱신";
             ws.send(text);
@@ -351,21 +331,40 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             ws.close();
         }
         
+        
+        
+        
+        
         //웹소켓 반응?
         function writeResponse(text){
-        	var obj = event.data;
-        	obj = JSON.parse(obj);
-        	if($(".badge-num").html() != obj.length){
-	        	$('#badge').html('<div class="badge-num" id="qqq">'+obj.length+'</div><a class="entypo-bell"></a>');
-	        	
-	        	var html ='';
-	        	for(var i = 0; i< obj.length; i++){
-	        		html += '<a href="/stats/stats_get?subj_code='+obj[i].subj_code+'">'+obj[i].subj_nm+'</a>';
-	        	}
-      		}else{
-      		}
-        	$('#alarm_content').html(html);
-            //message.innerHTML+="<br/>"+text;
+        	console.log("writeResponse");
+        	//ajax 알림 리스트 and 알림 종 갯수  시작
+         	var data ={
+        		mb_email : $(".bar").prev().html().trim()
+        	}
+        	console.log("mb_email : "+data.mb_email);
+        	
+        	tableService.header(data,function(list){
+        		
+        		console.log("ajax 들어왔다");
+        		console.log("list.lenght : "+list.length);
+        		console.log(".badge-num : "+$(".badge-num").html());
+        		console.log("list[0].subj_nm : "+list[0].subj_nm);
+        		console.log("list[1].subj_nm : "+list[1].subj_nm);
+        		var html = '';
+        		if($(".badge-num").html() != list.length){
+        			console.log("list.lenght 숫자 다르다");
+        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+        			for(var i=0; i < list.length; i++){
+        			html += '<a href="/stats/stats_get?subj_code='+list[i].subj_code+'">'+list[i].subj_nm+'</a>';
+        			}
+        			$('#alarm_content').html(html);
+        		}else{
+        			console.log("list.lenght 숫자 같다");
+        		}
+        		
+        	});
+        	//ajax 알림 리스트 and 알림 종 갯수 끝
         }
         
         

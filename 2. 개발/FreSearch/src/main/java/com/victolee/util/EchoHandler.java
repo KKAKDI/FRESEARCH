@@ -34,11 +34,11 @@ public class EchoHandler extends TextWebSocketHandler {
 //        System.out.println("#session.getId() : "+session.getId());
 //        String json = new ObjectMapper().writeValueAsString(service.header(session.getId()));
 //        System.out.println("#session.service : "+service.header(session.getId()));
-//
-//        
-//        for (WebSocketSession sess : sessionList) {
-//            sess.sendMessage(new TextMessage(json));
-//        }
+
+        
+        for (WebSocketSession sess : sessionList) {
+            sess.sendMessage(new TextMessage(session.getId() + " : #갱신용 더미 텍스트"));
+        }
         
         System.out.println("{} 연결됨"+ session.getId()); 
       }
@@ -67,10 +67,10 @@ public class EchoHandler extends TextWebSocketHandler {
         Thread.sleep(2000);
         
         
-//        String json = new ObjectMapper().writeValueAsString(service.header(session.getId()));
-//        for (WebSocketSession sess : sessionList) {
-//        sess.sendMessage(new TextMessage(json));
-//        }
+        
+        for (WebSocketSession sess : sessionList) {
+        sess.sendMessage(new TextMessage(session.getId() + " : #갱신용 더미 텍스트"));
+        }
       }
 //현재 수신자에게 몇개의 메세지가 와있는지 디비에서 검색함.
 
