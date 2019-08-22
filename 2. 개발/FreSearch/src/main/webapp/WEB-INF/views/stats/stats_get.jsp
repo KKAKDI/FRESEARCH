@@ -472,10 +472,7 @@
 		result.push(json);
 		</c:forEach>
 
-		console.log("jsonInfo = " + JSON.stringify(result));
 		var json = JSON.stringify(result);
-		console.log("json : " + result[0].ctgr_nm);
-		console.log("json : " + result.length);
 		var count = 0;
 		for (var i = 0, len = result.length || 0; i < len; i++) {
 			if (result[0].qst_code == result[i].qst_code) {
@@ -483,9 +480,7 @@
 				count += Number(result[i].asw_content);
 			}
 		}
-		console.log("약 10명 나와야해 :" + count);
 		count += " 명";
-		console.log("약 10명 나와야해 :" + count);
 		$("#hi").html("응답 " + count);
 
 	});

@@ -182,8 +182,8 @@ $(function() {
 						button:"확인",
 					})
 					.then((willDelete) => {
-						return false;
-						//form.submit();								
+						//return false;
+						form.submit();								
 					});							
 				}					
 			}else{
