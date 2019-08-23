@@ -152,9 +152,7 @@ $(function() {
 						data += $(".research_content #selBox option:selected")[i].value+"#t#";
 						item_index = $(".research_content #item_box")[i].childElementCount;
 						console.log("아이템 개수:"+item_index);
-						for(var j=0;j<item_index;j++){					
-							console.log("["+i+"]["+j+"]:");
-							console.log($(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value);
+						for(var j=0;j<item_index;j++){							
 							if($(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value==''){
 								$.emptyCheck();
 								checkCnt++;
@@ -163,58 +161,43 @@ $(function() {
 								 var reader = new FileReader();
 								 var imgpath = "";
 								 console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
-								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
-									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";
-								        var formData = new FormData();			
-										var inputFile = $("input[name='item_img']");
-										var files = inputFile[0].files;	
-										console.log(files);
-										formData.append("uploadFile", $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
-										/*
-						            	for(var k = 0; k < files.length; i++){
-						        			console.log(files);
-						        			formData.append("uploadFile", files[k]);
-						        		}
-						            	*/
-						        		$.ajax({
-						       			 url: '../uploadAjaxAction',
-						       			 processData: false,
-						       			 contentType: false,
-						       			 data: formData,
-						       			 type: 'POST',
-						       			 dataType: 'text',
-						       			 success: function(result){
-						       				console.log("resilt: "+result);
-						       				imgpath = result;
-						       				console.log(imgpath);
-								        	data += imgpath+"#t#";
-						       			}
-						       		})	
-						       						       		
+								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){	
+									 	var formData = new FormData();													
+								        var uploadFile = $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0];		
+								        
+									 	data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";								       						        
+										formData.append("uploadFile", uploadFile);
+										fileUpload(formData,function(imgpath){
+											data += imgpath+"#t#";
+											console.log(imgpath);
+									 	});																				
 								 }else{
 									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#t#";		
 								 }					 
-							}						
+							}
+							
 						}
 						data+="/block";
 					}					
 				}
 				if(checkCnt>0){
 					return false;
-				}else{
-					console.log("data: "+data);		
-					$("#research_values").val(data);
-					form.attr("action","/research/research_register");
-					swal({
-						title:"등록되었습니다!",
-						text:"리서치가 성공적으로 등록되었습니다!",
-						icon:"success",
-						button:"확인",
-					})
-					.then((willDelete) => {
-						return false;
-						//form.submit();								
-					});							
+				}else{	
+					setTimeout(function(){
+							console.log("data: "+data);		
+							$("#research_values").val(data);
+							form.attr("action","/research/research_register");
+							swal({
+								title:"등록되었습니다!",
+								text:"리서치가 성공적으로 등록되었습니다!",
+								icon:"success",
+								button:"확인",
+							})
+							.then((willDelete) => {
+								return false;
+								//form.submit();								
+							});	
+						}, 1000);										
 				}					
 			}else{
 				$.emptyCheck();
@@ -339,9 +322,28 @@ $(function() {
 	    	}
 	    }
 	    $(document).on("change","[id^='item_img']",function() {	    	
-	    	var node = this.parentNode.nextSibling.nextSibling.firstChild;		       
+	    	var node = this.parentNode.nextSibling.nextSibling.firstChild;	    	
 	        readURL(this,node);
+	       
 	    });
+	    
+	    function fileUpload(formData,callback){
+	    	 $.ajax({
+      			 url: '../uploadAjaxAction',
+      			 processData: false,
+      			 contentType: false,
+      			 data: formData,
+      			 type: 'POST',
+      			 dataType: 'text',
+	       			 success: function(result){
+	       				//console.log("resilt: "+result);
+	       				if(callback){
+	       					callback(result);
+	       				}	       				
+	       			}
+       		})		
+	    }
+	    
 	    $(document).on("click","#img_del",function() {	    
 	    	$(this).prev().attr('src','');	    	
 	    	$(this).parent().hide();	    	
