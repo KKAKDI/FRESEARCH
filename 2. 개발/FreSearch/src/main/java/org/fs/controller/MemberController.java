@@ -2,6 +2,7 @@ package org.fs.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.fs.domain.MemberVO;
 import org.fs.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -148,6 +152,34 @@ public class MemberController {
 		}
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/findCheck", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<List<MemberVO>> findCheck(@RequestBody MemberVO vo) {
+		
+		return new ResponseEntity<>(service.findCheck(vo), HttpStatus.OK);
+		/*
+		String mb_nick = req.getParameter("mb_nick");
+		String mb_birthdateStr = req.getParameter("mb_birthdate");
+		int mb_birthdate = Integer.parseInt(mb_birthdateStr);
+		String mb_phone = req.getParameter("mb_phone");
+		
+		vo.setMb_nick(mb_nick);
+		vo.setMb_birthdate(mb_birthdate);
+		vo.setMb_phone(mb_phone);
+		
+		MemberVO findCheck = service.findCheck(vo);
+		
+		int result = 0;
+		
+		if(findCheck != null) {
+			log.info("findCheck : " + findCheck);
+			result = 1;
+		}
+		
+		return result;
+		*/
 	}
 	/*
 	@GetMapping("/signin")

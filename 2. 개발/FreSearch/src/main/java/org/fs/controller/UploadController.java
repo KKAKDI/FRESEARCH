@@ -99,9 +99,9 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
+	public String uploadAjaxPost(MultipartFile[] uploadFile) {
 		List<AttachFileDTO> list = new ArrayList<>();
-		
+		String fileinfo ="file";
 		log.info("update ajax post........");
 		
 		String uploadFolder = "C:\\upload"; // 파일 저장 폴더 위치
@@ -135,7 +135,9 @@ public class UploadController {
 			UUID uuid = UUID.randomUUID(); // 파일 이름 랜덤값 생성
 			
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
-				
+			
+		
+			fileinfo = 	uploadPath+"/"+uploadFileName;
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
@@ -160,7 +162,8 @@ public class UploadController {
 				e.printStackTrace();
 			} // end catch
 		} // end for
-		return new ResponseEntity<>(list, HttpStatus.OK);
+		//return new ResponseEntity<>(list, HttpStatus.OK); //이미지 썸네일 리턴
+		return fileinfo;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package org.fs.service;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -53,6 +57,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO birthCheck(String mb_birthdate) {
 		
 		return mapper.birthCheck(mb_birthdate);
+	}
+	
+	@Override
+	public List<MemberVO> findCheck(MemberVO vo) {
+
+		return mapper.findCheck(vo);
 	}
 	/*
 	@Override
@@ -102,12 +112,14 @@ public class MemberServiceImpl implements MemberService {
 				+ "<a href='http://localhost:8080/member/change_key?mb_nick="+ mb_nick +"&mb_email_key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
+			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)
 			mail.setSubject("[본인인증] 최운학님의 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(mb_email));
 			mailSender.send(mail);
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			
 		}
 	}
 

@@ -111,7 +111,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 					  <div class="dropdown-content">
 					    <!-- <a href="#">회원명</a> -->
 					    <sec:authorize access="isAuthenticated()">
-					    <form role="form" action="/logout" method='post'>
+					    <form class="dropdown-form" role="form" action="/logout" method='post'>
 					    
 						    <p>
 						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
@@ -121,19 +121,19 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 						    </p>
 					    
 					    	<div class="bar"></div>
-					    	<a class="member_menu" href="#">
+					    	<a href="#">
 					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_menu">마이페이지 </span>
+					    		<span class="span_mypage">마이페이지 </span>
 					    	</a>
-							<a href="/" class="member_menu" id="logout">
+							<a href="/" id="logout">
 								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-								<span class="span_menu">로그아웃</span>
+								<span class="span_logout">로그아웃</span>
 							</a>
 							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
-							<a class="member_login" href="/member/signin">
+							<a href="/member/signin">
 								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
 								<span class="span_login">로그인</span>
 							</a>
