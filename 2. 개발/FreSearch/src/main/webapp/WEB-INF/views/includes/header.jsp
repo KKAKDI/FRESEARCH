@@ -335,7 +335,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	
         	if($(".bar").prev().html() === undefined){
         		console.log("첫번째");
-        		var mb_email = null;
+        		var mb_email = '';
         	}else{
         		console.log("두번째");
         		var mb_email = $(".bar").prev().html().trim();
@@ -366,27 +366,28 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	
         	//ajax 알림 리스트 and 알림 종 갯수  시작
         	
-        	
-         	var data ={
-        		mb_email : mb_email
+        	if(!($(".bar").prev().html() === undefined)){
+	         	var data ={
+	        		mb_email : mb_email
+	        	}
+	        	console.log("mb_email : "+data.mb_email);
+	        	
+	        	tableService.header(data,function(list){
+	
+	        		var html = '';
+	        		if($(".badge-num").html() != list.length){
+	        			console.log("list.lenght 숫자 다르다");
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+	        			for(var i=0; i < list.length; i++){
+	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>'
+	        				html += '<a class="alarm_button">'+list[i].subj_nm+'</a>';
+	        			}
+	        			$('#alarm_content').html(html);
+	        		}else{
+	        			console.log("list.lenght 숫자 같다");
+	        		}
+	        	});
         	}
-        	console.log("mb_email : "+data.mb_email);
-        	
-        	tableService.header(data,function(list){
-
-        		var html = '';
-        		if($(".badge-num").html() != list.length){
-        			console.log("list.lenght 숫자 다르다");
-        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
-        			for(var i=0; i < list.length; i++){
-        				html += '<div style="display:none;">'+list[i].subj_code+'</div>'
-        				html += '<a class="alarm_button">'+list[i].subj_nm+'</a>';
-        			}
-        			$('#alarm_content').html(html);
-        		}else{
-        			console.log("list.lenght 숫자 같다");
-        		}
-        	});
         }
 
         
