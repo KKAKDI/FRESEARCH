@@ -111,7 +111,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 					  <div class="dropdown-content">
 					    <!-- <a href="#">회원명</a> -->
 					    <sec:authorize access="isAuthenticated()">
-					    <form class="dropdown-form" role="form" action="/logout" method='post'>
+					    <form role="form" action="/logout" method='post'>
 					    
 						    <p>
 						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
@@ -121,19 +121,19 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 						    </p>
 					    
 					    	<div class="bar"></div>
-					    	<a href="#">
+					    	<a class="member_menu" href="#">
 					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_mypage">마이페이지 </span>
+					    		<span class="span_menu">마이페이지 </span>
 					    	</a>
-							<a href="/" id="logout">
+							<a href="/" class="member_menu" id="logout">
 								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-								<span class="span_logout">로그아웃</span>
+								<span class="span_menu">로그아웃</span>
 							</a>
 							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
-							<a href="/member/signin">
+							<a class="member_login" href="/member/signin">
 								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
 								<span class="span_login">로그인</span>
 							</a>
@@ -335,7 +335,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	
         	if($(".bar").prev().html() === undefined){
         		console.log("첫번째");
-        		var mb_email = '';
+        		var mb_email = null;
         	}else{
         		console.log("두번째");
         		var mb_email = $(".bar").prev().html().trim();
@@ -343,7 +343,23 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	var subj_code = '';
         	
         	//subj_code 가져오는 ajax
-        	
+        	$(document).ready(function(){
+                $(document).on("click",".alarm_button",function(event){
+                  // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+                  console.log($(this).prev().text());
+                  subj_code = $(this).prev().text();
+                  
+                  var data ={
+                		  subj_code : subj_code,
+                		  mb_email : mb_email
+                  }
+                  
+                 	tableService.headerUpdate(data, function(list){
+                	  console.log("성공! : ");
+                	  location.href="/research/research_content?subj_code="+subj_code;
+                  }); 
+                });
+            }); 
         	console.log("writeResponse");
         	
         	
