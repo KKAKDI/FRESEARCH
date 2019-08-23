@@ -71,6 +71,7 @@
 					<label for="mb_phone">전화번호</label>
 					<input type="text" name="mb_phone" id="mb_phone" placeholder="전화번호 (-없이 숫자만 입력)" autocomplete="off" maxlength="11">
 					<div id="phone_check" class="check"></div>
+					<div id="find_check" class="find_check"></div>
 				</div>
 				<!--  
 				<div class="page-form-checkbox">
@@ -114,14 +115,17 @@
 				
 			</div>
 			
-			<div class="modal-confirm" onClick="close_pop();">
-				<span class="pop_bt">확인</span>
+			<div class="modal-login" onClick="login_button();">
+				<span class="login_btn">로그인하러 가기</span>
+			</div>
+			<div class="modal-password" onClick="password_button();">
+				<span class="password_btn">비밀번호 찾기</span>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		function close_pop(flag) {
+		function login_button(flag) {
 			$('#myModal').hide();
 			//location.href = "/member/signin";
 		};

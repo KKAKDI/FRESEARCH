@@ -154,6 +154,7 @@ $(document).ready(function(){
 			dataTyep : "json",
 			contentType : "application/json; charset=UTF-8",
 			success : function(data){
+				/*
 				if(mb_nick != data[0].mb_nick){
 					$("#nick_check").text("닉네임이 일치하지 않습니다.");
 					$("#nick_check").css("color", "#d0021b");
@@ -169,6 +170,15 @@ $(document).ready(function(){
 					$("#phone_check").css("color", "#d0021b");
 					$("#mb_phone").css("border-bottom", "2px solid #d0021b");
 				}else {
+					$('#myModal').show();
+				}*/
+				
+				if(mb_nick != data[0].mb_nick || mb_birthdate != data[0].mb_birthdate || mb_phone != data[0].mb_phone){
+					$("#find_check").text("개인정보가 일치하지 않습니다.");
+					$("#find_check").css("color", "#d0021b");
+					//$("#mb_phone").css("border-bottom", "2px solid #d0021b");
+				}else {
+					$("#find_check").text("");
 					$('#myModal').show();
 				}
 			}
