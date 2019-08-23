@@ -99,7 +99,7 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public String uploadAjaxPost(MultipartFile[] uploadFile) {
+	public String uploadAjaxPost(MultipartFile uploadFile) {
 		List<AttachFileDTO> list = new ArrayList<>();
 		String fileinfo ="file";
 		log.info("update ajax post........");
@@ -116,15 +116,15 @@ public class UploadController {
 		}
 		// make yyyy/MM/dd folder
 		
-		for(MultipartFile multipartFile : uploadFile) {
+		//for(MultipartFile multipartFile : uploadFile) {
 			
 			log.info("--------------------------");
-			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-			log.info("Upload File Size: " + multipartFile.getSize());
+			log.info("Upload File Name: " + uploadFile.getOriginalFilename());
+			log.info("Upload File Size: " + uploadFile.getSize());
 			
 			AttachFileDTO attachDTO = new AttachFileDTO();
 			
-			String uploadFileName = multipartFile.getOriginalFilename();
+			String uploadFileName = uploadFile.getOriginalFilename();
 			
 			// IE has file path
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
@@ -137,10 +137,10 @@ public class UploadController {
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
 			
 		
-			fileinfo = 	uploadPath+"/"+uploadFileName;
+			fileinfo = 	uploadPath+"\\"+uploadFileName;
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
-				multipartFile.transferTo(saveFile);
+				uploadFile.transferTo(saveFile);
 				
 				attachDTO.setUuid(uuid.toString());
 				attachDTO.setUploadPath(uploadFolderPath);
@@ -152,7 +152,7 @@ public class UploadController {
 					
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
 					
 					thumbnail.close();
 				}
@@ -161,7 +161,7 @@ public class UploadController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} // end catch
-		} // end for
+		//} // end for
 		//return new ResponseEntity<>(list, HttpStatus.OK); //이미지 썸네일 리턴
 		return fileinfo;
 	}
