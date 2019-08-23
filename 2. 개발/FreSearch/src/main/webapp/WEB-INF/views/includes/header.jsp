@@ -137,16 +137,13 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
 								<span class="span_login">로그인</span>
 							</a>
+							<a href="/member/signup">
+								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+								<span class="span_login">회원가입</span>
+							</a>
 						</sec:authorize>
 					  </div>
 					</div>
-					
-					
-					
-
-					
-					
-					
 					
 					<div class="dropdown">
                

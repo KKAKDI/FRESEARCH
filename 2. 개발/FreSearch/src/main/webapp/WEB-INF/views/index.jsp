@@ -4,15 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+
 <title>FRESEARCH</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
 	$(function(){
@@ -91,11 +96,19 @@
 			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
 				<!-- 상단 로그인 -->
 				<div class="login">
+				<!-- 
+					<ul>
+						<li><a href="/member/signin">로그인</a></li>
+						<li><a href="/member/signup">회원가입</a></li>
+						<li><a href="">알림</a></li>
+					</ul>
+					-->
 					<div class="dropdown">
 					  <button class="dropbtn">회원</button>
 					  <div class="dropdown-content">
+					    <!-- <a href="#">회원명</a> -->
 					    <sec:authorize access="isAuthenticated()">
-					    <form role="form" action="/logout" method='post'>
+					    <form class="dropdown-form" role="form" action="/logout" method='post'>
 					    
 						    <p>
 						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
@@ -105,25 +118,42 @@
 						    </p>
 					    
 					    	<div class="bar"></div>
-					    	<a class="member_menu" href="#">
+					    	<a href="#">
 					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_menu">마이페이지</span>
+					    		<span class="span_mypage">마이페이지 </span>
 					    	</a>
-							<a href="/" class="member_menu" id="logout">
+							<a href="/" id="logout">
 								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-								<span class="span_menu">로그아웃</span>
+								<span class="span_logout">로그아웃</span>
 							</a>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</form>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
-							<a class="member_login" href="/member/signin">
+							<a href="/member/signin">
 								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
 								<span class="span_login">로그인</span>
+							</a>
+							<a href="/member/signup">
+								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+								<span class="span_login">회원가입</span>
 							</a>
 						</sec:authorize>
 					  </div>
 					</div>
+					
+					<div class="dropdown">
+               
+               		<!-- 종모양 알림 -->
+	               	<div class="container" id="badge">
+	     				<a class="entypo-bell"></a>
+					</div>
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
+					<a>로그인 후 이용해 주세요.</a>
+					</div>
+					<!-- 종모양 알림 끝 -->
+               		</div>
+
 					<!-- <div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
 					</div> -->

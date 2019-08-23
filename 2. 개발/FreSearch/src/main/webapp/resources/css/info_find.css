@@ -195,7 +195,12 @@ body {
     margin-left: 6px;
     font-size: 12px;
 }
-
+.find_check {
+	position: absolute;
+    margin-top: 59px;
+    margin-left: 6px;
+    font-size: 12px;
+}
 /******************Modal******************/
 .modal  {
 	display: none;
@@ -215,16 +220,45 @@ body {
 	margin: 15% auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 40%;
-    height: 50%;
+	width: 50%;
+    height: 65%;
 }
 
-.modal .modal-content .modal-confirm {
-	cursor: pointer; 
-	background-color: #DDDDDD; 
-	text-align: center; 
-	padding-bottom: 10px; 
-	padding-top: 10px;
+.modal .modal-content .modal-logo {
+	text-align: center;
+}
+
+.modal .modal-content .modal-login {
+	background-color: #1428a0;
+    line-height: 34px;
+    display: inline-block;
+    cursor: pointer;
+    height: 36px;
+    padding: 0px 28px;
+    border-radius: 4px;
+}
+.modal .modal-content .modal-login .login_btn {
+	font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+}
+.modal .modal-content .modal-password {
+	border: 1px solid #cecece;
+    background-color: #fff;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    height: 36px;
+    padding: 0px 28px;
+    border-radius: 4px;
+}
+.modal .modal-content .modal-password .password_btn {
+	font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
 }
 .modal .modal-content .modal-content-detail{
 	position: relative;
