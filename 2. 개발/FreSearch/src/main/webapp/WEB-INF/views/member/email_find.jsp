@@ -18,7 +18,8 @@
 			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 		</div>
 		<div class="page-content">
-			<form class="page-form" action="/login" method="post" autocomplete="off">
+			<div class="page-form">
+			<input type="hidden" name="mb_birthdate" id="mb_birthdate" value="">
 				<h2>이메일 찾기</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
@@ -91,14 +92,39 @@
 					</button>
 				</div>
 				<div class="form-submit">
-					<input type="submit" id="emailFind" class="emailFind" value="이메일 찾기" disabled>
+					<input type="button" id="emailFind" class="emailFind" value="이메일 찾기" disabled>
 				</div>
 				
 				<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 				<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			</form>
+			</div>
 		</div>
 	</div>
+
+	<div id="myModal" class="modal">
+		
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-logo">
+				<h2><img src="/resources/img/logo.png" alt="logo"></h2>
+			</div>
+			
+			<div class="modal-content-detail">
+				
+			</div>
+			
+			<div class="modal-confirm" onClick="close_pop();">
+				<span class="pop_bt">확인</span>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function close_pop(flag) {
+			$('#myModal').hide();
+			//location.href = "/member/signin";
+		};
+	</script>
 </body>
 </html>

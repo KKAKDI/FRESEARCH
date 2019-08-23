@@ -6,10 +6,12 @@
 <%@include file="../includes/header.jsp"%>
 <head>
 <meta charset="UTF-8">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+<link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/resources/js/research_list.js"></script>
 </head>
 	<div class="page-content">

@@ -80,7 +80,7 @@ $(document).ready(function(){
 		}
 	}
 	
-	$("#mb_email").blur(function(){
+	$("#mb_email").keyup(function(){
 		
 		var mb_email = $('#mb_email').val();
 		
@@ -91,7 +91,6 @@ $(document).ready(function(){
 			dataTyep : "json",
 			success : function(data){
 				
-				console.log(data);
 				if(data == 1){
 					$("#email_check").text("이미 사용중인 이메일입니다.");
 					$("#email_check").css("color", "#d0021b");
@@ -128,7 +127,7 @@ $(document).ready(function(){
 		});	
 	});
 	
-	$("#mb_nick").blur(function(){
+	$("#mb_nick").keyup(function(){
 		
 		var mb_nick = $('#mb_nick').val();
 		
@@ -138,7 +137,6 @@ $(document).ready(function(){
 			data : {mb_nick : mb_nick},
 			dataTyep : "json",
 			success : function(data){
-				console.log(data);
 				if(data == 1){
 					$("#nick_check").text("이미 사용중인 닉네임입니다.");
 					$("#nick_check").css("color", "#d0021b");
@@ -175,7 +173,7 @@ $(document).ready(function(){
 		});	
 	});
 	
-	$("#mb_pwd").blur(function(){
+	$("#mb_pwd").keyup(function(){
 		
 		var mb_pwd = $("#mb_pwd").val();
 		
@@ -205,7 +203,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#mb_pwd2").blur(function(){
+	$("#mb_pwd2").keyup(function(){
 		var mb_pwd = $("#mb_pwd").val();
 		var mb_pwd2 = $("#mb_pwd2").val();
 		
@@ -245,7 +243,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#mb_birth_yy").blur(function(){
+	$("#mb_birth_yy").keyup(function(){
 
 		var mb_birth_yy = $("#mb_birth_yy").val();
 		var today = new Date();
@@ -254,6 +252,8 @@ $(document).ready(function(){
 		if(regYear.test(mb_birth_yy) && mb_birth_yy >= 1900 && mb_birth_yy <= yearNow){
 			$("#birth_check").text("");
 			$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
+			$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
 			check = true;
 			signupCheck();
 		}else if(!regYear.test(mb_birth_yy) && mb_birth_yy != ""){
@@ -321,7 +321,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#mb_birth_dd").blur(function(){
+	$("#mb_birth_dd").keyup(function(){
 		var mb_birth_yy = $("#mb_birth_yy").val();
 		var mb_birth_mm = $("select[name=mb_birth_mm] option:selected").val();
 		var mb_birth_dd = $("#mb_birth_dd").val();
@@ -439,7 +439,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#mb_phone").blur(function(){
+	$("#mb_phone").keyup(function(){
 		
 		var mb_phone = $("#mb_phone").val();
 		
@@ -486,7 +486,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$("#mb_addr3").blur(function(){
+	$("#mb_addr3").keyup(function(){
 		
 		var mb_addr3 = $("#mb_addr3").val();
 		

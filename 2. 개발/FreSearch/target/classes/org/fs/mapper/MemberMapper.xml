@@ -151,6 +151,10 @@
 	<select id="birthCheck" resultType="MemberVO">
 		select mb_birthdate from member where mb_birthdate = #{mb_birthdate}
 	</select>
+	
+	<select id="findCheck" resultType="MemberVO">
+		select mb_nick, mb_birthdate, mb_phone from member where mb_nick = #{mb_nick} or mb_birthdate = #{mb_birthdate} or mb_phone = #{mb_phone}
+	</select>
 	<!--  
 	<select id="pwdCheck" resultType="MemberVO">
 		select mb_pwd from member where mb_pwd = #{mb_pwd}

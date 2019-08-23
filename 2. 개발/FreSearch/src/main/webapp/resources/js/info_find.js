@@ -134,6 +134,46 @@ $(document).ready(function(){
 			findCheck();
 		}
 	});
+	
+	$("#emailFind").click(function(){
+		
+		var mb_nick = $('#mb_nick').val();
+		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + $("#mb_birth_dd").val();
+		var mb_phone = $("#mb_phone").val();
+		
+		var data = {
+				mb_nick : mb_nick,
+				mb_birthdate : mb_birthdate,
+				mb_phone : mb_phone
+		}
+		
+		$.ajax({
+			url : "/member/findCheck",
+			type : "POST",
+			data : JSON.stringify(data),
+			dataTyep : "json",
+			contentType : "application/json; charset=UTF-8",
+			success : function(data){
+				if(mb_nick != data[0].mb_nick){
+					$("#nick_check").text("닉네임이 일치하지 않습니다.");
+					$("#nick_check").css("color", "#d0021b");
+					$("#mb_nick").css("border-bottom", "2px solid #d0021b");
+				}else if(mb_birthdate != data[0].mb_birthdate){
+					$("#birth_check").text("생년월일이 일치하지 않습니다.");
+					$("#birth_check").css("color", "#d0021b");
+					$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
+					$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
+					$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
+				}else if(mb_phone != data[0].mb_phone){
+					$("#phone_check").text("전화번호가 일치하지 않습니다.");
+					$("#phone_check").css("color", "#d0021b");
+					$("#mb_phone").css("border-bottom", "2px solid #d0021b");
+				}else {
+					$('#myModal').show();
+				}
+			}
+		});
+	});
 });
 
 
