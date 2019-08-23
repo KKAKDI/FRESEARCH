@@ -40,7 +40,7 @@ public interface StatsMapper {
 
 	public List<StatsVO> header(String mb_email);
 	
-	public String headerCount();
+	public int headerUpdate(String subj_code); 
 
 
 }

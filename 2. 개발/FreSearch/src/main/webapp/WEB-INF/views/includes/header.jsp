@@ -268,6 +268,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 		$("#content .notice_area .event .event_rolling").append(
 		$("#content .notice_area .event li").first().clone());
 	});
+	
 </script>
 
 <!-- 웹소켓 시작 -->
@@ -293,14 +294,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             	console.log("onopen : "+event)
             	//console.log("onopen2 : "+event.data)
             	
-            	
-            	
-            	
-            	
-            	
-            	
                 if(event.data===undefined) return;
                 writeResponse(event.data);
+                
             };
             ws.onmessage=function(event){
             	console.log("onmessage : "+event)
@@ -334,41 +330,56 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         
         
         
-        
         //웹소켓 반응?
         function writeResponse(text){
+        	
+        	if($(".bar").prev().html() === undefined){
+        		console.log("첫번째");
+        		var mb_email = '';
+        	}else{
+        		console.log("두번째");
+        		var mb_email = $(".bar").prev().html().trim();
+        	}
+        	var subj_code = '';
+        	
+        	//subj_code 가져오는 ajax
+        	
         	console.log("writeResponse");
+        	
+        	
+        	
         	//ajax 알림 리스트 and 알림 종 갯수  시작
+        	
+        	
          	var data ={
-        		mb_email : $(".bar").prev().html().trim()
+        		mb_email : mb_email
         	}
         	console.log("mb_email : "+data.mb_email);
         	
         	tableService.header(data,function(list){
-        		
-        		console.log("ajax 들어왔다");
-        		console.log("list.lenght : "+list.length);
-        		console.log(".badge-num : "+$(".badge-num").html());
-        		console.log("list[0].subj_nm : "+list[0].subj_nm);
-        		console.log("list[1].subj_nm : "+list[1].subj_nm);
+
         		var html = '';
         		if($(".badge-num").html() != list.length){
         			console.log("list.lenght 숫자 다르다");
         			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
         			for(var i=0; i < list.length; i++){
-        			html += '<a href="/stats/stats_get?subj_code='+list[i].subj_code+'">'+list[i].subj_nm+'</a>';
+        				html += '<div style="display:none;">'+list[i].subj_code+'</div>'
+        				html += '<a class="alarm_button">'+list[i].subj_nm+'</a>';
         			}
         			$('#alarm_content').html(html);
         		}else{
         			console.log("list.lenght 숫자 같다");
         		}
-        		
         	});
-        	//ajax 알림 리스트 and 알림 종 갯수 끝
         }
+
         
         
-        
-        
+/*         $(document).ready(function(){
+            $(document).on("click","#moveBtn",function(event){
+              // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+              alert($(this).text());
+            });
+        }); // end of ready() */
 </script>
     <!-- 웹소켓 끝 -->

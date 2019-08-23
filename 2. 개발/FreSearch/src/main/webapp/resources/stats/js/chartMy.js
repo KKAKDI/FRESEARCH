@@ -312,11 +312,33 @@ var tableService = (function() {
 		});
 	};
 	
+	function headerUpdate(data,callback, error){
+		
+		$.ajax({
+			type : "POST",
+			url : '/stats/header',
+			data : JSON.stringify(data),
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			success : function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+	}
+	
 	return{
 		tableSearch : tableSearch,
 		displayTime : displayTime,
 		table : table,
-		header : header
+		header : header,
+		headerUpdate : headerUpdate
 		
 		
 	}
