@@ -3,11 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
+<%@include file="../includes/header.jsp" %>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<%@include file="../includes/header.jsp" %>
 
 <style>
 .container_new{
@@ -41,7 +40,7 @@ td {
    color: #505050;
 }
 hr{
-	margin: 8 auto;
+	margin: auto;
 	background-color: #0C4DA2;
 	width: 5%;
 }
@@ -95,7 +94,7 @@ li.paginate_button {
 	<div>
 		<div>
 			<div class="container_form" style="text-align: center;">
-					<h2>공지사항 / 이벤트</h2>
+					<h2 class="">공지사항 / 이벤트</h2>
 					<hr/>
 					<p>FreSearch 새소식을 제공합니다.</p>
 					<button id="regBtn" type="button">등록하기</button>
