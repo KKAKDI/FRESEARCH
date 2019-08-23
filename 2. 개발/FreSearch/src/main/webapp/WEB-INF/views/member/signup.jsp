@@ -5,31 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>FreSearch Sign Up</title>
-<!--  <link rel="stylesheet" href="/resources/assets/css/sign_up.css"> -->
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/signup.css">
-<!--  <link href="/resources/assets/css/magic-check.css" rel="stylesheet">-->
-
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script src="/resources/js/signup.js"></script>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<!--  <script src="/resources/assets/js/sign_up.js"></script> -->
-<script>
-	
-</script>
 </head>
 <body>
 <div class="page-content">
+	<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 	<div class="form-content">
 		<form class="form-detail" name="signup" action="/member/signup" method="post">
 		<input type="hidden" name="mb_birthdate" id="mb_birthdate" value="">
 		<input type="hidden" name="mb_addr" id="mb_addr" value="">
 		<input type="hidden" name="mb_att_category" id="mb_att_category" value="">
-			<!-- <h2>회원가입</h2> -->
-			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
+			<h2>회원가입</h2>
 			<div class="form-row">
 				<label for="mb_email">이메일</label>
 				<input type="text" name="mb_email" id="mb_email" placeholder="이메일" autocomplete="off" maxlength="30">
@@ -175,6 +169,7 @@
 				<div id="agree_check" class="agree_check"></div>
 			</div>
          	<input type="submit" id="signup_fin" class="signup_fin" value="가입하기" disabled>
+         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 </div>

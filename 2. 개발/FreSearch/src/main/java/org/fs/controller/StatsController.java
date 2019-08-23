@@ -1,10 +1,7 @@
 package org.fs.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Param; 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
 import org.fs.domain.StatsPagingSearchDTO;
@@ -349,4 +346,17 @@ public class StatsController {
 			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
 		}
 	}
+	
+	@RequestMapping(method = { RequestMethod.POST,
+			RequestMethod.PATCH }, 
+			value = "/header", 
+			consumes = "application/json", 
+			produces = "application/json")
+	public ResponseEntity<List<StatsVO>> getHeader(@RequestBody StatsVO vo) {
+			System.out.println("#여기 들어오나?");
+
+			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
+		
+	}
 }
+

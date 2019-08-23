@@ -3,7 +3,7 @@ CREATE TABLE MEMBER (
 	MB_EMAIL	    VARCHAR2(40)  NOT NULL,        -- 이메일
 	MB_ATT_CTGR_CODE    VARCHAR2(20)  NOT NULL,        -- 관심카테고리코드
 	MB_NICK		    VARCHAR2(24)  NOT NULL,	   -- 닉네임
-	MB_PWD		    VARCHAR2(30)  NOT NULL,        -- 비밀번호
+	MB_PWD		    VARCHAR2(300)  NOT NULL,        -- 비밀번호
 	MB_ADDR		    VARCHAR2(300) NULL,            -- 거주지
 	MB_BIRTHDATE        NUMBER        NULL,            -- 생년월일
 	MB_SEX              VARCHAR2(10)  NULL,            -- 성별
@@ -31,7 +31,6 @@ CREATE TABLE ATT_CATEGORY (
     CTGR_CODE3		VARCHAR2(20)    NULL,        -- 카테고리코드3
     CTGR_CODE4		VARCHAR2(20)    NULL,        -- 카테고리코드4
     CTGR_CODE5		VARCHAR2(20)	NULL,        -- 카테고리코드5
-    READ		CHAR(1)		NULL,	     -- 읽음 유무
     MB_MARRIAGE_YN	VARCHAR2(10)    NULL,        -- 결혼유무
     MB_CHILD_YN		VARCHAR2(10)    NULL,        -- 자녀유무
     MB_HOME_YN		VARCHAR2(10)	NULL,        -- 자가유무
@@ -166,8 +165,6 @@ CREATE TABLE REPLY (
 	MB_EMAIL	  VARCHAR2(40)    NOT NULL, -- 이메일
 	MB_NICK		  VARCHAR2(24)    NOT NULL, -- 닉네임
 	RPL_CONTENT	  VARCHAR2(1000)  NULL,		   -- 내용
-	RPL_LIKE_CNT      NUMBER	  NULL,		   -- 추천수
-	RPL_DISLIKE_CNT   NUMBER	  NULL,		   -- 비추천수
 	RPL_REGDATE	  DATE            NULL		   -- 등록일
 );
 ALTER TABLE REPLY ADD CONSTRAINT PK_REPLY PRIMARY KEY (RPL_CODE);
@@ -175,14 +172,30 @@ ALTER TABLE REPLY ADD CONSTRAINT FK_BOARD_TO_REPLY FOREIGN KEY (BRD_CODE) REFERE
 
 -- 신청 승인
 CREATE TABLE APPLY (
+	APPLY_CODE	  NUMBER	  NOT NULL,	   -- 신청코드
 	MB_EMAIL	    VARCHAR2(40)  NOT NULL,        -- 이메일
-	MB_REG_ATRT	    VARCHAR2(10)  NULL,		   -- 등록권한
-	APPLY_APPLYDATE         DATE          NULL,		   -- 신청일
-    APPLY_APPROVALDATE       DATE          NULL		   -- 승인일
+	APPLY_APPLYDATE     DATE          NOT NULL,	   -- 신청일
+	APPLY_APPROVALDATE  DATE          NULL		   -- 승인일
 );
 
-ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY FOREIGN KEY (MB_EMAIL) REFERENCES MEMBER(MB_EMAIL);
-ALTER TABLE APPLY ADD CONSTRAINT FK_APPLY FOREIGN KEY (MB_REG_ATRT) REFERENCES MEMBER(MB_REG_ATRT);
+ALTER TABLE APPLY ADD CONSTRAINT PK_APPLY PRIMARY KEY (APPLY_CODE);
+
+-- 회원 권한
+create table member_auth (
+    mb_email varchar2(40) not null,
+    mb_att_ctgr_code varchar2(20) not null,
+    auth varchar2(50) not null,
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code)
+);
+
+-- 로그인 상태 유지
+create table persistent_logins (
+    username varchar2(40) not null,
+    series varchar2(64) primary key,
+    token varchar2(64) not null,
+    last_used timestamp not null
+);
+
 
 --통계 AREA 관련 VIEW 1
 CREATE OR REPLACE VIEW AREA AS
