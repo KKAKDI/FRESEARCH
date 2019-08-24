@@ -86,72 +86,137 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   display: block;
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
 }
+
+.widget-gnb ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-clip: padding-box;
+    background-color: rgba(121, 124, 144, 0.3);
+    border: 0px solid transparent;
+    border-radius: 5px;
+
+}
+.widget-gnb ::-webkit-scrollbar-thumb {
+    background-color: #cdd2d2;
+    border: 2px solid #cdd2d2;
+    border-radius: 5px;
+}
+.widget-gnb ::-webkit-scrollbar-track{
+    background-color: #fff;
+}
+
+.gnb-tab-item{
+    background-color: #fff;
+    border-bottom-color: #fff;
+	position: relative;
+    width: 100%;
+    padding: 14px 10px 14px 10px;
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: none;
+
+}
+.gnb-tab-item:before{
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #1820b7;
+
+
+}
+
+.jss-icon{
+	margin-left : 5px;
+    width: 18px;
+    height: 17px;
+    background: url(/resources/img/header-card-new.svg) no-repeat 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: hidden;
+}
+.jss-font{
+    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+}
+.jss-small{
+	font-size: 11px;
+	color: #999;
+}
+
 </style>
 </head>
 <body>
 
 <div class="loading">로딩</div>
 <div class="container">
-	<div class="fixed_box">
-		<!-- 상단 고정 박스 시작 -->
-		<div class="header clearfix">
-			<!-- header 시작 -->
-			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
-				<!-- 상단 로그인 -->
-				<div class="login">
-				<!-- 
-					<ul>
-						<li><a href="/member/signin">로그인</a></li>
-						<li><a href="/member/signup">회원가입</a></li>
-						<li><a href="">알림</a></li>
-					</ul>
-					-->
-					<div class="dropdown">
-					  <button class="dropbtn">회원</button>
-					  <div class="dropdown-content">
-					    <!-- <a href="#">회원명</a> -->
-					    <sec:authorize access="isAuthenticated()">
-					    <form role="form" action="/logout" method='post'>
-					    
-						    <p>
-						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
-						    <sec:authentication property="principal.member.mb_nick"/></p>
-						    <p>
-						    <sec:authentication property="principal.member.mb_email"/>
-						    </p>
-					    
-					    	<div class="bar"></div>
-					    	<a class="member_menu" href="#">
-					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_menu">마이페이지 </span>
-					    	</a>
-							<a href="/" class="member_menu" id="logout">
-								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-								<span class="span_menu">로그아웃</span>
-							</a>
-							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						</form>
-						</sec:authorize>
-						<sec:authorize access="isAnonymous()">
-							<a class="member_login" href="/member/signin">
-								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
-								<span class="span_login">로그인</span>
-							</a>
-							<a href="/member/signup">
-								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
-								<span class="span_login">회원가입</span>
-							</a>
-						</sec:authorize>
-					  </div>
-					</div>
-					
-					<div class="dropdown">
+   <div class="fixed_box">
+      <!-- 상단 고정 박스 시작 -->
+      <div class="header clearfix">
+         <!-- header 시작 -->
+         <div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
+            <!-- 상단 로그인 -->
+            <div class="login">
+            <!-- 
+               <ul>
+                  <li><a href="/member/signin">로그인</a></li>
+                  <li><a href="/member/signup">회원가입</a></li>
+                  <li><a href="">알림</a></li>
+               </ul>
+               -->
+               <div class="dropdown">
+                 <button class="dropbtn">회원</button>
+                 <div class="dropdown-content">
+                   <!-- <a href="#">회원명</a> -->
+                   <sec:authorize access="isAuthenticated()">
+                   <form class="dropdown-form" role="form" action="/logout" method='post'>
+                   
+                      <p>
+                      <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
+                      <sec:authentication property="principal.member.mb_nick"/></p>
+                      <p>
+                      <sec:authentication property="principal.member.mb_email"/>
+                      </p>
+                   
+                      <div class="bar"></div>
+                      <a href="#">
+                         <img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+                         <span class="span_mypage">마이페이지 </span>
+                      </a>
+                     <a href="/" id="logout">
+                        <img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+                        <span class="span_logout">로그아웃</span>
+                     </a>
+                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  </form>
+                  </sec:authorize>
+                  <sec:authorize access="isAnonymous()">
+                     <a href="/member/signin">
+                        <img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+                        <span class="span_login">로그인</span>
+                     </a>
+                     <a href="/member/signup">
+                        <img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+                        <span class="span_login">회원가입</span>
+                     </a>
+                  </sec:authorize>
+                 </div>
+               </div>
+               
+               <div class="dropdown-alarm widget-gnb">
                
                		<!-- 종모양 알림 -->
 	               	<div class="container" id="badge">
 	     				<a class="entypo-bell"></a>
 					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:430px; max-height:200px; ">
 					<a>로그인 후 이용해 주세요.</a>
 					</div>
 					<!-- 종모양 알림 끝 -->
@@ -375,9 +440,14 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	        		if($(".badge-num").html() != list.length){
 	        			console.log("list.lenght 숫자 다르다");
 	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+	        			html += '<div class="gnb-tab-item">알림메시지'+list.length+'</div>';
 	        			for(var i=0; i < list.length; i++){
-	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>'
-	        				html += '<a class="alarm_button">'+list[i].subj_nm+'</a>';
+	        				
+	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>';
+	        				html += '<a class="alarm_button"><span class="jss-font">'+list[i].subj_nm;
+	        				html += '</span><span class="jss-icon"></span></br>';
+	        				html += '<small class="jss-small">'+tableService.displayTime(list[i].subj_regdate)+'</small></a>';
+
 	        			}
 	        			$('#alarm_content').html(html);
 	        		}else{
