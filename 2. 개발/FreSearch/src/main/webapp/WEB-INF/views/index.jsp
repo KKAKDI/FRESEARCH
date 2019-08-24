@@ -1,17 +1,23 @@
 ﻿<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+
 <title>FRESEARCH</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script>
 	$(function(){
@@ -71,7 +77,12 @@
 		};
 		eventRollingOff = setInterval(eventRolling, 2000);
 		$("#content .notice_area .event .event_rolling").append($("#content .notice_area .event li").first().clone());
-
+		
+		$("#logout").on("click", function(e){
+			location.href="/";
+			e.preventDefault();
+			$("form").submit();
+		});
 	});
 </script>
 </head>
@@ -85,16 +96,68 @@
 			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
 				<!-- 상단 로그인 -->
 				<div class="login">
+				<!-- 
 					<ul>
-						<li><a href="">로그인</a></li>
+						<li><a href="/member/signin">로그인</a></li>
 						<li><a href="/member/signup">회원가입</a></li>
 						<li><a href="">알림</a></li>
 					</ul>
-					<div class="emblembox">
-						<img src="/resources/img/image_1.png" alt="emblem">
+					-->
+					<div class="dropdown">
+					  <button class="dropbtn">회원</button>
+					  <div class="dropdown-content">
+					    <!-- <a href="#">회원명</a> -->
+					    <sec:authorize access="isAuthenticated()">
+					    <form class="dropdown-form" role="form" action="/logout" method='post'>
+					    
+						    <p>
+						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
+						    <sec:authentication property="principal.member.mb_nick"/></p>
+						    <p>
+						    <sec:authentication property="principal.member.mb_email"/>
+						    </p>
+					    
+					    	<div class="bar"></div>
+					    	<a href="#">
+					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+					    		<span class="span_mypage">마이페이지 </span>
+					    	</a>
+							<a href="/" id="logout">
+								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+								<span class="span_logout">로그아웃</span>
+							</a>
+							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						</form>
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
+							<a href="/member/signin">
+								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+								<span class="span_login">로그인</span>
+							</a>
+							<a href="/member/signup">
+								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+								<span class="span_login">회원가입</span>
+							</a>
+						</sec:authorize>
+					  </div>
 					</div>
+					
+					<div class="dropdown">
+               
+               		<!-- 종모양 알림 -->
+	               	<div class="container" id="badge">
+	     				<a class="entypo-bell"></a>
+					</div>
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
+					<a>로그인 후 이용해 주세요.</a>
+					</div>
+					<!-- 종모양 알림 끝 -->
+               		</div>
+
+					<!-- <div class="emblembox">
+						<img src="/resources/img/image_1.png" alt="emblem">
+					</div> -->
 				</div>
-			
 			</div>
 			<div class="header_inner">
 				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>

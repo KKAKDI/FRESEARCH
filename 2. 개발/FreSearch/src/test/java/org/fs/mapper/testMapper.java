@@ -164,10 +164,14 @@ public class testMapper {
 //	}
 //	@Test
 //	public void header() {
-//		log.info(mapper.header());
+//		String mb_email= "bbb@google.com";
+//		log.info(mapper.header(mb_email));
 //	}
 	@Test
 	public void headerCount() {
-		log.info(mapper.headerCount());
+		StatsVO vo = new StatsVO();
+		vo.setSubj_code("SXOPZ233");
+		String subj_code = "SXOPZ233";
+		log.info("# : "+mapper.headerUpdate(subj_code));
 	}
 }

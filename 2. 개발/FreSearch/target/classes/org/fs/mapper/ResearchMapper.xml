@@ -46,10 +46,10 @@
 			<include refid="ran_code"></include>
 		</selectKey>
 		insert into SUBJECT(
-			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate
+			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate,read
 			)
 		values(
-			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate}
+			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate},0
 		)
 	</insert>
 	<insert id="qstReg">

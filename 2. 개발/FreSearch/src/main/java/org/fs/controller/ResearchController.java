@@ -1,9 +1,13 @@
 package org.fs.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-
+import java.util.Map;
 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +36,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,9 +57,7 @@ public class ResearchController {
 	private ResearchService service;
 
 	@GetMapping("research_list")
-	public void list() {
-		
-	}
+	public void list() {}
 	
 	@GetMapping(value = "/pages/{research}/{page}",
 			produces = {
@@ -77,11 +83,13 @@ public class ResearchController {
 	}*/
 
 	@GetMapping("research_register")
+	@PreAuthorize("isAuthenticated()")
 	public void regForm() {	
 	}
 
 	
 	@PostMapping("research_register")
+	@PreAuthorize("isAuthenticated()")
 	public String reg(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");
 		log.info(values);
@@ -98,5 +106,7 @@ public class ResearchController {
 		String values = request.getParameter("research_values");
 		service.researchAnswer(values);
 		return "redirect:/stats/stats_table";
-	}
+	}	
+
+	
 }

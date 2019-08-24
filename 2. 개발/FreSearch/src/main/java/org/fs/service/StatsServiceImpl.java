@@ -1,5 +1,6 @@
 package org.fs.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -101,14 +102,16 @@ public class StatsServiceImpl implements StatsService{
 	}
 	
 	@Override
-	public List<StatsVO> header(){
-		log.info("getTableTest");
-		return mapper.header();
+	public List<StatsVO> header(String mb_email){
+		log.info("#header");
+		
+		
+		return mapper.header(mb_email);
 	}
 	
 	@Override
-	public String headerCount() {
-		log.info("headerCount");
-		return mapper.headerCount();
+	public int headerUpdate(String subj_code) {
+		log.info("#headerUpdate");
+		return mapper.headerUpdate(subj_code);
 	}
 }
