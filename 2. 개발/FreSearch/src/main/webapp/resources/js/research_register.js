@@ -166,7 +166,7 @@ $(function() {
 									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";
 									 data += $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].nextSibling.value+"#t#";
 								 }else{
-									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#t#";		
+									 data += $(".research_content #item_box")[i].querySelectorAll(".item_txt")[j].value+"#t#";		
 								 }					 
 							}
 							

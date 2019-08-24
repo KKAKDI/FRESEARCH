@@ -129,7 +129,9 @@
 								<div class='research_qst'>${research.qst_content}	
 								<input type='hidden' name='qst_type' class='qst_type' value='${research.qst_type}'>
 								</div>
+								<c:if test="${not empty research.qst_img}">
 								<div class='research_qst_img'><img src="${research.qst_img}"/></div>
+								</c:if>
 								<div class='research_qst_url'>${research.qst_url}</div>								
 								<c:set var="qst_code" value="${research.qst_code}"/>	
 								<c:set var="itemBN" value='${itemBN+1}'/>								
@@ -147,7 +149,12 @@
 									<label for='btn${itemValue}'>${research.item_content}</label>
 									</c:when>
 									</c:choose>
-									<div class='research_item_img'><img src="../resources/upload/${research.item_img}"/></div>
+									<c:if test="${not empty research.item_img}">
+									<div class='research_item_img'>
+										<img src="../resources/upload/${research.item_img}"/>
+									</div>
+									</c:if>
+									
 								</div>					
 								<c:set var="itemValue" value="${itemValue+1}"/>		
 								</c:when>
