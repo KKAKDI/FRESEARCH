@@ -492,13 +492,15 @@ order by qst_code desc, asw_content desc
 
 
 <select id="header" resultType="org.fs.domain.StatsVO">
-select subj_code,ctgr_code, mb_email, mb_nick, subj_nm, subj_regdate, subj_startdate, subj_enddate, read  from subject 
-where (ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = #{mb_email}) 
-or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
-or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
-or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
-or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = #{mb_email}))
-and read = 0
+select a.subj_code,a.ctgr_code,b.ctgr_nm ,a.mb_email, a.mb_nick, a.subj_nm, a.subj_regdate, a.subj_startdate, a.subj_enddate from subject a, category b
+where b.CTGR_CODE = a.CTGR_CODE and
+(a.ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = #{mb_email}) 
+or a.ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = #{mb_email}))
+and read =0
+group by a.subj_code,a.ctgr_code, a.mb_email, a.mb_nick, a.subj_nm, a.subj_regdate, a.subj_startdate, a.subj_enddate ,b.CTGR_NM
 order by subj_regdate desc
 </select>
 
