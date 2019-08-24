@@ -129,15 +129,14 @@
 								<div class='research_qst'>${research.qst_content}	
 								<input type='hidden' name='qst_type' class='qst_type' value='${research.qst_type}'>
 								</div>
-								<div class='research_qst_img'>${research.qst_img}</div>
+								<div class='research_qst_img'><img src="${research.qst_img}"/></div>
 								<div class='research_qst_url'>${research.qst_url}</div>								
 								<c:set var="qst_code" value="${research.qst_code}"/>	
 								<c:set var="itemBN" value='${itemBN+1}'/>								
 							</c:if>
 							<c:choose>
 								<c:when test="${research.qst_type eq 0}">
-								<div class='research_item'>
-								<div class='research_item_img'>${research.item_img}</div>
+								<div class='research_item'>								
 									<input type='hidden' class='item_code${itemBN}' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
 									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>
 									<c:choose>
@@ -148,6 +147,7 @@
 									<label for='btn${itemValue}'>${research.item_content}</label>
 									</c:when>
 									</c:choose>
+									<div class='research_item_img'><img src="../resources/upload/${research.item_img}"/></div>
 								</div>					
 								<c:set var="itemValue" value="${itemValue+1}"/>		
 								</c:when>

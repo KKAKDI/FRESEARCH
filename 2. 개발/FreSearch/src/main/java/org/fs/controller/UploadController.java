@@ -99,12 +99,16 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public String uploadAjaxPost(MultipartFile uploadFile) {
+	public String uploadAjaxPost(MultipartFile uploadFile,HttpServletRequest request) {
 		List<AttachFileDTO> list = new ArrayList<>();
 		String fileinfo ="file";
 		log.info("update ajax post........");
+				
+		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+		log.info(projectPath);	
 		
-		String uploadFolder = "C:\\upload"; // 파일 저장 폴더 위치
+		String uploadFolder = projectPath;
+				//"C:\\upload"; // 파일 저장 폴더 위치
 		
 		String uploadFolderPath = getFolder();
 		// make folder ---------
@@ -137,7 +141,7 @@ public class UploadController {
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
 			
 		
-			fileinfo = 	uploadPath+"\\"+uploadFileName;
+			fileinfo = 	uploadFolderPath+"\\"+uploadFileName;
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				uploadFile.transferTo(saveFile);
@@ -146,6 +150,7 @@ public class UploadController {
 				attachDTO.setUploadPath(uploadFolderPath);
 				
 				// 이미지 파일 체크
+				/*
 				if(checkImageType(saveFile)) {
 					
 					attachDTO.setImage(true);
@@ -156,6 +161,7 @@ public class UploadController {
 					
 					thumbnail.close();
 				}
+				*/
 				// 리스트에 추가
 				list.add(attachDTO);
 			} catch (Exception e) {
@@ -234,10 +240,11 @@ public class UploadController {
 		File file;
 		
 		try {
-			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			//"c:\\upload\\"
+			file = new File(URLDecoder.decode(fileName, "UTF-8"));
 			
 			file.delete();
-			
+			/*
 			if(type.equals("image")) { // 이미지 파일은 s가 없는 일반 이미지 파일도 삭제 해야하므로 아래의 코드 작성
 				String largeFileName = file.getAbsolutePath().replace("s_", "");
 				
@@ -247,6 +254,7 @@ public class UploadController {
 				
 				file.delete();
 			}
+			*/
 		} catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
