@@ -176,22 +176,20 @@ $(function() {
 				}
 				if(checkCnt>0){
 					return false;
-				}else{	
-					setTimeout(function(){
-							console.log("data: "+data);		
-							$("#research_values").val(data);
-							form.attr("action","/research/research_register");
-							swal({
-								title:"등록되었습니다!",
-								text:"리서치가 성공적으로 등록되었습니다!",
-								icon:"success",
-								button:"확인",
-							})
-							.then((willDelete) => {
-								//return false;
-								form.submit();								
-							});	
-						}, 1000);										
+				}else{						
+					console.log("data: "+data);		
+					$("#research_values").val(data);
+					form.attr("action","/research/research_register");
+					swal({
+						title:"등록되었습니다!",
+						text:"리서치가 성공적으로 등록되었습니다!",
+						icon:"success",
+						button:"확인",
+					})
+					.then((willDelete) => {
+						//return false;
+						form.submit();								
+					});																	
 				}					
 			}else{
 				$.emptyCheck();
