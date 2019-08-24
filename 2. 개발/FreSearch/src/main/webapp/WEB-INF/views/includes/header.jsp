@@ -85,6 +85,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   text-decoration: none;
   display: block;
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+  cursor: pointer;
 }
 
 .widget-gnb ::-webkit-scrollbar {
@@ -119,6 +120,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
     cursor: pointer;
     white-space: nowrap;
     border-bottom: none;
+    vertical-aligh:middle;
 
 }
 .gnb-tab-item:before{
@@ -145,10 +147,20 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 }
 .jss-font{
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+    vertical-align: top;
+    color: #666666;
 }
 .jss-small{
 	font-size: 11px;
 	color: #999;
+}
+.all-read{
+
+    padding-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    border-top: 1px solid #ebebeb;
 }
 
 </style>
@@ -210,17 +222,21 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                  </div>
                </div>
                
-               <div class="dropdown-alarm widget-gnb">
+               		<div class="dropdown-alarm widget-gnb">
                
                		<!-- 종모양 알림 -->
-	               	<div class="container" id="badge">
-	     				<a class="entypo-bell"></a>
-					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:430px; max-height:200px; ">
-					<a>로그인 후 이용해 주세요.</a>
-					</div>
+	               		<div class="container" id="badge">
+	     					<a class="entypo-bell"></a>
+						</div>
+						<div class="dropdown-content" id="alarm_content" style="overflow:auto; width:430px; max-height:400px; ">
+							<a>로그인 후 이용해 주세요.</a>
+						</div>
 					<!-- 종모양 알림 끝 -->
+						<!-- <div class="all-read">
+							<span class="all-read-span">모두 읽은 상태로 표시</span>
+						</div> -->
                		</div>
+               		
 
 					<!-- <div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
@@ -440,15 +456,19 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	        		if($(".badge-num").html() != list.length){
 	        			console.log("list.lenght 숫자 다르다");
 	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
-	        			html += '<div class="gnb-tab-item">알림메시지'+list.length+'</div>';
+	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
 	        				
 	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>';
-	        				html += '<a class="alarm_button"><span class="jss-font">'+list[i].subj_nm;
+	        				html += '<a class="alarm_button"><span class="jss-font">';
+	        				html +=	'<strong class="jss-font">'+list[i].mb_nick+'</strong>님이 ';
+	        				html += '<strong class="jss-font">'+list[i].ctgr_nm+'</strong>태그에 글을 작성하였습니다.';
 	        				html += '</span><span class="jss-icon"></span></br>';
+	        				html += '<span class="jss-font" style="font-size: 13px;">"'+list[i].subj_nm+'"</span></br>';
 	        				html += '<small class="jss-small">'+tableService.displayTime(list[i].subj_regdate)+'</small></a>';
 
 	        			}
+	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
 	        			$('#alarm_content').html(html);
 	        		}else{
 	        			console.log("list.lenght 숫자 같다");
