@@ -14,6 +14,9 @@ hr {
 	margin-left: 25px;
 	border: 0.3px dotted
 }
+input[type=file]{
+	display:none;
+}
 #hr{
 	height:10px;
 }
@@ -357,7 +360,7 @@ select {
 
 
 #top_box {
-	padding: 20px 20px 0 20px;
+	padding: 25px 25px 0 35px;
 	width: 100%;
 }
 
@@ -402,10 +405,18 @@ select {
 	background-color: transparent;
 	border: none;
 	color: #fff;
-	width: 45px;
+	width: 65px;
 	height: 33px;
 }
 /*btn img*/
+
+#right_top_box > #send_form{
+	background-color: #fff;
+    color: #1428a0;
+    width: 88px;
+    font-size: 15px;
+    border-radius: 5px;
+}
 #prev_btn{
 	background: url( "/resources/img/bicon02_2.png" ) no-repeat 50% 50%;
 }
@@ -416,13 +427,14 @@ select {
 	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
 }
 #img_btn{
-	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
+	background: url( "/resources/img/bicon08_1.png" ) no-repeat 50% 50%;
 }
 #qst_del{
 	background: url( "/resources/img/bicon10_1.png" ) no-repeat 50% 50%;
 }
+
 #delete_form{
-	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 40%;
+	background: url( "/resources/img/bicon13_2.png" ) no-repeat 50% 40%;
 }
 #item_img{
 	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;

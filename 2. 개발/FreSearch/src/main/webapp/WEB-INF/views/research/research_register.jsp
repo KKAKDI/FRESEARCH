@@ -24,8 +24,7 @@
 				<div id='left_top_box'>
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value=''>
 				</div>				
-				<div id='right_top_box'>
-					<button  id='palette'>팔레트</button>
+				<div id='right_top_box'>					
 					<button onclick="send();" id='send_form'>작성</button>
 					<button id='delete_form'></button>
 				</div>
@@ -41,11 +40,11 @@
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
 						<div class='remote_btn'>							
-							<button id='qst_btn'></button>							
-						</div>
-						<div class='remote_btn'>							
 							<button id='img_btn'></button>							
 						</div>
+						<div class='remote_btn'>							
+							<button id='qst_btn'></button>							
+						</div>						
 						<div class='remote_btn'>							
 							<button id='qst_del'></button>							
 						</div>
