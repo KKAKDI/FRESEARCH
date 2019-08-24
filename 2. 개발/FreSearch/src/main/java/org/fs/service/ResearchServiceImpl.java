@@ -92,10 +92,20 @@ public class ResearchServiceImpl implements ResearchService {
 						ResearchVO itemVO = new ResearchVO();
 						itemVO.setMb_email(email);
 						itemVO.setSubj_nm(subName);
-						itemVO.setItem_content(items[i][k]);
-						itemVO.setItem_img("");
-						itemVO.setRowNum(i);
-						mapper.itemReg(itemVO);
+						log.info("아이템 확인: "+items[i][k]);
+						String img[] = items[i][k].split("#img#");
+						log.info("이미지 확인: "+img.length);
+						if(img.length==2) { //img true
+							itemVO.setItem_content(img[0]);
+							itemVO.setItem_img(img[1]);
+							itemVO.setRowNum(i);
+							mapper.itemReg(itemVO);
+						}else if(img.length==1){
+							itemVO.setItem_content(img[0]);	
+							itemVO.setItem_img("");
+							itemVO.setRowNum(i);
+							mapper.itemReg(itemVO);
+						}						
 					}
 				}
 			}

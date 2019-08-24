@@ -468,12 +468,12 @@ img{
 	font-size:35px;
 }
 #research_info{
-	padding: 0 0 20px 0;
+	padding: 5px 0 20px 0;
 	margin-left:5px;
 }
 #research_ctegory{
 	display:inline-block;
-	width: 10%;
+	width: 20%;
 }
 .research_content .content_box .research_turm{
 	display:inline-block;
@@ -485,17 +485,21 @@ img{
 .research_content .content_box .research_item{
 	padding:10px 5px 10px 5px;
 }
+.research_content .content_box .research_item .research_item_img{
+	padding: 10px 5px 0 25px;
+}
+
 .research_content .content_box .research_item input[type=radio]{
-  -webkit-appearance: none;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #999;
-  transition: 0.2s all linear;
-  outline: none;
-  margin-right: 5px;
-  position: relative;
-  top: 4px;
+	-webkit-appearance: none;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	border: 2px solid #999;
+	transition: 0.2s all linear;
+	outline: none;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
 }
 .research_content .content_box .research_item input[type=text]{
 	box-sizing: border-box;

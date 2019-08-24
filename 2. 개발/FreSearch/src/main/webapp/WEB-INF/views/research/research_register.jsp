@@ -79,7 +79,7 @@
 						<input type='text' id='qst_content' placeholder='내용없는 질문' autocomplete='off'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option></select>
 						<div class='qst_swap'>
 							<ul id='item_box' class='clearflx'>
-								<li class='item_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><label for='item_img'></label><input type="file" name='item_img' id='item_img'/></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id="list"/><button id='img_del'></button></div></li>
+								<li class='item_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img'></label><input type="file" name='item_img' id='item_img'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id="list"/><button id='img_del'></button></div></li>
 							</ul>
 						</div>
 						<div class='etc_box'>
@@ -97,64 +97,56 @@
 	</div>	
 </body>
 <script>
-        var ws;
-        var messages = document.getElementById("message");
-        
-        $(document).ready(function(){
-        	
-
-
-        	console.log("들어왔다")
-            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
-            {
-                writeResponse("WebSocket is already opend.");
-
-                
-                return;
-            } 
-            
-            //웹소켓 객체 만드는 코드
-            ws = new WebSocket('ws://localhost:8080/echo');
-
-            
-            ws.onopen=function(event){
-                if(event.data===undefined) return;
-                writeResponse(event.data);
-            };
-            ws.onmessage=function(event){
-                writeResponse(event.data);
-            };
-            ws.onclose=function(event){
-                writeResponse("Connection closed");
-            }
-
-            
-/*           send()
-            function send(){
-            	console.log("send 들어왔다")
-                var text = document.getElementById("messageinput").value;
-            	var text = "갱신";
-                ws.send(text);
-                text=""; 
-           } */
-            
-             
-            
-        });
-        function send(){
-            //var text = document.getElementById("messageinput").value;
-        	console.log("뭐하냐");
-            var text = "갱신";
-            ws.send(text);
-            text="";
-            
-        }
-        function closeSocket(){
-            ws.close();
-        }
-        function writeResponse(text){
-        	console.log(text);
-            //message.innerHTML+="<br/>"+text;
-        }
-    </script>
+	$(function() {	
+		//웹 소켓
+		var ws;
+		
+		if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+		{
+		    writeResponse("WebSocket is already opend.");
+		
+		    
+		    return;
+		} 
+		
+		//웹소켓 객체 만드는 코드
+		ws = new WebSocket('ws://localhost:8080/echo');
+		
+		
+		ws.onopen=function(event){
+		    if(event.data===undefined) return;
+		    writeResponse(event.data);
+		};
+		ws.onmessage=function(event){
+		    writeResponse(event.data);
+		};
+		ws.onclose=function(event){
+		    writeResponse("Connection closed");
+		}
+		
+		
+		/*send()
+		function send(){
+			console.log("send 들어왔다")
+		    var text = document.getElementById("messageinput").value;
+			var text = "갱신";
+		    ws.send(text);
+		    text=""; 
+		} */
+		function send(){
+		    //var text = document.getElementById("messageinput").value;        	
+		    var text = "갱신";
+		    ws.send(text);
+		    text="";
+		    
+		}
+		function closeSocket(){
+		    ws.close();
+		}
+		function writeResponse(text){
+			console.log(text);
+		    //message.innerHTML+="<br/>"+text;
+		}
+	});
+</script>
 </html>
