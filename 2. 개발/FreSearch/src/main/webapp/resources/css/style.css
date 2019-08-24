@@ -749,3 +749,60 @@ body {
 .container .fixed_box .header .upper .login .dropdown:hover .dropdown-content {display: block;}
 
 .container .fixed_box .header .upper .login .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+/* 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS */
+
+
+#alarm_content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+}
+
+.dropdown-alarm {
+  position: relative;
+  display: inline-block;
+  left: 88%;
+}
+.dropdown-alarm>.dropdown-content { 
+  display: none;
+  position: absolute;
+  z-index: 1;
+  margin-left: -336px;
+  padding: 16px;
+  list-style: none;
+  text-align: left;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2), 0 0 1px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  font-size: 14px;
+  min-width: 184px;
+}
+
+
+
+
+.dropdown-alarm>.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown-alarm:hover>.dropdown-content {display: block;}
+
+.dropdown-alarm:hover>.dropbtn {background-color: #3e8e41;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS */

@@ -1,5 +1,6 @@
 package org.fs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.fs.domain.Criteria;
@@ -354,9 +355,12 @@ public class StatsController {
 			produces = "application/json")
 	public ResponseEntity<List<StatsVO>> getHeader(@RequestBody StatsVO vo) {
 			System.out.println("#여기 들어오나?");
-
+		if(vo.getSubj_code() == null) {
 			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
-		
+		}else {
+			service.headerUpdate(vo.getSubj_code());
+			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
+		}
 	}
 }
 

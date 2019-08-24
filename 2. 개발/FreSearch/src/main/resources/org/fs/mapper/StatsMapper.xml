@@ -492,24 +492,21 @@ order by qst_code desc, asw_content desc
 
 
 <select id="header" resultType="org.fs.domain.StatsVO">
-select subj_code,ctgr_code, mb_email, mb_nick, subj_nm, subj_regdate, subj_startdate, subj_enddate  from subject 
-where ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = #{mb_email}) 
+select subj_code,ctgr_code, mb_email, mb_nick, subj_nm, subj_regdate, subj_startdate, subj_enddate, read  from subject 
+where (ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = #{mb_email}) 
 or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
 or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
 or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
-or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = #{mb_email}))
+and read = 0
 order by subj_regdate desc
-
 </select>
 
-<select id="headerCount" resultType="String">
-select count(subj_code) from subject 
-where ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com') 
-or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-</select>
+<update id="headerUpdate">
+
+update subject set read = 1 where subj_code =#{subj_code}
+
+</update>
 
 
 

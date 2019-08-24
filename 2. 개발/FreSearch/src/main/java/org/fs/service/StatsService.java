@@ -24,5 +24,5 @@ public interface StatsService {
 	public StatsPagingSearchDTO getTableSearch(StatsVO vo, Criteria cri);
 	public List<StatsVO> getStatsContent(String subj_code);
 	public List<StatsVO> header(String mb_email);
-	public String headerCount();
+	public int headerUpdate(String subj_code); 
 }

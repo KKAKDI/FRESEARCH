@@ -280,12 +280,12 @@ var tableService = (function() {
 					':', (ss > 9 ? '' : '0') + ss ].join('');
 
 		} else {
-			var yy = dateObj.getFullYear().toString().substring(2,4);
+			var yy = dateObj.getFullYear().toString().substring(0,4);
 			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
 			var dd = dateObj.getDate();
 
-			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
-					(dd > 9 ? '' : '0') + dd ].join('');
+			return [ yy, '년 ', (mm > 9 ? '' : '0') + mm, '월 ',
+					(dd > 9 ? '' : '0') + dd,'일' ].join('');
 		}
 	};
 	
@@ -312,11 +312,33 @@ var tableService = (function() {
 		});
 	};
 	
+	function headerUpdate(data,callback, error){
+		
+		$.ajax({
+			type : "POST",
+			url : '/stats/header',
+			data : JSON.stringify(data),
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
+			success : function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+	}
+	
 	return{
 		tableSearch : tableSearch,
 		displayTime : displayTime,
 		table : table,
-		header : header
+		header : header,
+		headerUpdate : headerUpdate
 		
 		
 	}
