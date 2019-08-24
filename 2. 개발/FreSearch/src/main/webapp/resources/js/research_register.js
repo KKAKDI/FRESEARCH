@@ -116,7 +116,7 @@ $(function() {
 			var value = $(this).val();
 			if(value=='1'){
 				$(this).parents().find(".active_item").remove();
-				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='text' class='item_txt' id='disabled_sel' autocomplete='off' value='단답형 텍스트' readonly></li></ul>");
+				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='text' class='item_txt' id='disabled_sel' autocomplete='off' value='단답형 텍스트' readonly><input type='file' name='item_img' id='item_img"+i+"'/></li></ul>");
 			}else{
 				$(this).parents().find(".active_item").remove();
 				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul>");
@@ -154,14 +154,14 @@ $(function() {
 						item_index = $(".research_content #item_box")[i].childElementCount;
 						console.log("아이템 개수:"+item_index);
 						for(var j=0;j<item_index;j++){							
-							if($(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value==''){
+							if($(".research_content #item_box")[i].querySelectorAll(".item_txt")[j].value==''){
 								$.emptyCheck();
 								checkCnt++;
 								break;
 							}else{								
 								 var reader = new FileReader();
 								 var imgpath = "";
-								 console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
+								 //console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
 								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
 									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";
 									 data += $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].nextSibling.value+"#t#";
@@ -240,29 +240,35 @@ $(function() {
 		});
 		$("#remote .remote_btn").hover(
 				function () {		
-					$(this).toggleClass("special");						
+										
 					if("qst_btn"==$(this).children().attr("id")){
+						$(this).toggleClass("special");	
 						$(this).attr('data-before','질문 추가');
 					}else if("img_btn"==$(this).children().attr("id")){
-						$(this).attr('data-before','이미지 추가');
+						$(this).attr('data-before','이미지 추가');						
 					}else{
 						$(this).attr('data-before','질문 삭제');
+						$(this).toggleClass("special");	
 					}
 				},
 				// 마우스가 떠난다면
 				function () {
-					$(this).toggleClass("special");			
+					 if("img_btn"==$(this).children().attr("id")){
+						 
+					 }else{
+						 $(this).toggleClass("special");		
+					 }						
 				}
 			);
 		
 		$(document).on('mouseover','label',function(){
-			if("button_box"==$(this).parent().attr("class")){				
+			if("button_box"==$(this).parent().parent().attr("class")){				
 				$(this).toggleClass("button_info");
 				$(this).attr('data-before','이미지 추가');
 			}						
 		});
 		$(document).on('mouseout','label',function(){
-			if("button_box"==$(this).parent().attr("class")){
+			if("button_box"==$(this).parent().parent().attr("class")){
 				$(this).toggleClass("button_info");
 			}						
 		});
@@ -323,8 +329,8 @@ $(function() {
 				pathNode.append("<input id='img_path' type='hidden' value='"+imgpath+"'>");
 		 	});		
 	    });
-	    $(document).on("change","#img_btn",function() {	 
-	    	
+	    $(document).on("click","#img_btn",function() {	 
+	    	return false;
 	    });
 	    
 	    function fileUpload(formData,callback){
