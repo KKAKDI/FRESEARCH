@@ -339,6 +339,7 @@ GROUP BY answer_number,
        subj_nm, 
        subj_startdate, 
        subj_enddate
+ORDER BY subj_regdate desc
 </select>
 
 

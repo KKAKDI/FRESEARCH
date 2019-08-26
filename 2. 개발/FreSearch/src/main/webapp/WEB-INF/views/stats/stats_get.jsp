@@ -25,7 +25,7 @@
 
 			<div class="content-top"> 
 				<div class="top-top">   
-					<span id="hi">응답 10명 </span> <span class="what">${list[0].ctgr_nm}</span>
+					<span id="hi">응답 10명 </span> <span class="what" id="what">${list[0].ctgr_nm}</span>
 
 				</div>
 			</div>
@@ -161,6 +161,7 @@
 					html += '<div class="first-text-children">';
 					html += '<div class="hoho">';
 					html += '<span>'+result[i].qst_content+'</span>';
+					html += '<span class="what">객관식</span>'
 					html += '</div>';
 					html += '</div>';
 					html += '<div class="opacity"></div>';
@@ -174,7 +175,7 @@
 					
 					//html += '<c:out value="${list[0].item_img}"/>';
 					
-					html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
+					//html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
 					html += '<div class="security">';
 					html += '<div class="ContentWrap">';
 					html += '<div class="Content">';
@@ -197,9 +198,10 @@
 					html += '<td class="Cell-Top" data-value="53.988620395752">';
 					html += '<div class="Progress Blue" style="width: '+result[i].percent+'"></div>';
 					html += ' <span class="Value">'+result[i].percent+'</span>';
-					html += '</td>';
+					html += '</td>';  
 					html += '<td class="Cell-Top">'+result[i].asw_content+'</td>';
 					html += '</tr>';
+					
 					html += '</tbody>';
 					html += '</table>';
 					html += '</div>';
@@ -226,6 +228,7 @@
 				html += '<div class="first-text-children">';
 				html += '<div class="hoho">';
 				html += '<span>'+result[i].qst_content+'</span>';
+				html += '<span class="what">주관식</span>' 
 				html += '</div>';
 				html += '</div>';
 				html += '<div class="opacity"></div>';
@@ -273,7 +276,7 @@
 		count = result[0].subj_nm;
 		$("#hi").html(count);
 		var what = result[0].ctgr_nm; //+ "  "+result[0].subj_startdate+"              "+tableService.displayTime(result[0].subj_startdate)+"~"+tableService.displayTime(result[0].subj_enddate);
-		$(".what").html(what);
+		$("#what").html(what);
 	});
 	
 	
