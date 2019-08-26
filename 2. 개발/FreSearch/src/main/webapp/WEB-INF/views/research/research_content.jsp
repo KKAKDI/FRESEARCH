@@ -18,12 +18,23 @@
 </head>
 <script>
 	$(function() {
+		$.emptyCheck = function(){
+			swal({
+				title:"Oops",
+				text:"작성되지 않은 공간이 있습니다.",
+				icon:"error",
+				button:"확인",
+			});			
+			return false;
+		};	 
+		
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;
 			var user_email ="admin@fresearch.com";
 			var user_nick ="admin";
 			var form = $("#research_form");
+			var checkCnt= 0;
 			
 			research_values += user_email+"#email#";
 			research_values += user_nick +"#nick#";
@@ -31,32 +42,45 @@
 
 			for(var i=1;i<=values_index;i++){
 				var type = $(".research_qst .qst_type")[i-1].value;
-				if(type==0){
-					research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";					
-					if($("input:radio[name='item"+i+"']:checked").val()=='기타'){
-						research_values += $("input:radio[name='item"+i+"']:checked").next().val()+"#value#";			
-					}else{
-						research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";	
-					}
+				var radioCheck = $("input:radio[name='item"+i+"']:checked").length;				
+				
+				if(radioCheck==0){
+					checkCnt++;
+					console.log(radioCheck);
+					console.log(checkCnt);
+					break;					
 				}else{
-					console.log($("input:text[name='item"+i+"']").val());
-					research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
-					research_values += $("input:text[name='item"+i+"']").val()+"#value#";
-				}				
+					if(type==0){
+						research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";					
+						if($("input:radio[name='item"+i+"']:checked").val()=='기타'){
+							research_values += $("input:radio[name='item"+i+"']:checked").next().val()+"#value#";			
+						}else{
+							research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";	
+						}
+					}else{
+						console.log($("input:text[name='item"+i+"']").val());
+						research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
+						research_values += $("input:text[name='item"+i+"']").val()+"#value#";
+					}			
+				}					
 			}
-			$("#research_values").val(research_values);
-			form.attr("action","/research/research_content");
-			console.log(research_values);
-			swal({
-				title:"등록되었습니다!",
-				text:"답변이 성공적으로 등록되었습니다!",
-				icon:"success",
-				button:"확인",
-			})
-			.then((willDelete) => {
-				//return false;
-				form.submit();								
-			});			
+			if(checkCnt>0){
+				$.emptyCheck();
+				return false;
+			}else{
+				$("#research_values").val(research_values);
+				form.attr("action","/research/research_content");
+				console.log(research_values);				
+				swal({
+					title:"등록되었습니다!",
+					text:"답변이 성공적으로 등록되었습니다!",
+					icon:"success",
+					button:"확인",
+				})
+				.then((willDelete) => {					
+					form.submit();								
+				});	
+			}
 		});
 		$("#prev_btn").click(function(){
 			swal({
