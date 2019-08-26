@@ -176,7 +176,9 @@ $(function() {
 				}
 				if(checkCnt>0){
 					return false;
-				}else{						
+				}else{	
+					//동일한 이메일,제목 유무 체크
+					
 					console.log("data: "+data);		
 					$("#research_values").val(data);
 					form.attr("action","/research/research_register");

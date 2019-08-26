@@ -9,34 +9,48 @@ String ctx = request.getContextPath(); //콘텍스트 명 얻어오기
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<%=ctx %>/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<%@include file="../includes/header.jsp" %>
+
+
 <style>
 
-h1{
-text-align:center;
-}
-
-div{
-text-align: left;
-width: 1100px;
-	margin: auto;
-
- }
-
-form {
-	width:1100px;
-	margin : auto;
-}
 body {
-
-  padding-top: 70px;
-
-  padding-bottom: 30px;
-  
+   font-family: "Open Sans", sans-serif;
+   min-width: 850px;
+   font-weight: 500;
+   font-size: 16px;
 }
-textarea{
-	width:1098px;
+
+.container_new{
+   padding-top: 125px;
 }
+
+table {
+   width: 850px;
+   border-top: 1px solid #444444;
+   border-collapse: collapse;
+   margin: auto;
+   table-layout: fixed;
+}
+
+td.column {
+   background-color: #f0f0f0;
+   color: #505050;
+   padding-top: 15px;
+   font-weight: bold;
+   text-align: center;
+}
+
+td.column-data {
+   padding: 14 19;
+}
+
+div.button {
+   text-align: right;
+   margin: auto;
+   width: 850px;
+}
+
 
 
 .uploadResult {
@@ -102,78 +116,106 @@ textarea{
 }
 
 </style>
-<div>
-	<div>
-		<h1>글 수정</h1>
-	</div>
-</div>
-	
-	<div>
-		<div>
-			
-		</div>
-	</div>
-<form role="form" id="frm" action="/board/board_modify" method="post">
-<input type='hidden' name='pageNum' value='${cri.pageNum }'>
-<input type='hidden' name='amount' value='${cri.amount }'>
-<input type='hidden' name='keyword' value='${cri.keyword }'>
-<input type='hidden' name='type' value='${cri.type}'>
 
-<div class="form-group">
-  <label>번호</label> 
-  <input class="form-control" name='brd_code' 
-     value='${board.brd_code}' readonly="readonly">
-</div>
-
-<div class="form-group">
-  <label>제목</label> 
-  <input class="form-control" name='brd_subject' 
-    value='${board.brd_subject }' >
-</div>
-
-<div class="form-group">
-  <label>내용</label>
-  <textarea name="brd_content" id="ir1" rows="10" cols="100" >${board.brd_content}</textarea>
-
-</div>
-
-
-	<div class="form-group">
-  <input  type="hidden" class="form-control" name='mb_email'
-    value='${board.mb_email}' readonly="readonly">            
-</div>
-
-<div class="form-group">
-  <input   type="hidden" class="form-control" name='mb_nick'
-    value='${board.mb_nick}
-    ' readonly="readonly">            
-</div>
-
-<button class="btn btn-sm btn-success" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
-  <button class="btn btn-sm btn-danger" type="submit" data-oper='delete'>삭제</button>
-  <button class="btn btn-sm btn-primary" type="submit" data-oper='list'>리스트</button>
+<div class="container_new">
+   <div>
+   	
+   	<div style="text-align: center;">
+				<h2> 게시글 수정</h2>
+				</div>
    
-</form>
-
-<div>
-	<div>
-		<div>
-			<div>첨부 파일</div>
-			<div>
-				<div class="form-group uploadDiv">
-					<input type="file" name='uploadFile' multiple="multiple">
+      <div style="text-align: center;">
+         <table style="text-align: center;">
+            <form role="form" id="frm" action="/board/board_modify" method="post">
+            
+			<input type='hidden' name='pageNum' value='${cri.pageNum }'>
+			<input type='hidden' name='amount' value='${cri.amount }'>
+			<input type='hidden' name='keyword' value='${cri.keyword }'>
+			<input type='hidden' name='type' value='${cri.type}'>
+			
+			<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+                     <td class="column" style="width: 15%;" >No</td>
+                      <td class="column-data" colspan="2" style="padding: 0px;"><input id="brd_code" class="form-control"
+                      name='brd_code' value=${board.brd_code} 
+                      readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center;">
+                      </td>
+                      
+                      
+                     <td class="column" style="width: 15%;">닉네임</td>
+                     <td class="column-data" colspan="2" readonly>${board.mb_nick}</td>
+           </tr>
+           
+           <tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+                  <td class="column" style="width: 15%;">제목</td>
+                  <td class="column-data" colspan="5" style="padding: 0px;">
+                  <input id="brd_subject" class="form-control"
+                     name='brd_subject' style="width: 100%; height:52px; border:none; padding:0px;" value=${board.brd_subject}></td>
+               </tr>
+               
+               <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+                  <td colspan="6">
+                  <textarea  id="ir1" rows="10" cols="100" class="form-control" rows="6" name='brd_content' 
+                     style="display: block; width: 848px; height: 300px;">${board.brd_content}</textarea>
+                  </td>
+               </tr>
+               
+                <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+               		<td class="column" colspan="6">첨부파일</td>
+               </tr>
+					
+					
+				
+			
+				<div class="form-group">
+  					<input  type="hidden" class="form-control" name='mb_email' value='${board.mb_email}' readonly="readonly">            
 				</div>
 
-				<div class='uploadResult'>
-					<ul>
-
-					</ul>
+				<div class="form-group">
+  					<input   type="hidden" class="form-control" name='mb_nick' value='${board.mb_nick}' readonly="readonly">            
 				</div>
-			</div>
-
-		</div>
-	</div>
+				
+				<div>
+               		 <input type='hidden' name='brd_code' value=${board.brd_code}>
+              
+               </div>
+				
+				
+			 </form>
+         </table>        
+      </div>
+   </div>
 </div>
+
+<div class='bigPictureWrapper'>
+   <div class='bigPicture'></div>
+</div>
+
+
+<div style="padding-top: 20px; width: 850px; text-align: left; margin: auto;">
+   <div>
+      <%-- <div>첨부 파일</div> --%>
+      <div>
+         <div class="form-group uploadDiv">
+            <input type="file" name='uploadFile' multiple="multiple">
+         </div>
+
+         <div class='uploadResult'>
+            <ul>
+
+            </ul>
+         </div>
+      </div>
+
+   </div>
+</div>
+		<div style= "text-align:center; width: 850px;">
+				<button class="btn btn-sm btn-success" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
+  				<button class="btn btn-sm btn-danger" type="submit" data-oper='delete'>삭제</button>
+  				<button class="btn btn-sm btn-primary" type="submit" data-oper='list'>리스트</button>
+		</div>
+	
+
+
 
 
 
@@ -260,8 +302,8 @@ $(document).ready(function() {
 	            str += "<li data-path='"+attach.brd_attach_path+"' data-uuid='"+attach.brd_attach_uuid+"' "
 	            str +=" data-filename='"+attach.brd_attach_name+"' data-type='"+attach.brd_attach_type+"' >";
 	            str += "<span> "+ attach.brd_attach_name+"</span>";
-	            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
-	            str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+	            str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
+	            str += "><i class='fa fa-times'></i><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></button><br>";
 	            str += "<img src='/display?fileName="+fileCallPath+"'>";
 	            str +"</li>";
 	          }else{
@@ -269,8 +311,8 @@ $(document).ready(function() {
 	            str += "<li data-path='"+attach.brd_attach_path+"' data-uuid='"+attach.brd_attach_uuid+"' "
 	            str += "data-filename='"+attach.brd_attach_name+"' data-type='"+attach.brd_attach_type+"' >";
 	            str += "<span> "+ attach.brd_attach_name+"</span><br/>";
-	            str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
-	            str += " class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+	            str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
+	            str += " ><i class='fa fa-times'><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></i></button><br>";
 	            str += "<img src='/resources/img/attach.png'></a>";	          
 	            str +"</li>";
 	          }
@@ -359,8 +401,8 @@ $(document).ready(function() {
 					str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 					str +" ><div>";
 					str += "<span> "+ obj.fileName+"</span>";
-					str += "<button type='button' data-file=\'"+fileCallPath+"\' "
-					str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+fileCallPath+"\' "
+					str += "data-type='image' ><i class='fa fa-times'><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></i></button><br>";
 					str += "<img src='/display?fileName="+fileCallPath+"'>";
 					str += "</div>";
 					str +"</li>";
@@ -371,8 +413,8 @@ $(document).ready(function() {
 					str += "<li "
 					str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
 					str += "<span> "+ obj.fileName+"</span>";
-					str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
-					str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+					str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+					str += "><i class='fa fa-times'><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></i></button><br>";
 					str += "<img src='/resources/img/attach.png'></a>";
 					str += "</div>";
 					str +"</li>";
@@ -435,4 +477,6 @@ function submitContents(elClickedObj) {
  } catch(e) {}
  }
 
-</script>		
+</script>	
+
+<%@include file="../includes/footer.jsp" %>	

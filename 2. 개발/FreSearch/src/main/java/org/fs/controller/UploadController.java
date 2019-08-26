@@ -169,6 +169,8 @@ public class UploadController {
 			} // end catch
 		//} // end for
 		//return new ResponseEntity<>(list, HttpStatus.OK); //이미지 썸네일 리턴
+			fileinfo = fileinfo.replaceAll("\\\\", "/");
+			log.info(fileinfo);
 		return fileinfo;
 	}
 	

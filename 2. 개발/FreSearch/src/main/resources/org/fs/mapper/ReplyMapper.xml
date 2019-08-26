@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.ReplyMapper">
+
+	<insert id="insert" >
+	
+		insert into reply(rpl_code, brd_code, rpl_content, mb_nick, mb_email, rpl_regdate)
+		values (reply_seq.nextval, #{brd_code}, #{rpl_content}, #{mb_nick}, #{mb_email}, SYSDATE)
+		
+	</insert>
+
+	<select id="read" resultType="org.fs.domain.ReplyVO" >
+	
+		select * from reply where rpl_code = #{rpl_code} 
+
+	</select>
+
+	<delete id="delete" >
+	
+		delete from reply where rpl_code = #{rpl_code}
+	
+	</delete>
+	
+		
+	<update id="update">
+	
+		update reply set rpl_content = #{rpl_content} where rpl_code = #{rpl_code}
+	
+	</update>
+
+	<select id="getListPaging" resultType ="org.fs.domain.ReplyVO">
+		
+		select rpl_code, brd_code, rpl_content, mb_nick, mb_email, rpl_regdate from reply
+		where brd_code = #{brd_code} order by rpl_code asc
+	
+	
+	</select>
+	
+
+</mapper>
