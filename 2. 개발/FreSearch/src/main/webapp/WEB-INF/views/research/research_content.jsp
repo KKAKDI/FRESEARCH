@@ -44,7 +44,7 @@
 				var type = $(".research_qst .qst_type")[i-1].value;
 				var radioCheck = $("input:radio[name='item"+i+"']:checked").length;				
 				
-				if(radioCheck==0){
+				if(type==0&&radioCheck==0){
 					checkCnt++;
 					console.log(radioCheck);
 					console.log(checkCnt);
