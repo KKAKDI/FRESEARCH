@@ -245,7 +245,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 			
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo1.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->

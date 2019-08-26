@@ -4,7 +4,7 @@
 	<footer id="footer" class="clearfix">
 		<div class="footer_inner">
 			<div class="footer_logo">
-				<a href=""><img src="/resources/img/f_logo.png" alt="FRESEARCH"></a>
+				<a href=""><img src="/resources/img/logo1_1.png" alt="FRESEARCH"></a>
 			</div>
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>

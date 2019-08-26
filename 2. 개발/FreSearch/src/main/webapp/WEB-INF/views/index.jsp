@@ -160,7 +160,7 @@
 				</div>
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo1.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->
@@ -363,7 +363,7 @@
 	<footer id="footer" class="clearfix">
 		<div class="footer_inner">
 			<div class="footer_logo">
-				<a href=""><img src="/resources/img/logo.png" alt="FRESEARCH"></a>
+				<a href=""><img src="/resources/img/logo1_1.png" alt="FRESEARCH"></a>
 			</div>
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>

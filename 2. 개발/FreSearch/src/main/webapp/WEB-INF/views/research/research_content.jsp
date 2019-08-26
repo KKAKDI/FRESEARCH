@@ -47,7 +47,16 @@
 			$("#research_values").val(research_values);
 			form.attr("action","/research/research_content");
 			console.log(research_values);
-			form.submit();
+			swal({
+				title:"등록되었습니다!",
+				text:"답변이 성공적으로 등록되었습니다!",
+				icon:"success",
+				button:"확인",
+			})
+			.then((willDelete) => {
+				//return false;
+				form.submit();								
+			});			
 		});
 		$("#prev_btn").click(function(){
 			swal({
