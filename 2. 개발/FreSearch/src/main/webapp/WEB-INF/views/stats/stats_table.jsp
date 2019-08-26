@@ -751,7 +751,7 @@
 						html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 						html +=	'<div class="article-list-item-meta__item">';
 						html +=	'<a href="">'+list[i].mb_nick+'</a>';
-						html += '</div>';
+						html += '</div>'; 
 						html += '</div>';
 						html += '</div>';
 						html +=	'</div>';

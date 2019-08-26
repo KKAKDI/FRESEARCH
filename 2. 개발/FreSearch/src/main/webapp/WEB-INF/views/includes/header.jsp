@@ -277,7 +277,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
-
+ 
 
 	//최운학
 	$("#logout").on("click", function(e) {
@@ -287,7 +287,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	});
 
 	//곽지훈
-	$(function() {
+	$(function() { 
 		$(window).load(function() {
 			$(".loading").fadeOut(700);
 		});
@@ -355,9 +355,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         var messages = document.getElementById("message");
         
         $(document).ready(function(){
-        	//console.log("ID : "+$("#ID").html().trim());
         	var mb_email =($)
-        	console.log("#WebSocket 연결");
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {
                 writeResponse("WebSocket is already opend.");
@@ -367,23 +365,16 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             
             //웹소켓 객체 만드는 코드
             ws = new WebSocket('ws://localhost:8080/echo');
-            
             ws.onopen=function(event){
-            	console.log("onopen : "+event)
-            	//console.log("onopen2 : "+event.data)
             	
                 if(event.data===undefined) return;
                 writeResponse(event.data);
                 
             };
             ws.onmessage=function(event){
-            	console.log("onmessage : "+event)
-            	//console.log("onmessage2 : "+event.data)
                 writeResponse(event.data);
             };
             ws.onclose=function(event){
-            	console.log("onclose : "+event)
-            	//console.log("onclose2 : "+event.data)
                 writeResponse("Connection closed");
             }
         });
@@ -391,8 +382,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         //웹소켓 메세지 전송
         function send(){
             //var text = document.getElementById("messageinput").value;
-        	console.log("send : "+event)
-        	//console.log("send2 : "+event.data)
             var text = "갱신";
             ws.send(text);
             text="";
@@ -401,7 +390,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         
         //웹소켓 닫힘
         function closeSocket(){
-        	console.log("#closeSocket");
             ws.close();
         }
         
@@ -412,10 +400,8 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         function writeResponse(text){
         	
         	if($(".bar").prev().html() === undefined){
-        		console.log("첫번째");
         		var mb_email = '';
         	}else{
-        		console.log("두번째");
         		var mb_email = $(".bar").prev().html().trim();
         	}
         	var subj_code = '';
@@ -424,7 +410,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         	$(document).ready(function(){
                 $(document).on("click",".alarm_button",function(event){
                   // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
-                  console.log($(this).prev().text());
                   subj_code = $(this).prev().text();
                   
                   var data ={
@@ -433,12 +418,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                   }
                   
                  	tableService.headerUpdate(data, function(list){
-                	  console.log("성공! : ");
                 	  location.href="/research/research_content?subj_code="+subj_code;
                   }); 
                 });
             }); 
-        	console.log("writeResponse");
         	
         	
         	
@@ -448,13 +431,11 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	         	var data ={
 	        		mb_email : mb_email
 	        	}
-	        	console.log("mb_email : "+data.mb_email);
 	        	
 	        	tableService.header(data,function(list){
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			console.log("list.lenght 숫자 다르다");
 	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
 	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
@@ -470,11 +451,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	        			}
 	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
 	        			$('#alarm_content').html(html);
-	        		}else{
-	        			console.log("list.lenght 숫자 같다");
-	        		}
+	        		}else{ 
+	        		} 
 	        	});
-        	}
+        	} 
         }
 
         

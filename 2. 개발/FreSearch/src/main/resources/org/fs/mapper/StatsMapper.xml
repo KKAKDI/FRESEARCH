@@ -159,54 +159,6 @@ GROUP  BY c.ctgr_code,
           c.ctgr_nm 
 ORDER  BY ctgr_code 
 </select>
-<!-- 
-<select id="getTable" resultType="org.fs.domain.StatsVO">
-
-SELECT (SELECT Count(*)
-        FROM   (SELECT *
-                FROM   answer)
-        WHERE  item_code = e.item_code) AS answer_number,
-       b.subj_regdate,
-       f.ctgr_nm,
-       a.mb_nick,
-       c.qst_img,
-       b.subj_nm,
-       b.subj_startdate,
-       b.subj_enddate
-FROM   member a,
-       subject b,
-       question c,
-       item d,
-       answer e,
-       category f
-WHERE  b.mb_email = a.mb_email
-       AND b.subj_code = c.subj_code
-       AND c.qst_code = d.qst_code
-       AND d.item_code = e.item_code
-       AND f.ctgr_code = b.ctgr_code
-       AND CTGR_NM like '%'||#{ctgr_nm}||'%'
-       AND a.MB_SEX like '%'|| #{mbSex}||'%'
-       AND substr(a.MB_ADDR,1 , 5) like '%'||#{mbAddr}||'%'
-       AND NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}
-      	 <choose>
-      		<when test="stats == '전체'">
-       		</when>
-       		
-       		<when test="stats == '대기'">
-      			<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
-      		</when>
-      		
-       		<when test="stats == '진행중'"> 
-	   			<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
-	   		</when>
-	   		
-	   		<when test="stats == '완료'">
-	   			<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
-	   		</when>
-	   		
-	   	</choose>
-group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code
- -->
  
  <!-- STATS_TABLE 리스트 뽑는 SQL-->
 <select id="getTable" resultType="org.fs.domain.StatsVO">
@@ -449,21 +401,19 @@ select count(*) from (select MB_ADDR from member where  MB_ADDR like '%서울%')
 <select id="getStatsContent" resultType="org.fs.domain.StatsVO">
 SELECT DISTINCT a.subj_code, 
                 b.qst_code, 
-                c.item_code, 
+                c.item_code,
+                b.qst_type,
+                c.item_img, 
                 e.ctgr_nm, 
                 a.subj_nm, 
                 b.qst_content, 
                 c.item_content,
-        
                 (SELECT count(asw_content)
                  FROM   answer 
                  WHERE  item_code = c.item_code)AS ASW_CONTENT,
-                 
                  ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
                  FROM   answer
                  WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
-
-                 
                 a.subj_startdate, 
                 a.subj_enddate, 
                 c.item_regdate 
@@ -479,7 +429,9 @@ WHERE  a.subj_code = b.subj_code
 GROUP  BY a.mb_nick, 
           a.subj_code, 
           b.qst_code, 
-          c.item_code, 
+          c.item_code,
+          b.qst_type,
+          c.item_img, 
           e.ctgr_nm, 
           a.subj_nm, 
           b.qst_content, 

@@ -266,7 +266,7 @@ var tableService = (function() {
 		var today = new Date();
 
 		var gap = today.getTime() - timeValue;
-
+ 
 		var dateObj = new Date(timeValue);
 		var str = "";
 
@@ -287,7 +287,7 @@ var tableService = (function() {
 			return [ yy, '년 ', (mm > 9 ? '' : '0') + mm, '월 ',
 					(dd > 9 ? '' : '0') + dd,'일' ].join('');
 		}
-	};
+	}; 
 	
 	function header(data, callback, error) {
 		
