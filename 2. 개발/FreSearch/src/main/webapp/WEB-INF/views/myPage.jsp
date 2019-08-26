@@ -64,6 +64,59 @@
 		display:none;
 		min-height: 730px;	
 	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box{
+		padding:30px;	
+		width:650px;
+		background-color: #fff;
+		min-height: 650px;
+		margin:0 auto;
+		margin-top:15px;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box label{
+		display:block;
+		padding: 10px 0 10px 0;
+		font-size: 17px;
+  		font-weight: 500;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=text],input[type=password]{
+	    width: 100%;	   
+	    padding: 10px 0 10px 0;
+	    border: none;
+	    border-bottom: 1px solid #ddd;
+	    font-size: 16px;
+	    transition: all 0.1s;
+	    margin-bottom: 5px;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=radio]{
+	    -webkit-appearance: none;
+	    border-radius: 50%;
+	    width: 18px;
+	    height: 18px;
+	    border: 2px solid #999;
+	    transition: 0.2s all linear;
+	    outline: none;
+	    margin-top: 2px;
+	    margin-right: 5px;
+	    margin-right: 5px;
+	    position: relative;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=radio]:checked{
+		border: 9px solid #1428a0;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=text]:focus,input[type=password]:focus{
+		border-bottom: 2px solid #1428a0;
+		outline: none;
+	}
+	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=button]{
+		display: block;
+	    margin: 0 auto;
+	    margin-top: 10px;
+	    width: 200px;
+	    background-color: #1428a0;
+	    border: none;
+	    color: #fff;	   
+	    height: 33px;
+	}
 	.mycontent .content_box .main_content .content_title{
 	    font-size: 25px;
 	    padding-bottom: 10px;
@@ -75,32 +128,33 @@
 		display: inline-block;	
 	}
 	.mycontent .content_box .main_content .research_list_top{
+	    margin-top: 15px;
 		min-height: 300px;
 	}
 	.mycontent .content_box .main_content .research_list_top .top_content{
 		height: 50px;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li{
+	li{
 		height: 38px;
 		border-bottom: 1px solid #dcdcdc;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li dt{
+	li dt{
 		display:inline-block;		
-		padding: 5px;
+		padding: 8px;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li >dt:nth-child(1){
+	li >dt:nth-child(1){
 	    font-weight: bold;	
 		text-align: center;
 		width:150px;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li >dt:nth-child(2){
-		width:400px;
+	li >dt:nth-child(2){
+		width:390px;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li >dt:nth-child(3){
+	li >dt:nth-child(3){
 		text-align: center;
 		width:120px;
 	}
-	.mycontent .content_box .main_content .research_list_top .top_content li >dt:nth-child(4){
+	li >dt:nth-child(4){
 		text-align: center;
 		width:200px;
 	}
@@ -116,6 +170,25 @@
 	    height: 50px;
 	    background: url(/resources/img/bicon15_4.png) no-repeat 50% 50%;
 	    margin: 0 auto;
+	}
+	#mb_addr_find{
+	    background-color: #fff;
+	    border: 1px solid #e5e5e5;
+	    border-radius: 4px;
+	    padding: 7.2px 15px 10px 15px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px;
+	    cursor: pointer;
+	    outline-color: #1428a0;
+	    color: #000;
+	    height: 40.10px;
+	    width: 132.45px;
+	}
+	#mb_addr1{
+		width: 40%;
 	}
 	.research_list{
 		margin-top: 15px;
@@ -185,92 +258,134 @@
 			<div id='mem_profile'></div>
 			<div class='profile_name'>관리자</div>
 			<div class='profile_name'>(admin@admin.com)</div>
-			<div class='profile_name' id='grade_box'>
-			<label>일반회원</label>
-			</div>
+			<div class='profile_name' id='grade_box'><label>일반회원</label></div>
 		</div>
-		<div class='info_inner' id='research_list_take'>
-			<p>참여한 리서치</p>
-		</div>
-		<div class='info_inner' id='research_list_make'>
-			<p>작성한 리서치</p>
-		</div>
-		<div class='info_inner' id='mem_modi'>
-			<p>회원정보 수정</p>
-		</div>
+		<div class='info_inner' id='research_list_take'><p>참여한 리서치</p></div>
+		<div class='info_inner' id='research_list_make'><p>작성한 리서치</p></div>
+		<div class='info_inner' id='mem_modi'><p>회원정보 수정</p></div>
 	</div>
 	<div class='content_box'>
 		<div class='take_list_content'>
-			<div class='content_title'>
-				참여한 리서치 목록
-			</div>
+			<div class='content_title'>참여한 리서치 목록</div>
 			<div class='research_list' id='research_list_take_scroll'>
-				<ul class='list_content'>
+<ul class='list_content'>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>				
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>	
 				</ul>
 			</div>
 		</div>
 		<div class='make_list_content'>
-			<div class='content_title'>
-				작성한 리서치 목록
-			</div>
+			<div class='content_title'>작성한 리서치 목록</div>
 			<div class='research_list' id='research_list_make_scroll'>
 				<ul class='list_content'>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
 					</li>
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
+					</li>
+					<li>
+						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+					</li>
+					<li>
+					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
 					</li>
 					<li>
 						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
@@ -279,14 +394,39 @@
 			</div>
 		</div>		
 		<div class='mem_modi_content'>
-			<div class='content_title'>
-				회원 정보
+			<div class='content_title'>회원 정보 수정</div>
+			<div class='mem_modi_box'>	
+			<form name='modi_form' id='modi_form' action='' method='post'>			
+				<label>현재 비밀번호</label>
+				<input type='password' name='mb_pwd_now' id='mb_pwd' value='' placeholder='현재 비밀번호'>
+				<label>새 비밀번호</label>
+				<input type='password' name='mb_pwd_new' id='mb_pwd' value='' placeholder='새 비밀번호'>
+				<label>새 비밀번호 확인</label>
+				<input type='password' name='mb_pwd_new2' id='mb_pwd2' value='' placeholder='새 비밀번호 확인'>
+				<label>주소</label>
+				<input type='text' name='mb_addr1' id='mb_addr1' placeholder='우편번호'>
+				<input type='button' id='mb_addr_find' value='우편번호 찾기'>
+				<input type='text' name='mb_addr2' id='mb_addr2' placeholder='주소'>
+				<input type='text' name='mb_addr3' id='mb_addr3' placeholder='상세주소'>
+				<label>관심 카테고리 (최대 5개 선택)</label>
+				<label>결혼 유무</label>
+				<input type='radio' name='mb_marriage' value=''>유
+				<input type='radio' name='mb_marriage' value=''>무
+				<label>자녀 유무</label>
+				<input type='radio' name='mb_child' value=''>유
+				<input type='radio' name='mb_child' value=''>무
+				<label>자가 유무</label>
+				<input type='radio' name='mb_home' value=''>유
+				<input type='radio' name='mb_home' value=''>무
+				<label>자차 유무</label>
+				<input type='radio' name='mb_car' value=''>유
+				<input type='radio' name='mb_car' value=''>무
+				<input type='button' name='modi' id='modi' value='수정하기'>
+			</form>
 			</div>
 		</div>
 		<div class='main_content'>
-			<div class='content_title' id='research_list_take'>
-				<p>참여한 리서치 목록</p>
-			</div>
+			<div class='content_title' id='research_list_take'><p>참여한 리서치 목록</p></div>
 			<div class='research_list_top' id='research_list_take_top'>
 				<ul class='top_content'>
 					<li>
@@ -306,9 +446,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class='content_title' id='research_list_make'>
-				<p>작성한 리서치 목록</p>
-			</div>
+			<div class='content_title' id='research_list_make'><p>작성한 리서치 목록</p></div>
 			<div class='research_list_top' id='research_list_make_top'>
 				<ul class='top_content'>
 					<li>
