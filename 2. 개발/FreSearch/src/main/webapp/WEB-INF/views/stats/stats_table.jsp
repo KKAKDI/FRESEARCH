@@ -11,33 +11,12 @@
 <div class="main-panel">
 	<div class="content-wrapper">
 		<div class="sub-header">
-			<div class="sub-header-info"
-				style="z-index: 1000; position: static; top: auto;">
+			
+			<div class="sub-link" id="sub-menu"
+				style="z-index: auto; position: static; top: autol">
 				<h2 class="sub-header__title">
 					<a href="">통계 목록</a>
 				</h2>
-				<ul class="sub-header-button">
-					<!-- <li class="sub-header-button__item sub-header-button__item--search">
-						<button id="search-toggle-button" class="button">검색하기</button> 
-					</li>-->
-					<li class="sub-header-button__item"><a href=""><img
-							src="https://talk.op.gg/images/icon-write@2x.png" alt="글쓰기 "
-							width="24"> </a></li>
-				</ul>
-			</div> 
-			<div class="sub-link" id="sub-menu"
-				style="z-index: auto; position: static; top: autol">
-				<ul class="sub-link__list">
-					<li class="sub-link__item sub-link__item--active"><a href=""><img
-							src="https://talk.op.gg/images/icon-hot-on@2x.png" width="24" alt><span>인기</span></a></li>
-
-					<li class="sub-link__item"><a href=""><img
-							src="https://talk.op.gg/images/icon-new@2x.png" width="24"><span>최신</span></a></li>
-					<li class="sub-link__item"><a href="" class="top"><img
-							src="https://talk.op.gg/images/icon-top@2x.png" width="24"><span>TOP</span></a></li>
-					<li class="sub-link__item"><a href=""><img
-							src="https://talk.op.gg/images/icon-boost@2x.png" width="24"><span>10추</span></a></li>
-				</ul>
 	 			<div class="sub-header-search"> 
 					<form action> 
 						<label> 
@@ -618,7 +597,7 @@
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
 							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<div>'+list[i].answer_number+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
@@ -758,7 +737,7 @@
 			    		html += '<div class="article-list-item">';
 						html += '<div class="article-list-item__vote">';
 						html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-						html +=	'<div>'+list[i].answer_number+'</div>';
+						html +=	'<div>'+list[i].count+'</div>';
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
@@ -772,7 +751,7 @@
 						html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 						html +=	'<div class="article-list-item-meta__item">';
 						html +=	'<a href="">'+list[i].mb_nick+'</a>';
-						html += '</div>';
+						html += '</div>'; 
 						html += '</div>';
 						html += '</div>';
 						html +=	'</div>';
@@ -975,7 +954,7 @@
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
 							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<div>'+list[i].answer_number+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';

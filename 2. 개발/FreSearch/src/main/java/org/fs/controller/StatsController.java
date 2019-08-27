@@ -29,7 +29,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/stats")
 @AllArgsConstructor
-@SessionAttributes({"alarm","sawonDetail"})
 public class StatsController {
 	private StatsService service;
 
@@ -278,6 +277,9 @@ public class StatsController {
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
+		for(StatsVO vo: list) {
+			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
+		}
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")
@@ -312,33 +314,6 @@ public class StatsController {
 			consumes = "application/json", 
 			produces = "application/json")
 	public ResponseEntity<StatsPagingSearchDTO> getTableAll(@RequestBody StatsVO vo,@ModelAttribute Criteria cri) {
-		//Criteria cri1 = new Criteria(cri.getPageNum(), cri.getAmount());
-		log.info("조성식1 : "+vo.getCtgr_nm());
-		log.info("조성식1 : "+vo.getMb_addr());
-		log.info("조성식1 : "+vo.getMb_sex());
-		log.info("조성식1 : "+vo.getStartAge());
-		log.info("조성식1 : "+vo.getEndAge());
-		log.info("조성식1 : "+vo.getStats());
-		log.info("조성식2 : "+cri.getPageNum());
-		log.info("조성식2 : "+cri.getAmount());
-//		vo.setCtgr_nm("");
-//		vo.setMb_sex("여");
-//		vo.setMb_addr("");
-//		vo.setStats("전체");
-//		vo.setStartAge(0);
-//		vo.setEndAge(99);
-//		cri.setPageNum(1);
-//		cri.setAmount(3);
-		
-//		log.info("조성식1 : "+vo.getCtgr_code());
-//		log.info("조성식1 : "+vo.getMb_addr());
-//		log.info("조성식1 : "+vo.getMb_sex());
-//		log.info("조성식1 : "+vo.getStartAge());
-//		log.info("조성식1 : "+vo.getEndAge());
-//		log.info("조성식1 : "+vo.getStats());
-//		log.info("조성식2 : "+cri.getPageNum());
-//		log.info("조성식2 : "+cri.getAmount());
-		
 		if ((vo.getMb_nick() == "" && vo.getSubj_nm() == "")|| (vo.getMb_nick() == null && vo.getSubj_nm() == null)) {
 			log.info("여기는 들어오면 안돼");
 			return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);

@@ -19,7 +19,7 @@ body {
 }
 .loading label{
 	position: absolute;
-    width: 500px;
+    width: 500px; 
     height: 500px;
     left: 50%;
     top: 70%;

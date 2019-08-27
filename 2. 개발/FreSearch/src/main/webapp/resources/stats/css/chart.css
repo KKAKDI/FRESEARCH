@@ -293,20 +293,20 @@ body {
 }
 
 .btn-outline-secondary {
-	color: #0c4da2;
-	border-color: #0c4da2;
+	color: #1428a0;
+	border-color: #1428a0;
 }
 .btn-outline-secondary-all {
 	color: #fff;
-	background-color: #0c4da2;
-	border-color: #0c4da2;
+	background-color: #1428a0;
+	border-color: #1428a0;
 }
 
 
 .btn-outline-secondary:hover {
 	color: #fff;
-	background-color: #0c4da2;
-	border-color: #0c4da2;
+	background-color: #1428a0;
+	border-color: #1428a0;
 }
 
 .btn-outline-secondary:focus, .btn-outline-secondary.focus {
@@ -830,6 +830,8 @@ a {
     overflow-x: auto;
     overflow-y: hidden;
     max-height: 48px;
+    padding-top: 15px;    
+    padding-bottom: 17px;
 }
 .sub-link__list {
     padding: 0 16px;
@@ -1131,7 +1133,7 @@ button, input {
 	box-sizing: border-box;
     max-width: 100%;
     min-width: 0%;
-    padding: 20px 32px 0 42px;
+    padding: 10px 32px 0 42px;
 }
 body{
 	background: #f4f4f4
@@ -1152,5 +1154,15 @@ body{
     font-size: 18px;
     color: #555e5e;
     background-color: rgb(208, 208, 208);
+}
+
+.img{
+	width: 180px;
+    max-height: 400px;
+    vertical-align: top;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
