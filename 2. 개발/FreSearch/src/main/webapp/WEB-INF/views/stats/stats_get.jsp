@@ -175,10 +175,10 @@
 					
 					//html += '<c:out value="${list[0].item_img}"/>';
 					
-					//html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
+					html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
 					html += '<div class="security">';
 					html += '<div class="ContentWrap">';
-					html += '<div class="Content">';
+					html += '<div class="Content">'; 
 					html += '<div class="Box">';
 					html += '<div class="Content">';
 					html += '<div id="ChampionStatsTable">';
