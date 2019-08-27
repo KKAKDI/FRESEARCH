@@ -65,13 +65,18 @@ public class ResearchServiceImpl implements ResearchService {
 						case 3:
 							headerVO.setSubj_enddate(dt.parse(header[j]));
 							break;
+						case 4:
+							headerVO.setMb_email(header[j]);
+							email = header[j];
+							break;
+						case 5:
+							headerVO.setMb_nick(header[j]);
+							break;
 						}
 					} catch (ParseException e) {
 						log.info(e);
 					}
-				}
-				headerVO.setMb_email(email);
-				headerVO.setMb_nick("admin");
+				}				
 				mapper.subjReg(headerVO); 
 			} else {
 				String item[] = block[i].split("#t#");

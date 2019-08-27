@@ -5,6 +5,9 @@ body {
 	vertical-align: top;
 	background-color: #f4f4f4;
 }
+p{
+	display:none;
+}
 button{
 	outline:none;
 }

@@ -22,7 +22,7 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value=''>
+					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value='' maxlength="23">
 				</div>				
 				<div id='right_top_box'>					
 					<button onclick="send();" id='send_form'>작성</button>
@@ -50,7 +50,9 @@
 						</div>
 					</div>
 					<div class='research_content clearflx'>
-						<input type='text' id='subj_nm' placeholder='제목없는 설문지' autocomplete='off'>
+						<input type='text' id='subj_nm' placeholder='제목없는 설문지' autocomplete='off' maxlength="23">
+						<input type='hidden' id='mem_email' value='<sec:authentication property="principal.member.mb_email"/>'>                      		
+                      	<input type='hidden' id='mem_nick' value='<sec:authentication property="principal.member.mb_nick"/>'>
 						<div id='research_term'>
 							<div id='term_title'>조사 기간</div>
 							<input type='text' id='date_timepicker_start' name='start' autocomplete='off'> ~ <input type='text' id='date_timepicker_end' name='end' autocomplete='off'>
