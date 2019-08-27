@@ -153,13 +153,19 @@
 	</select>
 	
 	<select id="findCheck" resultType="MemberVO">
-		select mb_nick, mb_birthdate, mb_phone from member where mb_nick = #{mb_nick} or mb_birthdate = #{mb_birthdate} or mb_phone = #{mb_phone}
+		select mb_email, mb_nick, mb_birthdate, mb_phone, mb_joindate from member 
+		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} and mb_phone = #{mb_phone}
 	</select>
-	<!--  
-	<select id="pwdCheck" resultType="MemberVO">
-		select mb_pwd from member where mb_pwd = #{mb_pwd}
+	
+	<select id="findCheck2" resultType="MemberVO">
+		select mb_email, mb_nick, mb_birthdate, mb_phone, mb_joindate from member 
+		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} or mb_phone = #{mb_phone}
 	</select>
-	-->
+	
+	<select id="check" resultType="MemberVO">
+		select mb_email from member where mb_email = #{mb_email}
+	</select>
+
 	<update id="getKey">
 		update member set mb_email_key = #{param2} where mb_nick=#{param1}
 	</update>
@@ -197,5 +203,9 @@
 			member mem LEFT OUTER JOIN member_auth auth on mem.mb_email = auth.mb_email
 		WHERE mem.mb_email = #{mb_email}
 	</select>
+	
+	<update id="pwdChange">
+		update member set mb_pwd = #{mb_pwd} where mb_email = #{mb_email}
+	</update>
 	
 </mapper>

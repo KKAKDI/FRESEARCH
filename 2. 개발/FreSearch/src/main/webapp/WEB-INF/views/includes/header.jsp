@@ -167,7 +167,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 </head>
 <body>
 
-<div class="loading">로딩</div>
+<div class="loading"><label>FRESEARCH</label></div>
 <div class="container">
    <div class="fixed_box">
       <!-- 상단 고정 박스 시작 -->

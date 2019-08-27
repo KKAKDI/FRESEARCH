@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기 : FRESEARCH</title>
+<title>새 비밀번호 변경 : FRESEARCH</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/info_find.css">
@@ -19,45 +19,44 @@
 		</div>
 		<div class="page-content">
 			<div class="page-form">
-			<!-- <form class="page-form-submit" id="find_send" name="find_send" action="/member/find_send" method="post"> -->
+			<form class="page-form-submit" id="pwd_change" name="pwd_change" action="/member/pwd_change" method="post">
+			<input type="hidden" name="mb_email" value="${password_email}" />
 				<h2>비밀번호 찾기</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
 						<img src="/resources/img/password_logo.jpg"/>
 					</div>
 					<div class="email-msg">
-						<div class="email-msg-first">
-							<span>비밀번호 찾기를 위한</span>	
+						<div class="email-msg-first2">
+							<span>${password_email}</span>님,	
 						</div>
-						<div class="email-msg-second">
-							<span>이메일</span><span>을 입력해주세요.</span>
+						<div class="email-msg-second2">
+							<span>이제 새로운 비밀번호로 설정해 주세요.</span>
 						</div>
 					</div>
 				</div>
-				<div class="page-form-input">
-					<label for="mb_email">이메일</label> 
-					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30" autocomplete="off" value="${email}">
-					<div id="email_check" class="check"></div>
-					<div id="find_check" class="find_check"></div>
+				<div class="form-row">
+					<label for="mb_pwd">새 비밀번호</label> <input type="password"
+						name="mb_pwd" id="mb_pwd" placeholder="새 비밀번호" maxlength="20">
+					<div id="pwd_check" class="check"></div>
 				</div>
-				<div class="form-pwd-find">
-					<span class="pwdText">이메일을 찾으시나요?</span>
-					<button class="pwdButton" onClick="location.href='/member/email_find'">
-						<span>이메일 찾기</span>
-					</button>
+				<div class="form-row">
+					<label for="mb_pwd2">새 비밀번호 확인</label> <input type="password"
+						name="mb_pwd2" id="mb_pwd2" placeholder="새 비밀번호 확인" maxlength="20">
+					<div id="pwd2_check" class="check"></div>
 				</div>
 				<div class="form-submit">
-					<input type="button" id="pwdFind" class="pwdFind" value="비밀번호 찾기">
+					<input type="submit" id="pwdChange" class="pwdChange" value="비밀번호 변경" disabled>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<!-- </form> -->
+				</form>
 			</div>
 		</div>
 	</div>
 	
-	<div id="myModal" class="modal">
+	<!-- <div id="myModal" class="modal">
 		
-		<!-- Modal content -->
+		Modal content
 		<div class="modal-content2">
 		<button type="button" class="close"></button>
 			<div class="modal-logo">
@@ -69,7 +68,7 @@
 				</div>
 				<div class="email-msg">
 					<div class="email-msg-first">
-						<!-- <span>회원님의 이메일은 </span>  -->
+						<span>회원님의 이메일은 </span> 
 					</div>
 					<div class="email-msg-second">
 						<span>이메일 인증 버튼을 누르시면 이메일로 전송됩니다.</span>
@@ -84,7 +83,7 @@
 				</form>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	<!-- <form id="find_send" action="" method="post"></form> -->
 	
