@@ -18,9 +18,13 @@
 </head>
 <body>
 	<div class="page-wrapper">
+		<div class="page-logo">
+			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
+		</div>
 		<div class="page-content">
 			<form class="page-form" action="/login" method="post" autocomplete="off">
-				<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
+				<h2>로그인</h2>
+				<!-- <h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2> -->
 				<div class="page-form-input">
 					<label for="mb_email">이메일</label> 
 					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30" value="${email}">

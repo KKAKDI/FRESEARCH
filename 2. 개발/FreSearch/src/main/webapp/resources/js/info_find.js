@@ -9,6 +9,10 @@ $(document).ready(function(){
 	
 	var check = false;
 	
+	$("#mb_nick").focus();
+	$("#mb_email").focus();
+	$("#mb_pwd").focus();
+	
 	function findCheck(){
 		if(check == true){
 			if($("#mb_nick").val() != "" && $("#mb_birth_yy").val() != "" 
