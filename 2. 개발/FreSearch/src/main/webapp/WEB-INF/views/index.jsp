@@ -87,7 +87,7 @@
 </script>
 </head>
 <body>
-<div class="loading">로딩</div>
+<div class="loading"><label>FRESEARCH</label></div>
 <div class="container">
 	<div class="fixed_box">
 		<!-- 상단 고정 박스 시작 -->
@@ -160,7 +160,7 @@
 				</div>
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo1.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->
@@ -255,39 +255,39 @@
 		<div class="research_area clearfix">
 			<div class="hot_board">
 				<div class="board_icon">
-					<img src="/resources/img/icon_image01.png" alt="자유게시판">
+					<img src="/resources/img/icon_image01_.png" alt="자유게시판">
 				</div>
 				<div class="board_text">
 					<dl>
 						<dt>자유게시판</dt>
-						<dd>어쩌구</dd>
-						<dd>임시내용입니다</dd>
+						<dd>다양한 게시글을</dd>
+						<dd>작성해 보세요.</dd>
 						<a href="/board/board_list">게시판 더보기  ></a>
 					</dl>
 				</div>
 			</div>
 			<div class="hot_search">
 				<div class="search_icon">
-					<img src="/resources/img/icon_image03.png" alt="리서치참여및제작">
+					<img src="/resources/img/icon_image03_.png" alt="리서치참여및제작">
 				</div>
 				<div class="search_text">
 					<dl>
-						<dt>리서치참여/제작</dt>
-						<dd>저쩌꾸</dd>
-						<dd>임시내용입니다</dd>
+						<dt>리서치 참여</dt>
+						<dd>원하는 조사를</dd>
+						<dd>참여해 보세요.</dd>
 						<a href="/research/research_register">리서치 더보기  ></a>
 					</dl>
 				</div>
 			</div>
 			<div class="hot_chart">
 				<div class="chart_icon">
-					<img src="/resources/img/icon_image02.png" alt="데이터베이스">
+					<img src="/resources/img/icon_image02_.png" alt="데이터베이스">
 				</div>
 				<div class="chart_text">
 					<dl>
 						<dt>데이터베이스</dt>
-						<dd>에베베</dd>
-						<dd>임시내용입니다</dd>
+						<dd>다양한 통계를</dd>
+						<dd>제공합니다.</dd>
 						<a href="/stats/stats_list">통계 더보기  ></a>
 					</dl>
 				</div>
@@ -363,7 +363,7 @@
 	<footer id="footer" class="clearfix">
 		<div class="footer_inner">
 			<div class="footer_logo">
-				<a href=""><img src="/resources/img/logo.png" alt="FRESEARCH"></a>
+				<a href=""><img src="/resources/img/logo1_1.png" alt="FRESEARCH"></a>
 			</div>
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>

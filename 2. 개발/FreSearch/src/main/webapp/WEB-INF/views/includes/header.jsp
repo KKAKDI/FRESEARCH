@@ -85,77 +85,158 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   text-decoration: none;
   display: block;
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+  cursor: pointer;
 }
+
+.widget-gnb ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-clip: padding-box;
+    background-color: rgba(121, 124, 144, 0.3);
+    border: 0px solid transparent;
+    border-radius: 5px;
+
+}
+.widget-gnb ::-webkit-scrollbar-thumb {
+    background-color: #cdd2d2;
+    border: 2px solid #cdd2d2;
+    border-radius: 5px;
+}
+.widget-gnb ::-webkit-scrollbar-track{
+    background-color: #fff;
+}
+
+.gnb-tab-item{
+    background-color: #fff;
+    border-bottom-color: #fff;
+	position: relative;
+    width: 100%;
+    padding: 14px 10px 14px 10px;
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #d9d9d9;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: none;
+    vertical-aligh:middle;
+
+}
+.gnb-tab-item:before{
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #1820b7;
+
+
+}
+
+.jss-icon{
+	margin-left : 5px;
+    width: 18px;
+    height: 17px;
+    background: url(/resources/img/header-card-new.svg) no-repeat 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: hidden;
+}
+.jss-font{
+    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+    vertical-align: top;
+    color: #666666;
+}
+.jss-small{
+	font-size: 11px;
+	color: #999;
+}
+.all-read{
+
+    padding-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    border-top: 1px solid #ebebeb;
+}
+
 </style>
 </head>
 <body>
 
-<div class="loading">로딩</div>
+<div class="loading"><label>FRESEARCH</label></div>
 <div class="container">
-	<div class="fixed_box">
-		<!-- 상단 고정 박스 시작 -->
-		<div class="header clearfix">
-			<!-- header 시작 -->
-			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
-				<!-- 상단 로그인 -->
-				<div class="login">
-				<!-- 
-					<ul>
-						<li><a href="/member/signin">로그인</a></li>
-						<li><a href="/member/signup">회원가입</a></li>
-						<li><a href="">알림</a></li>
-					</ul>
-					-->
-					<div class="dropdown">
-					  <button class="dropbtn">회원</button>
-					  <div class="dropdown-content">
-					    <!-- <a href="#">회원명</a> -->
-					    <sec:authorize access="isAuthenticated()">
-					    <form class="dropdown-form" role="form" action="/logout" method='post'>
-					    
-						    <p>
-						    <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
-						    <sec:authentication property="principal.member.mb_nick"/></p>
-						    <p>
-						    <sec:authentication property="principal.member.mb_email"/>
-						    </p>
-					    
-					    	<div class="bar"></div>
-					    	<a href="#">
-					    		<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-					    		<span class="span_mypage">마이페이지 </span>
-					    	</a>
-							<a href="/" id="logout">
-								<img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
-								<span class="span_logout">로그아웃</span>
-							</a>
-							<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						</form>
-						</sec:authorize>
-						<sec:authorize access="isAnonymous()">
-							<a href="/member/signin">
-								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
-								<span class="span_login">로그인</span>
-							</a>
-							<a href="/member/signup">
-								<img class="img_iconThird" src="/resources/img/ironman.PNG"/>
-								<span class="span_login">회원가입</span>
-							</a>
-						</sec:authorize>
-					  </div>
-					</div>
-					
-					<div class="dropdown">
+   <div class="fixed_box">
+      <!-- 상단 고정 박스 시작 -->
+      <div class="header clearfix">
+         <!-- header 시작 -->
+         <div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
+            <!-- 상단 로그인 -->
+            <div class="login">
+            <!-- 
+               <ul>
+                  <li><a href="/member/signin">로그인</a></li>
+                  <li><a href="/member/signup">회원가입</a></li>
+                  <li><a href="">알림</a></li>
+               </ul>
+               -->
+               <div class="dropdown">
+                 <button class="dropbtn">회원</button>
+                 <div class="dropdown-content">
+                   <!-- <a href="#">회원명</a> -->
+                   <sec:authorize access="isAuthenticated()">
+                   <form class="dropdown-form" role="form" action="/logout" method='post'>
+                   
+                      <p>
+                      <img class="img_iconFirst" src="/resources/img/ironman.PNG"/>
+                      <sec:authentication property="principal.member.mb_nick"/></p>
+                      <p>
+                      <sec:authentication property="principal.member.mb_email"/>
+                      </p>
+                   
+                      <div class="bar"></div>
+                      <a href="#">
+                         <img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+                         <span class="span_mypage">마이페이지 </span>
+                      </a>
+                     <a href="/" id="logout">
+                        <img class="img_iconSecond" src="/resources/img/ironman.PNG"/>
+                        <span class="span_logout">로그아웃</span>
+                     </a>
+                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  </form>
+                  </sec:authorize>
+                  <sec:authorize access="isAnonymous()">
+                     <a href="/member/signin">
+                        <img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+                        <span class="span_login">로그인</span>
+                     </a>
+                     <a href="/member/signup">
+                        <img class="img_iconThird" src="/resources/img/ironman.PNG"/>
+                        <span class="span_login">회원가입</span>
+                     </a>
+                  </sec:authorize>
+                 </div>
+               </div>
+               
+               		<div class="dropdown-alarm widget-gnb">
                
                		<!-- 종모양 알림 -->
-	               	<div class="container" id="badge">
-	     				<a class="entypo-bell"></a>
-					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
-					<a>로그인 후 이용해 주세요.</a>
-					</div>
+	               		<div class="container" id="badge">
+	     					<a class="entypo-bell"></a>
+						</div>
+						<div class="dropdown-content" id="alarm_content" style="overflow:auto; width:430px; max-height:400px; ">
+							<a>로그인 후 이용해 주세요.</a>
+						</div>
 					<!-- 종모양 알림 끝 -->
+						<!-- <div class="all-read">
+							<span class="all-read-span">모두 읽은 상태로 표시</span>
+						</div> -->
                		</div>
+               		
 
 					<!-- <div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
@@ -164,7 +245,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 			
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo1.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->
@@ -265,6 +346,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 		$("#content .notice_area .event .event_rolling").append(
 		$("#content .notice_area .event li").first().clone());
 	});
+	
 </script>
 
 <!-- 웹소켓 시작 -->
@@ -290,14 +372,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
             	console.log("onopen : "+event)
             	//console.log("onopen2 : "+event.data)
             	
-            	
-            	
-            	
-            	
-            	
-            	
                 if(event.data===undefined) return;
                 writeResponse(event.data);
+                
             };
             ws.onmessage=function(event){
             	console.log("onmessage : "+event)
@@ -331,41 +408,82 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
         
         
         
-        
         //웹소켓 반응?
         function writeResponse(text){
-        	console.log("writeResponse");
-        	//ajax 알림 리스트 and 알림 종 갯수  시작
-         	var data ={
-        		mb_email : $(".bar").prev().html().trim()
-        	}
-        	console.log("mb_email : "+data.mb_email);
         	
-        	tableService.header(data,function(list){
-        		
-        		console.log("ajax 들어왔다");
-        		console.log("list.lenght : "+list.length);
-        		console.log(".badge-num : "+$(".badge-num").html());
-        		console.log("list[0].subj_nm : "+list[0].subj_nm);
-        		console.log("list[1].subj_nm : "+list[1].subj_nm);
-        		var html = '';
-        		if($(".badge-num").html() != list.length){
-        			console.log("list.lenght 숫자 다르다");
-        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
-        			for(var i=0; i < list.length; i++){
-        			html += '<a href="/stats/stats_get?subj_code='+list[i].subj_code+'">'+list[i].subj_nm+'</a>';
-        			}
-        			$('#alarm_content').html(html);
-        		}else{
-        			console.log("list.lenght 숫자 같다");
-        		}
-        		
-        	});
-        	//ajax 알림 리스트 and 알림 종 갯수 끝
+        	if($(".bar").prev().html() === undefined){
+        		console.log("첫번째");
+        		var mb_email = '';
+        	}else{
+        		console.log("두번째");
+        		var mb_email = $(".bar").prev().html().trim();
+        	}
+        	var subj_code = '';
+        	
+        	//subj_code 가져오는 ajax
+        	$(document).ready(function(){
+                $(document).on("click",".alarm_button",function(event){
+                  // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+                  console.log($(this).prev().text());
+                  subj_code = $(this).prev().text();
+                  
+                  var data ={
+                		  subj_code : subj_code,
+                		  mb_email : mb_email
+                  }
+                  
+                 	tableService.headerUpdate(data, function(list){
+                	  console.log("성공! : ");
+                	  location.href="/research/research_content?subj_code="+subj_code;
+                  }); 
+                });
+            }); 
+        	console.log("writeResponse");
+        	
+        	
+        	
+        	//ajax 알림 리스트 and 알림 종 갯수  시작
+        	
+        	if(!($(".bar").prev().html() === undefined)){
+	         	var data ={
+	        		mb_email : mb_email
+	        	}
+	        	console.log("mb_email : "+data.mb_email);
+	        	
+	        	tableService.header(data,function(list){
+	
+	        		var html = '';
+	        		if($(".badge-num").html() != list.length){
+	        			console.log("list.lenght 숫자 다르다");
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
+	        			for(var i=0; i < list.length; i++){
+	        				
+	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>';
+	        				html += '<a class="alarm_button"><span class="jss-font">';
+	        				html +=	'<strong class="jss-font">'+list[i].mb_nick+'</strong>님이 ';
+	        				html += '<strong class="jss-font">'+list[i].ctgr_nm+'</strong>태그에 글을 작성하였습니다.';
+	        				html += '</span><span class="jss-icon"></span></br>';
+	        				html += '<span class="jss-font" style="font-size: 13px;">"'+list[i].subj_nm+'"</span></br>';
+	        				html += '<small class="jss-small">'+tableService.displayTime(list[i].subj_regdate)+'</small></a>';
+
+	        			}
+	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
+	        			$('#alarm_content').html(html);
+	        		}else{
+	        			console.log("list.lenght 숫자 같다");
+	        		}
+	        	});
+        	}
         }
+
         
         
-        
-        
+/*         $(document).ready(function(){
+            $(document).on("click","#moveBtn",function(event){
+              // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+              alert($(this).text());
+            });
+        }); // end of ready() */
 </script>
     <!-- 웹소켓 끝 -->

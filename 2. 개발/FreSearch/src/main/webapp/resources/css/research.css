@@ -14,6 +14,9 @@ hr {
 	margin-left: 25px;
 	border: 0.3px dotted
 }
+input[type=file]{
+	display:none;
+}
 #hr{
 	height:10px;
 }
@@ -195,7 +198,7 @@ select {
 	padding: .8em .5em; /* 여백으로 높이 설정 */ 
 	margin:15px;
 	font-family: inherit; /* 폰트 상속 */ 
-	background: url('/resources/img/arrow.png') no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
+	background: url('/resources/img/bicon11_4.png') no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
 	border: 1px solid #999; 
 	border-radius: 0px; /* iOS 둥근모서리 제거 */ 
 	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
@@ -357,7 +360,7 @@ select {
 
 
 #top_box {
-	padding: 20px 20px 0 20px;
+	padding: 25px 25px 0 35px;
 	width: 100%;
 }
 
@@ -402,10 +405,18 @@ select {
 	background-color: transparent;
 	border: none;
 	color: #fff;
-	width: 45px;
+	width: 65px;
 	height: 33px;
 }
 /*btn img*/
+
+#right_top_box > #send_form{
+	background-color: #fff;
+    color: #1428a0;
+    width: 88px;
+    font-size: 15px;
+    border-radius: 5px;
+}
 #prev_btn{
 	background: url( "/resources/img/bicon02_2.png" ) no-repeat 50% 50%;
 }
@@ -416,13 +427,14 @@ select {
 	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
 }
 #img_btn{
-	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
+	background: url( "/resources/img/bicon08_1.png" ) no-repeat 50% 50%;
 }
 #qst_del{
 	background: url( "/resources/img/bicon10_1.png" ) no-repeat 50% 50%;
 }
+
 #delete_form{
-	background: url( "/resources/img/bicon03_2.png" ) no-repeat 50% 40%;
+	background: url( "/resources/img/bicon13_2.png" ) no-repeat 50% 40%;
 }
 #item_img{
 	background: url( "/resources/img/bicon09_1.png" ) no-repeat 50% 50%;
@@ -468,12 +480,12 @@ img{
 	font-size:35px;
 }
 #research_info{
-	padding: 0 0 20px 0;
+	padding: 5px 0 20px 0;
 	margin-left:5px;
 }
 #research_ctegory{
 	display:inline-block;
-	width: 10%;
+	width: 20%;
 }
 .research_content .content_box .research_turm{
 	display:inline-block;
@@ -485,17 +497,21 @@ img{
 .research_content .content_box .research_item{
 	padding:10px 5px 10px 5px;
 }
+.research_content .content_box .research_item .research_item_img{
+	padding: 10px 5px 0 25px;
+}
+
 .research_content .content_box .research_item input[type=radio]{
-  -webkit-appearance: none;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #999;
-  transition: 0.2s all linear;
-  outline: none;
-  margin-right: 5px;
-  position: relative;
-  top: 4px;
+	-webkit-appearance: none;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	border: 2px solid #999;
+	transition: 0.2s all linear;
+	outline: none;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
 }
 .research_content .content_box .research_item input[type=text]{
 	box-sizing: border-box;
