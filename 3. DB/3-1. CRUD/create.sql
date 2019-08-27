@@ -186,7 +186,7 @@ create table member_auth (
     mb_email varchar2(40) not null,
     mb_att_ctgr_code varchar2(20) not null,
     auth varchar2(50) not null,
-    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code) ON DELETE CASCADE;
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code) ON DELETE CASCADE
 );
 
 -- 로그인 상태 유지

@@ -156,6 +156,7 @@ body {
     height: 32px;
     font-size: 16px;
     font-weight: 700;
+    word-break: break-all;
 }
 .page-content .list-content .detail-list .tab-content #test ul li a span:nth-child(4) { 
 	/* display: block;
@@ -374,6 +375,7 @@ body {
     left: 40%;
     margin-left: -105px;
     font-size: 12px;
+    word-break: break-all;
 } 
 
 .tt-text::after { 

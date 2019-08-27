@@ -186,7 +186,7 @@ create table member_auth (
     mb_email varchar2(40) not null,
     mb_att_ctgr_code varchar2(20) not null,
     auth varchar2(50) not null,
-    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code)
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code) ON DELETE CASCADE;
 );
 
 -- 로그인 상태 유지
@@ -208,10 +208,6 @@ FROM SUBJECT A, MEMBER B, CATEGORY C, ATT_CATEGORY D WHERE A.MB_NICK = B.MB_NICK
 create or replace view stats_table 
 AS
 SELECT DISTINCT
-       (SELECT Count(*)
-        FROM   (SELECT *
-                FROM   answer)
-        WHERE  item_code = e.item_code) AS answer_number,
        b.subj_regdate,
        f.ctgr_nm,
        b.subj_code,
