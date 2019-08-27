@@ -293,20 +293,20 @@ body {
 }
 
 .btn-outline-secondary {
-	color: #0c4da2;
-	border-color: #0c4da2;
+	color: #1428a0;
+	border-color: #1428a0;
 }
 .btn-outline-secondary-all {
 	color: #fff;
-	background-color: #0c4da2;
-	border-color: #0c4da2;
+	background-color: #1428a0;
+	border-color: #1428a0;
 }
 
 
 .btn-outline-secondary:hover {
 	color: #fff;
-	background-color: #0c4da2;
-	border-color: #0c4da2;
+	background-color: #1428a0;
+	border-color: #1428a0;
 }
 
 .btn-outline-secondary:focus, .btn-outline-secondary.focus {

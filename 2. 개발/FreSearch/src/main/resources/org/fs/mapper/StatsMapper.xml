@@ -162,7 +162,7 @@ ORDER  BY ctgr_code
  
  <!-- STATS_TABLE 리스트 뽑는 SQL-->
 <select id="getTable" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -175,7 +175,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		   
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -218,9 +218,8 @@ FROM   (SELECT rownum rn,
 
 <!-- STATS_TABLE 전체 ROW 갯수 세는 SQL-->
 <select id="getTableCount" resultType="int">
-SELECT count(answer_number) 
+SELECT count(subj_regdate) 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -273,7 +272,20 @@ FROM   (SELECT rownum rn,
 
 <!--  그냥 위에 셀렉트 박스 5개 눌러서 나오는 내용 -->
 <select id="getTableTest" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT (SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = p.subj_code
+                                        AND rownum = 1)) as count,
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -286,7 +298,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		    
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -324,10 +336,10 @@ FROM   (SELECT rownum rn,
 	   				
 			   	</choose>
 			  <![CDATA[ 	
-	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount}) p
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
-GROUP BY answer_number, 
+GROUP BY 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -339,13 +351,13 @@ GROUP BY answer_number,
        subj_nm, 
        subj_startdate, 
        subj_enddate
-ORDER BY subj_regdate desc
+       order by subj_regdate desc
 </select>
 
 
 <!--  검색 내용에 맞게 데이터 내용 나오는 문 -->
 <select id="getTableSearch" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -358,7 +370,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		    
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -463,6 +475,14 @@ update subject set read = 1 where subj_code =#{subj_code}
 
 </update>
 
+
+<select id="tableCount" resultType="int">
+select count(d.asw_content)
+from subject a, question b, item c , answer d 
+where a.subj_code = b.subj_code and b.qst_code=c.qst_code and c.item_code = d.item_code
+and b.qst_code =(select b.qst_code from subject a, question b 
+where a.subj_code = b.subj_code and a.subj_code=#{subj_code} and rownum = 1)
+</select>
 
 
 

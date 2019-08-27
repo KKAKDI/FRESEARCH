@@ -597,7 +597,7 @@
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
 							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<div>'+list[i].answer_number+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
@@ -737,7 +737,7 @@
 			    		html += '<div class="article-list-item">';
 						html += '<div class="article-list-item__vote">';
 						html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-						html +=	'<div>'+list[i].answer_number+'</div>';
+						html +=	'<div>'+list[i].count+'</div>';
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
@@ -954,7 +954,7 @@
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
 							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<div>'+list[i].answer_number+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';

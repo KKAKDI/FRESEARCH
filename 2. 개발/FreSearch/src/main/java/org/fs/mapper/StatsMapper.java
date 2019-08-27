@@ -41,6 +41,8 @@ public interface StatsMapper {
 	public List<StatsVO> header(String mb_email);
 	
 	public int headerUpdate(String subj_code); 
+	
+	public int tableCount(String subj_code);
 
 
 }

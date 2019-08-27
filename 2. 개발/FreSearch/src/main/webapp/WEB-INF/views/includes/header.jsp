@@ -139,7 +139,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	margin-left : 5px;
     width: 18px;
     height: 17px;
-    background: url(/resources/img/header-card-new.svg) no-repeat 0 0;
+    background: url(/resources/img/new_icon_01.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;

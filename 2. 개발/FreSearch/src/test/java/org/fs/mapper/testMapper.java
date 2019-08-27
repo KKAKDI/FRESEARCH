@@ -121,21 +121,22 @@ public class testMapper {
 //		//mapper.getTable(table).forEach(stats->log.info(stats));
 //		log.info(mapper.getTable(vo));
 //	}
-//	@Test
-//	public void getTableTest() {
-//		StatsVO vo = new StatsVO();
-//		Criteria cri = new Criteria();
-//		vo.setCtgr_nm("");
-//		vo.setMb_sex("여");
-//		vo.setMb_addr("");
-//		vo.setStats("전체");
-//		vo.setStartAge(0);
-//		vo.setEndAge(99);
-//		cri.setPageNum(1);
-//		cri.setAmount(3);
-//		List<StatsVO> list = mapper.getTableTest(vo, cri);
-//		list.forEach(stats -> log.info(stats.getSubj_code()));
-//	}
+	@Test
+	public void getTableTest() {
+		StatsVO vo = new StatsVO();
+		Criteria cri = new Criteria();
+		vo.setCtgr_nm("");
+		vo.setMb_sex("");
+		vo.setMb_addr("");
+		vo.setStats("전체");
+		vo.setStartAge(0);
+		vo.setEndAge(99);
+		cri.setPageNum(1);
+		cri.setAmount(10);
+		List<StatsVO> list = mapper.getTableTest(vo, cri);
+		list.forEach(stats -> log.info(stats.getSubj_code()));
+		log.info("# : "+list);
+	}
 //	@Test
 //	public void getTableCount() {
 //		StatsVO vo = new StatsVO();
@@ -146,7 +147,7 @@ public class testMapper {
 //		vo.setStartAge(0);
 //		vo.setEndAge(99);
 //
-//		log.info(mapper.getTableCount(vo));
+//		log.info("# : "+mapper.getTableCount(vo));
 //	}
 //	@Test
 //	public void getTableSearch() {
@@ -167,11 +168,16 @@ public class testMapper {
 //		String mb_email= "bbb@google.com";
 //		log.info(mapper.header(mb_email));
 //	}
-	@Test
-	public void headerCount() {
-		StatsVO vo = new StatsVO();
-		vo.setSubj_code("SXOPZ233");
-		String subj_code = "SXOPZ233";
-		log.info("# : "+mapper.headerUpdate(subj_code));
-	}
+//	@Test
+//	public void headerCount() {
+//		StatsVO vo = new StatsVO();
+//		vo.setSubj_code("SXOPZ233");
+//		String subj_code = "SXOPZ233";
+//		log.info("# : "+mapper.headerUpdate(subj_code));
+//	}
+//	@Test
+//	public void tableCount() {
+//		String subj_code = "NR0MLY8Y";
+//		log.info(mapper.tableCount(subj_code));
+//	}
 }

@@ -208,10 +208,6 @@ FROM SUBJECT A, MEMBER B, CATEGORY C, ATT_CATEGORY D WHERE A.MB_NICK = B.MB_NICK
 create or replace view stats_table 
 AS
 SELECT DISTINCT
-       (SELECT Count(*)
-        FROM   (SELECT *
-                FROM   answer)
-        WHERE  item_code = e.item_code) AS answer_number,
        b.subj_regdate,
        f.ctgr_nm,
        b.subj_code,
