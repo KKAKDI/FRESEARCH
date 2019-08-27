@@ -45,6 +45,8 @@ $(document).ready(function(){
 	
 	var check = false;
 	
+	$("#mb_email").focus();
+	
 	function signupCheck(){
 		if(check == true){
 			if($("#mb_email").val() != "" && $("#mb_pwd").val() != "" && $("#mb_pwd2").val() != ""

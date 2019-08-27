@@ -12,13 +12,13 @@ body {
 }
 .page-content h2 {
 	position: absolute;
-    margin-top: 46px;
+    margin-top: 32px;
 }
 .form-content {
 	background: #fff;
 	width: 670px;
 	border-radius: 8px;
-	margin: 115px 0;
+	margin: 138px 0;
 }
 .form-detail {
 	padding: 30px 45px 30px 45px;

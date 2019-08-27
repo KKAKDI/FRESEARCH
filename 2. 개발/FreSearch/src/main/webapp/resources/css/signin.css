@@ -10,11 +10,16 @@ body {
 	display: flex;
 	justify-content: center;
 }
+.page-wrapper .page-logo {
+	position: absolute; 
+	margin-top: 32px;
+}
 .page-wrapper .page-content{
 	background: #fff;
-	width: 600px;
-	border-radius: 8px;
-	margin: 90px 0;
+    width: 600px;
+    height: 560px;
+    border-radius: 8px;
+    margin: 138px 0;
 }
 .page-wrapper .page-content .page-form{
 	padding: 30px 45px 30px 45px;
@@ -24,9 +29,12 @@ body {
     color: #1428a0;
     font-weight: bold;
     font-size: 40px;*/
-    text-align: center;
+    /* text-align: center;
 	padding: 3px 0 20px;
-	margin-bottom: 40px;
+	margin-bottom: 40px; */
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 13px;
+    margin-bottom: 26px;
 }
 .page-wrapper .page-content .page-form .page-form-input label {
 	display: block;

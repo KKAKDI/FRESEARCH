@@ -13,13 +13,13 @@ body {
 }
 .page-wrapper .page-logo {
 	position: absolute; 
-	margin-top: 18px;
+	margin-top: 9px;
 }
 .page-wrapper .page-content{
 	background: #fff;
 	width: 600px;
 	border-radius: 8px;
-	margin: 90px 0;
+	margin: 116px 0;
 }
 .page-wrapper .page-content .page-form{
 	padding: 30px 45px 55px 45px;
