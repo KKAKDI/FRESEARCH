@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FreSearch Sign Up</title>
+<title>회원가입 성공 : FreSearch</title>
 </head>
 <body>
 <div style="margin: 100px;">

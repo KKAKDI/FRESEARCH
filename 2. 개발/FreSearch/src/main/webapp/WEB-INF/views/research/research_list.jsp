@@ -6,6 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <head>
 <meta charset="UTF-8">
+<title>설문 목록 : FRESEARCH</title>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">

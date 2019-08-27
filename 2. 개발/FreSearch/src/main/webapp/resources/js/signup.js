@@ -176,6 +176,7 @@ $(document).ready(function(){
 	$("#mb_pwd").keyup(function(){
 		
 		var mb_pwd = $("#mb_pwd").val();
+		var mb_pwd2 = $("#mb_pwd2").val();
 		
 		if(regPwd.test(mb_pwd)){
 			$("#pwd_check").text("");
@@ -201,6 +202,22 @@ $(document).ready(function(){
 			check = false;
 			signupCheck();
 		}
+		
+		if(mb_pwd != "" && mb_pwd2 != ""){
+			if(mb_pwd != mb_pwd2){
+				$("#pwd_check").text("비밀번호가 다릅니다.");
+				$("#pwd_check").css("color", "#d0021b");
+				$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
+				check = false;
+				signupCheck();
+			}else{
+				$("#pwd_check").text("");
+				$("#mb_pwd").css("border-bottom", "1px solid #ddd");
+				$("#pwd2_check").text("");
+				$("#mb_pwd2").css("border-bottom", "1px solid #ddd");
+			}
+		}
+		
 	});
 	
 	$("#mb_pwd2").keyup(function(){
@@ -239,6 +256,11 @@ $(document).ready(function(){
 				$("#mb_pwd2").css("border-bottom", "2px solid #d0021b");
 				check = false;
 				signupCheck();
+			}else{
+				$("#pwd_check").text("");
+				$("#mb_pwd").css("border-bottom", "1px solid #ddd");
+				$("#pwd2_check").text("");
+				$("#mb_pwd2").css("border-bottom", "1px solid #ddd");
 			}
 		}
 	});
@@ -329,7 +351,7 @@ $(document).ready(function(){
 		var yearNow = today.getFullYear();
 		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + $("#mb_birth_dd").val();
 		
-		/*
+		
 		if(regYear.test(mb_birth_yy) && regDay.test(mb_birth_dd) 
 				&& (mb_birth_yy >= 1900 && mb_birth_yy <= yearNow )
 				&& (mb_birth_mm > 0)
@@ -372,8 +394,9 @@ $(document).ready(function(){
 			check = false;
 			signupCheck();
 		}
-		*/
 		
+		
+		/*
 		$.ajax({
 			url : "/member/birthCheck",
 			type : "get",
@@ -435,7 +458,7 @@ $(document).ready(function(){
 					}
 				}
 			}
-		});	
+		});	*/
 		
 	});
 	
@@ -585,8 +608,10 @@ $(document).ready(function(){
 	
 	$("#signup_fin").click(function(){
 		
-		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + $("#mb_birth_dd").val();
+		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + addZero($("#mb_birth_dd").val(), 2);
 		var mb_addr = $("#mb_addr1").val() + " " + $("#mb_addr2").val() + " " + $("#mb_addr3").val();
+		
+		console.log("날짜 : " + addZero($("#mb_birth_dd").val(), 2));
 		
 		$("#mb_birthdate").val(mb_birthdate);
 		$("#mb_addr").val(mb_addr);
@@ -597,4 +622,15 @@ $(document).ready(function(){
 		});
 		$("#mb_att_category").val(cate_val);
 	});
+	
+	var addZero = function (date, num) {
+		 var zero = '';
+		 date = date.toString();
+		
+		 if (date.length < num) {
+		  for (i = 0; i < num - date.length; i++)
+		   zero += '0';
+		 }
+		 return zero + date;
+	}
 });

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
-<title>FreSearch Sign Up</title>
+<title>구글 인증 회원가입 : FRESEARCH</title>
 <!--  <link rel="stylesheet" href="/resources/assets/css/sign_up.css"> -->
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
@@ -44,7 +44,7 @@ function onSignIn(googleUser) {
 	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 	 
 	 $("#mb_email").val(profile.getEmail());
-	 $("#mb_email").attr("disabled", "true");
+	 $("#mb_email").attr("readonly", "readonly");
 }
 </script>
 </head>

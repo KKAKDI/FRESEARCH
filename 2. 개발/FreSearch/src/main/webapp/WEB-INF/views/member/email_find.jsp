@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FreSearch Info Find</title>
+<title>이메일 찾기 : FRESEARCH</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/info_find.css">
@@ -30,7 +30,7 @@
 							<span>이메일 찾기를 위한</span>	
 						</div>
 						<div class="email-msg-second">
-							<span>본인확인 정보</span><span>를 입력해주세요.</span>
+							<span>본인인증 정보</span><span>를 입력해주세요.</span>
 						</div>
 					</div>
 				</div>
@@ -107,28 +107,38 @@
 		
 		<!-- Modal content -->
 		<div class="modal-content">
+		<button type="button" class="close"></button>
 			<div class="modal-logo">
-				<h2><img src="/resources/img/logo.png" alt="logo"></h2>
+				<h2>이메일 찾기</h2>
 			</div>
-			
 			<div class="modal-content-detail">
-				
+				<div class="email-logo-img">
+					<img src="/resources/img/member_logo.jpg" />
+				</div>
+				<div class="email-msg">
+					<div class="email-msg-first">
+						<span>회원님의 본인인증정보와 </span>
+					</div>
+					<div class="email-msg-second">
+						<span>일치하는 이메일 목록입니다.</span>
+					</div>
+				</div>
 			</div>
-			
-			<div class="modal-login" onClick="login_button();">
-				<span class="login_btn">로그인하러 가기</span>
+			<div class="modal-user">
+				<div class="modal-user-email"></div>
+				<div class="modal-user-regdate"></div>
 			</div>
-			<div class="modal-password" onClick="password_button();">
-				<span class="password_btn">비밀번호 찾기</span>
+			<div class="modal-button">
+				<div class="modal-login" onClick="login_button();">
+					<span>로그인하러 가기</span>
+				</div>
+				<div class="modal-password" onClick="password_button();">
+					<span>비밀번호 찾기</span>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-		function login_button(flag) {
-			$('#myModal').hide();
-			//location.href = "/member/signin";
-		};
-	</script>
+	
+	<form id="test" action="" method="post"></form>
 </body>
 </html>

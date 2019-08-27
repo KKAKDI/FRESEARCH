@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
-<title>FreSearch Sign In</title>
+<title>로그인 : FRESEARCH</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/signin.css">
@@ -23,7 +23,7 @@
 				<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 				<div class="page-form-input">
 					<label for="mb_email">이메일</label> 
-					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30">
+					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30" value="${email}">
 					<div id="email_check" class="check"></div>
 				</div>
 				<div class="page-form-input">
@@ -40,7 +40,7 @@
 					<label for=mb_remEmail>로그인 상태 유지</label>
 					<a href="email_find">이메일 찾기</a>
 					<span>|</span>
-					<a href="">비밀번호 찾기</a>
+					<a href="password_find">비밀번호 찾기</a>
 					<span>|</span>
 					<a href="/member/signup">회원가입</a>
 				</div>
