@@ -23,7 +23,7 @@
 				<h2>이메일 찾기</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
-						<img src="/resources/img/micon01.jpg"/>
+						<img src="/resources/img/micon01.png"/>
 					</div>
 					<div class="email-msg">
 						<div class="email-msg-first">
@@ -113,7 +113,7 @@
 			</div>
 			<div class="modal-content-detail">
 				<div class="email-logo-img">
-					<img src="/resources/img/micon01.jpg" />
+					<img src="/resources/img/micon01.png" />
 				</div>
 				<div class="email-msg">
 					<div class="email-msg-first">
