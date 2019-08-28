@@ -235,6 +235,8 @@
 			subject a,category b 
 		where 
 			a.ctgr_code=b.ctgr_code and mb_email=#{mb_email}
+		order by 
+			a.subj_regdate desc
 	</select>
 	<select id='myPageInfo' resultType='MemberVO'>
 		select 
