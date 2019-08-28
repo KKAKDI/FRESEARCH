@@ -23,7 +23,7 @@
 				<h2>비밀번호 찾기</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
-						<img src="/resources/img/password_logo.jpg"/>
+						<img src="/resources/img/picon01.jpg"/>
 					</div>
 					<div class="email-msg">
 						<div class="email-msg-first">
@@ -65,7 +65,7 @@
 			</div>
 			<div class="modal-content-detail">
 				<div class="email-logo-img">
-					<img src="/resources/img/password_logo.jpg" />
+					<img src="/resources/img/picon01.jpg" />
 				</div>
 				<div class="email-msg">
 					<div class="email-msg-first">

@@ -32,12 +32,20 @@
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
 				</div>
+				<!--  
+				<div class="wrap-loading display-none">
+    				<div><img src="/resources/img/education.png"/></div>
+				</div> -->
 				<div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div>
 			</div>
 		</div>
 	</div>
+	<!-- <div>사용자가 커서로 항목을 가리키면 <p class="tt">말풍선 <span class="tt-text">또는 툴팁(tooltip)</span></p>이 나타납니다. </div> -->
+
 <script type="text/javascript">
+
       $(document).ready(function(){
+    	  	
     	  $("#ing").css("color", "#222");
     	  $("#end").css("background", "#f9f9f9");
     	  $("#ing").css("font-weight", "700");
@@ -80,27 +88,27 @@
 	         			html += "<a href='/research/research_content?subj_code="+list[i].subj_code+"'>";
 	         			if(list[i].ctgr_nm == "교육, 학문"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/education.jpg"/>';
+	         				html += '<img src="/resources/img/education.png"/>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "컴퓨터 통신"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/computer.jpg"></img>';
+	         				html += '<img src="/resources/img/computer.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "게임"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/game.jpg"></img>';
+	         				html += '<img src="/resources/img/game.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "엔터테인먼트, 예술"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/entertainment.jpg"></img>';
+	         				html += '<img src="/resources/img/entertainment.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "생활"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/life.jpg"></img>';
+	         				html += '<img src="/resources/img/life.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "건강"){
@@ -110,27 +118,27 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "사회, 정치"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/social.jpg"></img>';
+	         				html += '<img src="/resources/img/social.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "경제"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/economy.jpg"></img>';
+	         				html += '<img src="/resources/img/economy.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "여행"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/travel.jpg"></img>';
+	         				html += '<img src="/resources/img/travel.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "스포츠, 레저"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/sports.PNG"></img>';
+	         				html += '<img src="/resources/img/sports.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "쇼핑"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/shopping.jpg"></img>';
+	         				html += '<img src="/resources/img/shopping.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "지역"){
@@ -140,7 +148,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "결혼"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/marriage.jpg"></img>';
+	         				html += '<img src="/resources/img/marriage.png"></img>';
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}else{
@@ -150,9 +158,10 @@
 	         				html += '</div>';
 	         			}
 	         			/*html += '<span>' + list[i].subj_code + '</span>';*/
-	         			html += '<span>' + list[i].ctgr_nm + '</span>';
+	         			html += '<span class="ctgr_nm">' + list[i].ctgr_nm + '</span>';
 	         			html += '<div class="subj_nm">';
-	         			html += '<span>' + list[i].subj_nm + '</span>';
+	         			html += '<span class="subj_span">' + list[i].subj_nm + '</span>';
+	         			html += '<span class="tt-text">'+ list[i].subj_nm +'</span>';
 	         			html += '</div>';
 	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
@@ -268,7 +277,7 @@
 	         			html += "<a href='/research/research_content?subj_code="+list[i].subj_code+"'>";
 	         			if(list[i].ctgr_nm == "교육, 학문"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/education.jpg"></img>';
+	         				html += '<img src="/resources/img/education.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -277,7 +286,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "컴퓨터 통신"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/computer.jpg"></img>';
+	         				html += '<img src="/resources/img/computer.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -286,7 +295,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "게임"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/game.jpg"></img>';
+	         				html += '<img src="/resources/img/game.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -295,7 +304,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "엔터테인먼트, 예술"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/entertainment.jpg"></img>';
+	         				html += '<img src="/resources/img/entertainment.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -304,7 +313,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "생활"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/life.jpg"></img>';
+	         				html += '<img src="/resources/img/life.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -322,7 +331,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "사회, 정치"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/social.jpg"></img>';
+	         				html += '<img src="/resources/img/social.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -331,7 +340,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "경제"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/economy.jpg"></img>';
+	         				html += '<img src="/resources/img/economy.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -340,7 +349,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "여행"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/travel.jpg"></img>';
+	         				html += '<img src="/resources/img/travel.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -349,7 +358,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "스포츠, 레저"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/sports.PNG"></img>';
+	         				html += '<img src="/resources/img/sports.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -358,7 +367,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "쇼핑"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/shopping.jpg"></img>';
+	         				html += '<img src="/resources/img/shopping.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){
@@ -376,7 +385,7 @@
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "결혼"){
 	         				html += '<div class="ctgr_img">';
-	         				html += '<img src="/resources/img/marriage.jpg"></img>';
+	         				html += '<img src="/resources/img/marriage.png"></img>';
 	         				if(research == "진행중설문"){
 	         					html += '<p id="status">진행</p>';
 	         				}else if(research == "종료된설문"){

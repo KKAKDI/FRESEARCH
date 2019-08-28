@@ -128,6 +128,8 @@ $(function() {
 			var startdate = $("#date_timepicker_start").val();
 			var enddate = $("#date_timepicker_end").val();
 			var category = $("#category_box input[type=radio]:checked");
+			var email = $("#mem_email").val();
+			var nick = $("#mem_nick").val();
 			
 			if(subjectname!=''&&startdate!=''&&enddate!=''&&category.length>0){
 				// 구분자 (|, #h#, #s#, #i#)
@@ -141,6 +143,8 @@ $(function() {
 				data += $("#category_box input[type=radio]:checked").val()+"#h#";
 				data += $("#date_timepicker_start").val()+"#h#";
 				data += $("#date_timepicker_end").val()+"#h#";
+				data += $("#mem_email").val()+"#h#";
+				data += $("#mem_nick").val()+"#h#"
 				data += "/block";
 				console.log("질문 개수:"+qst_index);
 				for(var i = 0;i<qst_index;i++){

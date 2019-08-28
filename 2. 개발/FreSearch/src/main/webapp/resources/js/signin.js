@@ -1,9 +1,11 @@
 $(document).ready(function(){
 	
+	$("#mb_email").focus();
+	
 	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
 	var regPwd = /^[A-Za-z0-9]{4,12}$/;
 	
-	$("#mb_email").blur(function(){
+	$("#mb_email").keyup(function(){
 		
 		var mb_email = $('#mb_email').val();
 		
@@ -31,7 +33,7 @@ $(document).ready(function(){
 		});	
 	});
 
-	$("#mb_pwd").blur(function(){
+	$("#mb_pwd").keyup(function(){
 		
 		var mb_pwd = $('#mb_pwd').val();
 		
