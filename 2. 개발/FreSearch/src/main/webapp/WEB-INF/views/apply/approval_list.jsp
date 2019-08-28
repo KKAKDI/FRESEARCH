@@ -6,9 +6,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
+
 <%@include file="../includes/header.jsp" %>
-
-
 
 <style>
 
@@ -44,9 +43,11 @@ input.search{
 	height: 22px;
 }
 
-.search_form{
-	padding-top: 30px;
+#searchForm{
+    margin-top: -23px;
+    margin-bottom: -19px;
 }
+
 th, td {
    border-bottom: 1px solid #dcdcdc;
    padding: 10px;
@@ -110,7 +111,7 @@ li.paginate_button {
 
 .tab-news, .tab-event {
 	padding-top: 15px;
-	margin-bottom: -2px;
+	margin-bottom: 50px;
 	display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -190,15 +191,38 @@ div.tab-event a {
 	<div>
 		<div>
 			<div class="container_form">
-
-
+			
 				<div class="news-head">
-				<h2>새소식</h2>
-				<span>
-					<a href="/news/news_register">등록</a>
-				</span>
-				</div>
 				
+				<h2>패널신청 목록
+				
+<%-- 검색 --%>
+
+				<div class='search_form'>
+					<div class='search'>
+						<form id='searchForm' action="/apply/approval_list" method='get'>
+							<select name='type' style="width: 49px; height: 22px;">
+								<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
+								<!-- 
+								<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
+								<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
+				 				-->
+							</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
+							<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
+							<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
+							<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=20px;></button>
+						</form>
+					</div>
+				</div>
+
+<%-- 검색 끝 --%>
+				
+				</h2>
+				
+
+				
+				</div>
+				<%--
 					<div class="tab" style="text-align: center">
 						<div class="tab-news">
 							<a href="/news/news_list">공지사항</a>
@@ -207,6 +231,7 @@ div.tab-event a {
 		                	<a href="/news/news_list_event">이벤트</a>
 						</div>
 					</div>
+				--%>
 					<%-- <hr/>
 					<p>FreSearch 새소식을 제공합니다.</p>
 					<button id="regBtn" type="button">등록하기</button> --%>
@@ -215,35 +240,40 @@ div.tab-event a {
 
 				<table>
 					<thead>
-						<tr style="border-bottom: 1px solid red; border-top: 1px solid white;">
-							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
-							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
-							<th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th>
-							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
-							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
+						<tr style="border-bottom: 1px solid red; border-top: 1px solid #0C4DA2;">
+							<th style="background-color: #f0f0f0; width: 7%; font-weight: bold; color: #505050; padding: 15 19;">번호</th>
+							<!-- <th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;"></th> -->
+							<th style="background-color: #f0f0f0; width: 40%; font-weight: bold; color: #505050; padding: 15 19;">이메일</th>
+							<th style="background-color: #f0f0f0; width: 13%; font-weight: bold; color: #505050; padding: 15 19;">신청일</th>
+							<th style="background-color: #f0f0f0; width: 13%; font-weight: bold; color: #505050; padding: 15 19;">승인일</th>
+							<th style="background-color: #f0f0f0; width: 13%; font-weight: bold; color: #505050; padding: 15 19;">승인</th>
 							
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="news">
+					<c:forEach items="${list}" var="apply">
 						<tr>
-							<td style="font-weight: bold; padding: 20;">[${news.news_division}]</td>
-							<td class="subject"><a class='move' href=${news.news_code} style="text-align: left;">${news.news_subject}</a></td>
-							
+							<td style="padding: 20;">${apply.apply_code}</td>
+						<!-- 
 							<c:choose>
-							<c:when test="${news.news_is_attach == 'Y'}">
-							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+							<c:when test="${apply.apply_approvaldate != null}">
+							<td>[승인]</td>
 							</c:when>
 								<c:otherwise>
-	         						<td></td>
+	         						<td>[승인대기]</td>
 	         					</c:otherwise>
 							</c:choose>
-						
-					
-					
-							<td style="padding: 20;">${news.news_views}</td>
+						 -->						
+							<td style="padding: 20;">${apply.mb_email}</td>
+										
 							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
-									value="${news.news_regdate}" /></td>
+									value="${apply.apply_applydate}" /></td>
+							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
+									value="${apply.apply_approvaldate}" /></td>
+							<td style="padding: 20;">
+							<input type="button" class="apply_fin" value="승인">
+							</td>
+							
 						</tr>		
 					</c:forEach>	
 							
@@ -264,26 +294,6 @@ div.tab-event a {
 					
 					
 				</table>
-				
-<%-- 검색 --%>
-
-<div class='search_form'>
-	<div class='search'>
-		<form id='searchForm' action="/news/news_list" method='get'>
-			<select name='type' style="width: 49px; height: 22px;">
-				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
-				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
-				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
-
-			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
-			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
-			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
-			<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=20px;></button>
-		</form>
-	</div>
-</div>
-
-<%-- 검색 끝 --%>
 			</div>
 		</div>
 	</div>
@@ -292,7 +302,7 @@ div.tab-event a {
 			<ul class="pagination">
 		
 				<c:if test="${pageMaker.prev}">
-					<li class="page-item"><a href="${path}/news/news_list?pageNum=1">첫페이지</a></li>
+					<li class="page-item"><a href="${path}/apply/approval_list?pageNum=1">첫페이지</a></li>
 					<li class="paginate_button previous"><a
 						href="${pageMaker.startPage-1}">Previous</a></li>
 				</c:if>
@@ -310,8 +320,7 @@ div.tab-event a {
 				</c:if>
 			</ul>
 		</div>
-		
-		<form id='actionForm' action="/news/news_list" method='get'>
+		<form id='actionForm' action="/apply/approval_list" method='get'>
 			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 			<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
@@ -322,12 +331,9 @@ div.tab-event a {
 </div>
 
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
-		//등록페이지 이동 버튼 스크립트
-		$("#regBtn").on("click", function() {
-			self.location = "news_register";
-		});
 
 		// 페이징 간련 스크립트
 		var result = '${result}';
@@ -339,13 +345,6 @@ div.tab-event a {
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
-
-		$(".move").on("click", function(e) {
-			e.preventDefault();
-			actionForm.append("<input type='hidden' name='news_code' value='"+ $(this).attr("href")+ "'>");
-			actionForm.attr("action", "/news/news_get");
-			actionForm.submit();
-			});
 
 		//검색 관련 스크립트
 		var searchForm = $("#searchForm");
@@ -373,21 +372,103 @@ div.tab-event a {
 		
 		
 	});
-	
-	/*$(window).on("load", function() {
-		//<img src='/resources/img/file.png'>
-		//setInterval(function() {console.log("실험11 : "+ $('#test').html())},2);
-		if($(".test") != ""){
-			var html = '<img src="/resources/img/attach.png">';
-			$(".test").html(html);
-			console.log("실험 : "+ $(".test").html());
+
+
+</script>
+
+
+<script type="text/javascript">
+$(document).on('click','.apply_fin',function(){
+	swal({
+		title:"승인 하시겟습니까?",
+		text:"승인하시면 등록권한이 부여 됩니다.",
+		icon:"warning",
+		buttons:["아니오","네"],
+		dangerMode:true,
+	})
+	.then((willDelete) => {
+		if(willDelete){
+			var mb_email = $(this).parent().prev().prev().prev().html();
+			console.log("mb_email : "+mb_email); 
+			$.ajax({
+				url : "approval",
+				type : "post",
+				data : {"mb_email" : mb_email},
+				dataType : "json",
+				success : function(d) {
+					console.log("success: " + d);
+					if(d == false) {
+						swal({
+							title:"이미 승인 되었습니다.",
+							text:"이미 승인되어 있습니다. 다시 확인해 주세요!",
+							icon:"error",
+							button:"확인",
+							})
+							.then((willDelete) => {
+						location.href  = "approval_list";
+					});	
+					} else {
+						swal({
+							title:"승인하였습니다.",
+							text:"승인이 성공적으로 완료 되었습니다.",
+							icon:"success",
+							button:"확인",
+							})
+							.then((willDelete) => {
+								location.href  = "approval_list";
+							});
+					}
+					
+				},
+				error : function(e) {
+					alert("error: " + e);
+					console.log(e);
+				}
+			});
 		}
-		
-	});*/
+		else{
+			
+		}				
+	});
+});
+	
 
+<%--
+var result = confirm('승인 하시겠습니까?'); 
+	if(result) { //yes 
+		var mb_email = $(this).parent().prev().prev().prev().html();
+		console.log("mb_email : "+mb_email); 
+		$.ajax({
+			url : "approval",
+			type : "post",
+			data : {"mb_email" : mb_email},
+			dataType : "json",
+			success : function(d) {
+				console.log("success: " + d);
+				if(d == false) {
+					alert("이미 승인되었습니다.");
+					location.href  = "approval_list";		
+				} else {
+					alert("승인되었습니다.");
 
+					location.href  = "approval_list";	
+				}
+				
+			},
+			error : function(e) {
+				alert("error: " + e);
+				console.log(e);
+			}
+		});
+	} else { 
+		//no 
+		}
 
 	
+	
+});
+--%>
+
 </script>
 
 <%@include file="../includes/footer.jsp" %>

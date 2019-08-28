@@ -10,8 +10,4 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	@RequestMapping("/myPage")
-	public String my() {
-		return "myPage";
-	}
 }

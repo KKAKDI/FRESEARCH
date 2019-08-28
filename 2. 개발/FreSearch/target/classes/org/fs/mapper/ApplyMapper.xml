@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fs.mapper.ApplyMapper">
+
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'S'.toString()">
+							mb_email like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							mb_email like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+<select id="selectEmail" resultType="org.fs.domain.ApplyVO">
+<![CDATA[
+	select * from MEMBER where MB_EMAIL = #{MB_EMAIL}
+]]>
+</select>
+
+<select id="applyChk" resultType="String">
+	select * from APPLY where MB_EMAIL = #{MB_EMAIL} and APPLY_APPROVALDATE is null
+</select>
+
+<select id="getTotalCount" resultType="int">
+		select count(*) from APPLY 
+		where
+		
+		<include refid="criteria"></include>
+		
+		apply_code > 0
+	</select>
+	
+	
+<select id="getListWithPaging" resultType="org.fs.domain.ApplyVO">
+  <![CDATA[
+  select 
+    APPLY_CODE, MB_EMAIL, APPLY_APPLYDATE, APPLY_APPROVALDATE
+  from 
+      (
+      select /*+INDEX_DESC(apply pk_apply) */
+        rownum rn, APPLY_CODE, MB_EMAIL, APPLY_APPLYDATE, APPLY_APPROVALDATE
+      from 
+        APPLY
+      where
+  ]]>
+
+  <include refid="criteria"></include> 
+      
+  <![CDATA[    
+      rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}
+  ]]>
+ </select>
+ 
+<!-- 
+<insert id="insertApply">
+insert into APPLY (APPLY_CODE, MB_EMAIL, APPLY_APPLYDATE)
+ values (1, #{mb_email}, SYSDATE)
+</insert>
+ -->
+ 
+<insert id="insertApply">
+
+<selectKey keyProperty="apply_code" order="BEFORE"
+	resultType="int">
+	select APPLY_SEQ.nextval from dual
+	</selectKey>
+
+	insert into APPLY (APPLY_CODE, MB_EMAIL, APPLY_APPLYDATE)
+	values (#{apply_code}, #{mb_email}, SYSDATE)
+</insert>
+<!-- 
+<update id="updateApply">
+	update APPLY
+	set APPLY_APPLYDATE = sysdate
+	where MB_EMAIL = #{mb_email}
+</update>
+ -->
+<update id="updateApproval">
+	update APPLY
+	set APPLY_APPROVALDATE = sysdate
+	where MB_EMAIL = #{mb_email} and APPLY_APPROVALDATE is null
+</update>
+
+<update id="updateAtrt">
+	update MEMBER
+	set MB_REG_ATRT = '패널'
+	where MB_EMAIL = #{mb_email}
+	
+</update>
+</mapper>

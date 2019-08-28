@@ -2,9 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@include file="includes/header.jsp" %>
-<link rel="stylesheet" href="/resources/css/reset.css">
+<%@include file="../includes/header.jsp" %>
+<link rel="stylesheet" href="../resources/css/reset.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <style>
@@ -152,7 +153,7 @@
 	}
 	li >dt:nth-child(3){
 		text-align: center;
-		width:120px;
+		width:100px;
 	}
 	li >dt:nth-child(4){
 		text-align: center;
@@ -261,9 +262,9 @@
 	<div class='info_area'>
 		<div class='info_inner' id='mem_info'>
 			<div id='mem_profile'><img src='/resources/img/member_icon01.png'></div>
-			<div class='profile_name'>관리자</div>
-			<div class='profile_name'>(admin@admin.com)</div>
-			<div class='profile_name' id='grade_box'><label>일반회원</label></div>
+			<div class='profile_name'>${myInfo.mb_nick}</div>
+			<div class='profile_name'>(${myInfo.mb_email})</div>
+			<div class='profile_name' id='grade_box'><label>관리자</label></div>
 		</div>
 		<div class='info_inner' id='research_list_take'><p>참여한 리서치</p></div>
 		<div class='info_inner' id='research_list_make'><p>작성한 리서치</p></div>
@@ -273,64 +274,15 @@
 		<div class='take_list_content'>
 			<div class='content_title'>참여한 리서치 목록</div>
 			<div class='research_list' id='research_list_take_scroll'>
-<ul class='list_content'>
+				<ul class='list_content'>
+				<c:forEach items="${myTakeList}" var="takelist">
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+						<dt>${takelist.ctgr_nm}</dt>
+						<dt><a href='/research/research_content?subj_code=${takelist.subj_code}'>${takelist.subj_nm}</a></dt>
+						<dt>진행중</dt>
+						<dt><fmt:formatDate pattern="yy.MM.dd" value="${takelist.subj_startdate}"/>~<fmt:formatDate pattern="yy.MM.dd" value="${takelist.subj_enddate}"/></dt>						
 					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>	
+				</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -338,63 +290,14 @@
 			<div class='content_title'>작성한 리서치 목록</div>
 			<div class='research_list' id='research_list_make_scroll'>
 				<ul class='list_content'>
+					<c:forEach items="${myMakeList}" var="makelist">
 					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
+						<dt>${makelist.ctgr_nm}</dt>
+						<dt><a href='/research/research_content?subj_code=${makelist.subj_code}'>${makelist.subj_nm}</a></dt>
+						<dt>진행중</dt>
+						<dt><fmt:formatDate pattern="yy.MM.dd" value="${makelist.subj_startdate}"/>~<fmt:formatDate pattern="yy.MM.dd" value="${makelist.subj_enddate}"/></dt>						
 					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>
-					<li>
-					   <dt>엔터테인먼트,예술</dt><dt><a href='#'>경제 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>
-					</li>
-					<li>
-						<dt>컴퓨터 통신</dt><dt><a href='#'>컴퓨터 통신 설문지 테스트</a></dt><dt>진행중</dt><dt>	0000.00.00~0000.00.00</dt>						
-					</li>	
+					</c:forEach>
 				</ul>
 			</div>
 		</div>		
@@ -475,4 +378,4 @@
 	</div>
 </div>
 
-<%@include file="includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp" %>
