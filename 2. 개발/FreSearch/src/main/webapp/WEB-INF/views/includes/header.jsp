@@ -45,7 +45,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
     height: 17px;
     line-height: 1.55em;
     top: 0px;
-    right: -6px;
+    right: -11px;
     border: 1px solid #000000;
     position: absolute;
     text-align: center;
@@ -117,9 +117,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
     font-weight: bold;
     text-align: center;
     border: 1px solid #d9d9d9;
-    cursor: pointer;
     white-space: nowrap;
-    border-bottom: none;
+    border-right: none;
+    border-left: none;
     vertical-aligh:middle;
 
 }
@@ -137,9 +137,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 .jss-icon{
 	margin-left : 5px;
+	margin-bottom: 4px;
     width: 18px;
     height: 17px;
-    background: url(/resources/img/new_icon_01.svg) no-repeat 0 0;
+    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -226,9 +227,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                
                		<!-- 종모양 알림 -->
 	               		<div class="container" id="badge">
-	     					<a class="entypo-bell"></a>
+	     					<a class="entypo-bell" style="display:none;"></a>
+	     					<img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content" id="alarm_content" style="overflow:auto; width:430px; max-height:400px; ">
+						<div class="dropdown-content" id="alarm_content" style="overflow:auto;  overflow-x: hidden; width:430px; max-height:400px; ">
 							<a>로그인 후 이용해 주세요.</a>
 						</div>
 					<!-- 종모양 알림 끝 -->
@@ -352,7 +354,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 <!-- 웹소켓 시작 -->
 <script>
         var ws;
-        var messages = document.getElementById("message");
         
         $(document).ready(function(){
         	var mb_email =($)
@@ -436,7 +437,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell"></a>');
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">');
 	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
 	        				
