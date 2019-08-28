@@ -88,7 +88,12 @@ public class NewsController {
 		
 		rttr.addFlashAttribute("result", news.getNews_code());
 		
-		return "redirect:/news/news_list";
+		log.info("news.getNews_division() :" + news.getNews_division());
+		if (news.getNews_division().equals("공지")) {
+			return "redirect:/news/news_list";
+		} else {
+			return "redirect:/news/news_list_event";
+		}
 	}
 	
 	@GetMapping({"/news_get"}) // 특정 게시물 가져보기

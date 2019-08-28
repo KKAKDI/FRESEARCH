@@ -35,7 +35,7 @@
 					<input type="password" name="mb_pwd" id="mb_pwd" placeholder="비밀번호" maxlength="20">
 					<div id="pwd_check" class="check">
 					<c:if test="${not empty param.fail}">
-						<span id="login_fail">아이디 또는 비밀번호를 다시 확인하세요.</span>
+						<span id="login_fail">아이디 또는 비밀번호를 다시 확인하세요. (이메일 인증 확인 필수)</span>
 					</c:if>
 					</div>
 				</div>
