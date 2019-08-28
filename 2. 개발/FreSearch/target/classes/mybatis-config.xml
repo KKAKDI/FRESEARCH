@@ -8,6 +8,7 @@
    		<typeAlias alias="MemberVO" type="org.fs.domain.MemberVO"/>
    	   	<typeAlias alias="ResearchVO" type="org.fs.domain.ResearchVO"/>
    	   	<typeAlias alias="PageDTO" type="org.fs.domain.PageDTO"/>
+   	   	<typeAlias alias="MypagelistVO" type="org.fs.domain.MypagelistVO"/>
    </typeAliases>
 
 </configuration>
