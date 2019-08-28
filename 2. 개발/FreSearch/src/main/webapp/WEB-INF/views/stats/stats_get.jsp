@@ -26,6 +26,7 @@
 			<div class="content-top"> 
 				<div class="top-top">   
 					<span id="hi">응답 10명 </span> <span class="what" id="what">${list[0].ctgr_nm}</span>
+					
 
 				</div>
 			</div>
@@ -165,10 +166,9 @@
 		
 		
 		for (var i = 0, len = result.length || 0; i < len; i++) {
-/*  		if (result[0].qst_code == result[i].qst_code) {
-				console.log("result :" + result[i].asw_content);
-				count += Number(result[i].asw_content);
-			}  */
+			
+			
+		
 			if(result[i].qst_type == 0){
 				if(((i!=0)&&(result[i].qst_content!=result[i-1].qst_content))||(i==0)){
 					console.log("1");
@@ -273,10 +273,15 @@
 				//////////////////////////
 				//if(result[i].item_code == "SS5NKHW6"){
 				for(var j =0; j<resultS.length; j++){
-					if((result[i].qst_content==resultS[j].qst_content)){
+					if((result[i].qst_content==resultS[j].qst_content)&&(j%2==0)){
 						console.log("4-1");
 						html += '<tr class="Row Top" role="row">';
 						html += '<td class="Cell-Oven ChampionName"><span>'+resultS[j].asw_content+'</span></td>';
+						html += '</tr>';
+					}else if((result[i].qst_content==resultS[j].qst_content)&&(j%2==1)){
+						console.log("4-2");
+						html += '<tr class="Row Top" role="row">';
+						html += '<td class="Cell ChampionName"><span>'+resultS[j].asw_content+'</span></td>';
 						html += '</tr>';
 					}
 				}
@@ -292,8 +297,8 @@
 				html += '</div>';
 			}
 	/////////////////////////////////////////////////////////////////////////////////////////////
-		}
-		console.log("5");
+		} 
+		console.log("5"); 
 			
 		html += '</div>';
 		html += '</div>';
@@ -302,7 +307,7 @@
 		$('.start').html(html);
 		count = result[0].subj_nm;
 		$("#hi").html(count);
-		var what = result[0].ctgr_nm; //+ "  "+result[0].subj_startdate+"              "+tableService.displayTime(result[0].subj_startdate)+"~"+tableService.displayTime(result[0].subj_enddate);
+		var what = result[0].ctgr_nm+"                ("+<c:out value="${count}"/>+"명 응답)"; //+ "  "+result[0].subj_startdate+"              "+tableService.displayTime(result[0].subj_startdate)+"~"+tableService.displayTime(result[0].subj_enddate);
 		$("#what").html(what);
 	});
 	

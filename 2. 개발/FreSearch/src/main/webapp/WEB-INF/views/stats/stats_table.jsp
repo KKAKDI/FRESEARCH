@@ -416,80 +416,8 @@
 				<div class="card-body-table">
 					<section class="article-list">
 
-						<!--
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-						 -->
-
 					</section>
-					
-					
-					
-	<!-- 				
-	<div class="grid-margin-table-p stretch-card p">
-		<div class="card-table-p">
-			<div class="card-body-table-p">
-				<section class="article-list-p">
-					<section class="article-list-paging-p">
-							<div class="article-list-paging-content">
-								<ul class="article-list-paging-list">
-								<c:if test="${pageMaker.prev }"	>
-									<li	class="article-list-paging__item article-list-paging__item--prev">
-										<a href="" class="article-list-paging__button button"> 
-										<img	src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24"> 
-										<span>이전</span>
-									</a>
-									</li>
-									</c:if>
-									<c:if test="${pageMaker.next}">
-									<li	class="article-list-paging__item article-list-paging__item--next">	<a href="" class="article-list-paging__button button"> 
-									<span>다음</span>
-											<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">
-									</a>
-									</li>
-									</c:if>
-								</ul>
-							</div>
-						</section>
-					</section>
-				</div>
-			</div>
-		</div>
-		 -->			<!--  
-					<button class="article-list-paging__button button" id="next" value="1">
-				    	<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">
-				    	<span>실험</span>
-				    	</button>
-				    	
-				    	-->
+
 
 
 

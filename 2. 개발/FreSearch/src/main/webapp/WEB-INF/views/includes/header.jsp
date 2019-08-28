@@ -133,17 +133,17 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
     background-color: #1820b7;
 
 
-}
+} 
 
 .jss-icon{
 	margin-left : 5px;
 	margin-bottom: 4px;
     width: 18px;
-    height: 17px;
+    height: 13px;
     background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
-    cursor: pointer;
+    cursor: pointer; 
     overflow: hidden;
 }
 .jss-font{
