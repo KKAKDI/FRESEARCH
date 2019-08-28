@@ -107,6 +107,10 @@ public class ResearchController {
 		service.researchAnswer(values);
 		return "redirect:/stats/stats_get?subj_code="+request.getParameter("research_code");
 	}	
-
-	
+	@GetMapping("research_delete")
+	public String delete(RedirectAttributes rttr,HttpServletRequest request) {
+		String subj_code = request.getParameter("subj_code");
+		service.researchDelete(subj_code);
+		return "redirect:/research/research_list";
+	}	
 }

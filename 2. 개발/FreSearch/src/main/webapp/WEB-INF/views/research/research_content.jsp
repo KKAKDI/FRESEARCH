@@ -76,7 +76,6 @@
 				return false;
 			}else{
 				console.log(research_values);	
-				return false;
 				$("#research_values").val(research_values);
 				form.attr("action","/research/research_content");							
 				swal({
@@ -118,9 +117,9 @@
 			.then((willDelete) => {
 				if(willDelete){
 					//controler 연결 필요
+					location.href="/research/research_delete?subj_code="+$("#research_code").val();
 				}
-				else{
-					
+				else{					
 				}				
 			});
 		});
@@ -135,7 +134,11 @@
 				</div>				
 				<div id='right_top_box'>
 					<!-- session 채크 -->
-					<button id='delete_form'></button>
+					<sec:authentication property="principal" var="prinfo"/>
+					<sec:authorize access="isAuthenticated()"/>
+					<c:if test="${prinfo.username eq content[0].mb_email}">
+					<button id='delete_form'></button>				
+					</c:if>	
 				</div>
 			</div>
 			<div class='logo'>
