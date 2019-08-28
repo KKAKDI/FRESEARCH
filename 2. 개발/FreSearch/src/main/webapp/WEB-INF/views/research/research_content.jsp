@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,8 @@
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;
-			var user_email ="admin@fresearch.com";
-			var user_nick ="admin";
+			var user_email =$("#mem_email").val();
+			var user_nick =$("#mem_nick").val();
 			var form = $("#research_form");
 			var checkCnt= 0;
 			
@@ -59,18 +60,25 @@
 						}
 					}else{
 						console.log($("input:text[name='item"+i+"']").val());
-						research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
-						research_values += $("input:text[name='item"+i+"']").val()+"#value#";
+						if($("input:text[name='item"+i+"']").val()==''){
+							checkCnt++;
+							$.emptyCheck();
+							break;
+						}else{
+							research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
+							research_values += $("input:text[name='item"+i+"']").val()+"#value#";	
+						}						
 					}			
 				}					
-			}
+			}			
 			if(checkCnt>0){
 				$.emptyCheck();
 				return false;
 			}else{
+				console.log(research_values);	
+				return false;
 				$("#research_values").val(research_values);
-				form.attr("action","/research/research_content");
-				console.log(research_values);				
+				form.attr("action","/research/research_content");							
 				swal({
 					title:"등록되었습니다!",
 					text:"답변이 성공적으로 등록되었습니다!",
@@ -142,6 +150,8 @@
 						<div class='content_box clearflx'>
 							<div id='research_subject'>${content[0].subj_nm}</div>
 							<input type='hidden' name='research_code' id='research_code' value='${content[0].subj_code}'>
+							<input type='hidden' id='mem_email' value='<sec:authentication property="principal.member.mb_email"/>'>                      		
+                      		<input type='hidden' id='mem_nick' value='<sec:authentication property="principal.member.mb_nick"/>'>
 							<div id='research_info'>
 								<div id='research_ctegory'>${content[0].ctgr_nm}</div>
 								<div class='research_turm'>

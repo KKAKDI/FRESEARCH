@@ -103,9 +103,9 @@ public class ResearchController {
 	}
 	@PostMapping("research_content")
 	public String answer(RedirectAttributes rttr,HttpServletRequest request) {
-		String values = request.getParameter("research_values");
+		String values = request.getParameter("research_values");		
 		service.researchAnswer(values);
-		return "redirect:/stats/stats_table";
+		return "redirect:/stats/stats_get?subj_code="+request.getParameter("research_code");
 	}	
 
 	

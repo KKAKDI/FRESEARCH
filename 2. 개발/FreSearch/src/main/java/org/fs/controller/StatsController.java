@@ -277,9 +277,9 @@ public class StatsController {
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
-		for(StatsVO vo: list) {
-			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
-		}
+//		for(StatsVO vo: list) {
+//			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
+//		}
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")
