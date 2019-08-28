@@ -5,6 +5,7 @@ import java.util.List;
 import org.fs.domain.BoardVO;
 import org.fs.domain.MemberVO;
 import org.fs.domain.MemberVO2;
+import org.fs.domain.MypagelistVO;
 
 public interface MemberMapper {
 	
@@ -24,4 +25,8 @@ public interface MemberMapper {
 	public int changeKey(String mb_nick, String mb_email_key);
 	
 	public MemberVO read(String mb_email);
+	
+	public List<MypagelistVO> myTakeList(String mb_email);
+	public List<MypagelistVO> myMakeList(String mb_email);
+	public MemberVO myPageInfo(String mb_email);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.fs.domain.BoardVO;
 import org.fs.domain.MemberVO;
+import org.fs.domain.MypagelistVO;
 
 public interface MemberService {
 	
@@ -25,4 +26,8 @@ public interface MemberService {
 	
 	public void findSend(String mb_email);
 	public List<MemberVO> check(MemberVO vo);
+	
+	public MemberVO myInfo(String mb_email);
+	public List<MypagelistVO> myTakeList(String mb_email);
+	public List<MypagelistVO> myMakeList(String mb_email);
 }

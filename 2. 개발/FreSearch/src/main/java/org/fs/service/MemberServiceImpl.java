@@ -8,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import org.fs.domain.MemberVO;
+import org.fs.domain.MypagelistVO;
 import org.fs.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -168,6 +169,19 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
-	
-	
+
+	@Override
+	public MemberVO myInfo(String mb_email) {		
+		return mapper.myPageInfo(mb_email);
+	}
+
+	@Override
+	public List<MypagelistVO> myTakeList(String mb_email) {		
+		return mapper.myTakeList(mb_email);
+	}
+
+	@Override
+	public List<MypagelistVO> myMakeList(String mb_email) {		
+		return mapper.myMakeList(mb_email);
+	}	
 }
