@@ -276,11 +276,14 @@ public class StatsController {
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
-
+		List<StatsVO> listS = service.getStatsContentShortAnswer(subj_code);
+		int count = service.contentCount(subj_code);
 //		for(StatsVO vo: list) {
 //			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
 //		}
-
+		
+		model.addAttribute("count", count);
+		model.addAttribute("listS",listS);
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")

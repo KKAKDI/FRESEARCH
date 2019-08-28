@@ -37,6 +37,8 @@ public interface StatsMapper {
 	public List<StatsVO> getTableSearch(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
 	
 	public List<StatsVO> getStatsContent(String subj_code);
+	public List<StatsVO> getStatsContentShortAnswer(String subj_code);
+	public int contentCount(String subj_code);
 
 	public List<StatsVO> header(String mb_email);
 	

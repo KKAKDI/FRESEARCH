@@ -133,11 +133,11 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 .jss-icon{
 	margin-left : 5px;
-    width: 18px;
+    width: 16px;
     height: 17px;
-    
+    margin-bottom : 4px;
     /*background: url(/resources/img/bicon16_1.png) no-repeat 0 0;*/
-    background: url(/resources/img/new_icon_01.svg) no-repeat 0 0;
+    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -290,9 +290,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                		<!-- 종모양 알림 -->
 	               	<div class="container" id="badge">
 	     				<a class="entypo-bell" style="display:none;"></a>
-	     				<img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">
+	     				<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 					</div>
-					<div class="dropdown-content" id="alarm_content"style="overflow:auto; width:300px; max-height:200px; ">
+					<div class="dropdown-content" id="alarm_content"style="overflow:auto; overflow-x: hidden; width:430px; max-height:400px;
+					 margin-top: 4px; ">
 					<a>로그인 후 이용해 주세요.</a>
 					</div>
 					<!-- 종모양 알림 끝 -->
@@ -603,7 +604,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	         	var data ={
 	        		mb_email : mb_email
 	        	}
-	         	console.log("이게 왜 ㅜㅜ")
 	        	
 	        	tableService.header(data,function(list){ 
 	

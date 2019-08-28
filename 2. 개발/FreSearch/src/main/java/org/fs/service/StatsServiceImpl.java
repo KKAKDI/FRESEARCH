@@ -100,6 +100,16 @@ public class StatsServiceImpl implements StatsService{
 		log.info("getTableTest");
 		return mapper.getStatsContent(subj_code);
 	}
+	@Override
+	public List<StatsVO> getStatsContentShortAnswer(String subj_code){
+		log.info("getTableTest");
+		return mapper.getStatsContentShortAnswer(subj_code);
+	}
+	@Override
+	public int contentCount(String subj_code) {
+		log.info("get");
+		return mapper.contentCount(subj_code);
+	}
 	
 	@Override
 	public List<StatsVO> header(String mb_email){

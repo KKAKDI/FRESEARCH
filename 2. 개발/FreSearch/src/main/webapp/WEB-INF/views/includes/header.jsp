@@ -137,9 +137,10 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 .jss-icon{
 	margin-left : 5px;
+	margin-bottom: 4px;
     width: 18px;
     height: 17px;
-    background: url(/resources/img/new_icon_01.svg) no-repeat 0 0;
+    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -229,7 +230,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	     					<a class="entypo-bell" style="display:none;"></a>
 	     					<img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content" id="alarm_content" style="overflow:auto; width:430px; max-height:400px; ">
+						<div class="dropdown-content" id="alarm_content" style="overflow:auto;  overflow-x: hidden; width:430px; max-height:400px; ">
 							<a>로그인 후 이용해 주세요.</a>
 						</div>
 					<!-- 종모양 알림 끝 -->
