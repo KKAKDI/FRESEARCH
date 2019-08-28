@@ -146,7 +146,7 @@
 	li >dt:nth-child(1){
 	    font-weight: bold;	
 		text-align: center;
-		width:150px;
+		width:155px;
 	}
 	li >dt:nth-child(2){
 		width:390px;
