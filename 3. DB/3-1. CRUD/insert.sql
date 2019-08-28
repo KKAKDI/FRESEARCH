@@ -309,16 +309,16 @@ Insert into NEWS (NEWS_CODE,NEWS_DIVISION,NEWS_SUBJECT,NEWS_CONTENT,NEWS_REGDATE
 감사합니다.',SYSDATE,'N');
 
 -- 자유게시판
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'aaa@google.com', '최운학', '자게제목1', '자게내용1', 0, 0, 0, 'A0BCDE', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'bbb@google.com', '곽지훈', '자게제목2', '자게내용2', 0, 0, 0, 'B1CDEF', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ccc@google.com', '변정우', '자게제목3', '자게내용3', 0, 0, 0, 'C2DEFG', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ddd@google.com', '이재하', '자게제목4', '자게내용4', 0, 0, 0, 'D3EFGH', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'eee@google.com', '조성식', '자게제목5', '자게내용5', 0, 0, 0, 'E4FGHI', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'fff@google.com', '박동진', '자게제목6', '자게내용6', 0, 0, 0, 'F5GHIJ', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ggg@google.com', '손현준', '자게제목7', '자게내용7', 0, 0, 0, 'G6HIJK', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'hhh@google.com', '박상우', '자게제목8', '자게내용8', 0, 0, 0, 'H7IJKL', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'iii@google.com', '최정인', '자게제목9', '자게내용9', 0, 0, 0, 'I8JKLM', 0, SYSDATE);
-insert into BOARD values(BOARD_SEQ.NEXTVAL, 'jjj@google.com', '최영훈', '자게제목10', '자게내용10', 0, 0, 0, 'J9KLMN', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'aaa@google.com', '최운학', '자게제목1', '자게내용1',  'A0BCDE', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'bbb@google.com', '곽지훈', '자게제목2', '자게내용2',  'B1CDEF', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ccc@google.com', '변정우', '자게제목3', '자게내용3',  'C2DEFG', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ddd@google.com', '이재하', '자게제목4', '자게내용4',  'D3EFGH', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'eee@google.com', '조성식', '자게제목5', '자게내용5',  'E4FGHI', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'fff@google.com', '박동진', '자게제목6', '자게내용6',  'F5GHIJ', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'ggg@google.com', '손현준', '자게제목7', '자게내용7',  'G6HIJK', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'hhh@google.com', '박상우', '자게제목8', '자게내용8',  'H7IJKL', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'iii@google.com', '최정인', '자게제목9', '자게내용9',  'I8JKLM', 0, SYSDATE);
+insert into BOARD values(BOARD_SEQ.NEXTVAL, 'jjj@google.com', '최영훈', '자게제목10', '자게내용10', 'J9KLMN', 0, SYSDATE);
 
 -- 댓글
 insert into REPLY values(REPLY_SEQ.NEXTVAL, 2, 'aaa@google.com', '최운학', '댓글내용1', SYSDATE);
