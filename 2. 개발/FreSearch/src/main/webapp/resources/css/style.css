@@ -555,7 +555,11 @@ body {
     padding: 1px;
     font-size: 16px;
     border: none;
-    margin-bottom: 2px;
+    margin-top: 1px;
+}
+
+.container>.fixed_box>.header>.upper>.login>.dropdown>.dropbtn img {
+	width: 23px;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown {
@@ -573,6 +577,7 @@ body {
 	z-index: 1;
 	/* margin-left: -126px; */
 	margin-left: -30px;
+	margin-top: -2px;
 	padding: 8px 0;
 	list-style: none;
 	text-align: left;
@@ -584,13 +589,15 @@ body {
 	min-width: 184px;
 }
 
+
+
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(4) {
 	/* color: black;
 	padding: 7% 0;
 	text-decoration: none;
 	display: block;
 	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
-	color: #1428a0;
+	color: #666;
     padding: 7% 0;
     text-decoration: none;
     display: block;
@@ -598,7 +605,7 @@ body {
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5) {
-	color: #1428a0;
+	color: #666;
 	/* padding: 12px 57px; */
 	text-decoration: none;
 	display: block;
@@ -633,7 +640,7 @@ body {
     line-height: 17px;
     margin-bottom: -5px;
     font-weight: 600; */
-    color: #1428a0;
+    color: #222;
     padding: 0px 27% 0px 43px;
     text-decoration: none;
     display: block;
@@ -657,7 +664,7 @@ body {
 	margin-left: 24%;
 	line-height: 17px;
 	margin-bottom: 0; */
-	color: #1428a0;
+	color: #222;
     padding: 0 9%;
     text-decoration: none;
     display: block;
@@ -716,7 +723,7 @@ body {
 	vertical-align: unset; */
 	width: 14%;
     transition: all ease 1s;
-    margin-left: 8%;
+    margin-left: 9%;
     margin-top: -8%;
     margin-bottom: -8%;
     position: relative;
@@ -733,7 +740,7 @@ body {
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>img {
 	width: 14%;
     transition: all ease 1s;
-    margin-left: 8%;
+    margin-left: 9%;
     margin-top: 7%;
     margin-bottom: 2%;
     position: relative;
@@ -816,7 +823,7 @@ body {
 	position: absolute;
     margin-top: 7%;
     padding-left: 14px;
-    color: #1428a0;
+    color: #666;
     font-weight: 600;
 }
 .container .fixed_box .header .upper .login .dropdown .dropdown-content .span_signup {
@@ -825,7 +832,7 @@ body {
 	position: absolute;
     margin-top: 8%;
     padding-left: 10px;
-    color: #1428a0;
+    color: #666;
     font-weight: 600;
 }
 
