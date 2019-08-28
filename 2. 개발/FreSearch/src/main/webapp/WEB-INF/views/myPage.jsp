@@ -22,7 +22,7 @@
 	}
 	.mycontent .info_area{
 		width: 200px;
-		height: 301px;
+		height: 337px;
    		background-color: #fff;
 	    margin-top: 40px;
 	    display: inline-block;
@@ -162,14 +162,19 @@
 		padding-top: 5px;
 	}
 	#mem_info{
-		height: 150px;
+		height: 185px;
 		border-bottom: 1px solid #dcdcdc;
 	}
 	#mem_profile{
-	    width: 50px;
-	    height: 50px;
-	    background: url(/resources/img/bicon15_4.png) no-repeat 50% 50%;
+	    width: 100px;
+	    height: 85px;
+	    /*
+	    background: url(/resources/img/member_icon01.png) no-repeat 50% 50%;
+	    */
 	    margin: 0 auto;
+	}
+	#mem_profile img{
+		width: 100px;
 	}
 	#mb_addr_find{
 	    background-color: #fff;
@@ -255,7 +260,7 @@
 <div class='mycontent'>
 	<div class='info_area'>
 		<div class='info_inner' id='mem_info'>
-			<div id='mem_profile'></div>
+			<div id='mem_profile'><img src='/resources/img/member_icon01.png'></div>
 			<div class='profile_name'>관리자</div>
 			<div class='profile_name'>(admin@admin.com)</div>
 			<div class='profile_name' id='grade_box'><label>일반회원</label></div>
@@ -398,7 +403,7 @@
 			<div class='mem_modi_box'>	
 			<form name='modi_form' id='modi_form' action='' method='post'>			
 				<label>현재 비밀번호</label>
-				<input type='password' name='mb_pwd_now' id='mb_pwd' value='' placeholder='현재 비밀번호'>
+				<input type='password' name='mb_pwd_now' id='mb_pwd_now' value='' placeholder='현재 비밀번호'>
 				<label>새 비밀번호</label>
 				<input type='password' name='mb_pwd_new' id='mb_pwd' value='' placeholder='새 비밀번호'>
 				<label>새 비밀번호 확인</label>

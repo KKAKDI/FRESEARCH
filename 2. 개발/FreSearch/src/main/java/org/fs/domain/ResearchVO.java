@@ -35,5 +35,6 @@ public class ResearchVO {
 	private Date item_regdate;	 // 등록일
 	
 	private String research;
+	private String rowId; // 리턴된 PRIMARY KEY ID
 	private int rowNum;
 }

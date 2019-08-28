@@ -11,4 +11,5 @@ public interface ResearchService {
 	public ResearchPageDTO list(Criteria cri, String research);
 	public void researchReg(String values);
 	public void researchAnswer(String values);
+	public void researchDelete(String subj_code);
 }

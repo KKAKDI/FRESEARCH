@@ -136,11 +136,34 @@
 			json.subj_startdate = "${info.subj_startdate}";
 			json.subj_enddate = "${info.subj_enddate}"; 
 			json.item_regdate = "${info.item_regdate}";
+			json.asw_count = "${info.asw_count}";
 			result.push(json);
 		</c:forEach>
-		//var json = JSON.stringify(result);
+		
+		var resultS = new Array();
+		<c:forEach items="${listS}" var="info">
+			var json = new Object();
+			json.subj_code = "${info.subj_code}";
+			json.qst_code = "${info.qst_code}";
+			json.item_code = "${info.item_code}";
+			json.ctgr_nm = "${info.ctgr_nm}";
+			json.subj_nm = "${info.subj_nm}";
+			json.item_img = "${info.item_img}";
+			json.qst_type = "${info.qst_type}"; 
+			json.qst_content = "${info.qst_content}";
+			json.item_content = "${info.item_content}";
+			json.asw_content = "${info.asw_content}";
+			json.percent = "${info.percent}";
+			json.subj_startdate = "${info.subj_startdate}";
+			json.subj_enddate = "${info.subj_enddate}"; 
+			json.item_regdate = "${info.item_regdate}";
+			json.asw_count = "${info.asw_count}";
+			resultS.push(json);
+		</c:forEach>
 		var count = 0;
 		var html = '';
+		
+		
 		for (var i = 0, len = result.length || 0; i < len; i++) {
 /*  		if (result[0].qst_code == result[i].qst_code) {
 				console.log("result :" + result[i].asw_content);
@@ -169,13 +192,11 @@
 				}
 				console.log("2");
 					
-					console.log("#result : "+result[0].item_img);
 					html += '<div class="first-text-text">';
-					console.log("result["+i+"].item_img : "+result[i].item_img);
 					
 					//html += '<c:out value="${list[0].item_img}"/>';
 					
-					html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
+					//html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
 					html += '<div class="security">';
 					html += '<div class="ContentWrap">';
 					html += '<div class="Content">'; 
@@ -199,7 +220,7 @@
 					html += '<div class="Progress Blue" style="width: '+result[i].percent+'"></div>';
 					html += ' <span class="Value">'+result[i].percent+'</span>';
 					html += '</td>';  
-					html += '<td class="Cell-Top">'+result[i].asw_content+'</td>';
+					html += '<td class="Cell-Top">'+result[i].asw_count+'</td>';
 					html += '</tr>';
 					
 					html += '</tbody>';
@@ -250,9 +271,15 @@
 				html += '<tbody class="Content" aria-live="plite" aria-relevant="all">';
 				}
 				//////////////////////////
-				html += '<tr class="Row Top" role="row">';
-				html += '<td class="Cell-Oven ChampionName"><span>'+result[i].item_content+'</span></td>';
-				html += '</tr>';
+				//if(result[i].item_code == "SS5NKHW6"){
+				for(var j =0; j<resultS.length; j++){
+					if((result[i].qst_content==resultS[j].qst_content)){
+						console.log("4-1");
+						html += '<tr class="Row Top" role="row">';
+						html += '<td class="Cell-Oven ChampionName"><span>'+resultS[j].asw_content+'</span></td>';
+						html += '</tr>';
+					}
+				}
 				//////////////////////////
 				html += '</tbody>';
 				html += '</table>';

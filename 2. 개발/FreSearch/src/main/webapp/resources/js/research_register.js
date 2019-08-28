@@ -172,8 +172,7 @@ $(function() {
 								 }else{
 									 data += $(".research_content #item_box")[i].querySelectorAll(".item_txt")[j].value+"#t#";		
 								 }					 
-							}
-							
+							}							
 						}
 						data+="/block";
 					}					

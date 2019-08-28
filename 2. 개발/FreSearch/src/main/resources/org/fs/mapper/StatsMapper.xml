@@ -417,13 +417,13 @@ SELECT DISTINCT a.subj_code,
                 c.item_code,
                 b.qst_type,
                 c.item_img, 
-                e.ctgr_nm, 
+                e.ctgr_nm,
                 a.subj_nm, 
                 b.qst_content, 
                 c.item_content,
                 (SELECT count(asw_content)
                  FROM   answer 
-                 WHERE  item_code = c.item_code)AS ASW_CONTENT,
+                 WHERE  item_code = c.item_code)AS ASW_COUNT,
                  ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
                  FROM   answer
                  WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
@@ -438,7 +438,8 @@ FROM   subject a,
 WHERE  a.subj_code = b.subj_code 
        AND b.qst_code = c.qst_code 
        AND a.ctgr_code = e.ctgr_code 
-       AND a.subj_code = #{subj_code} 
+       AND a.subj_code = #{subj_code}
+       AND b.qst_code = c.qst_code
 GROUP  BY a.mb_nick, 
           a.subj_code, 
           b.qst_code, 
@@ -452,7 +453,73 @@ GROUP  BY a.mb_nick,
           c.item_regdate, 
           a.subj_startdate, 
           a.subj_enddate
-order by qst_code desc, asw_content desc
+order by qst_code desc, asw_count desc
+</select>
+
+<select id="getStatsContentShortAnswer" resultType="org.fs.domain.StatsVO">
+SELECT DISTINCT a.subj_code, 
+                b.qst_code, 
+                c.item_code,
+                b.qst_type,
+                c.item_img, 
+                e.ctgr_nm,
+                a.subj_nm, 
+                d.asw_content,
+                b.qst_content, 
+                c.item_content,
+                (SELECT count(asw_content)
+                 FROM   answer 
+                 WHERE  item_code = c.item_code)AS ASW_COUNT,
+                 ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
+                 FROM   answer
+                 WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
+                a.subj_startdate, 
+                a.subj_enddate, 
+                c.item_regdate 
+FROM   subject a, 
+       question b, 
+       item c, 
+       answer d, 
+       category e 
+WHERE  a.subj_code = b.subj_code 
+       AND b.qst_code = c.qst_code 
+       AND a.ctgr_code = e.ctgr_code 
+       AND a.subj_code = #{subj_code}
+       AND b.qst_code = c.qst_code
+       AND c.item_code=d.item_code
+       AND qst_type =1
+GROUP  BY a.mb_nick, 
+          a.subj_code, 
+          b.qst_code, 
+          c.item_code,
+          b.qst_type,
+          c.item_img, 
+          e.ctgr_nm, 
+          a.subj_nm, 
+          b.qst_content, 
+          c.item_content, 
+          c.item_regdate, 
+          a.subj_startdate, 
+          a.subj_enddate,
+          d.asw_content
+order by qst_code desc, asw_count desc
+</select>
+
+<select id="contentCount" resultType="int">
+SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = #{subj_code}
+                                        AND rownum = 1)
 </select>
 
 
@@ -474,17 +541,6 @@ order by subj_regdate desc
 update subject set read = 1 where subj_code =#{subj_code}
 
 </update>
-
-
-<select id="tableCount" resultType="int">
-select count(d.asw_content)
-from subject a, question b, item c , answer d 
-where a.subj_code = b.subj_code and b.qst_code=c.qst_code and c.item_code = d.item_code
-and b.qst_code =(select b.qst_code from subject a, question b 
-where a.subj_code = b.subj_code and a.subj_code=#{subj_code} and rownum = 1)
-</select>
-
-
 
 
 </mapper>
