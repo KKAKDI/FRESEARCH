@@ -73,6 +73,7 @@ public class StatsVO {
 	private String item_content;
 	private Date item_regdate;
 	private String item_img;
+	private String asw_count;
 	
 	
 	

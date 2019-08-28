@@ -136,6 +136,7 @@
 			json.subj_startdate = "${info.subj_startdate}";
 			json.subj_enddate = "${info.subj_enddate}"; 
 			json.item_regdate = "${info.item_regdate}";
+			json.asw_count = "${info.asw_count}";
 			result.push(json);
 		</c:forEach>
 		//var json = JSON.stringify(result);
@@ -175,7 +176,7 @@
 					
 					//html += '<c:out value="${list[0].item_img}"/>';
 					
-					html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
+					//html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
 					html += '<div class="security">';
 					html += '<div class="ContentWrap">';
 					html += '<div class="Content">'; 
@@ -199,7 +200,7 @@
 					html += '<div class="Progress Blue" style="width: '+result[i].percent+'"></div>';
 					html += ' <span class="Value">'+result[i].percent+'</span>';
 					html += '</td>';  
-					html += '<td class="Cell-Top">'+result[i].asw_content+'</td>';
+					html += '<td class="Cell-Top">'+result[i].asw_count+'</td>';
 					html += '</tr>';
 					
 					html += '</tbody>';
@@ -250,9 +251,13 @@
 				html += '<tbody class="Content" aria-live="plite" aria-relevant="all">';
 				}
 				//////////////////////////
-				html += '<tr class="Row Top" role="row">';
-				html += '<td class="Cell-Oven ChampionName"><span>'+result[i].item_content+'</span></td>';
-				html += '</tr>';
+				//if(result[i].item_code == "SS5NKHW6"){
+				if((i!=0)&&(result[i].item_code == result[i-1].item_code) || (result[i].item_code == result[i+1].item_code)){
+					console.log("4-1");
+					html += '<tr class="Row Top" role="row">';
+					html += '<td class="Cell-Oven ChampionName"><span>'+result[i].asw_content+'</span></td>';
+					html += '</tr>';
+				}
 				//////////////////////////
 				html += '</tbody>';
 				html += '</table>';

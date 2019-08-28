@@ -42,7 +42,6 @@ public interface StatsMapper {
 	
 	public int headerUpdate(String subj_code); 
 	
-	public int tableCount(String subj_code);
 
 
 }

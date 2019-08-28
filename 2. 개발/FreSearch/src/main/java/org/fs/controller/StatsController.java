@@ -277,9 +277,6 @@ public class StatsController {
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
-		for(StatsVO vo: list) {
-			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
-		}
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")
@@ -291,23 +288,6 @@ public class StatsController {
 		
 	}
 	
-
-
-
-//	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PATCH},
-//			value = "/table",
-//			consumes = "application/json",
-//			produces = "application/json")
-//	public ResponseEntity <List<StatsVO>> getTable(@RequestBody StatsVO vo){
-////		if(vo.getAge() == 30) {
-////			vo.setStartAge(30);
-////			vo.setEndAge(39);
-////			System.out.println("여기에 들어왔다!!");
-////		}
-//		return new ResponseEntity<>(service.getTable(vo),HttpStatus.OK);
-//	}
-//
-//
 	@RequestMapping(method = { RequestMethod.POST,
 			RequestMethod.PATCH }, 
 			value = "/table/{pageNum}/{amount}", 
