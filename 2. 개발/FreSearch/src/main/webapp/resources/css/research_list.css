@@ -124,7 +124,7 @@ body {
     font-weight: 550;
     color: #1428a0;
 }
-.page-content .list-content .detail-list .tab-content #test ul li a .subj_nm .subj_span { 
+.page-content .list-content .detail-list .tab-content #test ul li a .subj_nm .subj_nm_span { 
 	/*
 	display: block;
     padding-left: 20px;
@@ -310,9 +310,10 @@ body {
     color: #888;
 }
 .page-content .list-content .detail-list .tab-content .paging ul .page-item a:hover{
-	background-color: #888;
+	background-color: #1428a0;
     cursor: pointer;
 	color: #fff;
+	opacity: 0.4;
 }
 .page-content .list-content .detail-list .tab-content .paging ul .page-item-move a:hover{
     cursor: pointer;
@@ -321,7 +322,7 @@ body {
 }
 
 .page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link{
-	background-color: #222;
+	background-color: #1428a0;
     font-style: normal;
     color: #fff;
 }
@@ -347,7 +348,7 @@ body {
 	display: inline-block; 
 } 
 
-.tt-text { 
+.tooltip { 
 	/* visibility: hidden; 
 	width: 200px; 
 	background-color: Indigo; 
@@ -364,21 +365,21 @@ body {
 	visibility: hidden;
     width: 256px;
     height: auto;
-    background-color: #fff;
-    color: #222;
+    background-color: #222;
+    color: #fff;
     text-align: center;
     border-radius: 10px;
     padding: 10px 5px;
     position: absolute;
     z-index: 1;
     top: 146%;
-    left: 40%;
+    left: 47%;
     margin-left: -105px;
     font-size: 12px;
     word-break: break-all;
 } 
 
-.tt-text::after { 
+.tooltip::after { 
 	/* content: ""; 
 	position: absolute; 
 	bottom: 100%; 
@@ -398,7 +399,7 @@ body {
     border-color: transparent transparent #222 transparent;
 } 
 
-.research_list:hover .tt-text { 
+.research_list:hover .tooltip { 
 	visibility: visible; 
 }
 
