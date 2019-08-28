@@ -114,19 +114,18 @@ public class MemberServiceImpl implements MemberService {
 		String key = getKey(false, 20);
 		mapper.getKey(mb_nick, key); 
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 FreSearch입니다</h2><br><br>" 
+		String htmlStr = "<h2>안녕하세요 FRESEARCH입니다.</h2><br><br>" 
 				+ "<h3>" + mb_nick + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost:8080/member/change_key?mb_nick="+ mb_nick +"&mb_email_key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)
-			mail.setSubject("[본인인증] 최운학님의 인증메일입니다", "utf-8");
+			mail.setSubject("[본인인증] FRESEARCH 회원가입 인증 메일입니다.", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(mb_email));
 			mailSender.send(mail);
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			
 		}
 	}
 
@@ -144,20 +143,17 @@ public class MemberServiceImpl implements MemberService {
 	public void findSend(String mb_email) {
 		log.info("서비스impl1 : " + mb_email);
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 FreSearch입니다</h2><br><br>" 
+		String htmlStr = "<h2>안녕하세요 FRESEARCH입니다.</h2><br><br>" 
 				+ "<h3>비밀번호를 찾기 위해 새 비밀번호로 변경하셔야 합니다.</h3>" + "<p>새 비밀번호로 변경 버튼을 누르시면 비밀번호 변경 페이지로 이동합니다" 
 				+ "<a href='http://localhost:8080/member/password_change?mb_email="+mb_email+"'> 새 비밀번호로 변경</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
-			log.info("서비스impl2 : " + mb_email);
 			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)
-			mail.setSubject("[본인인증] 비밀번호 찾기 인증 메일입니다", "utf-8");
+			mail.setSubject("[본인인증] FRESEARCH 비밀번호 찾기 인증 메일입니다.", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(mb_email));
 			mailSender.send(mail);
-			log.info("서비스impl3 : " + mb_email);
 		} catch (MessagingException e) {
-			log.info("서비스impl4 : " + mb_email);
 			e.printStackTrace();
 		}
 	}
@@ -169,7 +165,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
-
+	
+	
 	@Override
 	public MemberVO myInfo(String mb_email) {		
 		return mapper.myPageInfo(mb_email);

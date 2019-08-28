@@ -1,21 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 성공 : FreSearch</title>
+<title>회원가입 성공 : FRESEARCH</title>
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/signup_success.css">
+<script src="/resources/js/signup_success.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
-<body>
-<div style="margin: 100px;">
-		<h3>안녕하세요, ${param.mb_nick} 님</h3>
-		<br>
-		<p>환영합니다!</p>
-		<br>
-		<p>회원가입이 정상적으로 이루어 졌습니다.</p>
-		<br>
-		<p>로그인 하시면 홈페이지 내의 모든 서비스를 이용하실 수 있습니다.</p>
-		<br> <a href="/">로그인 페이지로 이동하기</a>
+	<div class="page-content">
+		<div class="list-content">
+			<div class="detail-list">
+				<div class="confirm_img">
+					<img src="/resources/img/check_icon01.png"/>
+				</div>
+				<div class="confirm_msg">
+					
+				</div>
+				<div class="confirm_button">
+					
+				</div>
+			</div>
+		</div>
 	</div>
-</body>
-</html>
+
+<%@include file="../includes/footer.jsp"%>
