@@ -41,39 +41,30 @@
 			select dbms_random.string('X', 8) from dual
 	</sql>
 	
-	<insert id="subjReg">
-		<selectKey keyProperty="subj_code" order="BEFORE" resultType="String">
-			<include refid="ran_code"></include>
-		</selectKey>
+	<insert id="subjReg" useGeneratedKeys="true" keyProperty="subj_code">		
 		insert into SUBJECT(
 			subj_code,ctgr_code,mb_email,mb_nick,subj_nm,subj_regdate,subj_startdate,subj_enddate,read
 			)
 		values(
-			#{subj_code}, #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate},0
+			(select dbms_random.string('X', 8) from dual), #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate},0
 		)
 	</insert>
-	<insert id="qstReg">
-		<selectKey keyProperty="qst_code" order="BEFORE" resultType="String">
-			<include refid="ran_code"></include>
-		</selectKey>		
+	<insert id="qstReg">	
 		insert into QUESTION
 		values(
-			#{qst_code},(select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm}),#{qst_content},#{qst_type},#{qst_img},#{qst_url},SYSDATE
+			(select dbms_random.string('X', 8) from dual),(select subj_code from subject where rowid=#{rowId}),#{qst_content},#{qst_type},#{qst_img},#{qst_url},SYSDATE
 		)	
 	</insert>
 	<insert id="itemReg">
-		<selectKey keyProperty="item_code" order="BEFORE" resultType="String">
-			<include refid="ran_code"></include>
-		</selectKey>
 		insert into ITEM
 		values(
-			#{item_code},
-            (select qst_code from(select rownum rn,qst_code from question where subj_code = (select subj_code from subject where mb_email=#{mb_email} and subj_nm=#{subj_nm})order by qst_regdate)where rn=#{rowNum}),
+			(select dbms_random.string('X', 8) from dual),
+            (select qst_code from question where subj_code = (select subj_code from subject where rowid=#{rowId})),
            	#{item_content},#{item_img},SYSDATE
 		)
 	</insert>	
 	<select id='researchGet' resultType="ResearchVO">
-		select c.subj_code,c.ctgr_code,d.ctgr_nm,c.subj_nm,c.subj_startdate,c.subj_enddate,a.qst_code,a.qst_content,a.qst_type,a.qst_img,a.qst_url,b.item_code,b.item_content,b.item_img 
+		select c.subj_code,c.ctgr_code,d.ctgr_nm,c.subj_nm,c.subj_startdate,c.subj_enddate,c.mb_email,a.qst_code,a.qst_content,a.qst_type,a.qst_img,a.qst_url,b.item_code,b.item_content,b.item_img 
 		from question a,item b,subject c,category d
 		where c.subj_code=a.subj_code and a.qst_code = b.qst_code and c.ctgr_code = d.ctgr_code and a.subj_code=#{subj_code}
 	</select>
@@ -86,4 +77,7 @@
 			#{asw_code},#{item_code},#{mb_email},#{mb_nick},#{asw_content},SYSDATE
 		)
 	</insert>
+	<delete id='researchDelete'>
+		delete from subject where subj_code=#{subj_code}
+	</delete>
 </mapper>

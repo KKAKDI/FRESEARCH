@@ -16,4 +16,5 @@ public interface ResearchMapper {
 	public int itemReg(ResearchVO vo);
 	public List<ResearchVO> researchGet(String subj_code);
 	public int answerReg(AnswerVO vo);
+	public int researchDelete(String subj_code);
 }
