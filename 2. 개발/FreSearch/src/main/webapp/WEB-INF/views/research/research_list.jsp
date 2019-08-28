@@ -160,8 +160,8 @@
 	         			/*html += '<span>' + list[i].subj_code + '</span>';*/
 	         			html += '<span class="ctgr_nm">' + list[i].ctgr_nm + '</span>';
 	         			html += '<div class="subj_nm">';
-	         			html += '<span class="subj_span">' + list[i].subj_nm + '</span>';
-	         			html += '<span class="tt-text">'+ list[i].subj_nm +'</span>';
+	         			html += '<span class="subj_nm_span">' + list[i].subj_nm + '</span>';
+	         			html += '<span class="tooltip">'+ list[i].subj_nm +'</span>';
 	         			html += '</div>';
 	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
@@ -403,9 +403,10 @@
 	         				html += '</div>';
 	         			}
 	         			/*html += '<span>' + "[" +list[i].ctgr_nm + "] " + list[i].subj_nm +'</span>';*/
-	         			html += '<span>' + list[i].ctgr_nm + '</span>';
+	         			html += '<span class="ctgr_nm">' + list[i].ctgr_nm + '</span>';
 	         			html += '<div class="subj_nm">';
-	         			html += '<span>' + list[i].subj_nm + '</span>';
+	         			html += '<span class="subj_nm_span">' + list[i].subj_nm + '</span>';
+	         			html += '<span class="tooltip">'+ list[i].subj_nm +'</span>';
 	         			html += '</div>';
 	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
