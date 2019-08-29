@@ -10,7 +10,7 @@
 <style>
 div.container_new{
 
-	padding-top: 120px;
+	padding-top: 150px;
    width: 850px;
    margin: 0 auto;
 
@@ -77,7 +77,7 @@ ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li
 #pagingArea{
    margin-top: 10px;
    text-align: center;
-   margin-bottom: 160px;
+   margin-bottom: 109px;
 }
 li.paginate_button {
    position: relative;
@@ -103,6 +103,7 @@ table {
 th, td {
    border-bottom: 1px solid #dcdcdc;
    padding: 10px;
+   font-size : 16px;
 }
 
 
@@ -185,7 +186,7 @@ ul, li {
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
 						<th style="background-color: #f0f0f0;   width:10%; font-weight: bold; color: #505050; padding: 16 19;">등록일</th>
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">조회수</th>
-						<th style="background-color: #f0f0f0;   width:5%;font-weight: bold; color: #505050; padding: 16 19;"><img src="/resources/img/like.png" width=30px; height=30px; style="margin-top: -4px;"></th>
+						
 					</tr>
 				</thead>
 
@@ -198,7 +199,7 @@ ul, li {
 								value="${board.brd_regdate}" /></td>
 						<td>${board.brd_views}</td>
 						
-						<td>${board.brd_like_cnt} / ${board.brd_dislike_cnt}</td>
+						
 						
 										
 					</tr>
