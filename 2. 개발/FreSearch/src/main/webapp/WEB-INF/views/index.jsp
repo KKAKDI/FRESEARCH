@@ -24,7 +24,7 @@
 <script>
 	$(function(){
 		$(window).load(function () {
-			$(".loading").fadeOut(1000);
+			$(".loading_index").fadeOut(1000);
 		});
 			$("#GNB > ul > li").hover(
 			function () {
@@ -131,7 +131,7 @@
 </style>
 </head>
 <body>
-<div class="loading"><img src='/resources/img/logo1_1.png'/></div>
+<div class="loading_index"><img src='/resources/img/logo1_1.png'/></div>
 <div class="container">
 	<div class="fixed_box">
 		<!-- 상단 고정 박스 시작 -->
