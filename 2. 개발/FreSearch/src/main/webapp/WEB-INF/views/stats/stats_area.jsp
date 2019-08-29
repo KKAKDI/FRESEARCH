@@ -72,7 +72,7 @@ $(document).ready(function() {
 		html += '<tbody>';
 		html += '<tr>';
 		html += '</tr>';
-		$.each(data, function(entryIndex, entry) {
+		$.each(data, function(entryIndex, entry) { 
 			html += '<tr>';
 			html += '<td>' + entry.ctgr_nm + '</td>';
 			html += '<td id="fix">' + entry.count + '명</td>';
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 		});
 		html += '<tr>';
-		html += "<td id='fix1'>총합</td>";
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';

@@ -508,7 +508,10 @@ a img, a span, button img, button span {
 }
 em {
     font: inherit;
-    color: #16ae81;
+    color: #1428a0;
+    position: absolute;
+    width: 16px;
+    text-align: right;
 }
 .article-list-item-meta {
     margin-top: 5px;
@@ -530,7 +533,9 @@ em {
     line-height: 18px;
     font-size: 14px;
     color: #98a0a7;
-    padding-left: 8px;
+    padding-left: 43px;
+    text-align: center;
+    width: 147px;
 }
 .left-jss{
 	margin-left: 59px;

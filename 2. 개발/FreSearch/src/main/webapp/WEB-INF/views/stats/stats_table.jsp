@@ -545,7 +545,7 @@
 							html += '</div>';
 							html += '<div class="item-jss">';
 							html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
-							html += '<em style="margin-left: 10px;">['+list[i].count+']</em>';
+							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 							html +=	'</div>';
 							
@@ -687,11 +687,11 @@
 						html +=	'<div class="article-list-item-meta__item">';
 						html +=	'<a href="">'+list[i].mb_nick+'</a>';
 						html += '</div>'; 
-						html += '</div>'; 
+						html += '</div>';  
 						html += '</div>';
 						html += '<div class="item-jss">';
 						html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
-						html += '<em style="margin-left: 10px;">['+list[i].count+']</em>';
+						html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 						html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 						html +=	'</div>';
 						
@@ -912,9 +912,9 @@
 							html += '</div>'; 
 							html += '</div>'; 
 							html += '</div>';
-							html += '<div class="item-jss">';
+							html += '<div class="item-jss">';  
 							html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
-							html += '<em style="margin-left: 10px;">['+list[i].count+']</em>';
+							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 							html +=	'</div>';
 							

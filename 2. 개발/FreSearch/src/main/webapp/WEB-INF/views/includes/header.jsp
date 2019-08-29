@@ -160,15 +160,8 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	     					<a class="entypo-bell" style="display:none;"></a>
 	     					<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content-jss" id="alarm_content">
-							<a href="/member/signin">
-                        		<img class="img_iconThird-jss" src="/resources/img/login_icon01.png"/>
-                      		    <span class="span_login-jss">로그인</span>
-                     		</a>
-                     		<a href="/member/signup">
-                        		<img class="img_iconThird-jss" src="/resources/img/signup_icon01.png"/>
-                        		<span class="span_login-jss">회원가입</span>
-                     		</a>
+						<div id="alarm_content">
+
 						</div>
 					<!-- 종모양 알림 끝 -->
                		</div>

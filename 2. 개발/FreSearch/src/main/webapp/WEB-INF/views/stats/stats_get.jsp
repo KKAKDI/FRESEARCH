@@ -226,7 +226,7 @@
 					html += '</tbody>';
 					html += '</table>';
 					html += '</div>';
-					html += '</div>';
+					html += '</div>'; 
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';

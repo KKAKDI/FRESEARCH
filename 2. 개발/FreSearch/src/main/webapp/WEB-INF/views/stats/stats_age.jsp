@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 		});
 		html += '<tr>';
-		html += "<td id='fix1'>총합</td>";
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';

@@ -251,7 +251,7 @@ $("#addReplyBtn").on("click", function(e){
 				        data: [5, 23, 7, 12, 42, 23],
 				        borderColor: [
 				          '#ede190'
-				        ],
+				        ], 
 				        borderWidth: 2,
 				        fill: false
 				      },

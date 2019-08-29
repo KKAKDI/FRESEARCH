@@ -20,8 +20,9 @@
 								변해라
 								<code>.All</code>
 							</p>
-							<div class="btn-group" role="group" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary-all" name="4" value="기혼">
+							<div class="btn-group" role="group" aria-label="Basic example"
+							 style="margin: 0 auto; width: 148px; display: flex;">
+							<input type='button' class="btn btn-outline-secondary" name="4" value="기혼">
 							<input type='button' class="btn btn-outline-secondary" name="4" value="미혼">
 							</div>
 							<div class="table-responsiv">
@@ -78,7 +79,7 @@ $(document).ready(function() {
 
 		});
 		html += '<tr>';
-		html += "<td id='fix1'>총합</td>";
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';
