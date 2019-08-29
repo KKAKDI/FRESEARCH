@@ -95,7 +95,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 
 </style>
-</head>
+</head> 
 <body>
 
 <div class="loading"><img src='/resources/img/logo1_1.png'/></div>
@@ -103,16 +103,16 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
    <div class="fixed_box">
       <!-- 상단 고정 박스 시작 -->
       <div class="header clearfix">
-         <!-- header 시작 -->
+         <!-- header 시작 --> 
          <div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
-            <!-- 상단 로그인 -->
+            <!-- 상단 로그인 --> 
             <div class="login">
             <!-- 
                <ul>
                   <li><a href="/member/signin">로그인</a></li>
                   <li><a href="/member/signup">회원가입</a></li>
                   <li><a href="">알림</a></li>
-               </ul>
+               </ul> 
                -->
                <div class="dropdown">
                  <button class="dropbtn"><img src="/resources/img/bicon14.png"/></button>
