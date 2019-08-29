@@ -11,6 +11,9 @@ a.no-uline {
 	text-decoration: none
 }
 </style>
+
+
+
 <style>
 .test_btn1 {
 	margin-right: -4px;
@@ -20,6 +23,48 @@ a.no-uline {
 	padding: 5px;
 	
 }
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+ 
+
+
 </style>
 
 <!-- partial -->
@@ -111,16 +156,140 @@ a.no-uline {
 		</div>
 		</div>
 		<%@include file="../includes/footer.jsp"%>
+		
+		
+		
+<!--      여기서부터 모달           -->
+
+<h2>Modal Example</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" style="-ms-overflow-style: none;" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="main-panel">
+	<div class="content-wrapper">
+		<div class="row-top">
+			<div class="grid-margin">
+				<div class="stretch-card width">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Age</h4>
+							<p class="card-description" id="area">
+								변해라
+								<code>.All</code>
+							</p>
+							<div class="btn-group" role="group" style="margin-left: 38px;" aria-label="Basic example">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="10대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="20대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="30대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="40대">
+							<input type='button' class="btn btn-outline-secondary" name="2" value="50대">
+							</div>
+							<div class="table-responsiv">
+								<table class="table table-hover" id="test">
+								
+								</table>
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
 
 
+
+
+	</div>
+</div>
+  </div>
+</div>
+
+
+
+<!--      여기서부터 모달           -->
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
 <script src="/resources/stats/chart/Chart.bundle.min.js"></script>
 <script src="/resources/stats/chart/Chart.js"></script>
 <script src="/resources/stats/chart/Chart.min.js"></script>
 <script type="text/javascript">
-$("#addReplyBtn").on("click", function(e){
-			      $(".modal").modal("show");
-			 });
+/*				stats_get script			*/
+
+var timerID;
+var html = '';
+var area = '';
+
+$(document).ready(function() {
+	html ='10대<code>나이</code>'
+		$("#area").html(html);
+	$.getJSON('/stats/get/age/10대' , function(data) {
+		var html = '';
+		var total = 0;
+
+		html += '<thead>';
+		html += '<tr>';
+		html += '<th>카테고리</th>';
+		html += '<th>참여자 수</th>';
+		html += '<th>퍼센트</th>';
+		html += '</tr>';
+		html += '</thead>';
+		html += '<tbody>';
+		html += '<tr>';
+		html += '</tr>';
+		$.each(data, function(entryIndex, entry) {
+			html += '<tr>';
+			html += '<td>' + entry.ctgr_nm + '</td>';
+			html += '<td id="fix">' + entry.count + '명</td>';
+			html += '<td id="fix">' + entry.percent + '</td>';
+			html += '</tr>';
+			total += entry.count;
+
+		});
+		html += '<tr>';
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
+		html += '<td id="fix1">' + total + '명</td>';
+		html += '<td id="fix1"> 100%</td>';
+		html += '</tr>';
+		$('#test').html(html);
+	});
+});
+
+
+/*				stats_get script			*/
+
+
+
+
+
+
+			var modal = document.getElementById("myModal");
+			
+			var btn = document.getElementById("myBtn");
+			console.log("btn : "+btn);
+			var span = document.getElementsByClassName("close")[0];
+			
+			btn.onclick = function() {
+				modal.style.display = "block";
+			}
+			
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+			
+			window.onclick = function(event) {
+				if (event.target == modal) {
+			 		modal.style.display = "none";
+				}
+			}
+
+			
+			
+
 			$("#area").on("click", function(e){
 			      location.href='/stats/stats_area';
 			 });
