@@ -11,13 +11,35 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-    background:#000000;
+    background:#000000ad;
+    color: #fff;
+    font-size: 50px;
+    z-index: 10000;
+    /* 이 값으로 레이어의 위치를 조정합니다. */
+}
+.loading_index {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background:#000;
     color: #fff;
     font-size: 50px;
     z-index: 10000;
     /* 이 값으로 레이어의 위치를 조정합니다. */
 }
 .loading img{
+	position: absolute;
+    width: 350px;
+    left: 53%;
+    top: 70%;
+    margin-left: -250px;
+    margin-top: -250px;
+    text-align:center;
+}
+
+.loading_index img{
 	position: absolute;
     width: 350px;
     left: 53%;
