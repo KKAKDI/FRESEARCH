@@ -30,7 +30,7 @@
 				</div>
 			</div>	
 			<div class='logo'>
-				<img src="/resources/img/logo.png" alt="logo">
+				<img src="/resources/img/logo1_1.png" alt="logo">
 			</div>		
 		</div>
 		<section id='content' class='clearflx'>
@@ -40,7 +40,7 @@
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
 						<div class='remote_btn'>							
-							<button id='img_btn'></button>							
+							<img id='img_btn' src='/resources/img/logoico.png'></img>							
 						</div>
 						<div class='remote_btn'>							
 							<button id='qst_btn'></button>							

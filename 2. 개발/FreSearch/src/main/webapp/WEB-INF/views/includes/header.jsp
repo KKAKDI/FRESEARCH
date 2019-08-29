@@ -199,7 +199,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                       </p>
                    
                       <div class="bar"></div>
-                      <a href="#">
+                      <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
