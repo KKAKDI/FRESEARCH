@@ -87,7 +87,7 @@ SELECT (SELECT Count(*)
                                 WHERE  ctgr_code = (SELECT ctgr_code 
                                                     FROM   category 
                                                     WHERE 
-                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
+                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT
 FROM   subject a, 
        member b, 
        category c 

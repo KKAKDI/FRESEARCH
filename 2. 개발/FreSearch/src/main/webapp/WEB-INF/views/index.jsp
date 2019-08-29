@@ -19,149 +19,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<style>
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-[class*="entypo-"]:before {
-  font-family: 'entypo', sans-serif;
-  font-size: 24px;
-  color: #fff;
-}
-/* html, body {height: 100%;}
-body {align-items: center;display: flex;font-family: sans-serif;justify-content: center;}
-.container{position:relative;-webkit-perspective: 1000;-webkit-backface-visibility: hidden;}  */
-.badge-num {
-  box-sizing: border-box;
-    font-family: 'Trebuchet MS', sans-serif;
-    background: #ff0000;
-    cursor: default;
-    border-radius: 50%;
-    color: #fff;
-    font-weight: bold;
-    font-size: 6px;
-    height: 17px;
-    line-height: 1.55em;
-    top: 0px;
-    right: -10px;
-    border: 1px solid #000000;
-    position: absolute;
-    text-align: center;
-    vertical-align: middle;
-    width: 17px;
-    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
-    animation: pulse 1.5s 1;
-    margin-top: 1px;
-}
-.badge-num:after {
-  content: '';
-  position: absolute;
-  top:-2px;
-  left:-2px;
-  border:2px solid rgba(255,0,0,.5);
-  opacity:0;
-  border-radius: 50%;
-  width:100%;
-  height:100%;
-  animation: sonar 1.5s 1;
-}
-@keyframes sonar { 
-  0% {transform: scale(.9); opacity:1;}
-  100% {transform: scale(2);opacity: 0;}
-}
-@keyframes pulse {
-  0% {transform: scale(1);}
-  20% {transform: scale(1.4); } 
-  50% {transform: scale(.9);} 
-  80% {transform: scale(1.2);} 
-  100% {transform: scale(1);}
-}
 
-#alarm_content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-  cursor: pointer;
-}
-
-.widget-gnb ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    background-clip: padding-box;
-    background-color: rgba(121, 124, 144, 0.3);
-    border: 0px solid transparent;
-    border-radius: 5px;
-
-}
-.widget-gnb ::-webkit-scrollbar-thumb {
-    background-color: #cdd2d2;
-    border: 2px solid #cdd2d2;
-    border-radius: 5px;
-}
-.widget-gnb ::-webkit-scrollbar-track{
-    background-color: #fff;
-}
-
-.gnb-tab-item{
-    background-color: #fff;
-    border-bottom-color: #fff;
-	position: relative;
-    width: 100%;
-    padding: 14px 10px 14px 10px;
-    font-size: 12px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #d9d9d9;
-    white-space: nowrap;
-    border-right: none;
-    border-left: none;
-    vertical-aligh:middle;
-
-}
-.gnb-tab-item:before{
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #1820b7;
-
-
-}
-
-.jss-icon{
-	margin-left : 5px;
-    width: 16px;
-    height: 17px;
-    margin-bottom : 4px;
-    /*background: url(/resources/img/bicon16_1.png) no-repeat 0 0;*/
-    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-    overflow: hidden;
-}
-.jss-font{
-    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-    vertical-align: top;
-    color: #666666;
-}
-.jss-small{
-	font-size: 11px;
-	color: #999;
-}
-.all-read{
-
-    padding-top: 15px;
-    text-align: center;
-    font-size: 13px;
-    color: #999;
-    border-top: 1px solid #ebebeb;
-}
-
-</style>
 <script>
 	$(function(){
 		$(window).load(function () {
@@ -235,9 +93,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   font-size: 24px;
   color: #fff;
 }
-/* html, body {height: 100%;}
-body {align-items: center;display: flex;font-family: sans-serif;justify-content: center;}
-.container{position:relative;-webkit-perspective: 1000;-webkit-backface-visibility: hidden;}  */
 .badge-num {
   box-sizing: border-box;
     font-family: 'Trebuchet MS', sans-serif;
@@ -250,7 +105,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
     height: 17px;
     line-height: 1.55em;
     top: 0px;
-    right: -6px;
+    right: -10px;
     border: 1px solid #000000;
     position: absolute;
     text-align: center;
@@ -344,7 +199,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	margin-left : 5px;
     width: 18px;
     height: 17px;
-    background: url(/resources/img/new_icon_01.svg) no-repeat 0 0;
+    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
@@ -441,7 +296,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	     				<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 					</div>
 					<div class="dropdown-content" id="alarm_content"style="overflow:auto; overflow-x: hidden; width:430px; max-height:400px;
-					 margin-top: 4px; ">
+					 margin-top: 0px; ">
 					<a>로그인 후 이용해 주세요.</a>
 					</div>
 					<!-- 종모양 알림 끝 -->
@@ -761,7 +616,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">');
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
 	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
 	        				

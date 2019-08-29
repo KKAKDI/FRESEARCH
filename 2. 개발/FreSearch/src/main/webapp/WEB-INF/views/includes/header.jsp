@@ -228,9 +228,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                		<!-- 종모양 알림 -->
 	               		<div class="container" id="badge">
 	     					<a class="entypo-bell" style="display:none;"></a>
-	     					<img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">
+	     					<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content" id="alarm_content" style="overflow:auto;  overflow-x: hidden; width:430px; max-height:400px; ">
+						<div class="dropdown-content" id="alarm_content" style="overflow:auto;  overflow-x: hidden; width:430px; max-height:400px;margin-top: 0px; ">
 							<a>로그인 후 이용해 주세요.</a>
 						</div>
 					<!-- 종모양 알림 끝 -->
@@ -437,7 +437,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">');
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
 	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
 	        				
