@@ -168,7 +168,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 </head>
 <body>
 
-<div class="loading"><label>FRESEARCH</label></div>
+<div class="loading"><img src='/resources/img/logo1_1.png'/></div>
 <div class="container">
    <div class="fixed_box">
       <!-- 상단 고정 박스 시작 -->
@@ -291,7 +291,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	//곽지훈
 	$(function() { 
 		$(window).load(function() {
-			$(".loading").fadeOut(700);
+			$(".loading").fadeOut(1000);
 		});
 		$("#GNB > ul > li").hover(function() {
 			$(this).children("a").addClass("active");

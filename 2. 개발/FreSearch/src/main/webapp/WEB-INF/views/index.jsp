@@ -23,7 +23,7 @@
 <script>
 	$(function(){
 		$(window).load(function () {
-			$(".loading").fadeOut(500);
+			$(".loading").fadeOut(1000);
 		});
 			$("#GNB > ul > li").hover(
 			function () {
@@ -226,7 +226,7 @@
 </style>
 </head>
 <body>
-<div class="loading"><label>FRESEARCH</label></div>
+<div class="loading"><img src='/resources/img/logo1_1.png'/></div>
 <div class="container">
 	<div class="fixed_box">
 		<!-- 상단 고정 박스 시작 -->
@@ -257,7 +257,7 @@
                       </p>
                    
                       <div class="bar"></div>
-                      <a href="#">
+                     <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
