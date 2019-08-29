@@ -11,17 +11,16 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-    background:#00000094;
+    background:#000000;
     color: #fff;
     font-size: 50px;
     z-index: 10000;
     /* 이 값으로 레이어의 위치를 조정합니다. */
 }
-.loading label{
+.loading img{
 	position: absolute;
-    width: 500px; 
-    height: 500px;
-    left: 50%;
+    width: 350px;
+    left: 53%;
     top: 70%;
     margin-left: -250px;
     margin-top: -250px;
@@ -118,8 +117,8 @@ body {
     margin-top: 15px;
      임시 로고에 맞게 사이즈 조정 로고 확정 후 width, height 조정 혹은 이미지 크기가 정확하다면 항목 삭제
     */
-    width: 220px;
-    margin-top: 20px;
+    width: 200px;
+    margin-top: 25px;
 }
 
 /* GNB Default loot
@@ -147,11 +146,11 @@ body {
 
 #GNB>ul>li>a {
 	display: inline-block;
-	padding: 0 30px;
+	padding: 0 25px;
 	width: 155px;
 	height: 80px;
 	line-height: 80px;
-	font-size: 15px;
+	font-size: 17px;
 	font-weight: 600;
 	background-color: #fff;
 	color: rgb(80, 80, 80);
@@ -542,7 +541,6 @@ body {
 
 #footer .footer_inner .footer_logo img {
     width: 220px;
-    margin-top: 10px;
 }
 
 #footer .footer_inner .footer_text p a {
