@@ -4,21 +4,33 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-
 <%@include file="../includes/header.jsp" %>
 
+
+
 <style>
+
+body {
+   font-family: "Open Sans", sans-serif;
+   min-width: 850px;
+   font-weight: 500;
+   font-size: 16px;
+}
+
 .container_new{
 	padding-top: 105px;
 	width: 850px;
 	margin: 0 auto;
+	min-height: 675px;
 }
 table {
    width: 850px;
    border-top: 1px solid #444444;
    border-collapse: collapse;
    margin: auto;
+   table-layout: fixed;
 }
 div.pagingArea, div.search {
    text-align: center;
@@ -31,6 +43,10 @@ div.search{
 input.search{
 	height: 22px;
 }
+
+.search_form{
+	padding-top: 30px;
+}
 th, td {
    border-bottom: 1px solid #dcdcdc;
    padding: 10px;
@@ -38,6 +54,7 @@ th, td {
 td {
    text-align: center;
    color: #505050;
+   padding-top: 20px;
 }
 hr{
 	margin: 8 auto;
@@ -68,11 +85,13 @@ a.move:hover{
 }
 td.subject{
 	text-align: left;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #pagingArea{
 	margin-top: 10px;
 	text-align: center;
-	margin-bottom: 160px;
 }
 li.paginate_button {
 	position: relative;
@@ -88,40 +107,115 @@ li.paginate_button {
 .Header {
     margin-top: 0px;
 }
+
+.tab-news, .tab-event {
+	padding-top: 15px;
+	margin-bottom: -2px;
+	display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 16px;
+    color: #888;
+    width: 425px;
+    height: 50px;
+    line-height: 38px;
+    background: #fff;
+    padding: 5px;
+    margin-right: -3px;
+    margin-left: -3px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    outline: none;
+   
+}
+
+.tab-news {
+	font-weight: bold;
+}
+
+.tab-event {
+	background:rgb(249,249,249);
+}
+
+div.tab-news a {
+	color:rgb(34,34,34);
+}
+
+div.tab-event a {
+	color:#888;
+}
+
+.tab-event {
+	background:rgb(249,249,249);
+}
+
+.news-head h2 {
+	position: relative;
+    font-size: 30px;
+    padding: 3px 0 7px;
+    /*margin-bottom: 40px;*/
+    margin-left: 0px;
+}
+
+.news-head h2::after {
+	background: #1428a0;
+    width: 99.9%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
+}
+
+.news-head span {
+	position: absolute;
+    margin-left: 699px;
+    margin-top: -46px;
+    background: #1428a0;
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.news-head span a {
+	color: #fff;
+}
+
 </style>
 <div class="container_new">
 
 	<div>
 		<div>
-			<div class="container_form" style="text-align: center;">
-					<h2>공지사항 / 이벤트</h2>
-					<hr/>
+			<div class="container_form">
+
+
+				<div class="news-head">
+				<h2>새소식</h2>
+				<span>
+					<a href="/news/news_register">등록</a>
+				</span>
+				</div>
+				
+					<div class="tab" style="text-align: center">
+						<div class="tab-news">
+							<a href="/news/news_list">공지사항</a>
+						</div>
+						<div class="tab-event">
+		                	<a href="/news/news_list_event">이벤트</a>
+						</div>
+					</div>
+					<%-- <hr/>
 					<p>FreSearch 새소식을 제공합니다.</p>
-					<button id="regBtn" type="button">등록하기</button>
+					<button id="regBtn" type="button">등록하기</button> --%>
 					
-<%-- 검색 --%>
 
-<div class='search_form'>
-	<div class='search'>
-		<form id='searchForm' action="/news/news_list" method='get'>
-			<select name='type' style="width: 49px; height: 22px;">
-				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
-				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
-				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
-
-			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
-			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
-			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
-			<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=21px;></button>
-		</form>
-	</div>
-</div>
-
-<%-- 검색 끝 --%>
 
 				<table>
 					<thead>
-						<tr style="border-bottom: 1px solid red; border-top: 1px solid #0C4DA2;">
+						<tr style="border-bottom: 1px solid red; border-top: 1px solid white;">
 							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
 							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
 							<th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th>
@@ -170,50 +264,62 @@ li.paginate_button {
 					
 					
 				</table>
-			</div>
-		</div>
+				
+<%-- 검색 --%>
+
+<div class='search_form'>
+	<div class='search'>
+		<form id='searchForm' action="/news/news_list" method='get'>
+			<select name='type' style="width: 49px; height: 22px;">
+				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
+				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
+				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
+
+			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
+			<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=20px;></button>
+		</form>
 	</div>
 </div>
 
-
-
-
-
-<%-- 페이징 --%>
-<div id="pagingArea">
-	<ul class="pagination">
-
-		<c:if test="${pageMaker.prev}">
-			<li class="page-item"><a href="${path}/news/news_list?pageNum=1">첫페이지</a></li>
-			<li class="paginate_button previous"><a
-				href="${pageMaker.startPage-1}">Previous</a></li>
-		</c:if>
-
-		<c:forEach var="num" begin="${pageMaker.startPage}"
-			end="${pageMaker.endPage}">
-			<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
-				<a href="${num}">${num}</a>
-			</li>
-		</c:forEach>
-
-		<c:if test="${pageMaker.next}">
-			<li class="paginate_button next"><a
-				href="${pageMaker.endPage +1}">Next</a></li>
-		</c:if>
-	</ul>
+<%-- 검색 끝 --%>
+			</div>
+		</div>
+	</div>
+		<%-- 페이징 --%>
+		<div id="pagingArea">
+			<ul class="pagination">
+		
+				<c:if test="${pageMaker.prev}">
+					<li class="page-item"><a href="${path}/news/news_list?pageNum=1">첫페이지</a></li>
+					<li class="paginate_button previous"><a
+						href="${pageMaker.startPage-1}">Previous</a></li>
+				</c:if>
+		
+				<c:forEach var="num" begin="${pageMaker.startPage}"
+					end="${pageMaker.endPage}">
+					<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
+						<a href="${num}">${num}</a>
+					</li>
+				</c:forEach>
+		
+				<c:if test="${pageMaker.next}">
+					<li class="paginate_button next"><a
+						href="${pageMaker.endPage +1}">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+		
+		<form id='actionForm' action="/news/news_list" method='get'>
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+			<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
+			<input type='hidden' name='type' value='${pageMaker.cri.type}'>
+		</form>
+		
+		<%-- 페이징 끝 --%>
 </div>
-
-<form id='actionForm' action="/news/news_list" method='get'>
-	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-	<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
-	<input type='hidden' name='type' value='${pageMaker.cri.type}'>
-</form>
-
-<%-- 페이징 끝 --%>
-
-
-
 
 
 <script type="text/javascript">
@@ -252,7 +358,12 @@ li.paginate_button {
 				}
 
 				if (!searchForm.find("input[name='keyword']").val()) {
-					alert("키워드를 입력하세요");
+					swal({
+						title:"키워드를 입력해 주세요.",
+						text:"키워드 입력이 안되어 있습니다. 확인해주세요!",
+						icon:"warning",
+						button:"확인",
+						});
 					return false;
 				}
 				searchForm.find("input[name='pageNum']").val("1");

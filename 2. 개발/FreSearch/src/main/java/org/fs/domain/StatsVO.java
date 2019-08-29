@@ -61,6 +61,7 @@ public class StatsVO {
 	///question
 	private String qst_code;
 	private String qst_content;
+	private String qst_type;
 	
 	
 	//answer
@@ -71,6 +72,8 @@ public class StatsVO {
 	private String item_code;
 	private String item_content;
 	private Date item_regdate;
+	private String item_img;
+	private String asw_count;
 	
 	
 	

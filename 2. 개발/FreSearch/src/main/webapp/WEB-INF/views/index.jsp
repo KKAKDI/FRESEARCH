@@ -1,22 +1,30 @@
 ﻿<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
+
 <title>FRESEARCH</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<link rel="stylesheet" href="fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/stats/css/chart.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 <script>
 	$(function(){
 		$(window).load(function () {
-			$(".loading").fadeOut(500);
+			$(".loading_index").fadeOut(1000);
 		});
 			$("#GNB > ul > li").hover(
 			function () {
@@ -71,12 +79,59 @@
 		};
 		eventRollingOff = setInterval(eventRolling, 2000);
 		$("#content .notice_area .event .event_rolling").append($("#content .notice_area .event li").first().clone());
-
+		
+		$("#logout").on("click", function(e){
+			location.href="/";
+			e.preventDefault();
+			$("form").submit();
+		});
 	});
 </script>
+<style>
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+  font-size: 24px;
+  color: #fff;
+}
+.badge-num {
+  box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #ff0000;
+    cursor: default;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 6px;
+    height: 17px;
+    line-height: 1.55em;
+    top: 0px;
+    right: -10px;
+    border: 1px solid #000000;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    width: 17px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    animation: pulse 1.5s 1;
+    margin-top: 1px;
+}
+.badge-num:after {
+  content: '';
+  position: absolute;
+  top:-2px;
+  left:-2px;
+  border:2px solid rgba(255,0,0,.5);
+  opacity:0;
+  border-radius: 50%;
+  width:100%;
+  height:100%;
+  animation: sonar 1.5s 1;
+}
+</style>
 </head>
 <body>
-<div class="loading">로딩</div>
+<div class="loading_index"><img src='/resources/img/logo1_1.png'/></div>
 <div class="container">
 	<div class="fixed_box">
 		<!-- 상단 고정 박스 시작 -->
@@ -85,19 +140,79 @@
 			<div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
 				<!-- 상단 로그인 -->
 				<div class="login">
+            <!-- 
+               <ul>
+                  <li><a href="/member/signin">로그인</a></li>
+                  <li><a href="/member/signup">회원가입</a></li>
+                  <li><a href="">알림</a></li>
+               </ul>
+               -->
+               <div class="dropdown">
+                 <button class="dropbtn"><img src="/resources/img/bicon14.png"/></button>
+                 <div class="dropdown-content">
+                   <!-- <a href="#">회원명</a> -->
+                   <sec:authorize access="isAuthenticated()">
+                   <form class="dropdown-form" role="form" action="/logout" method='post'>
+                   
+                      <p>
+                      <img class="img_iconFirst" src="/resources/img/member_icon01.png"/>
+                      <sec:authentication property="principal.member.mb_nick"/></p>
+                      <p>
+                      <sec:authentication property="principal.member.mb_email"/>
+                      </p>
+                   
+                      <div class="bar"></div>
+                     <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
+                         <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
+                         <span class="span_mypage">마이페이지 </span>
+                      </a>
+                     <a href="/" id="logout">
+                        <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
+                        <span class="span_logout">로그아웃</span>
+                     </a>
+                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  </form>
+                  </sec:authorize>
+                  <sec:authorize access="isAnonymous()">
+                     <a href="/member/signin">
+                        <img class="img_iconThird" src="/resources/img/login_icon01.png"/>
+                        <span class="span_login">로그인</span>
+                     </a>
+                     <a href="/member/signup">
+                        <img class="img_iconThird" src="/resources/img/signup_icon01.png"/>
+                        <span class="span_signup">회원가입</span>
+                     </a>
+                  </sec:authorize>
+                 </div>
+               </div>
+				<!-- 
 					<ul>
-						<li><a href="">로그인</a></li>
+						<li><a href="/member/signin">로그인</a></li>
 						<li><a href="/member/signup">회원가입</a></li>
 						<li><a href="">알림</a></li>
 					</ul>
-					<div class="emblembox">
+					-->
+               		<div class="dropdown-alarm widget-gnb">
+               
+               		<!-- 종모양 알림 -->
+	               		<div class="container" id="badge" style="height: 25px;">
+	     					<a class="entypo-bell" style="display:none;"></a>
+	     					<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
+						</div>
+						<div id="alarm_content">
+
+						</div>
+					<!-- 종모양 알림 끝 -->
+               		</div>
+               		
+
+					<!-- <div class="emblembox">
 						<img src="/resources/img/image_1.png" alt="emblem">
-					</div>
+					</div> -->
 				</div>
-			
 			</div>
 			<div class="header_inner">
-				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h1></div>
+				<div class="logo"><h1 id="logo"><a href="/"><img src="/resources/img/logo1.png" alt="logo"></a></h1></div>
 				<!-- logo -->
 				<nav id="GNB">
 					<!-- GNB 시작 -->
@@ -192,39 +307,39 @@
 		<div class="research_area clearfix">
 			<div class="hot_board">
 				<div class="board_icon">
-					<img src="/resources/img/icon_image01.png" alt="자유게시판">
+					<img src="/resources/img/icon_image01_.png" alt="자유게시판">
 				</div>
 				<div class="board_text">
 					<dl>
 						<dt>자유게시판</dt>
-						<dd>어쩌구</dd>
-						<dd>임시내용입니다</dd>
+						<dd>다양한 게시글을</dd>
+						<dd>작성해 보세요.</dd>
 						<a href="/board/board_list">게시판 더보기  ></a>
 					</dl>
 				</div>
 			</div>
 			<div class="hot_search">
 				<div class="search_icon">
-					<img src="/resources/img/icon_image03.png" alt="리서치참여및제작">
+					<img src="/resources/img/icon_image03_.png" alt="리서치참여및제작">
 				</div>
 				<div class="search_text">
 					<dl>
-						<dt>리서치참여/제작</dt>
-						<dd>저쩌꾸</dd>
-						<dd>임시내용입니다</dd>
+						<dt>리서치 참여</dt>
+						<dd>원하는 조사를</dd>
+						<dd>참여해 보세요.</dd>
 						<a href="/research/research_register">리서치 더보기  ></a>
 					</dl>
 				</div>
 			</div>
 			<div class="hot_chart">
 				<div class="chart_icon">
-					<img src="/resources/img/icon_image02.png" alt="데이터베이스">
+					<img src="/resources/img/icon_image02_.png" alt="데이터베이스">
 				</div>
 				<div class="chart_text">
 					<dl>
 						<dt>데이터베이스</dt>
-						<dd>에베베</dd>
-						<dd>임시내용입니다</dd>
+						<dd>다양한 통계를</dd>
+						<dd>제공합니다.</dd>
 						<a href="/stats/stats_list">통계 더보기  ></a>
 					</dl>
 				</div>
@@ -300,7 +415,7 @@
 	<footer id="footer" class="clearfix">
 		<div class="footer_inner">
 			<div class="footer_logo">
-				<a href=""><img src="/resources/img/logo.png" alt="FRESEARCH"></a>
+				<a href=""><img src="/resources/img/logo1_1.png" alt="FRESEARCH"></a>
 			</div>
 			<div class="footer_text">
 				<p>상호: (팀)FRESEARCH | 팀원: 곽지훈,최운학,조성식,변정우,박동진,이재하 | BITCAMP 119th</p>
@@ -312,4 +427,128 @@
 	</footer>
 </div>
 </body>
+
+
+<script src="/resources/stats/js/chartMy.js"></script>
+<!-- 웹소켓 시작 -->
+<script>
+        var ws;
+        
+        $(document).ready(function(){
+        	var mb_email =($)
+            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
+            {
+                writeResponse("WebSocket is already opend.");
+
+                return;
+            } 
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket('ws://localhost:8080/echo');
+            ws.onopen=function(event){
+            	
+                if(event.data===undefined) return;
+                writeResponse(event.data);
+                
+            };
+            ws.onmessage=function(event){
+                writeResponse(event.data);
+            };
+            ws.onclose=function(event){
+                writeResponse("Connection closed");
+            }
+        });
+        
+        //웹소켓 메세지 전송
+        function send(){
+            //var text = document.getElementById("messageinput").value;
+            var text = "갱신";
+            ws.send(text);
+            text="";
+            
+        }
+        
+        //웹소켓 닫힘
+        function closeSocket(){
+            ws.close();
+        }
+        
+        
+        
+        
+        //웹소켓 반응?
+        function writeResponse(text){
+        	
+        	if($(".bar").prev().html() === undefined){
+        		var mb_email = '';
+        	}else{
+        		var mb_email = $(".bar").prev().html().trim();
+        	}
+        	var subj_code = '';
+        	
+        	//subj_code 가져오는 ajax
+        	$(document).ready(function(){
+                $(document).on("click",".alarm_button",function(event){
+                  // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+                  subj_code = $(this).prev().text();
+                  
+                  var data ={
+                		  subj_code : subj_code,
+                		  mb_email : mb_email
+                  }
+                  
+                 	tableService.headerUpdate(data, function(list){
+                	  location.href="/research/research_content?subj_code="+subj_code;
+                  }); 
+                });
+            }); 
+        	
+        	
+        	
+        	//ajax 알림 리스트 and 알림 종 갯수  시작
+        	
+        	if(!($(".bar").prev().html() === undefined)){
+	         	var data ={
+	        		mb_email : mb_email
+	        	}
+	        	
+	        	tableService.header(data,function(list){ 
+	
+	        		var html = '';
+	        		if($(".badge-num").html() != list.length){
+	        			$('#alarm_content').attr('style','overflow:auto;  overflow-x: hidden; width:430px; max-height:400px;margin-top: 0px; ');
+	        			$('#alarm_content').attr('class','dropdown-content');
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
+	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
+	        			for(var i=0; i < list.length; i++){
+	        				
+	        				html += '<div style="display:none;">'+list[i].subj_code+'</div>';
+	        				html += '<a class="alarm_button"><span class="jss-font">';
+	        				html +=	'<strong class="jss-font">'+list[i].mb_nick+'</strong>님이 ';
+	        				html += '<strong class="jss-font">'+list[i].ctgr_nm+'</strong>태그에 글을 작성하였습니다.';
+	        				html += '</span><span class="jss-icon"></span></br>';
+	        				html += '<span class="jss-font" style="font-size: 13px;">"'+list[i].subj_nm+'"</span></br>';
+	        				html += '<small class="jss-small">'+tableService.displayTime(list[i].subj_regdate)+'</small></a>';
+
+	        			}
+	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
+	        			$('#alarm_content').html(html);
+	        		}else{ 
+	        		} 
+	        	});
+        	} 
+        }
+
+        
+        
+/*         $(document).ready(function(){
+            $(document).on("click","#moveBtn",function(event){
+              // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
+              alert($(this).text());
+            });
+        }); // end of ready() */
+</script>
+    <!-- 웹소켓 끝 -->
+
+
 </html>

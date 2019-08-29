@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +19,23 @@
 </head>
 <script>
 	$(function() {
+		$.emptyCheck = function(){
+			swal({
+				title:"Oops",
+				text:"작성되지 않은 공간이 있습니다.",
+				icon:"error",
+				button:"확인",
+			});			
+			return false;
+		};	 
+		
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
 			var values_index= $(".research_qst").length;
-			var user_email ="admin@fresearch.com";
-			var user_nick ="admin";
+			var user_email =$("#mem_email").val();
+			var user_nick =$("#mem_nick").val();
 			var form = $("#research_form");
+			var checkCnt= 0;
 			
 			research_values += user_email+"#email#";
 			research_values += user_nick +"#nick#";
@@ -31,23 +43,51 @@
 
 			for(var i=1;i<=values_index;i++){
 				var type = $(".research_qst .qst_type")[i-1].value;
-				if(type==0){
-					research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";					
-					if($("input:radio[name='item"+i+"']:checked").val()=='기타'){
-						research_values += $("input:radio[name='item"+i+"']:checked").next().val()+"#value#";			
-					}else{
-						research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";	
-					}
+				var radioCheck = $("input:radio[name='item"+i+"']:checked").length;				
+				
+				if(type==0&&radioCheck==0){
+					checkCnt++;
+					console.log(radioCheck);
+					console.log(checkCnt);
+					break;					
 				}else{
-					console.log($("input:text[name='item"+i+"']").val());
-					research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
-					research_values += $("input:text[name='item"+i+"']").val()+"#value#";
-				}				
+					if(type==0){
+						research_values += $("input:radio[name='item"+i+"']:checked").prev().val()+"#code#";					
+						if($("input:radio[name='item"+i+"']:checked").val()=='기타'){
+							research_values += $("input:radio[name='item"+i+"']:checked").next().val()+"#value#";			
+						}else{
+							research_values += $("input:radio[name='item"+i+"']:checked").val()+"#value#";	
+						}
+					}else{
+						console.log($("input:text[name='item"+i+"']").val());
+						if($("input:text[name='item"+i+"']").val()==''){
+							checkCnt++;
+							$.emptyCheck();
+							break;
+						}else{
+							research_values += $("input:text[name='item"+i+"']").prev().val()+"#code#";
+							research_values += $("input:text[name='item"+i+"']").val()+"#value#";	
+						}						
+					}			
+				}					
+			}			
+			if(checkCnt>0){
+				$.emptyCheck();
+				return false;
+			}else{
+				console.log(research_values);	
+				$("#research_values").val(research_values);
+				form.attr("action","/research/research_content");							
+				swal({
+					title:"등록되었습니다!",
+					text:"답변이 성공적으로 등록되었습니다!",
+					icon:"success",
+					button:"확인",
+				})
+				.then((willDelete) => {					
+					form.submit();								
+				});	
 			}
-			$("#research_values").val(research_values);
-			form.attr("action","/research/research_content");
-			console.log(research_values);
-			form.submit();
 		});
 		$("#prev_btn").click(function(){
 			swal({
@@ -77,9 +117,9 @@
 			.then((willDelete) => {
 				if(willDelete){
 					//controler 연결 필요
+					location.href="/research/research_delete?subj_code="+$("#research_code").val();
 				}
-				else{
-					
+				else{					
 				}				
 			});
 		});
@@ -94,7 +134,11 @@
 				</div>				
 				<div id='right_top_box'>
 					<!-- session 채크 -->
-					<button id='delete_form'></button>
+					<sec:authentication property="principal" var="prinfo"/>
+					<sec:authorize access="isAuthenticated()"/>
+					<c:if test="${prinfo.username eq content[0].mb_email}">
+					<button id='delete_form'></button>				
+					</c:if>	
 				</div>
 			</div>
 			<div class='logo'>
@@ -109,6 +153,8 @@
 						<div class='content_box clearflx'>
 							<div id='research_subject'>${content[0].subj_nm}</div>
 							<input type='hidden' name='research_code' id='research_code' value='${content[0].subj_code}'>
+							<input type='hidden' id='mem_email' value='<sec:authentication property="principal.member.mb_email"/>'>                      		
+                      		<input type='hidden' id='mem_nick' value='<sec:authentication property="principal.member.mb_nick"/>'>
 							<div id='research_info'>
 								<div id='research_ctegory'>${content[0].ctgr_nm}</div>
 								<div class='research_turm'>
@@ -129,15 +175,16 @@
 								<div class='research_qst'>${research.qst_content}	
 								<input type='hidden' name='qst_type' class='qst_type' value='${research.qst_type}'>
 								</div>
-								<div class='research_qst_img'>${research.qst_img}</div>
+								<c:if test="${not empty research.qst_img}">
+								<div class='research_qst_img'><img src="${research.qst_img}"/></div>
+								</c:if>
 								<div class='research_qst_url'>${research.qst_url}</div>								
 								<c:set var="qst_code" value="${research.qst_code}"/>	
 								<c:set var="itemBN" value='${itemBN+1}'/>								
 							</c:if>
 							<c:choose>
 								<c:when test="${research.qst_type eq 0}">
-								<div class='research_item'>
-								<div class='research_item_img'>${research.item_img}</div>
+								<div class='research_item'>								
 									<input type='hidden' class='item_code${itemBN}' name='item_code' id='item_code${itemValue}' value='${research.item_code}'>
 									<input type='radio' class='item_choice' id='btn${itemValue}'name='item${itemBN}' value='${research.item_content}'>
 									<c:choose>
@@ -148,6 +195,12 @@
 									<label for='btn${itemValue}'>${research.item_content}</label>
 									</c:when>
 									</c:choose>
+									<c:if test="${not empty research.item_img}">
+									<div class='research_item_img'>
+										<img src="../resources/upload/${research.item_img}"/>
+									</div>
+									</c:if>
+									
 								</div>					
 								<c:set var="itemValue" value="${itemValue+1}"/>		
 								</c:when>

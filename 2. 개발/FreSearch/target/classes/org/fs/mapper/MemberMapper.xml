@@ -24,11 +24,113 @@
 			);
 		
 			insert into att_category (
-				mb_att_ctgr_code, mb_email, ctgr_code1, ctgr_code2, ctgr_code3,
-				ctgr_code4, ctgr_code5, mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
+				mb_att_ctgr_code, mb_email, 
+				<if test="ctgr_code1 != null">
+					ctgr_code1,
+				</if>
+				<if test="ctgr_code2 != null">
+					ctgr_code2,
+				</if>
+				<if test="ctgr_code3 != null">
+					ctgr_code3,
+				</if>
+				<if test="ctgr_code4 != null">
+					ctgr_code4,
+				</if>
+				<if test="ctgr_code5 != null">
+					ctgr_code5,
+				</if>
+				mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
 			) values (
-				#{mb_att_ctgr_code}, #{mb_email}, #{ctgr_code1}, #{ctgr_code2}, #{ctgr_code3},
-				#{ctgr_code4}, #{ctgr_code5}, #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+				#{mb_att_ctgr_code}, #{mb_email}, 
+				<if test="ctgr_code1 != null">
+					#{ctgr_code1},
+				</if>
+				<if test="ctgr_code2 != null">
+					#{ctgr_code2},
+				</if>
+				<if test="ctgr_code3 != null">
+					#{ctgr_code3},
+				</if>
+				<if test="ctgr_code4 != null">
+					#{ctgr_code4},
+				</if>
+				<if test="ctgr_code5 != null">
+					#{ctgr_code5},
+				</if>
+				 #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+			);
+			
+			insert into member_auth(
+				mb_email, mb_att_ctgr_code, auth
+			) values(
+				#{mb_email}, #{mb_att_ctgr_code}, 'ROLE_USER'
+			);
+     	end 
+    	} 
+	</insert>
+	
+	<insert id="googleRegister">
+		<selectKey keyProperty="mb_att_ctgr_code" order="BEFORE" resultType="String">
+			select dbms_random.string('X', 8) from dual
+		</selectKey>
+		
+		{
+		call 
+		declare 
+		begin 
+     	 	insert into member (
+				mb_email, mb_att_ctgr_code, mb_nick, mb_pwd, 
+				mb_addr, mb_birthdate, mb_sex, mb_phone, 
+				mb_reg_atrt, mb_email_key, mb_joindate
+			) values (
+				#{mb_email}, #{mb_att_ctgr_code}, #{mb_nick}, #{mb_pwd}, 
+				#{mb_addr}, #{mb_birthdate}, #{mb_sex}, #{mb_phone}, 
+				'일반', 'Y', SYSDATE	
+			);
+		
+			insert into att_category (
+				mb_att_ctgr_code, mb_email, 
+				<if test="ctgr_code1 != null">
+					ctgr_code1,
+				</if>
+				<if test="ctgr_code2 != null">
+					ctgr_code2,
+				</if>
+				<if test="ctgr_code3 != null">
+					ctgr_code3,
+				</if>
+				<if test="ctgr_code4 != null">
+					ctgr_code4,
+				</if>
+				<if test="ctgr_code5 != null">
+					ctgr_code5,
+				</if>
+				mb_marriage_yn, mb_child_yn, mb_home_yn, mb_car_yn
+			) values (
+				#{mb_att_ctgr_code}, #{mb_email}, 
+				<if test="ctgr_code1 != null">
+					#{ctgr_code1},
+				</if>
+				<if test="ctgr_code2 != null">
+					#{ctgr_code2},
+				</if>
+				<if test="ctgr_code3 != null">
+					#{ctgr_code3},
+				</if>
+				<if test="ctgr_code4 != null">
+					#{ctgr_code4},
+				</if>
+				<if test="ctgr_code5 != null">
+					#{ctgr_code5},
+				</if>
+				 #{mb_marriage_yn}, #{mb_child_yn}, #{mb_home_yn}, #{mb_car_yn}
+			);
+			
+			insert into member_auth(
+				mb_email, mb_att_ctgr_code, auth
+			) values(
+				#{mb_email}, #{mb_att_ctgr_code}, 'ROLE_USER'
 			);
      	end 
     	} 
@@ -46,6 +148,24 @@
 		select mb_phone from member where mb_phone = #{mb_phone}
 	</select>
 	
+	<select id="birthCheck" resultType="MemberVO">
+		select mb_birthdate from member where mb_birthdate = #{mb_birthdate}
+	</select>
+	
+	<select id="findCheck" resultType="MemberVO">
+		select mb_email, mb_nick, mb_birthdate, mb_phone, mb_joindate from member 
+		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} and mb_phone = #{mb_phone}
+	</select>
+	
+	<select id="findCheck2" resultType="MemberVO">
+		select mb_email, mb_nick, mb_birthdate, mb_phone, mb_joindate from member 
+		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} or mb_phone = #{mb_phone}
+	</select>
+	
+	<select id="check" resultType="MemberVO">
+		select mb_email from member where mb_email = #{mb_email}
+	</select>
+
 	<update id="getKey">
 		update member set mb_email_key = #{param2} where mb_nick=#{param1}
 	</update>
@@ -54,4 +174,76 @@
 		update member set mb_email_key = 'Y' where mb_nick = #{param1} and mb_email_key = #{param2}
 	</update>
 	
+	<resultMap type="org.fs.domain.MemberVO" id="memberMap">
+		<id property="mb_email" column="mb_email"/>
+		<id property="mb_att_ctgr_code" column="mb_att_ctgr_code"/>
+		<result property="mb_nick" column="mb_nick"/>
+		<result property="mb_pwd" column="mb_pwd"/>
+		<result property="mb_addr" column="mb_addr"/>
+		<result property="mb_birthdate" column="mb_birthdate"/>
+		<result property="mb_sex" column="mb_sex"/>
+		<result property="mb_phone" column="mb_phone"/>
+		<result property="mb_reg_atrt" column="mb_reg_atrt"/>
+		<result property="mb_email_key" column="mb_email_key"/>
+		<result property="mb_joindate" column="mb_joindate"/>
+		<collection property="authList" resultMap="authMap">
+		</collection>	
+	</resultMap>
+	
+	<resultMap type="org.fs.domain.AuthVO" id="authMap">
+		<result property="mb_email" column="mb_email"/>
+		<result property="mb_att_ctgr_code" column="mb_att_ctgr_code"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT
+			mem.mb_email, mem.mb_att_ctgr_code, mb_nick, mb_pwd, mb_addr, mb_birthdate, mb_sex, mb_phone, mb_reg_atrt, mb_email_key, mb_joindate, auth
+		FROM
+			member mem LEFT OUTER JOIN member_auth auth on mem.mb_email = auth.mb_email
+		WHERE mem.mb_email = #{mb_email} and mem.mb_email_key = 'Y'
+	</select>
+	
+	<update id="pwdChange">
+		update member set mb_pwd = #{mb_pwd} where mb_email = #{mb_email}
+	</update>
+	
+	<select id='myTakeList' resultType='MypagelistVO'>
+		select 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
+		from 
+			subject a,category b,question c,item d,answer e 
+		where 
+			e.mb_email = a.mb_email 
+		and 
+			a.subj_code = c.subj_code
+		and 
+			a.ctgr_code = b.ctgr_code
+		and 
+			c.qst_code = d.qst_code
+		and 
+			d.item_code = e.item_code
+		and 
+			e.mb_email = #{mb_email}
+		group by 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate
+	</select>
+	<select id='myMakeList' resultType='MypagelistVO'>
+		select 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
+		from 
+			subject a,category b 
+		where 
+			a.ctgr_code=b.ctgr_code and mb_email=#{mb_email}
+		order by 
+			a.subj_regdate desc
+	</select>
+	<select id='myPageInfo' resultType='MemberVO'>
+		select 
+			* 
+		from 
+			member
+		where 
+			mb_email=#{mb_email}
+	</select>
 </mapper>

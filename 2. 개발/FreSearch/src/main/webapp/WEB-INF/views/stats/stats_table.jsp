@@ -416,80 +416,8 @@
 				<div class="card-body-table">
 					<section class="article-list">
 
-						<!--
-						<div class="article-list-item">
-							<div class="article-list-item__vote">
-								<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>
-								<div>376</div>
-							</div>
-							<div class="article-list-item__content">
-								<div class="article-list-item__title">
-									<a href=""> <span>통계 목록 페이지는 페이징과 검색과 이미지 띄우는거 셀렉트
-											박스 너무 많아.</span> <em>[35]</em>
-								
-								</div>
-								</a>
-								<div class="article-list-item-meta">
-									<div class="article-list-item-meta__item">교육, 공부</div>
-									<div class="article-list-item-meta__item">
-
-										<span>5시간 전 </span>
-										<div class="article-list-item-meta__item">
-											<a href=""> choss001 </a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="article-list-item__thumbnail">
-								<a href=""> <img
-									src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg?image=w_200"
-									class="article-list-item__thumbnail" alt>
-								</a>
-							</div>
-						</div>
-						 -->
-
 					</section>
-					
-					
-					
-	<!-- 				
-	<div class="grid-margin-table-p stretch-card p">
-		<div class="card-table-p">
-			<div class="card-body-table-p">
-				<section class="article-list-p">
-					<section class="article-list-paging-p">
-							<div class="article-list-paging-content">
-								<ul class="article-list-paging-list">
-								<c:if test="${pageMaker.prev }"	>
-									<li	class="article-list-paging__item article-list-paging__item--prev">
-										<a href="" class="article-list-paging__button button"> 
-										<img	src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24"> 
-										<span>이전</span>
-									</a>
-									</li>
-									</c:if>
-									<c:if test="${pageMaker.next}">
-									<li	class="article-list-paging__item article-list-paging__item--next">	<a href="" class="article-list-paging__button button"> 
-									<span>다음</span>
-											<img src="https://talk.op.gg/images/icon-arrow-right@2x.png" width="24">
-									</a>
-									</li>
-									</c:if>
-								</ul>
-							</div>
-						</section>
-					</section>
-				</div>
-			</div>
-		</div>
-		 -->			<!--  
-					<button class="article-list-paging__button button" id="next" value="1">
-				    	<img src="https://talk.op.gg/images/icon-arrow-left@2x.png" width="24">
-				    	<span>실험</span>
-				    	</button>
-				    	
-				    	-->
+
 
 
 
@@ -516,7 +444,7 @@
 							//console.log($('.sub-link').offset());
 		if ($(document).scrollTop() >= 69) {
 			$('.sub-link').attr('class','sub-link scroll-to-fixed-fixed');
-			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 109px; margin-left: 0px; width: 719px;');
+			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 106px; margin-left: 0px; width: 719px;');
 			$('.sub-link').next().first().attr('style','display: block; width: 728px; height: 48px; float: none;');
 		} else {$('.sub-link').attr('class', 'sub-link');
 			$('.sub-link').attr('style','z-index: auto; position: static; top: autol');
@@ -582,7 +510,7 @@
 			    		html += '<div class="article-list-item-no-data">';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
-						html +=	'<a href=""> <span> 데이터가 없습니다.';
+						html +=	'<a href=""> <span> 데이터가 없습니다.'; 
 						html +=	'</span>';
 						html +=	'</div>';
 						html +=	'</a>';
@@ -593,28 +521,34 @@
 						html += '</div>';
 			    	}else{
 			    		for(var i =0, len = list.length||0; i < len; i++){
-			    		
+				    		
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
-							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+							//html +=	'<div>'+list[i].count+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
 							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-							//html +=	'<em>[35]</em>';
+							//html +=	' <em>['+list[i].count+']</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
-							html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+							//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 							html +=	'<div class="article--list-item-meta__item">';
 							html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
+							html += '</div>'
 							html +=	'<div class="article-list-item-meta__item">';
 							html +=	'<a href="">'+list[i].mb_nick+'</a>';
+							html += '</div>'; 
+							html += '</div>'; 
 							html += '</div>';
-							html += '</div>';
-							html += '</div>';
+							html += '<div class="item-jss">';
+							html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
+							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
+							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 							html +=	'</div>';
+							
 							/*html +=	'<div class="article-list-item__thumbnail">';
 							html +=	'<a href="">';
 							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
@@ -736,25 +670,31 @@
 		    		
 			    		html += '<div class="article-list-item">';
 						html += '<div class="article-list-item__vote">';
-						html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-						html +=	'<div>'+list[i].answer_number+'</div>';
+						//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+						//html +=	'<div>'+list[i].count+'</div>';
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
 						html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-						//html +=	' <em>[35]</em>';
+						//html +=	' <em>['+list[i].count+']</em>';
 						html +=	'</div>';
 						html +=	'</a>';
 						html +=	'<div class="article-list-item-meta">';
-						html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+						//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 						html +=	'<div class="article--list-item-meta__item">';
 						html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
+						html += '</div>'
 						html +=	'<div class="article-list-item-meta__item">';
 						html +=	'<a href="">'+list[i].mb_nick+'</a>';
+						html += '</div>'; 
+						html += '</div>';  
 						html += '</div>';
-						html += '</div>';
-						html += '</div>';
+						html += '<div class="item-jss">';
+						html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
+						html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
+						html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 						html +=	'</div>';
+						
 						/*html +=	'<div class="article-list-item__thumbnail">';
 						html +=	'<a href="">';
 						html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
@@ -950,28 +890,34 @@
 						html += '</div>';
 			    	}else{
 			    		for(var i =0, len = list.length||0; i < len; i++){
-			    		
+				    		
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
-							html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							html +=	'<div>'+list[i].answer_number+'</div>';
+							//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
+							//html +=	'<div>'+list[i].count+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
 							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-							//html +=	' <em>[35]</em>';
+							//html +=	' <em>['+list[i].count+']</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
-							html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
+							//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 							html +=	'<div class="article--list-item-meta__item">';
 							html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
+							html += '</div>'
 							html +=	'<div class="article-list-item-meta__item">';
 							html +=	'<a href="">'+list[i].mb_nick+'</a>';
+							html += '</div>'; 
+							html += '</div>'; 
 							html += '</div>';
-							html += '</div>';
-							html += '</div>';
-							html +=	'</div>'; 
+							html += '<div class="item-jss">';  
+							html += '<img class="left-jss" src="/resources/img/bicon15_2.png">' 
+							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
+							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
+							html +=	'</div>';
+							
 							/*html +=	'<div class="article-list-item__thumbnail">';
 							html +=	'<a href="">';
 							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';

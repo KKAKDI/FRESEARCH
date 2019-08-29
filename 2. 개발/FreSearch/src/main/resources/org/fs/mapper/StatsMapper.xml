@@ -87,7 +87,7 @@ SELECT (SELECT Count(*)
                                 WHERE  ctgr_code = (SELECT ctgr_code 
                                                     FROM   category 
                                                     WHERE 
-                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
+                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT
 FROM   subject a, 
        member b, 
        category c 
@@ -159,58 +159,10 @@ GROUP  BY c.ctgr_code,
           c.ctgr_nm 
 ORDER  BY ctgr_code 
 </select>
-<!-- 
-<select id="getTable" resultType="org.fs.domain.StatsVO">
-
-SELECT (SELECT Count(*)
-        FROM   (SELECT *
-                FROM   answer)
-        WHERE  item_code = e.item_code) AS answer_number,
-       b.subj_regdate,
-       f.ctgr_nm,
-       a.mb_nick,
-       c.qst_img,
-       b.subj_nm,
-       b.subj_startdate,
-       b.subj_enddate
-FROM   member a,
-       subject b,
-       question c,
-       item d,
-       answer e,
-       category f
-WHERE  b.mb_email = a.mb_email
-       AND b.subj_code = c.subj_code
-       AND c.qst_code = d.qst_code
-       AND d.item_code = e.item_code
-       AND f.ctgr_code = b.ctgr_code
-       AND CTGR_NM like '%'||#{ctgr_nm}||'%'
-       AND a.MB_SEX like '%'|| #{mbSex}||'%'
-       AND substr(a.MB_ADDR,1 , 5) like '%'||#{mbAddr}||'%'
-       AND NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(MB_BIRTHDATE, 1, 4), 'YYYY'))/12), 0)between #{startAge} and #{endAge}
-      	 <choose>
-      		<when test="stats == '전체'">
-       		</when>
-       		
-       		<when test="stats == '대기'">
-      			<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
-      		</when>
-      		
-       		<when test="stats == '진행중'"> 
-	   			<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
-	   		</when>
-	   		
-	   		<when test="stats == '완료'">
-	   			<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
-	   		</when>
-	   		
-	   	</choose>
-group by b.subj_nm, b.subj_regdate, f.ctgr_nm, a.mb_nick, c.qst_img, b.subj_startdate, b.subj_enddate, e.item_code
- -->
  
  <!-- STATS_TABLE 리스트 뽑는 SQL-->
 <select id="getTable" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -223,7 +175,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		   
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -266,9 +218,8 @@ FROM   (SELECT rownum rn,
 
 <!-- STATS_TABLE 전체 ROW 갯수 세는 SQL-->
 <select id="getTableCount" resultType="int">
-SELECT count(answer_number) 
+SELECT count(subj_regdate) 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -321,7 +272,20 @@ FROM   (SELECT rownum rn,
 
 <!--  그냥 위에 셀렉트 박스 5개 눌러서 나오는 내용 -->
 <select id="getTableTest" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT (SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = p.subj_code
+                                        AND rownum = 1)) as count,
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -334,7 +298,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		    
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -372,10 +336,10 @@ FROM   (SELECT rownum rn,
 	   				
 			   	</choose>
 			  <![CDATA[ 	
-	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount}) p
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
-GROUP BY answer_number, 
+GROUP BY 
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -387,12 +351,26 @@ GROUP BY answer_number,
        subj_nm, 
        subj_startdate, 
        subj_enddate
+       order by subj_regdate desc
 </select>
 
 
 <!--  검색 내용에 맞게 데이터 내용 나오는 문 -->
 <select id="getTableSearch" resultType="org.fs.domain.StatsVO">
-SELECT answer_number, 
+SELECT (SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = p.subj_code
+                                        AND rownum = 1)) as count,
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -405,7 +383,7 @@ SELECT answer_number,
        subj_startdate, 
        subj_enddate 
 FROM   (SELECT rownum rn,
-	 		   answer_number, 
+	 		    
                subj_regdate, 
                subj_code, 
                ctgr_nm, 
@@ -417,13 +395,25 @@ FROM   (SELECT rownum rn,
                subj_nm, 
                subj_startdate, 
                subj_enddate 
-        FROM   stats_table 
+        FROM   stats_table  
         WHERE  MB_NICK LIKE '%'||#{vo.mb_nick}||'%'
                AND SUBJ_NM LIKE '%'||#{vo.subj_nm}||'%'
 	   		   <![CDATA[ 	
-	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount}) p
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
+GROUP BY subj_regdate, 
+         subj_code, 
+         ctgr_nm, 
+         mb_nick, 
+         mb_sex, 
+         mb_birthdate, 
+         mb_addr, 
+         qst_img, 
+         subj_nm, 
+         subj_startdate, 
+         subj_enddate
+         order by subj_regdate desc
 </select>
 
 
@@ -449,21 +439,19 @@ select count(*) from (select MB_ADDR from member where  MB_ADDR like '%서울%')
 <select id="getStatsContent" resultType="org.fs.domain.StatsVO">
 SELECT DISTINCT a.subj_code, 
                 b.qst_code, 
-                c.item_code, 
-                e.ctgr_nm, 
+                c.item_code,
+                b.qst_type,
+                c.item_img, 
+                e.ctgr_nm,
                 a.subj_nm, 
                 b.qst_content, 
                 c.item_content,
-        
                 (SELECT count(asw_content)
                  FROM   answer 
-                 WHERE  item_code = c.item_code)AS ASW_CONTENT,
-                 
+                 WHERE  item_code = c.item_code)AS ASW_COUNT,
                  ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
                  FROM   answer
                  WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
-
-                 
                 a.subj_startdate, 
                 a.subj_enddate, 
                 c.item_regdate 
@@ -475,11 +463,14 @@ FROM   subject a,
 WHERE  a.subj_code = b.subj_code 
        AND b.qst_code = c.qst_code 
        AND a.ctgr_code = e.ctgr_code 
-       AND a.subj_code = #{subj_code} 
+       AND a.subj_code = #{subj_code}
+       AND b.qst_code = c.qst_code
 GROUP  BY a.mb_nick, 
           a.subj_code, 
           b.qst_code, 
-          c.item_code, 
+          c.item_code,
+          b.qst_type,
+          c.item_img, 
           e.ctgr_nm, 
           a.subj_nm, 
           b.qst_content, 
@@ -487,31 +478,94 @@ GROUP  BY a.mb_nick,
           c.item_regdate, 
           a.subj_startdate, 
           a.subj_enddate
-order by qst_code desc, asw_content desc
+order by qst_code desc, asw_count desc
+</select>
+
+<select id="getStatsContentShortAnswer" resultType="org.fs.domain.StatsVO">
+SELECT DISTINCT a.subj_code, 
+                b.qst_code, 
+                c.item_code,
+                b.qst_type,
+                c.item_img, 
+                e.ctgr_nm,
+                a.subj_nm, 
+                d.asw_content,
+                b.qst_content, 
+                c.item_content,
+                (SELECT count(asw_content)
+                 FROM   answer 
+                 WHERE  item_code = c.item_code)AS ASW_COUNT,
+                 ROUND(RATIO_TO_REPORT((SELECT count(asw_content)
+                 FROM   answer
+                 WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
+                a.subj_startdate, 
+                a.subj_enddate, 
+                c.item_regdate 
+FROM   subject a, 
+       question b, 
+       item c, 
+       answer d, 
+       category e 
+WHERE  a.subj_code = b.subj_code 
+       AND b.qst_code = c.qst_code 
+       AND a.ctgr_code = e.ctgr_code 
+       AND a.subj_code = #{subj_code}
+       AND b.qst_code = c.qst_code
+       AND c.item_code=d.item_code
+       AND qst_type =1
+GROUP  BY a.mb_nick, 
+          a.subj_code, 
+          b.qst_code, 
+          c.item_code,
+          b.qst_type,
+          c.item_img, 
+          e.ctgr_nm, 
+          a.subj_nm, 
+          b.qst_content, 
+          c.item_content, 
+          c.item_regdate, 
+          a.subj_startdate, 
+          a.subj_enddate,
+          d.asw_content
+order by qst_code desc, asw_count desc
+</select>
+
+<select id="contentCount" resultType="int">
+SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = #{subj_code}
+                                        AND rownum = 1)
 </select>
 
 
 <select id="header" resultType="org.fs.domain.StatsVO">
-select subj_code,ctgr_code, mb_email, mb_nick, subj_nm, subj_regdate, subj_startdate, subj_enddate  from subject 
-where ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com') 
-or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-
+select a.subj_code,a.ctgr_code,b.ctgr_nm ,a.mb_email, a.mb_nick, a.subj_nm, a.subj_regdate, a.subj_startdate, a.subj_enddate from subject a, category b
+where b.CTGR_CODE = a.CTGR_CODE and
+(a.ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = #{mb_email}) 
+or a.ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = #{mb_email})
+or a.ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = #{mb_email}))
+and read =0
+group by a.subj_code,a.ctgr_code, a.mb_email, a.mb_nick, a.subj_nm, a.subj_regdate, a.subj_startdate, a.subj_enddate ,b.CTGR_NM
+order by subj_regdate desc
 </select>
 
-<select id="headerCount" resultType="String">
-select count(subj_code) from subject 
-where ctgr_code = (select CTGR_CODE1 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com') 
-or ctgr_code = (select CTGR_CODE2 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE3 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE4 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-or ctgr_code = (select CTGR_CODE5 from ATT_CATEGORY where MB_EMAIL = 'aaa@google.com')
-</select>
+<update id="headerUpdate">
 
+update subject set read = 1 where subj_code =#{subj_code}
 
-
+</update>
 
 
 </mapper>

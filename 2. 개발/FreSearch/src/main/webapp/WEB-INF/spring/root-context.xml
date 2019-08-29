@@ -6,6 +6,7 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -15,9 +16,16 @@
 
 	<context:annotation-config></context:annotation-config>
 
+		<!-- MultipartResolver 설정 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000000" />
+		<property name="maxInMemorySize" value="1000000000" />
+	</bean>
+
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:JAVA"></property>
 		<property name="username" value="fresearch"></property>
 		<property name="password" value="java"></property>
 	</bean>
@@ -39,10 +47,12 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<!-- 구글 이메일  -->
+	<!--  
 	<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
       <property name="port" value="587" />
-      <property name="username" value="이메일" />
+      <property name="username" value="구글이메일주소" />
       <property name="password" value="비밀번호" />
       
       <property name="javaMailProperties">
@@ -54,6 +64,25 @@
          </props>
       </property>
     </bean>
+    -->
+    
+    <!-- 네이버 이메일 -->
+	<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl"
+		p:host="smtp.naver.com" 
+		p:port="465" 
+		p:username="fresearch" 
+		p:password="fresearch119">
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+				<prop key="mail.smtps.ssl.trust">*</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
 
 	<tx:annotation-driven />
 

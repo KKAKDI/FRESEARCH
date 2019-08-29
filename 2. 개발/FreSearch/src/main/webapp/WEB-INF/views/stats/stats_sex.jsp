@@ -20,8 +20,10 @@
 								변해라
 								<code>.All</code>
 							</p>
-							<div class="btn-group" role="group" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary-all" name="3" value="남자">
+							<div class="btn-group" role="group" aria-label="Basic example"
+							style="margin: 0 auto;width: 150px;display: flex;">
+							<input type='button' class="btn btn-outline-secondary" name="3" value="남자">
+							<!-- <input type='button' class="btn btn-outline-secondary-all" name="3" value="남자"> -->
 							<input type='button' class="btn btn-outline-secondary" name="3" value="여자">
 							</div>
 							<div class="table-responsiv">
@@ -53,7 +55,7 @@ var html = '';
 var age = '';
 $(document).ready(function() {
 	
-	html ='남자<code>결혼 유무</code>'
+	html ='남자<code>성별</code>'
 		$("#area").html(html);
 	
 	$.getJSON('/stats/get/sex/남자', function(data) {
@@ -80,7 +82,7 @@ $(document).ready(function() {
 
 		});
 		html += '<tr>';
-		html += "<td id='fix1'>총합</td>";
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';

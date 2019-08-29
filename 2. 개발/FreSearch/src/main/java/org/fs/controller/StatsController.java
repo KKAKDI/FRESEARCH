@@ -1,10 +1,8 @@
 package org.fs.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Param; 
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
 import org.fs.domain.StatsPagingSearchDTO;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -31,7 +28,6 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/stats")
 @AllArgsConstructor
-@SessionAttributes({"alarm","sawonDetail"})
 public class StatsController {
 	private StatsService service;
 
@@ -202,7 +198,7 @@ public class StatsController {
 	@GetMapping("/stats_table")
 	public void table(Model model) {
 		Criteria cri = new Criteria();
-		model.addAttribute("pageMaker", new PageDTO(cri,123));
+		//model.addAttribute("pageMaker", new PageDTO(cri,123));
 		//model.addAttribute("alarm", service.header());
 		log.info("stats_table");
 	}
@@ -280,6 +276,14 @@ public class StatsController {
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
+		List<StatsVO> listS = service.getStatsContentShortAnswer(subj_code);
+		int count = service.contentCount(subj_code);
+//		for(StatsVO vo: list) {
+//			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
+//		}
+		
+		model.addAttribute("count", count);
+		model.addAttribute("listS",listS);
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")
@@ -291,62 +295,32 @@ public class StatsController {
 		
 	}
 	
-
-
-
-//	@RequestMapping(method = {RequestMethod.POST, RequestMethod.PATCH},
-//			value = "/table",
-//			consumes = "application/json",
-//			produces = "application/json")
-//	public ResponseEntity <List<StatsVO>> getTable(@RequestBody StatsVO vo){
-////		if(vo.getAge() == 30) {
-////			vo.setStartAge(30);
-////			vo.setEndAge(39);
-////			System.out.println("여기에 들어왔다!!");
-////		}
-//		return new ResponseEntity<>(service.getTable(vo),HttpStatus.OK);
-//	}
-//
-//
 	@RequestMapping(method = { RequestMethod.POST,
 			RequestMethod.PATCH }, 
 			value = "/table/{pageNum}/{amount}", 
 			consumes = "application/json", 
 			produces = "application/json")
 	public ResponseEntity<StatsPagingSearchDTO> getTableAll(@RequestBody StatsVO vo,@ModelAttribute Criteria cri) {
-		//Criteria cri1 = new Criteria(cri.getPageNum(), cri.getAmount());
-		log.info("조성식1 : "+vo.getCtgr_nm());
-		log.info("조성식1 : "+vo.getMb_addr());
-		log.info("조성식1 : "+vo.getMb_sex());
-		log.info("조성식1 : "+vo.getStartAge());
-		log.info("조성식1 : "+vo.getEndAge());
-		log.info("조성식1 : "+vo.getStats());
-		log.info("조성식2 : "+cri.getPageNum());
-		log.info("조성식2 : "+cri.getAmount());
-//		vo.setCtgr_nm("");
-//		vo.setMb_sex("여");
-//		vo.setMb_addr("");
-//		vo.setStats("전체");
-//		vo.setStartAge(0);
-//		vo.setEndAge(99);
-//		cri.setPageNum(1);
-//		cri.setAmount(3);
-		
-//		log.info("조성식1 : "+vo.getCtgr_code());
-//		log.info("조성식1 : "+vo.getMb_addr());
-//		log.info("조성식1 : "+vo.getMb_sex());
-//		log.info("조성식1 : "+vo.getStartAge());
-//		log.info("조성식1 : "+vo.getEndAge());
-//		log.info("조성식1 : "+vo.getStats());
-//		log.info("조성식2 : "+cri.getPageNum());
-//		log.info("조성식2 : "+cri.getAmount());
-		
 		if ((vo.getMb_nick() == "" && vo.getSubj_nm() == "")|| (vo.getMb_nick() == null && vo.getSubj_nm() == null)) {
-			log.info("여기는 들어오면 안돼");
 			return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);
 		}else {
-			log.info("여기 들어왔다!!!!");
 			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
 		}
 	}
+	
+	@RequestMapping(method = { RequestMethod.POST,
+			RequestMethod.PATCH }, 
+			value = "/header", 
+			consumes = "application/json", 
+			produces = "application/json")
+	public ResponseEntity<List<StatsVO>> getHeader(@RequestBody StatsVO vo) {
+			System.out.println("#여기 들어오나?");
+		if(vo.getSubj_code() == null) {
+			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
+		}else {
+			service.headerUpdate(vo.getSubj_code());
+			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
+		}
+	}
 }
+

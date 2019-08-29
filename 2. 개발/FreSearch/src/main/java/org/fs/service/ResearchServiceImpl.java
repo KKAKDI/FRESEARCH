@@ -42,7 +42,8 @@ public class ResearchServiceImpl implements ResearchService {
 		String subName = null;
 		String[] block = values.split("/block");
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy/MM/dd");
-
+		String subRowId = null;
+		String qstRowId = null;
 		for (int i = 0; i < block.length; i++) {
 			log.info("block" + i + ": " + block[i]);
 			if (i == 0) {
@@ -65,14 +66,21 @@ public class ResearchServiceImpl implements ResearchService {
 						case 3:
 							headerVO.setSubj_enddate(dt.parse(header[j]));
 							break;
+						case 4:
+							headerVO.setMb_email(header[j]);
+							email = header[j];
+							break;
+						case 5:
+							headerVO.setMb_nick(header[j]);
+							break;
 						}
 					} catch (ParseException e) {
 						log.info(e);
 					}
-				}
-				headerVO.setMb_email(email);
-				headerVO.setMb_nick("admin");
-				mapper.subjReg(headerVO); 
+				}				
+				//mapper.subjReg(headerVO); 
+				mapper.subjReg(headerVO);
+				subRowId  = headerVO.getSubj_code();
 			} else {
 				String item[] = block[i].split("#t#");
 				String[][] items = new String[block.length][item.length];
@@ -81,21 +89,35 @@ public class ResearchServiceImpl implements ResearchService {
 					log.info("item[" + i + "][" + k + "]: " + items[i][k]);
 					ResearchVO questionVO = new ResearchVO();
 					if(i>0 && k==1){
-						questionVO.setMb_email(email);
-						questionVO.setSubj_nm(subName);
+						//questionVO.setMb_email(email);
+						//questionVO.setSubj_nm(subName);
+						questionVO.setRowId(subRowId);
 						questionVO.setQst_content(items[i][0]);						
 						questionVO.setQst_img("");
 						questionVO.setQst_url("");			
 						questionVO.setQst_type(items[i][k]); 
 						mapper.qstReg(questionVO);
+						log.info(questionVO.getQst_code());
+						qstRowId=questionVO.getQst_code();
 					}else if(k>1){
 						ResearchVO itemVO = new ResearchVO();
-						itemVO.setMb_email(email);
-						itemVO.setSubj_nm(subName);
-						itemVO.setItem_content(items[i][k]);
-						itemVO.setItem_img("");
-						itemVO.setRowNum(i);
-						mapper.itemReg(itemVO);
+						//itemVO.setMb_email(email);
+						//itemVO.setSubj_nm(subName);
+						itemVO.setRowId(qstRowId);
+						log.info("아이템 확인: "+items[i][k]);
+						String img[] = items[i][k].split("#img#");
+						log.info("이미지 확인: "+img.length);
+						if(img.length==2) { //img true
+							itemVO.setItem_content(img[0]);
+							itemVO.setItem_img(img[1]);
+							itemVO.setRowNum(i);
+							mapper.itemReg(itemVO);
+						}else if(img.length==1){
+							itemVO.setItem_content(img[0]);	
+							itemVO.setItem_img("");
+							itemVO.setRowNum(i);
+							mapper.itemReg(itemVO);
+						}						
 					}
 				}
 			}
@@ -139,5 +161,10 @@ public class ResearchServiceImpl implements ResearchService {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void researchDelete(String subj_code) {
+		mapper.researchDelete(subj_code);
 	}
 }

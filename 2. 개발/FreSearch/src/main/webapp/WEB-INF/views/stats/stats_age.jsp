@@ -20,7 +20,7 @@
 								변해라
 								<code>.All</code>
 							</p>
-							<div class="btn-group" role="group" aria-label="Basic example">
+							<div class="btn-group" role="group" style="margin-left: 38px;" aria-label="Basic example">
 							<input type='button' class="btn btn-outline-secondary" name="2" value="10대">
 							<input type='button' class="btn btn-outline-secondary" name="2" value="20대">
 							<input type='button' class="btn btn-outline-secondary" name="2" value="30대">
@@ -32,7 +32,7 @@
 								
 								</table>
 							</div>
-						</div>
+						</div> 
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 		});
 		html += '<tr>';
-		html += "<td id='fix1'>총합</td>";
+		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';

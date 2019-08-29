@@ -1,5 +1,6 @@
 package org.fs.service;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -7,11 +8,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import org.fs.domain.MemberVO;
+import org.fs.domain.MypagelistVO;
 import org.fs.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -24,6 +29,12 @@ public class MemberServiceImpl implements MemberService {
 	public void signUp(MemberVO member) {
 		
 		mapper.register(member);
+	}
+	
+	@Override
+	public void googleSignUp(MemberVO member) {
+		
+		mapper.googleRegister(member);
 	}
 	
 	@Override
@@ -42,6 +53,29 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO phoneCheck(String mb_phone) {
 		
 		return mapper.phoneCheck(mb_phone);
+	}
+	@Override
+	public MemberVO birthCheck(String mb_birthdate) {
+		
+		return mapper.birthCheck(mb_birthdate);
+	}
+	
+	@Override
+	public MemberVO findCheck(MemberVO vo) {
+
+		return mapper.findCheck(vo);
+	}
+	
+	@Override
+	public List<MemberVO> check(MemberVO vo) {
+
+		return mapper.check(vo);
+	}
+	
+	@Override
+	public List<MemberVO> findCheck2(MemberVO vo) {
+
+		return mapper.findCheck2(vo);
 	}
 	
 	@Override
@@ -80,12 +114,13 @@ public class MemberServiceImpl implements MemberService {
 		String key = getKey(false, 20);
 		mapper.getKey(mb_nick, key); 
 		MimeMessage mail = mailSender.createMimeMessage();
-		String htmlStr = "<h2>안녕하세요 FreSearch입니다</h2><br><br>" 
+		String htmlStr = "<h2>안녕하세요 FRESEARCH입니다.</h2><br><br>" 
 				+ "<h3>" + mb_nick + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
 				+ "<a href='http://localhost:8080/member/change_key?mb_nick="+ mb_nick +"&mb_email_key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
-			mail.setSubject("[본인인증] 최운학님의 인증메일입니다", "utf-8");
+			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)
+			mail.setSubject("[본인인증] FRESEARCH 회원가입 인증 메일입니다.", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
 			mail.addRecipient(RecipientType.TO, new InternetAddress(mb_email));
 			mailSender.send(mail);
@@ -103,4 +138,47 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+	
+	@Override
+	public void findSend(String mb_email) {
+		log.info("서비스impl1 : " + mb_email);
+		MimeMessage mail = mailSender.createMimeMessage();
+		String htmlStr = "<h2>안녕하세요 FRESEARCH입니다.</h2><br><br>" 
+				+ "<h3>비밀번호를 찾기 위해 새 비밀번호로 변경하셔야 합니다.</h3>" + "<p>새 비밀번호로 변경 버튼을 누르시면 비밀번호 변경 페이지로 이동합니다" 
+				+ "<a href='http://localhost:8080/member/password_change?mb_email="+mb_email+"'> 새 비밀번호로 변경</a></p>"
+				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+		try {
+			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)
+			mail.setSubject("[본인인증] FRESEARCH 비밀번호 찾기 인증 메일입니다.", "utf-8");
+			mail.setText(htmlStr, "utf-8", "html");
+			mail.addRecipient(RecipientType.TO, new InternetAddress(mb_email));
+			mailSender.send(mail);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean pwdChange(MemberVO member) {
+		
+		boolean result = mapper.pwdChange(member) == 1;
+		
+		return result;
+	}
+	
+	
+	@Override
+	public MemberVO myInfo(String mb_email) {		
+		return mapper.myPageInfo(mb_email);
+	}
+
+	@Override
+	public List<MypagelistVO> myTakeList(String mb_email) {		
+		return mapper.myTakeList(mb_email);
+	}
+
+	@Override
+	public List<MypagelistVO> myMakeList(String mb_email) {		
+		return mapper.myMakeList(mb_email);
+	}	
 }

@@ -37,10 +37,13 @@ public interface StatsMapper {
 	public List<StatsVO> getTableSearch(@Param("vo")StatsVO vo, @Param("cri")Criteria cri);
 	
 	public List<StatsVO> getStatsContent(String subj_code);
+	public List<StatsVO> getStatsContentShortAnswer(String subj_code);
+	public int contentCount(String subj_code);
 
-	public List<StatsVO> header();
+	public List<StatsVO> header(String mb_email);
 	
-	public String headerCount();
+	public int headerUpdate(String subj_code); 
+	
 
 
 }

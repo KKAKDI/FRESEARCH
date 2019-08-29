@@ -125,12 +125,38 @@ var researchService = (function(){
 			function(data){
 				if(callback){
 					callback(data.researchCnt, data.list);
+					//loadingClose();
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
 					error();
 				}
 			});
+	}
+		
+		/*
+		$.ajax({
+			type:"GET",
+			url: "/research/pages/" + research + "/" + page + ".json",
+			dataType : "json",
+			data : param,
+			contentType : "application/json; charset=UTF-8",
+			success:function(data){
+				if(callback){
+					callback(data.researchCnt, data.list);
+				}
+			},beforeSend:function(xhr, status, err){
+				//$('.wrap-loading').removeClass('display-none');
+				//console.log("로딩중");
+
+		    }
+
+		    ,complete:function(xhr, status, err){
+		        //$('.wrap-loading').addClass('display-none');
+		    	//console.log("로딩완료");
+		    }
+		});
+	}*/
 		/*
 		var ajax_last_num = 0;
 		var current_ajax_num = ajax_last_num;
@@ -158,7 +184,11 @@ var researchService = (function(){
 	            }
 	         }
 	      });*/
-	}
+	
+/*	setTimeout(function(){ 
+		alert("로딩중");
+		list.abort(); 
+	}, 2000);*/
 	
 	function displayTime(timeValue){
 		var today = new Date();
@@ -193,5 +223,10 @@ var researchService = (function(){
 		list:list,
 		displayTime:displayTime
 	};
+	
+	
+	
 })();
+
+
 

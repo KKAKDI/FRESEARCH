@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <%@include file="../includes/header.jsp"%>
+
 <link rel="stylesheet" href="/resources/stats/css/chart.css">
 <style type='text/css'>
 a.no-uline {
@@ -250,7 +251,7 @@ $("#addReplyBtn").on("click", function(e){
 				        data: [5, 23, 7, 12, 42, 23],
 				        borderColor: [
 				          '#ede190'
-				        ],
+				        ], 
 				        borderWidth: 2,
 				        fill: false
 				      },

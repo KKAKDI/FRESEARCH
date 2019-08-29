@@ -11,9 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.fs.domain.AttachFileDTO;
+import org.omg.CORBA.Request;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -42,10 +46,10 @@ public class UploadController {
 	}
 	
 	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+	public void uploadFormPost(MultipartFile[] uploadFile, Model model,HttpServletRequest request) {
 
 		String uploadFolder = "C:/upload";
-
+		
 		for (MultipartFile multipartFile : uploadFile) {
 
 			log.info("-------------------------------------");
@@ -95,12 +99,16 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
+	public String uploadAjaxPost(MultipartFile uploadFile,HttpServletRequest request) {
 		List<AttachFileDTO> list = new ArrayList<>();
-		
+		String fileinfo ="file";
 		log.info("update ajax post........");
+				
+		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+		log.info(projectPath);	
 		
-		String uploadFolder = "C:/upload"; // 파일 저장 폴더 위치
+		String uploadFolder = projectPath;
+				//"C:\\upload"; // 파일 저장 폴더 위치
 		
 		String uploadFolderPath = getFolder();
 		// make folder ---------
@@ -112,15 +120,15 @@ public class UploadController {
 		}
 		// make yyyy/MM/dd folder
 		
-		for(MultipartFile multipartFile : uploadFile) {
+		//for(MultipartFile multipartFile : uploadFile) {
 			
 			log.info("--------------------------");
-			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
-			log.info("Upload File Size: " + multipartFile.getSize());
+			log.info("Upload File Name: " + uploadFile.getOriginalFilename());
+			log.info("Upload File Size: " + uploadFile.getSize());
 			
 			AttachFileDTO attachDTO = new AttachFileDTO();
 			
-			String uploadFileName = multipartFile.getOriginalFilename();
+			String uploadFileName = uploadFile.getOriginalFilename();
 			
 			// IE has file path
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
@@ -131,32 +139,39 @@ public class UploadController {
 			UUID uuid = UUID.randomUUID(); // 파일 이름 랜덤값 생성
 			
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
-				
+			
+		
+			fileinfo = 	uploadFolderPath+"\\"+uploadFileName;
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
-				multipartFile.transferTo(saveFile);
+				uploadFile.transferTo(saveFile);
 				
 				attachDTO.setUuid(uuid.toString());
 				attachDTO.setUploadPath(uploadFolderPath);
 				
 				// 이미지 파일 체크
+				/*
 				if(checkImageType(saveFile)) {
 					
 					attachDTO.setImage(true);
 					
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
 					
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
 					
 					thumbnail.close();
 				}
+				*/
 				// 리스트에 추가
 				list.add(attachDTO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} // end catch
-		} // end for
-		return new ResponseEntity<>(list, HttpStatus.OK);
+		//} // end for
+		//return new ResponseEntity<>(list, HttpStatus.OK); //이미지 썸네일 리턴
+			fileinfo = fileinfo.replaceAll("\\\\", "/");
+			log.info(fileinfo);
+		return fileinfo;
 	}
 	
 	
@@ -227,10 +242,11 @@ public class UploadController {
 		File file;
 		
 		try {
-			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			//"c:\\upload\\"
+			file = new File(URLDecoder.decode(fileName, "UTF-8"));
 			
 			file.delete();
-			
+			/*
 			if(type.equals("image")) { // 이미지 파일은 s가 없는 일반 이미지 파일도 삭제 해야하므로 아래의 코드 작성
 				String largeFileName = file.getAbsolutePath().replace("s_", "");
 				
@@ -240,6 +256,7 @@ public class UploadController {
 				
 				file.delete();
 			}
+			*/
 		} catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

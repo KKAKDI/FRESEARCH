@@ -3,20 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/resources/css/reset.css">
 <%@include file="../includes/header.jsp" %>
 	
 
 <style>
 div.container_new{
 
-	padding-top: 120px;
-   width: 1100px;
+	padding-top: 150px;
+   width: 850px;
    margin: 0 auto;
 
 }
 .board-head span {
    position: absolute;
-    margin-left: 948px;
+    margin-left: 699px;
     margin-top: -46px;
     background: #1428a0;
     width: 150px;
@@ -59,7 +60,10 @@ input.search{
    height: 22px;
 }
 #searchForm{
-    margin-right: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 848px;
     margin-top: 45px;
     margin-bottom: 5px;
 }
@@ -73,7 +77,7 @@ ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li
 #pagingArea{
    margin-top: 10px;
    text-align: center;
-   margin-bottom: 160px;
+   margin-bottom: 109px;
 }
 li.paginate_button {
    position: relative;
@@ -89,7 +93,7 @@ li.paginate_button {
 
 
 table {
-	width: 1100px;
+	width: 850px;
 	border-top: 1px solid #444444;
 	border-collapse: collapse;
 	margin: auto;
@@ -99,13 +103,19 @@ table {
 th, td {
    border-bottom: 1px solid #dcdcdc;
    padding: 10px;
+   font-size : 16px;
 }
+
+
 
 td {
    text-align: center;
    color: #505050;
 }
 
+td.title{
+	text-align: left;
+}
 
 
 button {
@@ -115,6 +125,7 @@ button {
 ul, li {
 	display: inline;
 }
+
 </style>
 
 
@@ -139,8 +150,6 @@ ul, li {
 	<div class='search'>		
 			<form id='searchForm' action="/board/board_list" method='get'>
 							<select name='type' style="width: 155px; height: 22px;">
-								<option value=""
-									${pageMaker.cri.type == null?'selected':''}>--</option>
 								<option value="S"
 									${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
 								<option value="C"
@@ -172,13 +181,11 @@ ul, li {
 			<table>
 				<thead>
 					<tr style="border-bottom: 1px solid red; border-top: 1px solid #0C4DA2;">
-						<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">번호</th>
-						<th style="background-color: #f0f0f0; width: 40%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
-						<th style="background-color: #f0f0f0;  font-weight: bold; color: #505050; padding: 15 19;">닉네임</th>
-						<th style="background-color: #f0f0f0;  font-weight: bold; color: #505050; padding: 15 19;">추천</th>
-						<th style="background-color: #f0f0f0;  font-weight: bold; color: #505050; padding: 15 19;">비추천</th>
-						<th style="background-color: #f0f0f0;  font-weight: bold; color: #505050; padding: 15 19;">조회수</th>
-						<th style="background-color: #f0f0f0;  font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
+						<th style="background-color: #f0f0f0;  width:5%; font-weight: bold; color: #505050; padding: 16 19;">No</th>
+						<th style="background-color: #f0f0f0; width:50%; font-weight: bold; color: #505050; padding: 16 19; ">제목</th>
+						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
+						<th style="background-color: #f0f0f0;   width:10%; font-weight: bold; color: #505050; padding: 16 19;">등록일</th>
+						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">조회수</th>
 						
 					</tr>
 				</thead>
@@ -188,11 +195,12 @@ ul, li {
 						<td>${board.brd_code}</td>
 						<td class="title"><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
 						<td>${board.mb_nick}</td>
-						<td>${board.brd_like_cnt}</td>
-						<td>${board.brd_dislike_cnt}</td>
-						<td>${board.brd_views}</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
+						<td><fmt:formatDate pattern="yy-MM-dd"
 								value="${board.brd_regdate}" /></td>
+						<td>${board.brd_views}</td>
+						
+						
+						
 										
 					</tr>
 				</c:forEach>

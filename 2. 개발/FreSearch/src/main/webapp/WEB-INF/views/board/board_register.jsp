@@ -1,27 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <% 
 String ctx = request.getContextPath(); //콘텍스트 명 얻어오기
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script type="text/javascript" src="<%=ctx %>/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/resources/css/reset.css">
+	<%@include file="../includes/header.jsp" %>
 
 
-<!-- Bootstrap CSS -->
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> 
 
-<div class='bigPictureWrapper'>
-	<div class='bigPicture'>
-	</div>
-</div>
 <style>
-
-h1{
-text-align:center;
-}
 
 div{
 text-align: left;
@@ -42,14 +36,7 @@ form {
 	width: 850px;
 	margin : auto;
 }
-body {
 
-  padding-top: 70px;
-
-  padding-bottom: 30px;
-  
-
-}
 textarea{
 	width:848px;
 }
@@ -107,71 +94,124 @@ textarea{
 	width: 600px;
 }
 
+.container_new{
+	padding-top: 125px;
+}
+
+table {
+	width: 850px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: fixed;
+}
+td.column {
+	background-color: #f0f0f0;
+	color: #505050;
+	padding: 15 19;
+	font-weight: bold;
+}
+
+td.column-data {
+	padding: 15 19;
+}
+
+div.button {
+	text-align: right;
+}
+
+.nick{
+	padding: 0px;
+	width: 100%;
+    height: 50px;
+    border: none;
+}
+.subject{
+	padding: 0px;
+	width: 100%;
+    height: 50px;
+    border: none;
+    
+}
+
 
 </style>
 
-<div>
-	<div>
-		<h1>새글 등록</h1>
-	</div>
-
-</div>
-<div>
+<div class="container_new">
 	<div>
 		<div>
+			<div style="text-align: center;">
+				<h2> 게시글 등록</h2>
+			
 
-			<div>
+					<table style="text-align: center;">
 
-				<form role="form" id="frm" action="/board/board_register" method="post">
+						<form role="form" id="frm" action="/board/board_register" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<input type="hidden"  name='mb_email' value="aaa@naver.com"/>				
+							</div>
+	
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">닉네임</td>
+							<td class="column-data"  style="padding:0px;"><input class="nick" name='mb_nick'></td>
+						</tr>
+	
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column">제목</td>
+							<td class="column-data" style="padding:0px;"><input class="subject" name='brd_subject'></td>
+						</tr>
 
-					<div class="form-group">
-						<label>이메일</label><input class="form-control" name='mb_email' />
-					</div>
-
-					<div class="form-group">
-						<label>닉네임</label> <input class="form-control" name='mb_nick'>
-					</div>
-
-					<div class="form-group">
-						<label>제목</label> <input class="form-control" name='brd_subject'>
-					</div>
-					<div class="form-group">
-						<label>내용</label>
-						<textarea name="brd_content" id="ir1" rows="10" cols="100"></textarea>
-					</div>
+						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+							<td colspan="2">
+							<textarea name='brd_content' id="ir1" rows="10" cols="100"  style="display: block; "></textarea>
+							</td>
+						</tr>
+	
+						<tr style="border-bottom: 1px solid gray; text-align: center; height:auto;">
+							<td class="column" colspan="2">첨부파일</td>
+						</tr> 
 					
-					
-					
-				</form>
-
+	
+					</form>
+				</table>
 			</div>
-		</div>
+		</div>		
 	</div>
 </div>
 
 <!-- 파일첨부 부분 -->
-<div class="fileupload">
+<div class='bigPictureWrapper'>
+	<div class='bigPicture'>
+	</div>
+</div>
+
+<div style="padding-top:20px; width:850px; text-align:left; margin:auto;">
 	<div>
 		<div>
-			<div>파일 업로드</div>
-			<div>
-				<div>
-					<input type="file" name='uploadFile' multiple>
+		
+				<div class="form-group uploadDiv"> 
+					<input type="file" name='uploadFile' multiple="multiple">
 				</div>
+				
 				<div class='uploadResult'>
-					<ul>
-
-					</ul>
+						<ul>
+	
+						</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-			<div class="button">
-				<button class="btn btn-sm btn-success" type="submit" onclick="submitContents();" id="save">등록</button>
-				<button class="btn btn-sm btn-primary" type="button" onclick="location.href='board_list'">목록</button>
-			</div>
+
+			<tr>
+				<td>
+					<div class="button">
+						<button type="submit" onclick="submitContents();" id="save">등록</button>
+						<button type="button" onclick="location.href='board_list'">목록</button>
+					</div>
+				</td>
+			</tr>
+			
 			
 	<!-- 파일 업로드 자바스크립트 -->
 
@@ -275,8 +315,8 @@ textarea{
 							str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 							str +" ><div>";
 							str += "<span> "+obj.fileName+ "</span>";
-							str += "<button type='button' data-file=\'"+ fileCallPath +"\' "
-							str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+							str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+ fileCallPath +"\' "
+							str += "data-type='image' ><i class='fa fa-times'><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></i></button><br>";
 							str += "<img src='/display?fileName="+fileCallPath+ "'>";
 							str += "</div>";
 							str + "</li>";
@@ -288,8 +328,8 @@ textarea{
 							str += "<li "
 							str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
 							str += "<span> "+obj.fileName+ "</span>";
-							str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
-							str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+							str += "<button style=\"border: none; background-color: white;\" type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+							str += "><i class='fa fa-times'><img style=\"width:16;\"src='/resources/img/bicon03_1.png'></i></button><br>";
 							str += "<img src='/resources/img/attach.png'></a>";
 							str += "</div>";
 							str + "</li>";
@@ -376,4 +416,4 @@ function submitContents(elClickedObj) {
  }
 
 </script>
- 
+ <%@include file="../includes/footer.jsp" %>
