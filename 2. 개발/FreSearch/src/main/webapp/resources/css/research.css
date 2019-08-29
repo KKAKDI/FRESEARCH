@@ -35,7 +35,7 @@ input[type=file]{
 	margin: 0 auto;
 }
 .research_header .logo img{
-	width:200px;
+	width:250px;
 }
 #content {
 	clear: both;
@@ -430,7 +430,8 @@ select {
 	background: url( "/resources/img/bicon05_1.png" ) no-repeat 50% 50%;
 }
 #img_btn{
-	background: url( "/resources/img/bicon08_1.png" ) no-repeat 50% 50%;
+	padding: 5px 0 0 0;
+    width: 30px;
 }
 #qst_del{
 	background: url( "/resources/img/bicon10_1.png" ) no-repeat 50% 50%;

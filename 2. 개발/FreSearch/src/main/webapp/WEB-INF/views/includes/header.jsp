@@ -88,87 +88,17 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   cursor: pointer;
 }
 
-.widget-gnb ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    background-clip: padding-box;
-    background-color: rgba(121, 124, 144, 0.3);
-    border: 0px solid transparent;
-    border-radius: 5px;
-
-}
-.widget-gnb ::-webkit-scrollbar-thumb {
-    background-color: #cdd2d2;
-    border: 2px solid #cdd2d2;
-    border-radius: 5px;
-}
-.widget-gnb ::-webkit-scrollbar-track{
-    background-color: #fff;
-}
-
-.gnb-tab-item{
-    background-color: #fff;
-    border-bottom-color: #fff;
-	position: relative;
-    width: 100%;
-    padding: 14px 10px 14px 10px;
-    font-size: 12px;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-    border: 1px solid #d9d9d9;
-    white-space: nowrap;
-    border-right: none;
-    border-left: none;
-    vertical-aligh:middle;
-
-}
-.gnb-tab-item:before{
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #1820b7;
 
 
-}
 
-.jss-icon{
-	margin-left : 5px;
-	margin-bottom: 4px;
-    width: 18px;
-    height: 17px;
-    background: url(/resources/img/new_icon_02.svg) no-repeat 0 0;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-    overflow: hidden;
-}
-.jss-font{
-    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-    vertical-align: top;
-    color: #666666;
-}
-.jss-small{
-	font-size: 11px;
-	color: #999;
-}
-.all-read{
 
-    padding-top: 15px;
-    text-align: center;
-    font-size: 13px;
-    color: #999;
-    border-top: 1px solid #ebebeb;
-}
+
 
 </style>
 </head>
 <body>
 
-<div class="loading"><label>FRESEARCH</label></div>
+<div class="loading"><img src='/resources/img/logo1_1.png'/></div>
 <div class="container">
    <div class="fixed_box">
       <!-- 상단 고정 박스 시작 -->
@@ -199,7 +129,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                       </p>
                    
                       <div class="bar"></div>
-                      <a href="#">
+                      <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
@@ -226,17 +156,21 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
                		<div class="dropdown-alarm widget-gnb">
                
                		<!-- 종모양 알림 -->
-	               		<div class="container" id="badge">
+	               		<div class="container" id="badge" style="height: 25px;">
 	     					<a class="entypo-bell" style="display:none;"></a>
-	     					<img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">
+	     					<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content" id="alarm_content" style="overflow:auto;  overflow-x: hidden; width:430px; max-height:400px; ">
-							<a>로그인 후 이용해 주세요.</a>
+						<div class="dropdown-content-jss" id="alarm_content">
+							<a href="/member/signin">
+                        		<img class="img_iconThird-jss" src="/resources/img/login_icon01.png"/>
+                      		    <span class="span_login-jss">로그인</span>
+                     		</a>
+                     		<a href="/member/signup">
+                        		<img class="img_iconThird-jss" src="/resources/img/signup_icon01.png"/>
+                        		<span class="span_login-jss">회원가입</span>
+                     		</a>
 						</div>
 					<!-- 종모양 알림 끝 -->
-						<!-- <div class="all-read">
-							<span class="all-read-span">모두 읽은 상태로 표시</span>
-						</div> -->
                		</div>
                		
 
@@ -291,7 +225,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	//곽지훈
 	$(function() { 
 		$(window).load(function() {
-			$(".loading").fadeOut(700);
+			$(".loading").fadeOut(1000);
 		});
 		$("#GNB > ul > li").hover(function() {
 			$(this).children("a").addClass("active");
@@ -437,7 +371,9 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 16px; margin-left: 3px; margin-top: 3px;">');
+	        			$('#alarm_content').attr('style','overflow:auto;  overflow-x: hidden; width:430px; max-height:400px;margin-top: 0px; ');
+	        			$('#alarm_content').attr('class','dropdown-content');
+	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
 	        			html += '<div class="gnb-tab-item">알림메시지 '+list.length+'개</div>';
 	        			for(var i=0; i < list.length; i++){
 	        				

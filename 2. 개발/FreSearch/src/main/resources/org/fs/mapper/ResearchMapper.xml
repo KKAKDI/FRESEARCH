@@ -49,7 +49,7 @@
 			(select dbms_random.string('X', 8) from dual), #{ctgr_code}, #{mb_email}, #{mb_nick}, #{subj_nm}, SYSDATE, #{subj_startdate}, #{subj_enddate},0
 		)
 	</insert>
-	<insert id="qstReg">	
+	<insert id="qstReg" useGeneratedKeys="true" keyProperty="qst_code">	
 		insert into QUESTION
 		values(
 			(select dbms_random.string('X', 8) from dual),(select subj_code from subject where rowid=#{rowId}),#{qst_content},#{qst_type},#{qst_img},#{qst_url},SYSDATE
@@ -59,7 +59,7 @@
 		insert into ITEM
 		values(
 			(select dbms_random.string('X', 8) from dual),
-            (select qst_code from question where subj_code = (select subj_code from subject where rowid=#{rowId})),
+           	(select qst_code from question where rowid=#{rowId}),
            	#{item_content},#{item_img},SYSDATE
 		)
 	</insert>	

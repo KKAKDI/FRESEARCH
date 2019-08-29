@@ -36,13 +36,19 @@ td.column {
 }
 
 td.column-data {
-	padding: 15 19;
+	padding: 23 19;
 }
 
 td.column-content {
 	word-break:break-all; 
 	wrap:"hard";
 	white-space:pre-line;
+}
+
+td#column-subject {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 hr {
@@ -112,12 +118,30 @@ hr {
    
 }
 
+#content{
+   height : auto;
+}
+
 .Header {
     margin-top: 0px;
 }
 
-div{
-	text-align: center;
+.news-head h2 {
+	position: relative;
+    font-size: 30px;
+    padding: 3px 0 7px;
+    margin: auto;
+    width: 850px;
+}
+
+.news-head h2::after {
+	background: #1428a0;
+    width: 99.9%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
 }
 </style>
 
@@ -134,10 +158,16 @@ div{
 						<input type='hidden' name='type' value=${cri.type}>
 				</form>
 
-				<div style="text-align: center;">
+				<div>
+					<div class="news-head">
+					<h2>새소식</h2>
+					</div>	
+				
+				<!-- 
 					<h2>공지사항 / 이벤트</h2>
 					<hr/>
 					<p>FreSearch 새소식을 제공합니다.</p>
+				 -->
 					<table style="text-align: center;">
 						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
 							<td class="column" style="width: 20%;">작성자</td>
@@ -148,7 +178,9 @@ div{
 						</tr>
 						<tr style="border-bottom: 1px solid #dcdcdc;">
 							<td class="column" style="width: 15%">제목</td>
-							<td class="column-data" style="text-align: left; padding: 15px 20px;" colspan="3">${news.news_subject}</td>
+							<td id= "column-subject" class="column-data" style="text-align: left;" colspan="5">${news.news_subject}</td>
+							
+							<!-- 
 							<td class="column" style="width: 15%">첨부파일</td>
 							<td style="width:*">
 								<div class='bigPictureWrapper'>
@@ -160,6 +192,7 @@ div{
 									</ul>
 								</div>
 							</td>
+							 -->
 						</tr>
 						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
 							<td class="column-content" colspan="6" style="background-color: #e5e5e5;  text-align: left; padding: 40 40;">${news.news_content}</td>
@@ -295,13 +328,20 @@ div{
 	// 수정 페이지
 	$(document).ready(function() {
 		var operForm = $("#operForm");
-		
+
+	    var result = '<c:out value='${news.news_division}'/>';
+	      
 		$("button[data-oper='modify']").on("click", function(e) {
 			operForm.attr("action", "/news/news_modify").submit();
 		});
-		$("button[data-oper='list']").on("click", function(e) {
+		
+		$("button[data-oper='list']").on("click", function(e) { // 구분 하여 목록으로 이동
 			operForm.find("#news_code").remove();
-			operForm.attr("action", "/news/news_list")
+			if(result == "공지"){
+				operForm.attr("action", "/news/news_list");
+			} else {
+				operForm.attr("action", "/news/news_list_event");
+			}
 			operForm.submit();
 		});
 	});

@@ -20,6 +20,7 @@
 		<!-- <security:intercept-url pattern="/member/signup" access="permitAll"/> -->
 		
 		<security:intercept-url pattern="/research/research_register" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/research/research_content" access="hasRole('ROLE_USER')"/>
 		
 		<!-- <security:intercept-url pattern="/member/signup" access="hasRole('ROLE_ADMIN')"/> -->
 

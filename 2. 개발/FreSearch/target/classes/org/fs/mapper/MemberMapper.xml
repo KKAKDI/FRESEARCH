@@ -208,4 +208,42 @@
 		update member set mb_pwd = #{mb_pwd} where mb_email = #{mb_email}
 	</update>
 	
+	<select id='myTakeList' resultType='MypagelistVO'>
+		select 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
+		from 
+			subject a,category b,question c,item d,answer e 
+		where 
+			e.mb_email = a.mb_email 
+		and 
+			a.subj_code = c.subj_code
+		and 
+			a.ctgr_code = b.ctgr_code
+		and 
+			c.qst_code = d.qst_code
+		and 
+			d.item_code = e.item_code
+		and 
+			e.mb_email = #{mb_email}
+		group by 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate
+	</select>
+	<select id='myMakeList' resultType='MypagelistVO'>
+		select 
+			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
+		from 
+			subject a,category b 
+		where 
+			a.ctgr_code=b.ctgr_code and mb_email=#{mb_email}
+		order by 
+			a.subj_regdate desc
+	</select>
+	<select id='myPageInfo' resultType='MemberVO'>
+		select 
+			* 
+		from 
+			member
+		where 
+			mb_email=#{mb_email}
+	</select>
 </mapper>
