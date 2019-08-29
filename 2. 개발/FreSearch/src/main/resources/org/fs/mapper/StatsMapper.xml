@@ -87,7 +87,7 @@ SELECT (SELECT Count(*)
                                 WHERE  ctgr_code = (SELECT ctgr_code 
                                                     FROM   category 
                                                     WHERE 
-                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
+                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT
 FROM   subject a, 
        member b, 
        category c 
@@ -357,7 +357,20 @@ GROUP BY
 
 <!--  검색 내용에 맞게 데이터 내용 나오는 문 -->
 <select id="getTableSearch" resultType="org.fs.domain.StatsVO">
-SELECT 
+SELECT (SELECT Count(d.asw_content)
+        FROM   subject a, 
+               question b, 
+               item c, 
+               answer d 
+        WHERE  a.subj_code = b.subj_code 
+               AND b.qst_code = c.qst_code 
+               AND c.item_code = d.item_code 
+               AND b.qst_code = (SELECT b.qst_code 
+                                 FROM   subject a, 
+                                        question b 
+                                 WHERE  a.subj_code = b.subj_code 
+                                        AND a.subj_code = p.subj_code
+                                        AND rownum = 1)) as count,
        subj_regdate, 
        subj_code, 
        ctgr_nm, 
@@ -382,13 +395,25 @@ FROM   (SELECT rownum rn,
                subj_nm, 
                subj_startdate, 
                subj_enddate 
-        FROM   stats_table 
+        FROM   stats_table  
         WHERE  MB_NICK LIKE '%'||#{vo.mb_nick}||'%'
                AND SUBJ_NM LIKE '%'||#{vo.subj_nm}||'%'
 	   		   <![CDATA[ 	
-	   		  AND rownum <= #{cri.pageNum} * #{cri.amount})
+	   		  AND rownum <= #{cri.pageNum} * #{cri.amount}) p
 	   		  where rn > (#{cri.pageNum} -1) * #{cri.amount}
 	   		  ]]>
+GROUP BY subj_regdate, 
+         subj_code, 
+         ctgr_nm, 
+         mb_nick, 
+         mb_sex, 
+         mb_birthdate, 
+         mb_addr, 
+         qst_img, 
+         subj_nm, 
+         subj_startdate, 
+         subj_enddate
+         order by subj_regdate desc
 </select>
 
 

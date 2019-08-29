@@ -14,6 +14,7 @@ var replyService = (function(){
 				if(callback){
 					callback(result);
 				}
+
 			},
 			error :function(xhr, status,er){
 				if(error){
@@ -47,24 +48,35 @@ var replyService = (function(){
 			type : 'delete',
 			url : '/replies/' + rpl_code,
 			success : function(deleteResult, status, xhr){
+				let items = $('.chat').children('li');
+				console.log(items);
+				for(i = 0; i<items.length; i++){
+					console.log('item for 문 진입'+items.length);
+					console.log(items[i]);
+					console.log($(items[i]).attr('name') + ',' +rpl_code);
+					if($(items[i]).attr('name') == rpl_code){
+						console.log('일치'+rpl_code);
+						$(items[i]).remove();
+					}
+				}
+				
 				if(callback){
 					callback(deleteResult);
 				}
 			},
 			error : function(xhr, status, er){
 				if(error){
-					error(er);
+					error(er);	
 				}
 			}
 		});
 	}
 	
-	function update(reply, callback, error){					//댓글 수정하는 AJAX
-		console.log("rpl_code : " + reply.rpl_code);
+	function update(rpl_code, callback, error){					//댓글 수정하는 AJAX
 		
 		$.ajax({
 			type : 'put',
-			url : '/replies/' + reply.rpl_code,
+			url : '/replies/' + rpl_code,
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){

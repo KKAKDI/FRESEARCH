@@ -220,59 +220,65 @@ td#column-subject {
         <form name="ReplyInsertForm">
             <div class="input-group" style="box-sizing: border-box;">
                <input type="hidden" name="brd_code" value="${board.brd_code}"/>
-               <textarea class="rpl_content" id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
-                <button  style="margin-top: 6; height: 74px; "type="button" name="replyInsert">등록</button>
-               <br />
+               <textarea class="rpl_content" style ="height :50px; width:807px"id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
+                <button  style="margin-top: 6; height: 50px; cursor: pointer; "  type="button" name="replyInsert">등록</button>
                <span style="color:#aaa;" id="input-group">(0 / 최대 50자)</span>
 
 
 				<div>
-		<div>
-			<div>
-				
-				<br>
-				<div>
-					<ul class="chat">
-					</ul>
+					<div>
+						<div>
+
+							<br>
+							<div>
+								<ul class="chat">
+								</ul>
+							</div>
+							<div></div>
+						</div>
+					</div>
 				</div>
-				<div></div>
+
 			</div>
-		</div>
-	</div>
-                   
-              </div>
         </form>
     </div>
 
 	
 
 
-	<script type="text/javascript" src="/resources/js/reply.js"></script> 
+<script type="text/javascript" src="/resources/js/reply.js"></script> 
 		
+<script>
+$('.rpl_content').keyup(function (e){
+	console.log("들어왔다");
+    var content = $(this).val();
+    console.log("content : "+content);
+    $('#input-group').html("("+content.length+" / 최대 50자)");    //글자수 실시간 카운팅
+
+    if (content.length > 50){
+        alert("최대 50자까지 입력 가능합니다.");
+        $(this).val(content.substring(0, 50));
+        console.log(" $(this).val(content.substring(0, 50)) : "+ $(this).val(content.substring(0, 50)));
+        $('#input-group').html("(50 / 최대 50자)");
+    }
+});
+	
+</script>
+
+	
 	<script>
 	
-	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
-		
-	    var reply = $('[name=ReplyInsertForm]').serialize(); //ReplyInsertForm의 내용을 가져옴
-	    
-	    replyService.add(reply, function(result){
-	    
-	    	alert(result);
-	    
-	    }); //Insert 함수호출(아래)
 	
-	});
+	
 
-
-	
-	
 	$(document).ready(function(){
-		
+			
 	var brd_codeValue= value = "${board.brd_code}";
 	var replyUL =$(".chat");
 	
 	showList(1);
 	
+
 	function showList(page){
 		
 		replyService.getList({brd_code:brd_codeValue, page: page || 1}, function(list){
@@ -283,25 +289,39 @@ td#column-subject {
 				return;
 			}
 			for (var i = 0, len = list.length || 0; i < len; i++) {
-				 str += "<li data-rpl_code'"+list[i].rpl_code+"' >";
+				 str += "<li name = '"+list[i].rpl_code+"'>";
 				 str += " <div><div style='display:inline;'><strong>"+list[i].mb_nick+"</strong>";
 				 str += " <small>"+replyService.displayTime(list[i].rpl_regdate)+"</small></div>";
-				 str += '<a onclick="replyUpdate('+value.rpl_code+',\''+value.rpl_content+'\');" style=\"color : blue;\"> 수정 </a>';
-                 str += '<a onclick="replyDelete('+value.rpl_code+');" style=\"color : blue;\"> 삭제 </a> </div>';
+				 str += '<a class="update-btn" onclick="replyUpdate('+list[i].rpl_code+',\''+list[i].rpl_content+'\');" style=\"color : blue; cursor: pointer;\"> 수정 </a>';
+				 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+'); " style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
 				 str += "<p style=\"border-bottom:1px solid #dcdcdc; padding-bottom:9px; padding-top:9px;\">"+list[i].rpl_content+"</p></div></li>"
-				 str += "<hr/>";
-				 str +="<br/>";
 			 }
-			replyUL.html(str);
+			replyUL.html(str);	
 		});
 	}
 	
+		
+	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
+		
+	    var reply = {
+ 			
+ 			rpl_content : $(".rpl_content").val(),
+ 			mb_nick : "${board.mb_nick}",
+ 			mb_email : "${board.mb_email}",
+ 			brd_code : $("input[name=brd_code]").val()
+ 			
+ 			}; //ReplyInsertForm의 내용을 가져옴
+	        
+	    replyService.add(reply, function(result){
+	    	$("#rpl_content").val('');
+	   		showList(1);
+	    
+	    }); //Insert 함수호출(아래)
+		
+	});
+	
 	});
 	</script>
-
-
-
-
 
 <script type="text/javascript">
 	$(document).ready(function() {

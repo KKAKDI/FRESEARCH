@@ -1,8 +1,7 @@
 package org.fs.controller;
 
-import java.util.List;
+import java.util.List; 
 
-import org.apache.ibatis.annotations.Delete;
 import org.fs.domain.Criteria;
 import org.fs.domain.ReplyVO;
 import org.fs.service.ReplyService;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("replies/")
+@RequestMapping("/replies/")
 @RestController
 @Log4j
 @AllArgsConstructor

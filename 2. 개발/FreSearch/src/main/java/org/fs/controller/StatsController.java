@@ -198,7 +198,7 @@ public class StatsController {
 	@GetMapping("/stats_table")
 	public void table(Model model) {
 		Criteria cri = new Criteria();
-		model.addAttribute("pageMaker", new PageDTO(cri,123));
+		//model.addAttribute("pageMaker", new PageDTO(cri,123));
 		//model.addAttribute("alarm", service.header());
 		log.info("stats_table");
 	}
@@ -302,10 +302,8 @@ public class StatsController {
 			produces = "application/json")
 	public ResponseEntity<StatsPagingSearchDTO> getTableAll(@RequestBody StatsVO vo,@ModelAttribute Criteria cri) {
 		if ((vo.getMb_nick() == "" && vo.getSubj_nm() == "")|| (vo.getMb_nick() == null && vo.getSubj_nm() == null)) {
-			log.info("여기는 들어오면 안돼");
 			return new ResponseEntity<>(service.getTableAll(vo, cri), HttpStatus.OK);
 		}else {
-			log.info("여기 들어왔다!!!!");
 			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
 		}
 	}
