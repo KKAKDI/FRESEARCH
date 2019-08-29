@@ -623,6 +623,19 @@ $(document).ready(function(){
 			cate_val.push($(this).val());
 		});
 		$("#mb_att_category").val(cate_val);
+		
+		swal({
+			title:"회원가입 완료!!",
+			text:"이메일 인증 후 서비스를 이용해주세요.",
+			icon:"success",
+			buttons:["NO", "YES"],
+		})
+		.then((YES) => {		
+			if(YES){
+				location.href="/index";	
+			}
+		});	
+		
 	});
 	
 	var addZero = function (date, num) {
