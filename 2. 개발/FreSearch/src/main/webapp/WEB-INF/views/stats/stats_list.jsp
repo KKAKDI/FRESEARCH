@@ -152,12 +152,12 @@ $("#addReplyBtn").on("click", function(e){
 				      label: '# of Votes',
 				      data: [17, 19, 3, 5, 2, 3],
 				      backgroundColor: [
-				        'rgba(255, 99, 132, 0.2)',
-				        'rgba(54, 162, 235, 0.2)',
-				        'rgba(255, 206, 86, 0.2)',
-				        'rgba(75, 192, 192, 0.2)',
-				        'rgba(153, 102, 255, 0.2)',
-				        'rgba(255, 159, 64, 0.2)'
+				        'rgba(255, 99, 132)',
+				        'rgba(54, 162, 235)',
+				        'rgba(255, 206, 86)',
+				        'rgba(75, 192, 192)',
+				        'rgba(153, 102, 255)',
+				        'rgba(255, 159, 64)'
 				      ],
 				      borderColor: [
 				        'rgba(255,99,132,1)',
@@ -186,12 +186,12 @@ $("#addReplyBtn").on("click", function(e){
 						      label: '# of Votes',
 						      data: [ten, twenty, thiry, forty, fifty, sixty],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.2)',
-						        'rgba(54, 162, 235, 0.2)',
-						        'rgba(255, 206, 86, 0.2)',
-						        'rgba(75, 192, 192, 0.2)',
-						        'rgba(153, 102, 255, 0.2)',
-						        'rgba(255, 159, 64, 0.2)'
+						        'rgba(255, 99, 132)',
+						        'rgba(54, 162, 235)',
+						        'rgba(255, 206, 86)',
+						        'rgba(75, 192, 192)',
+						        'rgba(153, 102, 255)',
+						        'rgba(255, 159, 64)'
 						      ],
 						      borderColor: [
 						        'rgba(255,99,132,1)',
@@ -216,20 +216,20 @@ $("#addReplyBtn").on("click", function(e){
 						      label: '# labels',
 						      data: [seoul, gyeongGi, busan, incheon,  2, 3],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.2)',
-						        'rgba(54, 162, 235, 0.2)',
-						        'rgba(255, 206, 86, 0.2)',
-						        'rgba(75, 192, 192, 0.2)',
-						        'rgba(153, 102, 255, 0.2)',
-						        'rgba(255, 159, 64, 0.2)'
+						        'rgb(255, 180, 255)',
+						        'rgba(54, 162, 235)',
+						        'rgba(255, 206, 86)',
+						        'rgba(75, 192, 192)',
+						        'rgba(153, 102, 255)',
+						        'rgba(255, 159, 64)'
 						      ],
 						      borderColor: [
-						        'rgba(255,99,132,1)',
-						        'rgba(54, 162, 235, 1)',
-						        'rgba(255, 206, 86, 1)',
-						        'rgba(75, 192, 192, 1)',
-						        'rgba(153, 102, 255, 1)',
-						        'rgba(255, 159, 64, 1)'
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)'
 						      ],
 						      borderWidth: 1,
 						      fill: false
@@ -305,7 +305,7 @@ $("#addReplyBtn").on("click", function(e){
 				      data: [education, computer, game, entertainment, life, heath, society, economy, travel, sports, shopping,region,marriage],
 				      backgroundColor: [
 				        'rgba(255, 99, 132, 0.5)',
-				        'rgba(54, 162, 235, 0.5)',
+				        'rgb(31, 142, 205)',
 				        'rgba(255, 206, 86, 0.5)',
 				        'rgba(75, 192, 192, 0.5)',
 				        'rgba(153, 102, 255, 0.5)',
@@ -357,8 +357,8 @@ $("#addReplyBtn").on("click", function(e){
 						    datasets: [{
 						      data: [boy, girl],
 						      backgroundColor: [
-						        'rgba(54, 162, 235, 0.5)',
-						        'rgba(255, 99, 132, 0.5)',//보더 색
+						        'rgb(31, 142, 205)',
+						        'rgb(255, 110, 237)',//보더 색
 						        'rgba(255, 206, 86, 0.5)',
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
@@ -385,8 +385,8 @@ $("#addReplyBtn").on("click", function(e){
 						    datasets: [{
 						      data: [unsingle, single],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.5)',	//안쪽색
-						        'rgba(54, 162, 235, 0.5)',	//보더 색
+						        'rgb(255, 110, 237)',	//안쪽색
+						        'rgb(31, 142, 205)',	//보더 색
 						        'rgba(255, 206, 86, 0.5)',
 						        'rgba(75, 192, 192, 0.5)',
 						      ],

@@ -15,7 +15,7 @@
 			<div class="sub-link" id="sub-menu"
 				style="z-index: auto; position: static; top: autol">
 				<h2 class="sub-header__title">
-					<a href="" style="vertical-align: -webkit-baseline-middle; font-size: 23px;">통계 목록</a>
+					<a href="">통계 목록</a>
 				</h2>
 	 			<div class="sub-header-search"> 
 					<form action> 
