@@ -3,6 +3,7 @@ package org.fs.service;
 import java.util.List;
 
 import org.fs.domain.Criteria;
+import org.fs.domain.ReplyPageDTO;
 import org.fs.domain.ReplyVO;
 
 public interface ReplyService {
@@ -15,6 +16,5 @@ public interface ReplyService {
 	
 	public int remove(int rpl_code);			//댓글 삭제
 	
-	public List<ReplyVO> getList(Criteria ccri, int brd_code);		//댓글 페이징
-	
+	public ReplyPageDTO getListPage(Criteria cri, int brd_code);		//댓글 페이징
 }

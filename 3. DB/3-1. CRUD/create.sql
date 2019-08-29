@@ -141,7 +141,8 @@ CREATE TABLE BOARD (
 	BRD_CONTENT	  VARCHAR2(3000)   NULL,            -- 내용
 	BRD_REGKEY        VARCHAR2(20)     NULL,            -- 등록키
 	BRD_VIEWS         NUMBER           DEFAULT 0,	    -- 조회수
-	BRD_REGDATE       DATE             NULL		    -- 등록일
+	BRD_REGDATE       DATE             NULL,		    -- 등록일
+	BRD_IS_ATTACH  VARCHAR2(1) NOT NULL        -- 파일첨부 여부
 );
 ALTER TABLE BOARD ADD CONSTRAINT PK_BOARD PRIMARY KEY (BRD_CODE);
 

@@ -3,6 +3,7 @@ package org.fs.service;
 import java.util.List;
 
 import org.fs.domain.Criteria;
+import org.fs.domain.ReplyPageDTO;
 import org.fs.domain.ReplyVO;
 import org.fs.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +56,10 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public List<ReplyVO> getList(Criteria cri, int brd_code) {
-		
-		log.info("get Reply List of a Board ... : "  + brd_code);
-		
-		return mapper.getListPaging(cri, brd_code);
-		
+	public ReplyPageDTO getListPage(Criteria cri, int brd_code) {
+		return new ReplyPageDTO(
+				mapper.getCountByBrd_code(brd_code),
+				mapper.getListPaging(cri, brd_code));				
 	}
 
 	

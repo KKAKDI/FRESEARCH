@@ -3,6 +3,7 @@ package org.fs.controller;
 import java.util.List; 
 
 import org.fs.domain.Criteria;
+import org.fs.domain.ReplyPageDTO;
 import org.fs.domain.ReplyVO;
 import org.fs.service.ReplyService;
 import org.springframework.http.HttpStatus;
@@ -45,18 +46,17 @@ public class ReplyController {
 		
 	@GetMapping(value = "/pages/{brd_code}/{page}", 
 			produces= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})	//댓글 조회
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<ReplyPageDTO> getList( @PathVariable("page") int page, @PathVariable("brd_code") int brd_code){
 		
-		@PathVariable("page") int page,
-		@PathVariable("brd_code") int brd_code){
+		Criteria cri = new Criteria(page, 10);
 		
-		log.info("getList............");
+		log.info("get Reply List brd_code : " + brd_code);
 		
-		Criteria cri = new Criteria(page,10);
+
 		
-		log.info(cri);
+		log.info("cri:" + cri);
 		
-		return new ResponseEntity<>(service.getList(cri, brd_code), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri, brd_code), HttpStatus.OK);
 		
 		}
 	

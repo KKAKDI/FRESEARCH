@@ -32,9 +32,28 @@
 
 	<select id="getListPaging" resultType ="org.fs.domain.ReplyVO">
 		
-		select rpl_code, brd_code, rpl_content, mb_nick, mb_email, rpl_regdate from reply
-		where brd_code = #{brd_code} order by rpl_code asc
+		<![CDATA[
+			select rpl_code, brd_code, rpl_content, mb_nick, mb_email, rpl_regdate
+			from
+				(
+				select /*+INDEX(reply idx_reply) */
+				rownum rn, rpl_code, brd_code, rpl_content, mb_nick, mb_email, rpl_regdate
+				from reply
+				where brd_code = #{brd_code}
+				and rpl_code >0
+				and rownum <= #{cri.pageNum} * #{cri.amount}
+				) where rn > (#{cri.pageNum} -1) * #{cri.amount}  
+		]]>
+		
+	</select>
 	
+	<select id="getCountByBrd_code" resultType = "int">
+	
+	<![CDATA[
+	
+		select count(rpl_code) from reply where brd_code =#{brd_code}
+	
+	]]>
 	
 	</select>
 	

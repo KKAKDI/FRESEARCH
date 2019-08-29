@@ -133,7 +133,16 @@ div.button {
     border: none;
     
 }
+.reg_button{
 
+	height:32px;
+	width:100px;
+	border:none;
+	cursor:pointer;
+	margin-top:10px;
+	background:#1428a0;
+	color:white;
+}
 
 </style>
 
@@ -206,8 +215,8 @@ div.button {
 			<tr>
 				<td>
 					<div class="button">
-						<button type="submit" onclick="submitContents();" id="save">등록</button>
-						<button type="button" onclick="location.href='board_list'">목록</button>
+						<button class= reg_button type="submit" onclick="submitContents();" id="save">등록</button>
+						<button class= reg_button type="button" onclick="location.href='board_list'">목록</button>
 					</div>
 				</td>
 			</tr>
