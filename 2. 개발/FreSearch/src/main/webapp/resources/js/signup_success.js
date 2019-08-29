@@ -125,7 +125,6 @@ var researchService = (function(){
 			function(data){
 				if(callback){
 					callback(data.researchCnt, data.list);
-					//loadingClose();
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
@@ -146,17 +145,17 @@ var researchService = (function(){
 					callback(data.researchCnt, data.list);
 				}
 			},beforeSend:function(xhr, status, err){
-				//$('.wrap-loading').removeClass('display-none');
-				//console.log("로딩중");
+				//$('.tab-content').attr('display', 'none');
+				$('.wrap-loading').removeClass('display-none');
 
 		    }
 
 		    ,complete:function(xhr, status, err){
-		        //$('.wrap-loading').addClass('display-none');
-		    	//console.log("로딩완료");
+		        $('.wrap-loading').addClass('display-none');
+		 
 		    }
-		});
-	}*/
+		});*/
+
 		/*
 		var ajax_last_num = 0;
 		var current_ajax_num = ajax_last_num;

@@ -56,6 +56,15 @@ public class MemberController {
 	
 	private OAuth2Parameters googleOAuth2Parameters;
 	
+	@GetMapping("/myPage")
+	public String my(Model model,HttpServletRequest request) {
+		String email = request.getParameter("mb_email");
+		model.addAttribute("myInfo",service.myInfo(email));
+		model.addAttribute("myTakeList",service.myTakeList(email));
+		model.addAttribute("myMakeList",service.myMakeList(email));
+		return "/member/myPage";
+	}
+	
 	@GetMapping("/signup")
 	public void signUpForm() {}
 	

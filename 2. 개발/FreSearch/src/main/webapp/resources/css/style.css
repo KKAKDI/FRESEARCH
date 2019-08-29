@@ -118,8 +118,8 @@ body {
     margin-top: 15px;
      임시 로고에 맞게 사이즈 조정 로고 확정 후 width, height 조정 혹은 이미지 크기가 정확하다면 항목 삭제
     */
-    width: 105px;
-    margin-top: 5px;
+    width: 220px;
+    margin-top: 20px;
 }
 
 /* GNB Default loot
@@ -541,7 +541,8 @@ body {
 }
 
 #footer .footer_inner .footer_logo img {
-    width: 105px;
+    width: 220px;
+    margin-top: 10px;
 }
 
 #footer .footer_inner .footer_text p a {

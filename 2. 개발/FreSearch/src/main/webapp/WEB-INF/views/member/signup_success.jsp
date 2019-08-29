@@ -19,10 +19,13 @@
 					<img src="/resources/img/check_icon01.png"/>
 				</div>
 				<div class="confirm_msg">
-					
+					<span>이메일 인증이</span><span>완료 </span><span>되었습니다.</span>
+					<span>로그인 후 서비스를 이용해주세요.</span>
 				</div>
+				<hr>
 				<div class="confirm_button">
-					
+					<span><a href="/">메인</a></span>
+					<span><a href="/member/signin">로그인</a></span>
 				</div>
 			</div>
 		</div>
