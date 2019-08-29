@@ -160,7 +160,7 @@
 
 .card-body {
 	flex: 1 1 auto;
-	padding: 1.25rem;
+	padding: 17px 38px 38px;
 }
 
 .card .card-title {
@@ -184,7 +184,7 @@
 }
 
 p {
-	font-size: 0.875rem;
+	font-size: 14px;
 	line-height: 1.3rem;
 	margin-bottom: .5rem;
 }
@@ -206,7 +206,7 @@ code {
 	color: #ff4747;
 	font-family: "Roboto", sans-serif;
 	font-weight: 300;
-	font-size: 0.875rem;
+	font-size: 14px;
 	border-radius: 4px;
 }
 
@@ -283,8 +283,8 @@ body {
 	user-select: none;
 	background-color: transparent;
 	border: 2px solid transparent;
-	padding: 0.75rem 1.5rem;
-	font-size: 0.875rem;
+	padding: 10px 20px;
+	font-size: 16px;
 	line-height: 1;
 	border-radius: 0.1875rem;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
@@ -411,25 +411,14 @@ body {
 }
 
 .table th, .table td {
-	padding: 1.25rem 0.9375rem;
+	padding: 20px 20px;
 	vertical-align: top;
+	font-size: 14px;
 	border-top: 1px solid #f3f3f3;
-}
-
-.table td {
-	font-size: 0.875rem;
-}
-
-.table th, .table td {
 	vertical-align: middle;
 	line-height: 1;
 }
 
-.table th, .table td {
-	padding: 1.25rem 0.9375rem;
-	vertical-align: top;
-	border-top: 1px solid #f3f3f3;
-}
 
 /* 여기서부터는 TABLE */
 

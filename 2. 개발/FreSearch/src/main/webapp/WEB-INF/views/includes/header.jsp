@@ -95,7 +95,7 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 
 
 </style>
-</head>
+</head> 
 <body>
 
 <div class="loading"><img src='/resources/img/logo1_1.png'/></div>
