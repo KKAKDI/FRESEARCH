@@ -12,7 +12,10 @@ body {
 }
 .page-wrapper .page-logo {
 	position: absolute; 
-	margin-top: 32px;
+	margin-top: 41px;
+}
+.page-wrapper .page-logo a img{
+	width: 340px;
 }
 .page-wrapper .page-content{
 	background: #fff;

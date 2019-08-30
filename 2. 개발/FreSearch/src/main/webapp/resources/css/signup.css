@@ -12,7 +12,10 @@ body {
 }
 .page-content h2 {
 	position: absolute;
-    margin-top: 32px;
+    margin-top: 40px;
+}
+.page-content a img {
+	width: 340px;
 }
 .form-content {
 	background: #fff;

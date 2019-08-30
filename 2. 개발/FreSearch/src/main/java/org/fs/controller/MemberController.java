@@ -1,26 +1,20 @@
 package org.fs.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.fs.domain.BoardVO;
-import org.fs.domain.Criteria;
 import org.fs.domain.MemberVO;
-import org.fs.domain.ResearchPageDTO;
 import org.fs.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
@@ -28,8 +22,6 @@ import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +31,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -69,7 +60,7 @@ public class MemberController {
 	public void signUpForm() {}
 	
 	@PostMapping("/signup")
-	public String signUp(MemberVO member, RedirectAttributes rttr, HttpServletRequest request) {
+	public String signUp(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, Model model) {
 		log.info("signup: " + member);
 		String mb_att_category = request.getParameter("mb_att_category");
 		log.info("mb_att_category : " + mb_att_category);
@@ -101,8 +92,20 @@ public class MemberController {
 		member.setMb_pwd(mb_pwd);
 		service.signUp(member);
 		service.mailSend(member.getMb_email(), member.getMb_nick());
-		//rttr.addFlashAttribute("result", member.getMb_email());
-		return "redirect:/";
+		
+		String mb_email = member.getMb_email();
+		String mb_nick = member.getMb_nick();
+		
+		try {
+			mb_email= URLEncoder.encode(mb_email, "UTF-8");
+			mb_nick= URLEncoder.encode(mb_nick, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+        return "redirect:/member/email_confirm?mb_email="+mb_email+"&mb_nick="+mb_nick;
+		
+		//return "redirect:/member/email_confirm?mb_email="+mb_email+"&mb_nick="+mb_nick;
 	}
 	
 	@GetMapping("/change_key")
@@ -340,6 +343,37 @@ public class MemberController {
 		service.pwdChange(member);
 		
 		return "redirect:/";
+	}
+	
+	@GetMapping("/email_confirm")
+	public void emailConfirm(HttpServletRequest request, Model model) {
+		String mb_email = request.getParameter("mb_email");
+		String mb_nick = request.getParameter("mb_nick");
+		model.addAttribute("mb_email", mb_email);
+		model.addAttribute("mb_nick", mb_nick);
+		log.info("메일주소 : " + mb_email);
+		log.info("닉네임 : " + mb_nick);
+	}
+	
+	@PostMapping("/email_confirm")
+	public String emailConfirm(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
+		String mb_email = request.getParameter("mb_email");
+		String mb_nick = request.getParameter("mb_nick");
+		service.mailSend(mb_email, mb_nick);
+		//rttr.addFlashAttribute("result", member.getMb_email());
+		
+		try {
+			mb_email= URLEncoder.encode(mb_email, "UTF-8");
+			mb_nick= URLEncoder.encode(mb_nick, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		/*
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('받은 메일함을 확인해주세요.'); location.href='/member/email_confirm?mb_email='"+mb_email+"'&mb_nick='"+mb_nick+"';</script>");
+		out.flush();*/
+		return "redirect:/member/email_confirm?mb_email="+mb_email+"&mb_nick="+mb_nick;
 	}
 	
 	/*
