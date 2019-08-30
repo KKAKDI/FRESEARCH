@@ -32,7 +32,8 @@
 		<security:form-login login-page="/member/signin" 
 		username-parameter="mb_email"
 		password-parameter="mb_pwd"
-		authentication-failure-url="/member/signin?fail=true"/>
+		authentication-failure-url="/member/signin?fail=true"
+		authentication-success-forward-url="/"/>
 		<!-- <security:logout logout-url="/customLogout" invalidate-session="true"/> -->
 		
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>

@@ -618,8 +618,15 @@ body {
 	text-decoration: none;
 	display: block;
 	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
-	color: #666;
+	/* color: #666;
     padding: 7% 0;
+    text-decoration: none;
+    display: block;
+    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
+    color: #666;
+    /* padding: 22px; */
+    padding-top: 17px;
+    padding-bottom: 20px;
     text-decoration: none;
     display: block;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
@@ -627,10 +634,10 @@ body {
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5) {
 	color: #666;
-	/* padding: 12px 57px; */
-	text-decoration: none;
-	display: block;
-	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+    /* padding: 12px 57px; */
+    text-decoration: none;
+    display: block;
+    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(1) {
@@ -744,9 +751,9 @@ body {
 	vertical-align: unset; */
 	width: 14%;
     transition: all ease 1s;
-    margin-left: 9%;
-    margin-top: -8%;
-    margin-bottom: -8%;
+    margin-left: 15px;
+    margin-top: -6px;
+    margin-bottom: -13px;
     position: relative;
     vertical-align: unset;
     padding-bottom: 5px;
@@ -761,9 +768,9 @@ body {
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>img {
 	width: 14%;
     transition: all ease 1s;
-    margin-left: 9%;
-    margin-top: 7%;
-    margin-bottom: 2%;
+    margin-left: 15px;
+    margin-top: 13px;
+    margin-bottom: 12px;
     position: relative;
 }
 /*
@@ -828,15 +835,15 @@ body {
 	margin-top: 1%;
 	margin-left: -4%; */
 	position: absolute;
-    margin-top: 1%;
-    margin-left: 4%;
+    margin-top: 2px;
+    margin-left: 8px;
     font-weight: 600;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>span {
 	position: absolute;
-    margin-top: 8%;
-    margin-left: 4%;
+    margin-top: 16px;
+    margin-left: 8px;
     font-weight: 600;
 }
 

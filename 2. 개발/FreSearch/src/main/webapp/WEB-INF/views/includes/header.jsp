@@ -119,11 +119,11 @@
                       </p>
                    
                       <div class="bar"></div>
-                      <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
+                      <a class="mypage_a" href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
-                     <a href="/" id="logout">
+                     <a class="logout_a" href="/" id="logout">
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
                      </a>
