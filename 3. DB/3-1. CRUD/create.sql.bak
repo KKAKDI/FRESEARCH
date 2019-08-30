@@ -139,12 +139,10 @@ CREATE TABLE BOARD (
 	MB_NICK		  VARCHAR2(200)     NOT NULL, -- 닉네임
 	BRD_SUBJECT       VARCHAR2(240)    NULL,	    -- 제목
 	BRD_CONTENT	  VARCHAR2(3000)   NULL,            -- 내용
-	BRD_LIKE_CNT      NUMBER           DEFAULT 0,	    -- 추천수
-	BRD_DISLIKE_CNT   NUMBER           DEFAULT 0,	    -- 비추천수
-	BRD_REPORT_CNT    NUMBER           DEFAULT 0,	    -- 신고횟수
 	BRD_REGKEY        VARCHAR2(20)     NULL,            -- 등록키
 	BRD_VIEWS         NUMBER           DEFAULT 0,	    -- 조회수
-	BRD_REGDATE       DATE             NULL		    -- 등록일
+	BRD_REGDATE       DATE             NULL,		    -- 등록일
+	BRD_IS_ATTACH  VARCHAR2(1) NOT NULL        -- 파일첨부 여부
 );
 ALTER TABLE BOARD ADD CONSTRAINT PK_BOARD PRIMARY KEY (BRD_CODE);
 
@@ -186,7 +184,7 @@ create table member_auth (
     mb_email varchar2(40) not null,
     mb_att_ctgr_code varchar2(20) not null,
     auth varchar2(50) not null,
-    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code) ON DELETE CASCADE;
+    constraint fk_member_auth foreign key(mb_email, mb_att_ctgr_code) references member(mb_email, mb_att_ctgr_code) ON DELETE CASCADE
 );
 
 -- 로그인 상태 유지
@@ -258,6 +256,11 @@ START WITH 1
 nocache;
 
 CREATE SEQUENCE REPLY_SEQ
+INCREMENT BY 1
+START WITH 1
+nocache;
+
+CREATE SEQUENCE APPLY_SEQ
 INCREMENT BY 1
 START WITH 1
 nocache;
