@@ -36,11 +36,11 @@
 		<![CDATA[
 		
 		select 
-		brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views
+		brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views,brd_is_attach
 		from
 		(
 		 select /*+INDEX_DESC(board pk_board)*/
-		 rownum rn, brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views
+		 rownum rn, brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_views, brd_is_attach
 		 from board
 		 where 
 		 ]]>
@@ -74,8 +74,8 @@
 		select board_seq.nextval from dual
 	</selectKey>
 	
-		insert into board (brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate)
-		values (#{brd_code}, #{mb_email}, #{mb_nick}, #{brd_subject}, #{brd_content},SYSDATE)
+		insert into board (brd_code, mb_email, mb_nick, brd_subject, brd_content, brd_regdate, brd_is_attach)
+		values (#{brd_code}, #{mb_email}, #{mb_nick}, #{brd_subject}, #{brd_content},SYSDATE, #{brd_is_attach})
 	</insert>
 	
 	<select id="read" resultType= "org.fs.domain.BoardVO">
@@ -101,7 +101,8 @@
 	set brd_subject=#{brd_subject},
 	brd_content = #{brd_content},
 	mb_email = #{mb_email},
-	mb_nick = #{mb_nick}
+	mb_nick = #{mb_nick},
+	brd_is_attach = #{brd_is_attach}
 	where brd_code = #{brd_code}
 	</update>
 	
