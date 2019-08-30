@@ -11,173 +11,229 @@
 
 
 <style>
-
 body {
-   font-family: "Open Sans", sans-serif;
-   min-width: 850px;
-   font-weight: 500;
-   font-size: 16px;
+	font-family: "Open Sans", sans-serif;
+	min-width: 850px;
+	font-weight: 500;
+	font-size: 16px;
 }
-.container_new{
-	padding-top: 105px;
+
+.container_new {
+	padding-top: 150px;
 	width: 850px;
 	margin: 0 auto;
-	min-height: 675px;
+	min-height: 872px;
 }
+
 table {
-   width: 850px;
-   border-top: 1px solid #444444;
-   border-collapse: collapse;
-   margin: auto;
-   table-layout: fixed;
+	width: 850px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: fixed;
 }
-div.pagingArea, div.search {
-   text-align: center;
-   margin: auto;
-}
-div.search{
+
+div.search {
 	display: inline;
 	text-align: right;
+	margin: auto;
 }
-input.search{
+
+input.search {
 	height: 22px;
 }
-.search_form{
+
+.search_form {
 	padding-top: 30px;
 }
+
 th, td {
-   border-bottom: 1px solid #dcdcdc;
-   padding: 10px;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 10px;
+	font-size: 16px;
 }
+
 td {
-   text-align: center;
-   color: #505050;
-   padding-top: 20px;
+	text-align: center;
+	color: #505050;
+	padding-top: 20px;
 }
-hr{
+
+hr {
 	margin: 8 auto;
 	background-color: #0C4DA2;
 	width: 5%;
 }
+
 button {
-   margin-bottom: 10px;
+	margin-bottom: 10px;
 }
-button#regBtn{
+
+button#regBtn {
 	text-align: right;
 }
-ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li.paginate_button next{
-	display:inline-block;
-	padding: 6px 12px;
-}
-a.move{
+
+a.move {
 	text-decoration: none;
-	color:#505050;
+	color: #505050;
 }
-#pagingArea.a{
-	text-decoration: none;
-}
-a.move:hover{
+
+a.move:hover {
 	text-decoration: underline;
 	color: #0C4DA2;
 	font-weight: bold;
 }
-td.subject{
+
+td.subject {
 	text-align: left;
 	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-#pagingArea{
-	margin-top: 10px;
-	text-align: center;
-}
-li.paginate_button {
-	position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-}
+
 .Header {
-    margin-top: 0px;
+	margin-top: 0px;
 }
 
 .tab-news, .tab-event {
 	padding-top: 15px;
 	margin-bottom: -2px;
 	display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    font-size: 16px;
-    color: #888;
-    width: 425px;
-    height: 50px;
-    line-height: 38px;
-    background: #fff;
-    padding: 5px;
-    margin-right: -3px;
-    margin-left: -3px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    outline: none;
-   
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	font-size: 16px;
+	color: #888;
+	width: 425px;
+	height: 50px;
+	line-height: 38px;
+	background: #fff;
+	padding: 5px;
+	margin-right: -3px;
+	margin-left: -3px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	outline: none;
 }
 
 .tab-news {
-	background:rgb(249,249,249);
-}
-
-.tab-event {
 	font-weight: bold;
 }
 
+.tab-event {
+	background: rgb(249, 249, 249);
+}
+
 div.tab-news a {
-	color:#888;
+	color: rgb(34, 34, 34);
 }
 
 div.tab-event a {
-	color:rgb(34,34,34);
+	color: #888;
+}
+
+.tab-event {
+	background: rgb(249, 249, 249);
 }
 
 .news-head h2 {
 	position: relative;
-    font-size: 30px;
-    padding: 3px 0 7px;
-    /*margin-bottom: 40px;*/
-    margin-left: 0px;
+	font-size: 30px;
+	padding: 3px 0 7px;
+	/*margin-bottom: 40px;*/
+	margin-left: 0px;
 }
 
 .news-head h2::after {
 	background: #1428a0;
-    width: 99.9%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0px;
+	width: 99.9%;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0px;
 }
 
 .news-head span {
 	position: absolute;
-    margin-left: 699px;
-    margin-top: -46px;
-    background: #1428a0;
-    width: 150px;
-    height: 45px;
-    text-align: center;
-    padding-top: 10px;
-    cursor: pointer;
+	margin-left: 699px;
+	margin-top: -46px;
+	background: #1428a0;
+	width: 150px;
+	height: 45px;
+	text-align: center;
+	padding-top: 10px;
+	cursor: pointer;
 }
 
 .news-head span a {
 	color: #fff;
 }
 
+#search_image {
+	cursor: pointer;
+}
+
+a {
+	display: block;
+}
+
+#pagingArea ul{
+	text-align: center;
+	/*margin-top: 30%;*/
+}
+
+#pagingArea li{
+    display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 1px;
+    /*padding: 0 5px;*/
+    box-sizing: border-box;
+    line-height: 40px;
+    vertical-align: top;
+}
+
+#pagingArea ul .paginate_button a {
+	color: #888;
+	display: inline-block;
+    width: 40px;
+    height: auto;
+}
+#pagingArea ul .paginate_button_move a {
+	transition: border .2s;
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 -1px;
+    box-sizing: border-box;
+    border: 1px solid #ebebeb;
+    vertical-align: top;
+    color: #888;
+}
+#pagingArea ul .paginate_button a:hover{
+	background-color: #1428a0;
+    cursor: pointer;
+	color: #fff;
+	opacity: 0.4;
+}
+#pagingArea ul .paginate_button_move a:hover{
+    cursor: pointer;
+	color: #000;
+	border: 1px solid #000;
+}
+
+#pagingArea ul .paginate_button.active .page-link{
+	background-color: #1428a0;
+    font-style: normal;
+    color: #fff;
+    width: 40px;
+    height: auto;
+}
+#pagingArea ul .paginate_button.active .page-link:hover{
+	cursor: auto;
+}
 
 </style>
 <div class="container_new">
@@ -212,7 +268,7 @@ div.tab-event a {
 						<tr style="border-bottom: 1px solid red; border-top: 1px solid white;">
 							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
 							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
-							<th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th>
+							<!-- <th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th> -->
 							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
 							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
 							
@@ -224,6 +280,7 @@ div.tab-event a {
 							<td style="font-weight: bold; padding: 20;">[${news.news_division}]</td>
 							<td class="subject"><a class='move' href=${news.news_code} style="text-align: left;">${news.news_subject}</a></td>
 							
+							<!-- 
 							<c:choose>
 							<c:when test="${news.news_is_attach == 'Y'}">
 							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
@@ -232,6 +289,7 @@ div.tab-event a {
 	         						<td></td>
 	         					</c:otherwise>
 							</c:choose>
+							 -->
 						
 					
 					
@@ -272,7 +330,7 @@ div.tab-event a {
 			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
 			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
 			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
-			<button style="border: 1px solid #ddd;"><img src="/resources/img/search.png" width=20px; height=20px;></button>
+			<button style="border: 1px solid #ddd;"><img id='search_image' src="/resources/img/search.png" width=20px; height=20px;></button>
 		</form>
 	</div>
 </div>
@@ -287,19 +345,19 @@ div.tab-event a {
 		
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a href="${path}/news/news_list_event?pageNum=1">첫페이지</a></li>
-					<li class="paginate_button previous"><a
+					<li class="paginate_button_move"><a
 						href="${pageMaker.startPage-1}">Previous</a></li>
 				</c:if>
 		
 				<c:forEach var="num" begin="${pageMaker.startPage}"
 					end="${pageMaker.endPage}">
 					<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
-						<a href="${num}">${num}</a>
+						<a class="page-link" href="${num}">${num}</a>
 					</li>
 				</c:forEach>
 		
 				<c:if test="${pageMaker.next}">
-					<li class="paginate_button next"><a
+					<li class="paginate_button_move"><a
 						href="${pageMaker.endPage +1}">Next</a></li>
 				</c:if>
 			</ul>
@@ -338,6 +396,13 @@ div.tab-event a {
 		var actionForm = $("#actionForm");
 
 		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log(' click ');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+		$(".paginate_button_move a").on("click", function(e) {
 			e.preventDefault();
 			console.log(' click ');
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));

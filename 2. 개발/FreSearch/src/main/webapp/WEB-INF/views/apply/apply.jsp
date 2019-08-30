@@ -20,7 +20,8 @@ table {
 }
 
 .container_new {
-	padding-top: 125px;
+	padding-top: 150px;
+	min-height: 872px;
 }
 
 td.column {
@@ -38,6 +39,10 @@ td.column-content {
 	word-break:break-all; 
 	wrap:"hard";
 	white-space:pre-line;
+}
+
+th,td {
+	font-size: 16px;
 }
 
 hr {
@@ -223,9 +228,10 @@ function apply(){
 	$.ajax({
 		url : "apply",
 		type : "post",
-		dataType : "json",
+		dataType : "text",
 		success : function(d) {
-			if(d == true) {
+		
+			if(d == "ok") {
 				swal({
 					title:"신청 되었습니다.",
 					text:"신청이 성공적으로 완료 되었습니다.",
@@ -235,20 +241,26 @@ function apply(){
 					.then((willDelete) => {
 						location.href  = "/";
 					});	
-			}else{
+			}else if(d == "already apply"){
 				swal({
 					title:"이미 신청 되었습니다.",
 					text:"이미 신청되어 있습니다. 승인을 기다려주세요!",
 					icon:"warning",
 					button:"확인",
 					});
-					
+			}else if(d == "already panel"){
+					swal({
+						title:"이미 패널 입니다.",
+						text:"이미 패널입니다. 더 이상 신청하지 않아도 됩니다!",
+						icon:"warning",
+						button:"확인",
+						});
 			}
 		},
-		error : function(e) {
-			alert("error: " + e);
-			console.log("error: " + e);
-		}
+		error : function(request,status,error){ // Ajax error 메세지 보기
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		   }
+
 	});
 };
 
