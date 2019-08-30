@@ -454,7 +454,8 @@ SELECT DISTINCT a.subj_code,
                  WHERE  item_code = c.item_code)) OVER(PARTITION BY b.qst_code),2)*100||'%' PERCENT,
                 a.subj_startdate, 
                 a.subj_enddate, 
-                c.item_regdate 
+                c.item_regdate,
+                c.rowId 
 FROM   subject a, 
        question b, 
        item c, 
@@ -477,8 +478,9 @@ GROUP  BY a.mb_nick,
           c.item_content, 
           c.item_regdate, 
           a.subj_startdate, 
-          a.subj_enddate
-order by qst_code desc, asw_count desc
+          a.subj_enddate,
+          c.rowId
+order by c.rowId, asw_count desc
 </select>
 
 <select id="getStatsContentShortAnswer" resultType="org.fs.domain.StatsVO">
