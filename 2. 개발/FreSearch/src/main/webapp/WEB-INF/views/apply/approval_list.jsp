@@ -322,8 +322,18 @@ a {
 							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${apply.apply_approvaldate}" /></td>
 							<td style="padding: 20;">
-							<input type="button" class="apply_fin" value="승인">
+							<!-- <input type="button" class="apply_fin" value="승인"> -->
+							<c:choose>
+							<c:when test="${apply.apply_approvaldate != null}">
+									승인완료
+							</c:when>
+								<c:otherwise>
+	         						<input type="button" class="apply_fin" value="승인">
+	         					</c:otherwise>
+							</c:choose>
 							</td>
+							
+							
 							
 						</tr>		
 					</c:forEach>	
