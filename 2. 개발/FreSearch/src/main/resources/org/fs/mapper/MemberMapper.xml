@@ -16,11 +16,11 @@
      	 	insert into member (
 				mb_email, mb_att_ctgr_code, mb_nick, mb_pwd, 
 				mb_addr, mb_birthdate, mb_sex, mb_phone, 
-				mb_reg_atrt, mb_email_key, mb_joindate
+				mb_email_key, mb_joindate
 			) values (
 				#{mb_email}, #{mb_att_ctgr_code}, #{mb_nick}, #{mb_pwd}, 
 				#{mb_addr}, #{mb_birthdate}, #{mb_sex}, #{mb_phone}, 
-				'일반', 'N', SYSDATE	
+				'N', SYSDATE	
 			);
 		
 			insert into att_category (
@@ -82,11 +82,11 @@
      	 	insert into member (
 				mb_email, mb_att_ctgr_code, mb_nick, mb_pwd, 
 				mb_addr, mb_birthdate, mb_sex, mb_phone, 
-				mb_reg_atrt, mb_email_key, mb_joindate
+				mb_email_key, mb_joindate
 			) values (
 				#{mb_email}, #{mb_att_ctgr_code}, #{mb_nick}, #{mb_pwd}, 
 				#{mb_addr}, #{mb_birthdate}, #{mb_sex}, #{mb_phone}, 
-				'일반', 'Y', SYSDATE	
+				'Y', SYSDATE	
 			);
 		
 			insert into att_category (
@@ -198,7 +198,7 @@
 	
 	<select id="read" resultMap="memberMap">
 		SELECT
-			mem.mb_email, mem.mb_att_ctgr_code, mb_nick, mb_pwd, mb_addr, mb_birthdate, mb_sex, mb_phone, mb_reg_atrt, mb_email_key, mb_joindate, auth
+			mem.mb_email, mem.mb_att_ctgr_code, mb_nick, mb_pwd, mb_addr, mb_birthdate, mb_sex, mb_phone, mb_email_key, mb_joindate, auth
 		FROM
 			member mem LEFT OUTER JOIN member_auth auth on mem.mb_email = auth.mb_email
 		WHERE mem.mb_email = #{mb_email} and mem.mb_email_key = 'Y'
