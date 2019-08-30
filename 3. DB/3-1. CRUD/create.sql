@@ -8,7 +8,6 @@ CREATE TABLE MEMBER (
 	MB_BIRTHDATE        NUMBER        NULL,            -- 생년월일
 	MB_SEX              VARCHAR2(10)  NULL,            -- 성별
         MB_PHONE            VARCHAR2(20)  NULL,            -- 전화번호
-	MB_REG_ATRT	    VARCHAR2(10)  NULL,		   -- 등록권한
 	MB_EMAIL_KEY	    VARCHAR2(30)  NULL,		   -- 이메일인증키
 	MB_JOINDATE         DATE          NULL		   -- 가입일
 );
