@@ -14,7 +14,7 @@ body {
 	width: 850px;
 }
 .page-content .list-content .detail-list {
-	min-height: 484px;
+	min-height: 722px;
 }
 .page-content .list-content .detail-list .tab-content #test{
 	padding-top: 15px;
@@ -317,8 +317,8 @@ body {
 }
 .page-content .list-content .detail-list .tab-content .paging ul .page-item-move a:hover{
     cursor: pointer;
-	color: #000;
-	border: 1px solid #000;
+	color: #1428a0;
+	border: 1px solid #1428a0;
 }
 
 .page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link{

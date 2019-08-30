@@ -33,12 +33,12 @@ body {
     /* padding-top: 38px; */
 }
 .dialog .dialog-content .dialog-button .dialog-confirm .confirm-form .emailConfirm {
-	font-size: 14px;
+	font-size: 12px;
     color: #fff;
     background: #1428a0;
     border-radius: 5px;
-    width: 26%;
-    height: 34px;
+    width: 25%;
+    height: 31px;
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
     border: none;
     /* margin: 26px 142px 0; */

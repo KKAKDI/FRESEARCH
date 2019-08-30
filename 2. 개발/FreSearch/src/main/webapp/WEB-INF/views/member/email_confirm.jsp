@@ -24,7 +24,7 @@
 				<h2>이메일 인증</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
-						<img src="/resources/img/email_icon01.jpg"/>
+						<img src="/resources/img/email_icon01.png"/>
 					</div>
 					<div class="email-msg">
 						<div class="email-confirm-first">
