@@ -210,6 +210,24 @@
 		$(window).load(function() {
 			$(".loading").fadeOut(1000);
 		});
+		
+		var url = $(location).attr('href');
+		console.log("url : "+$(location).attr('href'));
+		var urls = url.split("/");
+		console.log(urls[3]);
+		
+		if(urls[3]=="news"){
+			$("#GNB > ul > li:nth-child(1) a").addClass("page");
+		}else if(urls[3]=="research"){
+			$("#GNB > ul > li:nth-child(2) a").addClass("page");
+		}else if(urls[3]=="board"){
+			$("#GNB > ul > li:nth-child(3) a").addClass("page");
+		}else if(urls[3]=="stats"){
+			$("#GNB > ul > li:nth-child(4) a").addClass("page");
+		}else if(urls[3]=="apply"){
+			$("#GNB > ul > li:nth-child(5) a").addClass("page");
+		}
+		
 		$("#GNB > ul > li").hover(function() {
 			$(this).children("a").addClass("active");
 			$(this).find("ul").addClass("active");
@@ -237,8 +255,7 @@
 				}
 				;
 			});
-		}
-		;
+		};
 		noticeRollingOff = setInterval(noticeRolling, 2000);
 		$("#content .notice_area .notice .notice_rolling").append(
 				$("#content .notice_area .notice li").first().clone());
@@ -265,11 +282,8 @@
 		$("#content .notice_area .event .event_rolling").append(
 		$("#content .notice_area .event li").first().clone());
 	});
-	
-</script>
 
-<!-- 웹소켓 시작 -->
-<script>
+		//조성식
         var ws;
         
         $(document).ready(function(){
