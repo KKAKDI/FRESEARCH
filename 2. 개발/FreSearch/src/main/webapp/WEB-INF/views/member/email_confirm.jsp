@@ -56,7 +56,7 @@
 			<div class="dialog-content-detail">
 				<div class="dialog-msg">
 					<div class="dialog-msg-first">
-						<span>받은 메일함을 확인해주세요.</span>
+						<span>확인 후 받은 메일함을 확인해주세요.</span>
 					</div>
 				</div>
 			</div>

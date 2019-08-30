@@ -15,26 +15,40 @@ body {
 	background: #f4f4f4;
     display: flex;
     justify-content: center;
-    margin-top: 4%;
+    /* margin-top: 4%; */
 }
 .page-wrapper .page-logo {
 	position: absolute; 
+	/* margin-top: 19px; */
+	margin-top: 94px;
+}
+.page-wrapper .page-logo-email {
+	position: absolute; 
 	margin-top: 19px;
 }
-.page-wrapper .page-logo a img{
-	width: 340px;
+.page-wrapper .page-logo a img {
+	width: 300px;
 }
-.page-wrapper .page-content{
+.page-wrapper .page-content {
 	background: #fff;
 	width: 600px;
 	border-radius: 8px;
-	margin: 116px 0;
+	/* margin: 116px 0; */
+	/* margin-top: 102px; */
+	margin-top: 190px;
+}
+.page-wrapper .page-content-email {
+	background: #fff;
+	width: 600px;
+	border-radius: 8px;
+	/* margin: 116px 0; */
+	margin-top: 102px;
 }
 .page-wrapper-confirm .page-content-confirm{
 	background: #fff;
     width: 600px;
     border-radius: 8px;
-    margin: 132px 0;
+    /* margin: 132px 0; */
 }
 .page-wrapper .page-content .page-form{
 	padding: 30px 45px 55px 45px;
