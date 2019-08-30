@@ -189,7 +189,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	
 	$("#emailFind").click(function(){
 		
 		var mb_nick = $('#mb_nick').val();
