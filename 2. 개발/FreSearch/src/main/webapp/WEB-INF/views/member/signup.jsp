@@ -20,7 +20,7 @@
 <div class="page-content">
 	<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 	<div class="form-content">
-		<form class="form-detail" name="signup" action="/member/signup" method="post">
+		<form class="form-detail" id="signup" name="signup" action="/member/signup" method="post">
 		<input type="hidden" name="mb_birthdate" id="mb_birthdate" value="">
 		<input type="hidden" name="mb_addr" id="mb_addr" value="">
 		<input type="hidden" name="mb_att_category" id="mb_att_category" value="">

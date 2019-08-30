@@ -615,6 +615,8 @@ $(document).ready(function(){
 		
 		console.log("날짜 : " + addZero($("#mb_birth_dd").val(), 2));
 		
+		
+		
 		$("#mb_birthdate").val(mb_birthdate);
 		$("#mb_addr").val(mb_addr);
 		
@@ -623,18 +625,21 @@ $(document).ready(function(){
 			cate_val.push($(this).val());
 		});
 		$("#mb_att_category").val(cate_val);
-		
+
+		/*
+		var form = $("#signup");
 		swal({
-			title:"회원가입 완료!!",
+			title:"회원가입 인증 메일을 전송하시겠습니까?",
 			text:"이메일 인증 후 서비스를 이용해주세요.",
 			icon:"success",
-			buttons:["NO", "YES"],
+			buttons:["취소","전송"],
 		})
-		.then((YES) => {		
-			if(YES){
-				location.href="/index";	
+		.then((전송) => {		
+			if(전송){
+				form.attr("action","/member/signup");
+				form.submit();
 			}
-		});	
+		});	*/
 		
 	});
 	
@@ -648,4 +653,28 @@ $(document).ready(function(){
 		 }
 		 return zero + date;
 	}
+	$(".emailReSend").on("click", function(){
+		$('#dialog').show();
+		$('body').css('overflow', 'hidden');
+		//var form = $("#confirm");
+		//form.attr("action","/member/email_confirm");
+		//form.submit();
+		//alert("받은 메일함을 확인해주세요.");
+		
+		/*
+		$('.swal-overlay').css('pointer-events', 'none');
+		var form = $("#confirm");
+		swal({
+			title:"받은 메일함을 확인해주세요.",
+			//text:"이메일 인증 후 서비스를 이용해주세요.",
+			icon:"success",
+			button:"확인",
+		})
+		.then((확인) => {	
+			if(확인){
+				form.attr("action","/member/email_confirm");
+				form.submit();
+			}
+		});*/
+	});
 });
