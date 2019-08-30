@@ -17,7 +17,6 @@ SELECT mb_att_ctgr_code,
        mb_birthdate, 
        mb_sex, 
        mb_phone, 
-       mb_reg_atrt, 
        mb_joindate 
 FROM   member 
 </select>
