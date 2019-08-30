@@ -175,10 +175,6 @@ div.tab-event a {
 	cursor: pointer;
 }
 
-a {
-	display: block;
-}
-
 #pagingArea ul{
 	text-align: center;
 	/*margin-top: 30%;*/
@@ -236,6 +232,10 @@ a {
 	cursor: auto;
 }
 
+.button-move {
+	display: block;
+}
+
 </style>
 <div class="container_new">
 
@@ -246,16 +246,16 @@ a {
 				<div class="news-head">
 				<h2>새소식</h2>
 				<span>
-					<a href="/news/news_register">등록</a>
+					<a class="button-move" href="/news/news_register">등록</a>
 				</span>
 				</div>
 				
 					<div class="tab" style="text-align: center">
 						<div class="tab-news">
-							<a href="/news/news_list">공지사항</a>
+							<a class="button-move" href="/news/news_list">공지사항</a>
 						</div>
 						<div class="tab-event">
-		                	<a href="/news/news_list_event">이벤트</a>
+		                	<a class="button-move" href="/news/news_list_event">이벤트</a>
 						</div>
 					</div>
 					<%-- <hr/>

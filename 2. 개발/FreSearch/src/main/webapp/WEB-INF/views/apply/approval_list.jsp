@@ -140,7 +140,6 @@ div.tab-event a {
 
 .news-head h2 {
 	text-align: left;
-	position: relative;
     font-size: 30px;
     padding: 3px 0 7px;
     margin: auto;
