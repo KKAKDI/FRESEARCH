@@ -1,34 +1,65 @@
-/*$(document).ready(function () {
-	$("input[name=1]").click( function(){
-		console.log("버튼 눌렸다.");
-		var html='';
-		var area = $(this).val();
-		html = area;
-		html += '<code>지역</code>';
-		$("#area").html(html);
-		console.log(html);
-		console.log(area);
- */
 
-// 지역별 카테고리 갯수 구하는 리스트
-var timerID;
-var html = '';
-var area = '';
-$(document).ready(function() {
-	$("input[name=1]").click(function(e) {
 
-		area = $(this).val();
-		html = area;
-		html += '<code>지역</code>';
-		$("#area").html(html);
-		updateDataArea();
-	});
-});
-function updateDataArea() {
-	$.getJSON('/stats/get/area/' + area, function(data) {
-		var html = '';
+///////////////////stats_list 쪽 모달 창///////////////////////////
+function zipJSON(val){
+	var url ='';
+	var mainTag='';
+	var smallTag='';
+	if (val=='전체'||val=='서울'||val=='인천'||val=='부산'||val=='경기'){
+		url = 'area';
+		mainTag='AREA';
+		smallTag='지역';
+	}else if(val=="10대" || val=="20대" || val=="30대" || val=="40대" || val=="50대"){
+		url = 'age';
+		mainTag='AGE';
+		smallTag='나이';
+	}else if(val=="남자" || val=="여자"){
+		url = 'sex';
+		mainTag='SEX';
+		smallTag="성별";
+	}else if(val=="기혼" || val=='미혼'){
+		url ='marriage';
+		mainTag='MARRIAGE';
+		smallTag='결혼 유무';
+	}
+	$.getJSON('/stats/get/'+url+'/'+val, function(data){
+		var html ='';
 		var total = 0;
-
+		
+		html += '<div class="card-body-jss">';
+		
+		html += '<h4 class="card-title-jss">'+mainTag+'</h4>';
+		html += '<p class="card-description-jss" id="change">';
+		html += val;
+		html += '<code>'+smallTag+'</code>';
+		html += '</p>';
+		if(mainTag=='AREA'){
+			html += '<div class="btn-group" role="group" aria-label="Basic example">';
+			html += '<input type="button" class="btn btn-outline-secondary-all button-in" value="전체">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="서울">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="인천">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="부산">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="경기">';
+			
+		}else if(mainTag=='AGE'){
+			html += '<div class="btn-group" role="group" style="margin-left: 38px;" aria-label="Basic example">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" name="1" value="10대">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" name="2" value="20대">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" name="3" value="30대">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" name="4" value="40대">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" name="5" value="50대">';
+		}else if(mainTag =='SEX'){
+			html += '<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;width: 150px;display: flex;">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="남자">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="여자">';
+		}else if(mainTag =='MARRIAGE'){
+			html += '<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto; width: 148px; display: flex;">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="기혼">';
+			html += '<input type="button" class="btn btn-outline-secondary button-in" value="미혼">';
+		}
+		html += '</div>';
+		html += '<div class="table-responsiv">';
+		html += '<table class="table table-hover" id="test">';
 		html += '<thead>';
 		html += '<tr>';
 		html += '<th>카테고리</th>';
@@ -53,157 +84,24 @@ function updateDataArea() {
 		html += '<td id="fix1">' + total + '명</td>';
 		html += '<td id="fix1"> 100%</td>';
 		html += '</tr>';
-		$('#test').html(html);
+		
+		html += '</table>';
+		html += '</div>';
+		html += '</div>';
+		$('.modal-content').html(html);
 	});
-	//timerID = setTimeout("updateDataArea()", 2000);
-}
-
-//나이별 카테고리 갯수 구하는 리스트
-var timerID;
-var html = '';
-var age = '';
-$(document).ready(function() {
-
-	$("input[name=2]").click(function(e) {
-
-		age = $(this).val();
-		html = age;
-		html += '<code>나이</code>';
-		$("#area").html(html);
-		updateDataAge();
-	});
+};
+$(document).on('click','.button-in',function(){
+	var val = $(this).val();
+		zipJSON(val)
 });
-function updateDataAge() {
-	$.getJSON('/stats/get/age/' + age, function(data) {
-		var html = '';
-		var total = 0;
+///////////////////지금 작업중인 통합 코드///////////////////////////
 
-		html += '<thead>';
-		html += '<tr>';
-		html += '<th>카테고리</th>';
-		html += '<th>참여자 수</th>';
-		html += '<th>퍼센트</th>';
-		html += '</tr>';
-		html += '</thead>';
-		html += '<tbody>';
-		html += '<tr>';
-		html += '</tr>';
-		$.each(data, function(entryIndex, entry) {
-			html += '<tr>';
-			html += '<td>' + entry.ctgr_nm + '</td>';
-			html += '<td id="fix">' + entry.count + '명</td>';
-			html += '<td id="fix">' + entry.percent + '</td>';
-			html += '</tr>';
-			total += entry.count;
 
-		});
-		html += '<tr>';
-		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
-		html += '<td id="fix1">' + total + '명</td>';
-		html += '<td id="fix1"> 100%</td>';
-		html += '</tr>';
-		$('#test').html(html);
-	});
-	//timerID = setTimeout("updateDataAge()", 2000);
-}
 
-/////////////////성별  카테고리 갯수 구하는 리스트
-var timerID;
-var html = '';
-var age = '';
-$(document).ready(function() {
 
-	$("input[name=3]").click(function(e) {
 
-		sex = $(this).val();
-		html = sex;
-		html += '<code>성별</code>';
-		$("#area").html(html);
-		updateDataSex();
-	});
-});
-function updateDataSex() {
-	$.getJSON('/stats/get/sex/' + sex, function(data) {
-		var html = '';
-		var total = 0;
 
-		html += '<thead>';
-		html += '<tr>';
-		html += '<th>카테고리</th>';
-		html += '<th>참여자 수</th>';
-		html += '<th>퍼센트</th>';
-		html += '</tr>';
-		html += '</thead>';
-		html += '<tbody>';
-		html += '<tr>';
-		html += '</tr>';
-		$.each(data, function(entryIndex, entry) {
-			html += '<tr>';
-			html += '<td>' + entry.ctgr_nm + '</td>';
-			html += '<td id="fix">' + entry.count + '명</td>';
-			html += '<td id="fix">' + entry.percent + '</td>';
-			html += '</tr>';
-			total += entry.count;
-
-		});
-		html += '<tr>';
-		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
-		html += '<td id="fix1">' + total + '명</td>';
-		html += '<td id="fix1"> 100%</td>';
-		html += '</tr>';
-		$('#test').html(html);
-	});
-	//timerID = setTimeout("updateDataAge()", 2000);
-}
-
-/////////////////결혼 유무 카테고리 갯수 구하는 리스트
-var timerID;
-var html = '';
-var marriage = '';
-$(document).ready(function() {
-
-	$("input[name=4]").click(function(e) {
-
-		marriage = $(this).val();
-		html = marriage;
-		html += '<code>결혼 유무</code>';
-		$("#area").html(html);
-		updateDataMarriage();
-	});
-});
-function updateDataMarriage() {
-	$.getJSON('/stats/get/marriage/' + marriage, function(data) {
-		var html = '';
-		var total = 0;
-
-		html += '<thead>';
-		html += '<tr>';
-		html += '<th>카테고리</th>';
-		html += '<th>참여자 수</th>';
-		html += '<th>퍼센트</th>';
-		html += '</tr>';
-		html += '</thead>';
-		html += '<tbody>';
-		html += '<tr>';
-		html += '</tr>';
-		$.each(data, function(entryIndex, entry) {
-			html += '<tr>';
-			html += '<td>' + entry.ctgr_nm + '</td>';
-			html += '<td id="fix">' + entry.count + '명</td>';
-			html += '<td id="fix">' + entry.percent + '</td>';
-			html += '</tr>';
-			total += entry.count;
-
-		});
-		html += '<tr>';
-		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
-		html += '<td id="fix1">' + total + '명</td>';
-		html += '<td id="fix1"> 100%</td>';
-		html += '</tr>';
-		$('#test').html(html);
-	});
-	//timerID = setTimeout("updateDataAge()", 2000);
-}
 
 var tableService = (function() {
 	//첫 stats_table 페이지 and 셀렉트 박스 클릭후 페이지

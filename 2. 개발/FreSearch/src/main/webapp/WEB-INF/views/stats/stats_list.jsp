@@ -39,11 +39,47 @@ a.no-uline {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    margin-left: auto;
+    margin-right: auto;
+    width: 501px;
+    margin-top: 110px;
+    border-radius: 35px
+    
+    
+    /* 테스트 해보자*/
+    background-color: #fff;
+    border: 3px solid #fff;
+    display: inline-block;
+    left: 50%;
+    opacity: 0;
+    padding: 15px;
+    position: fixed;
+    text-align: justify;
+    top: 40%;
+    visibility: hidden;
+    z-index: 10;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
+    -moz-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
+    -ms-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
+    -o-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
+    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
+    -webkit-transition: opacity .5s, top .5s;
+    -moz-transition: opacity .5s, top .5s;
+    -ms-transition: opacity .5s, top .5s;
+    -o-transition: opacity .5s, top .5s;
+    transition: opacity .5s, top .5s;
+    
 }
 
 /* The Close Button */
@@ -60,29 +96,52 @@ a.no-uline {
   text-decoration: none;
   cursor: pointer;
 }
+.card-body-jss{
+    padding: 1.5rem 1.875rem;
+    margin-left: 0rem;
+    margin-right: auto;
+    width: 502px;
+    overflow-y: auto;
+    max-height: 556px;
+    margin-top: 229px;
 
+}
+.card-title-jss{
+	color: #4a4a4a;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: .875rem;
+    font-weight: bold;
 
- 
+}
+
+.card-description-jss{
+	margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f;
+}
+
+.scrollOff{
+	position:fixed;
+	overflow:hidden;
+	height:100%;
+	width:100%;
+}
 
 
 </style>
-
 <!-- partial -->
 <div class="main-panel">
 	<div class="content-wrapper">
 		<div class="row">
-			<div class="grid-margin stretch-card">
+			<div class="grid-margin stretch-card"> 
 				<div class="card-mini">
 					<div class="card-body-mini">
 					<div class="btn-group-list">
 						<h4 class="card-title">
 						
-							<button type="button" id='age'
-								class="btn btn-outline-secondary">
-								<!--  <a href='/charts/pages/charts/Area'>나이</a>-->
+							<button type="button" class="btn btn-outline-secondary main-btn" value="10대">
 								나이
-								
-								
 							</button>
 						</h4>
 						</div>
@@ -96,7 +155,7 @@ a.no-uline {
 					<div class="btn-group-list">
 
 						<h4 class="card-title">
-							<button type='button' id='area' class="btn btn-outline-secondary">
+							<button type='button'class="btn btn-outline-secondary main-btn" value="전체">
 								지역
 							</button>
 						</h4>
@@ -130,7 +189,7 @@ a.no-uline {
 					<div class="btn-group-mini">
 						<h4 class="card-title">
 
-							<button type='button' id="sex" class="btn btn-outline-secondary">
+							<button type='button'class="btn btn-outline-secondary main-btn" value="남자">
 								성별
 							</button>
 						</h4>
@@ -144,7 +203,7 @@ a.no-uline {
 					<div class="card-body-mini">
 
 						<h4 class="card-title">
-							<button type='button' id="marriage" class="btn btn-outline-secondary">
+							<button type='button' class="btn btn-outline-secondary main-btn" value="기혼">
 								결혼유무
 							</button>
 						</h4>
@@ -157,156 +216,85 @@ a.no-uline {
 		</div>
 		<%@include file="../includes/footer.jsp"%>
 		
-		
+		 
 		
 <!--      여기서부터 모달           -->
-
-<h2>Modal Example</h2>
-
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
 <div id="myModal" style="-ms-overflow-style: none;" class="modal">
-
-  <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="main-panel">
-	<div class="content-wrapper">
-		<div class="row-top">
-			<div class="grid-margin">
-				<div class="stretch-card width">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title">Age</h4>
-							<p class="card-description" id="area">
-								변해라
-								<code>.All</code>
-							</p>
-							<div class="btn-group" role="group" style="margin-left: 38px;" aria-label="Basic example">
-							<input type='button' class="btn btn-outline-secondary" name="2" value="10대">
-							<input type='button' class="btn btn-outline-secondary" name="2" value="20대">
-							<input type='button' class="btn btn-outline-secondary" name="2" value="30대">
-							<input type='button' class="btn btn-outline-secondary" name="2" value="40대">
-							<input type='button' class="btn btn-outline-secondary" name="2" value="50대">
-							</div>
-							<div class="table-responsiv">
-								<table class="table table-hover" id="test">
-								
-								</table>
-							</div>
-						</div> 
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
-	</div>
-</div>
   </div>
 </div>
+<!--      여기까지 모달           -->
+ 
 
-
-
-<!--      여기서부터 모달           -->
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
 <script src="/resources/stats/chart/Chart.bundle.min.js"></script>
 <script src="/resources/stats/chart/Chart.js"></script>
 <script src="/resources/stats/chart/Chart.min.js"></script>
 <script type="text/javascript">
-/*				stats_get script			*/
 
-var timerID;
-var html = '';
-var area = '';
-
-$(document).ready(function() {
-	html ='10대<code>나이</code>'
-		$("#area").html(html);
-	$.getJSON('/stats/get/age/10대' , function(data) {
-		var html = '';
-		var total = 0;
-
-		html += '<thead>';
-		html += '<tr>';
-		html += '<th>카테고리</th>';
-		html += '<th>참여자 수</th>';
-		html += '<th>퍼센트</th>';
-		html += '</tr>';
-		html += '</thead>';
-		html += '<tbody>';
-		html += '<tr>';
-		html += '</tr>';
-		$.each(data, function(entryIndex, entry) {
-			html += '<tr>';
-			html += '<td>' + entry.ctgr_nm + '</td>';
-			html += '<td id="fix">' + entry.count + '명</td>';
-			html += '<td id="fix">' + entry.percent + '</td>';
-			html += '</tr>';
-			total += entry.count;
-
-		});
-		html += '<tr>';
-		html += "<td id='fix1' style='padding-right: unset;'>총합</td>";
-		html += '<td id="fix1">' + total + '명</td>';
-		html += '<td id="fix1"> 100%</td>';
-		html += '</tr>';
-		$('#test').html(html);
-	});
+$("#all").on("click", function(e){
+	location.href='/stats/stats_table';
 });
 
+var modal = document.getElementById("myModal");
 
-/*				stats_get script			*/
+var btn = document.getElementsByClassName("btn");
+
+var span = document.getElementsByClassName("close")[0];
+
+$(document).on("click",".main-btn",function() {
+	modal.style.display = "block";
+	$('body').attr('class','scrollOff');
+	console.log("지금 버튼 val : "+$(this).val());
+	var val =$(this).val();
+	zipJSON(val);
+}); 
+
+ 
+window.onclick = function(event) {
+	if (event.target == modal) {
+ 		modal.style.display = "none";
+ 		
+ 		$('body').removeAttr('class','scrollOff');
+	}
+}
 
 
-
-
-
-
-			var modal = document.getElementById("myModal");
-			
-			var btn = document.getElementById("myBtn");
-			console.log("btn : "+btn);
-			var span = document.getElementsByClassName("close")[0];
-			
-			btn.onclick = function() {
-				modal.style.display = "block";
-			}
-			
-			span.onclick = function() {
-				modal.style.display = "none";
-			}
-			
-			window.onclick = function(event) {
-				if (event.target == modal) {
-			 		modal.style.display = "none";
-				}
-			}
-
-			
-			
-
-			$("#area").on("click", function(e){
-			      location.href='/stats/stats_area';
-			 });
-			$("#age").on("click", function(e){
-				location.href='/stats/stats_age';
-			});
-			$("#sex").on("click", function(e){
-				location.href='/stats/stats_sex';
-			});
-			$("#marriage").on("click", function(e){
-				location.href='/stats/stats_marriage';
-			});
-			$("#all").on("click", function(e){
-				location.href='/stats/stats_table';
-			});
-			 //여기까지 모달이랑 클릭 이벤트 등등
-
+			 
+$(document).on('click','.button-age', function(){
+	data = $(this).val();
+	
+	
+	
+	
+});
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			 //차트 js 파일
 			$(function() {
 				  /* ChartJS

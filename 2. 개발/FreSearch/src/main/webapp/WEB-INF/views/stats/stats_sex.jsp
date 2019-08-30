@@ -20,8 +20,7 @@
 								변해라
 								<code>.All</code>
 							</p>
-							<div class="btn-group" role="group" aria-label="Basic example"
-							style="margin: 0 auto;width: 150px;display: flex;">
+							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;width: 150px;display: flex;">
 							<input type='button' class="btn btn-outline-secondary" name="3" value="남자">
 							<!-- <input type='button' class="btn btn-outline-secondary-all" name="3" value="남자"> -->
 							<input type='button' class="btn btn-outline-secondary" name="3" value="여자">

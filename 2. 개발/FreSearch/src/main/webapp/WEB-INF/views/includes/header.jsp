@@ -30,9 +30,6 @@
   font-size: 24px;
   color: #fff;
 }
-/* html, body {height: 100%;}
-body {align-items: center;display: flex;font-family: sans-serif;justify-content: center;}
-.container{position:relative;-webkit-perspective: 1000;-webkit-backface-visibility: hidden;}  */
 .badge-num {
   box-sizing: border-box;
     font-family: 'Trebuchet MS', sans-serif;
@@ -87,13 +84,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
   cursor: pointer;
 }
-
-
-
-
-
-
-
 </style>
 </head> 
 <body>
