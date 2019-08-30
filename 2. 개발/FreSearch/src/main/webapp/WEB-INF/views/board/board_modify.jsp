@@ -113,7 +113,16 @@ div.button {
 	
 }
 	
+.modify_button{
+ 	height: 32px;
+    border: none;
+    width: 70px;
+    cursor: pointer;
+    margin-top: 10px;
+    background: #1428a0;
+    color: white;
 }
+
 
 </style>
 
@@ -162,6 +171,11 @@ div.button {
                 <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
                		<td class="column" colspan="6">첨부파일</td>
                </tr>
+               
+               <div>
+					<input type='hidden' name='brd_is_attach' value=${board.brd_is_attach}>
+					<input type='hidden' name='brd_code' value=${board.brd_code}>
+				</div>
 					
 					
 				
@@ -206,14 +220,15 @@ div.button {
          </div>
       </div>
 
+		<div style= "text-align:right; width: 850px;">
+				<button class="modify_button" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
+  				<button class="modify_button" type="submit" data-oper='delete'>삭제</button>
+  				<button class="modify_button" type="submit" data-oper='list'>리스트</button>
+		</div>
+
    </div>
 </div>
-		<div style= "text-align:center; width: 850px;">
-				<button class="btn btn-sm btn-success" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
-  				<button class="btn btn-sm btn-danger" type="submit" data-oper='delete'>삭제</button>
-  				<button class="btn btn-sm btn-primary" type="submit" data-oper='list'>리스트</button>
-		</div>
-	
+		
 
 
 

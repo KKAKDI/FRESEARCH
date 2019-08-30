@@ -18,7 +18,18 @@ body {
 }
 
 .container_new{
-	padding-top: 125px;
+	padding-top: 150px;
+	min-height: 872px;
+}
+
+button{
+	height: 30px;
+    border: none;
+    width: 80px;
+    cursor: pointer;
+    margin-top: 20px;
+    background: #1428a0;
+    color: white;
 }
 
 table {
@@ -41,10 +52,33 @@ td.column-data {
 	padding: 15 19;
 }
 
+th, td {
+	font-size: 16px;
+}
+
 div.button {
 	text-align: right;
 	margin: auto;
 	width: 850px;
+}
+
+.news-head h2 {
+	text-align: left;
+	position: relative;
+    font-size: 30px;
+    padding: 3px 0 7px;
+    margin: auto;
+    width: 850px;
+}
+
+.news-head h2::after {
+	background: #1428a0;
+    width: 99.9%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
 }
 
 </style>
@@ -53,6 +87,12 @@ div.button {
 <div class="container_new">
 	<div>
 		<div style="text-align: center;">
+		
+			<div>
+			<div class="news-head">
+			<h2>새소식 수정</h2>
+			</div>	
+					
 			<table style="text-align: center;">
 				<form name='f' role="form" action="/news/news_modify" method="post">
 
@@ -64,9 +104,14 @@ div.button {
 
 					<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
 						<td class="column" style="width: 15%;">구분</td>
+						<td class="column-data" colspan="2" readonly>${news.news_division}</td>
+						
+						<!-- 
 						<td class="column-data" colspan="2" style="padding: 0px;"><input id="news_division" class="form-control"
 							name='news_division' value=${news.news_division}
 							readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center;"></td>
+						-->
+						
 						<td class="column" style="width: 15%;">작성자</td>
 						<td class="column-data" colspan="2" readonly>FreSearch</td>
 					</tr>
@@ -99,10 +144,17 @@ div.button {
 					
 				</form>
 			</table>
+			</div>
 			
 					
 		</div>
 	</div>
+	
+		<div class='button'>
+			<button type="submit" data-oper='modify' class="btn btn-success">수정</button>
+			<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
+			<button type="submit" data-oper='list' class="btn btn-info">목록</button>
+		</div>
 </div>
 
 <%--
@@ -130,16 +182,15 @@ div.button {
 </div>
  --%>
 
-		<div class='button'>
-			<button type="submit" data-oper='modify' class="btn btn-success">수정</button>
-			<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
-			<button type="submit" data-oper='list' class="btn btn-info">목록</button>
-		</div>
+		
 
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
+		var division = '<c:out value='${news.news_division}'/>';
+		
+		console.log(division);
 		var formObj = $("form");
 	
 		$('button').on("click",function(e) {
@@ -148,14 +199,23 @@ div.button {
 			var operation = $(this).data("oper");
 	
 			console.log("operation:dddddd "+ operation);
+			console.log("formObj: "+ formObj);
 	
 			if (operation === 'remove') {
+
 				formObj.attr("action", "/news/news_remove");
+				formObj.submit();
 	
 			} else if (operation === 'list') {
 				//move to list
-				formObj.attr("action", "/news/news_list") .attr("method", "get");
-				$("#news_content").html(""); // 목록버튼 누를 시 content 내용 삭제
+				//$("#news_content").html(""); // 목록버튼 누를 시 content 내용 삭제
+				if(division == "공지"){
+					formObj.attr("action", "/news/news_list") .attr("method", "get");
+				} else {
+					formObj.attr("action", "/news/news_list_event") .attr("method", "get");
+				}
+				
+				
 				var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
 				var keywordTag = $("input[name='keyword']").clone();
@@ -167,6 +227,8 @@ div.button {
 				formObj.append(amountTag);
 				formObj.append(keywordTag);
 				formObj.append(typeTag);
+				
+				formObj.submit();
 	
 			} else if (operation === 'modify') {
 				
@@ -222,7 +284,7 @@ div.button {
 						   }
 					   }
 				   	   
-					   f.submit();
+					   formObj.submit();
 				   
 				   function checkByteLen(str, size){  
 					   var byteLen = getByteLen(str);

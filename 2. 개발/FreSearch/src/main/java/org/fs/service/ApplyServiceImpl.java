@@ -40,9 +40,17 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		// log.info("applyChk:" + mapper.applyChk(mb_email));
 		//mapper.applyChk(mb_email);
-		
 		return mapper.applyChk(mb_email);
 	}
+	
+	@Override
+	public String atrtChk(String mb_email) {
+		
+		// log.info("applyChk:" + mapper.applyChk(mb_email));
+		//mapper.applyChk(mb_email);
+		return mapper.atrtChk(mb_email);
+	}
+	
 
 	@Override
 	public int getTotal(Criteria cri) { // 페이징

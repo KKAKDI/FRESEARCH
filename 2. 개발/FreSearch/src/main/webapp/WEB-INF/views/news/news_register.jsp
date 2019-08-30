@@ -16,7 +16,8 @@ body {
 }
 
 .container_new{
-	padding-top: 125px;
+	padding-top: 150px;
+	min-height: 872px;
 }
 
 table {
@@ -39,10 +40,24 @@ td.column-data {
 	padding: 15 19;
 }
 
+th, td {
+	font-size: 16px;
+}
+
 div.button {
-	text-align: right;
+	text-align: center;
 	margin: auto;
 	width: 850px;
+}
+
+button{
+	height: 30px;
+    border: none;
+    width: 80px;
+    cursor: pointer;
+    margin-top: 20px;
+    background: #1428a0;
+    color: white;
 }
 
 hr {
@@ -92,6 +107,26 @@ input[type="radio"]:checked + label:after {
    border-radius: 100%; 
 }
 
+.news-head h2 {
+	text-align: left;
+	position: relative;
+    font-size: 30px;
+    padding: 3px 0 7px;
+    margin: auto;
+    width: 850px;
+}
+
+.news-head h2::after {
+	background: #1428a0;
+    width: 99.9%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
+}
+
+
 </style>
 
 
@@ -99,9 +134,15 @@ input[type="radio"]:checked + label:after {
 	<div>
 		<div>
 			<div style="text-align: center;">
+				<div>
+					<div class="news-head">
+					<h2>새소식 쓰기</h2>
+					</div>
+				<!-- 
 				<h2>공지사항 / 이벤트</h2>
 					<hr/>
 					<p>FreSearch 새소식을 제공합니다.</p>
+				-->
 				<table style="text-align: center;">
 					<form name="f" role="form" action="/news/news_register" method="post">
 						
@@ -129,7 +170,7 @@ input[type="radio"]:checked + label:after {
 						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
 						<td colspan="6">
 							<textarea class="form-control" rows="6" name='news_content'
-								style="display: block; width: 850px; height: 300px;"></textarea>
+								style="display: block; width: 850px; height: 300px; border: none;"></textarea>
 						</td>
 						</tr>
 						<!-- 
@@ -141,9 +182,18 @@ input[type="radio"]:checked + label:after {
 						
 					</form>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div class="button">
+	<button type="button" onclick="check()">등록</button>
+	<%-- <input type="button" value="등록" onclick="check()"/> --%>
+	<%-- <button type="reset">다시쓰기</button> --%>
+	<button type="button" onclick="location.href='news_list'">목록</button>
+	</div>
+	
 </div>
 
 <!-- 파일첨부 부분 -->
@@ -170,12 +220,7 @@ input[type="radio"]:checked + label:after {
 
  -->
 
-<div class="button">
-	<button type="button" onclick="check()">등록</button>
-	<%-- <input type="button" value="등록" onclick="check()"/> --%>
-	<button type="reset">다시쓰기</button>
-	<button type="button" onclick="location.href='news_list'">목록</button>
-</div>
+
 
 <script>
 	$(document).ready(function(e) {

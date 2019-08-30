@@ -14,6 +14,8 @@ public interface ApplyMapper {
 	
 	public String applyChk(String mb_email);
 	
+	public String atrtChk(String mb_email);
+	
 	public int getTotalCount(Criteria cri);
 	
 	public List<ApplyVO> getListWithPaging(Criteria cri);

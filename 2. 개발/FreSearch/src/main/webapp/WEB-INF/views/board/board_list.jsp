@@ -183,6 +183,7 @@ ul, li {
 					<tr style="border-bottom: 1px solid red; border-top: 1px solid #0C4DA2;">
 						<th style="background-color: #f0f0f0;  width:5%; font-weight: bold; color: #505050; padding: 16 19;">No</th>
 						<th style="background-color: #f0f0f0; width:50%; font-weight: bold; color: #505050; padding: 16 19; ">제목</th>
+						<th style="background-color: #f0f0f0; width:5%; font-weight: bold; color: #505050; padding: 16 19; "></th>
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
 						<th style="background-color: #f0f0f0;   width:10%; font-weight: bold; color: #505050; padding: 16 19;">등록일</th>
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">조회수</th>
@@ -194,6 +195,14 @@ ul, li {
 					<tr>
 						<td>${board.brd_code}</td>
 						<td class="title"><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
+						<c:choose>
+							<c:when test="${board.brd_is_attach == 'Y'}">
+							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+							</c:when>
+								<c:otherwise>
+	         						<td></td>
+	         					</c:otherwise>
+							</c:choose>
 						<td>${board.mb_nick}</td>
 						<td><fmt:formatDate pattern="yy-MM-dd"
 								value="${board.brd_regdate}" /></td>

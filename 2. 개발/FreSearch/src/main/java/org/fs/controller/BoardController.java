@@ -72,8 +72,15 @@ public class BoardController {
 		log.info("register: " + board);
 		
 		if(board.getAttachList() != null) {
-		
+			log.info("들어오니? ");
 			board.getAttachList().forEach(attach -> log.info(attach));
+			
+			board.setBrd_is_attach("Y");
+			
+		}else {
+			log.info("들어오니? 1111111111111");
+			board.setBrd_is_attach("N");
+			
 		}
 		
 		log.info("=========================");
@@ -106,6 +113,15 @@ public class BoardController {
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		log.info("modify :" + board);
 		
+		if(board.getAttachList() != null) {
+			
+			board.getAttachList().forEach(attach -> log.info(attach));
+			
+			board.setBrd_is_attach("Y");
+			
+		}else {
+			board.setBrd_is_attach("N");
+		}
 		if(service.modify(board)) {
 			ra.addFlashAttribute("result", "success");
 		}	

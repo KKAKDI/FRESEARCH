@@ -24,24 +24,25 @@ var replyService = (function(){
 		})
 	}
 	
-	function getList(param, callback, error){		//댓글 리스트 뽑아내는 getJSON
+	function getList(param, callback, error) {			//댓글 리스트 뽑아내는 getJSON
+
+	    var brd_code = param.brd_code;
+	    var page = param.page || 1;
+	    
+	    $.getJSON("/replies/pages/" + brd_code + "/" + page + ".json",
+	        function(data) {
+	    	
+	          if (callback) {
+	            //callback(data); // 댓글 목록만 가져오는 경우 
+	            callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우 
+	          }
+	        }).fail(function(xhr, status, err) {
+	      if (error) {
+	        error();
+	      }
+	    });
+	  }
 	
-		var brd_code = param.brd_code;
-		
-		var page = param.page || 1;
-		
-		
-		$.getJSON("/replies/pages/" + brd_code + "/" + page + ".json", 
-				function(data){
-			if (callback){
-				callback(data);
-			}
-		}).fail(function(xhr, status, err){
-			if(error){
-				error();
-			}
-		});
-	}
 	
 	function remove(rpl_code, callback, error){				//댓글 삭제하는 AJAX
 		$.ajax({	
@@ -128,6 +129,8 @@ var replyService = (function(){
 					(dd > 9 ? ' ': '0')+ dd].join('');
 		}
 	};
+	
+	
 	
 	
 	return{
