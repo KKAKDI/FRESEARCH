@@ -13,9 +13,9 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/datepicker/jquery.datetimepicker.css"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/resources/datepicker/jquery.js"></script>
 <script src="/resources/datepicker/jquery.datetimepicker.full.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <script>
 	$(function() {
@@ -31,10 +31,10 @@
 		
 		$(document).on("click","#research_answer",function(){
 			var research_values = "";
+			var form = $("#research_form");
 			var values_index= $(".research_qst").length;
 			var user_email =$("#mem_email").val();
-			var user_nick =$("#mem_nick").val();
-			var form = $("#research_form");
+			var user_nick =$("#mem_nick").val();			
 			var checkCnt= 0;
 			
 			research_values += user_email+"#email#";
@@ -76,16 +76,16 @@
 				return false;
 			}else{
 				console.log(research_values);	
-				$("#research_values").val(research_values);
-				form.attr("action","/research/research_content");							
+				$("#research_values").val(research_values);											
 				swal({
 					title:"등록되었습니다!",
 					text:"답변이 성공적으로 등록되었습니다!",
 					icon:"success",
 					button:"확인",
 				})
-				.then((willDelete) => {					
-					form.submit();								
+				.then((확인) => {	
+					form.attr("action","/research/research_content");
+					form.submit();					
 				});	
 			}
 		});
@@ -130,7 +130,7 @@
 		<div class='research_header'>
 			<div id='top_box'>
 				<div id='left_top_box'>
-					<button id='prev_btn'></button> <input type='text' id='top_title' autocomplete='off'>
+					<button id='prev_btn'></button>
 				</div>				
 				<div id='right_top_box'>
 					<!-- session 채크 -->
@@ -142,15 +142,15 @@
 				</div>
 			</div>
 			<div class='logo'>
-				<img src="/resources/img/logo.png" alt="logo">
+				<img src="/resources/img/logo1_1.png" alt="logo">
 			</div>			
 		</div>
 		<section id='content' class='clearflx'>
-			<div id='form_area' class='clearflx'>
-				<form name='research_form' id='research_form' action='' method='post'>
-				<input type='hidden' name='research_values' id='research_values' value=''>
+			<div id='form_area' class='clearflx'>				
 					<div class='research_content active clearflx'>
-						<div class='content_box clearflx'>
+					<form name='research_form' id='research_form' action='' method='post'>
+						<input type='hidden' name='research_values' id='research_values' value=''>			
+						<div class='content_box clearflx'>						
 							<div id='research_subject'>${content[0].subj_nm}</div>
 							<input type='hidden' name='research_code' id='research_code' value='${content[0].subj_code}'>
 							<input type='hidden' id='mem_email' value='<sec:authentication property="principal.member.mb_email"/>'>                      		
@@ -214,15 +214,15 @@
 							</c:choose>										
 						</c:forEach>
 						</div>	
-						</div>	
+						</div>
+						</form>		
 						<div id='submit_box'>
 							<div class='answer_box'>
 							<button id='research_answer'>제출하기</button>
 							</div>
 						</div>												
-					</div>  
-				</form>				
-			</div>
+					</div>  							
+				</div>
 			<div class='bottom'></div>
 		</section>
 	</div>	
