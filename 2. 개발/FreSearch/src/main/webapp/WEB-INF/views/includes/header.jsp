@@ -30,9 +30,6 @@
   font-size: 24px;
   color: #fff;
 }
-/* html, body {height: 100%;}
-body {align-items: center;display: flex;font-family: sans-serif;justify-content: center;}
-.container{position:relative;-webkit-perspective: 1000;-webkit-backface-visibility: hidden;}  */
 .badge-num {
   box-sizing: border-box;
     font-family: 'Trebuchet MS', sans-serif;
@@ -87,13 +84,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
   cursor: pointer;
 }
-
-
-
-
-
-
-
 </style>
 </head> 
 <body>
@@ -160,15 +150,8 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	     					<a class="entypo-bell" style="display:none;"></a>
 	     					<img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">
 						</div>
-						<div class="dropdown-content-jss" id="alarm_content">
-							<a href="/member/signin">
-                        		<img class="img_iconThird-jss" src="/resources/img/login_icon01.png"/>
-                      		    <span class="span_login-jss">로그인</span>
-                     		</a>
-                     		<a href="/member/signup">
-                        		<img class="img_iconThird-jss" src="/resources/img/signup_icon01.png"/>
-                        		<span class="span_login-jss">회원가입</span>
-                     		</a>
+						<div id="alarm_content">
+
 						</div>
 					<!-- 종모양 알림 끝 -->
                		</div>
@@ -391,9 +374,19 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
 	        		}else{ 
 	        		} 
 	        	});
-        	} 
+        	}
+        	
         }
 
+        $(document).ready(function(){
+        	$(document).on("click",".all-read",function(evnet){
+        		
+        		console.log($(this).html());
+        		
+        	});
+        });
+        
+        
         
         
 /*         $(document).ready(function(){
@@ -401,6 +394,6 @@ body {align-items: center;display: flex;font-family: sans-serif;justify-content:
               // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
               alert($(this).text());
             });
-        }); // end of ready() */
+        }); */
 </script>
     <!-- 웹소켓 끝 -->

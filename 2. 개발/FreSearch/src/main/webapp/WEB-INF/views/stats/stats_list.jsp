@@ -11,6 +11,9 @@ a.no-uline {
 	text-decoration: none
 }
 </style>
+
+
+
 <style>
 .test_btn1 {
 	margin-right: -4px;
@@ -20,24 +23,92 @@ a.no-uline {
 	padding: 5px;
 	
 }
-</style>
 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin-left: auto;
+    margin-right: auto;
+    width: 501px;
+    margin-top: 110px;
+    border-radius: 35px
+    
+
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.card-body-jss{
+    padding: 1.5rem 1.875rem;
+    margin-left: 0rem;
+    margin-right: auto;
+    width: 502px;
+    overflow-y: auto;
+    max-height: 556px;
+    margin-top: 229px;
+
+}
+.card-title-jss{
+	color: #4a4a4a;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: .875rem;
+    font-weight: bold;
+
+}
+
+.card-description-jss{
+	margin-bottom: .875rem;
+    font-weight: 400;
+    color: #76838f;
+}
+
+.scrollOff{
+	position:fixed;
+	overflow:hidden;
+	height:100%;
+	width:100%;
+}
+
+
+</style>
 <!-- partial -->
 <div class="main-panel">
 	<div class="content-wrapper">
 		<div class="row">
-			<div class="grid-margin stretch-card">
+			<div class="grid-margin stretch-card"> 
 				<div class="card-mini">
 					<div class="card-body-mini">
 					<div class="btn-group-list">
 						<h4 class="card-title">
 						
-							<button type="button" id='age'
-								class="btn btn-outline-secondary">
-								<!--  <a href='/charts/pages/charts/Area'>나이</a>-->
+							<button type="button" class="btn btn-outline-secondary main-btn" value="10대">
 								나이
-								
-								
 							</button>
 						</h4>
 						</div>
@@ -51,7 +122,7 @@ a.no-uline {
 					<div class="btn-group-list">
 
 						<h4 class="card-title">
-							<button type='button' id='area' class="btn btn-outline-secondary">
+							<button type='button'class="btn btn-outline-secondary main-btn" value="전체">
 								지역
 							</button>
 						</h4>
@@ -85,7 +156,7 @@ a.no-uline {
 					<div class="btn-group-mini">
 						<h4 class="card-title">
 
-							<button type='button' id="sex" class="btn btn-outline-secondary">
+							<button type='button'class="btn btn-outline-secondary main-btn" value="남자">
 								성별
 							</button>
 						</h4>
@@ -99,7 +170,7 @@ a.no-uline {
 					<div class="card-body-mini">
 
 						<h4 class="card-title">
-							<button type='button' id="marriage" class="btn btn-outline-secondary">
+							<button type='button' class="btn btn-outline-secondary main-btn" value="기혼">
 								결혼유무
 							</button>
 						</h4>
@@ -111,33 +182,86 @@ a.no-uline {
 		</div>
 		</div>
 		<%@include file="../includes/footer.jsp"%>
-
+		
+		 
+		
+<!--      여기서부터 모달           -->
+<div id="myModal" style="-ms-overflow-style: none;" class="modal">
+  <div class="modal-content">
+  </div>
+</div>
+<!--      여기까지 모달           -->
+ 
 
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
 <script src="/resources/stats/chart/Chart.bundle.min.js"></script>
 <script src="/resources/stats/chart/Chart.js"></script>
 <script src="/resources/stats/chart/Chart.min.js"></script>
 <script type="text/javascript">
-$("#addReplyBtn").on("click", function(e){
-			      $(".modal").modal("show");
-			 });
-			$("#area").on("click", function(e){
-			      location.href='/stats/stats_area';
-			 });
-			$("#age").on("click", function(e){
-				location.href='/stats/stats_age';
-			});
-			$("#sex").on("click", function(e){
-				location.href='/stats/stats_sex';
-			});
-			$("#marriage").on("click", function(e){
-				location.href='/stats/stats_marriage';
-			});
-			$("#all").on("click", function(e){
-				location.href='/stats/stats_table';
-			});
-			 //여기까지 모달이랑 클릭 이벤트 등등
 
+$("#all").on("click", function(e){
+	location.href='/stats/stats_table';
+});
+
+var modal = document.getElementById("myModal");
+
+var btn = document.getElementsByClassName("btn");
+
+var span = document.getElementsByClassName("close")[0];
+
+$(document).on("click",".main-btn",function() {
+	modal.style.display = "block";
+	$('body').attr('class','scrollOff');
+	console.log("지금 버튼 val : "+$(this).val());
+	var val =$(this).val();
+	zipJSON(val);
+}); 
+
+ 
+window.onclick = function(event) {
+	if (event.target == modal) {
+ 		modal.style.display = "none";
+ 		
+ 		$('body').removeAttr('class','scrollOff');
+	}
+}
+
+
+			 
+$(document).on('click','.button-age', function(){
+	data = $(this).val();
+	
+	
+	
+	
+});
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			 //차트 js 파일
 			$(function() {
 				  /* ChartJS
@@ -152,12 +276,12 @@ $("#addReplyBtn").on("click", function(e){
 				      label: '# of Votes',
 				      data: [17, 19, 3, 5, 2, 3],
 				      backgroundColor: [
-				        'rgba(255, 99, 132, 0.2)',
-				        'rgba(54, 162, 235, 0.2)',
-				        'rgba(255, 206, 86, 0.2)',
-				        'rgba(75, 192, 192, 0.2)',
-				        'rgba(153, 102, 255, 0.2)',
-				        'rgba(255, 159, 64, 0.2)'
+				        'rgba(255, 99, 132)',
+				        'rgba(54, 162, 235)',
+				        'rgba(255, 206, 86)',
+				        'rgba(75, 192, 192)',
+				        'rgba(153, 102, 255)',
+				        'rgba(255, 159, 64)'
 				      ],
 				      borderColor: [
 				        'rgba(255,99,132,1)',
@@ -186,12 +310,12 @@ $("#addReplyBtn").on("click", function(e){
 						      label: '# of Votes',
 						      data: [ten, twenty, thiry, forty, fifty, sixty],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.2)',
-						        'rgba(54, 162, 235, 0.2)',
-						        'rgba(255, 206, 86, 0.2)',
-						        'rgba(75, 192, 192, 0.2)',
-						        'rgba(153, 102, 255, 0.2)',
-						        'rgba(255, 159, 64, 0.2)'
+						        'rgba(255, 99, 132)',
+						        'rgba(54, 162, 235)',
+						        'rgba(255, 206, 86)',
+						        'rgba(75, 192, 192)',
+						        'rgba(153, 102, 255)',
+						        'rgba(255, 159, 64)'
 						      ],
 						      borderColor: [
 						        'rgba(255,99,132,1)',
@@ -216,20 +340,20 @@ $("#addReplyBtn").on("click", function(e){
 						      label: '# labels',
 						      data: [seoul, gyeongGi, busan, incheon,  2, 3],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.2)',
-						        'rgba(54, 162, 235, 0.2)',
-						        'rgba(255, 206, 86, 0.2)',
-						        'rgba(75, 192, 192, 0.2)',
-						        'rgba(153, 102, 255, 0.2)',
-						        'rgba(255, 159, 64, 0.2)'
+						        'rgb(255, 180, 255)',
+						        'rgba(54, 162, 235)',
+						        'rgba(255, 206, 86)',
+						        'rgba(75, 192, 192)',
+						        'rgba(153, 102, 255)',
+						        'rgba(255, 159, 64)'
 						      ],
 						      borderColor: [
-						        'rgba(255,99,132,1)',
-						        'rgba(54, 162, 235, 1)',
-						        'rgba(255, 206, 86, 1)',
-						        'rgba(75, 192, 192, 1)',
-						        'rgba(153, 102, 255, 1)',
-						        'rgba(255, 159, 64, 1)'
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)',
+						        'rgba(255, 255, 255, 3)'
 						      ],
 						      borderWidth: 1,
 						      fill: false
@@ -251,7 +375,7 @@ $("#addReplyBtn").on("click", function(e){
 				        data: [5, 23, 7, 12, 42, 23],
 				        borderColor: [
 				          '#ede190'
-				        ],
+				        ], 
 				        borderWidth: 2,
 				        fill: false
 				      },
@@ -305,7 +429,7 @@ $("#addReplyBtn").on("click", function(e){
 				      data: [education, computer, game, entertainment, life, heath, society, economy, travel, sports, shopping,region,marriage],
 				      backgroundColor: [
 				        'rgba(255, 99, 132, 0.5)',
-				        'rgba(54, 162, 235, 0.5)',
+				        'rgb(31, 142, 205)',
 				        'rgba(255, 206, 86, 0.5)',
 				        'rgba(75, 192, 192, 0.5)',
 				        'rgba(153, 102, 255, 0.5)',
@@ -357,8 +481,8 @@ $("#addReplyBtn").on("click", function(e){
 						    datasets: [{
 						      data: [boy, girl],
 						      backgroundColor: [
-						        'rgba(54, 162, 235, 0.5)',
-						        'rgba(255, 99, 132, 0.5)',//보더 색
+						        'rgb(31, 142, 205)',
+						        'rgb(255, 110, 237)',//보더 색
 						        'rgba(255, 206, 86, 0.5)',
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
@@ -385,8 +509,8 @@ $("#addReplyBtn").on("click", function(e){
 						    datasets: [{
 						      data: [unsingle, single],
 						      backgroundColor: [
-						        'rgba(255, 99, 132, 0.5)',	//안쪽색
-						        'rgba(54, 162, 235, 0.5)',	//보더 색
+						        'rgb(255, 110, 237)',	//안쪽색
+						        'rgb(31, 142, 205)',	//보더 색
 						        'rgba(255, 206, 86, 0.5)',
 						        'rgba(75, 192, 192, 0.5)',
 						      ],
