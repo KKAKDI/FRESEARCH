@@ -46,40 +46,7 @@ a.no-uline {
     margin-top: 110px;
     border-radius: 35px
     
-    
-    /* 테스트 해보자*/
-    background-color: #fff;
-    border: 3px solid #fff;
-    display: inline-block;
-    left: 50%;
-    opacity: 0;
-    padding: 15px;
-    position: fixed;
-    text-align: justify;
-    top: 40%;
-    visibility: hidden;
-    z-index: 10;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
-    -moz-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
-    -ms-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
-    -o-box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
-    box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.4) inset;
-    -webkit-transition: opacity .5s, top .5s;
-    -moz-transition: opacity .5s, top .5s;
-    -ms-transition: opacity .5s, top .5s;
-    -o-transition: opacity .5s, top .5s;
-    transition: opacity .5s, top .5s;
-    
+
 }
 
 /* The Close Button */

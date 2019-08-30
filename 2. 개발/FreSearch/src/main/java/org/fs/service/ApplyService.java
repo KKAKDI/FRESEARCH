@@ -14,6 +14,8 @@ public interface ApplyService {
 	
 	public String applyChk(String mb_email);
 	
+	public String atrtChk(String mb_email);
+	
 	public int getTotal(Criteria cri);
 	
 	public List<ApplyVO> getList(Criteria cri);

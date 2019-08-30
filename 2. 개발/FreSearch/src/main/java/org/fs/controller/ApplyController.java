@@ -55,44 +55,53 @@ public class ApplyController {
 	*/
 	
 	@PostMapping("/apply")
-	public @ResponseBody boolean apply(ApplyVO apply, HttpSession session) { // ,HttpSession session 추가 
-		boolean registedChk = false;
+	public @ResponseBody String apply(ApplyVO apply, HttpSession session) { // ,HttpSession session 추가 
+		//boolean registedChk = false;
 		//String mb_email = (String) session.getAttribute("mb_email");
-		if(service.applyChk("abc@naver.com") != null) {
-			registedChk = true;
+		
+		if(service.atrtChk("ccc@google.com") != null) {
+			return "already panel";
 		} else {
-			registedChk = false;
+			if(service.applyChk("ccc@google.com") == null) {
+				apply.setMb_email("ccc@google.com");
+				service.regist(apply);
+				return "ok";
+			}else {
+				return "already apply";
+			}
 		}
 		
-		log.info("#####registedChk :" + registedChk);
+		
 		/*
-		if(service.applyChk(mb_email) == true) { // 이미 신청된경우 신청 안됨
-			registStatus = "already registed";
-			
-			
+		if(service.applyChk("abc@naver.com") != null) {
+			log.info("11111");
+			registedChk = true;
 		} else {
-			service.regist(mb_email);
-			registStatus = "regist OK";
-			//apply.setNews_is_attach("N");
+			log.info("22222");
+			registedChk = false;
 		}
 		*/
 		
+		
+		
+		/*
 		if (registedChk == true) {
-			return false;
+			log.info("33333");
+			return "already apply";
 			//// return registedChk;
 		} else {
 			apply.setMb_email("abc@naver.com");
 			if(true) { // 이미 신청된경우 신청 안됨
 				service.regist(apply);
-				return true;
+				log.info("44444");
+				return "ok";
 				//apply.setNews_is_attach("N");
 
 			}
 		}
-			//service.regist();
-			//
-		//}
-		return false;
+		*/
+		
+			
 
 	}
 	

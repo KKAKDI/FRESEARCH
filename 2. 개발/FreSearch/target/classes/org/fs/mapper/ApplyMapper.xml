@@ -31,6 +31,10 @@
 	select * from APPLY where MB_EMAIL = #{MB_EMAIL} and APPLY_APPROVALDATE is null
 </select>
 
+<select id="atrtChk" resultType="String">
+	select * from MEMBER where MB_EMAIL = #{MB_EMAIL} and MB_REG_ATRT = '패널'
+</select>
+
 <select id="getTotalCount" resultType="int">
 		select count(*) from APPLY 
 		where
