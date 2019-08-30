@@ -81,6 +81,13 @@ div.button {
     left: 0px;
 }
 
+input, textarea{
+	outline: none;
+}
+
+textarea{
+	resize: none;
+}
 </style>
 
 
@@ -208,7 +215,7 @@ div.button {
 	
 			} else if (operation === 'list') {
 				//move to list
-				//$("#news_content").html(""); // 목록버튼 누를 시 content 내용 삭제
+				$("#news_content").html(""); // 목록버튼 누를 시 content 내용 삭제
 				if(division == "공지"){
 					formObj.attr("action", "/news/news_list") .attr("method", "get");
 				} else {

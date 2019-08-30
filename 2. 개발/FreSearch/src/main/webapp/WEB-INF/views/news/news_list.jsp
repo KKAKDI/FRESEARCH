@@ -44,7 +44,8 @@ input.search {
 }
 
 .search_form {
-	padding-top: 30px;
+	padding-top: 15px;
+    padding-bottom: 25px;
 }
 
 th, td {
@@ -343,7 +344,7 @@ a {
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a href="${path}/news/news_list?pageNum=1">첫페이지</a></li>
 					<li class="paginate_button_move"><a
-						href="${pageMaker.startPage-1}">＜</a></li>
+						href="${pageMaker.startPage-1}">이전</a></li>
 				</c:if>
 		
 				<c:forEach var="num" begin="${pageMaker.startPage}"
@@ -355,7 +356,7 @@ a {
 		
 				<c:if test="${pageMaker.next}">
 					<li class="paginate_button_move"><a
-						href="${pageMaker.endPage +1}">＞</a></li>
+						href="${pageMaker.endPage +1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

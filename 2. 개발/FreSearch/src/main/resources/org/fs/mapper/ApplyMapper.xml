@@ -32,7 +32,7 @@
 </select>
 
 <select id="atrtChk" resultType="String">
-	select * from MEMBER where MB_EMAIL = #{MB_EMAIL} and MB_REG_ATRT = '패널'
+	select * from MEMBER_AUTH where MB_EMAIL = #{MB_EMAIL} and AUTH = 'ROLE_PANEL'
 </select>
 
 <select id="getTotalCount" resultType="int">
@@ -98,8 +98,8 @@ insert into APPLY (APPLY_CODE, MB_EMAIL, APPLY_APPLYDATE)
 </update>
 
 <update id="updateAtrt">
-	update MEMBER
-	set MB_REG_ATRT = '패널'
+	update MEMBER_AUTH
+	set AUTH = 'ROLE_PANEL'
 	where MB_EMAIL = #{mb_email}
 	
 </update>

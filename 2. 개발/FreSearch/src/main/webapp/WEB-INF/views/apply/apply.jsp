@@ -79,7 +79,7 @@ hr {
 
 .news-head h2::after {
 	background: #1428a0;
-    width: 99.9%;
+    width: 100%%;
     height: 2px;
     content: "";
     position: absolute;
