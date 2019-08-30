@@ -14,10 +14,10 @@
 </head>
 <body>
 	<div class="page-wrapper">
-		<div class="page-logo">
+		<div class="page-logo page-logo-email">
 			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 		</div>
-		<div class="page-content">
+		<div class="page-content page-content-email">
 			<div class="page-form">
 			<input type="hidden" name="mb_birthdate" id="mb_birthdate" value="">
 				<h2>이메일 찾기</h2>

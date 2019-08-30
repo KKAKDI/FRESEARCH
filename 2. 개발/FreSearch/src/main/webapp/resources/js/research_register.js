@@ -59,6 +59,7 @@ $(function() {
 			$(this).children().find("hr").addClass("active_btn");
 			$(this).children().find("#item_box").addClass("active_item");
 			$(this).children().find(".item_individual").addClass("active_individual");
+			
 			if($(".active #selBox option:selected").val()==1){
 				$(".research_content .bottom_box").removeClass("active_btn");
 				$(".research_content hr").removeClass("active_btn");
@@ -77,7 +78,7 @@ $(function() {
 		$(document).on("click","#qst_etc",function(){
 			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
-				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box'><button id=item_del></button></div></li>");				
+				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box' style='display:none'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div></li>");
 				return false;
 			}else{
 				$("#qst_etc").attr("disable");		

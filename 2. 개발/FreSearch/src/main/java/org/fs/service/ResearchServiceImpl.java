@@ -38,7 +38,7 @@ public class ResearchServiceImpl implements ResearchService {
 
 	@Override
 	public void researchReg(String values) {
-		String email = "admin@fresearch.com"; 
+		String email = null; 
 		String subName = null;
 		String[] block = values.split("/block");
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy/MM/dd");

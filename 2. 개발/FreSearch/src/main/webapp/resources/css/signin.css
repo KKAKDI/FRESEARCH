@@ -12,17 +12,18 @@ body {
 }
 .page-wrapper .page-logo {
 	position: absolute; 
-	margin-top: 41px;
+    margin-top: 125px;
 }
 .page-wrapper .page-logo a img{
-	width: 340px;
+	width: 300px;
 }
 .page-wrapper .page-content{
 	background: #fff;
     width: 600px;
     height: 560px;
     border-radius: 8px;
-    margin: 138px 0;
+    /* margin: 138px 0; */
+    margin-top: 220px;
 }
 .page-wrapper .page-content .page-form{
 	padding: 30px 45px 30px 45px;
