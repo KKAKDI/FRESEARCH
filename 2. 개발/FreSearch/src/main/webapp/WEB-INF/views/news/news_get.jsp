@@ -21,11 +21,21 @@ table {
 
 .button {
 	text-align: center;
-	padding: 40 0;
+	padding: 20 0;
+}
+
+button{
+	height: 30px;
+    border: none;
+    width: 80px;
+    cursor: pointer;
+    background: #1428a0;
+    color: white;
 }
 
 .container_new {
-	padding-top: 125px;
+	padding-top: 150px;
+	min-height: 872px;
 }
 
 td.column {
@@ -33,6 +43,10 @@ td.column {
 	color: #505050;
 	padding: 23;
 	font-weight: bold;
+}
+
+th, td {
+	font-size: 16px;
 }
 
 td.column-data {

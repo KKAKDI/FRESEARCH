@@ -135,7 +135,12 @@ public class NewsController {
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/news/news_list";
+		
+		if (news.getNews_division().equals("공지")) {
+			return "redirect:/news/news_list";
+		} else {
+			return "redirect:/news/news_list_event";
+		}
 	}
 
 	
