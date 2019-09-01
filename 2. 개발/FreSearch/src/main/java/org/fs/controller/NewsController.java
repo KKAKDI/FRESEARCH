@@ -13,6 +13,7 @@ import org.fs.service.NewsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class NewsController {
 	
 	
 	@GetMapping("/news_register") // 등록 페이지 이동
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
@@ -68,6 +70,7 @@ public class NewsController {
 	}
 	
 	@PostMapping("/news_register") // 게시물 등록
+	@PreAuthorize("isAuthenticated()")
 	public String register(NewsVO news, RedirectAttributes rttr) {
 		
 		log.info("=========================");
@@ -105,6 +108,7 @@ public class NewsController {
 	}
 	
 	@GetMapping({"/news_modify"}) // 특정 게시물 가져보기
+	@PreAuthorize("isAuthenticated()")
 	public void modifyGet(@RequestParam("news_code") int news_code, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("/news_modify");
@@ -114,6 +118,7 @@ public class NewsController {
 	
 	
 	@PostMapping("/news_modify") // 게시글 수정(관리자만)
+	@PreAuthorize("isAuthenticated()")
 	public String modify(NewsVO news, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + news);
 
@@ -146,6 +151,7 @@ public class NewsController {
 	
 	
 	@PostMapping("/news_remove") // 게시글 삭제
+	@PreAuthorize("isAuthenticated()")
 	public String remove(@RequestParam("news_code") int news_code, Criteria cri, RedirectAttributes rttr) {
 		log.info("remove..." + news_code);
 		

@@ -7,14 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>설문 목록 : FRESEARCH</title>
-<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/resources/js/research_list.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 	<div class="page-content">
 		<div class="list-content">
@@ -27,8 +24,8 @@
 				</div>
 				<div class="tab-content">
 					<div class="tab-button">
-						<input type='button' class="research" name="research" id="ing" value="진행중설문">
-	                	<input type='button' class="research" name="research" id="end" value="종료된설문">
+						<input type='button' class="research" name="research" id="ing" value="ingResearch">
+	                	<input type='button' class="research" name="research" id="end" value="endResearch">
 					</div>
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
@@ -37,7 +34,7 @@
 				<!-- <div class="wrap-loading display-none">
     				<div><img src="/resources/img/loading.gif"/></div>
 				</div> -->
-				<div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div>
+				<!-- <div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div> -->
 			</div>
 		</div>
 	</div>
@@ -85,6 +82,8 @@
     	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
+    	  $("#ing").val("진행중설문");
+    	  $("#end").val("종료된설문");
     	  
     	  showList(1);
     	  
@@ -205,7 +204,7 @@
 	         			html += '</ul>';
 	         		}
 	                $('#test').html(html);
-	              
+	              	
 	                showResearchPage(researchCnt);
 	          });
     	}
@@ -270,6 +269,24 @@
   			researchPageFooter.css("background", "#222");
   			researchPageFooter.css("font-style", "normal");
   		});*/
+  		
+  		$('.list-head a').click(function(){
+  			<sec:authorize access="isAuthenticated()">
+  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>';
+  			console.log("권한명 : " + auth);
+        	
+  			if(auth != 'ROLE&#95;PANEL'){
+  				//alert("권한이 없습니다.");
+  				swal({
+					title:"권한이 없습니다.",
+					text:"패널 신청 후 참여해주세요.",
+					icon:"success",
+					button:"확인",
+				});
+      			return false;
+  			}
+  			</sec:authorize>
+  		});
   	});
       
       //$(".research").click(function(e) {

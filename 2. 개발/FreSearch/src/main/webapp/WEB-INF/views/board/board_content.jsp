@@ -239,9 +239,14 @@ li.paginate_button {
             </tr> 
 		<tr>		
 		<td>
-		 <div style= "text-align:center; width: 850px;">
-				<button class="content_button" style="" data-oper='modify'>수정</button>
-				<button class="content_button" data-oper='list'>리스트</button>
+			<div style= "text-align:center; width: 850px;">
+			 	<sec:authentication property="principal" var="pinfo"/>
+				<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.username eq board.mb_nick}">
+					<button class="content_button" style="" data-oper='modify'>수정</button>
+				</c:if>
+				</sec:authorize>
+					<button class="content_button" data-oper='list'>리스트</button>
 			</div>	 			
 		</td>
 		</tr>		

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.fs.domain.Criteria;
+import org.fs.domain.MemberVO;
 import org.fs.domain.PageDTO;
 import org.fs.domain.ResearchPageDTO;
 import org.fs.domain.ResearchVO;
@@ -97,11 +98,13 @@ public class ResearchController {
 		return "redirect:/research/research_list";
 	}
 	@GetMapping("research_content")
+	@PreAuthorize("isAuthenticated()")
 	public void content(@RequestParam("subj_code") String subj_code,Model model) {
 		List<ResearchVO> content = service.researchContent(subj_code);
 		model.addAttribute("content",content);
 	}
 	@PostMapping("research_content")
+	@PreAuthorize("isAuthenticated()")
 	public String answer(RedirectAttributes rttr,HttpServletRequest request) {
 		String values = request.getParameter("research_values");	
 		String code = request.getParameter("research_code");

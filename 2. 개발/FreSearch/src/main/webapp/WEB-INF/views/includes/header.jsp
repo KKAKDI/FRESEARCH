@@ -123,11 +123,10 @@
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
-                     <a class="logout_a" href="/" id="logout">
+                     <a class="logout_a" id="logout">
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
                      </a>
-                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   </form>
                   </sec:authorize>
                   <sec:authorize access="isAnonymous()">
@@ -200,7 +199,7 @@
 
 	//최운학
 	$("#logout").on("click", function(e) {
-		location.href = "/";
+		//location.href = "/";
 		e.preventDefault();
 		$("form").submit();
 	});

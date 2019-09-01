@@ -595,13 +595,8 @@ body {
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content {
 	display: none;
 	position: absolute;
-	/* background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
 	z-index: 1;
-	/* margin-left: -126px; */
 	margin-left: -30px;
-	margin-top: -2px;
 	padding: 8px 0;
 	list-style: none;
 	text-align: left;
@@ -611,6 +606,7 @@ body {
 	background-color: #fff;
 	font-size: 14px;
 	min-width: 184px;
+	top: 26px;
 }
 
 
@@ -628,11 +624,13 @@ body {
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
     color: #666;
     /* padding: 22px; */
-    padding-top: 17px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 18px;
     text-decoration: none;
     display: block;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+    margin-top: -8px;
+    width: 184px;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5) {
@@ -640,7 +638,9 @@ body {
     /* padding: 12px 57px; */
     text-decoration: none;
     display: block;
+    cursor: pointer;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
+    width: 184px;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(1) {
@@ -672,14 +672,14 @@ body {
     margin-bottom: -5px;
     font-weight: 600; */
     color: #222;
-    padding: 0px 27% 0px 43px;
+    padding: 0px 46px 0px 43px;
     text-decoration: none;
     display: block;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
     font-size: 14px;
     line-height: 17px;
     margin-bottom: -31px;
-    margin-top: 4px;
+    margin-top: 8px;
     font-weight: 600;
     margin-left: -1px;
     height: 47px;
@@ -696,12 +696,12 @@ body {
 	line-height: 17px;
 	margin-bottom: 0; */
 	color: #222;
-    padding: 0 9%;
+    padding: 0 16px;
     text-decoration: none;
     display: block;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
     font-size: 10px;
-    margin-left: 19%;
+    margin-left: 35px;
     line-height: 17px;
     margin-bottom: 0;
 }
@@ -730,12 +730,11 @@ body {
 	margin-right: -10%;
 	margin-top: -8%;
 	margin-bottom: -15%; */
-	width: 53%;
+	width: 48px;
     transition: all ease 1s;
-    margin-left: -39%;
+    margin-left: -37px;
     margin-right: -9px;
-    margin-top: -11%;
-    margin-bottom: 11%;
+    margin-top: -9px;
     position: relative;
     padding-bottom: 3px;
 }
@@ -752,7 +751,7 @@ body {
 	margin-bottom: -10%;
 	position: relative;
 	vertical-align: unset; */
-	width: 14%;
+	width: 29px;
     transition: all ease 1s;
     margin-left: 15px;
     margin-top: -6px;
@@ -769,7 +768,7 @@ body {
 }*/
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>img {
-	width: 14%;
+	width: 29px;
     transition: all ease 1s;
     margin-left: 15px;
     margin-top: 13px;
@@ -869,7 +868,7 @@ body {
 
 .container .fixed_box .header .upper .login .dropdown .dropdown-content .bar {
 	/* margin: 4px 12px; */
-	margin: 3% 4%;
+	margin: 12px;
 	height: 1px;
 	background-color: #eee;
 }
@@ -880,6 +879,7 @@ body {
 
 .container .fixed_box .header .upper .login .dropdown:hover .dropdown-content {
 	display: block;
+	width: 184px;
 }
 
 /* .container .fixed_box .header .upper .login .dropdown:hover .dropbtn {background-color: #3e8e41;} */
