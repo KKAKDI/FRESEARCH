@@ -146,6 +146,7 @@ textarea{
 					<div>
 					<input type='hidden' name='news_is_attach' value=${news.news_is_attach}>
 					<input type='hidden' name='news_code' value=${news.news_code}>
+					<input type='hidden' name='news_division' value=${news.news_division}>
 					</div>
 
 					

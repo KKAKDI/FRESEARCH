@@ -174,7 +174,7 @@ hr {
 				<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
 					<td class="column-content" colspan="6" style="background-color: #e5e5e5;  text-align: left; padding: 40 40;">안녕하세요. FreSearch 입니다.
 
-해당 페이지는 패널 신청페이지로 아래의 절차를 참고하여 동의 후 진행 부탁드립니다.
+해당 페이지는 패널 신청페이지로 아래의 절차를 참고하여 진행 부탁드립니다.
 
 
 -----------------------------------------------------------------------------------------
@@ -185,13 +185,13 @@ hr {
 
 3. 승인 완료 후 리서치 등록 가능권한이 생성 됩니다.
 
-4. 리서치 등록 후 등록권한이 회수 되오니 참고 부탁드립니다.
+4. 자유롭게 FreSearch에 리서치를 등록 하세요!
 
 -----------------------------------------------------------------------------------------
 
 감사합니다.
 
-- FreSearch -  
+- FreSearch - 
 					</td>
 				</tr>
 				
@@ -202,7 +202,7 @@ hr {
 		
 		<div class="apply-agree">
 				<input type="checkbox" class="apply_agree" id="apply_agree1" value="Y" />
-				<label for="apply_agree1">위의 내용을 확인하고 동의합니다.</label>
+				<label for="apply_agree1">위의 내용을 확인 하였습니다.</label>
 				<div id="apply_agree_check" class="apply_agree_check"></div>
 		</div>
 		

@@ -29,5 +29,6 @@ public class MemberVO {
 	private String mb_home_yn;		 // 자가유무
 	private String mb_car_yn;		 // 자차유무
 	
+	private String auth; //권한
 	private List<AuthVO> authList;
 }
