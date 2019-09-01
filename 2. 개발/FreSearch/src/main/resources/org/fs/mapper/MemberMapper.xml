@@ -240,10 +240,10 @@
 	</select>
 	<select id='myPageInfo' resultType='MemberVO'>
 		select 
-			* 
+			a.*,b.auth
 		from 
-			member
-		where 
-			mb_email=#{mb_email}
+			member a,member_auth b
+        where
+            a.mb_email=#{mb_email}
 	</select>
 </mapper>

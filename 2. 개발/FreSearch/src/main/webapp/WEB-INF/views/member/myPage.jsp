@@ -68,7 +68,7 @@
 		padding:30px;	
 		width:650px;
 		background-color: #fff;
-		min-height: 650px;
+		min-height: 350px;
 		margin:0 auto;
 		margin-top:15px;
 	}
@@ -110,7 +110,7 @@
 	.mycontent .content_box .mem_modi_content .mem_modi_box input[type=button]{
 		display: block;
 	    margin: 0 auto;
-	    margin-top: 10px;
+	    margin-top: 25px;
 	    width: 200px;
 	    background-color: #1428a0;
 	    border: none;
@@ -270,11 +270,17 @@
 			<div id='mem_profile'><img src='/resources/img/member_icon01.png'></div>
 			<div class='profile_name'>${myInfo.mb_nick}</div>
 			<div class='profile_name'>(${myInfo.mb_email})</div>
-			<div class='profile_name' id='grade_box'><label>관리자</label></div>
+			<div class='profile_name' id='grade_box'>
+				<label>
+					<c:if test="${'ROLE_USER' eq myInfo.auth}">일반유저</c:if>
+					<c:if test="${'ROLE_PENEL' eq myInfo.auth}">일반유저</c:if>
+					<c:if test="${'ROLE_ADMIN' eq myInfo.auth}">일반유저</c:if>
+				</label>
+			</div>
 		</div>
 		<div class='info_inner' id='research_list_take'><p>참여한 리서치</p></div>
 		<div class='info_inner' id='research_list_make'><p>작성한 리서치</p></div>
-		<div class='info_inner' id='mem_modi'><p>회원정보 수정</p></div>
+		<div class='info_inner' id='mem_modi'><p>비밀번호 변경</p></div>
 	</div>
 	<div class='content_box'>
 		<div class='take_list_content'>
@@ -318,7 +324,7 @@
 			</div>
 		</div>		
 		<div class='mem_modi_content'>
-			<div class='content_title'>회원 정보 수정</div>
+			<div class='content_title'>비밀번호 변경</div>
 			<div class='mem_modi_box'>	
 			<form name='modi_form' id='modi_form' action='' method='post'>			
 				<label>현재 비밀번호</label>
@@ -327,6 +333,7 @@
 				<input type='password' name='mb_pwd_new' id='mb_pwd' value='' placeholder='새 비밀번호'>
 				<label>새 비밀번호 확인</label>
 				<input type='password' name='mb_pwd_new2' id='mb_pwd2' value='' placeholder='새 비밀번호 확인'>
+				<!--  
 				<label>주소</label>
 				<input type='text' name='mb_addr1' id='mb_addr1' placeholder='우편번호'>
 				<input type='button' id='mb_addr_find' value='우편번호 찾기'>
@@ -345,7 +352,8 @@
 				<label>자차 유무</label>
 				<input type='radio' name='mb_car' value=''>유
 				<input type='radio' name='mb_car' value=''>무
-				<input type='button' name='modi' id='modi' value='수정하기'>
+				-->
+				<input type='button' name='modi' id='modi' value='변경하기'>
 			</form>
 			</div>
 		</div>
