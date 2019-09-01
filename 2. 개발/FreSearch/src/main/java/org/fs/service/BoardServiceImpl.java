@@ -38,7 +38,9 @@ public class BoardServiceImpl implements BoardService{
 			return;
 		}
 		board.getAttachList().forEach(attach -> {
+			
 			attach.setBrd_code(board.getBrd_code());
+			
 			attachMapper.insert(attach);
 		});
 	}

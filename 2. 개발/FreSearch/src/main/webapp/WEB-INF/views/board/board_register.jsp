@@ -38,7 +38,7 @@ form {
 }
 
 textarea{
-	width:848px;
+	width:847px;
 }
 
 
@@ -160,14 +160,14 @@ div.button {
 								<input type="hidden"  name='mb_email' value="aaa@naver.com"/>				
 							</div>
 	
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column" style="width: 15%;">닉네임</td>
-							<td class="column-data"  style="padding:0px;"><input class="nick" name='mb_nick'></td>
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;  ">
+							<td class="column" style="width: 15%; ">닉네임</td>
+							<td class="column-data"  style="padding:0px; "><input style ="outline:none;" class="nick" name='mb_nick'></td>
 						</tr>
 	
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column">제목</td>
-							<td class="column-data" style="padding:0px;"><input class="subject" name='brd_subject'></td>
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue; ">
+							<td class="column" >제목</td>
+							<td class="column-data" style="padding:0px;"><input style ="outline:none;" class="subject" name='brd_subject'></td>
 						</tr>
 
 						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">

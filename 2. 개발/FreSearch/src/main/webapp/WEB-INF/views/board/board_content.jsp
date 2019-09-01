@@ -80,6 +80,7 @@
 
 .container_new {
    padding-top: 125px;
+   min-height : 872px;
 }
 .container_reply{
 	text-align:left;
@@ -144,29 +145,7 @@ td#column-subject {
 	color:white;
 }
 
-ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li.paginate_button next{
-   display:inline-block;
-   padding: 6px 12px;
-}
-#pagingArea.a{
-   text-decoration: none;
-}
-#pagingArea{
-   margin-top: 10px;
-   text-align: center;
-   margin-bottom: 109px;
-}
-li.paginate_button {
-   position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-}
+
 
 
 </style>
@@ -192,7 +171,7 @@ li.paginate_button {
 			</div>
 		</div>
 	</div>
-</div>
+
 	
 	
 	<table style="text-align: center;">
@@ -260,7 +239,7 @@ li.paginate_button {
         <form name="ReplyInsertForm">
             <div class="input-group" style="box-sizing: border-box;">
                <input type="hidden" name="brd_code" value="${board.brd_code}"/>
-               <textarea class="rpl_content" style ="height :50px; width:807px"id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
+               <textarea class="rpl_content" style ="height :50px; width:807px; resize:none; "id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
                 <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert">등록</button>
                <span style="color:#aaa;" id="input-group">(0 / 최대 50자)</span>
 
@@ -286,6 +265,7 @@ li.paginate_button {
 			</div>
         </form>
     </div>
+</div>
 
 	
 
@@ -328,16 +308,6 @@ $('.rpl_content').keyup(function (e){
 		
 		replyService.getList({brd_code:brd_codeValue, page: page || 1}, function(replyCnt, list){
 			
-			console.log("replyCnt : " + replyCnt);
-			console.log("list : " + list);
-			console.log(list);
-			
-			if(page == -1){
-				pageNum = Math.ceil(replyCnt/10.0);
-				showList(pageNum);
-				return;
-				
-			}
 			
 			var str=" ";
 			if(list == null || list.length == 0){
@@ -360,64 +330,6 @@ $('.rpl_content').keyup(function (e){
 		});
 	}
 	
-	 var pageNum = 1;
-	    var replyPageFooter = $(".panel-footer");
-	    
-	    function showReplyPage(replyCnt){
-	      
-	      var endNum = Math.ceil(pageNum / 10.0) * 10;  
-	      var startNum = endNum - 9; 
-	      
-	      var prev = startNum != 1;
-	      var next = false;
-	      
-	      if(endNum * 10 >= replyCnt){
-	        endNum = Math.ceil(replyCnt/10.0);
-	      }
-	      
-	      if(endNum * 10 < replyCnt){
-	        next = true;
-	      }
-	     
-	      var str = "<ul class='pagination'>";
-	      
-	      if(prev){
-	        str+= "<li class='page-item'><a class='paginate_button' href='"+(startNum -1)+"'>Previous</a></li>";
-	      }
-	      
-	      for(var i = startNum ; i <= endNum; i++){
-	        
-	        var active = pageNum == i? "active":"";
-	        
-	        str+= "<li class='page-item "+active+" '><a class='paginate_button' href='"+i+"'>"+i+"</a></li>";
-	      }
-	      
-	      if(next){
-	        str+= "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";
-	      }
-	      
-	      str += "</ul></div>";
-	      
-	      console.log(str);
-	      
-	      replyPageFooter.html(str);
-	    }
-	    
-	    replyPageFooter.on("click","li a", function(e){
-	        e.preventDefault();
-	        console.log("page click");
-	        
-	        var targetPageNum = $(this).attr("href");
-	        
-	        console.log("targetPageNum: " + targetPageNum);
-	        
-	        pageNum = targetPageNum;
-	        
-	        showList(pageNum);
-	      });     
-	
-	
-	
 	
 		
 	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
@@ -433,7 +345,7 @@ $('.rpl_content').keyup(function (e){
 	        
 	    replyService.add(reply, function(result){
 	    	$("#rpl_content").val('');
-	   		showList(-1);
+	   		showList(1);
 	    
 	    }); //Insert 함수호출(아래)
 		
