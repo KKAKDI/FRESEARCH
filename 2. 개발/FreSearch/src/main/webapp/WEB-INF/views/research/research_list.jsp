@@ -7,14 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>설문 목록 : FRESEARCH</title>
-<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/resources/js/research_list.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 </head>
 	<div class="page-content">
 		<div class="list-content">
@@ -27,8 +23,8 @@
 				</div>
 				<div class="tab-content">
 					<div class="tab-button">
-						<input type='button' class="research" name="research" id="ing" value="진행중설문">
-	                	<input type='button' class="research" name="research" id="end" value="종료된설문">
+						<input type='button' class="research" name="research" id="ing" value="ingResearch">
+	                	<input type='button' class="research" name="research" id="end" value="endResearch">
 					</div>
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
