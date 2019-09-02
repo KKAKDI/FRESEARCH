@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@include file="../includes/header.jsp" %>
 <link rel="stylesheet" href="../resources/css/reset.css">
@@ -40,6 +41,7 @@
 	.mycontent .info_area .info_inner .profile_name{
 		margin:0 auto;
 		text-align:center;		
+		font-size: 14px;
 	}
 	.mycontent .info_area .info_inner .profile_name .mem_grade{
 		width: 75px;
@@ -268,13 +270,15 @@
 	<div class='info_area'>
 		<div class='info_inner' id='mem_info'>
 			<div id='mem_profile'><img src='/resources/img/member_icon01.png'></div>
-			<div class='profile_name'>${myInfo.mb_nick}</div>
-			<div class='profile_name'>(${myInfo.mb_email})</div>
+			<sec:authorize access="isAuthenticated()">
+			<div class='profile_name'> <sec:authentication property="principal.member.mb_nick"/></div>
+			<div class='profile_name'>(<sec:authentication property="principal.member.mb_email"/>)</div>
+			</sec:authorize>
 			<div class='profile_name' id='grade_box'>
 				<label>
 					<c:if test="${'ROLE_USER' eq myInfo.auth}">일반유저</c:if>
-					<c:if test="${'ROLE_PENEL' eq myInfo.auth}">일반유저</c:if>
-					<c:if test="${'ROLE_ADMIN' eq myInfo.auth}">일반유저</c:if>
+					<c:if test="${'ROLE_PANEL' eq myInfo.auth}">패널유저</c:if>
+					<c:if test="${'ROLE_ADMIN' eq myInfo.auth}">관리자</c:if>
 				</label>
 			</div>
 		</div>
