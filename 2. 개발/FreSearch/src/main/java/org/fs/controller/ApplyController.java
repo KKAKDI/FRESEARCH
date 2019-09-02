@@ -2,8 +2,6 @@ package org.fs.controller;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpSession;
-
 import org.fs.domain.ApplyVO;
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
@@ -29,8 +27,8 @@ public class ApplyController {
 
 	
 	@GetMapping("/apply")
-	public void applyMove() {
-		
+	public void applyMove(Principal principal) {
+
 	}
 	
 	/*

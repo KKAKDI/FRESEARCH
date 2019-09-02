@@ -209,6 +209,15 @@
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
  
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		
+	});
+	 
+ 
 
 	//최운학
 	$("#logout").on("click", function(e) {
@@ -308,8 +317,8 @@
             } 
             
             //웹소켓 객체 만드는 코드
-            ws = new WebSocket('ws://localhost:8080/echo');
-            //ws = new WebSocket('ws://www.fresearch.cf/echo');
+            //ws = new WebSocket('ws://localhost:8080/echo');
+            ws = new WebSocket('ws://www.fresearch.cf/echo');
             ws.onopen=function(event){
             	
                 if(event.data===undefined) return;

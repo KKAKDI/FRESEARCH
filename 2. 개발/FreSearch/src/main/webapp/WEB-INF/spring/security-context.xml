@@ -32,6 +32,10 @@
 		<security:intercept-url pattern="/research/research_register" access="hasRole('ROLE_PANEL')"/>
 		<security:intercept-url pattern="/research/research_content" access="hasAnyRole('ROLE_USER','ROLE_PANEL')"/>
 		
+		<security:intercept-url pattern="/news/news_register" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/news/news_modify" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/apply/approval_list" access="hasAnyRole('ROLE_ADMIN')"/>
+		
 		<!-- <security:intercept-url pattern="/member/signup" access="hasRole('ROLE_ADMIN')"/> -->
 
 		<!-- <security:access-denied-handler error-page="/accessError"/> -->
@@ -50,7 +54,7 @@
 		
 		
 		<!-- csrf 작동 중지!!! -->
-		<security:csrf disabled="true"/>
+		<security:csrf disabled="false"/>
 		
 		
 		
