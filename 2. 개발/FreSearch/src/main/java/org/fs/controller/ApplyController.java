@@ -1,5 +1,7 @@
 package org.fs.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.fs.domain.ApplyVO;
@@ -55,15 +57,15 @@ public class ApplyController {
 	*/
 	
 	@PostMapping("/apply")
-	public @ResponseBody String apply(ApplyVO apply, HttpSession session) { // ,HttpSession session 추가 
+	public @ResponseBody String apply(ApplyVO apply, Principal principal) { // ,HttpSession session 추가 
 		//boolean registedChk = false;
-		//String mb_email = (String) session.getAttribute("mb_email");
+		String mb_email = principal.getName();
 		
-		if(service.atrtChk("ccc@google.com") != null) {
+		if(service.atrtChk(mb_email) != null) {
 			return "already panel";
 		} else {
-			if(service.applyChk("ccc@google.com") == null) {
-				apply.setMb_email("ccc@google.com");
+			if(service.applyChk(mb_email) == null) {
+				apply.setMb_email(mb_email);
 				service.regist(apply);
 				return "ok";
 			}else {
