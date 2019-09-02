@@ -151,13 +151,15 @@ div.tab-event a {
     width: 100%;
     height: 2px;
     content: "";
-    position: absolute;
+    <%-- position: absolute; --%>
     top: 100%;
     left: 0px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .news-head span {
-    margin-top: -65px;
+    margin-top: -73px;
     height: 65px;
     text-align: right;
     padding-top: 14px;
