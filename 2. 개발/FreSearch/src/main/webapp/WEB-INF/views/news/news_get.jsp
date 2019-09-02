@@ -260,7 +260,12 @@ hr {
 			</table>
 --%>
 			<div class="button">
-				<button data-oper='modify' class="btn btn-default">수정</button>
+			<sec:authentication property="principal" var="pinfo"/>
+			<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+					<button data-oper='modify' class="btn btn-default">수정</button>
+				</c:if>
+			</sec:authorize>
 				<button data-oper='list' class="btn btn-info">목록</button>
 			</div>
 

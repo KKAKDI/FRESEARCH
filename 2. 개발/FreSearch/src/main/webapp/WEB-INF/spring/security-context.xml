@@ -8,7 +8,10 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="customAccessDenied" class="org.fs.security.CustomAccessDeniedHandler"></bean>
-	<!-- <bean id="customLoginSuccess" class="org.fs.security.CustomLoginSuccessHandler"></bean> -->
+	<bean id="customLoginSuccess" class="org.fs.security.CustomLoginSuccessHandler">
+		<property name="loginidname" value="loginId"/>
+		<property name="defaultUrl" value="/"/>
+	</bean>
 	<bean id="customPasswordEncoder" class="org.fs.security.CustomNoOpPasswordEncoder"></bean>
 	<bean id="logoutSuccessHandler" class="org.fs.security.CustomLogoutSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
@@ -16,11 +19,18 @@
 	<bean id="customAuthenticationFailHandler" class="org.fs.security.CustomAuthenticationFailHandler"/>
 	
 	<security:http>
-		 
-		<!-- <security:intercept-url pattern="/member/signup" access="permitAll"/> -->
+	
+		<security:intercept-url pattern="/" access="permitAll"/>
+		<security:intercept-url pattern="/member/signin" access="permitAll"/>
+		<security:intercept-url pattern="/member/signup" access="permitAll"/>
+		<security:intercept-url pattern="/research/research_list" access="permitAll"/>
+		<security:intercept-url pattern="/news/news_list" access="permitAll"/>
+		<security:intercept-url pattern="/news/news_list_event" access="permitAll"/>
+		<security:intercept-url pattern="/board/board_list" access="permitAll"/>
 		
-		<security:intercept-url pattern="/research/research_register" access="hasRole('ROLE_USER')"/>
-		<security:intercept-url pattern="/research/research_content" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/board/board_register" access="hasAnyRole('ROLE_USER','ROLE_PANEL', 'ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/research/research_register" access="hasRole('ROLE_PANEL')"/>
+		<security:intercept-url pattern="/research/research_content" access="hasAnyRole('ROLE_USER','ROLE_PANEL')"/>
 		
 		<!-- <security:intercept-url pattern="/member/signup" access="hasRole('ROLE_ADMIN')"/> -->
 
@@ -32,7 +42,8 @@
 		<security:form-login login-page="/member/signin" 
 		username-parameter="mb_email"
 		password-parameter="mb_pwd"
-		authentication-failure-url="/member/signin?fail=true"/>
+		authentication-failure-url="/member/signin?fail=true"
+		login-processing-url="/login"/>
 		<!-- <security:logout logout-url="/customLogout" invalidate-session="true"/> -->
 		
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>

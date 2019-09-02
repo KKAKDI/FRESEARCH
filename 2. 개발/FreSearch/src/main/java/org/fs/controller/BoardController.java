@@ -24,6 +24,7 @@ import org.fs.service.BoardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,11 +61,13 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board_register")
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
 	
 	@PostMapping("/board_register")				//게시글 등록
+	@PreAuthorize("isAuthenticated()")
 	public String register(BoardVO board, RedirectAttributes ra) {
 		
 		log.info("=========================");
@@ -110,6 +113,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board_modify")				//게시글 수정
+	@PreAuthorize("isAuthenticated()")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		log.info("modify :" + board);
 		
@@ -129,6 +133,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/board_delete")				//게시글 삭제
+	@PreAuthorize("isAuthenticated()")
 	public String delete(@RequestParam("brd_code") int brd_code ,@ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		
 		log.info("remove : " + brd_code);

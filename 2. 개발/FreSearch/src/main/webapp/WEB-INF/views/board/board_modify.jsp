@@ -146,7 +146,7 @@ div.button {
                      <td class="column" style="width: 15%;" >No</td>
                       <td class="column-data" colspan="2" style="padding: 0px;"><input id="brd_code" class="form-control"
                       name='brd_code' value=${board.brd_code} 
-                      readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center;">
+                      readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center; outline:none;">
                       </td>
                       
                       
@@ -158,7 +158,7 @@ div.button {
                   <td class="column" style="width: 15%;">제목</td>
                   <td class="column-data" colspan="5" style="padding: 0px;">
                   <input id="brd_subject" class="form-control"
-                     name='brd_subject' style="width: 100%; height:52px; border:none; padding:0px;" value=${board.brd_subject}></td>
+                     name='brd_subject' style="width: 100%; height:52px; border:none; padding:0px; outline:none;" value=${board.brd_subject}></td>
                </tr>
                
                <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">

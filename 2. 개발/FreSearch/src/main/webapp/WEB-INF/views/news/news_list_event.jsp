@@ -44,7 +44,8 @@ input.search {
 }
 
 .search_form {
-	padding-top: 30px;
+	padding-top: 15px;
+    padding-bottom: 25px;
 }
 
 th, td {
@@ -117,19 +118,19 @@ td.subject {
 }
 
 .tab-news {
-	font-weight: bold;
-}
-
-.tab-event {
 	background: rgb(249, 249, 249);
 }
 
+.tab-event {
+	font-weight: bold;
+}
+
 div.tab-news a {
-	color: rgb(34, 34, 34);
+	color: #888;
 }
 
 div.tab-event a {
-	color: #888;
+	color: rgb(34, 34, 34);
 }
 
 .tab-event {
@@ -172,10 +173,6 @@ div.tab-event a {
 
 #search_image {
 	cursor: pointer;
-}
-
-a {
-	display: block;
 }
 
 #pagingArea ul{
@@ -235,6 +232,10 @@ a {
 	cursor: auto;
 }
 
+.button-move {
+	display: block;
+}
+
 </style>
 <div class="container_new">
 
@@ -244,17 +245,22 @@ a {
 			
 				<div class="news-head">
 				<h2>새소식</h2>
-				<span>
-					<a href="/news/news_register">등록</a>
-				</span>
+				<sec:authentication property="principal" var="pinfo"/>
+				<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+					<span>
+						<a class="button-move" href="/news/news_register">등록</a>
+					</span>
+				</c:if>
+				</sec:authorize>
 				</div>
 				
 					<div class="tab" style="text-align: center">
 						<div class="tab-news">
-							<a href="/news/news_list">공지사항</a>
+							<a class="button-move" href="/news/news_list">공지사항</a>
 						</div>
 						<div class="tab-event">
-		                	<a href="/news/news_list_event">이벤트</a>
+		                	<a class="button-move" href="/news/news_list_event">이벤트</a>
 						</div>
 					</div>
 					<%-- <hr/>
@@ -346,7 +352,7 @@ a {
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a href="${path}/news/news_list_event?pageNum=1">첫페이지</a></li>
 					<li class="paginate_button_move"><a
-						href="${pageMaker.startPage-1}">Previous</a></li>
+						href="${pageMaker.startPage-1}">이전</a></li>
 				</c:if>
 		
 				<c:forEach var="num" begin="${pageMaker.startPage}"
@@ -358,7 +364,7 @@ a {
 		
 				<c:if test="${pageMaker.next}">
 					<li class="paginate_button_move"><a
-						href="${pageMaker.endPage +1}">Next</a></li>
+						href="${pageMaker.endPage +1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

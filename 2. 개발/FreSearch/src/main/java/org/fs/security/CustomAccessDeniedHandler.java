@@ -1,6 +1,7 @@
 package org.fs.security;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +19,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessException) 
 			throws IOException, ServletException {
 		
-		log.error("Access Denied Handler");
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=utf-8");
+		out.println("<script language='javascript'>");
+		out.println("alert('권한이 없습니다.')");
+		out.println("location.href='/research/research_list'");
+		out.println("</script>");
+		out.flush();
 		
-		log.error("Redirect....");
-		
-		response.sendRedirect("/accessError");
+		/* response.sendRedirect("/accessError"); */
 	}
 }

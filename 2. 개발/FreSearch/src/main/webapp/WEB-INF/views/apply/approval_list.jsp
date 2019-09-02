@@ -139,38 +139,29 @@ div.tab-event a {
 }
 
 .news-head h2 {
-	position: relative;
-	font-size: 30px;
-	padding: 3px 0 7px;
-	/*margin-bottom: 40px;*/
-	margin-left: 0px;
-	display:flex;
+	text-align: left;
+    font-size: 30px;
+    padding: 3px 0 7px;
+    margin: auto;
+    width: 850px;
 }
 
 .news-head h2::after {
 	background: #1428a0;
-	width: 99.9%;
-	height: 2px;
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 0px;
+    width: 100%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0px;
 }
 
 .news-head span {
-	position: absolute;
-	margin-left: 699px;
-	margin-top: -46px;
-	background: #1428a0;
-	width: 150px;
-	height: 45px;
-	text-align: center;
-	padding-top: 10px;
-	cursor: pointer;
-}
-
-.news-head span a {
-	color: #fff;
+    margin-top: -65px;
+    height: 65px;
+    text-align: right;
+    padding-top: 14px;
+    display: block;
 }
 
 #search_image {
@@ -183,9 +174,9 @@ a {
 
 .apply_fin {
 	padding-bottom: 2px;
-    height: 21px;
+    height: 22px;
     border: none;
-    width: 40px;
+    width: 80px;
     cursor: pointer;
     background: #1428a0;
     color: white;
@@ -257,11 +248,11 @@ a {
 			
 				<div class="news-head">
 				
-				<h2>패널신청 목록
+				<h2>패널신청 목록</h2>
 				
 <%-- 검색 --%>
 
-				<div class='search_form'>
+				<span class='search_form'>
 					<div class='search'>
 						<form id='searchForm' action="/apply/approval_list" method='get'>
 							<select name='type' style="width: 49px; height: 22px;">
@@ -276,13 +267,9 @@ a {
 							<button style="border: 1px solid #ddd;"><img id='search_image' src="/resources/img/search.png" width=20px; height=20px;></button>
 						</form>
 					</div>
-				</div>
+				</span>
 
 <%-- 검색 끝 --%>
-				
-				</h2>
-				
-
 				
 				</div>
 				<%--
@@ -334,8 +321,18 @@ a {
 							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${apply.apply_approvaldate}" /></td>
 							<td style="padding: 20;">
-							<input type="button" class="apply_fin" value="승인">
+							<!-- <input type="button" class="apply_fin" value="승인"> -->
+							<c:choose>
+							<c:when test="${apply.apply_approvaldate != null}">
+									승인완료
+							</c:when>
+								<c:otherwise>
+	         						<input type="button" class="apply_fin" value="승인">
+	         					</c:otherwise>
+							</c:choose>
 							</td>
+							
+							
 							
 						</tr>		
 					</c:forEach>	
@@ -359,6 +356,8 @@ a {
 				</table>
 			</div>
 		</div>
+		
+		
 	</div>
 		<%-- 페이징 --%>
 		<div id="pagingArea">
@@ -367,7 +366,7 @@ a {
 				<c:if test="${pageMaker.prev}">
 					<li class="page-item"><a href="${path}/apply/approval_list?pageNum=1">첫페이지</a></li>
 					<li class="paginate_button_move"><a
-						href="${pageMaker.startPage-1}">Previous</a></li>
+						href="${pageMaker.startPage-1}">이전</a></li>
 				</c:if>
 		
 				<c:forEach var="num" begin="${pageMaker.startPage}"
@@ -379,7 +378,7 @@ a {
 		
 				<c:if test="${pageMaker.next}">
 					<li class="paginate_button_move"><a
-						href="${pageMaker.endPage +1}">Next</a></li>
+						href="${pageMaker.endPage +1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

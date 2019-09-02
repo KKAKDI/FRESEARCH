@@ -152,7 +152,7 @@ $(document).ready(function(){
 						check = true;
 						signupCheck();
 					}else if(!regNick.test(mb_nick) && mb_nick != ""){
-						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
+						$("#nick_check").text("2~6자 한글, 영문, 숫자를 입력해주세요.");
 						$("#nick_check").css("color", "#d0021b");
 						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;
@@ -164,7 +164,7 @@ $(document).ready(function(){
 						check = false;
 						signupCheck();
 					}else{
-						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
+						$("#nick_check").text("2~6자 한글, 영문, 숫자를 입력해주세요.");
 						$("#nick_check").css("color", "#d0021b");
 						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;

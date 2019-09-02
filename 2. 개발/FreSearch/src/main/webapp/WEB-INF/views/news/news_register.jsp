@@ -70,6 +70,14 @@ hr {
     margin: 4px 5px;
 }
 
+input, textarea{
+	outline: none;
+}
+
+textarea{
+	resize: none;
+}
+
 input[type="radio"] { 
    display: none;  
 }
