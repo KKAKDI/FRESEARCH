@@ -82,9 +82,12 @@ hr {
     width: 100%%;
     height: 2px;
     content: "";
-    position: absolute;
+    <%-- position: absolute; --%>
     top: 100%;
     left: 0px;
+    display: flex;
+    margin-bottom: -8px;
+    margin-top: 5px;
 }
 
 .button{
