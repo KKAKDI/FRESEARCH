@@ -6,6 +6,8 @@ import org.fs.domain.ApplyVO;
 import org.fs.domain.Criteria;
 import org.fs.domain.PageDTO;
 import org.fs.service.ApplyService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,15 +29,15 @@ public class ApplyController {
 
 	
 	@GetMapping("/apply")
-	public void applyMove(Principal principal) {
-
-	}
+	   public void applyMove() {
+	      
+	   }
 	
 	/*
 	@GetMapping("/approval")
 	public void approvalMove() {
 		
-	}
+	} 
 	*/
 	
 	/*

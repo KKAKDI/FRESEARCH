@@ -24,6 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -105,6 +106,8 @@ public class UploadController {
 		log.info("update ajax post........");
 				
 		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+				//"/home/ubuntu/upload";
+				//request.getSession().getServletContext().getRealPath("/resources/upload");
 		log.info(projectPath);	
 		
 		String uploadFolder = projectPath;

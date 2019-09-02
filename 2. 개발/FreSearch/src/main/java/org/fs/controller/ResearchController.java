@@ -75,6 +75,7 @@ public class ResearchController {
 		}else {
 			research ="종료된설문";
 		}
+		log.info("###research : "+research);
 		return new ResponseEntity<>(service.list(cri, research), HttpStatus.OK);
 	}
 	/*
