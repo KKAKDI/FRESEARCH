@@ -85,6 +85,11 @@
 			e.preventDefault();
 			$("form").submit();
 		});
+		$("#mypage").on("click",function(e){
+			location.href="/";
+			e.preventDefault();
+			$(".mypage_form").submit();
+		});
 	});
 </script>
 <style>
@@ -151,7 +156,11 @@
                  <button class="dropbtn"><img src="/resources/img/bicon14.png"/></button>
                  <div class="dropdown-content">
                    <!-- <a href="#">회원명</a> -->
+
                    <sec:authorize access="isAuthenticated()">
+                   <form class="mypage_form" action="/member/myPage" method="post">
+                       <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                      	
+                   </form>
                    <form class="dropdown-form" role="form" action="/logout" method='post'>
                    
                       <p>
@@ -162,7 +171,7 @@
                       </p>
                    
                       <div class="bar"></div>
-                     <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
+                     <a href="/" id="mypage">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
