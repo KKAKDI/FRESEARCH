@@ -38,45 +38,17 @@
 			</div>
 		</div>
 	</div>
+	
+	<sec:authorize access="isAuthenticated()">	
+		<input type="hidden" id="auth" value='<sec:authentication property="principal.member.authList[0].auth"/>'>
+	</sec:authorize>
+	
 	<!-- <div>사용자가 커서로 항목을 가리키면 <p class="tt">말풍선 <span class="tt-text">또는 툴팁(tooltip)</span></p>이 나타납니다. </div> -->
 
 <script type="text/javascript">
 
-/* function loadingStart() {
-
-	 var maskHeight = $(document).height();  
-	 var maskWidth = $(document).width();
-	 var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
-	 var loadingImg = '';
-
-	 loadingImg += "<div id='loadingImg' style='position:absolute; left:50%; top:40%; display:none; z-index:10000;'>";
-	 loadingImg += " <img src='/resources/img/loading.gif'/>"; 
-	 loadingImg += "</div>";   
-
-	 //화면에 레이어 추가 
-	 $('body').append(mask).append(loadingImg);
-	    
-	 //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-	 $('#mask').css({
-	   'width' : maskWidth,
-	   'height': maskHeight,
-	   'opacity' : '0.3'
-	 });  
-
-	 //마스크 표시
-	 $('#mask').show();    
-
-	 //로딩중 이미지 표시
-	 $('#loadingImg').show();
-	}
-
-	function loadingClose() {
-	 $('#mask, #loadingImg').hide();
-	 $('#mask, #loadingImg').remove();  
-	} */
-
       $(document).ready(function(){
-    	  //loadingStart();	
+    	  
     	  $("#ing").css("color", "#222");
     	  $("#end").css("background", "#f9f9f9");
     	  $("#ing").css("font-weight", "700");
@@ -273,12 +245,12 @@
   		});*/
   		
   		$('.list-head a').click(function(){
-  			<sec:authorize access="isAuthenticated()">
-  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>';
-  			console.log("권한명 : " + auth);
-        	
-  			if(auth != 'ROLE&#95;PANEL'){
-  				//alert("권한이 없습니다.");
+  			/* <sec:authorize access="isAuthenticated()">
+  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>'; */
+  			
+  			var auth = $("#auth").val();
+  			
+  			if(auth == 'ROLE_USER'){
   				swal({
 					title:"권한이 없습니다.",
 					text:"패널 신청 후 참여해주세요.",
@@ -287,7 +259,7 @@
 				});
       			return false;
   			}
-  			</sec:authorize>
+  			/* </sec:authorize> */
   		});
   	});
       

@@ -24,7 +24,8 @@ table {
 	padding: 20 0;
 }
 
-button{
+.button #modify,
+.button #list {
 	height: 30px;
     border: none;
     width: 80px;
@@ -263,10 +264,10 @@ hr {
 			<sec:authentication property="principal" var="pinfo"/>
 			<sec:authorize access="isAuthenticated()">
 				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
-					<button data-oper='modify' class="btn btn-default">수정</button>
+					<button data-oper='modify' class="btn btn-default" id="modify">수정</button>
 				</c:if>
 			</sec:authorize>
-				<button data-oper='list' class="btn btn-info">목록</button>
+				<button data-oper='list' class="btn btn-info" id="list">목록</button>
 			</div>
 
 			</div>

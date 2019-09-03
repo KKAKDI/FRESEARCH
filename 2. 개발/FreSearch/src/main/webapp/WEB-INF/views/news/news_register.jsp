@@ -50,7 +50,9 @@ div.button {
 	width: 850px;
 }
 
-button{
+
+.button #add,
+.button #list {
 	height: 30px;
     border: none;
     width: 80px;
@@ -153,7 +155,7 @@ input[type="radio"]:checked + label:after {
 				-->
 				<table style="text-align: center;">
 					<form name="f" role="form" action="/news/news_register" method="post">
-						
+						<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
 						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
 							<td class="column" style="width: 15%;">구분</td>
 							<td class="column-data" colspan="2">
@@ -196,10 +198,10 @@ input[type="radio"]:checked + label:after {
 	</div>
 	
 	<div class="button">
-	<button type="button" onclick="check()">등록</button>
+	<button type="button" onclick="check()" id="add">등록</button>
 	<%-- <input type="button" value="등록" onclick="check()"/> --%>
 	<%-- <button type="reset">다시쓰기</button> --%>
-	<button type="button" onclick="location.href='news_list'">목록</button>
+	<button type="button" onclick="location.href='news_list'" id="list">목록</button>
 	</div>
 	
 </div>

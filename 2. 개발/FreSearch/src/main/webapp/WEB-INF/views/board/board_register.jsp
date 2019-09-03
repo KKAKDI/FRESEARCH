@@ -159,14 +159,18 @@ div.button {
 						<form role="form" id="frm" action="/board/board_register" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="form-group">
+							<sec:authorize access="isAuthenticated()">
 								<input type="hidden"  name='mb_email' value='<sec:authentication property="principal.member.mb_email"/>'>
+							</sec:authorize>
 							</div>
 						
 						
 						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;  ">
 							<td class="column" style="width: 15%; ">닉네임</td>
 							<td class="column-data"  style="padding:0px; ">
+							<sec:authorize access="isAuthenticated()">	
 								<input style ="outline:none;" class="nick" name='mb_nick' value='<sec:authentication property="principal.member.mb_nick"/>' readonly="readonly">
+							</sec:authorize>
 							</td>
 						</tr>
 	
