@@ -212,17 +212,6 @@
 	
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
-<<<<<<< HEAD
- 
-	var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-
-	$(document).ajaxSend(function(e, xhr, options){
-		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	});
-	 
- 
-=======
 
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
@@ -230,7 +219,6 @@
 	$(document).ajaxSend(function(e, xhr, options){
 		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 	});
->>>>>>> master
 
 	//최운학
 	$("#logout").on("click", function(e) {
