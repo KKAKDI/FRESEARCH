@@ -105,7 +105,7 @@ public class UploadController {
 		String fileinfo ="file";
 		log.info("update ajax post........");
 				
-		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
+		String projectPath = "/home/ubuntu/upload/";
 				//"/home/ubuntu/upload";
 				//request.getSession().getServletContext().getRealPath("/resources/upload");
 		log.info(projectPath);	
