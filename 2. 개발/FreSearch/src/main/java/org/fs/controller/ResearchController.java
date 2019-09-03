@@ -73,7 +73,7 @@ public class ResearchController {
 		log.info("###1research : "+research );
 		if(research.equals("ingResearch")) {
 			research ="진행중설문";
-		}else {
+		}else if(research.equals("endResearch")){
 			research ="종료된설문";
 		}
 		log.info("###2research : "+research);
