@@ -245,6 +245,8 @@
 			member a,member_auth b
         where
             a.mb_email=#{mb_email}
+        and 
+        	a.mb_email=b.mb_email
         group by a.mb_email,a.mb_att_ctgr_code,a.mb_nick,a.mb_pwd,a.mb_addr,a.mb_birthdate,a.mb_sex,a.mb_phone,a.mb_email_key,a.mb_joindate,b.auth
 	</select>
 </mapper>

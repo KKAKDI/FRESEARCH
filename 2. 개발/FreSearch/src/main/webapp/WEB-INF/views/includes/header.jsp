@@ -355,11 +355,15 @@
         function writeResponse(text){
         	
         	if($(".bar").prev().html() === undefined){
+        		console.log("###########1");
         		var mb_email = '';
         	}else{
+        		console.log("###########2");
         		var mb_email = $(".bar").prev().html().trim();
         	}
         	var subj_code = '';
+        	
+        	console.log("mb_email : "+mb_email);
         	
         	//subj_code 가져오는 ajax
         	$(document).ready(function(){
@@ -370,7 +374,7 @@
                   var data ={
                 		  subj_code : subj_code,
                 		  mb_email : mb_email
-                  }
+                  } 
                   
                  	tableService.headerUpdate(data, function(list){
                 	  location.href="/research/research_content?subj_code="+subj_code;
@@ -383,14 +387,17 @@
         	//ajax 알림 리스트 and 알림 종 갯수  시작
         	
         	if(!($(".bar").prev().html() === undefined)){
+        		console.log("여기 안에 들어왔다");
 	         	var data ={
 	        		mb_email : mb_email
 	        	}
 	        	
 	        	tableService.header(data,function(list){
+	        		console.log("아 뭐지 여기는 왜 안들어오지 ajax");
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
+	        			console.log("여기 안에 들어왔다11");
 	        			$('#alarm_content').attr('style','overflow:auto;  overflow-x: hidden; width:430px; max-height:400px;margin-top: 0px; ');
 	        			$('#alarm_content').attr('class','dropdown-content');
 	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
@@ -408,7 +415,8 @@
 	        			}
 	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
 	        			$('#alarm_content').html(html);
-	        		}else{ 
+	        		}else{
+	        			console.log("여기 안에 들어왔다22");
 	        		} 
 	        	});
         	}

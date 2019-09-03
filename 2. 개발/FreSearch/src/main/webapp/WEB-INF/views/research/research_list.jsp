@@ -82,10 +82,14 @@
     	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
-    	  
     	  showList(1);
     	  
     	  function showList(page){
+				if(research =="진행중설문"){
+					research = 'ingResearch';    		 
+				}else{
+					research = 'endResearch';
+				}
     	  
     		  researchService.list({data:research, page: page|| 1}, function(researchCnt, list){
     			  	console.log("research : " + research);
@@ -291,9 +295,19 @@
     $(".tab-content").off('click','.research').on('click','.research',function(e){ 
   			
     	  var research = $(this).val();
+    	  
     	  showList(1);
     	  
+    	  
     	  function showList(page){
+    		  if(research =="진행중설문"){
+    			  console.log ("진행중 설문 안에 들어왔다.");
+					research = 'ingResearch';
+					
+				}else{
+					console.log ("완료 설문 안에 들어왔다.");
+					research = 'endResearch';
+				}
     	  
     		  researchService.list({data:research, page: page|| 1}, function(researchCnt, list){
     			  	console.log("research : " + research);

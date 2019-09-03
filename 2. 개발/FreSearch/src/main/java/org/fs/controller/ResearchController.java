@@ -70,11 +70,13 @@ public class ResearchController {
 		log.info("list.........");
 		Criteria cri = new Criteria(page, 6);
 		log.info(cri);
-		if(research =="ingResearch") {
+		log.info("###1research : "+research );
+		if(research.equals("ingResearch")) {
 			research ="진행중설문";
 		}else {
 			research ="종료된설문";
 		}
+		log.info("###2research : "+research);
 		return new ResponseEntity<>(service.list(cri, research), HttpStatus.OK);
 	}
 	/*

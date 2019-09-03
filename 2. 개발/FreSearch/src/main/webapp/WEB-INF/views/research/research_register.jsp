@@ -17,9 +17,21 @@
 <script src="/resources/js/research_register.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<script>
+$(function(){
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+	   $(document).ajaxSend(function(e, xhr, options){
+	      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	   });
+});
+</script>
 <body>
+ <sec:authorize access="isAuthenticated()">
+ 	<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                
+ </sec:authorize>
 	<div class='container'>
-		<div class='research_header'>
+		<div class='research_header'> 
 			<div id='top_box'>
 				<div id='left_top_box'>
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value='' maxlength="23">

@@ -33,12 +33,6 @@ $(function() {
 				});			
 				return false;
 		};
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		   
-		   $(document).ajaxSend(function(e, xhr, options){
-		      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		   });
 		   
 		$(document).on("click","#qst_btn",
 						function() {
@@ -345,7 +339,7 @@ $(function() {
 	    
 	    function fileUpload(formData,callback){
 	    	 $.ajax({
-      			 url: '../uploadAjaxAction',
+      			 url: '/uploadAjaxAction',
       			 processData: false,
       			 contentType: false,
       			 data: formData,
