@@ -45,9 +45,12 @@ var replyService = (function(){
 	
 	
 	function remove(rpl_code, callback, error){				//댓글 삭제하는 AJAX
+		console.log("여긴 찍히네...");
 		$.ajax({	
 			type : 'delete',
 			url : '/replies/' + rpl_code,
+			data : JSON.stringify(rpl_code),
+			contentType : "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr){
 				let items = $('.chat').children('li');
 				console.log(items);

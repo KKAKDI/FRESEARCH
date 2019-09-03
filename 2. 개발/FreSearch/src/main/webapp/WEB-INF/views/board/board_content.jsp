@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <%@include file="../includes/header.jsp" %>
 
@@ -221,7 +223,7 @@ td#column-subject {
 			<div style= "text-align:center; width: 850px;">
 			 	<sec:authentication property="principal" var="pinfo"/>
 				<sec:authorize access="isAuthenticated()">
-				<c:if test="${pinfo.username eq board.mb_nick}">
+				<c:if test="${pinfo.username eq board.mb_email}">
 					<button class="content_button" style="" data-oper='modify'>수정</button>
 				</c:if>
 				</sec:authorize>
@@ -240,7 +242,7 @@ td#column-subject {
             <div class="input-group" style="box-sizing: border-box;">
                <input type="hidden" name="brd_code" value="${board.brd_code}"/>
                <textarea class="rpl_content" style ="height :50px; width:807px; resize:none; "id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
-                <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert">등록</button>
+                <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert" id="replyInsert">등록</button>
                <span style="color:#aaa;" id="input-group">(0 / 최대 50자)</span>
 
 
@@ -293,9 +295,6 @@ $('.rpl_content').keyup(function (e){
 	
 	<script>
 	
-	
-	
-
 	$(document).ready(function(){
 			
 	var brd_codeValue= value = "${board.brd_code}";
@@ -320,13 +319,24 @@ $('.rpl_content').keyup(function (e){
 				 console.log("코드 : " + list[i].rpl_code);
 				 str += " <div><div style='display:inline;'><strong>"+list[i].mb_nick+"</strong>";
 				 str += " <small>"+replyService.displayTime(list[i].rpl_regdate)+"</small></div>";
+				
 				 //str += '<a class="update-btn" onclick="replyService.modify('+list[i].rpl_code+',\''+list[i].rpl_content+'\');" style=\"color : blue; cursor: pointer;\"> 수정 </a>';
-				 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+'); " style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
+				 <sec:authorize access="isAuthenticated()">
+				 var member1 = '<sec:authentication property="principal.username"/>';
+				 var member2 = member1.replace('&#64;', '@');
+				 var member = member2.replace('&#46;', '.');
+ 				 console.log("멜멜멜 : " + list[i].mb_email);
+				 console.log("이메일 : " + member);
+				 console.log("닉넴 : " + list[i].mb_nick);
+				 var mb_nick = '<sec:authentication property="principal.member.mb_nick"/>';
+				 console.log("로그인한 닉넴 : " + mb_nick);
+				 if(mb_nick == list[i].mb_nick) {
+					 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+');" style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
+				 }
+				 </sec:authorize>
 				 str += "<p style=\"border-bottom:1px solid #dcdcdc; padding-bottom:9px; padding-top:9px;\">"+list[i].rpl_content+"</p></div></li>"
 			}
 			replyUL.html(str);	
-			
-			showReplyPage(replyCnt);
 		});
 	}
 	
@@ -334,11 +344,24 @@ $('.rpl_content').keyup(function (e){
 		
 	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
 		
+	<sec:authorize access="isAnonymous()">
+		swal({
+			title:"작성 권한이 없습니다.",
+			text:"로그인 후 이용해주세요.",
+			icon:"error",
+			button:"확인",
+		});
+		return false;
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">	
+	var mb_nick = '<sec:authentication property="principal.member.mb_nick"/>';
+	var mb_email = '<sec:authentication property="principal.username"/>';
 	    var reply = {
  			
  			rpl_content : $(".rpl_content").val(),
- 			mb_nick : "${board.mb_nick}",
- 			mb_email : "${board.mb_email}",
+ 			mb_nick : mb_nick,
+ 			mb_email : mb_email,
+ 			//mb_email : "${board.mb_email}",
  			brd_code : $("input[name=brd_code]").val()
  			
  			}; //ReplyInsertForm의 내용을 가져옴
@@ -348,15 +371,16 @@ $('.rpl_content').keyup(function (e){
 	   		showList(1);
 	    
 	    }); //Insert 함수호출(아래)
+	    </sec:authorize>
 		
 	});
 	
-
 	
 	});
 	</script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 
 		var operForm = $("#operForm");

@@ -589,7 +589,7 @@ body {
 .container>.fixed_box>.header>.upper>.login>.dropdown {
 	position: relative;
 	display: inline-block;
-	left: 88%;
+	left: 968px;
 }
 
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content {

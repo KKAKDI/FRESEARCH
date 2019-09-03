@@ -6,6 +6,7 @@
 <html>
 <head>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 
 
@@ -110,7 +111,6 @@
                    <!-- <a href="#">회원명</a> -->
                    <sec:authorize access="isAuthenticated()">
                    <form class="dropdown-form" role="form" action="/logout" method='post'>
-                   
                       <p>
                       <img class="img_iconFirst" src="/resources/img/member_icon01.png"/>
                       <sec:authentication property="principal.member.mb_nick"/></p>
@@ -123,10 +123,11 @@
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
-                     <a class="logout_a" id="logout">
+                     <a href="/" class="logout_a" id="logout">
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
                      </a>
+                     <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
                   </form>
                   </sec:authorize>
                   <sec:authorize access="isAnonymous()">
@@ -195,17 +196,24 @@
 	
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
- 
+
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+	
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
 
 	//최운학
 	$("#logout").on("click", function(e) {
-		//location.href = "/";
 		e.preventDefault();
-		$("form").submit();
+		$("form").submit();				
+		location.href="/";
 	});
 
 	//곽지훈
 	$(function() { 
+		
 		$(window).load(function() {
 			$(".loading").fadeOut(1000);
 		});

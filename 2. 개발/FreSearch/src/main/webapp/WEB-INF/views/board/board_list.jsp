@@ -292,6 +292,13 @@ ul, li {
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
 
 		var result = '${result}';
 

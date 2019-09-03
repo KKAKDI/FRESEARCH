@@ -24,8 +24,8 @@
 				</div>
 				<div class="tab-content">
 					<div class="tab-button">
-						<input type='button' class="research" name="research" id="ing" value="ingResearch">
-	                	<input type='button' class="research" name="research" id="end" value="endResearch">
+						<input type='button' class="research" name="research" id="ing" value="진행중설문">
+	                	<input type='button' class="research" name="research" id="end" value="종료된설문">
 					</div>
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
@@ -82,8 +82,6 @@
     	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
-    	  $("#ing").val("진행중설문");
-    	  $("#end").val("종료된설문");
     	  
     	  showList(1);
     	  
