@@ -98,6 +98,22 @@ public class UploadController {
 		return false;
 	}
 	
+	@GetMapping("/picture")
+	@ResponseBody
+	public ResponseEntity<byte[]> getPicture(String fileName){
+		ResponseEntity<byte[]> result = null;
+		String pathname = "/home/ubuntu/upload";
+		File file= new File(pathname+fileName);
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type",Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file),header,HttpStatus.OK);
+		} catch (IOException ie) {
+			ie.printStackTrace();
+		}
+		return result;
+	}
+	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
@@ -106,7 +122,7 @@ public class UploadController {
 		String fileinfo ="file";
 		log.info("update ajax post........");
 				
-		String projectPath = "/home/ubuntu/upload/";
+		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
 				//"/home/ubuntu/upload";
 				//request.getSession().getServletContext().getRealPath("/resources/upload");
 		log.info(projectPath);	
@@ -315,8 +331,10 @@ public class UploadController {
 		
 		try {
 			//"c:\\upload\\"
+
+
 			file = new File(URLDecoder.decode(path, "UTF-8"));
-			
+			log.info(file);
 			file.delete();
 			/*
 			if(type.equals("image")) { // 이미지 파일은 s가 없는 일반 이미지 파일도 삭제 해야하므로 아래의 코드 작성

@@ -198,7 +198,7 @@
 									</c:choose>
 									<c:if test="${not empty research.item_img}">
 									<div class='research_item_img'>
-										<img src="../resources/upload/${research.item_img}"/>
+										<img src="../picture?fileName=${research.item_img}"/>
 									</div>
 									</c:if>
 									
