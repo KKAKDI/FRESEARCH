@@ -102,7 +102,11 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<byte[]> getPicture(String fileName){
 		ResponseEntity<byte[]> result = null;
-		String pathname = "/home/ubuntu/upload";
+		String projectPath = "/home/ubuntu/upload/";
+				//"C:\\upload\\";
+				//"/home/ubuntu/upload/";
+		String pathname = projectPath;
+				
 		File file= new File(pathname+fileName);
 		try {
 			HttpHeaders header = new HttpHeaders();
@@ -122,8 +126,9 @@ public class UploadController {
 		String fileinfo ="file";
 		log.info("update ajax post........");
 				
-		String projectPath = request.getSession().getServletContext().getRealPath("/resources/upload");
-				//"/home/ubuntu/upload";
+		String projectPath = "/home/ubuntu/upload/";
+				//"C:\\upload\\";
+				//"/home/ubuntu/upload/";
 				//request.getSession().getServletContext().getRealPath("/resources/upload");
 		log.info(projectPath);	
 		
@@ -169,19 +174,6 @@ public class UploadController {
 				attachDTO.setUuid(uuid.toString());
 				attachDTO.setUploadPath(uploadFolderPath);
 				
-				// 이미지 파일 체크
-				/*
-				if(checkImageType(saveFile)) {
-					
-					attachDTO.setImage(true);
-					
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-					
-					Thumbnailator.createThumbnail(uploadFile.getInputStream(), thumbnail, 100, 100);
-					
-					thumbnail.close();
-				}
-				*/
 				// 리스트에 추가
 				list.add(attachDTO);
 			} catch (Exception e) {
@@ -325,15 +317,14 @@ public class UploadController {
 	@PostMapping("/deleteFile") // 파일 삭제
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
-		log.info("deleteFile: " + fileName);
-		String path = "/home/ubuntu/upload/"+fileName;
+		log.info("deleteFile: " + fileName);		
 		File file;
 		
 		try {
 			//"c:\\upload\\"
+			//"/home/ubuntu/upload/"
 
-
-			file = new File(URLDecoder.decode(path, "UTF-8"));
+			file = new File("/home/ubuntu/upload/"+URLDecoder.decode(fileName, "UTF-8"));
 			log.info(file);
 			file.delete();
 			/*
