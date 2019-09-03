@@ -235,7 +235,7 @@ td#column-subject {
 				 
       </table>
       
-        	<div style="text-align:center; margin:15px; ">
+        	<div style="text-align:center; margin:15px; min-height: 335px;">
     <div class="container_reply" style="text-align:left;">
         <label for="rpl_content">댓글</label>
         <form name="ReplyInsertForm">
