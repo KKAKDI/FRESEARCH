@@ -50,7 +50,9 @@ div.button {
 	width: 850px;
 }
 
-button{
+
+.button #add,
+.button #list {
 	height: 30px;
     border: none;
     width: 80px;
@@ -196,10 +198,10 @@ input[type="radio"]:checked + label:after {
 	</div>
 	
 	<div class="button">
-	<button type="button" onclick="check()">등록</button>
+	<button type="button" onclick="check()" id="add">등록</button>
 	<%-- <input type="button" value="등록" onclick="check()"/> --%>
 	<%-- <button type="reset">다시쓰기</button> --%>
-	<button type="button" onclick="location.href='news_list'">목록</button>
+	<button type="button" onclick="location.href='news_list'" id="list">목록</button>
 	</div>
 	
 </div>

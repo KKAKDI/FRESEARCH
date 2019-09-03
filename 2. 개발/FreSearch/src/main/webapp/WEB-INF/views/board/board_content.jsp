@@ -53,7 +53,6 @@
 
 .bigPictureWrapper{
 
-	
 	position: fixed;
 	display: none;
 	justify-content: center;
@@ -265,6 +264,10 @@ td#column-subject {
 				</div>
 
 			</div>
+			<sec:authorize access="isAuthenticated()">	
+				<input type="hidden" id="email" value='<sec:authentication property="principal.username"/>'>
+				<input type="hidden" id="nick" value='<sec:authentication property="principal.member.mb_nick"/>'>
+			</sec:authorize>
         </form>
     </div>
 </div>
@@ -319,16 +322,8 @@ $('.rpl_content').keyup(function (e){
 				 console.log("코드 : " + list[i].rpl_code);
 				 str += " <div><div style='display:inline;'><strong>"+list[i].mb_nick+"</strong>";
 				 str += " <small>"+replyService.displayTime(list[i].rpl_regdate)+"</small></div>";
-				
-				 //str += '<a class="update-btn" onclick="replyService.modify('+list[i].rpl_code+',\''+list[i].rpl_content+'\');" style=\"color : blue; cursor: pointer;\"> 수정 </a>';
 				 <sec:authorize access="isAuthenticated()">
-				 var member1 = '<sec:authentication property="principal.username"/>';
-				 var member2 = member1.replace('&#64;', '@');
-				 var member = member2.replace('&#46;', '.');
- 				 console.log("멜멜멜 : " + list[i].mb_email);
-				 console.log("이메일 : " + member);
-				 console.log("닉넴 : " + list[i].mb_nick);
-				 var mb_nick = '<sec:authentication property="principal.member.mb_nick"/>';
+				 var mb_nick = $("#nick").val();
 				 console.log("로그인한 닉넴 : " + mb_nick);
 				 if(mb_nick == list[i].mb_nick) {
 					 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+');" style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
@@ -351,9 +346,9 @@ $('.rpl_content').keyup(function (e){
 		});
 		return false;
 	</sec:authorize>
-	<sec:authorize access="isAuthenticated()">	
-	var mb_nick = '<sec:authentication property="principal.member.mb_nick"/>';
-	var mb_email = '<sec:authentication property="principal.username"/>';
+	var mb_email = $("#email").val();
+	var mb_nick = $("#nick").val();
+
 	    var reply = {
  			
  			rpl_content : $(".rpl_content").val(),
@@ -369,7 +364,7 @@ $('.rpl_content').keyup(function (e){
 	   		showList(1);
 	    
 	    }); //Insert 함수호출(아래)
-	    </sec:authorize>
+	    
 		
 	});
 	
@@ -525,66 +520,3 @@ $('.rpl_content').keyup(function (e){
 
 
 <%@include file="../includes/footer.jsp" %>
-
-
-<%--
-
-	<댓글 테스트 코드>
-
-
-	<script>//댓글 스트립트
-		console.log("===========================");
-		console.log("JS TEST");
-		
-		var brd_codeValue = value="${board.brd_code}";
-		
-		replyService.get(103, function(data){
-			console.log(data);
-		})
-		
-		
-		
-		//for replyService.add test
-		
-		replyService.add(
-		{rpl_content : "JS TEST", mb_nick : "tester" ,mb_email : " KK@naver.com" , brd_code:brd_codeValue}
-		,
-		function(result){
-			alert("RESULT: " + result);
-			}
-		);
-		
-		//for ReplyService.list test
-		
-		replyService.getList({brd_code:brd_codeValue, page:1}, function(list){
-			
-			for(var i = 0, len = list.length || 0; i < len; i++){
-				console.log(list[i]);
-			}
-		});
-		
-		//for replyService.delete test(rpl_code no.126)
-		
-		replyService.remove(126, function(count){
-			
-			console.log(count);
-			
-			if(count ==="success"){
-				alert("REMOVED");
-			}
-		}, function(err){
-			alert('ERROR.....');	
-		});
-		
-		//for replyService.update test
-		
-		replyService.update({
-		
-			rpl_code : 103,
-			brd_code : brd_codeValue,
-			rpl_content : "Modified Reply..."
-		}, function(result){
-			alert("수정 완료.......");	
-		});
-		
-		--%>
