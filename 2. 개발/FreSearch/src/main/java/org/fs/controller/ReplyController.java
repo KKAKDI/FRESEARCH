@@ -9,6 +9,7 @@ import org.fs.service.ReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ public class ReplyController {
 	
 	private ReplyService service;
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})	//댓글 등록
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo){
 		
@@ -73,7 +75,7 @@ public class ReplyController {
 	@DeleteMapping(value="/{rpl_code}", produces = { MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("rpl_code") int rpl_code){
 		
-		log.info("remove: " + rpl_code);
+		log.info("###remove: " + rpl_code);
 		
 		return service.remove(rpl_code) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)

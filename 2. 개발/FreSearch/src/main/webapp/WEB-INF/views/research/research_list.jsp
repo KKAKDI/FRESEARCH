@@ -82,10 +82,6 @@
     	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
-    	  
-    	  
-
-    	  
     	  showList(1);
     	  
     	  function showList(page){

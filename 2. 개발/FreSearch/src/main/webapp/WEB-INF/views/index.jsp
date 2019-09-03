@@ -22,6 +22,7 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 <script>
+
 	$(function(){
 		$(window).load(function () {
 			$(".loading_index").fadeOut(1000);
@@ -453,18 +454,12 @@
 
 <script src="/resources/stats/js/chartMy.js"></script>
 <!-- 웹소켓 시작 -->
-<script>
-
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		
-		$(document).ajaxSend(function(e, xhr, options){
-			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		});
-		
+<script type="text/javascript">
         var ws;
         
+        
         $(document).ready(function(){
+        	
         	var mb_email =($)
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {

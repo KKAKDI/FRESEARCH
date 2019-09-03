@@ -1,5 +1,4 @@
 
-
 ///////////////////stats_list 쪽 모달 창///////////////////////////
 function zipJSON(val){
 	var url ='';
@@ -189,10 +188,16 @@ var tableService = (function() {
 	
 	function header(data, callback, error) {
 		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
 		$.ajax({
 			type : "POST",
 			url : '/stats/header',
 			data : JSON.stringify(data),
+			beforeSend: function(xhr) {
+		       xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		    },
 			dataType : "json",
 			contentType : "application/json; charset=UTF-8",
 			success : function(result, status, xhr) {

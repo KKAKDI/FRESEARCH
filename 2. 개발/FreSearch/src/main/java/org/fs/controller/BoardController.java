@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.fs.domain.BoardAttachVO;
 import org.fs.domain.BoardVO; 
 import org.fs.domain.Criteria;
+import org.fs.domain.MemberVO;
 import org.fs.domain.PageDTO;
 
 import org.fs.service.BoardService;
@@ -106,14 +107,21 @@ public class BoardController {
 	
 	}
 	
-	@GetMapping({"/board_content", "/board_modify"}) //게시글 보기
+	@GetMapping("/board_content") //게시글 보기
 	public void content(@RequestParam("brd_code") int brd_code, @ModelAttribute("cri") Criteria cri, Model model) {
-		log.info("/board_content or board_modify");
+		log.info("/board_content");
 		model.addAttribute("board", service.content(brd_code));	
 	}
 	
-	@PostMapping("/board_modify")				//게시글 수정
+	@GetMapping("/board_modify") //게시글 보기
 	@PreAuthorize("isAuthenticated()")
+	public void modifyForm(@RequestParam("brd_code") int brd_code, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("/board_modify");
+		model.addAttribute("board", service.content(brd_code));	
+	}
+	
+	@PreAuthorize("principal.username == #board.mb_email")
+	@PostMapping("/board_modify")				//게시글 수정
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		log.info("modify :" + board);
 		
@@ -132,9 +140,9 @@ public class BoardController {
 		return "redirect:/board/board_list" + cri.getListLink();
 	}
 	
+	@PreAuthorize("principal.username == #mb_email")
 	@PostMapping("/board_delete")				//게시글 삭제
-	@PreAuthorize("isAuthenticated()")
-	public String delete(@RequestParam("brd_code") int brd_code ,@ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
+	public String delete(@RequestParam("brd_code") int brd_code ,@ModelAttribute("cri") Criteria cri, RedirectAttributes ra, String mb_email) {
 		
 		log.info("remove : " + brd_code);
 		
