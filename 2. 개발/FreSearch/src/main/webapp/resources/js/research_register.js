@@ -35,39 +35,40 @@ $(function() {
 		};
 		   
 		$(document).on("click","#qst_btn",
-						function() {
-							$(".research_content").removeClass("active");
-							$(".research_content .bottom_box").removeClass("active_btn");
-							$(".research_content .qst_swap #item_box").removeClass("active_item");
-							$(".research_content hr").removeClass("active_btn");
-							$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-							$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul></div>");
-							$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
-							var offset = $(".active").offset().top;
-							$("#remote").css("top", offset - 160);							
-							i++;
-							return false;
+			function() {
+				$(".research_content").removeClass("active");
+				$(".research_content .bottom_box").removeClass("active_btn");
+				$(".research_content .qst_swap #item_box").removeClass("active_item");
+				$(".research_content hr").removeClass("active_btn");
+				$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
+				$("#research_form").append("<div class='research_content clearflx active'><input type='text'id='qst_content' autocomplete='off' placeholder='내용없는 질문'><select id='selBox'><option value='0' selected>객관식</option><option value='1'>주관식</option>	</select><div class='qst_swap'><ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' class='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul></div>");
+				$("#content #form_area .active").append("<div id='hr'><hr class='active_btn'></div>	<div class='bottom_box active_btn'><div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div></div>");						
+				var offset = $(".active").offset().top;
+				$("#remote").css("top", offset - 160);							
+				i++;
+				return false;
 		});
 		// 추가된 태그 함수 실행
-		$(document).on("click", ".research_content", function() {
-			$(".research_content").removeClass("active");
-			$(".research_content .bottom_box").removeClass("active_btn");
-			$(".research_content .qst_swap #item_box").removeClass("active_item");
-			$(".research_content hr").removeClass("active_btn");
-			$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
-			$(this).addClass("active");			
-			$(this).children().find("hr").addClass("active_btn");
-			$(this).children().find("#item_box").addClass("active_item");
-			$(this).children().find(".item_individual").addClass("active_individual");
-			
-			if($(".active #selBox option:selected").val()==1){
+		$(document).on("click", ".research_content", 
+			function() {
+				$(".research_content").removeClass("active");
 				$(".research_content .bottom_box").removeClass("active_btn");
+				$(".research_content .qst_swap #item_box").removeClass("active_item");
 				$(".research_content hr").removeClass("active_btn");
-			}else{
-				$(this).children(".bottom_box").addClass("active_btn");
-			}			
-			var offset = $(".active").offset().top;
-			$("#remote").css("top", offset - 160);			
+				$(".research_content .qst_swap #item_box .item_individual").removeClass("active_individual");
+				$(this).addClass("active");			
+				$(this).children().find("hr").addClass("active_btn");
+				$(this).children().find("#item_box").addClass("active_item");
+				$(this).children().find(".item_individual").addClass("active_individual");
+				
+				if($(".active #selBox option:selected").val()==1){
+					$(".research_content .bottom_box").removeClass("active_btn");
+					$(".research_content hr").removeClass("active_btn");
+				}else{
+					$(this).children(".bottom_box").addClass("active_btn");
+				}			
+				var offset = $(".active").offset().top;
+				$("#remote").css("top", offset - 160);			
 		});	
 		$(document).on("click","#qst_add",function(){
 				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li>");

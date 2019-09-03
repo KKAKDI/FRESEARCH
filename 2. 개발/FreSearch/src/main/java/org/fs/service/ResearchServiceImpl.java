@@ -77,8 +77,7 @@ public class ResearchServiceImpl implements ResearchService {
 					} catch (ParseException e) {
 						log.info(e);
 					}
-				}				
-				//mapper.subjReg(headerVO); 
+				}							
 				mapper.subjReg(headerVO);
 				subRowId  = headerVO.getSubj_code();
 			} else {
@@ -88,9 +87,7 @@ public class ResearchServiceImpl implements ResearchService {
 					items[i][k] = item[k];
 					log.info("item[" + i + "][" + k + "]: " + items[i][k]);
 					ResearchVO questionVO = new ResearchVO();
-					if(i>0 && k==1){
-						//questionVO.setMb_email(email);
-						//questionVO.setSubj_nm(subName);
+					if(i>0 && k==1){						
 						questionVO.setRowId(subRowId);
 						questionVO.setQst_content(items[i][0]);						
 						questionVO.setQst_img("");
@@ -100,9 +97,7 @@ public class ResearchServiceImpl implements ResearchService {
 						log.info(questionVO.getQst_code());
 						qstRowId=questionVO.getQst_code();
 					}else if(k>1){
-						ResearchVO itemVO = new ResearchVO();
-						//itemVO.setMb_email(email);
-						//itemVO.setSubj_nm(subName);
+						ResearchVO itemVO = new ResearchVO();						
 						itemVO.setRowId(qstRowId);
 						log.info("아이템 확인: "+items[i][k]);
 						String img[] = items[i][k].split("#img#");
