@@ -18,7 +18,8 @@
 
     <script type="text/javascript">
 
-    var wsUri = "ws://localhost:8080/echo";
+    //var wsUri = "ws://localhost:8080/echo";
+    var wsUri = 'ws://www.fresearch.cf/echo';
 
     function send_message() {
 

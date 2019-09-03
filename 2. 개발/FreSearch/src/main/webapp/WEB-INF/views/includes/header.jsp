@@ -213,7 +213,12 @@
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
 
+var csrfHeaderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
 
+$(document).ajaxSend(function(e, xhr, options){
+   xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+});
 
 	//최운학
 	$("#logout").on("click", function(e) {
@@ -328,8 +333,8 @@
             } 
             
             //웹소켓 객체 만드는 코드
-            ws = new WebSocket('ws://localhost:8080/echo');
-            //ws = new WebSocket('ws://www.fresearch.cf/echo');
+            //ws = new WebSocket('ws://localhost:8080/echo');
+            ws = new WebSocket('ws://www.fresearch.cf/echo');
             ws.onopen=function(event){
             	
                 if(event.data===undefined) return;
@@ -365,10 +370,8 @@
         function writeResponse(text){
         	
         	if($(".bar").prev().html() === undefined){
-        		console.log("###########1");
         		var mb_email = '';
         	}else{
-        		console.log("###########2");
         		var mb_email = $(".bar").prev().html().trim();
         	}
         	var subj_code = '';
@@ -397,17 +400,14 @@
         	//ajax 알림 리스트 and 알림 종 갯수  시작
         	
         	if(!($(".bar").prev().html() === undefined)){
-        		console.log("여기 안에 들어왔다");
 	         	var data ={
 	        		mb_email : mb_email
 	        	}
 	        	
 	        	tableService.header(data,function(list){
-	        		console.log("아 뭐지 여기는 왜 안들어오지 ajax");
 	
 	        		var html = '';
 	        		if($(".badge-num").html() != list.length){
-	        			console.log("여기 안에 들어왔다11");
 	        			$('#alarm_content').attr('style','overflow:auto;  overflow-x: hidden; width:430px; max-height:400px;margin-top: 0px; ');
 	        			$('#alarm_content').attr('class','dropdown-content');
 	        			$('#badge').html('<div class="badge-num" id="qqq">'+list.length+'</div><a class="entypo-bell" style="display:none;"></a> <img src="/resources/img/bicon16_1.png" style="width: 18px; margin-left: 3px; margin-top: 3px;">');
@@ -426,7 +426,6 @@
 	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
 	        			$('#alarm_content').html(html);
 	        		}else{
-	        			console.log("여기 안에 들어왔다22");
 	        		} 
 	        	});
         	}

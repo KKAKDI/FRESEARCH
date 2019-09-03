@@ -310,12 +310,12 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		log.info("deleteFile: " + fileName);
-		
+		String path = "/home/ubuntu/upload/"+fileName;
 		File file;
 		
 		try {
 			//"c:\\upload\\"
-			file = new File(URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(URLDecoder.decode(path, "UTF-8"));
 			
 			file.delete();
 			/*
