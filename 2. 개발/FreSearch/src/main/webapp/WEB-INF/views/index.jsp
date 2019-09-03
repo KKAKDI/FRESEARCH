@@ -455,9 +455,14 @@
 <script src="/resources/stats/js/chartMy.js"></script>
 <!-- 웹소켓 시작 -->
 <script type="text/javascript">
+var csrfHeaderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+
+$(document).ajaxSend(function(e, xhr, options){
+   xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+});
+
         var ws;
-        
-        
         $(document).ready(function(){
         	
         	var mb_email =($)

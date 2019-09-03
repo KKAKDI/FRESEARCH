@@ -58,12 +58,7 @@
 
 		 <security:csrf disabled="false"/>
 
-		
-		<security:headers>
-		
-			<security:frame-options disabled="true"/>
-		
-		</security:headers>
+
 		
 		
 		
