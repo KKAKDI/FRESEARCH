@@ -102,7 +102,7 @@ textarea{
 					
 			<table style="text-align: center;">
 				<form name='f' role="form" action="/news/news_modify" method="post">
-
+				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type='hidden' name='pageNum' value=${cri.pageNum}> <input
 						type='hidden' name='amount' value=${cri.amount}> <input
 						type='hidden' name='type' value=${cri.type}> <input

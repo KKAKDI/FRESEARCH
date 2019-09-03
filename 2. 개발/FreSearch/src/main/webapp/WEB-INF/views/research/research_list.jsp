@@ -276,9 +276,7 @@
   			<sec:authorize access="isAuthenticated()">
   			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>';
   			console.log("권한명 : " + auth);
-        	
-  			if(auth != 'ROLE&#95;PANEL'){
-  				//alert("권한이 없습니다.");
+  			if(auth == 'ROLE&#95;USER'){
   				swal({
 					title:"권한이 없습니다.",
 					text:"패널 신청 후 참여해주세요.",
