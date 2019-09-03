@@ -37,7 +37,7 @@ $(function(){
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value='' maxlength="23">
 				</div>				
 				<div id='right_top_box'>					
-					<button onclick='send();' id='send_form'>작성</button>
+					<button id='send_form'>작성</button>
 					<button id='delete_form'></button>
 				</div>
 			</div>	
