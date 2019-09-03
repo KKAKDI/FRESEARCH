@@ -22,7 +22,9 @@ body {
 	min-height: 872px;
 }
 
-button{
+.button #modify,
+.button #delete,
+.button #list {
 	height: 30px;
     border: none;
     width: 80px;
@@ -102,7 +104,7 @@ textarea{
 					
 			<table style="text-align: center;">
 				<form name='f' role="form" action="/news/news_modify" method="post">
-
+				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type='hidden' name='pageNum' value=${cri.pageNum}> <input
 						type='hidden' name='amount' value=${cri.amount}> <input
 						type='hidden' name='type' value=${cri.type}> <input
@@ -159,9 +161,9 @@ textarea{
 	</div>
 	
 		<div class='button'>
-			<button type="submit" data-oper='modify' class="btn btn-success">수정</button>
-			<button type="submit" data-oper='remove' class="btn btn-danger">삭제</button>
-			<button type="submit" data-oper='list' class="btn btn-info">목록</button>
+			<button type="submit" data-oper='modify' class="btn btn-success" id="modify">수정</button>
+			<button type="submit" data-oper='remove' class="btn btn-danger" id="delete">삭제</button>
+			<button type="submit" data-oper='list' class="btn btn-info" id="list">목록</button>
 		</div>
 </div>
 
