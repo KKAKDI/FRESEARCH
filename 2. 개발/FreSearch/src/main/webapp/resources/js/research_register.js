@@ -32,8 +32,14 @@ $(function() {
 					button:"확인",
 				});			
 				return false;
-		};	 
-		
+		};
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		   
+		   $(document).ajaxSend(function(e, xhr, options){
+		      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		   });
+		   
 		$(document).on("click","#qst_btn",
 						function() {
 							$(".research_content").removeClass("active");

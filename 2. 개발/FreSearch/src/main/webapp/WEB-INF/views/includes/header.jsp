@@ -110,6 +110,9 @@
                  <div class="dropdown-content">
                    <!-- <a href="#">회원명</a> -->
                    <sec:authorize access="isAuthenticated()">
+                    <form class="mypage_form" action="/member/myPage" method="post">
+                       <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                      	
+                   </form>
                    <form class="dropdown-form" role="form" action="/logout" method='post'>
                       <p>
                       <img class="img_iconFirst" src="/resources/img/member_icon01.png"/>
@@ -119,7 +122,7 @@
                       </p>
                    
                       <div class="bar"></div>
-                      <a class="mypage_a" href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
+                      <a href="/" id="mypage">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
@@ -182,7 +185,20 @@
 							<a href="/stats/stats_list">데이터베이스</a>
 						</li>
 						<li>
-							<a href="">패널신청</a>
+		                     <sec:authentication property="principal" var="pinfo"/>
+		                     <sec:authorize access="isAuthenticated()">
+			                     <c:choose>
+			                        <c:when test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+			                              <a href="/apply/approval_list">패널승인</a>
+			                        </c:when>
+			                        <c:when test="${pinfo.member.authList[0].auth eq 'ROLE_USER' || pinfo.member.authList[0].auth eq 'ROLE_PANEL'}">
+			                              <a href="/apply/apply">패널신청</a>
+			                        </c:when>        
+			                     </c:choose>
+			                 </sec:authorize>
+			                 <sec:authorize access="isAnonymous()">
+			                              <a href="/member/signin">패널신청</a>
+			                 </sec:authorize>
 						</li>
 					</ul>
 				</nav>
@@ -288,6 +304,12 @@
 		eventRollingOff = setInterval(eventRolling, 2000);
 		$("#content .notice_area .event .event_rolling").append(
 		$("#content .notice_area .event li").first().clone());
+		
+		$("#mypage").on("click",function(e){
+			location.href="/";
+			e.preventDefault();
+			$(".mypage_form").submit();
+		});
 	});
 
 		//조성식
@@ -304,6 +326,7 @@
             
             //웹소켓 객체 만드는 코드
             ws = new WebSocket('ws://localhost:8080/echo');
+            //ws = new WebSocket('ws://www.fresearch.cf/echo');
             ws.onopen=function(event){
             	
                 if(event.data===undefined) return;
