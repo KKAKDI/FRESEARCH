@@ -192,7 +192,7 @@ $(document).ready(function(){
 	$("#emailFind").click(function(){
 		
 		var mb_nick = $('#mb_nick').val();
-		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + $("#mb_birth_dd").val();
+		var mb_birthdate = $("#mb_birth_yy").val() + $("#mb_birth_mm").val() + addZero($("#mb_birth_dd").val(), 2);
 		var mb_phone = $("#mb_phone").val();
 		
 		var data = {
@@ -215,8 +215,7 @@ $(document).ready(function(){
 					$("#find_check").text("개인정보가 일치하지 않습니다.");
 					$("#find_check").css("color", "#d0021b");
 				}
-				email = $(".modal-user-email").children('span').html();
-				
+				//email = $(".modal-user-email").children('span').html();
 				/*
 				if(mb_nick != data[0].mb_nick || mb_birthdate != data[0].mb_birthdate || mb_phone != data[0].mb_phone){
 					$("#find_check").text("개인정보가 일치하지 않습니다.");
@@ -241,6 +240,7 @@ $(document).ready(function(){
 			dataTyep : "json",
 			contentType : "application/json; charset=UTF-8",
 			success : function(data){
+				console.log("성공");
 				var str1 ='';
 				var str2 ='';
 				if(data[0]){
@@ -257,6 +257,17 @@ $(document).ready(function(){
 		});
 		
 	});
+	
+	var addZero = function (date, num) {
+		 var zero = '';
+		 date = date.toString();
+		
+		 if (date.length < num) {
+		  for (i = 0; i < num - date.length; i++)
+		   zero += '0';
+		 }
+		 return zero + date;
+	}
 	
 	$("#pwdFind").click(function(){
 		

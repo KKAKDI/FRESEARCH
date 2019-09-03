@@ -74,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<MemberVO> findCheck2(MemberVO vo) {
-
+		
 		return mapper.findCheck2(vo);
 	}
 	
@@ -116,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
 		MimeMessage mail = mailSender.createMimeMessage();
 		String htmlStr = "<h2>안녕하세요 FRESEARCH입니다.</h2><br><br>" 
 				+ "<h3>" + mb_nick + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-				+ "<a href='http://www.fresearch.cf/member/change_key?mb_nick="+ mb_nick +"&mb_email_key="+key+"'>인증하기</a></p>"
+				+ "<a href='http://localhost:8080/member/change_key?mb_nick="+ mb_nick +"&mb_email_key="+key+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setFrom(new InternetAddress("fresearch@naver.com")); //네이버 메일로 보낼때만 적용(구글은 없어도 전송가능)

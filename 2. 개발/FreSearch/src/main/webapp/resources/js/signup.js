@@ -36,6 +36,13 @@ function execPostCode() {
 
 $(document).ready(function(){
 	
+	/*var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+		
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});*/
+	
 	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
 	var regNick = /^[a-zA-Z가-힣0-9]{2,6}$/;
 	var regPwd = /^[A-Za-z0-9]{4,12}$/;

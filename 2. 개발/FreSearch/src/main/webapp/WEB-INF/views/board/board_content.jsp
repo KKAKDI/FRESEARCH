@@ -391,6 +391,7 @@ $('.rpl_content').keyup(function (e){
 </script>
 
 <script> // 조회수 스크립트
+
    var brd_code = $("#brd_code").val();
    var brd_codes = [];
    console.log(Cookies.get("ck_brd_codes"));
@@ -446,6 +447,7 @@ $('.rpl_content').keyup(function (e){
  
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		(function() {
 			var brd_code = ${board.brd_code};
 				$.getJSON("/board/getAttachList", {brd_code : brd_code},

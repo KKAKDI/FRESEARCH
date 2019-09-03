@@ -98,7 +98,6 @@
 				
 				<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 				<!-- <a href="/" onclick="signOut();">Sign out</a> -->
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</div>
 		</div>
 	</div>
@@ -141,4 +140,14 @@
 	
 	<form id="test" action="" method="post"></form>
 </body>
+<script>
+$(document).ready(function(){
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+});
+</script>
 </html>
