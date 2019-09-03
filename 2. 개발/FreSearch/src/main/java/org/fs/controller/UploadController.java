@@ -121,7 +121,7 @@ public class UploadController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public String uploadAjaxPost(MultipartFile uploadFile,HttpServletRequest request) {
+	public String uploadAjaxPost(MultipartFile uploadFile,HttpServletRequest request) throws IOException {
 		List<AttachFileDTO> list = new ArrayList<>();
 		String fileinfo ="file";
 		log.info("update ajax post........");
@@ -142,6 +142,7 @@ public class UploadController {
 		
 		if(uploadPath.exists() == false) { // 해당 경로에 폴더가 없으면 만들어줌
 			uploadPath.mkdirs();
+			Runtime.getRuntime().exec("chmod -R 777 " + uploadFolderPath);
 		}
 		// make yyyy/MM/dd folder
 		
