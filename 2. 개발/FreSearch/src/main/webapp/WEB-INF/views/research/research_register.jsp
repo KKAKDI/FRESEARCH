@@ -48,6 +48,7 @@ $(function(){
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
 				<form name='research_form' id='research_form' action='' method='post'>
+				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
 				<input type='hidden' name='research_values' id='research_values' value=''>
 					<!-- 여기 리모컨 -->
 					<div id='remote'>

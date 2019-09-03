@@ -121,17 +121,18 @@ var researchService = (function(){
 		var research = param.data;
 		var page = param.page || 1;
 		
+		
 		$.getJSON("/research/pages/" + research + "/" + page + ".json",
-			function(data){
-				if(callback){
-					callback(data.researchCnt, data.list);
-					//loadingClose();
-				}
-			}).fail(function(xhr, status, err){
-				if(error){
-					error();
-				}
-			});
+				function(data){
+			if(callback){
+				callback(data.researchCnt, data.list);
+				//loadingClose();
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
 	}
 		
 		/*
