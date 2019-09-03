@@ -24,6 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -97,6 +98,7 @@ public class UploadController {
 		return false;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public String uploadAjaxPost(MultipartFile uploadFile,HttpServletRequest request) {
@@ -175,6 +177,72 @@ public class UploadController {
 	}
 	
 	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping(value = "/uploadAjaxAction2", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost2(MultipartFile[] uploadFile) {
+		List<AttachFileDTO> list = new ArrayList<>();
+		
+		log.info("update ajax post........");
+		
+		String uploadFolder = "C:/upload"; // 파일 저장 폴더 위치
+		
+		String uploadFolderPath = getFolder();
+		// make folder ---------
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		log.info("upload path: " + uploadPath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		// make yyyy/MM/dd folder
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			
+			log.info("--------------------------");
+			log.info("Upload File Name: " + multipartFile.getOriginalFilename());
+			log.info("Upload File Size: " + multipartFile.getSize());
+			
+			AttachFileDTO attachDTO = new AttachFileDTO();
+			
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			// IE has file path
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			log.info("only file name: " + uploadFileName);
+			
+			attachDTO.setFileName(uploadFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
+				
+			try {
+				File saveFile = new File(uploadPath, uploadFileName);
+				multipartFile.transferTo(saveFile);
+				
+				attachDTO.setUuid(uuid.toString());
+				attachDTO.setUploadPath(uploadFolderPath);
+				
+				// 이미지 파일 체크
+				if(checkImageType(saveFile)) {
+					
+					attachDTO.setImage(true);
+					
+					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
+					
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
+					
+					thumbnail.close();
+				}
+				// 리스트에 추가
+				list.add(attachDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} // end catch
+		} // end for
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 	
 	
 	
@@ -234,6 +302,8 @@ public class UploadController {
 		
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
+	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile") // 파일 삭제
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
@@ -257,6 +327,35 @@ public class UploadController {
 				file.delete();
 			}
 			*/
+		} catch(UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/deleteFile2") // 파일 삭제
+	@ResponseBody
+	public ResponseEntity<String> deleteFile2(String fileName, String type){
+		log.info("deleteFile: " + fileName);
+		
+		File file;
+		
+		try {
+			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			
+			file.delete();
+			
+			if(type.equals("image")) { // 이미지 파일은 s가 없는 일반 이미지 파일도 삭제 해야하므로 아래의 코드 작성
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				
+				log.info("largeFileName: " + largeFileName);
+				
+				file = new File(largeFileName);
+				
+				file.delete();
+			}
 		} catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -233,6 +233,7 @@ div.button {
 		var formObj = $("form[role='form']"); // 등록 버튼 클릭 시 첨부파일 관련 처리
 		$("button[type='submit']").on("click",
 			function(e) {
+			
 				e.preventDefault();
 
 				console.log("submit clicked");
@@ -298,9 +299,12 @@ div.button {
 				}
 	
 				$.ajax({
-					url : '/uploadAjaxAction',
+					url : '/uploadAjaxAction2',
 					processData : false,
 					contentType : false,
+					beforeSend: function(xhr) {
+				        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				    },
 					data : formData,
 					type : 'POST',
 					dataType : 'json',
@@ -363,7 +367,7 @@ div.button {
 			var targetLi = $(this).closest("li");
 
 			$.ajax({
-				url : '/deleteFile',
+				url : '/deleteFile2',
 				data : {
 					fileName : targetFile,
 					type : type

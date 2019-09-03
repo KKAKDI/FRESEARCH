@@ -213,13 +213,6 @@
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
 
-	var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-	
-	$(document).ajaxSend(function(e, xhr, options){
-		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	});
-
 	//최운학
 	$("#logout").on("click", function(e) {
 		e.preventDefault();

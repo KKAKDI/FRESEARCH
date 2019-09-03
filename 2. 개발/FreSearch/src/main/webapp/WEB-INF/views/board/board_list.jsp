@@ -29,6 +29,7 @@ div.container_new{
 
 .board-head span a {
    color: #fff;
+   padding: 10px 59px 13px;
 }
 .board-head h2 {
    position: relative;
@@ -147,7 +148,7 @@ ul, li {
 }
 #pagingArea ul .paginate_button_move a:hover{
     cursor: pointer;
-   color: #000;
+   color: #1428a0;
    border: 1px solid #000;
 }
 
@@ -234,7 +235,7 @@ ul, li {
 						<td class="title"><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
 						<c:choose>
 							<c:when test="${board.brd_is_attach == 'Y'}">
-							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+							<td><img src="/resources/img/bicon01_1.png" width=20px; height=auto;></td>
 							</c:when>
 								<c:otherwise>
 	         						<td></td>

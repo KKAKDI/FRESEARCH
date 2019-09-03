@@ -90,7 +90,6 @@
 							<div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div>	
 						</div>	
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 			<div class='bottom'></div>
@@ -98,7 +97,9 @@
 	</div>	
 </body>
 <script>
+
 	$(function() {	
+		
 		//웹 소켓
 		var ws;
 		

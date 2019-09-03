@@ -34,7 +34,7 @@
 
 	}
 
-.uploadResult ul li{
+.uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 	align-content: center;
@@ -42,9 +42,9 @@
 	display: inline;
 }
 
-.uploadResult ul li img{ // 섬네일 이미지 크기 조정
-	width: 100px;
-	
+.uploadResult ul li img { 
+	/*width: 100px;*/
+	width: 76px;
 }
 
 .uploadResult ul li span{
@@ -339,8 +339,6 @@ $('.rpl_content').keyup(function (e){
 			replyUL.html(str);	
 		});
 	}
-	
-	
 		
 	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
 		
