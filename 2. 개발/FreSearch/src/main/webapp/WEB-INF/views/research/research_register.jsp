@@ -126,8 +126,8 @@ $(document).ready(function(){
 		} 
 		
 		//웹소켓 객체 만드는 코드
-		ws = new WebSocket('ws://localhost:8080/echo');
-		//ws = new WebSocket('ws://www.fresearch.cf/echo');
+		//ws = new WebSocket('ws://localhost:8080/echo');
+		ws = new WebSocket('ws://www.fresearch.cf/echo');
 		
 		
 		ws.onopen=function(event){
