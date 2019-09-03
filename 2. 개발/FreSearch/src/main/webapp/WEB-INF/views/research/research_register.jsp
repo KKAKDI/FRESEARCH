@@ -48,6 +48,7 @@ $(function(){
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
 				<form name='research_form' id='research_form' action='' method='post'>
+				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
 				<input type='hidden' name='research_values' id='research_values' value=''>
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
@@ -102,7 +103,6 @@ $(function(){
 							<div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div>	
 						</div>	
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 			<div class='bottom'></div>
@@ -110,7 +110,9 @@ $(function(){
 	</div>	
 </body>
 <script>
+
 	$(function() {	
+		
 		//웹 소켓
 		var ws;
 		

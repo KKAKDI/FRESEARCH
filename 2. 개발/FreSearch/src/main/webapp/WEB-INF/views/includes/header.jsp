@@ -316,6 +316,14 @@ $(document).ajaxSend(function(e, xhr, options){
         var ws;
         
         $(document).ready(function(){
+        	
+        	var csrfHeaderName = "${_csrf.headerName}";
+        	var csrfTokenValue = "${_csrf.token}";
+
+        	$(document).ajaxSend(function(e, xhr, options){
+        		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+        	});
+        	
         	var mb_email =($)
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {

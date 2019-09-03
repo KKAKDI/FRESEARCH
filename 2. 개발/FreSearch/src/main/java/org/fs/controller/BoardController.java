@@ -120,7 +120,7 @@ public class BoardController {
 		model.addAttribute("board", service.content(brd_code));	
 	}
 	
-	@PreAuthorize("principal.username == #board.mb_email")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/board_modify")				//게시글 수정
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes ra) {
 		log.info("modify :" + board);
