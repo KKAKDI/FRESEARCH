@@ -37,7 +37,7 @@ $(function(){
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value='' maxlength="23">
 				</div>				
 				<div id='right_top_box'>					
-					<button onclick="send();" id='send_form'>작성</button>
+					<button onclick='send();' id='send_form'>작성</button>
 					<button id='delete_form'></button>
 				</div>
 			</div>	
@@ -110,6 +110,7 @@ $(function(){
 	</div>	
 </body>
 <script>
+$(document).ready(function(){
 
 	$(function() {	
 		
@@ -149,13 +150,13 @@ $(function(){
 		    ws.send(text);
 		    text=""; 
 		} */
-		function send(){
+ 		function send(){
 		    //var text = document.getElementById("messageinput").value;        	
 		    var text = "갱신";
 		    ws.send(text);
 		    text="";
 		    
-		}
+		} 
 		function closeSocket(){
 		    ws.close();
 		}
@@ -164,5 +165,7 @@ $(function(){
 		    //message.innerHTML+="<br/>"+text;
 		}
 	});
+});
+
 </script>
 </html>
