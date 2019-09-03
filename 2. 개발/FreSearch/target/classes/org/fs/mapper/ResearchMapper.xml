@@ -14,10 +14,10 @@
 		<![CDATA[ where rownum <= #{cri.pageNum} * #{cri.amount} ]]>
 		<choose>
 			<when test="research == '진행중설문'">
-				<![CDATA[ and subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+				<![CDATA[ and subj_enddate >= to_char(sysdate,'yy/MM/dd') ]]>
 			</when>
 			<when test="research == '종료된설문'">
-				<![CDATA[ and subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+				<![CDATA[ and subj_enddate < to_char(sysdate,'yy/MM/dd') ]]>
 			</when>
 		</choose>
 		) 
@@ -29,10 +29,10 @@
 		select count(subj_code) from subject
 		<choose>
 			<when test="research == '진행중설문'">
-				<![CDATA[ where subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+				<![CDATA[ where subj_enddate >= to_char(sysdate,'yy/MM/dd') ]]>
 			</when>
 			<when test="research == '종료된설문'">
-				<![CDATA[ where subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+				<![CDATA[ where subj_enddate < to_char(sysdate,'yy/MM/dd') ]]>
 			</when>
 		</choose>
 	</select>
