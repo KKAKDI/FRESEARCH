@@ -77,6 +77,7 @@ button#regBtn {
 a.move {
 	text-decoration: none;
 	color: #505050;
+	vertical-align: baseline;
 }
 
 a.move:hover {

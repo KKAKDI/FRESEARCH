@@ -232,6 +232,13 @@ div.button {
 	<!-- 파일 업로드 자바스크립트 -->
 
 <script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+   $(document).ajaxSend(function(e, xhr, options){
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+   });
+	
+
 	$(document).ready(function(e) {
 		
 		var formObj = $("form[role='form']"); // 등록 버튼 클릭 시 첨부파일 관련 처리
