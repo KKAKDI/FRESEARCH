@@ -203,7 +203,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/findCheck2", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<List<MemberVO>> findCheck(@RequestBody MemberVO vo) {
-		
+		log.info("##닉네임입니다 : " + vo.getMb_nick());
 		return new ResponseEntity<>(service.findCheck2(vo), HttpStatus.OK);
 		/*
 		String mb_nick = req.getParameter("mb_nick");
@@ -363,6 +363,10 @@ public class MemberController {
 	public String emailConfirm(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
 		String mb_email = request.getParameter("mb_email");
 		String mb_nick = request.getParameter("mb_nick");
+		
+		log.info("###메일주소2 : " + mb_email);
+		log.info("###닉네임2 : " + mb_nick);
+		
 		service.mailSend(mb_email, mb_nick);
 		//rttr.addFlashAttribute("result", member.getMb_email());
 		

@@ -81,6 +81,7 @@
 					<div class="modal-confirm">
 						<input type="submit" id="findConfirm" class="findConfirm" value="이메일 인증">
 					</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>

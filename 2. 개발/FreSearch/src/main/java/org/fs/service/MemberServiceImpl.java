@@ -74,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<MemberVO> findCheck2(MemberVO vo) {
-
+		
 		return mapper.findCheck2(vo);
 	}
 	

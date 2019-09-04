@@ -24,6 +24,7 @@
 <script>
 
 	$(function(){
+		
 		$(window).load(function () {
 			$(".loading_index").fadeOut(1000);
 		});

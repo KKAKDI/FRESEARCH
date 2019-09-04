@@ -65,6 +65,7 @@
 						<input type="hidden" name="mb_email" id="mb_email" value="${mb_email}">
 						<input type="hidden" name="mb_nick" id="mb_nick" value="${mb_nick}">
 						<input type="submit" id="emailConfirm" class="emailConfirm" value="확인">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>
 				</div>
 			</div>
@@ -83,6 +84,15 @@
 	<!-- <form id="email_confirm" action="" method="post"></form> -->
 </body>
 <script>
+
+	/* $(document).ready(function(){
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+	}); */
 /*
 	var count = 0;
 	var cnt = $("#count").val();
