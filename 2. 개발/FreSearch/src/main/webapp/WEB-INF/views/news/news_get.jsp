@@ -345,6 +345,11 @@ hr {
 </script>
 
 <script type="text/javascript">
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+   $(document).ajaxSend(function(e, xhr, options){
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+   });
 	// 수정 페이지
 	$(document).ready(function() {
 		var operForm = $("#operForm");

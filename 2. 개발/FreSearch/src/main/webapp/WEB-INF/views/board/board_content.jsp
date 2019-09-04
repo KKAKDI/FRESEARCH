@@ -27,7 +27,7 @@
 	flex-flow:row;
 	justify-content:center;
 	align-items:center;
-	height : 100px;
+	min-height : 100px;
 	padding : 10px;
 	text-align:center;
 	padding-top : 16px;
@@ -278,6 +278,13 @@ td#column-subject {
 <script type="text/javascript" src="/resources/js/reply.js"></script> 
 		
 <script>
+//토큰 추가//
+var csrfHeaderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+   $(document).ajaxSend(function(e, xhr, options){
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+   });
+//토큰 추가//
 $('.rpl_content').keyup(function (e){
 	console.log("들어왔다");
     var content = $(this).val();

@@ -196,9 +196,29 @@ create table persistent_logins (
 
 
 --통계 AREA 관련 VIEW 1
-CREATE OR REPLACE VIEW AREA AS
-SELECT C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN
-FROM SUBJECT A, MEMBER B, CATEGORY C, ATT_CATEGORY D WHERE A.MB_NICK = B.MB_NICK AND C.CTGR_CODE = A.CTGR_CODE AND B.MB_EMAIL = D.MB_EMAIL;
+CREATE OR replace VIEW area 
+AS 
+  SELECT C.ctgr_code, 
+         C.ctgr_nm, 
+         B.mb_nick, 
+         B.mb_addr, 
+         B.mb_birthdate, 
+         B.mb_sex, 
+         mb_marriage_yn, 
+         d.mb_att_ctgr_code 
+  FROM   member B, 
+         category C, 
+         att_category D 
+  WHERE  B.mb_email = D.mb_email 
+         AND c.ctgr_code = d.ctgr_code1 
+  GROUP  BY C.ctgr_code, 
+            C.ctgr_nm, 
+            B.mb_nick, 
+            B.mb_addr, 
+            B.mb_birthdate, 
+            B.mb_sex, 
+            mb_marriage_yn, 
+            d.mb_att_ctgr_code; 
 
 
 --통계 AREA 관련 VIEW 2
@@ -235,11 +255,10 @@ order by b.subj_regdate desc;
 --설문 목록 관련 VIEW
 create or replace view v_research
 AS
-select ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate 
-from category a, subject b
-where a.ctgr_code = b.ctgr_code
-group by rownum, ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
-order by subj_regdate desc;
+SELECT C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN, d.mb_att_ctgr_code
+FROM  MEMBER B, CATEGORY C, ATT_CATEGORY D 
+WHERE B.MB_EMAIL = D.MB_EMAIL AND c.ctgr_code = d.ctgr_code1
+group by C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN, d.mb_att_ctgr_code;
 
 
 CREATE SEQUENCE NEWS_SEQ
