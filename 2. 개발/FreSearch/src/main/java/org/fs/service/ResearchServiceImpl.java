@@ -33,6 +33,7 @@ public class ResearchServiceImpl implements ResearchService {
 
 	@Override
 	public ResearchPageDTO list(Criteria cri, String research) {
+		log.info("###서비스단 리서치 정보는 : " + research);
 		return new ResearchPageDTO(mapper.getCountBySubjCode(research), mapper.list(cri, research));
 	}
 
