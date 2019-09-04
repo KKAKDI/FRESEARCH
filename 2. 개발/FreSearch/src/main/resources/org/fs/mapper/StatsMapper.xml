@@ -182,15 +182,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="stats == '대기'">
-      						<![CDATA[ AND SUBJ_STARTDATE > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
       				</when>
       		
        				<when test="stats == '진행중'"> 
-	   						<![CDATA[ AND subj_startdate <= TO_DATE(SYSDATE, 'YY/MM/DD') AND subj_enddate > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate,'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   		
 	   				<when test="stats == '완료'">
-	   						<![CDATA[ AND subj_enddate <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   				
 			   	</choose>
@@ -238,15 +238,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="stats == '대기'.toString()">
-      						<![CDATA[ AND SUBJ_STARTDATE > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
       				</when>
       		
        				<when test="stats == '진행중'.toString()"> 
-	   						<![CDATA[ AND subj_startdate <= TO_DATE(SYSDATE, 'YY/MM/DD') AND subj_enddate > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
 	   				</when>
 	   		
 	   				<when test="stats == '완료'.toString()">
-	   						<![CDATA[ AND subj_enddate <= TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
 	   				</when>
 	   				
 			   	</choose>
@@ -308,15 +308,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="vo.stats == '대기'.toString()">
-      						<![CDATA[ AND SUBJ_STARTDATE > TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE,'YY/MM/DD') ]]>
       				</when>
       		
        				<when test="vo.stats == '진행중'.toString()"> 
-	   						<![CDATA[ AND subj_startdate <= TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') AND subj_enddate > TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   		
 	   				<when test="vo.stats == '완료'.toString()">
-	   						<![CDATA[ AND subj_enddate <= TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   				
 			   	</choose>
