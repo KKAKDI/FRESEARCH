@@ -15,7 +15,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/img/logoico.png">   <!-- 파비콘 오류 관련 -->
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/img/logoico.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
