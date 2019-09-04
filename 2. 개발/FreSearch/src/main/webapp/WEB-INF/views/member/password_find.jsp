@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,6 @@
 				<div class="form-submit">
 					<input type="button" id="pwdFind" class="pwdFind" value="비밀번호 찾기">
 				</div>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<!-- </form> -->
 			</div>
 		</div>
@@ -81,6 +81,7 @@
 					<div class="modal-confirm">
 						<input type="submit" id="findConfirm" class="findConfirm" value="이메일 인증">
 					</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
@@ -89,4 +90,14 @@
 	<!-- <form id="find_send" action="" method="post"></form> -->
 	
 </body>
+<script>
+$(document).ready(function(){
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+});
+</script>
 </html>

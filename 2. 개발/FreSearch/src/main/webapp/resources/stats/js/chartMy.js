@@ -1,5 +1,4 @@
 
-
 ///////////////////stats_list 쪽 모달 창///////////////////////////
 function zipJSON(val){
 	var url ='';

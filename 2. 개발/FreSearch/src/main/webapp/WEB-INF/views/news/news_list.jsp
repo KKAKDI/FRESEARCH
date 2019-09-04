@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
@@ -77,6 +77,7 @@ button#regBtn {
 a.move {
 	text-decoration: none;
 	color: #505050;
+	vertical-align: baseline;
 }
 
 a.move:hover {
@@ -246,9 +247,14 @@ div.tab-event a {
 
 				<div class="news-head">
 				<h2>새소식</h2>
-				<span>
-					<a class="button-move" href="/news/news_register">등록</a>
-				</span>
+				<sec:authentication property="principal" var="pinfo"/>
+				<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+					<span>
+						<a class="button-move" href="/news/news_register">등록</a>
+					</span>
+				</c:if>
+				</sec:authorize>
 				</div>
 				
 					<div class="tab" style="text-align: center">
@@ -428,6 +434,26 @@ div.tab-event a {
 				searchForm.submit();
 			});
 		
+		/*
+		$(".news-head a").click(function(){
+			
+			<sec:authorize access="isAuthenticated()">
+  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>';
+  			console.log("권한명 : " + auth);
+        	
+  			if(auth != 'ROLE&#95;ADMIN'){
+  				//alert("권한이 없습니다.");
+  				swal({
+					title:"권한이 없습니다.",
+					text:"패널 신청 후 참여해주세요.",
+					icon:"success",
+					button:"확인",
+				});
+      			return false;
+  			}
+  			</sec:authorize>
+			
+		});*/
 		
 	});
 	

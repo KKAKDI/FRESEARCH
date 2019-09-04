@@ -78,13 +78,13 @@ div.button {
 	display: inline-block;
 }
 
-.uploadResult ul li img{ // 섬네일 이미지 크기 조정
-	width: 100px;
-	
+.uploadResult ul li img {
+	/* width: 100px; */
+	width: 76px;
 }
 
 .uploadResult ul li span{
-	color:white;
+	color: #1428a0;
 }
 
 .bigPictureWrapper{
@@ -136,7 +136,7 @@ div.button {
       <div style="text-align: center;">
          <table style="text-align: center;">
             <form role="form" id="frm" action="/board/board_modify" method="post">
-            
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type='hidden' name='pageNum' value='${cri.pageNum }'>
 			<input type='hidden' name='amount' value='${cri.amount }'>
 			<input type='hidden' name='keyword' value='${cri.keyword }'>
@@ -146,7 +146,7 @@ div.button {
                      <td class="column" style="width: 15%;" >No</td>
                       <td class="column-data" colspan="2" style="padding: 0px;"><input id="brd_code" class="form-control"
                       name='brd_code' value=${board.brd_code} 
-                      readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center;">
+                      readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center; outline:none;">
                       </td>
                       
                       
@@ -158,7 +158,7 @@ div.button {
                   <td class="column" style="width: 15%;">제목</td>
                   <td class="column-data" colspan="5" style="padding: 0px;">
                   <input id="brd_subject" class="form-control"
-                     name='brd_subject' style="width: 100%; height:52px; border:none; padding:0px;" value=${board.brd_subject}></td>
+                     name='brd_subject' style="width: 100%; height:52px; border:none; padding:0px; outline:none;" value=${board.brd_subject}></td>
                </tr>
                
                <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
@@ -343,7 +343,7 @@ $(document).ready(function() {
 		    
 		    console.log("delete file");
 		      
-		    if(confirm("Remove this file? ")){
+		    if(confirm("파일을 삭제하시겠습니까?")){
 		    
 		      var targetLi = $(this).closest("li");
 		      targetLi.remove();
@@ -367,6 +367,9 @@ $(document).ready(function() {
 		    return true;
 		  }
 		  
+		  var csrfHeaderName ="${_csrf.headerName}"; 
+		  var csrfTokenValue="${_csrf.token}";
+		  
 		  $("input[type='file']").change(function(e){
 
 		    var formData = new FormData();
@@ -385,9 +388,12 @@ $(document).ready(function() {
 		    }
 		    
 		    $.ajax({
-		      url: '/uploadAjaxAction',
+		      url: '/uploadAjaxAction2',
 		      processData: false, 
 		      contentType: false,
+		      beforeSend: function(xhr) {
+			     xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			  },
 		      data: formData,
 		      type: 'POST',
 		      dataType:'json',

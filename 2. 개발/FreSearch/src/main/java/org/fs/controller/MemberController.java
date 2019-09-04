@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.fs.domain.MemberVO;
 import org.fs.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.oauth2.GrantType;
@@ -47,12 +50,13 @@ public class MemberController {
 	
 	private OAuth2Parameters googleOAuth2Parameters;
 	
-	@GetMapping("/myPage")
-	public String my(Model model,HttpServletRequest request) {
-		String email = request.getParameter("mb_email");
-		model.addAttribute("myInfo",service.myInfo(email));
-		model.addAttribute("myTakeList",service.myTakeList(email));
-		model.addAttribute("myMakeList",service.myMakeList(email));
+	
+	@PostMapping("/myPage")
+	@PreAuthorize("isAuthenticated()")
+	public String my(Model model,Principal principal) {
+		model.addAttribute("myInfo",service.myInfo( principal.getName()));
+		model.addAttribute("myTakeList",service.myTakeList( principal.getName()));
+		model.addAttribute("myMakeList",service.myMakeList( principal.getName()));
 		return "/member/myPage";
 	}
 	
@@ -199,7 +203,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/findCheck2", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<List<MemberVO>> findCheck(@RequestBody MemberVO vo) {
-		
+		log.info("##닉네임입니다 : " + vo.getMb_nick());
 		return new ResponseEntity<>(service.findCheck2(vo), HttpStatus.OK);
 		/*
 		String mb_nick = req.getParameter("mb_nick");
@@ -300,7 +304,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
 	@GetMapping("/email_find")
 	public void emailFind() {}
 	
@@ -359,6 +362,10 @@ public class MemberController {
 	public String emailConfirm(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
 		String mb_email = request.getParameter("mb_email");
 		String mb_nick = request.getParameter("mb_nick");
+		
+		log.info("###메일주소2 : " + mb_email);
+		log.info("###닉네임2 : " + mb_nick);
+		
 		service.mailSend(mb_email, mb_nick);
 		//rttr.addFlashAttribute("result", member.getMb_email());
 		

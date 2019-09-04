@@ -6,11 +6,12 @@ String ctx = request.getContextPath(); //콘텍스트 명 얻어오기
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript" src="<%=ctx %>/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-	<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/header.jsp" %>
 
 
 
@@ -38,7 +39,7 @@ form {
 }
 
 textarea{
-	width:848px;
+	width:847px;
 }
 
 
@@ -156,18 +157,26 @@ div.button {
 					<table style="text-align: center;">
 
 						<form role="form" id="frm" action="/board/board_register" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div class="form-group">
-								<input type="hidden"  name='mb_email' value="aaa@naver.com"/>				
+							<sec:authorize access="isAuthenticated()">
+								<input type="hidden"  name='mb_email' value='<sec:authentication property="principal.member.mb_email"/>'>
+							</sec:authorize>
 							</div>
-	
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column" style="width: 15%;">닉네임</td>
-							<td class="column-data"  style="padding:0px;"><input class="nick" name='mb_nick'></td>
+						
+						
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;  ">
+							<td class="column" style="width: 15%; ">닉네임</td>
+							<td class="column-data"  style="padding:0px; ">
+							<sec:authorize access="isAuthenticated()">	
+								<input style ="outline:none;" class="nick" name='mb_nick' value='<sec:authentication property="principal.member.mb_nick"/>' readonly="readonly">
+							</sec:authorize>
+							</td>
 						</tr>
 	
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column">제목</td>
-							<td class="column-data" style="padding:0px;"><input class="subject" name='brd_subject'></td>
+						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue; ">
+							<td class="column" >제목</td>
+							<td class="column-data" style="padding:0px;"><input style ="outline:none;" class="subject" name='brd_subject'></td>
 						</tr>
 
 						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
@@ -179,8 +188,6 @@ div.button {
 						<tr style="border-bottom: 1px solid gray; text-align: center; height:auto;">
 							<td class="column" colspan="2">첨부파일</td>
 						</tr> 
-					
-	
 					</form>
 				</table>
 			</div>
@@ -225,12 +232,19 @@ div.button {
 	<!-- 파일 업로드 자바스크립트 -->
 
 <script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+   $(document).ajaxSend(function(e, xhr, options){
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+   });
+	
+
 	$(document).ready(function(e) {
 		
 		var formObj = $("form[role='form']"); // 등록 버튼 클릭 시 첨부파일 관련 처리
-		
 		$("button[type='submit']").on("click",
 			function(e) {
+			
 				e.preventDefault();
 
 				console.log("submit clicked");
@@ -273,6 +287,9 @@ div.button {
 			}
 			return true;
 		}
+		
+		var csrfHeaderName ="${_csrf.headerName}"; 
+		var csrfTokenValue="${_csrf.token}";
 
 		$("input[type='file']").change(
 			function(e) {
@@ -293,9 +310,12 @@ div.button {
 				}
 	
 				$.ajax({
-					url : '/uploadAjaxAction',
+					url : '/uploadAjaxAction2',
 					processData : false,
 					contentType : false,
+					beforeSend: function(xhr) {
+				        xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				    },
 					data : formData,
 					type : 'POST',
 					dataType : 'json',
@@ -358,11 +378,14 @@ div.button {
 			var targetLi = $(this).closest("li");
 
 			$.ajax({
-				url : '/deleteFile',
+				url : '/deleteFile2',
 				data : {
 					fileName : targetFile,
 					type : type
 				},
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			    },
 				dataType : 'text',
 				type : 'POST',
 				success : function(result) {
@@ -405,24 +428,24 @@ fCreator: "createSEditor2"
 <script type="text/javascript">
 
 //저장버튼 클릭시 form 전송
-$("#save").click(function(){
+/* $("#save").click(function(){
     oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", [""]);
     $("#frm").submit();
- 
-});  
+});  */ 
 
 //‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
 function submitContents(elClickedObj) {
  // 에디터의 내용이 textarea에 적용된다.
  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-
+ //$("#frm").submit();
  // 에디터의 내용에 대한 값 검증은 이곳에서
  // document.getElementById("ir1").value를 이용해서 처리한다.
 
- try {
+	try {
      elClickedObj.form.submit();
  } catch(e) {}
- }
+ } 
 
 </script>
+
  <%@include file="../includes/footer.jsp" %>

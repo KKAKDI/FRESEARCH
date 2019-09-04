@@ -1,6 +1,6 @@
 package org.fs.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.fs.domain.Criteria;
 import org.fs.domain.ReplyPageDTO;
@@ -15,6 +15,8 @@ public interface ReplyService {
 	public int modify (ReplyVO vo);			//댓글 수정
 	
 	public int remove(int rpl_code);			//댓글 삭제
+
+	ReplyPageDTO getListPage(Criteria cri, int brd_code);
 	
-	public ReplyPageDTO getListPage(Criteria cri, int brd_code);		//댓글 페이징
+
 }

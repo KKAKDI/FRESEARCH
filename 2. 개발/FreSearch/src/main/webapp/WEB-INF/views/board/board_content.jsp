@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <%@include file="../includes/header.jsp" %>
 
@@ -25,14 +27,14 @@
 	flex-flow:row;
 	justify-content:center;
 	align-items:center;
-	height : 100px;
+	min-height : 100px;
 	padding : 10px;
 	text-align:center;
 	padding-top : 16px;
 
 	}
 
-.uploadResult ul li{
+.uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 	align-content: center;
@@ -40,9 +42,9 @@
 	display: inline;
 }
 
-.uploadResult ul li img{ // 섬네일 이미지 크기 조정
-	width: 100px;
-	
+.uploadResult ul li img { 
+	/*width: 100px;*/
+	width: 76px;
 }
 
 .uploadResult ul li span{
@@ -51,7 +53,6 @@
 
 .bigPictureWrapper{
 
-	
 	position: fixed;
 	display: none;
 	justify-content: center;
@@ -80,6 +81,7 @@
 
 .container_new {
    padding-top: 125px;
+   min-height : 872px;
 }
 .container_reply{
 	text-align:left;
@@ -144,29 +146,7 @@ td#column-subject {
 	color:white;
 }
 
-ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li.paginate_button next{
-   display:inline-block;
-   padding: 6px 12px;
-}
-#pagingArea.a{
-   text-decoration: none;
-}
-#pagingArea{
-   margin-top: 10px;
-   text-align: center;
-   margin-bottom: 109px;
-}
-li.paginate_button {
-   position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-}
+
 
 
 </style>
@@ -192,7 +172,7 @@ li.paginate_button {
 			</div>
 		</div>
 	</div>
-</div>
+
 	
 	
 	<table style="text-align: center;">
@@ -239,9 +219,14 @@ li.paginate_button {
             </tr> 
 		<tr>		
 		<td>
-		 <div style= "text-align:center; width: 850px;">
-				<button class="content_button" style="" data-oper='modify'>수정</button>
-				<button class="content_button" data-oper='list'>리스트</button>
+			<div style= "text-align:center; width: 850px;">
+			 	<sec:authentication property="principal" var="pinfo"/>
+				<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.username eq board.mb_email}">
+					<button class="content_button" style="" data-oper='modify'>수정</button>
+				</c:if>
+				</sec:authorize>
+					<button class="content_button" data-oper='list'>리스트</button>
 			</div>	 			
 		</td>
 		</tr>		
@@ -249,14 +234,14 @@ li.paginate_button {
 				 
       </table>
       
-        	<div style="text-align:center; margin:15px; ">
+        	<div style="text-align:center; margin:15px; min-height: 335px;">
     <div class="container_reply" style="text-align:left;">
         <label for="rpl_content">댓글</label>
         <form name="ReplyInsertForm">
             <div class="input-group" style="box-sizing: border-box;">
                <input type="hidden" name="brd_code" value="${board.brd_code}"/>
-               <textarea class="rpl_content" style ="height :50px; width:807px"id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
-                <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert">등록</button>
+               <textarea class="rpl_content" style ="height :50px; width:807px; resize:none; "id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
+                <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert" id="replyInsert">등록</button>
                <span style="color:#aaa;" id="input-group">(0 / 최대 50자)</span>
 
 
@@ -279,8 +264,13 @@ li.paginate_button {
 				</div>
 
 			</div>
+			<sec:authorize access="isAuthenticated()">	
+				<input type="hidden" id="email" value='<sec:authentication property="principal.username"/>'>
+				<input type="hidden" id="nick" value='<sec:authentication property="principal.member.mb_nick"/>'>
+			</sec:authorize>
         </form>
     </div>
+</div>
 
 	
 
@@ -288,6 +278,13 @@ li.paginate_button {
 <script type="text/javascript" src="/resources/js/reply.js"></script> 
 		
 <script>
+//토큰 추가//
+var csrfHeaderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+   $(document).ajaxSend(function(e, xhr, options){
+      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+   });
+//토큰 추가//
 $('.rpl_content').keyup(function (e){
 	console.log("들어왔다");
     var content = $(this).val();
@@ -308,9 +305,6 @@ $('.rpl_content').keyup(function (e){
 	
 	<script>
 	
-	
-	
-
 	$(document).ready(function(){
 			
 	var brd_codeValue= value = "${board.brd_code}";
@@ -323,16 +317,6 @@ $('.rpl_content').keyup(function (e){
 		
 		replyService.getList({brd_code:brd_codeValue, page: page || 1}, function(replyCnt, list){
 			
-			console.log("replyCnt : " + replyCnt);
-			console.log("list : " + list);
-			console.log(list);
-			
-			if(page == -1){
-				pageNum = Math.ceil(replyCnt/10.0);
-				showList(pageNum);
-				return;
-				
-			}
 			
 			var str=" ";
 			if(list == null || list.length == 0){
@@ -345,101 +329,58 @@ $('.rpl_content').keyup(function (e){
 				 console.log("코드 : " + list[i].rpl_code);
 				 str += " <div><div style='display:inline;'><strong>"+list[i].mb_nick+"</strong>";
 				 str += " <small>"+replyService.displayTime(list[i].rpl_regdate)+"</small></div>";
-				 //str += '<a class="update-btn" onclick="replyService.modify('+list[i].rpl_code+',\''+list[i].rpl_content+'\');" style=\"color : blue; cursor: pointer;\"> 수정 </a>';
-				 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+'); " style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
+				 <sec:authorize access="isAuthenticated()">
+				 var mb_nick = $("#nick").val();
+				 console.log("로그인한 닉넴 : " + mb_nick);
+				 if(mb_nick == list[i].mb_nick) {
+					 str += '<a class="delete-btn" onclick="replyService.remove('+list[i].rpl_code+');" style=\"color : blue; cursor: pointer; \"> 삭제 </a> </div>';			 
+				 }
+				 </sec:authorize>
 				 str += "<p style=\"border-bottom:1px solid #dcdcdc; padding-bottom:9px; padding-top:9px;\">"+list[i].rpl_content+"</p></div></li>"
 			}
 			replyUL.html(str);	
-			
-			showReplyPage(replyCnt);
 		});
 	}
-	
-	 var pageNum = 1;
-	    var replyPageFooter = $(".panel-footer");
-	    
-	    function showReplyPage(replyCnt){
-	      
-	      var endNum = Math.ceil(pageNum / 10.0) * 10;  
-	      var startNum = endNum - 9; 
-	      
-	      var prev = startNum != 1;
-	      var next = false;
-	      
-	      if(endNum * 10 >= replyCnt){
-	        endNum = Math.ceil(replyCnt/10.0);
-	      }
-	      
-	      if(endNum * 10 < replyCnt){
-	        next = true;
-	      }
-	     
-	      var str = "<ul class='pagination'>";
-	      
-	      if(prev){
-	        str+= "<li class='page-item'><a class='paginate_button' href='"+(startNum -1)+"'>Previous</a></li>";
-	      }
-	      
-	      for(var i = startNum ; i <= endNum; i++){
-	        
-	        var active = pageNum == i? "active":"";
-	        
-	        str+= "<li class='page-item "+active+" '><a class='paginate_button' href='"+i+"'>"+i+"</a></li>";
-	      }
-	      
-	      if(next){
-	        str+= "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";
-	      }
-	      
-	      str += "</ul></div>";
-	      
-	      console.log(str);
-	      
-	      replyPageFooter.html(str);
-	    }
-	    
-	    replyPageFooter.on("click","li a", function(e){
-	        e.preventDefault();
-	        console.log("page click");
-	        
-	        var targetPageNum = $(this).attr("href");
-	        
-	        console.log("targetPageNum: " + targetPageNum);
-	        
-	        pageNum = targetPageNum;
-	        
-	        showList(pageNum);
-	      });     
-	
-	
-	
-	
 		
 	$('[name=replyInsert]').on("click", function(e){ //댓글 등록 버튼 클릭시
 		
+	<sec:authorize access="isAnonymous()">
+		swal({
+			title:"작성 권한이 없습니다.",
+			text:"로그인 후 이용해주세요.",
+			icon:"error",
+			button:"확인",
+		});
+		return false;
+	</sec:authorize>
+	var mb_email = $("#email").val();
+	var mb_nick = $("#nick").val();
+
 	    var reply = {
  			
  			rpl_content : $(".rpl_content").val(),
- 			mb_nick : "${board.mb_nick}",
- 			mb_email : "${board.mb_email}",
+ 			mb_nick : mb_nick,
+ 			mb_email : mb_email,
+ 			//mb_email : "${board.mb_email}",
  			brd_code : $("input[name=brd_code]").val()
  			
  			}; //ReplyInsertForm의 내용을 가져옴
 	        
 	    replyService.add(reply, function(result){
 	    	$("#rpl_content").val('');
-	   		showList(-1);
+	   		showList(1);
 	    
 	    }); //Insert 함수호출(아래)
+	    
 		
 	});
 	
-
 	
 	});
 	</script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 
 		var operForm = $("#operForm");
@@ -457,6 +398,7 @@ $('.rpl_content').keyup(function (e){
 </script>
 
 <script> // 조회수 스크립트
+
    var brd_code = $("#brd_code").val();
    var brd_codes = [];
    console.log(Cookies.get("ck_brd_codes"));
@@ -512,6 +454,7 @@ $('.rpl_content').keyup(function (e){
  
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		(function() {
 			var brd_code = ${board.brd_code};
 				$.getJSON("/board/getAttachList", {brd_code : brd_code},
@@ -586,66 +529,3 @@ $('.rpl_content').keyup(function (e){
 
 
 <%@include file="../includes/footer.jsp" %>
-
-
-<%--
-
-	<댓글 테스트 코드>
-
-
-	<script>//댓글 스트립트
-		console.log("===========================");
-		console.log("JS TEST");
-		
-		var brd_codeValue = value="${board.brd_code}";
-		
-		replyService.get(103, function(data){
-			console.log(data);
-		})
-		
-		
-		
-		//for replyService.add test
-		
-		replyService.add(
-		{rpl_content : "JS TEST", mb_nick : "tester" ,mb_email : " KK@naver.com" , brd_code:brd_codeValue}
-		,
-		function(result){
-			alert("RESULT: " + result);
-			}
-		);
-		
-		//for ReplyService.list test
-		
-		replyService.getList({brd_code:brd_codeValue, page:1}, function(list){
-			
-			for(var i = 0, len = list.length || 0; i < len; i++){
-				console.log(list[i]);
-			}
-		});
-		
-		//for replyService.delete test(rpl_code no.126)
-		
-		replyService.remove(126, function(count){
-			
-			console.log(count);
-			
-			if(count ==="success"){
-				alert("REMOVED");
-			}
-		}, function(err){
-			alert('ERROR.....');	
-		});
-		
-		//for replyService.update test
-		
-		replyService.update({
-		
-			rpl_code : 103,
-			brd_code : brd_codeValue,
-			rpl_content : "Modified Reply..."
-		}, function(result){
-			alert("수정 완료.......");	
-		});
-		
-		--%>

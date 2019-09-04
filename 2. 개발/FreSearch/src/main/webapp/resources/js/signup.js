@@ -36,6 +36,13 @@ function execPostCode() {
 
 $(document).ready(function(){
 	
+	/*var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+		
+	$(document).ajaxSend(function(e, xhr, options){
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});*/
+	
 	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
 	var regNick = /^[a-zA-Z가-힣0-9]{2,6}$/;
 	var regPwd = /^[A-Za-z0-9]{4,12}$/;
@@ -152,7 +159,7 @@ $(document).ready(function(){
 						check = true;
 						signupCheck();
 					}else if(!regNick.test(mb_nick) && mb_nick != ""){
-						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
+						$("#nick_check").text("2~6자 한글, 영문, 숫자를 입력해주세요.");
 						$("#nick_check").css("color", "#d0021b");
 						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;
@@ -164,7 +171,7 @@ $(document).ready(function(){
 						check = false;
 						signupCheck();
 					}else{
-						$("#nick_check").text("닉네임 형식에 맞지 않습니다.");
+						$("#nick_check").text("2~6자 한글, 영문, 숫자를 입력해주세요.");
 						$("#nick_check").css("color", "#d0021b");
 						$("#mb_nick").css("border-bottom", "2px solid #d0021b");
 						check = false;

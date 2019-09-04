@@ -77,6 +77,7 @@ button#regBtn {
 a.move {
 	text-decoration: none;
 	color: #505050;
+	vertical-align: baseline;
 }
 
 a.move:hover {
@@ -245,9 +246,14 @@ div.tab-event a {
 			
 				<div class="news-head">
 				<h2>새소식</h2>
-				<span>
-					<a class="button-move" href="/news/news_register">등록</a>
-				</span>
+				<sec:authentication property="principal" var="pinfo"/>
+				<sec:authorize access="isAuthenticated()">
+				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+					<span>
+						<a class="button-move" href="/news/news_register">등록</a>
+					</span>
+				</c:if>
+				</sec:authorize>
 				</div>
 				
 					<div class="tab" style="text-align: center">

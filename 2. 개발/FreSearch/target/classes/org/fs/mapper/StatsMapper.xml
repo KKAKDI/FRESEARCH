@@ -63,74 +63,50 @@ ORDER  BY ctgr_code
 </select>
 
 <select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsVO">
-SELECT (SELECT Count(*) 
-        FROM   (SELECT * 
-                FROM   (SELECT c.ctgr_code, 
-                               c.ctgr_nm, 
-                               b.mb_nick, 
-                               b.mb_addr, 
-                               b.mb_birthdate 
-                        FROM   subject a, 
-                               member b, 
-                               category c 
-                        WHERE  a.mb_nick = b.mb_nick 
-                               AND c.ctgr_code = a.ctgr_code) 
-                WHERE  Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}) 
+SELECT (SELECT Count(mb_birthdate) 
+        FROM   (SELECT mb_birthdate, 
+                       ctgr_code 
+                FROM   area 
+      <![CDATA[ WHERE  Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4),'YYYY')) / 12), 0) > #{startAge} 
+                       AND Nvl(Trunc(Months_between(sysdate,To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) / 12), 0) <= #{endAge}) ]]>
         WHERE  ctgr_code = c.ctgr_code)AS count, 
        c.ctgr_code, 
        c.ctgr_nm, 
-       Round(( Ratio_to_report((SELECT Count(*) AS num 
-                                FROM   (SELECT * 
-                                        FROM   area 
-                                        WHERE  Nvl(Trunc(Months_between(sysdate,To_date(Substr(mb_birthdate, 1, 4),'YYYY')) / 12), 0)BETWEEN #{startAge} AND #{endAge}) 
-                                WHERE  ctgr_code = (SELECT ctgr_code 
-                                                    FROM   category 
-                                                    WHERE 
-                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT
-FROM   subject a, 
-       member b, 
-       category c 
-WHERE  a.mb_nick = b.mb_nick 
-       AND c.ctgr_code = a.ctgr_code 
-GROUP  BY c.ctgr_code, 
-          c.ctgr_nm 
-ORDER  BY ctgr_code 
+       Round((SELECT Count(mb_birthdate) 
+              FROM   (SELECT mb_birthdate, 
+                             ctgr_code 
+                      FROM   area 
+           <![CDATA[  WHERE  Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4),'YYYY')) / 12), 0) > #{startAge} 
+                             AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4) , 'YYYY')) / 12), 0) <= #{endAge})
+              WHERE  ctgr_code = c.ctgr_code) / NULLIF( 
+             (SELECT Count(mb_birthdate) 
+              FROM   (SELECT ctgr_code, 
+                             mb_birthdate 
+                      FROM   area 
+                      WHERE  Nvl(Trunc(Months_between(sysdate , To_date(Substr(mb_birthdate, 1 , 4), 'YYYY')) / 12), 0) > #{startAge} 
+             AND Nvl(Trunc(Months_between( sysdate, To_date( Substr( mb_birthdate, 1, 4) , 'YYYY')) / 12), 0) <= #{endAge})), 0) * 100, 2) || '%' PERCENT ]]> 
+FROM   category c 
 </select>
 
 <select id="getCategorySex" resultType="org.fs.domain.StatsVO">
-SELECT (SELECT Count(*) 
-        FROM   (SELECT * 
-                FROM   (SELECT c.ctgr_code, 
-                               c.ctgr_nm, 
-                               b.mb_nick, 
-                               b.mb_addr, 
-                               b.mb_birthdate, 
-                               b.mb_sex 
-                        FROM   subject a, 
-                               member b, 
-                               category c 
-                        WHERE  a.mb_nick = b.mb_nick 
-                               AND c.ctgr_code = a.ctgr_code) 
-                WHERE  mb_sex = #{sex}) 
+SELECT (SELECT Count(ctgr_code) 
+        FROM   (SELECT ctgr_code 
+                FROM   area 
+                WHERE  mb_sex LIKE '%'|| #{mb_sex} ||'%') 
         WHERE  ctgr_code = c.ctgr_code)AS count, 
        c.ctgr_code, 
        c.ctgr_nm, 
-       Round(( Ratio_to_report((SELECT Count(*) AS num 
-                                FROM   (SELECT * 
-                                        FROM   area 
-                                        WHERE  mb_sex = #{sex}) 
-                                WHERE  ctgr_code = (SELECT ctgr_code 
-                                                    FROM   category 
-                                                    WHERE 
-                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT 
-FROM   subject a, 
-       member b, 
-       category c 
-WHERE  a.mb_nick = b.mb_nick 
-       AND c.ctgr_code = a.ctgr_code 
-GROUP  BY c.ctgr_code, 
-          c.ctgr_nm 
-ORDER  BY ctgr_code 
+       Round((SELECT Count(ctgr_code) 
+              FROM   (SELECT ctgr_code 
+                      FROM   area 
+                      WHERE  mb_sex LIKE '%'|| #{mb_sex} ||'%') 
+              WHERE  ctgr_code = c.ctgr_code) / (SELECT Count(ctgr_code) 
+                                                 FROM 
+             (SELECT ctgr_code 
+              FROM   area 
+              WHERE  mb_sex LIKE '%'|| #{mb_sex} ||'%')) * 100, 2)|| '%' PERCENT 
+FROM   category c
+
 </select>
 
 <select id="getCategoryMarriage" resultType="org.fs.domain.StatsVO">
@@ -193,18 +169,19 @@ FROM   (SELECT rownum rn,
                AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
                <choose>
       				<when test="stats == '전체'">
+      				
        				</when>
        		
        				<when test="stats == '대기'">
-      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
       				</when>
       		
        				<when test="stats == '진행중'"> 
-	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate,'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   		
 	   				<when test="stats == '완료'">
-	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   				
 			   	</choose>
@@ -252,15 +229,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="stats == '대기'.toString()">
-      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd')) ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
       				</when>
       		
        				<when test="stats == '진행중'.toString()"> 
-	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd')) ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
 	   				</when>
 	   		
 	   				<when test="stats == '완료'.toString()">
-	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd')) ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD')) ]]>
 	   				</when>
 	   				
 			   	</choose>
@@ -322,15 +299,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="vo.stats == '대기'.toString()">
-      						<![CDATA[ AND SUBJ_STARTDATE > to_char(sysdate,'yy/mm/dd') ]]>
+      						<![CDATA[ AND TO_DATE(SUBJ_STARTDATE, 'YY/MM/DD') > TO_DATE(SYSDATE,'YY/MM/DD') ]]>
       				</when>
       		
        				<when test="vo.stats == '진행중'.toString()"> 
-	   						<![CDATA[ AND subj_startdate <= to_char(sysdate, 'yy/mm/dd') AND subj_enddate > to_char(sysdate,'yy/mm/dd') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_startdate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') AND TO_DATE(subj_enddate, 'YY/MM/DD') > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   		
 	   				<when test="vo.stats == '완료'.toString()">
-	   						<![CDATA[ AND subj_enddate <= to_char(sysdate,'yy/mm/dd') ]]>
+	   						<![CDATA[ AND TO_DATE(subj_enddate, 'YY/MM/DD') <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
 	   				</when>
 	   				
 			   	</choose>
@@ -425,10 +402,10 @@ FROM   member
 </select>
 
 <select id="getAddr" resultType="int">		<!--  주소 구하는 SQL문 -->
-SELECT Count(*) 
+SELECT Count(mb_addr) 
 FROM   (SELECT mb_addr
         FROM   member
-        WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{addr}|| '%')
+        WHERE  Substr(mb_addr, 6, 12) LIKE '%' || #{addr}|| '%')
 </select>
 
 <!--  <select id="getAddr" resultType="int">

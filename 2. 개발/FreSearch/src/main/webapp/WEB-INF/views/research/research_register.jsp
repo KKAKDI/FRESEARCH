@@ -17,15 +17,27 @@
 <script src="/resources/js/research_register.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<script>
+$(function(){
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+	   $(document).ajaxSend(function(e, xhr, options){
+	      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	   });
+});
+</script>
 <body>
+ <sec:authorize access="isAuthenticated()">
+ 	<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                
+ </sec:authorize>
 	<div class='container'>
-		<div class='research_header'>
+		<div class='research_header'> 
 			<div id='top_box'>
 				<div id='left_top_box'>
 					<button id='prev_btn'> </button> <input type='text' id='top_title' autocomplete='off' value='' maxlength="23">
 				</div>				
 				<div id='right_top_box'>					
-					<button onclick="send();" id='send_form'>작성</button>
+					<button id='send_form'>작성</button>
 					<button id='delete_form'></button>
 				</div>
 			</div>	
@@ -36,6 +48,7 @@
 		<section id='content' class='clearflx'>
 			<div id='form_area' class='clearflx'>
 				<form name='research_form' id='research_form' action='' method='post'>
+				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
 				<input type='hidden' name='research_values' id='research_values' value=''>
 					<!-- 여기 리모컨 -->
 					<div id='remote'>
@@ -90,7 +103,6 @@
 							<div class='bottom_button_box'><button id=qst_add></button></div><div class='bottom_button_box'><button id=qst_etc>etc</button></div>	
 						</div>	
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 			<div class='bottom'></div>
@@ -98,7 +110,10 @@
 	</div>	
 </body>
 <script>
+$(document).ready(function(){
+
 	$(function() {	
+		
 		//웹 소켓
 		var ws;
 		
@@ -111,7 +126,8 @@
 		} 
 		
 		//웹소켓 객체 만드는 코드
-		ws = new WebSocket('ws://localhost:8080/echo');
+		//ws = new WebSocket('ws://localhost:8080/echo');
+		ws = new WebSocket('ws://www.fresearch.cf/echo');
 		
 		
 		ws.onopen=function(event){
@@ -134,13 +150,13 @@
 		    ws.send(text);
 		    text=""; 
 		} */
-		function send(){
+ 		function send(){
 		    //var text = document.getElementById("messageinput").value;        	
 		    var text = "갱신";
 		    ws.send(text);
 		    text="";
 		    
-		}
+		} 
 		function closeSocket(){
 		    ws.close();
 		}
@@ -149,5 +165,7 @@
 		    //message.innerHTML+="<br/>"+text;
 		}
 	});
+});
+
 </script>
 </html>

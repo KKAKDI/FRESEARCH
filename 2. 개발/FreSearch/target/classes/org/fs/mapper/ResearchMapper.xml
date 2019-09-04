@@ -11,28 +11,28 @@
 		(
 		select rownum rn, subj_code, ctgr_nm, subj_nm, subj_regdate, subj_startdate, subj_enddate
 		from v_research
-		<![CDATA[ where rownum <= #{cri.pageNum} * #{cri.amount} ]]>
+		 where rownum <![CDATA[<]]>= #{cri.pageNum} * #{cri.amount} 
 		<choose>
-			<when test="research == '진행중설문'">
-				<![CDATA[ and subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+			<when test="research == 'ingResearch'">
+				 and TO_CHAR(SUBJ_ENDDATE, 'YY/MM/DD') <![CDATA[>]]>= TO_CHAR(SYSDATE, 'YY/MM/DD') 
 			</when>
-			<when test="research == '종료된설문'">
-				<![CDATA[ and subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+			<when test="research == 'endResearch'">
+				 and TO_CHAR(SUBJ_ENDDATE, 'YY/MM/DD') <![CDATA[<]]> TO_CHAR(SYSDATE, 'YY/MM/DD') 
 			</when>
 		</choose>
 		) 
-	<![CDATA[ where rn > (#{cri.pageNum} -1) * #{cri.amount} ]]>
+	 where rn <![CDATA[>]]> (#{cri.pageNum} -1) * #{cri.amount} 
 	
 	</select>
 	
 	<select id="getCountBySubjCode" resultType="int">
 		select count(subj_code) from subject
 		<choose>
-			<when test="research == '진행중설문'">
-				<![CDATA[ where subj_enddate >= to_char(sysdate,'yy/mm/dd') ]]>
+			<when test="research == 'ingResearch'">
+				 where TO_CHAR(SUBJ_ENDDATE, 'YY/MM/DD') <![CDATA[>]]>= TO_CHAR(SYSDATE, 'YY/MM/DD') 
 			</when>
-			<when test="research == '종료된설문'">
-				<![CDATA[ where subj_enddate < to_char(sysdate,'yy/mm/dd') ]]>
+			<when test="research == 'endResearch'">
+				 where TO_CHAR(SUBJ_ENDDATE, 'YY/MM/DD') <![CDATA[<]]> TO_CHAR(SYSDATE, 'YY/MM/DD') 
 			</when>
 		</choose>
 	</select>

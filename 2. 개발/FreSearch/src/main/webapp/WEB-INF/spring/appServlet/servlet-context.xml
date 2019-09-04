@@ -46,7 +46,7 @@
 	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
 	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
 		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
-		<beans:property name="redirectUri" value="http://localhost:8080/member/signin/oauth2callback" />
+		<beans:property name="redirectUri" value="http://www.fresearch.cf/member/signin/oauth2callback" />
 	</beans:bean>
 	
         <websocket:handlers>

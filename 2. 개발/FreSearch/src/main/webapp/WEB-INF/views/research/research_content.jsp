@@ -149,6 +149,7 @@
 			<div id='form_area' class='clearflx'>				
 					<div class='research_content active clearflx'>
 					<form name='research_form' id='research_form' action='' method='post'>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<input type='hidden' name='research_values' id='research_values' value=''>			
 						<div class='content_box clearflx'>						
 							<div id='research_subject'>${content[0].subj_nm}</div>
@@ -197,7 +198,7 @@
 									</c:choose>
 									<c:if test="${not empty research.item_img}">
 									<div class='research_item_img'>
-										<img src="../resources/upload/${research.item_img}"/>
+										<img src="../picture?fileName=${research.item_img}"/>
 									</div>
 									</c:if>
 									

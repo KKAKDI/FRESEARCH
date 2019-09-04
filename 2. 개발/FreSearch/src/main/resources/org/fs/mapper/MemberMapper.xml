@@ -159,7 +159,7 @@
 	
 	<select id="findCheck2" resultType="MemberVO">
 		select mb_email, mb_nick, mb_birthdate, mb_phone, mb_joindate from member 
-		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} or mb_phone = #{mb_phone}
+		where mb_nick = #{mb_nick} and mb_birthdate = #{mb_birthdate} and mb_phone = #{mb_phone}
 	</select>
 	
 	<select id="check" resultType="MemberVO">
@@ -239,11 +239,14 @@
 			a.subj_regdate desc
 	</select>
 	<select id='myPageInfo' resultType='MemberVO'>
-		select 
-			a.*,b.auth
+        select 
+			a.mb_email,a.mb_att_ctgr_code,a.mb_nick,a.mb_pwd,a.mb_addr,a.mb_birthdate,a.mb_sex,a.mb_phone,a.mb_email_key,a.mb_joindate,b.auth
 		from 
 			member a,member_auth b
         where
             a.mb_email=#{mb_email}
+        and 
+        	a.mb_email=b.mb_email
+        group by a.mb_email,a.mb_att_ctgr_code,a.mb_nick,a.mb_pwd,a.mb_addr,a.mb_birthdate,a.mb_sex,a.mb_phone,a.mb_email_key,a.mb_joindate,b.auth
 	</select>
 </mapper>

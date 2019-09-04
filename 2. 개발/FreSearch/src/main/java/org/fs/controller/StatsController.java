@@ -98,9 +98,9 @@ public class StatsController {
 
 		// 성별
 		for (StatsVO temp : service.getMemberList()) {
-			if (temp.getMb_sex().equals("남")) {
+			if (temp.getMb_sex().equals("남자")) {
 				boy++;
-			} else if (temp.getMb_sex().equals("여")) {
+			} else if (temp.getMb_sex().equals("여자")) {
 				girl++;
 			}
 		}
@@ -161,6 +161,8 @@ public class StatsController {
 		// 성별
 		model.addAttribute("girl", girl);
 		model.addAttribute("boy", boy);
+		log.info("#girl : "+girl);
+		log.info("#boy : "+boy);
 
 		// 통계 ALL
 		model.addAttribute("education", education);

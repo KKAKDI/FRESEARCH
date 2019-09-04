@@ -7,14 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>설문 목록 : FRESEARCH</title>
-<meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/research_list.css">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/resources/js/research_list.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 	<div class="page-content">
 		<div class="list-content">
@@ -37,58 +34,32 @@
 				<!-- <div class="wrap-loading display-none">
     				<div><img src="/resources/img/loading.gif"/></div>
 				</div> -->
-				<div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div>
+				<!-- <div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div> -->
 			</div>
 		</div>
 	</div>
+	
+	<sec:authorize access="isAuthenticated()">	
+		<input type="hidden" id="auth" value='<sec:authentication property="principal.member.authList[0].auth"/>'>
+	</sec:authorize>
+	
 	<!-- <div>사용자가 커서로 항목을 가리키면 <p class="tt">말풍선 <span class="tt-text">또는 툴팁(tooltip)</span></p>이 나타납니다. </div> -->
 
 <script type="text/javascript">
 
-/* function loadingStart() {
-
-	 var maskHeight = $(document).height();  
-	 var maskWidth = $(document).width();
-	 var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
-	 var loadingImg = '';
-
-	 loadingImg += "<div id='loadingImg' style='position:absolute; left:50%; top:40%; display:none; z-index:10000;'>";
-	 loadingImg += " <img src='/resources/img/loading.gif'/>"; 
-	 loadingImg += "</div>";   
-
-	 //화면에 레이어 추가 
-	 $('body').append(mask).append(loadingImg);
-	    
-	 //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-	 $('#mask').css({
-	   'width' : maskWidth,
-	   'height': maskHeight,
-	   'opacity' : '0.3'
-	 });  
-
-	 //마스크 표시
-	 $('#mask').show();    
-
-	 //로딩중 이미지 표시
-	 $('#loadingImg').show();
-	}
-
-	function loadingClose() {
-	 $('#mask, #loadingImg').hide();
-	 $('#mask, #loadingImg').remove();  
-	} */
-
       $(document).ready(function(){
-    	  //loadingStart();	
+    	  
     	  $("#ing").css("color", "#222");
     	  $("#end").css("background", "#f9f9f9");
     	  $("#ing").css("font-weight", "700");
     	  
     	  var research = $(".research").val();
-    	  
     	  showList(1);
     	  
     	  function showList(page){
+				if(research =="진행중설문"){
+					research = 'ingResearch';    		 
+				}
     	  
     		  researchService.list({data:research, page: page|| 1}, function(researchCnt, list){
     			  	console.log("research : " + research);
@@ -205,7 +176,7 @@
 	         			html += '</ul>';
 	         		}
 	                $('#test').html(html);
-	              
+	              	
 	                showResearchPage(researchCnt);
 	          });
     	}
@@ -214,6 +185,7 @@
   		var researchPageFooter = $(".paging");
   		
   		function showResearchPage(researchCnt){
+  			
   			var endNum = Math.ceil(pageNum / 5.0) * 5;
   			console.log("endNum : " + endNum);
   			var startNum = endNum - 4;
@@ -270,15 +242,43 @@
   			researchPageFooter.css("background", "#222");
   			researchPageFooter.css("font-style", "normal");
   		});*/
+  		
+  		$('.list-head a').click(function(){
+  			/* <sec:authorize access="isAuthenticated()">
+  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>'; */
+  			
+  			var auth = $("#auth").val();
+  			
+  			if(auth == 'ROLE_USER'){
+  				swal({
+					title:"권한이 없습니다.",
+					text:"패널 신청 후 참여해주세요.",
+					icon:"success",
+					button:"확인",
+				});
+      			return false;
+  			}
+  			/* </sec:authorize> */
+  		});
   	});
       
       //$(".research").click(function(e) {
     $(".tab-content").off('click','.research').on('click','.research',function(e){ 
   			
     	  var research = $(this).val();
+    	  
     	  showList(1);
     	  
+    	  
     	  function showList(page){
+    		  if(research =="진행중설문"){
+    			  console.log ("진행중 설문 안에 들어왔다.");
+					research = 'ingResearch';
+					
+				}else if(research =="종료된설문"){
+					console.log ("완료 설문 안에 들어왔다.");
+					research = 'endResearch';
+				}
     	  
     		  researchService.list({data:research, page: page|| 1}, function(researchCnt, list){
     			  	console.log("research : " + research);
@@ -295,6 +295,7 @@
 					var html="";
 					
 					if(list == null || list.length == 0){
+						console.log("아무것도 없을떄");
 						html += '<ul>';
 		      			html += '<li>';
 		      			html += '<a>';
@@ -303,7 +304,7 @@
 		      			html += '</a>';
 		      			html += '</li>';
 		      			html += '</ul>';
-						return;
+		      			$('#test').html(html);
 					}
 					for(var i =0, len = list.length||0; i < len; i++){
 		                
@@ -313,126 +314,126 @@
 	         			if(list[i].ctgr_nm == "교육, 학문"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/education.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "컴퓨터 통신"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/computer.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "게임"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/game.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "엔터테인먼트, 예술"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/entertainment.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "생활"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/life.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "건강"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/health.jpg"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "사회, 정치"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/social.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "경제"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/economy.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "여행"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/travel.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "스포츠, 레저"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/sports.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "쇼핑"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/shopping.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "지역"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/area.jpg"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else if(list[i].ctgr_nm == "결혼"){
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/marriage.png"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';
 	         			}else{
 	         				html += '<div class="ctgr_img">';
 	         				html += '<img src="/resources/img/noimg.jpg"/>';
-	         				if(research == "진행중설문"){
+	         				if(research == "ingResearch"){
 	         					html += '<p id="status">진행</p>';
-	         				}else if(research == "종료된설문"){
+	         				}else if(research == "endResearch"){
 	         					html += '<p id="status">종료</p>';
 	         				}
 	         				html += '</div>';

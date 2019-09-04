@@ -29,6 +29,7 @@ div.container_new{
 
 .board-head span a {
    color: #fff;
+   padding: 10px 59px 13px;
 }
 .board-head h2 {
    position: relative;
@@ -48,13 +49,10 @@ div.container_new{
     left: 0px;
 }
 
-div.pagingArea, div.search {
-   text-align: center;
-   margin: auto;
-}
 div.search{
    display: inline;
    text-align: right;
+   margin: auto;
 }
 input.search{
    height: 22px;
@@ -66,29 +64,6 @@ input.search{
     width: 848px;
     margin-top: 45px;
     margin-bottom: 5px;
-}
-ul.pagination, li.page-item, li.paginate_button previous, li.paginate_button, li.paginate_button next{
-   display:inline-block;
-   padding: 6px 12px;
-}
-#pagingArea.a{
-   text-decoration: none;
-}
-#pagingArea{
-   margin-top: 10px;
-   text-align: center;
-   margin-bottom: 109px;
-}
-li.paginate_button {
-   position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
 }
 
 
@@ -125,6 +100,69 @@ button {
 ul, li {
 	display: inline;
 }
+
+#pagingArea ul{
+   text-align: center;
+   /*margin-top: 30%;*/
+}
+
+#pagingArea{
+    text-align: center;
+    padding-top: 20px;s
+}
+
+#pagingArea li{
+    display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 1px;
+    /*padding: 0 5px;*/
+    box-sizing: border-box;
+    line-height: 40px;
+    vertical-align: top;
+}
+
+#pagingArea ul .paginate_button a {
+   color: #888;
+   display: inline-block;
+    width: 40px;
+    height: auto;
+}
+#pagingArea ul .paginate_button_move a {
+   transition: border .2s;
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 -1px;
+    box-sizing: border-box;
+    border: 1px solid #ebebeb;
+    vertical-align: top;
+    color: #888;
+}
+#pagingArea ul .paginate_button a:hover{
+   background-color: #1428a0;
+    cursor: pointer;
+   color: #fff;
+   opacity: 0.4;
+}
+#pagingArea ul .paginate_button_move a:hover{
+    cursor: pointer;
+   color: #1428a0;
+   border: 1px solid #000;
+}
+
+#pagingArea ul .paginate_button.active .page-link{
+   background-color: #1428a0;
+    font-style: normal;
+    color: #fff;
+    width: 40px;
+    height: auto;
+}
+#pagingArea ul .paginate_button.active .page-link:hover{
+   cursor: auto;
+}
+
 
 </style>
 
@@ -184,7 +222,7 @@ ul, li {
 						<th style="background-color: #f0f0f0;  width:5%; font-weight: bold; color: #505050; padding: 16 19;">No</th>
 						<th style="background-color: #f0f0f0; width:50%; font-weight: bold; color: #505050; padding: 16 19; ">제목</th>
 						<th style="background-color: #f0f0f0; width:5%; font-weight: bold; color: #505050; padding: 16 19; "></th>
-						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
+						<th style="background-color: #f0f0f0;  width:14%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
 						<th style="background-color: #f0f0f0;   width:10%; font-weight: bold; color: #505050; padding: 16 19;">등록일</th>
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">조회수</th>
 						
@@ -197,7 +235,7 @@ ul, li {
 						<td class="title"><a class='move' href="${board.brd_code}">${board.brd_subject} </a></td>
 						<c:choose>
 							<c:when test="${board.brd_is_attach == 'Y'}">
-							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
+							<td><img src="/resources/img/bicon01_1.png" width=20px; height=auto;></td>
 							</c:when>
 								<c:otherwise>
 	         						<td></td>
@@ -225,19 +263,19 @@ ul, li {
 					<c:if test="${pageMaker.prev}">
 						<li class="page-item">
 						<a href="${path}/board/board_list?pageNum=1">첫페이지</a>
-						<li class="paginate_button previous">
-						<a href="${pageMaker.startPage-1}">Previous</a></li>
+						<li class="paginate_button_move">
+						<a href="${pageMaker.startPage-1}">이전</a></li>
 					</c:if>
 
 					<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 						<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""}">
-							<a href="${num}">${num}</a>
+							<a class="page-link" href="${num}">${num}</a>
 						</li>
 					</c:forEach>
 
 					<c:if test="${pageMaker.next}">
-						<li class="paginate_button next"><a
-							href="${pageMaker.endPage +1}">Next</a></li>
+						<li class="paginate_button_move"><a
+							href="${pageMaker.endPage +1}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -255,6 +293,13 @@ ul, li {
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
 
 		var result = '${result}';
 
@@ -274,6 +319,13 @@ ul, li {
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
+		
+		$(".paginate_button_move a").on("click", function(e) {
+	         e.preventDefault();
+	         console.log(' click ');
+	         actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+	         actionForm.submit();
+	      });
 		
 		$(".move")
 		.on(

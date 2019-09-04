@@ -6,6 +6,7 @@
 <html>
 <head>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 
 
@@ -14,7 +15,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!-- 파비콘 오류 관련 -->
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/img/logoico.png">   <!-- 파비콘 오류 관련 -->
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/img/logoico.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic">
 <link rel="stylesheet" href="/resources/css/reset.css">
@@ -109,8 +111,10 @@
                  <div class="dropdown-content">
                    <!-- <a href="#">회원명</a> -->
                    <sec:authorize access="isAuthenticated()">
+                    <form class="mypage_form" action="/member/myPage" method="post">
+                       <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                      	
+                   </form>
                    <form class="dropdown-form" role="form" action="/logout" method='post'>
-                   
                       <p>
                       <img class="img_iconFirst" src="/resources/img/member_icon01.png"/>
                       <sec:authentication property="principal.member.mb_nick"/></p>
@@ -119,15 +123,15 @@
                       </p>
                    
                       <div class="bar"></div>
-                      <a class="mypage_a" href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
+                      <a href="/" id="mypage">
                          <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
                          <span class="span_mypage">마이페이지 </span>
                       </a>
-                     <a class="logout_a" href="/" id="logout">
+                     <a href="/" class="logout_a" id="logout">
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
                      </a>
-                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                     <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
                   </form>
                   </sec:authorize>
                   <sec:authorize access="isAnonymous()">
@@ -182,7 +186,20 @@
 							<a href="/stats/stats_list">데이터베이스</a>
 						</li>
 						<li>
-							<a href="">패널신청</a>
+		                     <sec:authentication property="principal" var="pinfo"/>
+		                     <sec:authorize access="isAuthenticated()">
+			                     <c:choose>
+			                        <c:when test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+			                              <a href="/apply/approval_list">패널승인</a>
+			                        </c:when>
+			                        <c:when test="${pinfo.member.authList[0].auth eq 'ROLE_USER' || pinfo.member.authList[0].auth eq 'ROLE_PANEL'}">
+			                              <a href="/apply/apply">패널신청</a>
+			                        </c:when>        
+			                     </c:choose>
+			                 </sec:authorize>
+			                 <sec:authorize access="isAnonymous()">
+			                              <a href="/member/signin">패널신청</a>
+			                 </sec:authorize>
 						</li>
 					</ul>
 				</nav>
@@ -196,17 +213,17 @@
 	
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
- 
 
 	//최운학
 	$("#logout").on("click", function(e) {
-		location.href = "/";
 		e.preventDefault();
-		$("form").submit();
+		$("form").submit();				
+		location.href="/";
 	});
 
 	//곽지훈
 	$(function() { 
+		
 		$(window).load(function() {
 			$(".loading").fadeOut(1000);
 		});
@@ -281,12 +298,26 @@
 		eventRollingOff = setInterval(eventRolling, 2000);
 		$("#content .notice_area .event .event_rolling").append(
 		$("#content .notice_area .event li").first().clone());
+		
+		$("#mypage").on("click",function(e){
+			location.href="/";
+			e.preventDefault();
+			$(".mypage_form").submit();
+		});
 	});
 
 		//조성식
         var ws;
         
         $(document).ready(function(){
+        	
+        	var csrfHeaderName = "${_csrf.headerName}";
+        	var csrfTokenValue = "${_csrf.token}";
+
+        	$(document).ajaxSend(function(e, xhr, options){
+        		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+        	});
+        	
         	var mb_email =($)
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED)
             {
@@ -296,7 +327,8 @@
             } 
             
             //웹소켓 객체 만드는 코드
-            ws = new WebSocket('ws://localhost:8080/echo');
+            //ws = new WebSocket('ws://localhost:8080/echo');
+            ws = new WebSocket('ws://www.fresearch.cf/echo');
             ws.onopen=function(event){
             	
                 if(event.data===undefined) return;
@@ -338,6 +370,8 @@
         	}
         	var subj_code = '';
         	
+        	console.log("mb_email : "+mb_email);
+        	
         	//subj_code 가져오는 ajax
         	$(document).ready(function(){
                 $(document).on("click",".alarm_button",function(event){
@@ -347,7 +381,7 @@
                   var data ={
                 		  subj_code : subj_code,
                 		  mb_email : mb_email
-                  }
+                  } 
                   
                  	tableService.headerUpdate(data, function(list){
                 	  location.href="/research/research_content?subj_code="+subj_code;
@@ -385,7 +419,7 @@
 	        			}
 	        			html += '<div class="all-read"><span class="all-read-span">모두 읽은 상태로 표시</span></div>'
 	        			$('#alarm_content').html(html);
-	        		}else{ 
+	        		}else{
 	        		} 
 	        	});
         	}
