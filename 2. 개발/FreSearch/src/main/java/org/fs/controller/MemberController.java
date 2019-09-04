@@ -304,7 +304,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
 	@GetMapping("/email_find")
 	public void emailFind() {}
 	
