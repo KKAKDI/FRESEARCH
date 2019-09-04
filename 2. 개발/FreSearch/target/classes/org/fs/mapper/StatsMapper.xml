@@ -98,39 +98,24 @@ ORDER  BY ctgr_code
 </select>
 
 <select id="getCategorySex" resultType="org.fs.domain.StatsVO">
-SELECT (SELECT Count(*) 
-        FROM   (SELECT * 
-                FROM   (SELECT c.ctgr_code, 
-                               c.ctgr_nm, 
-                               b.mb_nick, 
-                               b.mb_addr, 
-                               b.mb_birthdate, 
-                               b.mb_sex 
-                        FROM   subject a, 
-                               member b, 
-                               category c 
-                        WHERE  a.mb_nick = b.mb_nick 
-                               AND c.ctgr_code = a.ctgr_code) 
-                WHERE  mb_sex = #{sex}) 
+SELECT (SELECT Count(ctgr_code) 
+        FROM   (SELECT ctgr_code 
+                FROM   area 
+                WHERE  mb_sex LIKE '%'|| #{mb_sex} ||'%') 
         WHERE  ctgr_code = c.ctgr_code)AS count, 
        c.ctgr_code, 
        c.ctgr_nm, 
-       Round(( Ratio_to_report((SELECT Count(*) AS num 
-                                FROM   (SELECT * 
-                                        FROM   area 
-                                        WHERE  mb_sex = #{sex}) 
-                                WHERE  ctgr_code = (SELECT ctgr_code 
-                                                    FROM   category 
-                                                    WHERE 
-                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%'  PERCENT 
-FROM   subject a, 
-       member b, 
-       category c 
-WHERE  a.mb_nick = b.mb_nick 
-       AND c.ctgr_code = a.ctgr_code 
-GROUP  BY c.ctgr_code, 
-          c.ctgr_nm 
-ORDER  BY ctgr_code 
+       Round((SELECT Count(ctgr_code) 
+              FROM   (SELECT ctgr_code 
+                      FROM   area 
+                      WHERE  mb_sex LIKE '%%') 
+              WHERE  ctgr_code = c.ctgr_code) / (SELECT Count(ctgr_code) 
+                                                 FROM 
+             (SELECT ctgr_code 
+              FROM   area 
+              WHERE  mb_sex LIKE '%'|| #{mb_sex} ||'%')) * 100, 2)|| '%' PERCENT 
+FROM   category c
+
 </select>
 
 <select id="getCategoryMarriage" resultType="org.fs.domain.StatsVO">
@@ -193,6 +178,7 @@ FROM   (SELECT rownum rn,
                AND Nvl(Trunc(Months_between(sysdate, To_date(Substr(mb_birthdate, 1, 4), 'YYYY')) /12), 0)BETWEEN #{startAge} AND #{endAge}
                <choose>
       				<when test="stats == '전체'">
+      				
        				</when>
        		
        				<when test="stats == '대기'">
@@ -322,15 +308,15 @@ FROM   (SELECT rownum rn,
        				</when>
        		
        				<when test="vo.stats == '대기'.toString()">
-      						<![CDATA[ AND SUBJ_STARTDATE > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+      						<![CDATA[ AND SUBJ_STARTDATE > TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
       				</when>
       		
        				<when test="vo.stats == '진행중'.toString()"> 
-	   						<![CDATA[ AND subj_startdate <= TO_DATE(SYSDATE, 'YY/MM/DD') AND subj_enddate > TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND subj_startdate <= TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') AND subj_enddate > TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
 	   				</when>
 	   		
 	   				<when test="vo.stats == '완료'.toString()">
-	   						<![CDATA[ AND subj_enddate <= TO_DATE(SYSDATE, 'YY/MM/DD') ]]>
+	   						<![CDATA[ AND subj_enddate <= TO_CHAR(TO_DATE(SYSDATE, 'YY/MM/DD'), 'YY/MM/DD') ]]>
 	   				</when>
 	   				
 			   	</choose>

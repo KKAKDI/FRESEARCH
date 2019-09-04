@@ -58,7 +58,6 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 	set NEWS_SUBJECT = #{news_subject},
 	NEWS_DIVISION = #{news_division},
 	NEWS_CONTENT = #{news_content},
-	NEWS_REGDATE = sysdate,
 	NEWS_IS_ATTACH = #{news_is_attach}
 	where NEWS_CODE = #{news_code}
 </update>

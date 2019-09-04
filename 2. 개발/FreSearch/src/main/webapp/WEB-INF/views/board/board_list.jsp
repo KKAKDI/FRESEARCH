@@ -222,7 +222,7 @@ ul, li {
 						<th style="background-color: #f0f0f0;  width:5%; font-weight: bold; color: #505050; padding: 16 19;">No</th>
 						<th style="background-color: #f0f0f0; width:50%; font-weight: bold; color: #505050; padding: 16 19; ">제목</th>
 						<th style="background-color: #f0f0f0; width:5%; font-weight: bold; color: #505050; padding: 16 19; "></th>
-						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
+						<th style="background-color: #f0f0f0;  width:14%; font-weight: bold; color: #505050; padding: 16 19;">닉네임</th>		
 						<th style="background-color: #f0f0f0;   width:10%; font-weight: bold; color: #505050; padding: 16 19;">등록일</th>
 						<th style="background-color: #f0f0f0;  width:10%; font-weight: bold; color: #505050; padding: 16 19;">조회수</th>
 						

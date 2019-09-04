@@ -161,6 +161,8 @@ public class StatsController {
 		// 성별
 		model.addAttribute("girl", girl);
 		model.addAttribute("boy", boy);
+		log.info("#girl : "+girl);
+		log.info("#boy : "+boy);
 
 		// 통계 ALL
 		model.addAttribute("education", education);
