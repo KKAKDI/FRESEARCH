@@ -79,6 +79,7 @@ $(function() {
 			var flag = $(".active_individual").children(".disabled").val();			
 			if(flag==null){
 				$("#content #form_area .active_item").append("<li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt disabled' autocomplete='off' value='기타' disabled><div class='button_box' style='display:none'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div></li>");
+				i++;
 				return false;
 			}else{
 				$("#qst_etc").attr("disable");		
@@ -118,9 +119,11 @@ $(function() {
 			if(value=='1'){
 				$(this).parents().find(".active_item").remove();
 				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual'><input type='text' class='item_txt' id='disabled_sel' autocomplete='off' value='단답형 텍스트' readonly><input type='file' name='item_img' id='item_img"+i+"'/></li></ul>");
+				i++;
 			}else{
 				$(this).parents().find(".active_item").remove();
 				$(this).next().append("<ul id='item_box' class='clearflx active_item'><li class='item_individual active_individual'><input type='radio' id='item' value=''><input type='text' class='item_txt' autocomplete='off' placeholder='보기'><div class='button_box'><div class='img_box'><label for='item_img"+i+"'></label><input type='file' name='item_img' id='item_img"+i+"'/></div></div><div class='button_box'><button id=item_del></button></div><div id='img_box'><img id='list"+i+"'/><button id='img_del'></button></div></li></ul>");
+				i++;
 			}
 		});
 		
