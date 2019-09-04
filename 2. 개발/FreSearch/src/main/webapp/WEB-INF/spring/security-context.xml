@@ -37,7 +37,7 @@
 		<security:intercept-url pattern="/apply/apply" access="hasAnyRole('ROLE_USER','ROLE_PANEL', 'ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/stats/stats_list" access="permitAll"/>
 		<security:intercept-url pattern="/board/board_content" access="permitAll"/>
-		<security:intercept-url pattern="/board/board_register" access="hasRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/board/board_register" access="hasAnyRole('ROLE_USER','ROLE_PANEL','ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/research/research_register" access="hasAnyRole('ROLE_PANEL','ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/research/research_content" access="hasAnyRole('ROLE_USER','ROLE_PANEL','ROLE_ADMIN')"/>
 		
