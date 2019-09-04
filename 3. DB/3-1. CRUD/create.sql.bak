@@ -235,11 +235,10 @@ order by b.subj_regdate desc;
 --설문 목록 관련 VIEW
 create or replace view v_research
 AS
-select ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate 
-from category a, subject b
-where a.ctgr_code = b.ctgr_code
-group by rownum, ctgr_nm, subj_code, subj_nm, subj_regdate, subj_startdate, subj_enddate
-order by subj_regdate desc;
+SELECT C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN, d.mb_att_ctgr_code
+FROM  MEMBER B, CATEGORY C, ATT_CATEGORY D 
+WHERE B.MB_EMAIL = D.MB_EMAIL AND c.ctgr_code = d.ctgr_code1
+group by C.CTGR_CODE, C.CTGR_NM, B.MB_NICK, B.MB_ADDR, B.MB_BIRTHDATE, B.MB_SEX, MB_MARRIAGE_YN, d.mb_att_ctgr_code;
 
 
 CREATE SEQUENCE NEWS_SEQ
