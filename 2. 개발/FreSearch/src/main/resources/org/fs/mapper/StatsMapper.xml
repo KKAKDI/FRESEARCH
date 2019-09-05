@@ -37,29 +37,24 @@ FROM   att_category
 </select>
 
 <select id="getCategory" resultType="org.fs.domain.StatsVO">	<!-- 카테고리별 갯수,퍼센트 구하는 SQL문  -->
-SELECT (SELECT Count(*) 
-        FROM   (SELECT * 
+SELECT (SELECT Count(ctgr_code) 
+        FROM   (SELECT ctgr_code 
                 FROM   area 
-                WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{area} || '%') 
+                WHERE  mb_addr LIKE '%' || #{area} || '%') 
         WHERE  ctgr_code = c.ctgr_code)AS count, 
        c.ctgr_code, 
-       Round(( Ratio_to_report((SELECT Count(*) AS num 
-                                FROM   (SELECT * 
-                                        FROM   area 
-                                        WHERE  Substr(mb_addr, 1, 5) LIKE '%' || #{area} || '%') 
-                                WHERE  ctgr_code = (SELECT ctgr_code 
-                                                    FROM   category 
-                                                    WHERE 
-                                       ctgr_code = c.ctgr_code))) OVER() * 100 ), 2) || '%' PERCENT, 
-       c.ctgr_nm 
-FROM   subject a, 
-       member b, 
-       category c 
-WHERE  a.mb_nick = b.mb_nick 
-       AND c.ctgr_code = a.ctgr_code 
-GROUP  BY c.ctgr_code, 
-          c.ctgr_nm 
-ORDER  BY ctgr_code 
+       c.ctgr_nm, 
+       Round((SELECT Count(ctgr_code) 
+              FROM   (SELECT ctgr_code 
+                      FROM   area 
+                      WHERE  mb_addr LIKE '%' || #{area} || '%') 
+              WHERE  ctgr_code = c.ctgr_code) / NULLIF((SELECT Count(ctgr_code) 
+                                                 FROM 
+             (SELECT ctgr_code 
+              FROM   area 
+              WHERE  mb_addr LIKE '%' || #{area} || '%')),0) * 100, 2) || '%' PERCENT 
+FROM   category c
+
 </select>
 
 <select id="getCategoryAge" parameterType="map" resultType="org.fs.domain.StatsVO">
@@ -110,29 +105,23 @@ FROM   category c
 </select>
 
 <select id="getCategoryMarriage" resultType="org.fs.domain.StatsVO">
-SELECT (SELECT Count(*) 
-        FROM   (SELECT * 
+SELECT (SELECT Count(ctgr_code) 
+        FROM   (SELECT ctgr_code 
                 FROM   area 
-                WHERE  mb_marriage_yn = #{marriage}) 
+                WHERE  mb_marriage_yn LIKE '%'|| #{marriage} ||'%') 
         WHERE  ctgr_code = c.ctgr_code)AS count, 
        c.ctgr_code, 
        c.ctgr_nm, 
-       Round(( Ratio_to_report((SELECT Count(*) AS num 
-                                FROM   (SELECT * 
-                                        FROM   area 
-                                        WHERE  mb_marriage_yn = #{marriage}) 
-                                WHERE  ctgr_code = (SELECT ctgr_code 
-                                                    FROM   category 
-                                                    WHERE 
-                                       ctgr_code = c.ctgr_code)))OVER() * 100 ), 2) || '%' PERCENT 
-FROM   subject a, 
-       member b, 
-       category c 
-WHERE  a.mb_nick = b.mb_nick 
-       AND c.ctgr_code = a.ctgr_code 
-GROUP  BY c.ctgr_code, 
-          c.ctgr_nm 
-ORDER  BY ctgr_code 
+       Round((SELECT Count(ctgr_code) 
+              FROM   (SELECT ctgr_code 
+                      FROM   area 
+                      WHERE  mb_marriage_yn LIKE '%'|| #{marriage} ||'%') 
+              WHERE  ctgr_code = c.ctgr_code) / NULLIF((SELECT Count(ctgr_code) 
+                                                 FROM 
+             (SELECT ctgr_code 
+              FROM   area 
+              WHERE  mb_marriage_yn LIKE '%'|| #{marriage} ||'%')),0) * 100, 2) || '%' PERCENT 
+FROM   category c
 </select>
  
  <!-- STATS_TABLE 리스트 뽑는 SQL-->
