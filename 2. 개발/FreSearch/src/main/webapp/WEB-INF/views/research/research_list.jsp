@@ -295,6 +295,7 @@
 					var html="";
 					
 					if(list == null || list.length == 0){
+						console.log("아무것도 없을떄");
 						html += '<ul>';
 		      			html += '<li>';
 		      			html += '<a>';
@@ -303,7 +304,7 @@
 		      			html += '</a>';
 		      			html += '</li>';
 		      			html += '</ul>';
-						return;
+		      			$('#test').html(html);
 					}
 					for(var i =0, len = list.length||0; i < len; i++){
 		                

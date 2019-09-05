@@ -253,6 +253,7 @@ $(document).ready(function(){
 				/*$('.modal-user-email').append($("<span>"+data[0].mb_email+"</span>"));
 				$('.modal-user-regdate').append($("<span>가입일 "+displayTime(data[0].mb_joindate)+"</span>"));*/
 				email = $(".modal-user-email").children('span').html();
+				console.log("이메일 정보 : " + email);
 			}
 		});
 		
@@ -383,7 +384,6 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
 });
 
 function login_button(flag) {
@@ -394,6 +394,7 @@ function login_button(flag) {
 	$("#test").html(html);
 	$("#test").submit();
 };
+
 function password_button(flag) {
 	$('#myModal').hide();
 	var html ='';
@@ -401,6 +402,11 @@ function password_button(flag) {
 	$("#test").attr('action','/member/password_find');
 	$("#test").html(html);
 	$("#test").submit();
+};
+
+function confirm_button(flag) {
+	$('#myModal').hide();
+	location.href="/member/signin";
 };
 
 function displayTime(timeValue){

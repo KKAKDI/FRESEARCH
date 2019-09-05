@@ -63,7 +63,7 @@
 		
 		
 		<!-- csrf 작동 중지!!! -->
-		<security:csrf disabled="false"/>
+		<!-- <security:csrf disabled="false"/> -->
 		
 		<security:headers>
 		

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,6 +95,7 @@
 				</div>
 				<div class="form-submit">
 					<input type="button" id="emailFind" class="emailFind" value="이메일 찾기" disabled>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</div>
 				
 				<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
@@ -128,17 +130,24 @@
 				<div class="modal-user-regdate"></div>
 			</div>
 			<div class="modal-button">
+				<div class="modal-confirm" onClick="confirm_button();">
+					<span>확인</span>
+				</div>
+			<!--  
 				<div class="modal-login" onClick="login_button();">
 					<span>로그인하러 가기</span>
 				</div>
 				<div class="modal-password" onClick="password_button();">
 					<span>비밀번호 찾기</span>
 				</div>
+			-->
 			</div>
 		</div>
 	</div>
 	
-	<form id="test" action="" method="post"></form>
+	<form id="test" action="" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 </body>
 <script>
 $(document).ready(function(){
