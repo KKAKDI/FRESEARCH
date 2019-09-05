@@ -88,6 +88,12 @@
          e.preventDefault();
          $("form").submit();
       });
+      
+      $("#mypage").on("click",function(e){
+			location.href="/";
+			e.preventDefault();
+			$(".mypage_form").submit();
+		});
    });
 </script>
 <style>
@@ -155,6 +161,9 @@
                  <div class="dropdown-content">
                    <!-- <a href="#">회원명</a> -->
                    <sec:authorize access="isAuthenticated()">
+                   <form class="mypage_form" action="/member/myPage" method="post">
+                       <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                      	
+                   </form>
                    <form class="dropdown-form" role="form" action="/logout" method='post'>
                    
                       <p>
@@ -165,10 +174,10 @@
                       </p>
                    
                       <div class="bar"></div>
-                     <a href="/member/myPage?mb_email=<sec:authentication property="principal.member.mb_email"/>">
-                         <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
-                         <span class="span_mypage">마이페이지 </span>
-                      </a>
+                    	<a href="/" id="mypage">
+	                         <img class="img_iconSecond" src="/resources/img/mypage_icon01.png"/>
+	                         <span class="span_mypage">마이페이지 </span>
+                      	</a>
                      <a href="/" id="logout">
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
@@ -387,20 +396,20 @@
                
             </li>
             <li>
-               <a href="/research/research_content?subj_code=8O18KXBD">
+               <a href="/research/research_content?subj_code=C0WDOGBZ">
                   <div class='item_box'><img src="/resources/img/qresearch01.png" alt="research_1"></div>
                   <dl>
                      <dt>어떤 결재를 가장 선호하나요?</dt>
-                     <dd>2019. 08. 13 ~ 2019. 08. 30</dd>
+                     <dd>2019. 09. 05 ~ 2019. 09. 12</dd>
                   </dl>
                </a>
             </li>
             <li>
-               <a href="/research/research_content?subj_code=2A19HBCB">
+               <a href="/research/research_content?subj_code=2J70OHD9">
                   <div class='item_box'><img src="/resources/img/qresearch02.png" alt="research_2"></div>
                   <dl>
                      <dt>가장 좋아하는 간단한 한 끼는?</dt>
-                     <dd>2019. 08. 13 ~ 2019. 08. 23</dd>
+                     <dd>2019. 09. 05 ~ 2019. 09. 12</dd>
                   </dl>
                </a>
             </li>
@@ -410,17 +419,17 @@
                   <dl>
                      <dt>메신저 프로필 사진 
                      </br>무엇으로 하시나요?</dt>
-                     <dd>2019. 09. 04 ~ 2019. 09. 11</dd>
+                     <dd>2019. 09. 05 ~ 2019. 09. 12</dd>
                   </dl>
                </a>
             </li>
             <li>
-               <a href="/research/research_content?subj_code=N2IQ5NED">
+               <a href="/research/research_content?subj_code=QPUNQCH2">
                   <div class='item_box'><img src="/resources/img/qresearch04.png" alt="research_4"></div>
                   <dl>
                      <dt>싫지만 자주 봐야 하는
                      </br>사람을 대하는 나만의 방법은?</dt>
-                     <dd>2019. 08. 13 ~ 2025. 05. 14</dd>
+                     <dd>2019. 09. 05 ~ 2019. 09. 12</dd>
                   </dl>
                </a>
             </li>

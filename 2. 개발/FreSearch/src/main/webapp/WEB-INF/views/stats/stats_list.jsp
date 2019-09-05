@@ -230,38 +230,7 @@ window.onclick = function(event) {
 			 
 $(document).on('click','.button-age', function(){
 	data = $(this).val();
-	
-	
-	
-	
 });
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
 			 //차트 js 파일
 			$(function() {
 				  /* ChartJS
@@ -273,7 +242,7 @@ $(document).on('click','.button-age', function(){
 				  var data = {
 				    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
 				    datasets: [{
-				      label: '# of Votes',
+				      label: '참여자 수',
 				      data: [17, 19, 3, 5, 2, 3],
 				      backgroundColor: [
 				        'rgba(255, 99, 132)',
@@ -307,7 +276,7 @@ $(document).on('click','.button-age', function(){
 				  var dataAge = {
 						    labels: ["10", "20", "30", "40", "50", "60"],
 						    datasets: [{
-						      label: '# of Votes',
+						      label: '참여자 수',
 						      data: [ten, twenty, thiry, forty, fifty, sixty],
 						      backgroundColor: [
 						        'rgba(255, 99, 132)',
@@ -337,7 +306,7 @@ $(document).on('click','.button-age', function(){
 				  var dataArea = {
 						    labels: ["서울", "경기", "부산", "인천"],
 						    datasets: [{
-						      label: '# labels',
+						      label: '참여자 수',
 						      data: [seoul, gyeongGi, busan, incheon,  2, 3],
 						      backgroundColor: [
 						        'rgb(255, 180, 255)',

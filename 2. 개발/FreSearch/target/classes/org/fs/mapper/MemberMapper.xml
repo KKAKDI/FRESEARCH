@@ -210,11 +210,11 @@
 	
 	<select id='myTakeList' resultType='MypagelistVO'>
 		select 
-			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
+			a.subj_code,e.mb_email,e.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate 
 		from 
-			subject a,category b,question c,item d,answer e 
+			subject a,category b,question c,item d,answer e
 		where 
-			e.mb_email = a.mb_email 
+            e.mb_email = #{mb_email}			
 		and 
 			a.subj_code = c.subj_code
 		and 
@@ -223,10 +223,9 @@
 			c.qst_code = d.qst_code
 		and 
 			d.item_code = e.item_code
-		and 
-			e.mb_email = #{mb_email}
+		
 		group by 
-			a.subj_code,a.mb_email,a.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate
+			a.subj_code,e.mb_email,e.mb_nick,a.subj_nm,b.ctgr_nm,a.subj_startdate,a.subj_enddate
 	</select>
 	<select id='myMakeList' resultType='MypagelistVO'>
 		select 
