@@ -22,23 +22,16 @@
 							</p>
 							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;width: 150px;display: flex;">
 							<input type='button' class="btn btn-outline-secondary" name="3" value="남자">
-							<!-- <input type='button' class="btn btn-outline-secondary-all" name="3" value="남자"> -->
 							<input type='button' class="btn btn-outline-secondary" name="3" value="여자">
 							</div>
 							<div class="table-responsiv">
-								<table class="table table-hover" id="test">
-								
-								</table>
+								<table class="table table-hover" id="test"></table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-
 	</div>
 </div>
 
@@ -88,8 +81,6 @@ $(document).ready(function() {
 		$('#test').html(html);
 	});
 	
-	
-	
 	$("input[name=3]").click(function(e) {
 		console.log("버튼 눌렸다.");
 
@@ -104,5 +95,3 @@ $(document).ready(function() {
 });
 </script>
 </html>
-
-

@@ -2,7 +2,6 @@ package org.fs.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.fs.domain.AnswerVO;
@@ -23,17 +22,9 @@ public class ResearchServiceImpl implements ResearchService {
 	@Setter(onMethod_ = @Autowired)
 	private ResearchMapper mapper;
 
-	/*
-	 * @Override public List<ResearchVO> listStatus(ResearchVO vo){
-	 * 
-	 * return mapper.listStatus(vo);
-	 * 
-	 * }
-	 */
-
 	@Override
 	public ResearchPageDTO list(Criteria cri, String research) {
-		log.info("###서비스단 리서치 정보는 : " + research);
+
 		return new ResearchPageDTO(mapper.getCountBySubjCode(research), mapper.list(cri, research));
 	}
 

@@ -53,39 +53,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- <div id="myModal" class="modal">
-		
-		Modal content
-		<div class="modal-content2">
-		<button type="button" class="close"></button>
-			<div class="modal-logo">
-				<h2>비밀번호 찾기</h2>
-			</div>
-			<div class="modal-content-detail">
-				<div class="email-logo-img">
-					<img src="/resources/img/password_logo.jpg" />
-				</div>
-				<div class="email-msg">
-					<div class="email-msg-first">
-						<span>회원님의 이메일은 </span> 
-					</div>
-					<div class="email-msg-second">
-						<span>이메일 인증 버튼을 누르시면 이메일로 전송됩니다.</span>
-					</div>
-				</div>
-			</div>
-			<div class="modal-form">
-				<form class="modal-form-submit" id="find_send" name="find_send" action="/member/find_send" method="post">
-					<div class="modal-confirm">
-						<input type="submit" id="findConfirm" class="findConfirm" value="이메일 인증">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-	
-	<!-- <form id="find_send" action="" method="post"></form> -->
-	
 </body>
 </html>

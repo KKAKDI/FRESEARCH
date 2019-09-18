@@ -42,9 +42,6 @@ public class StatsVO {
 	//getAge
 	private int age;
 	
-	
-	
-	///////
 	private int answer_number;
 	private String ctgr_nm;
 	private String qst_img;
@@ -63,10 +60,8 @@ public class StatsVO {
 	private String qst_content;
 	private String qst_type;
 	
-	
 	//answer
 	private String asw_content;
-	
 	
 	///item
 	private String item_code;
@@ -74,7 +69,4 @@ public class StatsVO {
 	private Date item_regdate;
 	private String item_img;
 	private String asw_count;
-	
-	
-	
 }

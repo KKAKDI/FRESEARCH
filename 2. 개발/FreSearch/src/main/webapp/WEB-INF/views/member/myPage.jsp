@@ -337,26 +337,6 @@
 				<input type='password' name='mb_pwd_new' id='mb_pwd' value='' placeholder='새 비밀번호'>
 				<label>새 비밀번호 확인</label>
 				<input type='password' name='mb_pwd_new2' id='mb_pwd2' value='' placeholder='새 비밀번호 확인'>
-				<!--  
-				<label>주소</label>
-				<input type='text' name='mb_addr1' id='mb_addr1' placeholder='우편번호'>
-				<input type='button' id='mb_addr_find' value='우편번호 찾기'>
-				<input type='text' name='mb_addr2' id='mb_addr2' placeholder='주소'>
-				<input type='text' name='mb_addr3' id='mb_addr3' placeholder='상세주소'>
-				<label>관심 카테고리 (최대 5개 선택)</label>
-				<label>결혼 유무</label>
-				<input type='radio' name='mb_marriage' value=''>유
-				<input type='radio' name='mb_marriage' value=''>무
-				<label>자녀 유무</label>
-				<input type='radio' name='mb_child' value=''>유
-				<input type='radio' name='mb_child' value=''>무
-				<label>자가 유무</label>
-				<input type='radio' name='mb_home' value=''>유
-				<input type='radio' name='mb_home' value=''>무
-				<label>자차 유무</label>
-				<input type='radio' name='mb_car' value=''>유
-				<input type='radio' name='mb_car' value=''>무
-				-->
 				<input type='button' name='modi' id='modi' value='변경하기'>
 			</form>
 			</div>

@@ -77,7 +77,7 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Transactional
 	@Override
-	public boolean delete(int brd_code) {				//게시글 삭제
+	public boolean delete(int brd_code) {			//게시글 삭제
 		
 		log.info("remove...." + brd_code);
 		
@@ -87,7 +87,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> getList(Criteria cri) {					//게시글 리스트,페이징
+	public List<BoardVO> getList(Criteria cri) {	//게시글 리스트,페이징
 		
 		log.info("getListpaging!!!!!!!!!!! " );
 		

@@ -149,17 +149,9 @@
          <div class="upper clearfix"> <!-- upper 배경색 적용을 위한 2차 클래스 cf 사용 -->
             <!-- 상단 로그인 -->
             <div class="login">
-            <!-- 
-               <ul>
-                  <li><a href="/member/signin">로그인</a></li>
-                  <li><a href="/member/signup">회원가입</a></li>
-                  <li><a href="">알림</a></li>
-               </ul>
-               -->
                <div class="dropdown">
                  <button class="dropbtn"><img src="/resources/img/bicon14.png"/></button>
                  <div class="dropdown-content">
-                   <!-- <a href="#">회원명</a> -->
                    <sec:authorize access="isAuthenticated()">
                    <form class="mypage_form" action="/member/myPage" method="post">
                        <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />                      	
@@ -197,13 +189,6 @@
                   </sec:authorize>
                  </div>
                </div>
-            <!-- 
-               <ul>
-                  <li><a href="/member/signin">로그인</a></li>
-                  <li><a href="/member/signup">회원가입</a></li>
-                  <li><a href="">알림</a></li>
-               </ul>
-               -->
                      <div class="dropdown-alarm widget-gnb">
                
                      <!-- 종모양 알림 -->
@@ -215,12 +200,7 @@
 
                   </div>
                <!-- 종모양 알림 끝 -->
-                     </div>
-                     
-
-               <!-- <div class="emblembox">
-                  <img src="/resources/img/image_1.png" alt="emblem">
-               </div> -->
+                  </div>
             </div>
          </div>
          <div class="header_inner">
@@ -453,7 +433,6 @@
 </div>
 </body>
 
-
 <script src="/resources/stats/js/chartMy.js"></script>
 <!-- 웹소켓 시작 -->
 <script type="text/javascript">
@@ -500,16 +479,12 @@
             var text = "갱신";
             ws.send(text);
             text="";
-            
         }
         
         //웹소켓 닫힘
         function closeSocket(){
             ws.close();
         }
-        
-        
-        
         
         //웹소켓 반응?
         function writeResponse(text){
@@ -537,8 +512,6 @@
                   }); 
                 });
             }); 
-           
-           
            
            //ajax 알림 리스트 and 알림 종 갯수  시작
            
@@ -573,17 +546,6 @@
               });
            } 
         }
-
-        
-        
-/*         $(document).ready(function(){
-            $(document).on("click","#moveBtn",function(event){
-              // 동적으로 여러 태그가 생성된 경우라면 이런식으로 클릭된 객체를 this 키워드를 이용해서 잡아올 수 있다.
-              alert($(this).text());
-            });
-        }); // end of ready() */
 </script>
-    <!-- 웹소켓 끝 -->
-
-
+<!-- 웹소켓 끝 -->
 </html>

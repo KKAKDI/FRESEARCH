@@ -30,11 +30,6 @@
 					<div class="content" id="test"></div>
 					<div class="paging"></div>
 				</div>
-				 
-				<!-- <div class="wrap-loading display-none">
-    				<div><img src="/resources/img/loading.gif"/></div>
-				</div> -->
-				<!-- <div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div> -->
 			</div>
 		</div>
 	</div>
@@ -43,8 +38,6 @@
 		<input type="hidden" id="auth" value='<sec:authentication property="principal.member.authList[0].auth"/>'>
 	</sec:authorize>
 	
-	<!-- <div>사용자가 커서로 항목을 가리키면 <p class="tt">말풍선 <span class="tt-text">또는 툴팁(tooltip)</span></p>이 나타납니다. </div> -->
-
 <script type="text/javascript">
 
       $(document).ready(function(){
@@ -162,13 +155,11 @@
 	         				html += '<p id="status">진행</p>';
 	         				html += '</div>';
 	         			}
-	         			/*html += '<span>' + list[i].subj_code + '</span>';*/
 	         			html += '<span class="ctgr_nm">' + list[i].ctgr_nm + '</span>';
 	         			html += '<div class="subj_nm">';
 	         			html += '<span class="subj_nm_span">' + list[i].subj_nm + '</span>';
 	         			html += '<span class="tooltip">'+ list[i].subj_nm +'</span>';
 	         			html += '</div>';
-	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
 	         				 + researchService.displayTime(list[i].subj_enddate) + '</span>';
 	         			html += '</a>';
@@ -221,7 +212,6 @@
   			researchPageFooter.html(str);
   		}
   		
-  		/*researchPageFooter.on("click", "li a", function(e){*/
   		researchPageFooter.off('click','li a').on('click','li a',function(e){ 
   			e.preventDefault();
   			console.log("page click");
@@ -234,19 +224,8 @@
   			
   			showList(pageNum);
   		});
-  		/*
-  		researchPageFooter.off('click','a').on('click','a',function(e){ 
-  			var str = "<ul class='pagination pull-right'>";
-  		
-  			researchPageFooter.css("color", "#fff");
-  			researchPageFooter.css("background", "#222");
-  			researchPageFooter.css("font-style", "normal");
-  		});*/
   		
   		$('.list-head a').click(function(){
-  			/* <sec:authorize access="isAuthenticated()">
-  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>'; */
-  			
   			var auth = $("#auth").val();
   			
   			if(auth == 'ROLE_USER'){
@@ -258,11 +237,9 @@
 				});
       			return false;
   			}
-  			/* </sec:authorize> */
   		});
   	});
       
-      //$(".research").click(function(e) {
     $(".tab-content").off('click','.research').on('click','.research',function(e){ 
   			
     	  var research = $(this).val();
@@ -438,13 +415,11 @@
 	         				}
 	         				html += '</div>';
 	         			}
-	         			/*html += '<span>' + "[" +list[i].ctgr_nm + "] " + list[i].subj_nm +'</span>';*/
 	         			html += '<span class="ctgr_nm">' + list[i].ctgr_nm + '</span>';
 	         			html += '<div class="subj_nm">';
 	         			html += '<span class="subj_nm_span">' + list[i].subj_nm + '</span>';
 	         			html += '<span class="tooltip">'+ list[i].subj_nm +'</span>';
 	         			html += '</div>';
-	         			/*html += '<span>' + researchService.displayTime(list[i].subj_regdate) + '</span>';*/
 	         			html += '<span>' + researchService.displayTime(list[i].subj_startdate) + ' ~ ' 
 	         				 + researchService.displayTime(list[i].subj_enddate) + '</span>';
 	         			html += '</a>';
@@ -496,7 +471,6 @@
   			researchPageFooter.html(str);
   		}
   		
-  		//researchPageFooter2.on("click", "li a", function(e){
   		researchPageFooter.off('click','li a').on('click','li a',function(e){  
   			e.preventDefault();
   			console.log("page click");

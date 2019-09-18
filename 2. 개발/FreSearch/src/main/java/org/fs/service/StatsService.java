@@ -1,9 +1,7 @@
 package org.fs.service;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.fs.domain.Criteria;
 import org.fs.domain.StatsPagingSearchDTO;
 import org.fs.domain.StatsVO;
@@ -27,5 +25,4 @@ public interface StatsService {
 	public int contentCount(String subj_code);
 	public List<StatsVO> header(String mb_email);
 	public int headerUpdate(String subj_code); 
-
 }

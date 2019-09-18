@@ -24,7 +24,6 @@
 		<div class="page-content">
 			<form class="page-form" action="/login" method="post" autocomplete="off">
 				<h2>로그인</h2>
-				<!-- <h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2> -->
 				<div class="page-form-input">
 					<label for="mb_email">이메일</label> 
 					<input type="text" name="mb_email" id="mb_email" placeholder="이메일" maxlength="30" value="${email}">
@@ -57,29 +56,9 @@
 					Google 계정으로 사용
 					</a>
 				</div>
-				<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-				<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</div>
 	</div>
-	
-	<!--  
-	<button class="trigger">이메일 보내기</button>
-     <div class="modal"> 
-         <div class="modal-content"> 
-             <span class="close-button">&times;</span> 
-             <h1 class="title">메일 보내기</h1> 
-             <form action="#post.php" method="POST"> 
-               <label for="email">Email</label> 
-               <input type="email" name="email" placeholder="Your email" required="required"> 
-               <label></label> 
-               <textarea name="message" placeholder="Test Message" required="required"></textarea> 
-               <input type="button" id="cancel" value="취소"> 
-               <input type="submit" id="submit" value="보내기"> 
-             </form> 
-         </div> 
-     </div>
-     -->
 </body>
 </html>

@@ -49,28 +49,6 @@ $(document).ready(function(){
 			$("#pwd_check").css("color", "#d0021b");
 			$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
 		}
-		/*
-		$.ajax({
-			url : "/member/pwdCheck",
-			type : "get",
-			data : {mb_pwd : mb_pwd},
-			dataTyep : "json",
-			success : function(data){
-				
-				console.log(data);
-				if(data == 1){
-					$("#pwd_check").text("이미 사용중인 비밀번호입니다.");
-					$("#pwd_check").css("color", "#d0021b");
-					$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-				}else {
-					if(mb_pwd == ""){
-						$("#pwd_check").text("비밀번호를 입력해주세요.");
-						$("#pwd_check").css("color", "#d0021b");
-						$("#mb_pwd").css("border-bottom", "2px solid #d0021b");
-					}
-				}
-			}
-		});	*/
 	});
 });
 

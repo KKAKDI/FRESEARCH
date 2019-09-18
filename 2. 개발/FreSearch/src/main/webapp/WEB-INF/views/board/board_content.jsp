@@ -2,37 +2,35 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/header.jsp"%>
 
 <style>
-
-#content{
-	height : auto;
+#content {
+	height: auto;
 }
-
 
 .uploadResult {
-
-	width:100%;
-
+	width: 100%;
 }
 
-.uploadResult ul{
+.uploadResult ul {
 	width: 723px;
-	flex-flow:row;
-	justify-content:center;
-	align-items:center;
-	min-height : 100px;
-	padding : 10px;
-	text-align:center;
-	padding-top : 16px;
-
-	}
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+	min-height: 100px;
+	padding: 10px;
+	text-align: center;
+	padding-top: 16px;
+}
 
 .uploadResult ul li {
 	list-style: none;
@@ -42,242 +40,229 @@
 	display: inline;
 }
 
-.uploadResult ul li img { 
-	/*width: 100px;*/
+.uploadResult ul li img {
 	width: 76px;
 }
 
-.uploadResult ul li span{
-	color:white;
+.uploadResult ul li span {
+	color: white;
 }
 
-.bigPictureWrapper{
-
+.bigPictureWrapper {
 	position: fixed;
 	display: none;
 	justify-content: center;
 	align-items: center;
-	top:0%;
-	height:100%;
-	width:44%;
+	top: 0%;
+	height: 100%;
+	width: 44%;
 	background-color: gray;
 	z-index: 100;
-	background:rgba(255,255,255,0.5);
-
+	background: rgba(255, 255, 255, 0.5);
 }
 
-.bigPicture{
-	display:flex;
+.bigPicture {
+	display: flex;
 	position: relative;
 	justify-content: center;
 	align-items: center;
-
 }
 
 .bigPicture img {
 	width: 420px;
-	
 }
 
 .container_new {
-   padding-top: 125px;
-   min-height : 872px;
+	padding-top: 125px;
+	min-height: 872px;
 }
-.container_reply{
-	text-align:left;
+
+.container_reply {
+	text-align: left;
 	width: 850px;
-	margin:auto;
+	margin: auto;
 	margin-top: 18px;
 }
-.replyInfo{
 
+.replyInfo {
 	word-wrap: break-word;
-    line-height: 1.2em;
-    height: 9em;
-    display: unset; 
-    }
+	line-height: 1.2em;
+	height: 9em;
+	display: unset;
+}
 
 table {
-   width: 850px;
-   border-top: 1px solid #444444;
-   border-collapse: collapse;
-   margin: auto;
-   table-layout: fixed;
+	width: 850px;
+	border-top: 1px solid #444444;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: fixed;
 }
 
 td.column {
-   background-color: #f0f0f0;
-   color: #505050;
-   padding-top: 15px;
-   font-weight: bold;
-	
+	background-color: #f0f0f0;
+	color: #505050;
+	padding-top: 15px;
+	font-weight: bold;
 }
 
 td.column-data {
-   padding: 14 19;
+	padding: 14 19;
 }
 
 td.column-content {
-   word-break:break-all; 
-   wrap:"hard";
-   white-space:pre-line;
+	word-break: break-all;
+	wrap: "hard";
+	white-space: pre-line;
 }
 
 td#column-subject {
-   white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-#rpl_content{
- width:95%; height: 74px; margin:6px; margin-left : 0;
-
-
+#rpl_content {
+	width: 95%;
+	height: 74px;
+	margin: 6px;
+	margin-left: 0;
 }
 
-.content_button{
-
-	height:32px;
-	width:100px;
-	border:none;
-	cursor:pointer;
-	margin-top:10px;
-	background:#1428a0;
-	color:white;
+.content_button {
+	height: 32px;
+	width: 100px;
+	border: none;
+	cursor: pointer;
+	margin-top: 10px;
+	background: #1428a0;
+	color: white;
 }
-
-
-
-
 </style>
 
-
-<div class ="container_new">
+<div class="container_new">
 	<div>
 		<div>
 			<div>
-			
 				<form id='operForm' action="/board/board_modify" method="get">
-					<input type='hidden' id='brd_code' name='brd_code' value='${board.brd_code}'> 
-					<input type='hidden' name='pageNum' value='${cri.pageNum}'> 
-					<input type='hidden' name='amount' value='${cri.amount}'> 
-					<input type='hidden' name='keyword' value='${cri.keyword}'> 
-					<input type='hidden' name='type' value='${cri.type}'>
+					<input type='hidden' id='brd_code' name='brd_code'
+						value='${board.brd_code}'> <input type='hidden'
+						name='pageNum' value='${cri.pageNum}'> <input
+						type='hidden' name='amount' value='${cri.amount}'> <input
+						type='hidden' name='keyword' value='${cri.keyword}'> <input
+						type='hidden' name='type' value='${cri.type}'>
 				</form>
-		
 				<div style="text-align: center;">
 					<h2>글 상세보기</h2>
 				</div>
-		
 			</div>
 		</div>
 	</div>
 
-	
-	
 	<table style="text-align: center;">
-                  <tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-                     <td class="column" style="width: 15%;" >글번호</td>
-                     <td class="column-data" colspan="3" >${board.brd_code}</td>
-                     <td class="column" style="width: 15%;">닉네임</td>
-                     <td class="column-data" colspan="3" >${board.mb_nick}</td>
-                     <td class="column" style="width: 15%;">날짜</td>
-                     <td class="column-data" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd"
-                           value="${board.brd_regdate}" /></td>
-                     
-                  </tr>
-                  
-                  <tr style="border-bottom: 1px solid #dcdcdc;">
-                     <td class="column" style="width: 50%">제목</td>
-                     <td id= "column-subject" class="column-data" style="text-align: left;" colspan="11">${board.brd_subject}</td>
-                	
-                	
-                	
-                <div class="form-group">
-					<input type="hidden" class="form-control" name='mb_email' value=${board.mb_email } readonly="readonly">
+		<tr
+			style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+			<td class="column" style="width: 15%;">글번호</td>
+			<td class="column-data" colspan="3">${board.brd_code}</td>
+			<td class="column" style="width: 15%;">닉네임</td>
+			<td class="column-data" colspan="3">${board.mb_nick}</td>
+			<td class="column" style="width: 15%;">날짜</td>
+			<td class="column-data" colspan="3"><fmt:formatDate
+					pattern="yyyy-MM-dd" value="${board.brd_regdate}" /></td>
+		</tr>
+		<tr style="border-bottom: 1px solid #dcdcdc;">
+			<td class="column" style="width: 50%">제목</td>
+			<td id="column-subject" class="column-data" style="text-align: left;"
+				colspan="11">${board.brd_subject}</td>
+			<div class="form-group">
+				<input type="hidden" class="form-control" name='mb_email'
+					value=${board.mb_email } readonly="readonly">
+			</div>
+		</tr>
+		<tr
+			style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+			<td class="column-content" colspan="12"
+				style="background-color: #e5e5e5; text-align: left; padding: 40 40;">${board.brd_content}</td>
+		</tr>
+		<tr
+			style="border-bottom: 1px solid gray; text-align: center; height: auto;">
+			<td class="column" style="padding-top: 37px;">첨부파일</td>
+			<td colspan="11">
+				<div class='bigPictureWrapper'>
+					<div class='bigPicture'></div>
 				</div>
-                 
-                 </tr>
-                  
-                   <tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-                     <td class="column-content" colspan="12" style="background-color: #e5e5e5;  text-align: left; padding: 40 40;">${board.brd_content}</td>
-                  </tr>
-                  
-                  <tr style="border-bottom: 1px solid gray; text-align: center; height:auto;">
-							<td class="column" style=padding-top:37px;>첨부파일</td>
-							<td  colspan="11">
-            <div class='bigPictureWrapper'>
-               <div class='bigPicture'></div>
-            </div>
-                  <div>
-                     <div class='uploadResult'>
-                        <ul>
-                        </ul>
-                     </div>
-                  </div>
-               </td>
-            </tr> 
-		<tr>		
-		<td>
-			<div style= "text-align:center; width: 850px;">
-			 	<sec:authentication property="principal" var="pinfo"/>
-				<sec:authorize access="isAuthenticated()">
-				<c:if test="${pinfo.username eq board.mb_email}">
-					<button class="content_button" style="" data-oper='modify'>수정</button>
-				</c:if>
-				</sec:authorize>
-					<button class="content_button" data-oper='list'>리스트</button>
-			</div>	 			
-		</td>
-		</tr>		
-				 
-				 
-      </table>
-      
-        	<div style="text-align:center; margin:15px; min-height: 335px;">
-    <div class="container_reply" style="text-align:left;">
-        <label for="rpl_content">댓글</label>
-        <form name="ReplyInsertForm">
-            <div class="input-group" style="box-sizing: border-box;">
-               <input type="hidden" name="brd_code" value="${board.brd_code}"/>
-               <textarea class="rpl_content" style ="height :50px; width:807px; resize:none; "id="rpl_content" name="rpl_content" placeholder="내용을 입력하세요."></textarea>
-                <button  style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border:none; color:white; width:31px;"  type="button" name="replyInsert" id="replyInsert">등록</button>
-               <span style="color:#aaa;" id="input-group">(0 / 최대 50자)</span>
-
-
 				<div>
+					<div class='uploadResult'>
+						<ul>
+						</ul>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style="text-align: center; width: 850px;">
+						<sec:authentication property="principal" var="pinfo" />
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.mb_email}">
+							<button class="content_button" style="" data-oper='modify'>수정</button>
+						</c:if>
+					</sec:authorize>
+					<button class="content_button" data-oper='list'>리스트</button>
+				</div>
+			</td>
+		</tr>
+
+
+	</table>
+
+	<div style="text-align: center; margin: 15px; min-height: 335px;">
+		<div class="container_reply" style="text-align: left;">
+			<label for="rpl_content">댓글</label>
+			<form name="ReplyInsertForm">
+				<div class="input-group" style="box-sizing: border-box;">
+					<input type="hidden" name="brd_code" value="${board.brd_code}" />
+					<textarea class="rpl_content"
+						style="height: 50px; width: 807px; resize: none;" id="rpl_content"
+						name="rpl_content" placeholder="내용을 입력하세요."></textarea>
+					<button
+						style="margin-top: 6; height: 50px; cursor: pointer; background: #1428a0; border: none; color: white; width: 31px;"
+						type="button" name="replyInsert" id="replyInsert">등록</button>
+					<span style="color: #aaa;" id="input-group">(0 / 최대 50자)</span>
+
+
 					<div>
 						<div>
-
-							<br>
 							<div>
-								<ul class="chat">
-								
-								</ul>
-							</div>
-							<div class="panel-footer">
-							
-							
+
+								<br>
+								<div>
+									<ul class="chat">
+
+									</ul>
+								</div>
+								<div class="panel-footer"></div>
 							</div>
 						</div>
 					</div>
+
 				</div>
-
-			</div>
-			<sec:authorize access="isAuthenticated()">	
-				<input type="hidden" id="email" value='<sec:authentication property="principal.username"/>'>
-				<input type="hidden" id="nick" value='<sec:authentication property="principal.member.mb_nick"/>'>
-			</sec:authorize>
-        </form>
-    </div>
-</div>
-
-	
+				<sec:authorize access="isAuthenticated()">
+					<input type="hidden" id="email"
+						value='<sec:authentication property="principal.username"/>'>
+					<input type="hidden" id="nick"
+						value='<sec:authentication property="principal.member.mb_nick"/>'>
+				</sec:authorize>
+			</form>
+		</div>
+	</div>
 
 
-<script type="text/javascript" src="/resources/js/reply.js"></script> 
-		
-<script>
+
+
+	<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+	<script>
 //토큰 추가//
 var csrfHeaderName = "${_csrf.headerName}";
 var csrfTokenValue = "${_csrf.token}";
@@ -302,7 +287,7 @@ $('.rpl_content').keyup(function (e){
 	
 </script>
 
-	
+
 	<script>
 	
 	$(document).ready(function(){
@@ -379,7 +364,7 @@ $('.rpl_content').keyup(function (e){
 	});
 	</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	$(document).ready(function() {
 
@@ -397,7 +382,7 @@ $('.rpl_content').keyup(function (e){
 	});
 </script>
 
-<script> // 조회수 스크립트
+	<script> // 조회수 스크립트
 
    var brd_code = $("#brd_code").val();
    var brd_codes = [];
@@ -451,8 +436,8 @@ $('.rpl_content').keyup(function (e){
    };
 </script>
 
- 
-<script type="text/javascript">
+
+	<script type="text/javascript">
 	$(document).ready(function() {
 		
 		(function() {
@@ -509,8 +494,6 @@ $('.rpl_content').keyup(function (e){
 
 		function showImage(fileCallPath) { // 이미지파일 보여주기
 
-			//alert(fileCallPath);
-
 			$(".bigPictureWrapper").css("display", "flex").show();
 
 			$(".bigPicture").html("<img src='/display?fileName="+ fileCallPath + "' >")
@@ -528,4 +511,4 @@ $('.rpl_content').keyup(function (e){
 </script>
 
 
-<%@include file="../includes/footer.jsp" %>
+	<%@include file="../includes/footer.jsp"%>

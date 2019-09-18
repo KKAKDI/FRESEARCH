@@ -581,17 +581,14 @@ body {
     border: none;
     margin-top: 1px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropbtn img {
 	width: 23px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown {
 	position: relative;
 	display: inline-block;
 	left: 968px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content {
 	display: none;
 	position: absolute;
@@ -608,22 +605,8 @@ body {
 	min-width: 184px;
 	top: 26px;
 }
-
-
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(4) {
-	/* color: black;
-	padding: 7% 0;
-	text-decoration: none;
-	display: block;
-	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
-	/* color: #666;
-    padding: 7% 0;
-    text-decoration: none;
-    display: block;
-    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial; */
     color: #666;
-    /* padding: 22px; */
     padding-top: 15px;
     padding-bottom: 18px;
     text-decoration: none;
@@ -632,45 +615,29 @@ body {
     margin-top: -8px;
     width: 184px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5) {
 	color: #666;
-    /* padding: 12px 57px; */
     text-decoration: none;
     display: block;
     cursor: pointer;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
     width: 184px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(1) {
 	color: black;
-    /* padding: 12px 57px; */
     text-decoration: none;
     display: block;
     font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
     height: 47px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(2) {
 	color: black;
-	/* padding: 12px 57px; */
 	text-decoration: none;
 	display: block;
 	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
 	height: 47px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>p:nth-child(1) {
-	/* color: #1428a0;
-    padding: 0 9%;
-    text-decoration: none;
-    display: block;
-    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: -5px;
-    font-weight: 600; */
     color: #222;
     padding: 0px 46px 0px 43px;
     text-decoration: none;
@@ -684,17 +651,7 @@ body {
     margin-left: -1px;
     height: 47px;
 }
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>p:nth-child(2) {
-	/* color: black;
-	padding: 0 9%;
-	text-decoration: none;
-	display: block;
-	font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-	font-size: 10px;
-	margin-left: 24%;
-	line-height: 17px;
-	margin-bottom: 0; */
 	color: #222;
     padding: 0 16px;
     text-decoration: none;
@@ -705,31 +662,7 @@ body {
     line-height: 17px;
     margin-bottom: 0;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>.img_login {
-	color: black;
-    padding: 0 16px;
-    text-decoration: none;
-    display: block;
-    font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
-    margin-bottom: -15%;
-}*/
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>p:nth-child(1)>img {
-	/* height: 40px;
-    width: 40px;
-    margin-left: 33px;
-    margin-bottom: -20px;
-    margin-top: -6px;
-    transition: all ease 1s; */
-	/* width: 80px;
-    transition: all ease 1s; */
-	/* width: 70px; */
-	/* width: 46%;
-	transition: all ease 1s;
-	margin-left: -12%;
-	margin-right: -10%;
-	margin-top: -8%;
-	margin-bottom: -15%; */
 	width: 48px;
     transition: all ease 1s;
     margin-left: -37px;
@@ -738,19 +671,7 @@ body {
     position: relative;
     padding-bottom: 3px;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>p:nth-child(1)>img:hover {
-	transform: rotate(720deg);
-}*/
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(4)>img {
-	/* width: 38%;
-	transition: all ease 1s;
-	margin-left: -2%;
-	margin-top: -9%;
-	margin-bottom: -10%;
-	position: relative;
-	vertical-align: unset; */
 	width: 29px;
     transition: all ease 1s;
     margin-left: 15px;
@@ -761,12 +682,6 @@ body {
     padding-bottom: 5px;
     padding-top: 5px;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(4)>img:hover
-	{
-	transform: rotate(720deg);
-}*/
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>img {
 	width: 29px;
     transition: all ease 1s;
@@ -775,24 +690,7 @@ body {
     margin-bottom: 12px;
     position: relative;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(5)>img:hover
-	{
-	transform: rotate(720deg);
-}*/
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(1)>img {
-	/* width: 70px;
-    transition: all ease 1s;
-    margin-left: -17%;
-    margin-top: -3%;
-    margin-bottom: -13%; */
-	/* width: 40%;
-	transition: all ease 1s;
-	margin-left: -5%;
-	margin-top: -2%;
-	margin-bottom: -2%;
-	position: relative; */
 	width: 14%;
     transition: all ease 1s;
     margin-left: 9%;
@@ -801,24 +699,7 @@ body {
     position: relative;
     padding-bottom: 8px;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(1)>img:hover
-	{
-	transform: rotate(720deg);
-}*/
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(2)>img {
-	/* width: 70px;
-    transition: all ease 1s;
-    margin-left: -17%;
-    margin-top: -3%;
-    margin-bottom: -13%; */
-	/* width: 40%;
-	transition: all ease 1s;
-	margin-left: -5%;
-	margin-top: -2%;
-	margin-bottom: -2%;
-	position: relative; */
 	width: 14%;
     transition: all ease 1s;
     margin-left: 10%;
@@ -826,16 +707,7 @@ body {
     margin-bottom: 5%;
     position: relative;
 }
-/*
-.container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>a:nth-child(2)>img:hover
-	{
-	transform: rotate(720deg);
-}*/
-
 .container>.fixed_box>.header>.upper>.login>.dropdown>.dropdown-content>.dropdown-form>a:nth-child(4)>span {
-	/* position: absolute;
-	margin-top: 1%;
-	margin-left: -4%; */
 	position: absolute;
     margin-top: 2px;
     margin-left: 8px;
@@ -848,7 +720,6 @@ body {
     margin-left: 8px;
     font-weight: 600;
 }
-
 .container .fixed_box .header .upper .login .dropdown .dropdown-content .span_login {
 	position: absolute;
     margin-top: 7%;
@@ -857,38 +728,24 @@ body {
     font-weight: 600;
 }
 .container .fixed_box .header .upper .login .dropdown .dropdown-content .span_signup {
-	/* position: absolute;
-	margin-top: 8%; */
 	position: absolute;
     margin-top: 8%;
     padding-left: 10px;
     color: #666;
     font-weight: 600;
 }
-
 .container .fixed_box .header .upper .login .dropdown .dropdown-content .bar {
-	/* margin: 4px 12px; */
 	margin: 12px;
 	height: 1px;
 	background-color: #eee;
 }
-
 .container .fixed_box .header .upper .login .dropdown .dropdown-content a:hover {
 	background-color: #ddd;
 }
-
 .container .fixed_box .header .upper .login .dropdown:hover .dropdown-content {
 	display: block;
 	width: 184px;
 }
-
-/* .container .fixed_box .header .upper .login .dropdown:hover .dropbtn {background-color: #3e8e41;} */
-
-
-
-/* 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS */
-
-
 #alarm_content a {
   color: black;
   padding: 12px 16px;
@@ -896,7 +753,6 @@ body {
   display: block;
   font-family: 'Noto Sans CJK', AppleSDGothicNeo, 'Malgun Gothic', arial;
 }
-
 .dropdown-alarm {
   position: relative;
   display: inline-block;
@@ -917,7 +773,6 @@ body {
   font-size: 14px;
   min-width: 184px;
 }
-
 
 .jss-icon{
 	margin-left : 5px;
@@ -967,7 +822,6 @@ body {
 	display: none;
     position: absolute;
     z-index: 1;
-    /* margin-left: -126px; */
     margin-left: -30px;
     padding: 8px 0;
     list-style: none;
@@ -980,7 +834,6 @@ body {
 }
 .dropdown-content-jss>a{
 	color: black;
-	/* padding: 12px 57px; */
 	text-decoration: none;
 	display: block;
 	padding: unset !important;
@@ -1042,17 +895,3 @@ body {
 
 .dropdown-alarm:hover>.dropbtn {background-color: #3e8e41;}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS 조성식 CSS */

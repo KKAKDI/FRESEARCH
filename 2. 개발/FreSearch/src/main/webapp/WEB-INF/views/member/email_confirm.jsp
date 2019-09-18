@@ -37,14 +37,6 @@
 				</div>
 				<div class="form-submit">
 					<button type="button" id="emailReSend" class="emailReSend">재전송 요청</button>
-					<!-- <form class="confirm-form" id="confirm" action="/member/email_confirm" method="post"> -->
-					<!--  
-					<form class="confirm-form" id="confirm" action="" method="post">
-						<input type="hidden" name="mb_email" id="mb_email" value="${mb_email}">
-						<input type="hidden" name="mb_nick" id="mb_nick" value="${mb_nick}">
-						<input type="button" id="emailConfirm" class="emailConfirm" value="재전송 요청">
-					</form>
-					-->
 				</div>
 			</div>
 		</div>
@@ -71,42 +63,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- <div class="dialog dialog--center dialog--alert">
-		<div class="dialog__content">
-			받은 메일함을 확인해주세요.
-		</div>
-		<footer class="dialog__footer">
-			<button class="button--base-c button--shape-a js-alert-x" type="button">확인</button>
-			<button class="dialog__x js-alert-x" type="button">닫기</button>
-		</footer>
-	</div> -->
-	<!-- <form id="email_confirm" action="" method="post"></form> -->
 </body>
-<script>
-
-	/* $(document).ready(function(){
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		
-		$(document).ajaxSend(function(e, xhr, options){
-			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		});
-	}); */
-/*
-	var count = 0;
-	var cnt = $("#count").val();
-	$(".emailConfirm").on("click",function(){
-		count++;
-		console.log("카운트  : " + count);
-		if(count > 1){
-			alert("너무 많은 메일을 보냈습니다. 더 이상 재전송 불가능 합니다.");
-			return false;
-		}else {
-			alert("받은 메일함을 확인해주세요." + count);
-			return true;
-		}
-	});
-*/
-</script>
 </html>

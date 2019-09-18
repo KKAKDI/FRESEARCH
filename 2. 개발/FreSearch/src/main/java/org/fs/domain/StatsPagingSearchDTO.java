@@ -16,11 +16,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 public class StatsPagingSearchDTO {
-
-
 	private List<StatsVO> getTableTest;
 	private int getTableCount;
-	
-
-	
 }

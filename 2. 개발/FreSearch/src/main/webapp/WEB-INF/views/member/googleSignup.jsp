@@ -7,41 +7,21 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="708907828012-qu34esq94i2i1kp96q28pgs1u2s7tnma.apps.googleusercontent.com">
 <title>구글 인증 회원가입 : FRESEARCH</title>
-<!--  <link rel="stylesheet" href="/resources/assets/css/sign_up.css"> -->
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/signup.css">
-<!--  <link href="/resources/assets/css/magic-check.css" rel="stylesheet">-->
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 <script src="/resources/js/signup.js"></script>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<!--  <script src="/resources/assets/js/sign_up.js"></script> -->
 <script>
-/*
-$(document).ready(function(){
-	function onSignIn(googleUser) {
-		  var profile = googleUser.getBasicProfile();
-		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-		  console.log('Name: ' + profile.getName());
-		  console.log('Image URL: ' + profile.getImageUrl());
-		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		 
-		  var test = "";
-		  //test = test + '<p>'+profile.getEmail()+'</p>';
-		 $("#mb_email").val(profile.getEmail());
-		 
-	}
-});*/
-
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('ID: ' + profile.getId());
 	  console.log('Name: ' + profile.getName());
 	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	  console.log('Email: ' + profile.getEmail());
 	 
 	 $("#mb_email").val(profile.getEmail());
 	 $("#mb_email").attr("readonly", "readonly");
@@ -56,7 +36,6 @@ function onSignIn(googleUser) {
 		<input type="hidden" name="mb_addr" id="mb_addr" value="">
 		<input type="hidden" name="mb_att_category" id="mb_att_category" value="">
 		<div class="g-signin2" data-onsuccess="onSignIn" style="display:none"></div>
-			<!-- <h2>회원가입</h2> -->
 			<h2><a href="/"><img src="/resources/img/logo.png" alt="logo"></a></h2>
 			<div class="form-row">
 				<label for="mb_email">이메일</label>
@@ -84,7 +63,6 @@ function onSignIn(googleUser) {
 					<input type="text" id="mb_birth_yy" placeholder="년(4자)" autocomplete="off" maxlength="4">
 				</div>
 				<div class="mb_birth_mm">
-					<!--  <label for="mb_birth_mm1">월</label>-->
 					<select id="mb_birth_mm" name="mb_birth_mm">
 						<option value="월" selected>월</option>
 						<option value="01">1</option>
@@ -118,13 +96,6 @@ function onSignIn(googleUser) {
 					<input type="text" name="mb_phone" id="mb_phone" placeholder="전화번호 (-없이 숫자만 입력)" autocomplete="off" maxlength="11">
 					<div id="phone_check" class="check"></div>
 			</div>
-			<!--  
-			<div class="form-group">
-				<label for="mb_nick">거주지</label>
-				<input type="text" class="form-control" name="mb_nick" id="mb_nick" placeholder="닉네임" required>
-				<div id="nick_check"></div>
-			</div>
-			-->
 			<div class="form-row-addr1">
 				<label for="mb_addr">주소</label>   
 				<input type="text" id="mb_addr1" placeholder="우편번호" readonly="readonly">

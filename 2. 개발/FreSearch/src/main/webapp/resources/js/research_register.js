@@ -170,7 +170,6 @@ $(function() {
 							}else{								
 								 var reader = new FileReader();
 								 var imgpath = "";
-								 //console.log($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]);
 								 if($(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].files[0]){
 									 data += $(".research_content #item_box")[i].querySelectorAll(".item_individual")[j].firstChild.nextSibling.value+"#img#";
 									 data += $(".research_content #item_box")[i].querySelectorAll('input[type=file]')[j].nextSibling.value+"#t#";
@@ -197,7 +196,6 @@ $(function() {
 						button:"확인",
 					})
 					.then((willDelete) => {
-						//return false;
 						form.submit();								
 					});																	
 				}					

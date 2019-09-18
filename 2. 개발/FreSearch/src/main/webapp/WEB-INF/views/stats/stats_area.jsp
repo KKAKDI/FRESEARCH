@@ -37,10 +37,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
 	</div>
 </div>
 
@@ -88,9 +84,6 @@ $(document).ready(function() {
 		html += '</tr>';
 		$('#test').html(html);
 	});
-	//timerID = setTimeout("updateDataArea()", 2000);
 });
 </script>
 </html>
-
-

@@ -135,20 +135,3 @@ insert into NEWS (NEWS_CODE, NEWS_SUBJECT, NEWS_CONTENT, NEWS_DIVISION, NEWS_REG
 </update>
 
 </mapper>
-
-
-
-
-<!--
-<![CDATA[
-  select 
-    NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
-  from 
-      (
-      select /*+INDEX_DESC(news pk_news) */
-        rownum rn, NEWS_CODE, NEWS_DIVISION, NEWS_SUBJECT, NEWS_CONTENT, NEWS_REGDATE, NEWS_VIEWS
-      from 
-        NEWS
-      where 
-  ]]>
--->

@@ -1,7 +1,5 @@
 package org.fs.service;
 
-import java.util.List;
-
 import org.fs.domain.Criteria;
 import org.fs.domain.ReplyPageDTO;
 import org.fs.domain.ReplyVO;
@@ -61,6 +59,4 @@ public class ReplyServiceImpl implements ReplyService{
 				mapper.getCountByBrd_code(brd_code),
 				mapper.getListPaging(cri, brd_code));				
 	}
-
-	
 }

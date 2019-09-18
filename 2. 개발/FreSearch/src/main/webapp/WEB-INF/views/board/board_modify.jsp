@@ -221,7 +221,7 @@ div.button {
       </div>
 
 		<div style= "text-align:right; width: 850px;">
-				<button class="modify_button" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
+					<button class="modify_button" type="submit" data-oper='modify' onclick="submitContents();" id="modify">수정</button>
   				<button class="modify_button" type="submit" data-oper='delete'>삭제</button>
   				<button class="modify_button" type="submit" data-oper='list'>리스트</button>
 		</div>

@@ -33,12 +33,6 @@
 </style>
 <head>
 <link rel="stylesheet" href="/resources/stats/css/chart.css">
-
-
-
-
-
-
 </head>
 <body>
 <button class="modal_show"> 모달 </button>
@@ -59,7 +53,6 @@
     </div>
 </body>
 
-
     <script type="text/javascript">
       
         $(document).on('click','.modal_show',function() {
@@ -71,6 +64,5 @@
         };
         
     </script>
-
 
 </html>

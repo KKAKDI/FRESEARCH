@@ -18,7 +18,6 @@ body {
 }
 .page-content .list-content .detail-list .tab-content #test{
 	padding-top: 15px;
-	/* width: 846px; */
 }
 .page-content .list-content .detail-list .tab-content #test ul {
     float: left;
@@ -30,79 +29,28 @@ body {
     cursor: pointer;
 }
 .page-content .list-content .detail-list .tab-content #test li {
-    /*width: 391px;*/
     width: 250px;
-    /*text-align: center;*/
     background: #fff;
-    /*height: 360px;*/
     height: 310px;
     display: flex;
-    /*padding: 10px;*/
 }
-/*
-.page-content .list-content .detail-list .tab-content #test ul li a span {
-	display: block;
-    height: 60px;
-    /*padding: 10px;
-    margin-bottom: -30px;
-    margin-top: 5px;
-    
-    margin-bottom: -20px;
-    margin-top: 10px;
-    padding-left: 10px;
-}*/
-/*
-.page-content .list-content .detail-list .tab-content #test ul li a .ctgr_img {
-	width: 100%;
-    height: 250px;
-}*/
 .page-content .list-content .detail-list .tab-content #test ul li a img {
-	/* width: 391px;
-    height: 250px; */
     width: 250.5px;
     height: 200px;
-    /*border-bottom: 1px solid #ddd;*/
 }
 .page-content .list-content .detail-list .tab-content #test ul li a .ctgr_img{
     position:relative;
 }
 
 .page-content .list-content .detail-list .tab-content #test ul li a .ctgr_img p{
-    /* z-index: 100;
-    position: absolute;
-    color: #222;
-    font-size: 14px;
-    font-weight: bold;
-    right: 10px;
-    padding-top: 5px; */
     z-index: 100;
     position: absolute;
     color: #222;
-    /* font-size: 16px; */
     font-size: 14px;
     font-weight: 550;
     right: 10px;
     padding-top: 15px;
 }
-/*
-.page-content .list-content .detail-list .tab-content #test ul li a .ctgr_img p{
-    z-index: 100;
-    position: absolute;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    left: 10px;
-    top: 0px;
-}*/
-/*
-.page-content .list-content .detail-list .tab-content #test ul li a img:hover {
-	filter: brightness(70%);
-}*/
-
-/*
-.page-content .list-content .detail-list .tab-content #test ul li a img:hover {
-	opacity:0;
-}*/
 .page-content .list-content .detail-list .tab-content #test ul:hover {
 	border: 1px solid #1428a0;
 }
@@ -110,13 +58,6 @@ body {
 	filter: brightness(70%);
 }
 .page-content .list-content .detail-list .tab-content #test ul li a .ctgr_nm { 
-    /* display: block;
-    padding-top: 5px;
-    padding-left: 20px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #222; */
-    
     display: block;
     padding-top: 15px;
     padding-left: 10px;
@@ -125,26 +66,6 @@ body {
     color: #1428a0;
 }
 .page-content .list-content .detail-list .tab-content #test ul li a .subj_nm .subj_nm_span { 
-	/*
-	display: block;
-    padding-left: 20px;
-    padding-top: 2px;
-    padding-right: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 392px;*/
-    /* padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 2px;
-    line-height: 1.6;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    height: 50px;
-    font-size: 16px; */
-    
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 9px;
@@ -159,12 +80,6 @@ body {
     word-break: break-all;
 }
 .page-content .list-content .detail-list .tab-content #test ul li a span:nth-child(4) { 
-	/* display: block;
-    padding-left: 20px;
-    padding-top: 2px;
-    font-size: 14px;
-    color: #222; */
-    
     display: block;
     padding-left: 112px;
     padding-top: 14px;
@@ -175,7 +90,6 @@ body {
     position: relative;
     font-size: 30px;
     padding: 3px 0 7px;
-    /*margin-bottom: 40px;*/
     margin-left: 15px;
 }
 .page-content .list-content .detail-list h2::after {    
@@ -187,18 +101,6 @@ body {
     top: 100%;
     left: 0px;
 }
-/*
-.page-content .list-content .detail-list .list-head span {
-	position: absolute;
-    margin-left: 681px;
-    margin-top: -46px;
-    background: #1428a0;
-    width: 150px;
-    height: 45px;
-    text-align: center;
-    padding-top: 10px;
-    cursor: pointer;
-}*/
 .page-content .list-content .detail-list .list-head span a {
 	color: #fff;
 	position: absolute;
@@ -210,12 +112,6 @@ body {
     text-align: center;
     padding-top: 10px;
     cursor: pointer;
-}
-.page-content .list-content .detail-list .tab-content {
-	/*position: relative;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    margin-top: -38px;*/
 }
 .page-content .list-content .detail-list .tab-content input[type=button]{ 
 	display: inline-block;
@@ -235,56 +131,18 @@ body {
     cursor: pointer;
     outline: none;
 }
-/*
-.page-content .list-content .detail-list .tab-content input[type=button]:hover{
-    background-color: #dcdcdc;
-}*/
-/*
-.page-content .list-content .detail-list .tab-content a:visited {
-	background: #000;
-}*/
-
-.page-content .list-content .detail-list .tab-content #test a {
-	/*width: 100%;*/
-}
-/*
-.page-content .list-content .detail-list .tab-content .paging{
-	padding-top: 26%;
-}*/
 .page-content .list-content .detail-list .tab-content .paging ul{
 	text-align: center;
-	/*margin-top: 30%;*/
 }
 .page-content .list-content .detail-list .tab-content .paging li{
     display: inline-block;
     min-width: 40px;
     height: 40px;
     margin: 0 1px;
-    /*padding: 0 5px;*/
     box-sizing: border-box;
     line-height: 40px;
     vertical-align: top;
 }
-/*
-.page-content .list-content .detail-list .tab-content .paging li:hover{
-	background-color: #888;
-    font-style: normal;
-    cursor: pointer;
-}*/
-/*
-.page-content .list-content .detail-list .paging a:hover {
-    transition: background-color .2s;
-    display: inline-block;
-    min-width: 40px;
-    height: 40px;
-    margin: 0 -1px;
-    padding: 0 5px;
-    box-sizing: border-box;
-    line-height: 40px;
-    color: #888;
-    vertical-align: top;
-    text-align: center;
-}*/
 .page-content .list-content .detail-list .tab-content .tab-button {
 	margin-left: 15px;
 }
@@ -320,7 +178,6 @@ body {
 	color: #1428a0;
 	border: 1px solid #1428a0;
 }
-
 .page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link{
 	background-color: #1428a0;
     font-style: normal;
@@ -329,39 +186,11 @@ body {
 .page-content .list-content .detail-list .tab-content .paging ul .page-item.active .page-link:hover{
 	cursor: auto;
 }
-/*
-.page-content .list-content .detail-list .tab-content .tab-button a:visited {
-	background-color: #222;
-    font-style: normal;
-    color: #fff;
-}*/
-/*
-.page-content .list-content .detail-list .tab-content .paging li a:link {
-	background-color: #222;
-    font-style: normal;
-    color: #fff;
-}*/
-
-
 .subj_nm { 
 	position: relative; 
 	display: inline-block; 
 } 
-
 .tooltip { 
-	/* visibility: hidden; 
-	width: 200px; 
-	background-color: Indigo; 
-	color: Yellow; 
-	text-align: center; 
-	border-radius: 10px; 
-	padding: 10px 5px; 
-	position: absolute; 
-	z-index: 1; 
-	top: 200%; 
-	left: 50%; 
-	margin-left: -105px;  */
-	
 	visibility: hidden;
     width: 256px;
     height: auto;
@@ -377,17 +206,7 @@ body {
     font-size: 12px;
     word-break: break-all;
 } 
-
 .tooltip::after { 
-	/* content: ""; 
-	position: absolute; 
-	bottom: 100%; 
-	left: 50%; 
-	margin-left: -10px; 
-	border-width: 10px; 
-	border-style: solid; 
-	border-color: transparent transparent Indigo transparent;  */
-	
 	content: "";
     position: absolute;
     bottom: 100%;
@@ -397,8 +216,6 @@ body {
     border-style: solid;
     border-color: transparent transparent #222 transparent;
 } 
-
 .research_list:hover .tooltip { 
 	visibility: visible; 
 }
-

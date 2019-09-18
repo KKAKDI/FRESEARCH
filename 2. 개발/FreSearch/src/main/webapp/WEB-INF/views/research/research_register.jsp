@@ -140,18 +140,8 @@ $(document).ready(function(){
 		ws.onclose=function(event){
 		    writeResponse("Connection closed");
 		}
-		
-		
-		/*send()
-		function send(){
-			console.log("send 들어왔다")
-		    var text = document.getElementById("messageinput").value;
-			var text = "갱신";
-		    ws.send(text);
-		    text=""; 
-		} */
+
  		function send(){
-		    //var text = document.getElementById("messageinput").value;        	
 		    var text = "갱신";
 		    ws.send(text);
 		    text="";
@@ -162,7 +152,6 @@ $(document).ready(function(){
 		}
 		function writeResponse(text){
 			console.log(text);
-		    //message.innerHTML+="<br/>"+text;
 		}
 	});
 });

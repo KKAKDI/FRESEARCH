@@ -5,14 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-
-
-
-
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-
-	
 
 	<!-- 웹 소켓 사용해서 현재 몇개의 쪽지가 도착했는지 구해오기. --> 
 
@@ -45,8 +38,6 @@
 
     }
 
-   
-
     function onOpen(evt) 
 
     {
@@ -70,16 +61,10 @@
     		send_message();
 
     });
-
-    		
-
-    
-
-        </script>
+</script>
 
 </head>
 <body>
-
 
 <div id="count">테스트</div>
 

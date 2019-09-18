@@ -146,14 +146,6 @@
 										</div>
 									</div>
 								</td>
-							
-							
-							
-							
-							
-							
-							
-							
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="rate_win" class="RadioButton">
@@ -264,31 +256,8 @@
 												style="position: absolute; opacity: 0;"> <span></span>
 											</span> <label class="Label">제주</label>
 										</div>
-										
-										<!-- <div id="rate_win_asc" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" > <input
-												type="radio" name="type" id="lose" value="lose"
-												class="Radio" style="position: absolute; opacity: 0;">
-												<span></span>
-											</span> <label for="lose" class="Label">낮은 승률</label>
-										</div>
-										<div id="rate_pick" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" > <input
-												type="radio" name="type" id="picked" value="piced"
-												class="Radio" checked
-												style="position: absolute; opacity: 0;"> <span></span>
-											</span> <label for="picked" class="Label">게임당 픽률</label>
-										</div>
-										<div id="rate_ban" class="RadioButton">
-											<span class="jcf-radio jcf-unchecked" > <input
-												type="radio" name="type" id="banned" value="banned"
-												class="Radio" style="position: absolute; opacity: 0;">
-												<span></span>
-											</span> <label for="banned" class="Label">게임당 밴률</label>
-										</div> -->
 									</div>
 								</td>
-
 
 								<!-- 성별   -->
 								<td class="Cell">
@@ -365,10 +334,7 @@
 									</div>
 								</td>
 
-
 								<!-- 결혼 -->
-	
-
 								<td class="Cell">
 									<div class="ButtonWrap">
 										<div id="tier_all" class="RadioButton">
@@ -397,15 +363,7 @@
 										</div>
 									</div>
 								</td>
-
-
 							</tr>
-
-
-
-
-
-
 						</table>
 					</form>
 				</div>
@@ -414,34 +372,16 @@
 		<div class="grid-margin-table stretch-card">
 			<div class="card-table">
 				<div class="card-body-table">
-					<section class="article-list">
-
-					</section>
-
-
-
-
-
-
-
-
+					<section class="article-list"></section>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 
-
-
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
 	$(document).scroll(function() {
-						/*setInterval(function() {
-							console.log("현재 스크롤 위치는 : " + $(document).scrollTop());
-						
-						}, 1);*/
-							//console.log($('.sub-link').offset());
 		if ($(document).scrollTop() >= 69) {
 			$('.sub-link').attr('class','sub-link scroll-to-fixed-fixed');
 			$('.sub-link').attr('style','z-index: 1000; position: fixed; top: 106px; margin-left: 0px; width: 719px;');
@@ -454,9 +394,6 @@
 	console.log("pageMakerPrev : "+$('#pageMakerPrev').val());
 	console.log("pageMakerPrev : "+$('#pageMakerNext').val());
 	var next = $('#pageMakerNext').val();
-
-	
-	
 	
 	$('form').on('submit', function(e){
 		
@@ -469,8 +406,6 @@
 		}
 		console.log("input : "+input);
 		console.log("option : "+option);
-		
-		
 		
 		/////////////////////////////////////여기서부터는 검색 ajax!!//////////////////////////////////////////
 		var page = page || 1;
@@ -503,7 +438,6 @@
 			    
 			    
 			    tableService.table(data,function(list, cnt){
-			    	//<section class="article-list">
 
 			    	var html = '';
 			    	if (list.length == 0){
@@ -524,17 +458,13 @@
 				    		
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
-							//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							//html +=	'<div>'+list[i].count+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
 							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-							//html +=	' <em>['+list[i].count+']</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
-							//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 							html +=	'<div class="article--list-item-meta__item">';
 							html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 							html += '</div>'
@@ -548,13 +478,6 @@
 							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 							html +=	'</div>';
-							
-							/*html +=	'<div class="article-list-item__thumbnail">';
-							html +=	'<a href="">';
-							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
-							html += '?image=w_200" class="article-list-item__thumbnail" alt>';
-							html +=	'</a>';
-							html +=	'</div>';*/
 							html += '</div>';
 			    		}
 			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
@@ -594,7 +517,6 @@
 			 $('.article-list').off('click','#next').on('click','#next',function(e){
 				 e.preventDefault();
 				console.log("다음 눌렸다.");
-				//console.log($(this).children().val);
 				var page = $(this).val();
 				page ++; 
 				
@@ -608,7 +530,6 @@
 			 $('.article-list').off('click','#prev').on('click','#prev',function(e){
 				 e.preventDefault();
 				console.log("다음 눌렸다.");
-				//console.log($(this).children().val);
 				var page = $(this).val();
 				page --; 
 				
@@ -619,10 +540,6 @@
 			});
 		 });
 
-		////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
 	$(document).ready(function(){
 		
 		var page = (page || 1);
@@ -644,12 +561,7 @@
 		    		
 		    }
 			
-			
-			//console.log("하이 이건 나오냐 : "+JSON.stringify(data));
-			
-			
 			tableService.table(data,function(list, cnt){
-		    	//<section class="article-list">
 
 		    	var html = '';
 		    	if (list.length == 0){
@@ -670,17 +582,13 @@
 		    		
 			    		html += '<div class="article-list-item">';
 						html += '<div class="article-list-item__vote">';
-						//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-						//html +=	'<div>'+list[i].count+'</div>';
 						html += '</div>';
 						html += '<div class="article-list-item__content">';
 						html += '<div class="article-list-item__title">';
 						html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-						//html +=	' <em>['+list[i].count+']</em>';
 						html +=	'</div>';
 						html +=	'</a>';
 						html +=	'<div class="article-list-item-meta">';
-						//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 						html +=	'<div class="article--list-item-meta__item">';
 						html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 						html += '</div>'
@@ -694,13 +602,6 @@
 						html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 						html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 						html +=	'</div>';
-						
-						/*html +=	'<div class="article-list-item__thumbnail">';
-						html +=	'<a href="">';
-						html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
-						html += '?image=w_200" class="article-list-item__thumbnail" alt>';
-						html +=	'</a>';
-						html +=	'</div>';*/
 						html += '</div>';
 		    		}
 		    		if(page == 1 && page == Math.ceil(cnt/10.0)){
@@ -763,14 +664,6 @@
         $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
         return false;
       } );
-	/*$(window).scroll(function(e){
-	 if($(document).scrollTop() >= 0 && $(document).scrollTop() < 768){
-	 alert("스크롤의 위치가 0~768")
-	 }	
-	 });*/
-	 
-
-
 	 
 	$('.RadioButton').click(function(e) {
 		e.preventDefault();
@@ -780,25 +673,16 @@
 
 			$(this).prevAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
 			$(this).nextAll('.RadioButton').children('span').attr('class','jcf-radio jcf-unchecked');
-
-			//$("span[name=1]").attr('class', 'jcf-radio jcf-unchecked');
 			$(this).prevAll('.RadioButton').children('label').attr('class',	'Label');
 			$(this).nextAll('.RadioButton').children('label').attr('class',	'Label');
-			//$(this).children('label').attr('class', 'Label');   ㅎㅎ 이거 알지?
-			//$('.RadioButton').children('label').attr('class', 'Label');
 			$(this).children().eq(1).attr('class', 'Label jcf-label-active');
 			$(this).children().first().attr('class','jcf-radio jcf-checked');
-			
 			
 			var checkLength = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').length;
 		    var checkValues = new Array(checkLength);
 		    for(var i=0; i<checkLength; i++){                          
 		    	checkValues[i] = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input')[i].value;
 		    }
-			//var map1 = $('.RadioButton').children('span.jcft-radio,.jcf-checked').children('input').val();
-			//var map2 = $(this).children('span.jcft-radio,.jcf-checked').children('input').val();
-			//var map = $('.RadioButton').children('span.class').children('input').val();
-			
 			
 			console.log("1 :"+checkValues[0]);
 			console.log("2 :"+checkValues[1]);
@@ -806,10 +690,6 @@
 			console.log("4 :"+checkValues[3]);
 			console.log("5 :"+checkValues[4]);
 			
-			
-			
-			
-			//var page =1;
 			var page = page || 1;
 			
 			showList(page);
@@ -827,6 +707,7 @@
 			    if(checkValues[2]=="전체"){
 			    	checkValues[2] = "";
 			    }
+			    
 			    //////나이쪽
 			    if (checkValues[3]=="전체"){
 			    	var SA = 0;
@@ -851,8 +732,6 @@
 			    	var EA = 69;
 			    }
 			    
-			    
-			    
 			    var data = {
 			    		ctgr_nm : checkValues[0],
 			    		mb_addr : checkValues[1],
@@ -864,15 +743,10 @@
 			    		amount : 10				    		
 			    }
 			    
-			    
 			    console.log(data);
-			    
-			    
 			    console.log(tableService);
 			    
-			    
 			    tableService.table(data,function(list, cnt){
-			    	//<section class="article-list">
 
 			    	var html = '';
 			    	if (list.length == 0){
@@ -893,17 +767,13 @@
 				    		
 				    		html += '<div class="article-list-item">';
 							html += '<div class="article-list-item__vote">';
-							//html +=	'<img src="https:/talk.op.gg/images/icon-vote-up.png" alt>';
-							//html +=	'<div>'+list[i].count+'</div>';
 							html += '</div>';
 							html += '<div class="article-list-item__content">';
 							html += '<div class="article-list-item__title">';
 							html +=	'<a href="/stats/stats_get?subj_code='+list[i].subj_code+'"> <span>'+list[i].subj_nm+'</span>';
-							//html +=	' <em>['+list[i].count+']</em>';
 							html +=	'</div>';
 							html +=	'</a>';
 							html +=	'<div class="article-list-item-meta">';
-							//html +=	'<div class="article-list-item-meta__item">'+list[i].ctgr_nm+'</div>';
 							html +=	'<div class="article--list-item-meta__item">';
 							html += '<span>'+tableService.displayTime(list[i].subj_regdate)+'</span>';
 							html += '</div>'
@@ -917,13 +787,6 @@
 							html += '<em style="margin-left: 10px;">'+list[i].count+'</em>';
 							html +=	'<div class="article-list-item-meta__item-jss">'+list[i].ctgr_nm+'</div>';
 							html +=	'</div>';
-							
-							/*html +=	'<div class="article-list-item__thumbnail">';
-							html +=	'<a href="">';
-							html +=	'<img src="https://opgg-com-image.akamaized.net/attach/images/20190722062608.25761.jpg';
-							html += '?image=w_200" class="article-list-item__thumbnail" alt>';
-							html +=	'</a>';
-							html +=	'</div>';*/
 							html += '</div>';
 			    		}
 			    		if(page == 1 && page == Math.ceil(cnt/10.0)){
@@ -965,7 +828,6 @@
 			 $('.article-list').off('click','#next').on('click','#next',function(e){
 				 e.preventDefault();
 				console.log("다음 눌렸다.");
-				//console.log($(this).children().val);
 				var page = $(this).val();
 				page ++; 
 				
@@ -979,7 +841,6 @@
 			 $('.article-list').off('click','#prev').on('click','#prev',function(e){
 				 e.preventDefault();
 				console.log("다음 눌렸다.");
-				//console.log($(this).children().val);
 				var page = $(this).val();
 				page --; 
 				
@@ -989,30 +850,6 @@
 				showList(page);
 			});
 		 });
-				    /*두번째 ajax 방법
-				    $.ajax({
-				        type: "POST",
-				        url : '/stats/table',
-				        data: JSON.stringify(data),
-				        dataType : "json",
-				        //async: true,
-				        contentType : "application/json; charset=UTF-8",
-				        success : function(data, status, xhr) {
-				        
-					            for(var i =0, len = data.length||0; i < len; i++){
-						    		console.log(data[i]);
-						    	}
-					            console.log(data[0]);
-
-					     
-					 
-				        },
-				        error: function(xhr, status, er) {
-								console.log(er);
-				           
-				        }
-				    });*/
-
 
 </script>
 <%@include file="../includes/footer.jsp"%>

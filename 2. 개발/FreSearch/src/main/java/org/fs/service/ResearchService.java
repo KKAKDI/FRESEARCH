@@ -2,11 +2,8 @@ package org.fs.service;
 
 import java.util.List;
 import org.fs.domain.Criteria;
-import org.fs.domain.MemberVO;
 import org.fs.domain.ResearchPageDTO;
 import org.fs.domain.ResearchVO;
-import org.springframework.ui.Model;
-
 
 public interface ResearchService {	
 	public List<ResearchVO> researchContent(String subj_code);

@@ -7,115 +7,19 @@
 <link rel="stylesheet" href="/resources/stats/css/chart.css">
 <%@include file="../includes/header.jsp"%>
 
-
-
-
-
-
-
-
-
-
-
 <!--  여기서 부터는 구글 양식이다-->
 <div class="google-content">
 	<div class="google">
 		<div class="google-shadow">
-
-
-			<div class="content-top"> 
-				<div class="top-top">   
+			<div class="content-top">
+				<div class="top-top">
 					<span id="hi">응답 10명 </span> <span class="what" id="what">${list[0].ctgr_nm}</span>
-					
-
 				</div>
 			</div>
-			<div class="start">
-			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--   
- 			<div class="shadow">
-				<div class="google-1">
-					<div class="sumerry">
-						<div class="sumerry-google">
-							<div class="first-text">
-								<div class="first-text-children">
-									<div class="hoho">
-										<span>집은 전세입니까?</span> <span class="what">응답 10개</span>
-									</div>
-								</div>
-								<div class="opacity"></div>
-							</div>
-							<div class="first-text-text">
-
-
-								<div class="security">
-
-<!-- 테이블 -->
- <!-- 
-									<div class="ContentWrap">
-										<div class="Content">
-											<div class="Box">
-												<div class="Content">
-													<div id="ChampionStatsTable">
-														<table class="GetTable table" role="grid">
-															<colgroup>
-																<col width="100%">
-															</colgroup>
-															<tbody class="Content" aria-live="plite"
-																aria-relevant="all">
-																<tr class="Row Top" role="row">
-																	<td class="Cell-Oven ChampionName"><span>결혼
-																			하셨습니까?</span></td>
-																</tr>
-																<tr class="Row Top" role="row">
-																	<td class="Cell ChampionName"><span>키가 몇 cm
-																			입니까ㅇㄴㄻㄴㅇㄹㄴㄴㅇㄹㄴㄹㄹ</span></td>
-																</tr>
-
-
-
-															</tbody> 
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
-<!-- 테이블 끝 -->   
-
-
-
-
-
-
-
-
-
-
+			<div class="start"></div>
+		</div>
 	</div>
 </div>
-</div>
-
-
 
 <script src="/resources/stats/js/chartMy.js"></script>
 <script type="text/javascript">
@@ -164,10 +68,7 @@
 		var count = 0;
 		var html = '';
 		
-		
 		for (var i = 0, len = result.length || 0; i < len; i++) {
-			
-			
 		
 			if(result[i].qst_type == 0){
 				if(((i!=0)&&(result[i].qst_content!=result[i-1].qst_content))||(i==0)){
@@ -193,10 +94,6 @@
 				console.log("2");
 					
 					html += '<div class="first-text-text">';
-					
-					//html += '<c:out value="${list[0].item_img}"/>';
-					
-					//html += '<img class="img" src="../resources/upload/'+result[i].item_img+'"/>';
 					html += '<div class="security">';
 					html += '<div class="ContentWrap">';
 					html += '<div class="Content">'; 
@@ -236,7 +133,6 @@
 			}else{
 				if(((i!=0)&&(result[i].qst_content!=result[i-1].qst_content))||(i==0)){
 				console.log("3");
-			//////////////////////////////////곧 지워져야된다///////////////////////////////
 				html += '</div>';
 				html += '</div>';
 				html += '</div>';
@@ -270,8 +166,6 @@
 				html += '</colgroup>';
 				html += '<tbody class="Content" aria-live="plite" aria-relevant="all">';
 				}
-				//////////////////////////
-				//if(result[i].item_code == "SS5NKHW6"){
 				for(var j =0; j<resultS.length; j++){
 					if((result[i].qst_content==resultS[j].qst_content)&&(j%2==0)){
 						console.log("4-1");
@@ -285,7 +179,6 @@
 						html += '</tr>';
 					}
 				}
-				//////////////////////////
 				html += '</tbody>';
 				html += '</table>';
 				html += '</div>';
@@ -296,7 +189,6 @@
 				html += '</div>';
 				html += '</div>';
 			}
-	/////////////////////////////////////////////////////////////////////////////////////////////
 		} 
 		console.log("5"); 
 			
@@ -310,18 +202,6 @@
 		var what = result[0].ctgr_nm+"                ("+<c:out value="${count}"/>+"명 응답)"; //+ "  "+result[0].subj_startdate+"              "+tableService.displayTime(result[0].subj_startdate)+"~"+tableService.displayTime(result[0].subj_enddate);
 		$("#what").html(what);
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </script>
-
-
-
 
 <%@include file="../includes/footer.jsp"%>

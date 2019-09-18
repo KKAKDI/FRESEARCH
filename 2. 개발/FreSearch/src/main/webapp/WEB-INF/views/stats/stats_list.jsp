@@ -12,8 +12,6 @@ a.no-uline {
 }
 </style>
 
-
-
 <style>
 .test_btn1 {
 	margin-right: -4px;
@@ -45,8 +43,6 @@ a.no-uline {
     width: 501px;
     margin-top: 110px;
     border-radius: 35px
-    
-
 }
 
 /* The Close Button */
@@ -79,7 +75,6 @@ a.no-uline {
     text-transform: uppercase;
     font-size: .875rem;
     font-weight: bold;
-
 }
 
 .card-description-jss{
@@ -106,7 +101,6 @@ a.no-uline {
 					<div class="card-body-mini">
 					<div class="btn-group-list">
 						<h4 class="card-title">
-						
 							<button type="button" class="btn btn-outline-secondary main-btn" value="10대">
 								나이
 							</button>
@@ -182,17 +176,14 @@ a.no-uline {
 		</div>
 		</div>
 		<%@include file="../includes/footer.jsp"%>
-		
-		 
-		
+
 <!--      여기서부터 모달           -->
 <div id="myModal" style="-ms-overflow-style: none;" class="modal">
   <div class="modal-content">
   </div>
 </div>
-<!--      여기까지 모달           -->
- 
 
+<!--      여기까지 모달           -->
 <script src="/resources/stats/chart/Chart.bundle.js"></script>
 <script src="/resources/stats/chart/Chart.bundle.min.js"></script>
 <script src="/resources/stats/chart/Chart.js"></script>
@@ -216,7 +207,6 @@ $(document).on("click",".main-btn",function() {
 	var val =$(this).val();
 	zipJSON(val);
 }); 
-
  
 window.onclick = function(event) {
 	if (event.target == modal) {
@@ -225,8 +215,6 @@ window.onclick = function(event) {
  		$('body').removeAttr('class','scrollOff');
 	}
 }
-
-
 			 
 $(document).on('click','.button-age', function(){
 	data = $(this).val();
@@ -760,14 +748,4 @@ $(document).on('click','.button-age', function(){
 				    });
 				  }
 				});
-
-
-
-
-			</script>
-
-
-
-
-
-		
+</script>

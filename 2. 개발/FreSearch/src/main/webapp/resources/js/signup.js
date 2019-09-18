@@ -36,13 +36,6 @@ function execPostCode() {
 
 $(document).ready(function(){
 	
-	/*var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-		
-	$(document).ajaxSend(function(e, xhr, options){
-		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	});*/
-	
 	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/i;
 	var regNick = /^[a-zA-Z가-힣0-9]{2,6}$/;
 	var regPwd = /^[A-Za-z0-9]{4,12}$/;
@@ -403,72 +396,6 @@ $(document).ready(function(){
 			check = false;
 			signupCheck();
 		}
-		
-		
-		/*
-		$.ajax({
-			url : "/member/birthCheck",
-			type : "get",
-			data : {mb_birthdate : mb_birthdate},
-			dataTyep : "json",
-			success : function(data){
-				
-				console.log(data);
-				if(data == 1){
-					$("#birth_check").text("이미 사용중인 생년월일입니다.");
-					$("#birth_check").css("color", "#d0021b");
-					$("#mb_birth_yy").css("border-bottom", "2px solid #d0021b");
-					$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
-					$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
-					check = false;
-					signupCheck();
-				}else {
-					if(regYear.test(mb_birth_yy) && regDay.test(mb_birth_dd) 
-							&& (mb_birth_yy >= 1900 && mb_birth_yy <= yearNow )
-							&& (mb_birth_mm > 0)
-							&& (mb_birth_dd >= 1 && mb_birth_dd <= 31)){
-						$("#birth_check").text("");
-						$("#mb_birth_yy").css("border-bottom", "1px solid #ddd");
-						$("#mb_birth_mm").css("border-bottom", "1px solid #ddd");
-						$("#mb_birth_dd").css("border-bottom", "1px solid #ddd");
-						check = true;
-						signupCheck();
-					}else if((mb_birth_yy >= 1900 && mb_birth_yy <= yearNow ) && regYear.test(mb_birth_yy) 
-							&& mb_birth_yy != "월" && mb_birth_dd == ""){
-						if(mb_birth_mm > 0){
-							$("#birth_check").text("일을 입력해주세요.");
-							$("#birth_check").css("color", "#d0021b");
-							$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
-							check = false;
-							signupCheck();
-						}else if(mb_birth_mm == "월"){
-							$("#birth_check").text("월을 선택해주세요.");
-							$("#birth_check").css("color", "#d0021b");
-							$("#mb_birth_mm").css("border-bottom", "2px solid #d0021b");
-							check = false;
-							signupCheck();
-						}
-					}
-					
-					if(mb_birth_mm == 2 && mb_birth_dd > 29){
-						$("#birth_check").text("2월은 29일까지 입력 가능합니다.");
-						$("#birth_check").css("color", "#d0021b");
-						$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
-						check = false;
-						signupCheck();
-					}else if(mb_birth_mm != 2
-							&& mb_birth_mm != "월"
-							&& mb_birth_dd < 1 || mb_birth_dd > 31){
-						$("#birth_check").text("1일부터 31일까지 입력 가능합니다.");
-						$("#birth_check").css("color", "#d0021b");
-						$("#mb_birth_dd").css("border-bottom", "2px solid #d0021b");
-						check = false;
-						signupCheck();
-					}
-				}
-			}
-		});	*/
-		
 	});
 	
 	$("#mb_phone").keyup(function(){
@@ -632,22 +559,6 @@ $(document).ready(function(){
 			cate_val.push($(this).val());
 		});
 		$("#mb_att_category").val(cate_val);
-
-		/*
-		var form = $("#signup");
-		swal({
-			title:"회원가입 인증 메일을 전송하시겠습니까?",
-			text:"이메일 인증 후 서비스를 이용해주세요.",
-			icon:"success",
-			buttons:["취소","전송"],
-		})
-		.then((전송) => {		
-			if(전송){
-				form.attr("action","/member/signup");
-				form.submit();
-			}
-		});	*/
-		
 	});
 	
 	var addZero = function (date, num) {
@@ -663,25 +574,5 @@ $(document).ready(function(){
 	$(".emailReSend").on("click", function(){
 		$('#dialog').show();
 		$('body').css('overflow', 'hidden');
-		//var form = $("#confirm");
-		//form.attr("action","/member/email_confirm");
-		//form.submit();
-		//alert("받은 메일함을 확인해주세요.");
-		
-		/*
-		$('.swal-overlay').css('pointer-events', 'none');
-		var form = $("#confirm");
-		swal({
-			title:"받은 메일함을 확인해주세요.",
-			//text:"이메일 인증 후 서비스를 이용해주세요.",
-			icon:"success",
-			button:"확인",
-		})
-		.then((확인) => {	
-			if(확인){
-				form.attr("action","/member/email_confirm");
-				form.submit();
-			}
-		});*/
 	});
 });

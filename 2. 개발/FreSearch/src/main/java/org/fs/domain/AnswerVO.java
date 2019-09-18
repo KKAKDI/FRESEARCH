@@ -5,12 +5,10 @@ import lombok.Data;
 
 @Data
 public class AnswerVO {
-	
-	//´äº¯ 
-	private String asw_code; //´äº¯ÄÚµå
-	private String item_code; //¾ÆÀÌÅÛÄÚµå
-	private String mb_email; //´äº¯ÀÚ ÀÌ¸ŞÀÏ
-	private String mb_nick; //´äº¯ÀÚ ´Ğ³×ÀÓ
-	private String asw_content; //´äº¯ ³»¿ë
-	private Date asw_regdate; //´äº¯ µî·ÏÀÏ
+	private String asw_code;	// ë‹µë³€ì½”ë“œ
+	private String item_code; 	// ì•„ì´í…œì½”ë“œ
+	private String mb_email; 	// ì´ë©”ì¼
+	private String mb_nick; 	// ë‹‰ë„¤ì„
+	private String asw_content; // ë‹µë³€ë‚´ìš©
+	private Date asw_regdate; 	// ë‹µë³€ë“±ë¡ì¼
 }

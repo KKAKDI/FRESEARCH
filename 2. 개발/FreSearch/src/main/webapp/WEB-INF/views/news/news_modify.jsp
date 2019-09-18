@@ -1,37 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<%-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> --%>
-
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/header.jsp"%>
 
 <style>
-
 body {
-   font-family: "Open Sans", sans-serif;
-   min-width: 850px;
-   font-weight: 500;
-   font-size: 16px;
+	font-family: "Open Sans", sans-serif;
+	min-width: 850px;
+	font-weight: 500;
+	font-size: 16px;
 }
 
-.container_new{
+.container_new {
 	padding-top: 150px;
 	min-height: 872px;
 }
 
-.button #modify,
-.button #delete,
-.button #list {
+.button #modify, .button #delete, .button #list {
 	height: 30px;
-    border: none;
-    width: 80px;
-    cursor: pointer;
-    margin-top: 20px;
-    background: #1428a0;
-    color: white;
+	border: none;
+	width: 80px;
+	cursor: pointer;
+	margin-top: 20px;
+	background: #1428a0;
+	color: white;
 }
 
 table {
@@ -67,27 +64,27 @@ div.button {
 .news-head h2 {
 	text-align: left;
 	position: relative;
-    font-size: 30px;
-    padding: 3px 0 7px;
-    margin: auto;
-    width: 850px;
+	font-size: 30px;
+	padding: 3px 0 7px;
+	margin: auto;
+	width: 850px;
 }
 
 .news-head h2::after {
 	background: #1428a0;
-    width: 99.9%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0px;
+	width: 99.9%;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0px;
 }
 
-input, textarea{
+input, textarea {
 	outline: none;
 }
 
-textarea{
+textarea {
 	resize: none;
 }
 </style>
@@ -96,104 +93,61 @@ textarea{
 <div class="container_new">
 	<div>
 		<div style="text-align: center;">
-		
+
 			<div>
-			<div class="news-head">
-			<h2>새소식 수정</h2>
-			</div>	
-					
-			<table style="text-align: center;">
-				<form name='f' role="form" action="/news/news_modify" method="post">
-				<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<input type='hidden' name='pageNum' value=${cri.pageNum}> <input
-						type='hidden' name='amount' value=${cri.amount}> <input
-						type='hidden' name='type' value=${cri.type}> <input
-						type='hidden' name='keyword' value=${cri.keyword}>
+				<div class="news-head">
+					<h2>새소식 수정</h2>
+				</div>
 
-
-					<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-						<td class="column" style="width: 15%;">구분</td>
-						<td class="column-data" colspan="2" readonly>${news.news_division}</td>
-						
-						<!-- 
-						<td class="column-data" colspan="2" style="padding: 0px;"><input id="news_division" class="form-control"
-							name='news_division' value=${news.news_division}
-							readonly="readonly" style="width: 100%; height:52px; border: none; padding:0px; text-align: center;"></td>
-						-->
-						
-						<td class="column" style="width: 15%;">작성자</td>
-						<td class="column-data" colspan="2" readonly>FreSearch</td>
-					</tr>
-					
-						
-					<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-						<td class="column" style="width: 15%;">제목</td>
-						<td class="column-data" colspan="5" style="padding: 0px;">
-						<input id="news_subject" class="form-control"
-							name='news_subject' style="width: 100%; height:52px; border:none; padding:0px;" value=${news.news_subject}></td>
-					</tr>
-					<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-						<td colspan="6">
-						<textarea id="news_content" class="form-control" rows="6"
-							name='news_content' style="display: block; width: 850px; height: 300px;">${news.news_content}</textarea>
-						</td>
-					</tr>
-					
-					<%--
-					<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-					<td class="column" colspan="6">첨부파일</td>
-					</tr>
-					 --%>
-					 
-					<div>
-					<input type='hidden' name='news_is_attach' value=${news.news_is_attach}>
-					<input type='hidden' name='news_code' value=${news.news_code}>
-					<input type='hidden' name='news_division' value=${news.news_division}>
-					</div>
-
-					
-				</form>
-			</table>
+				<table style="text-align: center;">
+					<form name='f' role="form" action="/news/news_modify" method="post">
+						<input id="token" type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" /> <input type='hidden' name='pageNum'
+							value=${cri.pageNum}> <input type='hidden' name='amount'
+							value=${cri.amount}> <input type='hidden' name='type'
+							value=${cri.type}> <input type='hidden' name='keyword'
+							value=${cri.keyword}>
+						<tr
+							style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">구분</td>
+							<td class="column-data" colspan="2" readonly>${news.news_division}</td>
+							<td class="column" style="width: 15%;">작성자</td>
+							<td class="column-data" colspan="2" readonly>FreSearch</td>
+						</tr>
+						<tr
+							style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">제목</td>
+							<td class="column-data" colspan="5" style="padding: 0px;"><input
+								id="news_subject" class="form-control" name='news_subject'
+								style="width: 100%; height: 52px; border: none; padding: 0px;"
+								value=${news.news_subject}></td>
+						</tr>
+						<tr
+							style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+							<td colspan="6"><textarea id="news_content"
+									class="form-control" rows="6" name='news_content'
+									style="display: block; width: 850px; height: 300px;">${news.news_content}</textarea>
+							</td>
+						</tr>
+						<div>
+							<input type='hidden' name='news_is_attach'
+								value=${news.news_is_attach}> <input type='hidden'
+								name='news_code' value=${news.news_code}> <input
+								type='hidden' name='news_division' value=${news.news_division}>
+						</div>
+					</form>
+				</table>
 			</div>
-			
-					
 		</div>
 	</div>
-	
-		<div class='button'>
-			<button type="submit" data-oper='modify' class="btn btn-success" id="modify">수정</button>
-			<button type="submit" data-oper='remove' class="btn btn-danger" id="delete">삭제</button>
-			<button type="submit" data-oper='list' class="btn btn-info" id="list">목록</button>
-		</div>
-</div>
-
-<%--
-<div class='bigPictureWrapper'>
-	<div class='bigPicture'></div>
-</div>
-
-
-<div style="padding-top: 20px; width: 850px; text-align: left; margin: auto;">
-	<div>
-		<div>첨부 파일</div>
-		<div>
-			<div class="form-group uploadDiv">
-				<input type="file" name='uploadFile' multiple="multiple">
-			</div>
-
-			<div class='uploadResult'>
-				<ul>
-
-				</ul>
-			</div>
-		</div>
-
+	<div class='button'>
+		<button type="submit" data-oper='modify' class="btn btn-success"
+			id="modify">수정</button>
+		<button type="submit" data-oper='remove' class="btn btn-danger"
+			id="delete">삭제</button>
+		<button type="submit" data-oper='list' class="btn btn-info" id="list">목록</button>
 	</div>
 </div>
- --%>
-
-		
-
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -316,31 +270,6 @@ textarea{
 				   		str = str.substring(0, str.length-1);
 				   	return str;
 				   }
-				
-				<%--
-				console.log("submit clicked");
-				var str = "";
-
-				$(".uploadResult ul li").each(
-						
-					function(i, obj) {
-
-						var jobj = $(obj);
-
-						console.dir(jobj);
-
-						str += "<input type='hidden' name='attachList["+ i + "].news_attach_name' value='"
-								+ jobj.data("filename")+ "'>";
-						str += "<input type='hidden' name='attachList["+ i + "].news_attach_uuid' value='"
-								+ jobj.data("uuid")+ "'>";
-						str += "<input type='hidden' name='attachList["+ i + "].news_attach_path' value='"
-								+ jobj.data("path")+ "'>";
-						str += "<input type='hidden' name='attachList["+ i + "].news_attach_type' value='"
-								+ jobj.data("type")+ "'>";
-					});
-				formObj.append(str).submit();
-				--%>
-				
 			}
 		});
 	});
@@ -487,17 +416,11 @@ $(document).ready(function() {
 			str += "</div>";
 			str +"</li>";
 		}
-
     });
-    
     uploadUL.append(str);
   }
-  
 });
 
 </script>
 
-
-<%@include file="../includes/footer.jsp" %>  
-                        	
-                        	
+<%@include file="../includes/footer.jsp"%>

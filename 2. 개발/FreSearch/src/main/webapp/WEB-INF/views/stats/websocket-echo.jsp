@@ -58,8 +58,6 @@
 </body>
 </html>
 
-
-
 <!-- 내 작업대 시작!!!!!!!!!///////////////// -->
 <c:forEach items="${list}" var="result" varStatus="status">
 <c:if test="${result.qst_code ne qst_code}">
@@ -72,7 +70,6 @@
 					<div class="first-text-children">
 						<div class="hoho">
 							<span>${result.qst_content}</span>
-							<!-- <span class="what">응답 5개</span> -->
 						</div>
 					</div>
 					<div class="opacity"></div>
@@ -122,14 +119,8 @@
 							</div>
 						</c:if>
 					</c:if>
-
-
-
-
 				</c:forEach>
 				<c:set var="qst_code1" value="${result1.qst_code}" />
-
-
 			</div>
 		</div>
 	</div>
@@ -137,37 +128,3 @@
 </c:if>
 <c:set var="qst_code" value="${result.qst_code}" />
 </c:forEach>
-
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

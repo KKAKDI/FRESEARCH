@@ -1,21 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/header.jsp"%>
 
 <style>
 body {
-   font-family: "Open Sans", sans-serif;
-   min-width: 850px;
-   font-weight: 500;
-   font-size: 16px;
+	font-family: "Open Sans", sans-serif;
+	min-width: 850px;
+	font-weight: 500;
+	font-size: 16px;
 }
 
-.container_new{
+.container_new {
 	padding-top: 150px;
 	min-height: 872px;
 }
@@ -50,16 +52,14 @@ div.button {
 	width: 850px;
 }
 
-
-.button #add,
-.button #list {
+.button #add, .button #list {
 	height: 30px;
-    border: none;
-    width: 80px;
-    cursor: pointer;
-    margin-top: 20px;
-    background: #1428a0;
-    color: white;
+	border: none;
+	width: 80px;
+	cursor: pointer;
+	margin-top: 20px;
+	background: #1428a0;
+	color: white;
 }
 
 hr {
@@ -68,77 +68,79 @@ hr {
 	width: 5%;
 }
 
-.radio-division{
-    margin: 4px 5px;
+.radio-division {
+	margin: 4px 5px;
 }
 
-input, textarea{
+input, textarea {
 	outline: none;
 }
 
-textarea{
+textarea {
 	resize: none;
 }
 
-input[type="radio"] { 
-   display: none;  
+input[type="radio"] {
+	display: none;
 }
-input[type="radio"] + label { 
-   display: inline-block; 
-   position: relative; 
-   padding-left: 30px; 
-   cursor: pointer; 
-    margin-right: 15px;
-    font-size: 14px;
-} 
-input[type="radio"] + label:before { 
-   content: ''; 
-   position: absolute; 
-   left: 0; 
-   bottom: -1px; 
-   width: 20px; 
-   height: 20px; 
-   background: #ccc; 
-   border: 1px solid #cacece; 
-   border-radius: 100%; 
-   box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
-} 
-input[type="radio"]:checked + label:before { 
-   background: #fafafa; 
-} 
-input[type="radio"]:checked + label:after { 
-   content: ''; 
-   position: absolute; 
-   top: 3px; 
-   left: 4.7px; 
-   width: 13px; 
-   height: 13px; 
-   background: #1428a0; 
-   border-radius: 100%; 
+
+input[type="radio"]+label {
+	display: inline-block;
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	margin-right: 15px;
+	font-size: 14px;
+}
+
+input[type="radio"]+label:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	border: 1px solid #cacece;
+	border-radius: 100%;
+	box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px
+		rgba(255, 255, 255, .8);
+}
+
+input[type="radio"]:checked+label:before {
+	background: #fafafa;
+}
+
+input[type="radio"]:checked+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 4.7px;
+	width: 13px;
+	height: 13px;
+	background: #1428a0;
+	border-radius: 100%;
 }
 
 .news-head h2 {
 	text-align: left;
 	position: relative;
-    font-size: 30px;
-    padding: 3px 0 7px;
-    margin: auto;
-    width: 850px;
+	font-size: 30px;
+	padding: 3px 0 7px;
+	margin: auto;
+	width: 850px;
 }
 
 .news-head h2::after {
 	background: #1428a0;
-    width: 99.9%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0px;
+	width: 99.9%;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0px;
 }
-
-
 </style>
-
 
 <div class="container_new">
 	<div>
@@ -146,91 +148,48 @@ input[type="radio"]:checked + label:after {
 			<div style="text-align: center;">
 				<div>
 					<div class="news-head">
-					<h2>새소식 쓰기</h2>
+						<h2>새소식 쓰기</h2>
 					</div>
-				<!-- 
-				<h2>공지사항 / 이벤트</h2>
-					<hr/>
-					<p>FreSearch 새소식을 제공합니다.</p>
-				-->
-				<table style="text-align: center;">
-					<form name="f" role="form" action="/news/news_register" method="post">
-						<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column" style="width: 15%;">구분</td>
-							<td class="column-data" colspan="2">
-							<input id="radio-notice" class="radio-division" type="radio" name='news_division' value="공지" checked="checked"><label for="radio-notice">공지</label>
-							<input id="radio-event" class="radio-division" type="radio" name='news_division' value="이벤트"><label for="radio-event">이벤트</label>
-							<!-- 
-							<select name='news_division'>
-								<option value="공지">공지</option>
-								<option value="이벤트">이벤트</option>
-							</select>
-							 -->
-							</td>
-							<td class="column" style="width: 15%;">작성자</td>
-							<td class="column-data" colspan="2">FreSearch</td>
-						</tr>
-						
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
-							<td class="column" style="width: 15%;">제목</td>
-							<td class="column-data" colspan="5" style="padding: 0px;"><input class="form-control" name='news_subject' style="width: 100%; height: 52px; border: none; padding: 0px;"></td>
-						</tr>
-						
-						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-						<td colspan="6">
-							<textarea class="form-control" rows="6" name='news_content'
-								style="display: block; width: 850px; height: 300px; border: none;"></textarea>
-						</td>
-						</tr>
-						<!-- 
-						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-						<td class="column" colspan="6">첨부파일</td>
-						</tr>
-						 -->
-						
-						
-					</form>
-				</table>
+					<table style="text-align: center;">
+						<form name="f" role="form" action="/news/news_register" method="post">
+							<input id="token" type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+							<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+								<td class="column" style="width: 15%;">구분</td>
+								<td class="column-data" colspan="2"><input
+									id="radio-notice" class="radio-division" type="radio"
+									name='news_division' value="공지" checked="checked"><label
+									for="radio-notice">공지</label> <input id="radio-event"
+									class="radio-division" type="radio" name='news_division'
+									value="이벤트"><label for="radio-event">이벤트</label></td>
+								<td class="column" style="width: 15%;">작성자</td>
+								<td class="column-data" colspan="2">FreSearch</td>
+							</tr>
+							<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+								<td class="column" style="width: 15%;">제목</td>
+								<td class="column-data" colspan="5" style="padding: 0px;"><input
+									class="form-control" name='news_subject'
+									style="width: 100%; height: 52px; border: none; padding: 0px;"></td>
+							</tr>
+							<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+								<td colspan="6"><textarea class="form-control" rows="6"
+										name='news_content'
+										style="display: block; width: 850px; height: 300px; border: none;"></textarea>
+								</td>
+							</tr>
+						</form>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="button">
-	<button type="button" onclick="check()" id="add">등록</button>
-	<%-- <input type="button" value="등록" onclick="check()"/> --%>
-	<%-- <button type="reset">다시쓰기</button> --%>
-	<button type="button" onclick="location.href='news_list'" id="list">목록</button>
-	</div>
-	
-</div>
-
-<!-- 파일첨부 부분 -->
-<!-- 
-<div style="padding-top: 20px; width: 850px; text-align: left; margin: auto;">
-	<div>
-		<div>
-			<%-- <div>첨부파일</div> --%>
-			<div>
-				<div class='uploadDiv'>
-					<input type="file" name='uploadFile' multiple>
-				</div>
-				<div class='uploadResult'>
-					<ul>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-
+		<button type="button" onclick="check()" id="add">등록</button>
+		<button type="button" onclick="location.href='news_list'" id="list">목록</button>
 	</div>
 
 </div>
-
- -->
-
-
 
 <script>
 	$(document).ready(function(e) {
@@ -456,5 +415,4 @@ input[type="radio"]:checked + label:after {
    }
 </script>
 
-<%@include file="../includes/footer.jsp" %>                        	
-                        	
+<%@include file="../includes/footer.jsp"%>

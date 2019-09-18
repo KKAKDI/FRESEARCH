@@ -25,41 +25,49 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	// 회원가입
 	@Override
 	public void signUp(MemberVO member) {
 		
 		mapper.register(member);
 	}
 	
+	// 구글 회원가입
 	@Override
 	public void googleSignUp(MemberVO member) {
 		
 		mapper.googleRegister(member);
 	}
 	
+	// 이메일 유효성 검사
 	@Override
 	public MemberVO emailCheck(String mb_email) {
 		
 		return mapper.emailCheck(mb_email);
 	}
 	
+	// 닉네임 유효성 검사
 	@Override
 	public MemberVO nickCheck(String mb_nick) {
 		
 		return mapper.nickCheck(mb_nick);
 	}
 	
+	// 핸드폰번호 유효성 검사
 	@Override
 	public MemberVO phoneCheck(String mb_phone) {
 		
 		return mapper.phoneCheck(mb_phone);
 	}
+	
+	// 생년월일 유효성 검사
 	@Override
 	public MemberVO birthCheck(String mb_birthdate) {
 		
 		return mapper.birthCheck(mb_birthdate);
 	}
 	
+	// 이메일 찾기 유효성 검사
 	@Override
 	public MemberVO findCheck(MemberVO vo) {
 
@@ -72,12 +80,14 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.check(vo);
 	}
 	
+	// 이메일 찾기 성공
 	@Override
 	public List<MemberVO> findCheck2(MemberVO vo) {
 		
 		return mapper.findCheck2(vo);
 	}
 	
+	// 이메일 인증키 난수 랜덤 생성
 	@Override
 	public String ranNum() {
 		Random ran = new Random();
@@ -102,13 +112,15 @@ public class MemberServiceImpl implements MemberService {
 	private boolean lowerCheck;
 	private int size;
 	
+	// 이메일 인증키 가져오기
 	@Override
 	public String getKey(boolean lowerCheck, int size) {
 		this.lowerCheck = lowerCheck;
 		this.size = size;
 		return ranNum();
 	}
-
+	
+	// 이메일 인증 메일 전송
 	@Override
 	public void mailSend(String mb_email, String mb_nick) {
 		String key = getKey(false, 20);
@@ -129,6 +141,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	// 이메일 성공시 인증키 'Y'로 변경
 	@Override
 	public int changeKey(String mb_nick, String mb_email_key) {
 		
@@ -139,6 +152,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	// 비밀번호 찾기시 인증 메일 전송
 	@Override
 	public void findSend(String mb_email) {
 		log.info("서비스impl1 : " + mb_email);
@@ -158,6 +172,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	// 비밀번호 변경
 	@Override
 	public boolean pwdChange(MemberVO member) {
 		
@@ -165,7 +180,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
-	
 	
 	@Override
 	public MemberVO myInfo(String mb_email) {		

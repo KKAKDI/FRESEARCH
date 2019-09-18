@@ -1,13 +1,10 @@
 package org.fs.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.fs.domain.Criteria;
 import org.fs.domain.StatsVO;
-
 
 public interface StatsMapper {
 	public List<StatsVO> getList();
@@ -43,7 +40,4 @@ public interface StatsMapper {
 	public List<StatsVO> header(String mb_email);
 	
 	public int headerUpdate(String subj_code); 
-	
-
-
 }

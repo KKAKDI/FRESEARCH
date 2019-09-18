@@ -46,7 +46,6 @@
 						<input type="text" id="mb_birth_yy" placeholder="년(4자)" autocomplete="off" maxlength="4">
 					</div>
 					<div class="mb_birth_mm">
-					<!--  <label for="mb_birth_mm1">월</label>-->
 						<select id="mb_birth_mm" name="mb_birth_mm">
 							<option value="월" selected>월</option>
 							<option value="01">1</option>
@@ -74,19 +73,6 @@
 					<div id="phone_check" class="check"></div>
 					<div id="find_check" class="find_check"></div>
 				</div>
-				<!--  
-				<div class="page-form-checkbox">
-					<input type="checkbox" name="remember-me" id="mb_remEmail">
-					<label for=mb_remEmail>로그인 상태 유지</label>
-					<a href="">이메일 찾기</a>
-					<span>|</span>
-					<a href="">비밀번호 찾기</a>
-					<span>|</span>
-					<a href="/member/signup">회원가입</a>
-				</div>
-				<div class="page-form-login">
-					<input type="submit" class="login" id="login"  value="로그인">
-				</div> -->
 				<div class="form-pwd-find">
 					<span class="pwdText">비밀번호를 찾으시나요?</span>
 					<button class="pwdButton" onClick="location.href='/member/password_find'">
@@ -97,9 +83,6 @@
 					<input type="button" id="emailFind" class="emailFind" value="이메일 찾기" disabled>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</div>
-				
-				<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-				<!-- <a href="/" onclick="signOut();">Sign out</a> -->
 			</div>
 		</div>
 	</div>
@@ -133,14 +116,6 @@
 				<div class="modal-confirm" onClick="confirm_button();">
 					<span>확인</span>
 				</div>
-			<!--  
-				<div class="modal-login" onClick="login_button();">
-					<span>로그인하러 가기</span>
-				</div>
-				<div class="modal-password" onClick="password_button();">
-					<span>비밀번호 찾기</span>
-				</div>
-			-->
 			</div>
 		</div>
 	</div>

@@ -1,101 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<% 
-String ctx = request.getContextPath(); //콘텍스트 명 얻어오기
+<%
+	String ctx = request.getContextPath(); //콘텍스트 명 얻어오기
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script type="text/javascript" src="<%=ctx %>/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="<%=ctx%>/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
-
-
-
+<%@include file="../includes/header.jsp"%>
 
 <style>
-
-div{
-text-align: left;
-
- }
-
-div.fileupload{
-	width: 850px;
-	margin : auto;
-
+div {
+	text-align: left;
 }
-div.button{
+
+div.fileupload {
 	width: 850px;
-	margin : auto;
+	margin: auto;
+}
+
+div.button {
+	width: 850px;
+	margin: auto;
 }
 
 form {
 	width: 850px;
-	margin : auto;
+	margin: auto;
 }
 
-textarea{
-	width:847px;
+textarea {
+	width: 847px;
 }
-
 
 .uploadResult {
-
-	width:100%;
+	width: 100%;
 	background-color: white;
 }
 
-.uploadResult ul{
-	display:flex;
-	flex-flow:row;
-	justify-content:center;
-	align-items:center;
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
 }
 
-.uploadResult ul li{
+.uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 	align-content: center;
 	text-align: center;
 }
 
-.uploadResult ul li img{ // 섬네일 이미지 크기 조정
-	width: 100px;
+.uploadResult ul li img { // 섬네일 이미지 크기 조정 width:100px;
+	
 }
 
-.uploadResult ul li span{
-	color:white;
+.uploadResult ul li span {
+	color: white;
 }
 
-.bigPictureWrapper{
+.bigPictureWrapper {
 	position: absolute;
 	display: none;
 	justify-content: center;
 	align-items: center;
-	top:0%;
-	width:100%;
-	height:100%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
 	background-color: gray;
 	z-index: 100;
-	background:rgba(255,255,255,0.5);
+	background: rgba(255, 255, 255, 0.5);
 }
 
-.bigPicture{
+.bigPicture {
 	position: relative;
-	display:flex;
+	display: flex;
 	justify-content: center;
-	align-items:  ;
+	align-items:;
 }
 
 .bigPicture img {
 	width: 600px;
 }
 
-.container_new{
+.container_new {
 	padding-top: 125px;
 }
 
@@ -106,6 +102,7 @@ table {
 	margin: auto;
 	table-layout: fixed;
 }
+
 td.column {
 	background-color: #f0f0f0;
 	color: #505050;
@@ -121,115 +118,122 @@ div.button {
 	text-align: right;
 }
 
-.nick{
+.nick {
 	padding: 0px;
 	width: 100%;
-    height: 50px;
-    border: none;
+	height: 50px;
+	border: none;
 }
-.subject{
+
+.subject {
 	padding: 0px;
 	width: 100%;
-    height: 50px;
-    border: none;
-    
-}
-.reg_button{
-
-	height:32px;
-	width:100px;
-	border:none;
-	cursor:pointer;
-	margin-top:10px;
-	background:#1428a0;
-	color:white;
+	height: 50px;
+	border: none;
 }
 
+.reg_button {
+	height: 32px;
+	width: 100px;
+	border: none;
+	cursor: pointer;
+	margin-top: 10px;
+	background: #1428a0;
+	color: white;
+}
 </style>
 
 <div class="container_new">
 	<div>
 		<div>
 			<div style="text-align: center;">
-				<h2> 게시글 등록</h2>
-			
+				<h2>게시글 등록</h2>
 
-					<table style="text-align: center;">
 
-						<form role="form" id="frm" action="/board/board_register" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							<div class="form-group">
+				<table style="text-align: center;">
+
+					<form role="form" id="frm" action="/board/board_register"
+						method="post" enctype="multipart/form-data">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<div class="form-group">
 							<sec:authorize access="isAuthenticated()">
-								<input type="hidden"  name='mb_email' value='<sec:authentication property="principal.member.mb_email"/>'>
+								<input type="hidden" name='mb_email'
+									value='<sec:authentication property="principal.member.mb_email"/>'>
 							</sec:authorize>
-							</div>
-						
-						
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;  ">
-							<td class="column" style="width: 15%; ">닉네임</td>
-							<td class="column-data"  style="padding:0px; ">
-							<sec:authorize access="isAuthenticated()">	
-								<input style ="outline:none;" class="nick" name='mb_nick' value='<sec:authentication property="principal.member.mb_nick"/>' readonly="readonly">
-							</sec:authorize>
-							</td>
-						</tr>
-	
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue; ">
-							<td class="column" >제목</td>
-							<td class="column-data" style="padding:0px;"><input style ="outline:none;" class="subject" name='brd_subject'></td>
+						</div>
+
+
+						<tr
+							style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column" style="width: 15%;">닉네임</td>
+							<td class="column-data" style="padding: 0px;"><sec:authorize
+									access="isAuthenticated()">
+									<input style="outline: none;" class="nick" name='mb_nick'
+										value='<sec:authentication property="principal.member.mb_nick"/>'
+										readonly="readonly">
+								</sec:authorize></td>
 						</tr>
 
-						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-							<td colspan="2">
-							<textarea name='brd_content' id="ir1" rows="10" cols="100"  style="display: block; "></textarea>
-							</td>
+						<tr
+							style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+							<td class="column">제목</td>
+							<td class="column-data" style="padding: 0px;"><input
+								style="outline: none;" class="subject" name='brd_subject'></td>
 						</tr>
-	
-						<tr style="border-bottom: 1px solid gray; text-align: center; height:auto;">
+
+						<tr
+							style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+							<td colspan="2"><textarea name='brd_content' id="ir1"
+									rows="10" cols="100" style="display: block;"></textarea></td>
+						</tr>
+
+						<tr
+							style="border-bottom: 1px solid gray; text-align: center; height: auto;">
 							<td class="column" colspan="2">첨부파일</td>
-						</tr> 
+						</tr>
 					</form>
 				</table>
 			</div>
-		</div>		
+		</div>
 	</div>
 </div>
 
 <!-- 파일첨부 부분 -->
 <div class='bigPictureWrapper'>
-	<div class='bigPicture'>
-	</div>
+	<div class='bigPicture'></div>
 </div>
 
-<div style="padding-top:20px; width:850px; text-align:left; margin:auto;">
+<div
+	style="padding-top: 20px; width: 850px; text-align: left; margin: auto;">
 	<div>
 		<div>
-		
-				<div class="form-group uploadDiv"> 
-					<input type="file" name='uploadFile' multiple="multiple">
-				</div>
-				
-				<div class='uploadResult'>
-						<ul>
-	
-						</ul>
-				</div>
+
+			<div class="form-group uploadDiv">
+				<input type="file" name='uploadFile' multiple="multiple">
+			</div>
+
+			<div class='uploadResult'>
+				<ul>
+
+				</ul>
 			</div>
 		</div>
 	</div>
+</div>
 
+<tr>
+	<td>
+		<div class="button">
+			<button class=reg_button type="submit" onclick="submitContents();"
+				id="save">등록</button>
+			<button class=reg_button type="button"
+				onclick="location.href='board_list'">목록</button>
+		</div>
+	</td>
+</tr>
 
-			<tr>
-				<td>
-					<div class="button">
-						<button class= reg_button type="submit" onclick="submitContents();" id="save">등록</button>
-						<button class= reg_button type="button" onclick="location.href='board_list'">목록</button>
-					</div>
-				</td>
-			</tr>
-			
-			
-	<!-- 파일 업로드 자바스크립트 -->
+<!-- 파일 업로드 자바스크립트 -->
 
 <script>
 	var csrfHeaderName = "${_csrf.headerName}";
@@ -395,10 +399,9 @@ div.button {
 			});
 		});
 	});
-</script>		
+</script>
 
 <!-- 네이버 스마트 에디터 자바스크립트 -->
-
 <script type="text/javascript">
 var oEditors = [];
 var sLang = "ko_KR";
@@ -406,46 +409,33 @@ nhn.husky.EZCreator.createInIFrame({
  oAppRef: oEditors,
  elPlaceHolder: "ir1",
 sSkinURI : "<%=ctx%>/resources/editor/SmartEditor2Skin.html",
-htParams : {
-	bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-	bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-	bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-	//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
-	//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-	fOnBeforeUnload : function(){
-		//alert("완료!");
-	}
-}, //boolean
-fOnAppLoad : function(){
-	//예제 코드
-	//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-},
-fCreator: "createSEditor2"
-});
-
+		htParams : {
+			bUseToolbar : true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseVerticalResizer : true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+			bUseModeChanger : true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+			//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+			//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+			fOnBeforeUnload : function() {
+				//alert("완료!");
+			}
+		}, //boolean
+		fOnAppLoad : function() {
+		},
+		fCreator : "createSEditor2"
+	});
 </script>
 
 <script type="text/javascript">
 
-//저장버튼 클릭시 form 전송
-/* $("#save").click(function(){
-    oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", [""]);
-    $("#frm").submit();
-});  */ 
-
-//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
-function submitContents(elClickedObj) {
- // 에디터의 내용이 textarea에 적용된다.
- oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
- //$("#frm").submit();
- // 에디터의 내용에 대한 값 검증은 이곳에서
- // document.getElementById("ir1").value를 이용해서 처리한다.
-
-	try {
-     elClickedObj.form.submit();
- } catch(e) {}
- } 
-
+	//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+	function submitContents(elClickedObj) {
+		// 에디터의 내용이 textarea에 적용된다.
+		oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+		try {
+			elClickedObj.form.submit();
+		} catch (e) {
+		}
+	}
 </script>
 
- <%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp"%>

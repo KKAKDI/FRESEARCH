@@ -10,6 +10,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ResearchPageDTO {
-	private int researchCnt;
-	private List<ResearchVO> list;
+	private int researchCnt;		// 설문갯수
+	private List<ResearchVO> list;	// 설문목록
 }

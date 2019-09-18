@@ -1,10 +1,8 @@
 package org.fs.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.fs.domain.Criteria;
-import org.fs.domain.PageDTO;
 import org.fs.domain.StatsPagingSearchDTO;
 import org.fs.domain.StatsVO;
 import org.fs.service.StatsService;
@@ -200,8 +198,6 @@ public class StatsController {
 	@GetMapping("/stats_table")
 	public void table(Model model) {
 		Criteria cri = new Criteria();
-		//model.addAttribute("pageMaker", new PageDTO(cri,123));
-		//model.addAttribute("alarm", service.header());
 		log.info("stats_table");
 	}
 
@@ -274,29 +270,26 @@ public class StatsController {
 	public void Sex() {
 		log.info("Sex: ");
 	}
-	
+
 	@GetMapping("/stats_get")
 	public void stats_get(@RequestParam("subj_code") String subj_code, Model model) {
 		List<StatsVO> list = service.getStatsContent(subj_code);
 		List<StatsVO> listS = service.getStatsContentShortAnswer(subj_code);
 		int count = service.contentCount(subj_code);
-//		for(StatsVO vo: list) {
-//			vo.setItem_img(vo.getItem_img().replace("\\", "/"));
-//		}
-		
+
 		model.addAttribute("count", count);
 		model.addAttribute("listS",listS);
 		model.addAttribute("list", list);
 	}
 	@GetMapping("/websocket-echo")
 	public void stats_test() {
-		
+
 	}
 	@GetMapping("/alarm")
 	public void alarm_test() {
-		
+
 	}
-	
+
 	@RequestMapping(method = { RequestMethod.POST,
 			RequestMethod.PATCH }, 
 			value = "/table/{pageNum}/{amount}", 
@@ -309,14 +302,14 @@ public class StatsController {
 			return new ResponseEntity<>(service.getTableSearch(vo, cri), HttpStatus.OK); 
 		}
 	}
-	
+
 	@RequestMapping(method = { RequestMethod.POST,
 			RequestMethod.PATCH }, 
 			value = "/header", 
 			consumes = "application/json", 
 			produces = "application/json")
 	public ResponseEntity<List<StatsVO>> getHeader(@RequestBody StatsVO vo) {
-			System.out.println("#여기 들어오나?");
+		System.out.println("#여기 들어오나?");
 		if(vo.getSubj_code() == null) {
 			return new ResponseEntity<>(service.header(vo.getMb_email()), HttpStatus.OK); 
 		}else {

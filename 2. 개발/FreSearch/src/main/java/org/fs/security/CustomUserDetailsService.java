@@ -21,11 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String mb_email) throws UsernameNotFoundException {
 		
 		log.warn("Load User By UserName : " + mb_email);
-		//MemberVO vo = new MemberVO();
-		//String mb_pwd = bcryt.encode(vo.getMb_pwd());
-		//log.info("mb_pwd : " + mb_pwd);
-		//vo.setMb_pwd(mb_pwd);
-		// userName means userid
 		MemberVO vo = memberMapper.read(mb_email);
 		log.info("mb_pwd : " + vo.getMb_pwd());
 		log.warn("queried by member mapper: " + vo);

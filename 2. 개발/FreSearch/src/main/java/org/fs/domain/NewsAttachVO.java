@@ -8,5 +8,5 @@ public class NewsAttachVO {
 	private String news_attach_path;		// 첨부파일 경로
 	private String news_attach_name;		// 첨부파일
 	private boolean news_attach_type;		// 첨부파일 이미지파일 여부
-	private int news_code;				// 새소식 코드
+	private int news_code;					// 새소식 코드
 }

@@ -53,22 +53,6 @@ $(document).ready(function(){
 		}
 	}
 	
-	/*function emailCheck(){
-		if(check == true){
-			if($("#mb_email").val() != "") {
-				$("#pwdFind").css("opacity", "initial");
-				$("#pwdFind").css("cursor", "pointer");
-				$("#pwdFind").attr("disabled", false);
-			}
-		}else if(check == false){
-			if($("#mb_email").val() == "") {
-				$("#pwdFind").css("opacity", 0.5);
-				$("#pwdFind").css("cursor", "initial");
-				$("#pwdFind").attr("disabled", true);
-			}
-		}
-	}*/
-	
 	$("#mb_email").keyup(function(){
 		
 		var mb_email = $('#mb_email').val();
@@ -215,21 +199,6 @@ $(document).ready(function(){
 					$("#find_check").text("개인정보가 일치하지 않습니다.");
 					$("#find_check").css("color", "#d0021b");
 				}
-				//email = $(".modal-user-email").children('span').html();
-				/*
-				if(mb_nick != data[0].mb_nick || mb_birthdate != data[0].mb_birthdate || mb_phone != data[0].mb_phone){
-					$("#find_check").text("개인정보가 일치하지 않습니다.");
-					$("#find_check").css("color", "#d0021b");
-				}else {
-					$("#find_check").text("");
-					$('#myModal').show();
-					$('.modal-user-email').append($("<span>"+data[0].mb_email+"</span>"));
-					$('.modal-user-regdate').append($("<span>가입일 "+displayTime(data[0].mb_joindate)+"</span>"));
-					console.log("이메일  : " + data[0].mb_email);
-					console.log("가입일  : " + data[0].mb_joindate);
-					$('body').css('overflow', 'hidden');
-				}
-				email = $(".modal-user-email").children('span').html();*/
 			}
 		});
 		
@@ -249,9 +218,7 @@ $(document).ready(function(){
 				}
 				$(".modal-user-email").html(str1);
 				$(".modal-user-regdate").html(str2);
-				
-				/*$('.modal-user-email').append($("<span>"+data[0].mb_email+"</span>"));
-				$('.modal-user-regdate').append($("<span>가입일 "+displayTime(data[0].mb_joindate)+"</span>"));*/
+
 				email = $(".modal-user-email").children('span').html();
 				console.log("이메일 정보 : " + email);
 			}

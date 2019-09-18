@@ -20,7 +20,6 @@
 		</div>
 		<div class="page-content">
 			<div class="page-form">
-			<!-- <form class="page-form-submit" id="find_send" name="find_send" action="/member/find_send" method="post"> -->
 				<h2>비밀번호 찾기</h2>
 				<div class="email-form">
 					<div class="email-logo-img">
@@ -50,7 +49,6 @@
 				<div class="form-submit">
 					<input type="button" id="pwdFind" class="pwdFind" value="비밀번호 찾기">
 				</div>
-				<!-- </form> -->
 			</div>
 		</div>
 	</div>
@@ -68,9 +66,7 @@
 					<img src="/resources/img/picon01.png" />
 				</div>
 				<div class="email-msg">
-					<div class="email-msg-first">
-						<!-- <span>회원님의 이메일은 </span>  -->
-					</div>
+					<div class="email-msg-first"></div>
 					<div class="email-msg-second">
 						<span>이메일 인증 버튼을 누르시면 이메일로 전송됩니다.</span>
 					</div>
@@ -86,9 +82,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- <form id="find_send" action="" method="post"></form> -->
-	
 </body>
 <script>
 $(document).ready(function(){

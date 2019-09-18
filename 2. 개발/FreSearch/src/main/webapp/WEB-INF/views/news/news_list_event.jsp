@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
-
-
-
+<%@include file="../includes/header.jsp"%>
 <style>
 body {
 	font-family: "Open Sans", sans-serif;
@@ -45,7 +44,7 @@ input.search {
 
 .search_form {
 	padding-top: 15px;
-    padding-bottom: 25px;
+	padding-bottom: 25px;
 }
 
 th, td {
@@ -142,7 +141,6 @@ div.tab-event a {
 	position: relative;
 	font-size: 30px;
 	padding: 3px 0 7px;
-	/*margin-bottom: 40px;*/
 	margin-left: 0px;
 }
 
@@ -176,109 +174,106 @@ div.tab-event a {
 	cursor: pointer;
 }
 
-#pagingArea ul{
+#pagingArea ul {
 	text-align: center;
-	/*margin-top: 30%;*/
 }
 
-#pagingArea li{
-    display: inline-block;
-    min-width: 40px;
-    height: 40px;
-    margin: 0 1px;
-    /*padding: 0 5px;*/
-    box-sizing: border-box;
-    line-height: 40px;
-    vertical-align: top;
+#pagingArea li {
+	display: inline-block;
+	min-width: 40px;
+	height: 40px;
+	margin: 0 1px;
+	box-sizing: border-box;
+	line-height: 40px;
+	vertical-align: top;
 }
 
 #pagingArea ul .paginate_button a {
 	color: #888;
 	display: inline-block;
-    width: 40px;
-    height: auto;
+	width: 40px;
+	height: auto;
 }
+
 #pagingArea ul .paginate_button_move a {
 	transition: border .2s;
-    display: inline-block;
-    position: relative;
-    width: 40px;
-    height: 40px;
-    margin: 0 -1px;
-    box-sizing: border-box;
-    border: 1px solid #ebebeb;
-    vertical-align: top;
-    color: #888;
+	display: inline-block;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	margin: 0 -1px;
+	box-sizing: border-box;
+	border: 1px solid #ebebeb;
+	vertical-align: top;
+	color: #888;
 }
-#pagingArea ul .paginate_button a:hover{
+
+#pagingArea ul .paginate_button a:hover {
 	background-color: #1428a0;
-    cursor: pointer;
+	cursor: pointer;
 	color: #fff;
 	opacity: 0.4;
 }
-#pagingArea ul .paginate_button_move a:hover{
-    cursor: pointer;
+
+#pagingArea ul .paginate_button_move a:hover {
+	cursor: pointer;
 	color: #000;
 	border: 1px solid #000;
 }
 
-#pagingArea ul .paginate_button.active .page-link{
+#pagingArea ul .paginate_button.active .page-link {
 	background-color: #1428a0;
-    font-style: normal;
-    color: #fff;
-    width: 40px;
-    height: auto;
+	font-style: normal;
+	color: #fff;
+	width: 40px;
+	height: auto;
 }
-#pagingArea ul .paginate_button.active .page-link:hover{
+
+#pagingArea ul .paginate_button.active .page-link:hover {
 	cursor: auto;
 }
 
 .button-move {
 	display: block;
 }
-
 </style>
 <div class="container_new">
 
 	<div>
 		<div>
 			<div class="container_form">
-			
+
 				<div class="news-head">
-				<h2>새소식</h2>
-				<sec:authentication property="principal" var="pinfo"/>
-				<sec:authorize access="isAuthenticated()">
-				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
-					<span>
-						<a class="button-move" href="/news/news_register">등록</a>
-					</span>
-				</c:if>
-				</sec:authorize>
+					<h2>새소식</h2>
+					<sec:authentication property="principal" var="pinfo" />
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+							<span> <a class="button-move" href="/news/news_register">등록</a>
+							</span>
+						</c:if>
+					</sec:authorize>
 				</div>
-				
-					<div class="tab" style="text-align: center">
-						<div class="tab-news">
-							<a class="button-move" href="/news/news_list">공지사항</a>
-						</div>
-						<div class="tab-event">
-		                	<a class="button-move" href="/news/news_list_event">이벤트</a>
-						</div>
+
+				<div class="tab" style="text-align: center">
+					<div class="tab-news">
+						<a class="button-move" href="/news/news_list">공지사항</a>
 					</div>
-					<%-- <hr/>
-					<p>FreSearch 새소식을 제공합니다.</p>
-					<button id="regBtn" type="button">등록하기</button> --%>
-					
-
-
+					<div class="tab-event">
+						<a class="button-move" href="/news/news_list_event">이벤트</a>
+					</div>
+				</div>
 				<table>
 					<thead>
-						<tr style="border-bottom: 1px solid red; border-top: 1px solid white;">
-							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
-							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
-							<!-- <th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th> -->
-							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
-							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
-							
+						<tr
+							style="border-bottom: 1px solid red; border-top: 1px solid white;">
+							<th
+								style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
+							<th
+								style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
+							<th
+								style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
+							<th
+								style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
 						</tr>
 					</thead>
 
@@ -286,110 +281,72 @@ div.tab-event a {
 						<tr>
 							<td style="font-weight: bold; padding: 20;">[${news.news_division}]</td>
 							<td class="subject"><a class='move' href=${news.news_code} style="text-align: left;">${news.news_subject}</a></td>
-							
-							<!-- 
-							<c:choose>
-							<c:when test="${news.news_is_attach == 'Y'}">
-							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
-							</c:when>
-								<c:otherwise>
-	         						<td></td>
-	         					</c:otherwise>
-							</c:choose>
-							 -->
-						
-					
-					
 							<td style="padding: 20;">${news.news_views}</td>
-							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
-									value="${news.news_regdate}" /></td>
-						</tr>		
-					</c:forEach>	
-							
-					
-				<!--<c:forEach items="${List}" var="data" varStatus="status">
-	          <c:choose>
-	           <c:when test="${fn:length(data.nm) > 14}">
-	            <c:out value="${fn:substring(data.nm,0,13)}"/>....
-	           </c:when>
-	           <c:otherwise>
-	            <c:out value="${data.nm}"/>
-	           </c:otherwise> 
-	          </c:choose>
-	</c:forEach>-->
-					
-					
-					
-					
-					
+							<td style="padding: 20;"><fmt:formatDate
+									pattern="yyyy-MM-dd" value="${news.news_regdate}" /></td>
+						</tr>
+					</c:forEach>
 				</table>
-				
-<%-- 검색 --%>
 
-<div class='search_form'>
-	<div class='search'>
-		<form id='searchForm' action="/news/news_list_event" method='get'>
-			<select name='type' style="width: 49px; height: 22px;">
-				<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
-				<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
-				<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
+				<%-- 검색 --%>
 
-			</select> <input class="search" type='text' name='keyword' value='${pageMaker.cri.keyword}' />
-			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}' />
-			<input type='hidden' name='amount' value='${pageMaker.cri.amount}' />
-			<button style="border: 1px solid #ddd;"><img id='search_image' src="/resources/img/search.png" width=20px; height=20px;></button>
-		</form>
-	</div>
-</div>
+				<div class='search_form'>
+					<div class='search'>
+						<form id='searchForm' action="/news/news_list_event" method='get'>
+							<select name='type' style="width: 49px; height: 22px;">
+								<option value="SC" ${pageMaker.cri.type eq 'SC'?'selected':''}>검색</option>
+								<option value="S" ${pageMaker.cri.type eq 'S'?'selected':''}>제목</option>
+								<option value="C" ${pageMaker.cri.type eq 'C'?'selected':''}>내용</option>
 
-<%-- 검색 끝 --%>
+							</select> <input class="search" type='text' name='keyword'
+								value='${pageMaker.cri.keyword}' /> <input type='hidden'
+								name='pageNum' value='${pageMaker.cri.pageNum}' /> <input
+								type='hidden' name='amount' value='${pageMaker.cri.amount}' />
+							<button style="border: 1px solid #ddd;">
+								<img id='search_image' src="/resources/img/search.png"
+									width=20px; height=20px;>
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<%-- 검색 끝 --%>
 			</div>
 		</div>
 	</div>
-		<%-- 페이징 --%>
-		<div id="pagingArea">
-			<ul class="pagination">
-		
-				<c:if test="${pageMaker.prev}">
-					<li class="page-item"><a href="${path}/news/news_list_event?pageNum=1">첫페이지</a></li>
-					<li class="paginate_button_move"><a
-						href="${pageMaker.startPage-1}">이전</a></li>
-				</c:if>
-		
-				<c:forEach var="num" begin="${pageMaker.startPage}"
-					end="${pageMaker.endPage}">
-					<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
-						<a class="page-link" href="${num}">${num}</a>
-					</li>
-				</c:forEach>
-		
-				<c:if test="${pageMaker.next}">
-					<li class="paginate_button_move"><a
-						href="${pageMaker.endPage +1}">다음</a></li>
-				</c:if>
-			</ul>
-		</div>
-		<form id='actionForm' action="/news/news_list_event" method='get'>
-			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-			<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
-			<input type='hidden' name='type' value='${pageMaker.cri.type}'>
-		</form>
-		
-		<%-- 페이징 끝 --%>
+	<%-- 페이징 --%>
+	<div id="pagingArea">
+		<ul class="pagination">
+
+			<c:if test="${pageMaker.prev}">
+				<li class="page-item"><a
+					href="${path}/news/news_list_event?pageNum=1">첫페이지</a></li>
+				<li class="paginate_button_move"><a
+					href="${pageMaker.startPage-1}">이전</a></li>
+			</c:if>
+
+			<c:forEach var="num" begin="${pageMaker.startPage}"
+				end="${pageMaker.endPage}">
+				<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""}">
+					<a class="page-link" href="${num}">${num}</a>
+				</li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next}">
+				<li class="paginate_button_move"><a
+					href="${pageMaker.endPage +1}">다음</a></li>
+			</c:if>
+		</ul>
+	</div>
+	<form id='actionForm' action="/news/news_list_event" method='get'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		<input type='hidden' name='keyword' value='${pageMaker.cri.keyword}'>
+		<input type='hidden' name='type' value='${pageMaker.cri.type}'>
+	</form>
+
+	<%-- 페이징 끝 --%>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -449,21 +406,6 @@ div.tab-event a {
 		
 		
 	});
-	
-	/*$(window).on("load", function() {
-		//<img src='/resources/img/file.png'>
-		//setInterval(function() {console.log("실험11 : "+ $('#test').html())},2);
-		if($(".test") != ""){
-			var html = '<img src="/resources/img/attach.png">';
-			$(".test").html(html);
-			console.log("실험 : "+ $(".test").html());
-		}
-		
-	});*/
-
-
-
-	
 </script>
 
-<%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp"%>

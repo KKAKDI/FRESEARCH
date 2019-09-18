@@ -51,7 +51,6 @@
 					<input type="text" id="mb_birth_yy" placeholder="년(4자)" autocomplete="off" maxlength="4">
 				</div>
 				<div class="mb_birth_mm">
-					<!--  <label for="mb_birth_mm1">월</label>-->
 					<select id="mb_birth_mm" name="mb_birth_mm">
 						<option value="월" selected>월</option>
 						<option value="01">1</option>
@@ -85,13 +84,6 @@
 					<input type="text" name="mb_phone" id="mb_phone" placeholder="전화번호 (-없이 숫자만 입력)" autocomplete="off" maxlength="11">
 					<div id="phone_check" class="check"></div>
 			</div>
-			<!--  
-			<div class="form-group">
-				<label for="mb_nick">거주지</label>
-				<input type="text" class="form-control" name="mb_nick" id="mb_nick" placeholder="닉네임" required>
-				<div id="nick_check"></div>
-			</div>
-			-->
 			<div class="form-row-addr1">
 				<label for="mb_addr">주소</label>   
 				<input type="text" id="mb_addr1" placeholder="우편번호" readonly="readonly">

@@ -7,16 +7,8 @@
 	http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="customAccessDenied" class="org.fs.security.CustomAccessDeniedHandler"></bean>
-	<!-- <bean id="customLoginSuccess" class="org.fs.security.CustomLoginSuccessHandler">
-		<property name="loginidname" value="loginId"/>
-		<property name="defaultUrl" value="/"/>
-	</bean> -->
-	<bean id="customPasswordEncoder" class="org.fs.security.CustomNoOpPasswordEncoder"></bean>
-	<bean id="logoutSuccessHandler" class="org.fs.security.CustomLogoutSuccessHandler"></bean>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="customUserDetailsService" class="org.fs.security.CustomUserDetailsService"></bean>
-	<bean id="customAuthenticationFailHandler" class="org.fs.security.CustomAuthenticationFailHandler"/>
 	
 	<security:http>
 	
@@ -44,26 +36,13 @@
 		<security:intercept-url pattern="/news/news_register" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/news/news_modify" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/apply/approval_list" access="hasRole('ROLE_ADMIN')"/>
-		
-		<!-- <security:intercept-url pattern="/member/signup" access="hasRole('ROLE_ADMIN')"/> -->
-
-		<!-- <security:access-denied-handler error-page="/accessError"/> -->
-		<!-- <security:access-denied-handler ref="customAccessDenied"/> -->
-		
-		<!-- <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> -->
-		<!-- <security:form-login login-page="/member/signin" authentication-failure-handler-ref="customAuthenticationFailHandler"/> -->
 		<security:form-login login-page="/member/signin" 
 		username-parameter="mb_email"
 		password-parameter="mb_pwd"
 		authentication-failure-url="/member/signin?fail=true"
 		default-target-url="/"/>
-		<!-- <security:logout logout-url="/customLogout" invalidate-session="true"/> -->
 		
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
-		
-		
-		<!-- csrf 작동 중지!!! -->
-		<!-- <security:csrf disabled="false"/> -->
 		
 		<security:headers>
 		
@@ -71,44 +50,14 @@
 		
 		</security:headers>
 		
-		
-		
 		<security:logout logout-url="/logout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" logout-success-url="/"/>
-		<!--
-		<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" success-handler-ref="logoutSuccessHandler"/>
-		-->
 		
 	</security:http>
-	<!--  
-	<security:authentication-manager>
-		
-		<security:authentication-provider>
-		
-			<security:user-service>
-			
-				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
-				
-				<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/>
-			
-			</security:user-service>
-		
-		</security:authentication-provider>
-		
-	</security:authentication-manager>
-	-->
 	
 	<security:authentication-manager>
 		
 		<security:authentication-provider user-service-ref="customUserDetailsService">
-		
-			<!-- <security:jdbc-user-service data-source-ref="dataSource"/> -->
-		
-			<!-- <security:password-encoder ref="customPasswordEncoder"/> -->
-			<!--  
-			<security:jdbc-user-service data-source-ref="dataSource" 
-				users-by-username-query="select userid, userpw, enabled from tbl_member where userid = ?"
-				authorities-by-username-query="select userid, auth from tbl_member_auth where userid= ?"/>
-			-->
+
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
 		
 		</security:authentication-provider>

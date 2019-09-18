@@ -8,7 +8,6 @@ import org.fs.domain.NewsVO;
 
 public interface NewsMapper {
 	
-	//@Select("select * from NEWS where NEWS_CODE > 0")
 	public List<NewsVO> getList();
 	
 	public List<NewsVO> getListWithPaging(Criteria cri);

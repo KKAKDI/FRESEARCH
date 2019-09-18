@@ -7,9 +7,6 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <%@include file="../includes/header.jsp" %>
-
-
-
 <style>
 body {
 	font-family: "Open Sans", sans-serif;
@@ -142,7 +139,6 @@ div.tab-event a {
 	position: relative;
 	font-size: 30px;
 	padding: 3px 0 7px;
-	/*margin-bottom: 40px;*/
 	margin-left: 0px;
 }
 
@@ -178,7 +174,6 @@ div.tab-event a {
 
 #pagingArea ul{
 	text-align: center;
-	/*margin-top: 30%;*/
 }
 
 #pagingArea li{
@@ -186,7 +181,6 @@ div.tab-event a {
     min-width: 40px;
     height: 40px;
     margin: 0 1px;
-    /*padding: 0 5px;*/
     box-sizing: border-box;
     line-height: 40px;
     vertical-align: top;
@@ -265,21 +259,13 @@ div.tab-event a {
 		                	<a class="button-move" href="/news/news_list_event">이벤트</a>
 						</div>
 					</div>
-					<%-- <hr/>
-					<p>FreSearch 새소식을 제공합니다.</p>
-					<button id="regBtn" type="button">등록하기</button> --%>
-					
-
-
 				<table>
 					<thead>
 						<tr style="border-bottom: 1px solid red; border-top: 1px solid white;">
 							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;"></th>
 							<th style="background-color: #f0f0f0; width: 45%; font-weight: bold; color: #505050; padding: 15 19;">제목</th>
-							<!-- <th style="background-color: #f0f0f0; width: 5%; font-weight: bold; color: #505050; padding: 15 19;"></th> -->
 							<th style="background-color: #f0f0f0; width: 10%; font-weight: bold; color: #505050; padding: 15 19;">조회</th>
 							<th style="background-color: #f0f0f0; width: 15%; font-weight: bold; color: #505050; padding: 15 19;">등록일</th>
-							
 						</tr>
 					</thead>
 
@@ -287,38 +273,11 @@ div.tab-event a {
 						<tr>
 							<td style="font-weight: bold; padding: 20;">[${news.news_division}]</td>
 							<td class="subject"><a class='move' href=${news.news_code} style="text-align: left;">${news.news_subject}</a></td>
-							
-							<!-- 
-							<c:choose>
-							<c:when test="${news.news_is_attach == 'Y'}">
-							<td><img src="/resources/img/file.png" width=20px; height=auto;></td>
-							</c:when>
-								<c:otherwise>
-	         						<td></td>
-	         					</c:otherwise>
-							</c:choose>
-						 	-->
-					
-					
 							<td style="padding: 20;">${news.news_views}</td>
 							<td style="padding: 20;"><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${news.news_regdate}" /></td>
 						</tr>		
 					</c:forEach>	
-							
-					
-				<!--<c:forEach items="${List}" var="data" varStatus="status">
-	          <c:choose>
-	           <c:when test="${fn:length(data.nm) > 14}">
-	            <c:out value="${fn:substring(data.nm,0,13)}"/>....
-	           </c:when>
-	           <c:otherwise>
-	            <c:out value="${data.nm}"/>
-	           </c:otherwise> 
-	          </c:choose>
-	</c:forEach>-->
-					
-
 				</table>
 				
 <%-- 검색 --%>
@@ -433,44 +392,7 @@ div.tab-event a {
 				e.preventDefault();
 				searchForm.submit();
 			});
-		
-		/*
-		$(".news-head a").click(function(){
-			
-			<sec:authorize access="isAuthenticated()">
-  			var auth = '<sec:authentication property="principal.member.authList[0].auth"/>';
-  			console.log("권한명 : " + auth);
-        	
-  			if(auth != 'ROLE&#95;ADMIN'){
-  				//alert("권한이 없습니다.");
-  				swal({
-					title:"권한이 없습니다.",
-					text:"패널 신청 후 참여해주세요.",
-					icon:"success",
-					button:"확인",
-				});
-      			return false;
-  			}
-  			</sec:authorize>
-			
-		});*/
-		
 	});
-	
-	/*$(window).on("load", function() {
-		//<img src='/resources/img/file.png'>
-		//setInterval(function() {console.log("실험11 : "+ $('#test').html())},2);
-		if($(".test") != ""){
-			var html = '<img src="/resources/img/attach.png">';
-			$(".test").html(html);
-			console.log("실험 : "+ $(".test").html());
-		}
-		
-	});*/
-
-
-
-	
 </script>
 
 <%@include file="../includes/footer.jsp" %>

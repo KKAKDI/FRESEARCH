@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<%-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> --%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<%@include file="../includes/header.jsp" %>
+<%@include file="../includes/header.jsp"%>
 
 <style>
-
 table {
 	width: 850px;
 	border-top: 1px solid #444444;
@@ -18,20 +18,18 @@ table {
 	table-layout: fixed;
 }
 
-
 .button {
 	text-align: center;
 	padding: 20 0;
 }
 
-.button #modify,
-.button #list {
+.button #modify, .button #list {
 	height: 30px;
-    border: none;
-    width: 80px;
-    cursor: pointer;
-    background: #1428a0;
-    color: white;
+	border: none;
+	width: 80px;
+	cursor: pointer;
+	background: #1428a0;
+	color: white;
 }
 
 .container_new {
@@ -55,15 +53,15 @@ td.column-data {
 }
 
 td.column-content {
-	word-break:break-all; 
-	wrap:"hard";
-	white-space:pre-line;
+	word-break: break-all;
+	wrap: "hard";
+	white-space: pre-line;
 }
 
 td#column-subject {
 	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 hr {
@@ -73,90 +71,88 @@ hr {
 }
 
 .uploadResult {
-
-   width:100%;
-
+	width: 100%;
 }
 
 .uploadResult ul {
-   flex-flow:row;
-   justify-content:center;
-   align-items:center;
-   <%-- height : 100px; --%>
-   padding : 10px;
-   text-align:center;
-   <%-- background-color: #e9ecef; --%>
-   margin: 0;
-   width: 340px; // 첨부파일 부분 가로길이
-   }
-
-.uploadResult ul li {
-   list-style: none;
-   padding: 10px;
-   align-content: center;
-   text-align: center;
-   display: inline;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center; <%--
+	height: 100px; --%>
+	padding: 10px;
+	text-align: center; <%--
+	background-color: #e9ecef; --%>
+	margin: 0;
+	width: 340px;
+	//
+	첨부파일
+	부분
+	가로길이
 }
 
-.uploadResult ul li img { // 섬네일 이미지 크기 조정
-   width: 10px;
-   
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+	align-content: center;
+	text-align: center;
+	display: inline;
+}
+
+.uploadResult ul li img { // 섬네일 이미지 크기 조정 width:10px;
+	
 }
 
 .uploadResult ul li span {
-   color:black;
+	color: black;
 }
 
 .bigPictureWrapper {
-   position: absolute;
-   display: none;
-   justify-content: center;
-   align-items: center;
-   top:0%;
-   height:100%;
-   background-color: gray;
-   z-index: 100;
-   background:rgba(255,255,255,0.5);
-
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	top: 0%;
+	height: 100%;
+	background-color: gray;
+	z-index: 100;
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .bigPicture {
-   display:flex;
-   position: relative;
-   justify-content: center;
-   align-items: center;
-
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
 }
 
 .bigPicture img {
-   width: 600px;
-   
+	width: 600px;
 }
 
-#content{
-   height : auto;
+#content {
+	height: auto;
 }
 
 .Header {
-    margin-top: 0px;
+	margin-top: 0px;
 }
 
 .news-head h2 {
 	position: relative;
-    font-size: 30px;
-    padding: 3px 0 7px;
-    margin: auto;
-    width: 850px;
+	font-size: 30px;
+	padding: 3px 0 7px;
+	margin: auto;
+	width: 850px;
 }
 
 .news-head h2::after {
 	background: #1428a0;
-    width: 99.9%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0px;
+	width: 99.9%;
+	height: 2px;
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0px;
 }
 </style>
 
@@ -166,115 +162,52 @@ hr {
 			<div>
 
 				<form id='operForm' action="/news/news_modify" method="get">
-					<input type='hidden' id='news_code' name='news_code' value=${news.news_code}> 
-						<input type='hidden' name='pageNum' value=${cri.pageNum}> 
-						<input type='hidden' name='amount' value=${cri.amount}> 
-						<input type='hidden' name='keyword' value=${cri.keyword}> 
-						<input type='hidden' name='type' value=${cri.type}>
+					<input type='hidden' id='news_code' name='news_code'
+						value=${news.news_code}> <input type='hidden'
+						name='pageNum' value=${cri.pageNum}> <input type='hidden'
+						name='amount' value=${cri.amount}> <input type='hidden'
+						name='keyword' value=${cri.keyword}> <input type='hidden'
+						name='type' value=${cri.type}>
 				</form>
 
 				<div>
 					<div class="news-head">
-					<h2>새소식</h2>
-					</div>	
-				
-				<!-- 
-					<h2>공지사항 / 이벤트</h2>
-					<hr/>
-					<p>FreSearch 새소식을 제공합니다.</p>
-				 -->
+						<h2>새소식</h2>
+					</div>
 					<table style="text-align: center;">
-						<tr style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
+						<tr
+							style="border-bottom: 1px solid #dcdcdc; border-top: 1px solid blue;">
 							<td class="column" style="width: 20%;">작성자</td>
 							<td class="column-data" colspan="2">FreSearch</td>
 							<td class="column" style="width: 20%;">날짜</td>
-							<td class="column-data" colspan="2"><fmt:formatDate pattern="yyyy-MM-dd"
-									value="${news.news_regdate}" /></td>
+							<td class="column-data" colspan="2"><fmt:formatDate
+									pattern="yyyy-MM-dd" value="${news.news_regdate}" /></td>
 						</tr>
 						<tr style="border-bottom: 1px solid #dcdcdc;">
 							<td class="column" style="width: 15%">제목</td>
-							<td id= "column-subject" class="column-data" style="text-align: left;" colspan="5">${news.news_subject}</td>
-							
-							<!-- 
-							<td class="column" style="width: 15%">첨부파일</td>
-							<td style="width:*">
-								<div class='bigPictureWrapper'>
-									<div class='bigPicture'></div>
-								</div>
-								<div class='uploadResult'>
-									<ul>
-									
-									</ul>
-								</div>
-							</td>
-							 -->
+							<td id="column-subject" class="column-data"
+								style="text-align: left;" colspan="5">${news.news_subject}</td>
 						</tr>
-						<tr style="border-bottom: 1px solid gray; text-align: left; height: auto;">
-							<td class="column-content" colspan="6" style="background-color: #e5e5e5;  text-align: left; padding: 40 40;">${news.news_content}</td>
+						<tr
+							style="border-bottom: 1px solid gray; text-align: left; height: auto;">
+							<td class="column-content" colspan="6"
+								style="background-color: #e5e5e5; text-align: left; padding: 40 40;">${news.news_content}</td>
 						</tr>
-						
-
-						
 					</table>
 				</div>
-				
-				
-<%--
-			<table>
-				<tr>
-					<div class="form-group">
-						<th>번호</th><td colspan="2"><input id="news_code" class="form-control"
-							name='news_code' value=${news.news_code} readonly="readonly"></td>
-					</div>
-					<div class="form-group">
-						<th>구분</th><td colspan="2"><input id="news_division" class="form-control" colspan="2"
-							name='news_division' value=${news.news_division} readonly="readonly"></td>
-					</div>
-				</tr>
-				<tr>
-					<div class="form-group">
-						<th>제목</th><td colspan="4"><input id="news_subject" class="form-control"
-							name='news_subject' value=${news.news_subject} readonly="readonly"></td>
-					</div>
-				</tr>
-				<tr>
-					<div class="form-group">
-						<th>내용</th>
-						<td colspan="6"><textarea id="news_content" class="form-control" rows="6"
-							name='news_content' readonly="readonly">${news.news_content}</textarea></td>
-					</div>
-				</tr>
-				<tr>
-				<div class='bigPictureWrapper'>
-					<div class='bigPicture'></div>
+				<div class="button">
+					<sec:authentication property="principal" var="pinfo" />
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
+							<button data-oper='modify' class="btn btn-default" id="modify">수정</button>
+						</c:if>
+					</sec:authorize>
+					<button data-oper='list' class="btn btn-info" id="list">목록</button>
 				</div>
-					<th><label>첨부파일</label></th>
-					<td>
-						<div>
-							<div class='uploadResult'>
-								<ul>
-								</ul>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
---%>
-			<div class="button">
-			<sec:authentication property="principal" var="pinfo"/>
-			<sec:authorize access="isAuthenticated()">
-				<c:if test="${pinfo.member.authList[0].auth eq 'ROLE_ADMIN'}">
-					<button data-oper='modify' class="btn btn-default" id="modify">수정</button>
-				</c:if>
-			</sec:authorize>
-				<button data-oper='list' class="btn btn-info" id="list">목록</button>
-			</div>
-
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <script type="text/javascript"> // 첨부파일 관련 스크립트
 	$(document).ready(function() {
@@ -327,8 +260,6 @@ hr {
 
 						function showImage(fileCallPath) { // 이미지파일 보여주기
 
-							// alert(fileCallPath);
-
 							$(".bigPictureWrapper").css("display", "flex").show();
 
 							$(".bigPicture").html("<img src='/display?fileName="+ fileCallPath + "' >")
@@ -345,11 +276,7 @@ hr {
 </script>
 
 <script type="text/javascript">
-	var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-   $(document).ajaxSend(function(e, xhr, options){
-      xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-   });
+	
 	// 수정 페이지
 	$(document).ready(function() {
 		var operForm = $("#operForm");
@@ -404,7 +331,6 @@ hr {
 			}
 		}
 		if (is_equal == 0) {
-			//ck_news_codes.push(news_code);
 			$.ajax({
 				url : "newsViewCnt",
 				type : "post",
@@ -425,4 +351,4 @@ hr {
 	};
 </script>
 
-<%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp"%>
