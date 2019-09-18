@@ -83,12 +83,6 @@
       eventRollingOff = setInterval(eventRolling, 2000);
       $("#content .notice_area .event .event_rolling").append($("#content .notice_area .event li").first().clone());
       
-      $("#logout").on("click", function(e){
-         location.href="/";
-         e.preventDefault();
-         $("form").submit();
-      });
-      
       $("#mypage").on("click",function(e){
 			location.href="/";
 			e.preventDefault();
@@ -174,7 +168,6 @@
                         <img class="img_iconSecond" src="/resources/img/logout_icon01.png"/>
                         <span class="span_logout">로그아웃</span>
                      </a>
-                     <input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   </form>
                   </sec:authorize>
                   <sec:authorize access="isAnonymous()">
@@ -436,6 +429,15 @@
 <script src="/resources/stats/js/chartMy.js"></script>
 <!-- 웹소켓 시작 -->
 <script type="text/javascript">
+
+	$("#logout").on("click", function(e) {
+		var html = '';
+		e.preventDefault();
+		html += '<input id="token" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />';
+		$("form").html(html);		
+		$("form").submit();				
+		location.href="/";
+	});
       
         var ws;
         $(document).ready(function(){
